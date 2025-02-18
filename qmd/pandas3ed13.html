@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>pandas3ed13</title>
+<title>Python for Data Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -87,6 +87,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -131,49 +134,82 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Python for Data Analysis</h1>
+<p class="subtitle lead">Python for Data Analysis: Data Analysis Examples</p>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<pre class="qmd"><code>---
-title: "Python for Data Analysis: Data Analysis Examples"
-author: "[Your Name]"
-format:
-  revealjs:
-    theme: sky
-    slide-number: true
-    show-slide-number: all
-    preview-links: true
     
----
+  
+    
+  </div>
+  
 
-## Introduction: Chapter 13 - Data Analysis Examples
 
-::: {layout-ncol=2}
-![](chapter13_introduction.png)
+</header>
 
--   We've reached the final chapter! 🥳
--   Focus: Applying data analysis techniques to real-world datasets.
--   Goal: Extract meaningful insights from raw data.
--   The techniques demonstrated are widely applicable.
--   Datasets are available in the book's GitHub/Gitee repository.
-:::
 
-## Data Mining, Machine Learning, and Statistical Learning
+<section id="chapter-13---data-analysis-examples" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-13---data-analysis-examples">Chapter 13 - Data Analysis Examples</h2>
+<div>
 
-::: {layout-ncol=2}
-- Data mining, machine learning, and statistical learning share a common goal: to extract valuable insights and make predictions from data.
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="chapter13_introduction.png" class="img-fluid"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<ul>
+<li>We’ve reached the final chapter! 🥳</li>
+<li>Focus: Applying data analysis techniques to real-world datasets.</li>
+<li>Goal: Extract meaningful insights from raw data.</li>
+<li>The techniques demonstrated are widely applicable.</li>
+<li>Datasets are available in the book’s GitHub/Gitee repository.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="data-mining-machine-learning-and-statistical-learning" class="level2">
+<h2 class="anchored" data-anchor-id="data-mining-machine-learning-and-statistical-learning">Data Mining, Machine Learning, and Statistical Learning</h2>
+<div>
 
-- The core of difference is the means to achieve the common goal.
-
-```{mermaid}
-graph LR
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<ul>
+<li><p>Data mining, machine learning, and statistical learning share a common goal: to extract valuable insights and make predictions from data.</p></li>
+<li><p>The core of difference is the means to achieve the common goal.</p></li>
+</ul>
+</div>
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
     A[Data Mining] --&gt; C(Common Ground)
     B[Machine Learning] --&gt; C
     D[Statistical Learning] --&gt; C
-    C --&gt; E[Insights &amp; Predictions]</code></pre>
-<p>:::</p>
+    C --&gt; E[Insights &amp; Predictions]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="data-mining" class="level2">
 <h2 class="anchored" data-anchor-id="data-mining">Data Mining</h2>
 <div>
@@ -278,7 +314,7 @@ graph LR
 </section>
 <section id="json-data-example" class="level2">
 <h2 class="anchored" data-anchor-id="json-data-example">JSON Data Example</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span> <span class="dt">"a"</span><span class="fu">:</span> <span class="st">"Mozilla</span><span class="ch">\/</span><span class="st">5.0 (Windows NT 6.1; WOW64) AppleWebKit</span><span class="ch">\/</span><span class="st">535.11 (KHTML, like Gecko) Chrome</span><span class="ch">\/</span><span class="st">17.0.963.78 Safari</span><span class="ch">\/</span><span class="st">535.11"</span><span class="fu">,</span> <span class="dt">"c"</span><span class="fu">:</span> <span class="st">"US"</span><span class="fu">,</span> <span class="dt">"nk"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span> <span class="dt">"tz"</span><span class="fu">:</span> <span class="st">"America</span><span class="ch">\/</span><span class="st">New_York"</span><span class="fu">,</span> <span class="dt">"gr"</span><span class="fu">:</span> <span class="st">"MA"</span><span class="fu">,</span> <span class="dt">"g"</span><span class="fu">:</span> <span class="st">"A6q0VH"</span><span class="fu">,</span> <span class="dt">"h"</span><span class="fu">:</span> <span class="st">"wfLQtf"</span><span class="fu">,</span> <span class="dt">"l"</span><span class="fu">:</span> <span class="st">"orofrog"</span><span class="fu">,</span> <span class="dt">"al"</span><span class="fu">:</span> <span class="st">"en-US,en;q=0.8"</span><span class="fu">,</span> <span class="dt">"hh"</span><span class="fu">:</span> <span class="st">"1.usa.gov"</span><span class="fu">,</span> <span class="dt">"r"</span><span class="fu">:</span> <span class="st">"http:</span><span class="ch">\/\/</span><span class="st">www.facebook.com</span><span class="ch">\/</span><span class="st">l</span><span class="ch">\/</span><span class="st">7AQEFzjSi</span><span class="ch">\/</span><span class="st">1.usa.gov</span><span class="ch">\/</span><span class="st">wfLQtf"</span><span class="fu">,</span> <span class="dt">"u"</span><span class="fu">:</span> <span class="st">"http:</span><span class="ch">\/\/</span><span class="st">www.ncbi.nlm.nih.gov</span><span class="ch">\/</span><span class="st">pubmed</span><span class="ch">\/</span><span class="st">22415991"</span><span class="fu">,</span> <span class="dt">"t"</span><span class="fu">:</span> <span class="dv">1331923247</span><span class="fu">,</span> <span class="dt">"hc"</span><span class="fu">:</span> <span class="dv">1331822918</span><span class="fu">,</span> <span class="dt">"cy"</span><span class="fu">:</span> <span class="st">"Danvers"</span><span class="fu">,</span> <span class="dt">"ll"</span><span class="fu">:</span> <span class="ot">[</span> <span class="fl">42.576698</span><span class="ot">,</span> <span class="fl">-70.954903</span> <span class="ot">]</span> <span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span> <span class="dt">"a"</span><span class="fu">:</span> <span class="st">"Mozilla</span><span class="ch">\/</span><span class="st">5.0 (Windows NT 6.1; WOW64) AppleWebKit</span><span class="ch">\/</span><span class="st">535.11 (KHTML, like Gecko) Chrome</span><span class="ch">\/</span><span class="st">17.0.963.78 Safari</span><span class="ch">\/</span><span class="st">535.11"</span><span class="fu">,</span> <span class="dt">"c"</span><span class="fu">:</span> <span class="st">"US"</span><span class="fu">,</span> <span class="dt">"nk"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span> <span class="dt">"tz"</span><span class="fu">:</span> <span class="st">"America</span><span class="ch">\/</span><span class="st">New_York"</span><span class="fu">,</span> <span class="dt">"gr"</span><span class="fu">:</span> <span class="st">"MA"</span><span class="fu">,</span> <span class="dt">"g"</span><span class="fu">:</span> <span class="st">"A6q0VH"</span><span class="fu">,</span> <span class="dt">"h"</span><span class="fu">:</span> <span class="st">"wfLQtf"</span><span class="fu">,</span> <span class="dt">"l"</span><span class="fu">:</span> <span class="st">"orofrog"</span><span class="fu">,</span> <span class="dt">"al"</span><span class="fu">:</span> <span class="st">"en-US,en;q=0.8"</span><span class="fu">,</span> <span class="dt">"hh"</span><span class="fu">:</span> <span class="st">"1.usa.gov"</span><span class="fu">,</span> <span class="dt">"r"</span><span class="fu">:</span> <span class="st">"http:</span><span class="ch">\/\/</span><span class="st">www.facebook.com</span><span class="ch">\/</span><span class="st">l</span><span class="ch">\/</span><span class="st">7AQEFzjSi</span><span class="ch">\/</span><span class="st">1.usa.gov</span><span class="ch">\/</span><span class="st">wfLQtf"</span><span class="fu">,</span> <span class="dt">"u"</span><span class="fu">:</span> <span class="st">"http:</span><span class="ch">\/\/</span><span class="st">www.ncbi.nlm.nih.gov</span><span class="ch">\/</span><span class="st">pubmed</span><span class="ch">\/</span><span class="st">22415991"</span><span class="fu">,</span> <span class="dt">"t"</span><span class="fu">:</span> <span class="dv">1331923247</span><span class="fu">,</span> <span class="dt">"hc"</span><span class="fu">:</span> <span class="dv">1331822918</span><span class="fu">,</span> <span class="dt">"cy"</span><span class="fu">:</span> <span class="st">"Danvers"</span><span class="fu">,</span> <span class="dt">"ll"</span><span class="fu">:</span> <span class="ot">[</span> <span class="fl">42.576698</span><span class="ot">,</span> <span class="fl">-70.954903</span> <span class="ot">]</span> <span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Structure:</strong> JSON objects are enclosed in curly braces <code>{}</code>.</li>
 <li><strong>Key-Value Pairs:</strong> Data is stored as key-value pairs (e.g., <code>"a": "Mozilla/..."</code>).</li>
@@ -288,14 +324,14 @@ graph LR
 </section>
 <section id="reading-json-data-in-python" class="level2">
 <h2 class="anchored" data-anchor-id="reading-json-data-in-python">Reading JSON Data in Python</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> <span class="st">"datasets/bitly_usagov/example.txt"</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(path) <span class="im">as</span> f:</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    records <span class="op">=</span> [json.loads(line) <span class="cf">for</span> line <span class="kw">in</span> f]  <span class="co"># List comprehension</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(records[<span class="dv">0</span>]) <span class="co"># Print the first record</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> <span class="st">"datasets/bitly_usagov/example.txt"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(path) <span class="im">as</span> f:</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    records <span class="op">=</span> [json.loads(line) <span class="cf">for</span> line <span class="kw">in</span> f]  <span class="co"># List comprehension</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(records[<span class="dv">0</span>]) <span class="co"># Print the first record</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong><code>import json</code></strong>: Imports the necessary JSON library.</li>
 <li><strong><code>open(path)</code></strong>: Opens the file.</li>
@@ -306,7 +342,7 @@ graph LR
 </section>
 <section id="accessing-data-in-the-dictionary" class="level2">
 <h2 class="anchored" data-anchor-id="accessing-data-in-the-dictionary">Accessing Data in the Dictionary</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(records[<span class="dv">0</span>][<span class="st">'tz'</span>])  <span class="co"># Accessing the 'tz' (time zone) field of the first record</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(records[<span class="dv">0</span>][<span class="st">'tz'</span>])  <span class="co"># Accessing the 'tz' (time zone) field of the first record</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>After loading the JSON data, you can access individual fields within each record using standard dictionary key access (square brackets).</li>
 <li><code>records[0]</code> gets the first dictionary in the list.</li>
@@ -320,13 +356,13 @@ graph LR
 <li><strong>Approach 1: Using a Dictionary and Loop</strong></li>
 <li><strong>Approach 2： Using <code>defaultdict</code></strong></li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_counts2(sequence):</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    counts <span class="op">=</span> defaultdict(<span class="bu">int</span>)  <span class="co"># Values will initialize to 0</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x <span class="kw">in</span> sequence:</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        counts[x] <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> counts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_counts2(sequence):</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    counts <span class="op">=</span> defaultdict(<span class="bu">int</span>)  <span class="co"># Values will initialize to 0</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x <span class="kw">in</span> sequence:</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        counts[x] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> counts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong><code>defaultdict(int)</code></strong>: Creates a dictionary where, if a key is not found, it’s automatically added with a default value of 0 (provided by <code>int()</code>). This avoids the <code>if x in counts</code> check.</li>
 </ul>
@@ -336,12 +372,12 @@ graph LR
 <ul>
 <li><strong>Key Error Explanation</strong>: If the data does <em>not</em> contain the <code>'tz'</code> key, a <code>KeyError</code> will be raised, as shown on the slide.</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Initial Code (causes KeyError)</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># time_zones = [rec["tz"] for rec in records]</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Corrected with if condition</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>time_zones <span class="op">=</span> [rec[<span class="st">"tz"</span>] <span class="cf">for</span> rec <span class="kw">in</span> records <span class="cf">if</span> <span class="st">"tz"</span> <span class="kw">in</span> rec]</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(time_zones[:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Initial Code (causes KeyError)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># time_zones = [rec["tz"] for rec in records]</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Corrected with if condition</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>time_zones <span class="op">=</span> [rec[<span class="st">"tz"</span>] <span class="cf">for</span> rec <span class="kw">in</span> records <span class="cf">if</span> <span class="st">"tz"</span> <span class="kw">in</span> rec]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(time_zones[:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>The corrected code adds an <code>if "tz" in rec</code> condition to the list comprehension. This ensures that we only try to access the <code>tz</code> key if it actually exists in the record. This prevents the <code>KeyError</code>.</li>
 </ul>
@@ -351,15 +387,15 @@ graph LR
 <ul>
 <li><strong>Top 10 Time Zones:</strong></li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> top_counts(count_dict, n<span class="op">=</span><span class="dv">10</span>):</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    value_key_pairs <span class="op">=</span> [(count, tz) <span class="cf">for</span> tz, count <span class="kw">in</span> count_dict.items()]</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    value_key_pairs.sort()</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> value_key_pairs[<span class="op">-</span>n:]</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#OR Using the Counter Class</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> Counter(time_zones)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(counts.most_common(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> top_counts(count_dict, n<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    value_key_pairs <span class="op">=</span> [(count, tz) <span class="cf">for</span> tz, count <span class="kw">in</span> count_dict.items()]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    value_key_pairs.sort()</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> value_key_pairs[<span class="op">-</span>n:]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#OR Using the Counter Class</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>counts <span class="op">=</span> Counter(time_zones)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(counts.most_common(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong><code>top_counts</code> function:</strong> A custom function to get the top <em>n</em> most frequent items. It sorts the (count, item) pairs.</li>
 <li><strong><code>Counter</code> class:</strong> A more efficient and Pythonic way to count items. <code>most_common(10)</code> directly returns the top 10.</li>
@@ -370,10 +406,10 @@ graph LR
 <ul>
 <li><strong>pandas DataFrame:</strong> A much more powerful and convenient way to work with tabular data.</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> pd.DataFrame(records)  <span class="co"># Create a DataFrame from the list of dictionaries</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(frame.info()) <span class="co"># Summary information about DataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> pd.DataFrame(records)  <span class="co"># Create a DataFrame from the list of dictionaries</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(frame.info()) <span class="co"># Summary information about DataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong><code>pd.DataFrame(records)</code></strong>: Converts the list of dictionaries (<code>records</code>) into a pandas DataFrame. pandas automatically infers column names and data types.</li>
 <li><strong><code>frame.info()</code></strong>: Provides a concise summary of the DataFrame, including:
@@ -413,16 +449,16 @@ memory usage: 500.8+ KB</code></pre>
 </section>
 <section id="working-with-time-zones-in-pandas" class="level2">
 <h2 class="anchored" data-anchor-id="working-with-time-zones-in-pandas">Working with Time Zones in pandas</h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(frame[<span class="st">'tz'</span>].head())  <span class="co"># Display the first few time zones</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>tz_counts <span class="op">=</span> frame[<span class="st">'tz'</span>].value_counts()  <span class="co"># Count occurrences of each time zone</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tz_counts.head())</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Handling Missing Data</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>clean_tz <span class="op">=</span> frame[<span class="st">'tz'</span>].fillna(<span class="st">'Missing'</span>)  <span class="co"># Replace NaN values with "Missing"</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>clean_tz[clean_tz <span class="op">==</span> <span class="st">''</span>] <span class="op">=</span> <span class="st">'Unknown'</span>      <span class="co"># Replace empty strings with "Unknown"</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>tz_counts <span class="op">=</span> clean_tz.value_counts()</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tz_counts.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(frame[<span class="st">'tz'</span>].head())  <span class="co"># Display the first few time zones</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>tz_counts <span class="op">=</span> frame[<span class="st">'tz'</span>].value_counts()  <span class="co"># Count occurrences of each time zone</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tz_counts.head())</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Handling Missing Data</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>clean_tz <span class="op">=</span> frame[<span class="st">'tz'</span>].fillna(<span class="st">'Missing'</span>)  <span class="co"># Replace NaN values with "Missing"</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>clean_tz[clean_tz <span class="op">==</span> <span class="st">''</span>] <span class="op">=</span> <span class="st">'Unknown'</span>      <span class="co"># Replace empty strings with "Unknown"</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>tz_counts <span class="op">=</span> clean_tz.value_counts()</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tz_counts.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong><code>frame['tz']</code></strong>: Selects the ‘tz’ column (a pandas Series).</li>
 <li><strong><code>.head()</code></strong>: Shows the first 5 rows (by default).</li>
@@ -433,12 +469,12 @@ memory usage: 500.8+ KB</code></pre>
 </section>
 <section id="visualization-with-seaborn" class="level2">
 <h2 class="anchored" data-anchor-id="visualization-with-seaborn">Visualization with seaborn</h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>subset <span class="op">=</span> tz_counts.head()</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>sns.barplot(y<span class="op">=</span>subset.index, x<span class="op">=</span>subset.to_numpy())</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>plt.show() <span class="co"># Display the plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>subset <span class="op">=</span> tz_counts.head()</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>sns.barplot(y<span class="op">=</span>subset.index, x<span class="op">=</span>subset.to_numpy())</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>plt.show() <span class="co"># Display the plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div>
 
 </div>
@@ -469,13 +505,13 @@ memory usage: 500.8+ KB</code></pre>
 </section>
 <section id="analyzing-browseragent-information" class="level2">
 <h2 class="anchored" data-anchor-id="analyzing-browseragent-information">Analyzing Browser/Agent Information</h2>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(frame[<span class="st">'a'</span>][<span class="dv">1</span>])</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(frame[<span class="st">'a'</span>][<span class="dv">50</span>])</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(frame[<span class="st">'a'</span>][<span class="dv">51</span>][:<span class="dv">50</span>])  <span class="co"># Show first 50 characters</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> pd.Series([x.split()[<span class="dv">0</span>] <span class="cf">for</span> x <span class="kw">in</span> frame[<span class="st">'a'</span>].dropna()])</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results.head())</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results.value_counts().head(<span class="dv">8</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(frame[<span class="st">'a'</span>][<span class="dv">1</span>])</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(frame[<span class="st">'a'</span>][<span class="dv">50</span>])</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(frame[<span class="st">'a'</span>][<span class="dv">51</span>][:<span class="dv">50</span>])  <span class="co"># Show first 50 characters</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> pd.Series([x.split()[<span class="dv">0</span>] <span class="cf">for</span> x <span class="kw">in</span> frame[<span class="st">'a'</span>].dropna()])</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results.head())</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results.value_counts().head(<span class="dv">8</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>The <code>a</code> field contains information about the user’s browser, device, or application.</li>
 <li><strong><code>frame['a'][1]</code> ,etc.</strong>: Access and print specific agent strings.</li>
@@ -487,15 +523,15 @@ memory usage: 500.8+ KB</code></pre>
 </section>
 <section id="windows-vs.-non-windows-users" class="level2">
 <h2 class="anchored" data-anchor-id="windows-vs.-non-windows-users">Windows vs.&nbsp;Non-Windows Users</h2>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>cframe <span class="op">=</span> frame[frame[<span class="st">'a'</span>].notna()].copy()  <span class="co"># Create a copy to avoid warnings</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>cframe[<span class="st">'os'</span>] <span class="op">=</span> np.where(cframe[<span class="st">'a'</span>].<span class="bu">str</span>.contains(<span class="st">'Windows'</span>), <span class="st">'Windows'</span>, <span class="st">'Not Windows'</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cframe[<span class="st">'os'</span>].head())</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>by_tz_os <span class="op">=</span> cframe.groupby([<span class="st">'tz'</span>, <span class="st">'os'</span>])</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>agg_counts <span class="op">=</span> by_tz_os.size().unstack().fillna(<span class="dv">0</span>) <span class="co"># Group, count, reshape, and fill missing values</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(agg_counts.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>cframe <span class="op">=</span> frame[frame[<span class="st">'a'</span>].notna()].copy()  <span class="co"># Create a copy to avoid warnings</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>cframe[<span class="st">'os'</span>] <span class="op">=</span> np.where(cframe[<span class="st">'a'</span>].<span class="bu">str</span>.contains(<span class="st">'Windows'</span>), <span class="st">'Windows'</span>, <span class="st">'Not Windows'</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cframe[<span class="st">'os'</span>].head())</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>by_tz_os <span class="op">=</span> cframe.groupby([<span class="st">'tz'</span>, <span class="st">'os'</span>])</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>agg_counts <span class="op">=</span> by_tz_os.size().unstack().fillna(<span class="dv">0</span>) <span class="co"># Group, count, reshape, and fill missing values</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(agg_counts.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Goal:</strong> Analyze time zone data separately for Windows and non-Windows users.</li>
 <li><strong><code>cframe = frame[frame['a'].notna()].copy()</code></strong>: Creates a <em>copy</em> of the DataFrame, filtering out rows where the ‘a’ field is missing. Using <code>.copy()</code> avoids a <code>SettingWithCopyWarning</code> that pandas might raise.</li>
@@ -509,14 +545,14 @@ memory usage: 500.8+ KB</code></pre>
 </section>
 <section id="finding-the-most-popular-time-zones" class="level2">
 <h2 class="anchored" data-anchor-id="finding-the-most-popular-time-zones">Finding the Most Popular Time Zones</h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Method 1: Using argsort</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>indexer <span class="op">=</span> agg_counts.<span class="bu">sum</span>(axis<span class="op">=</span><span class="st">"columns"</span>).argsort()</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(indexer.values[:<span class="dv">10</span>])</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>count_subset <span class="op">=</span> agg_counts.take(indexer[<span class="op">-</span><span class="dv">10</span>:])</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(count_subset)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Method 2: Using nlargest (more convenient)</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(agg_counts.<span class="bu">sum</span>(axis<span class="op">=</span><span class="st">"columns"</span>).nlargest(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Method 1: Using argsort</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>indexer <span class="op">=</span> agg_counts.<span class="bu">sum</span>(axis<span class="op">=</span><span class="st">"columns"</span>).argsort()</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(indexer.values[:<span class="dv">10</span>])</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>count_subset <span class="op">=</span> agg_counts.take(indexer[<span class="op">-</span><span class="dv">10</span>:])</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(count_subset)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Method 2: Using nlargest (more convenient)</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(agg_counts.<span class="bu">sum</span>(axis<span class="op">=</span><span class="st">"columns"</span>).nlargest(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><p><strong>Goal</strong>: Identify the time zones with the highest overall counts (combining Windows and Not Windows).</p></li>
 <li><p><strong><code>agg_counts.sum(axis="columns")</code></strong>: Calculates the total count for each time zone (summing across the ‘Windows’ and ‘Not Windows’ columns).</p></li>
@@ -527,13 +563,13 @@ memory usage: 500.8+ KB</code></pre>
 </section>
 <section id="visualizing-windows-and-non-windows-users" class="level2">
 <h2 class="anchored" data-anchor-id="visualizing-windows-and-non-windows-users">Visualizing Windows and Non-Windows Users</h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data for plotting</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>count_subset <span class="op">=</span> count_subset.stack()</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>count_subset.name <span class="op">=</span> <span class="st">'total'</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>count_subset <span class="op">=</span> count_subset.reset_index()</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(count_subset.head())</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">'total'</span>, y<span class="op">=</span><span class="st">'tz'</span>, hue<span class="op">=</span><span class="st">'os'</span>, data<span class="op">=</span>count_subset)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data for plotting</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>count_subset <span class="op">=</span> count_subset.stack()</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>count_subset.name <span class="op">=</span> <span class="st">'total'</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>count_subset <span class="op">=</span> count_subset.reset_index()</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(count_subset.head())</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">'total'</span>, y<span class="op">=</span><span class="st">'tz'</span>, hue<span class="op">=</span><span class="st">'os'</span>, data<span class="op">=</span>count_subset)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div>
 
 </div>
@@ -566,13 +602,13 @@ memory usage: 500.8+ KB</code></pre>
 </section>
 <section id="normalizing-counts" class="level2">
 <h2 class="anchored" data-anchor-id="normalizing-counts">Normalizing Counts</h2>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> norm_total(group):</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    group[<span class="st">'normed_total'</span>] <span class="op">=</span> group[<span class="st">'total'</span>] <span class="op">/</span> group[<span class="st">'total'</span>].<span class="bu">sum</span>()</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> count_subset.groupby(<span class="st">'tz'</span>).<span class="bu">apply</span>(norm_total)</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">'normed_total'</span>, y<span class="op">=</span><span class="st">'tz'</span>, hue<span class="op">=</span><span class="st">'os'</span>, data<span class="op">=</span>results)</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> norm_total(group):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    group[<span class="st">'normed_total'</span>] <span class="op">=</span> group[<span class="st">'total'</span>] <span class="op">/</span> group[<span class="st">'total'</span>].<span class="bu">sum</span>()</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> count_subset.groupby(<span class="st">'tz'</span>).<span class="bu">apply</span>(norm_total)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">'normed_total'</span>, y<span class="op">=</span><span class="st">'tz'</span>, hue<span class="op">=</span><span class="st">'os'</span>, data<span class="op">=</span>results)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div>
 
 </div>
@@ -629,17 +665,17 @@ memory usage: 500.8+ KB</code></pre>
 </ul>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>unames <span class="op">=</span> [<span class="st">'user_id'</span>, <span class="st">'gender'</span>, <span class="st">'age'</span>, <span class="st">'occupation'</span>, <span class="st">'zip'</span>]</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>users <span class="op">=</span> pd.read_table(<span class="st">'datasets/movielens/users.dat'</span>, sep<span class="op">=</span><span class="st">'::'</span>,</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                      header<span class="op">=</span><span class="va">None</span>, names<span class="op">=</span>unames, engine<span class="op">=</span><span class="st">'python'</span>)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>rnames <span class="op">=</span> [<span class="st">'user_id'</span>, <span class="st">'movie_id'</span>, <span class="st">'rating'</span>, <span class="st">'timestamp'</span>]</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>ratings <span class="op">=</span> pd.read_table(<span class="st">'datasets/movielens/ratings.dat'</span>, sep<span class="op">=</span><span class="st">'::'</span>,</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>                        header<span class="op">=</span><span class="va">None</span>, names<span class="op">=</span>rnames, engine<span class="op">=</span><span class="st">'python'</span>)</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>mnames <span class="op">=</span> [<span class="st">'movie_id'</span>, <span class="st">'title'</span>, <span class="st">'genres'</span>]</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>movies <span class="op">=</span> pd.read_table(<span class="st">'datasets/movielens/movies.dat'</span>, sep<span class="op">=</span><span class="st">'::'</span>,</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>                       header<span class="op">=</span><span class="va">None</span>, names<span class="op">=</span>mnames, engine<span class="op">=</span><span class="st">'python'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>unames <span class="op">=</span> [<span class="st">'user_id'</span>, <span class="st">'gender'</span>, <span class="st">'age'</span>, <span class="st">'occupation'</span>, <span class="st">'zip'</span>]</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>users <span class="op">=</span> pd.read_table(<span class="st">'datasets/movielens/users.dat'</span>, sep<span class="op">=</span><span class="st">'::'</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                      header<span class="op">=</span><span class="va">None</span>, names<span class="op">=</span>unames, engine<span class="op">=</span><span class="st">'python'</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>rnames <span class="op">=</span> [<span class="st">'user_id'</span>, <span class="st">'movie_id'</span>, <span class="st">'rating'</span>, <span class="st">'timestamp'</span>]</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>ratings <span class="op">=</span> pd.read_table(<span class="st">'datasets/movielens/ratings.dat'</span>, sep<span class="op">=</span><span class="st">'::'</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                        header<span class="op">=</span><span class="va">None</span>, names<span class="op">=</span>rnames, engine<span class="op">=</span><span class="st">'python'</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>mnames <span class="op">=</span> [<span class="st">'movie_id'</span>, <span class="st">'title'</span>, <span class="st">'genres'</span>]</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>movies <span class="op">=</span> pd.read_table(<span class="st">'datasets/movielens/movies.dat'</span>, sep<span class="op">=</span><span class="st">'::'</span>,</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>                       header<span class="op">=</span><span class="va">None</span>, names<span class="op">=</span>mnames, engine<span class="op">=</span><span class="st">'python'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="quarto-layout-row">
@@ -662,9 +698,9 @@ memory usage: 500.8+ KB</code></pre>
 </section>
 <section id="merging-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="merging-the-data">Merging the Data</h2>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.merge(pd.merge(ratings, users), movies)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.head())</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.iloc[<span class="dv">0</span>])  <span class="co"># Access the first row using iloc</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.merge(pd.merge(ratings, users), movies)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.head())</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.iloc[<span class="dv">0</span>])  <span class="co"># Access the first row using iloc</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong><code>pd.merge()</code></strong>: Combines DataFrames based on common columns. pandas automatically finds the common columns (e.g., ‘user_id’, ‘movie_id’).</li>
 <li><strong>Two Merges:</strong>
@@ -678,8 +714,8 @@ memory usage: 500.8+ KB</code></pre>
 </section>
 <section id="analyzing-ratings-by-gender" class="level2">
 <h2 class="anchored" data-anchor-id="analyzing-ratings-by-gender">Analyzing Ratings by Gender</h2>
-<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>mean_ratings <span class="op">=</span> data.pivot_table(<span class="st">'rating'</span>, index<span class="op">=</span><span class="st">'title'</span>, columns<span class="op">=</span><span class="st">'gender'</span>, aggfunc<span class="op">=</span><span class="st">'mean'</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mean_ratings.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>mean_ratings <span class="op">=</span> data.pivot_table(<span class="st">'rating'</span>, index<span class="op">=</span><span class="st">'title'</span>, columns<span class="op">=</span><span class="st">'gender'</span>, aggfunc<span class="op">=</span><span class="st">'mean'</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mean_ratings.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong><code>data.pivot_table(...)</code></strong>: A powerful way to reshape and aggregate data.
 <ul>
@@ -692,13 +728,13 @@ memory usage: 500.8+ KB</code></pre>
 </section>
 <section id="filtering-by-number-of-ratings" class="level2">
 <h2 class="anchored" data-anchor-id="filtering-by-number-of-ratings">Filtering by Number of Ratings</h2>
-<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ratings_by_title <span class="op">=</span> data.groupby(<span class="st">'title'</span>).size()</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ratings_by_title.head())</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>active_titles <span class="op">=</span> ratings_by_title.index[ratings_by_title <span class="op">&gt;=</span> <span class="dv">250</span>]</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(active_titles)</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>mean_ratings <span class="op">=</span> mean_ratings.loc[active_titles]</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mean_ratings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ratings_by_title <span class="op">=</span> data.groupby(<span class="st">'title'</span>).size()</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ratings_by_title.head())</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>active_titles <span class="op">=</span> ratings_by_title.index[ratings_by_title <span class="op">&gt;=</span> <span class="dv">250</span>]</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(active_titles)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>mean_ratings <span class="op">=</span> mean_ratings.loc[active_titles]</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mean_ratings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Goal</strong>: Focus on movies with a sufficient number of ratings.</li>
 <li><strong><code>data.groupby('title').size()</code></strong>: Counts the number of ratings for each movie title. <code>.size()</code> is used for grouped data (similar to <code>value_counts()</code> for Series).</li>
@@ -708,25 +744,25 @@ memory usage: 500.8+ KB</code></pre>
 </section>
 <section id="sorting-and-finding-top-films" class="level2">
 <h2 class="anchored" data-anchor-id="sorting-and-finding-top-films">Sorting and Finding Top Films</h2>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>top_female_ratings <span class="op">=</span> mean_ratings.sort_values(<span class="st">"F"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(top_female_ratings.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>top_female_ratings <span class="op">=</span> mean_ratings.sort_values(<span class="st">"F"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(top_female_ratings.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong><code>mean_ratings.sort_values("F", ascending=False)</code></strong>: Sorts the <code>mean_ratings</code> DataFrame by the ‘F’ (female) column in descending order. This puts the movies with the highest average female ratings at the top.</li>
 </ul>
 </section>
 <section id="measuring-rating-disagreement" class="level2">
 <h2 class="anchored" data-anchor-id="measuring-rating-disagreement">Measuring Rating Disagreement</h2>
-<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>mean_ratings[<span class="st">'diff'</span>] <span class="op">=</span> mean_ratings[<span class="st">'M'</span>] <span class="op">-</span> mean_ratings[<span class="st">'F'</span>]</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>sorted_by_diff <span class="op">=</span> mean_ratings.sort_values(<span class="st">'diff'</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sorted_by_diff.head())  <span class="co"># Movies preferred by women</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sorted_by_diff[::<span class="op">-</span><span class="dv">1</span>].head())  <span class="co"># Movies preferred by men</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard deviation of rating, grouped by title</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>rating_std_by_title <span class="op">=</span> data.groupby(<span class="st">'title'</span>)[<span class="st">'rating'</span>].std()</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter down to active_titles</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>rating_std_by_title <span class="op">=</span> rating_std_by_title.loc[active_titles]</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Order Series by value in descending order</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rating_std_by_title.sort_values(ascending<span class="op">=</span><span class="va">False</span>)[:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>mean_ratings[<span class="st">'diff'</span>] <span class="op">=</span> mean_ratings[<span class="st">'M'</span>] <span class="op">-</span> mean_ratings[<span class="st">'F'</span>]</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>sorted_by_diff <span class="op">=</span> mean_ratings.sort_values(<span class="st">'diff'</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sorted_by_diff.head())  <span class="co"># Movies preferred by women</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sorted_by_diff[::<span class="op">-</span><span class="dv">1</span>].head())  <span class="co"># Movies preferred by men</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard deviation of rating, grouped by title</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>rating_std_by_title <span class="op">=</span> data.groupby(<span class="st">'title'</span>)[<span class="st">'rating'</span>].std()</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter down to active_titles</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>rating_std_by_title <span class="op">=</span> rating_std_by_title.loc[active_titles]</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Order Series by value in descending order</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rating_std_by_title.sort_values(ascending<span class="op">=</span><span class="va">False</span>)[:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong><code>mean_ratings['diff'] = ...</code></strong>: Creates a new column ‘diff’ that stores the difference between the average male rating and the average female rating.</li>
 <li><strong><code>sorted_by_diff = ...</code></strong>: Sorts the DataFrame by the ‘diff’ column.
@@ -739,11 +775,11 @@ memory usage: 500.8+ KB</code></pre>
 </section>
 <section id="handling-movie-genres" class="level2">
 <h2 class="anchored" data-anchor-id="handling-movie-genres">Handling Movie Genres</h2>
-<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Original genres format: "Animation|Children's|Comedy"</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">'genre'</span>] <span class="op">=</span> movies.pop(<span class="st">'genres'</span>).<span class="bu">str</span>.split(<span class="st">'|'</span>)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(movies.head())</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>movies_exploded <span class="op">=</span> movies.explode(<span class="st">'genre'</span>)</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(movies_exploded[:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Original genres format: "Animation|Children's|Comedy"</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>movies[<span class="st">'genre'</span>] <span class="op">=</span> movies.pop(<span class="st">'genres'</span>).<span class="bu">str</span>.split(<span class="st">'|'</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(movies.head())</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>movies_exploded <span class="op">=</span> movies.explode(<span class="st">'genre'</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(movies_exploded[:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Problem</strong>: Movie genres are stored as pipe-separated strings (e.g., “Action|Adventure|Thriller”). This is difficult to analyze directly.</li>
 <li><strong><code>movies['genres'].str.split('|')</code></strong>: Splits the ‘genres’ string by the ‘|’ character, creating a <em>list</em> of genres for each movie.</li>
@@ -753,13 +789,13 @@ memory usage: 500.8+ KB</code></pre>
 </section>
 <section id="combining-all-data-and-grouping-by-genre" class="level2">
 <h2 class="anchored" data-anchor-id="combining-all-data-and-grouping-by-genre">Combining All Data and Grouping by Genre</h2>
-<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>ratings_with_genre <span class="op">=</span> pd.merge(pd.merge(movies_exploded, ratings), users)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ratings_with_genre.iloc[<span class="dv">0</span>])</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>genre_ratings <span class="op">=</span> (ratings_with_genre.groupby([<span class="st">'genre'</span>, <span class="st">'age'</span>])</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                 [<span class="st">'rating'</span>].mean()</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>                 .unstack(<span class="st">'age'</span>))</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(genre_ratings[:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ratings_with_genre <span class="op">=</span> pd.merge(pd.merge(movies_exploded, ratings), users)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ratings_with_genre.iloc[<span class="dv">0</span>])</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>genre_ratings <span class="op">=</span> (ratings_with_genre.groupby([<span class="st">'genre'</span>, <span class="st">'age'</span>])</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                 [<span class="st">'rating'</span>].mean()</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                 .unstack(<span class="st">'age'</span>))</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(genre_ratings[:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong><code>ratings_with_genre = ...</code></strong>: Merges all three tables (<code>movies_exploded</code>, <code>ratings</code>, and <code>users</code>) to create a single DataFrame where each row represents a single rating, along with user demographics and the individual genre.</li>
 <li><strong><code>ratings_with_genre.iloc[0]</code></strong>: Displays the first row of this combined DataFrame.</li>
@@ -809,25 +845,25 @@ Anna,F,2604
 </section>
 <section id="loading-and-combining-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="loading-and-combining-the-data">Loading and Combining the Data</h2>
-<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load a single year (for demonstration)</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>names1880 <span class="op">=</span> pd.read_csv(<span class="st">'datasets/babynames/yob1880.txt'</span>,</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                        names<span class="op">=</span>[<span class="st">'name'</span>, <span class="st">'sex'</span>, <span class="st">'births'</span>])</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names1880)</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names1880.groupby(<span class="st">'sex'</span>)[<span class="st">'births'</span>].<span class="bu">sum</span>())</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Load all years and combine into a single DataFrame</span></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1880</span>, <span class="dv">2011</span>)</span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>pieces <span class="op">=</span> []</span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> year <span class="kw">in</span> years:</span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    path <span class="op">=</span> <span class="ss">f'datasets/babynames/yob</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.txt'</span></span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>    frame <span class="op">=</span> pd.read_csv(path, names<span class="op">=</span>[<span class="st">'name'</span>, <span class="st">'sex'</span>, <span class="st">'births'</span>])</span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>    frame[<span class="st">'year'</span>] <span class="op">=</span> year  <span class="co"># Add a 'year' column</span></span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>    pieces.append(frame)</span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> pd.concat(pieces, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load a single year (for demonstration)</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>names1880 <span class="op">=</span> pd.read_csv(<span class="st">'datasets/babynames/yob1880.txt'</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                        names<span class="op">=</span>[<span class="st">'name'</span>, <span class="st">'sex'</span>, <span class="st">'births'</span>])</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names1880)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names1880.groupby(<span class="st">'sex'</span>)[<span class="st">'births'</span>].<span class="bu">sum</span>())</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Load all years and combine into a single DataFrame</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1880</span>, <span class="dv">2011</span>)</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>pieces <span class="op">=</span> []</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> year <span class="kw">in</span> years:</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    path <span class="op">=</span> <span class="ss">f'datasets/babynames/yob</span><span class="sc">{</span>year<span class="sc">}</span><span class="ss">.txt'</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>    frame <span class="op">=</span> pd.read_csv(path, names<span class="op">=</span>[<span class="st">'name'</span>, <span class="st">'sex'</span>, <span class="st">'births'</span>])</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>    frame[<span class="st">'year'</span>] <span class="op">=</span> year  <span class="co"># Add a 'year' column</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>    pieces.append(frame)</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> pd.concat(pieces, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong><code>names1880 = pd.read_csv(...)</code></strong>: Loads a single year’s data into a DataFrame. <code>names</code> argument assigns column titles.</li>
 <li><strong><code>names1880.groupby('sex')['births'].sum()</code></strong>: Calculates the total births for each sex in 1880.</li>
@@ -846,11 +882,11 @@ Anna,F,2604
 </section>
 <section id="aggregating-by-year-and-sex" class="level2">
 <h2 class="anchored" data-anchor-id="aggregating-by-year-and-sex">Aggregating by Year and Sex</h2>
-<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>total_births <span class="op">=</span> names.pivot_table(<span class="st">'births'</span>, index<span class="op">=</span><span class="st">'year'</span>,</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                                 columns<span class="op">=</span><span class="st">'sex'</span>, aggfunc<span class="op">=</span><span class="bu">sum</span>)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(total_births.tail())</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>total_births.plot(title<span class="op">=</span><span class="st">'Total births by sex and year'</span>)</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>total_births <span class="op">=</span> names.pivot_table(<span class="st">'births'</span>, index<span class="op">=</span><span class="st">'year'</span>,</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>                                 columns<span class="op">=</span><span class="st">'sex'</span>, aggfunc<span class="op">=</span><span class="bu">sum</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(total_births.tail())</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>total_births.plot(title<span class="op">=</span><span class="st">'Total births by sex and year'</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div>
 
 </div>
@@ -882,12 +918,12 @@ Anna,F,2604
 </section>
 <section id="calculating-proportion-of-each-name" class="level2">
 <h2 class="anchored" data-anchor-id="calculating-proportion-of-each-name">Calculating Proportion of Each Name</h2>
-<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_prop(group):</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    group[<span class="st">'prop'</span>] <span class="op">=</span> group[<span class="st">'births'</span>] <span class="op">/</span> group[<span class="st">'births'</span>].<span class="bu">sum</span>()</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> names.groupby([<span class="st">'year'</span>, <span class="st">'sex'</span>]).<span class="bu">apply</span>(add_prop)</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> add_prop(group):</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    group[<span class="st">'prop'</span>] <span class="op">=</span> group[<span class="st">'births'</span>] <span class="op">/</span> group[<span class="st">'births'</span>].<span class="bu">sum</span>()</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> names.groupby([<span class="st">'year'</span>, <span class="st">'sex'</span>]).<span class="bu">apply</span>(add_prop)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Goal:</strong> Determine the proportion of babies given each name <em>within each year and sex</em>. This normalizes the data, accounting for changes in the total number of births.</li>
 <li><strong><code>add_prop(group)</code> function:</strong>
@@ -901,7 +937,7 @@ Anna,F,2604
 </section>
 <section id="verifying-the-proportions" class="level2">
 <h2 class="anchored" data-anchor-id="verifying-the-proportions">Verifying the Proportions</h2>
-<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names.groupby([<span class="st">'year'</span>, <span class="st">'sex'</span>])[<span class="st">'prop'</span>].<span class="bu">sum</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names.groupby([<span class="st">'year'</span>, <span class="st">'sex'</span>])[<span class="st">'prop'</span>].<span class="bu">sum</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Sanity Check</strong>: It’s a good practice to verify that the calculations are correct.</li>
 <li><strong><code>names.groupby(['year', 'sex'])['prop'].sum()</code></strong>: Groups by year and sex, and then sums the ‘prop’ column for each group. The result should be 1.0 for each year/sex combination, because the proportions should add up to 100%.</li>
@@ -909,13 +945,13 @@ Anna,F,2604
 </section>
 <section id="extracting-the-top-1000-names" class="level2">
 <h2 class="anchored" data-anchor-id="extracting-the-top-1000-names">Extracting the Top 1000 Names</h2>
-<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_top1000(group):</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group.sort_values(<span class="st">'births'</span>, ascending<span class="op">=</span><span class="va">False</span>)[:<span class="dv">1000</span>]</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> names.groupby([<span class="st">'year'</span>, <span class="st">'sex'</span>])</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>top1000 <span class="op">=</span> grouped.<span class="bu">apply</span>(get_top1000)</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>top1000 <span class="op">=</span> top1000.reset_index(drop<span class="op">=</span><span class="va">True</span>)  <span class="co"># Drop the hierarchical index</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(top1000)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_top1000(group):</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group.sort_values(<span class="st">'births'</span>, ascending<span class="op">=</span><span class="va">False</span>)[:<span class="dv">1000</span>]</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> names.groupby([<span class="st">'year'</span>, <span class="st">'sex'</span>])</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>top1000 <span class="op">=</span> grouped.<span class="bu">apply</span>(get_top1000)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>top1000 <span class="op">=</span> top1000.reset_index(drop<span class="op">=</span><span class="va">True</span>)  <span class="co"># Drop the hierarchical index</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(top1000)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Goal:</strong> For each year and sex, find the 1000 most popular names. This subset is used for further analysis.</li>
 <li><strong><code>get_top1000(group)</code> function:</strong>
@@ -931,16 +967,16 @@ Anna,F,2604
 </section>
 <section id="analyzing-naming-trends" class="level2">
 <h2 class="anchored" data-anchor-id="analyzing-naming-trends">Analyzing Naming Trends</h2>
-<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>boys <span class="op">=</span> top1000[top1000[<span class="st">'sex'</span>] <span class="op">==</span> <span class="st">'M'</span>]</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>girls <span class="op">=</span> top1000[top1000[<span class="st">'sex'</span>] <span class="op">==</span> <span class="st">'F'</span>]</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>total_births <span class="op">=</span> top1000.pivot_table(<span class="st">'births'</span>, index<span class="op">=</span><span class="st">'year'</span>, columns<span class="op">=</span><span class="st">'name'</span>,</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>                                    aggfunc<span class="op">=</span><span class="bu">sum</span>)</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(total_births.info())</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>subset <span class="op">=</span> total_births[[<span class="st">'John'</span>, <span class="st">'Harry'</span>, <span class="st">'Mary'</span>, <span class="st">'Marilyn'</span>]]</span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>subset.plot(subplots<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">10</span>), title<span class="op">=</span><span class="st">"Number of births per year"</span>)</span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>boys <span class="op">=</span> top1000[top1000[<span class="st">'sex'</span>] <span class="op">==</span> <span class="st">'M'</span>]</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>girls <span class="op">=</span> top1000[top1000[<span class="st">'sex'</span>] <span class="op">==</span> <span class="st">'F'</span>]</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>total_births <span class="op">=</span> top1000.pivot_table(<span class="st">'births'</span>, index<span class="op">=</span><span class="st">'year'</span>, columns<span class="op">=</span><span class="st">'name'</span>,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>                                    aggfunc<span class="op">=</span><span class="bu">sum</span>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(total_births.info())</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>subset <span class="op">=</span> total_births[[<span class="st">'John'</span>, <span class="st">'Harry'</span>, <span class="st">'Mary'</span>, <span class="st">'Marilyn'</span>]]</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>subset.plot(subplots<span class="op">=</span><span class="va">True</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">10</span>), title<span class="op">=</span><span class="st">"Number of births per year"</span>)</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div>
 
 </div>
@@ -976,19 +1012,19 @@ Anna,F,2604
 </section>
 <section id="measuring-the-increase-in-naming-diversity" class="level2">
 <h2 class="anchored" data-anchor-id="measuring-the-increase-in-naming-diversity">Measuring the Increase in Naming Diversity</h2>
-<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> top1000.pivot_table(<span class="st">'prop'</span>, index<span class="op">=</span><span class="st">'year'</span>, columns<span class="op">=</span><span class="st">'sex'</span>, aggfunc<span class="op">=</span><span class="bu">sum</span>)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>table.plot(title<span class="op">=</span><span class="st">'Sum of table1000.prop by year and sex'</span>,</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>           yticks<span class="op">=</span>np.linspace(<span class="dv">0</span>, <span class="fl">1.2</span>, <span class="dv">13</span>))</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> boys[boys[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">2010</span>]</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>prop_cumsum <span class="op">=</span> df[<span class="st">'prop'</span>].sort_values(ascending<span class="op">=</span><span class="va">False</span>).cumsum()</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prop_cumsum[:<span class="dv">10</span>])</span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prop_cumsum.searchsorted(<span class="fl">0.5</span>)) <span class="co"># result 116, plus 1</span></span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> boys[boys.year <span class="op">==</span> <span class="dv">1900</span>]</span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>in1900 <span class="op">=</span> df.sort_values(<span class="st">'prop'</span>, ascending<span class="op">=</span><span class="va">False</span>).prop.cumsum()</span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(in1900.searchsorted(<span class="fl">0.5</span>) <span class="op">+</span> <span class="dv">1</span>) <span class="co">#result 25</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> top1000.pivot_table(<span class="st">'prop'</span>, index<span class="op">=</span><span class="st">'year'</span>, columns<span class="op">=</span><span class="st">'sex'</span>, aggfunc<span class="op">=</span><span class="bu">sum</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>table.plot(title<span class="op">=</span><span class="st">'Sum of table1000.prop by year and sex'</span>,</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>           yticks<span class="op">=</span>np.linspace(<span class="dv">0</span>, <span class="fl">1.2</span>, <span class="dv">13</span>))</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> boys[boys[<span class="st">'year'</span>] <span class="op">==</span> <span class="dv">2010</span>]</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>prop_cumsum <span class="op">=</span> df[<span class="st">'prop'</span>].sort_values(ascending<span class="op">=</span><span class="va">False</span>).cumsum()</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prop_cumsum[:<span class="dv">10</span>])</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prop_cumsum.searchsorted(<span class="fl">0.5</span>)) <span class="co"># result 116, plus 1</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> boys[boys.year <span class="op">==</span> <span class="dv">1900</span>]</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>in1900 <span class="op">=</span> df.sort_values(<span class="st">'prop'</span>, ascending<span class="op">=</span><span class="va">False</span>).prop.cumsum()</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(in1900.searchsorted(<span class="fl">0.5</span>) <span class="op">+</span> <span class="dv">1</span>) <span class="co">#result 25</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div>
 
 </div>
@@ -1016,16 +1052,16 @@ Anna,F,2604
 </section>
 <section id="measuring-the-increase-in-naming-diversity-cont." class="level2">
 <h2 class="anchored" data-anchor-id="measuring-the-increase-in-naming-diversity-cont.">Measuring the Increase in Naming Diversity (Cont.)</h2>
-<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_quantile_count(group, q<span class="op">=</span><span class="fl">0.5</span>):</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    group <span class="op">=</span> group.sort_values(<span class="st">'prop'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group.prop.cumsum().searchsorted(q) <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>diversity <span class="op">=</span> top1000.groupby([<span class="st">'year'</span>, <span class="st">'sex'</span>]).<span class="bu">apply</span>(get_quantile_count)</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>diversity <span class="op">=</span> diversity.unstack()</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>diversity.plot(title<span class="op">=</span><span class="st">"Number of popular names in top 50%"</span>)</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_quantile_count(group, q<span class="op">=</span><span class="fl">0.5</span>):</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    group <span class="op">=</span> group.sort_values(<span class="st">'prop'</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group.prop.cumsum().searchsorted(q) <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>diversity <span class="op">=</span> top1000.groupby([<span class="st">'year'</span>, <span class="st">'sex'</span>]).<span class="bu">apply</span>(get_quantile_count)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>diversity <span class="op">=</span> diversity.unstack()</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>diversity.plot(title<span class="op">=</span><span class="st">"Number of popular names in top 50%"</span>)</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div>
 
 </div>
@@ -1059,28 +1095,28 @@ Anna,F,2604
 </section>
 <section id="the-last-letter-revolution" class="level2">
 <h2 class="anchored" data-anchor-id="the-last-letter-revolution">The “Last Letter” Revolution</h2>
-<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_last_letter(x):</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x[<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>last_letters <span class="op">=</span> names[<span class="st">'name'</span>].<span class="bu">map</span>(get_last_letter)</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>last_letters.name <span class="op">=</span> <span class="st">'last_letter'</span></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> names.pivot_table(<span class="st">'births'</span>, index<span class="op">=</span>last_letters,</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>                          columns<span class="op">=</span>[<span class="st">'sex'</span>, <span class="st">'year'</span>], aggfunc<span class="op">=</span><span class="bu">sum</span>)</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>subtable <span class="op">=</span> table.reindex(columns<span class="op">=</span>[<span class="dv">1910</span>, <span class="dv">1960</span>, <span class="dv">2010</span>], level<span class="op">=</span><span class="st">'year'</span>)</span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subtable.head())</span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subtable.<span class="bu">sum</span>())</span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>letter_prop <span class="op">=</span> subtable <span class="op">/</span> subtable.<span class="bu">sum</span>()</span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(letter_prop.head())</span>
-<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
-<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>letter_prop[<span class="st">'M'</span>].plot(kind<span class="op">=</span><span class="st">'bar'</span>, rot<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>], title<span class="op">=</span><span class="st">'Male'</span>)</span>
-<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>letter_prop[<span class="st">'F'</span>].plot(kind<span class="op">=</span><span class="st">'bar'</span>, rot<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>], title<span class="op">=</span><span class="st">'Female'</span>,</span>
-<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>                      legend<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_last_letter(x):</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>last_letters <span class="op">=</span> names[<span class="st">'name'</span>].<span class="bu">map</span>(get_last_letter)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>last_letters.name <span class="op">=</span> <span class="st">'last_letter'</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> names.pivot_table(<span class="st">'births'</span>, index<span class="op">=</span>last_letters,</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>                          columns<span class="op">=</span>[<span class="st">'sex'</span>, <span class="st">'year'</span>], aggfunc<span class="op">=</span><span class="bu">sum</span>)</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>subtable <span class="op">=</span> table.reindex(columns<span class="op">=</span>[<span class="dv">1910</span>, <span class="dv">1960</span>, <span class="dv">2010</span>], level<span class="op">=</span><span class="st">'year'</span>)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subtable.head())</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subtable.<span class="bu">sum</span>())</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>letter_prop <span class="op">=</span> subtable <span class="op">/</span> subtable.<span class="bu">sum</span>()</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(letter_prop.head())</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>letter_prop[<span class="st">'M'</span>].plot(kind<span class="op">=</span><span class="st">'bar'</span>, rot<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>axes[<span class="dv">0</span>], title<span class="op">=</span><span class="st">'Male'</span>)</span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>letter_prop[<span class="st">'F'</span>].plot(kind<span class="op">=</span><span class="st">'bar'</span>, rot<span class="op">=</span><span class="dv">0</span>, ax<span class="op">=</span>axes[<span class="dv">1</span>], title<span class="op">=</span><span class="st">'Female'</span>,</span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>                      legend<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div>
 
 </div>
@@ -1111,11 +1147,11 @@ Anna,F,2604
 </section>
 <section id="the-last-letter-revolution-cont." class="level2">
 <h2 class="anchored" data-anchor-id="the-last-letter-revolution-cont.">The “Last Letter” Revolution (Cont.)</h2>
-<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>letter_prop <span class="op">=</span> table <span class="op">/</span> table.<span class="bu">sum</span>()</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>dny_ts <span class="op">=</span> letter_prop.loc[[<span class="st">'d'</span>, <span class="st">'n'</span>, <span class="st">'y'</span>], <span class="st">'M'</span>].T</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dny_ts.head())</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>dny_ts.plot()</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>letter_prop <span class="op">=</span> table <span class="op">/</span> table.<span class="bu">sum</span>()</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>dny_ts <span class="op">=</span> letter_prop.loc[[<span class="st">'d'</span>, <span class="st">'n'</span>, <span class="st">'y'</span>], <span class="st">'M'</span>].T</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dny_ts.head())</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>dny_ts.plot()</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div>
 
 </div>
@@ -1141,19 +1177,19 @@ Anna,F,2604
 </section>
 <section id="boy-names-that-became-girl-names-and-vice-versa" class="level2">
 <h2 class="anchored" data-anchor-id="boy-names-that-became-girl-names-and-vice-versa">Boy Names That Became Girl Names (and Vice Versa)</h2>
-<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>all_names <span class="op">=</span> pd.Series(top1000[<span class="st">'name'</span>].unique())</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>lesley_like <span class="op">=</span> all_names[all_names.<span class="bu">str</span>.contains(<span class="st">'Lesl'</span>)]</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lesley_like)</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>filtered <span class="op">=</span> top1000[top1000[<span class="st">'name'</span>].isin(lesley_like)]</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(filtered.groupby(<span class="st">'name'</span>)[<span class="st">'births'</span>].<span class="bu">sum</span>())</span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> filtered.pivot_table(<span class="st">'births'</span>, index<span class="op">=</span><span class="st">'year'</span>,</span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>                            columns<span class="op">=</span><span class="st">'sex'</span>, aggfunc<span class="op">=</span><span class="st">'sum'</span>)</span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> table.div(table.<span class="bu">sum</span>(axis<span class="op">=</span><span class="st">"columns"</span>), axis<span class="op">=</span><span class="st">"index"</span>)</span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(table.tail())</span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>table.plot(style<span class="op">=</span>{<span class="st">'M'</span>: <span class="st">'k-'</span>, <span class="st">'F'</span>: <span class="st">'k--'</span>})</span>
-<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>all_names <span class="op">=</span> pd.Series(top1000[<span class="st">'name'</span>].unique())</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>lesley_like <span class="op">=</span> all_names[all_names.<span class="bu">str</span>.contains(<span class="st">'Lesl'</span>)]</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lesley_like)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>filtered <span class="op">=</span> top1000[top1000[<span class="st">'name'</span>].isin(lesley_like)]</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(filtered.groupby(<span class="st">'name'</span>)[<span class="st">'births'</span>].<span class="bu">sum</span>())</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> filtered.pivot_table(<span class="st">'births'</span>, index<span class="op">=</span><span class="st">'year'</span>,</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>                            columns<span class="op">=</span><span class="st">'sex'</span>, aggfunc<span class="op">=</span><span class="st">'sum'</span>)</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> table.div(table.<span class="bu">sum</span>(axis<span class="op">=</span><span class="st">"columns"</span>), axis<span class="op">=</span><span class="st">"index"</span>)</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(table.tail())</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>table.plot(style<span class="op">=</span>{<span class="st">'M'</span>: <span class="st">'k-'</span>, <span class="st">'F'</span>: <span class="st">'k--'</span>})</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div>
 
 </div>
@@ -1198,28 +1234,28 @@ Anna,F,2604
 </ul>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="sourceCode" id="cb37"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"id"</span><span class="fu">:</span> <span class="dv">21441</span><span class="fu">,</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"KENTUCKY FRIED CHICKEN, Fried Chicken, EXTRA CRISPY, Wing, meat and skin with breading"</span><span class="fu">,</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"tags"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"KFC"</span><span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"manufacturer"</span><span class="fu">:</span> <span class="st">"Kentucky Fried Chicken"</span><span class="fu">,</span></span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"group"</span><span class="fu">:</span> <span class="st">"Fast Foods"</span><span class="fu">,</span></span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"portions"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"amount"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"unit"</span><span class="fu">:</span> <span class="st">"wing, with skin"</span><span class="fu">,</span></span>
-<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"grams"</span><span class="fu">:</span> <span class="fl">68.0</span></span>
-<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
-<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"nutrients"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="fl">20.8</span><span class="fu">,</span></span>
-<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"units"</span><span class="fu">:</span> <span class="st">"g"</span><span class="fu">,</span></span>
-<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"Protein"</span><span class="fu">,</span></span>
-<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"group"</span><span class="fu">:</span> <span class="st">"Composition"</span></span>
-<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
-<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
-<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"id"</span><span class="fu">:</span> <span class="dv">21441</span><span class="fu">,</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"KENTUCKY FRIED CHICKEN, Fried Chicken, EXTRA CRISPY, Wing, meat and skin with breading"</span><span class="fu">,</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"tags"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"KFC"</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"manufacturer"</span><span class="fu">:</span> <span class="st">"Kentucky Fried Chicken"</span><span class="fu">,</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"group"</span><span class="fu">:</span> <span class="st">"Fast Foods"</span><span class="fu">,</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"portions"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"amount"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"unit"</span><span class="fu">:</span> <span class="st">"wing, with skin"</span><span class="fu">,</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"grams"</span><span class="fu">:</span> <span class="fl">68.0</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"nutrients"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="fl">20.8</span><span class="fu">,</span></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"units"</span><span class="fu">:</span> <span class="st">"g"</span><span class="fu">,</span></span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"Protein"</span><span class="fu">,</span></span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"group"</span><span class="fu">:</span> <span class="st">"Composition"</span></span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="quarto-layout-row">
@@ -1231,16 +1267,16 @@ Anna,F,2604
 </section>
 <section id="loading-and-exploring-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="loading-and-exploring-the-data">Loading and Exploring the Data</h2>
-<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>db <span class="op">=</span> json.load(<span class="bu">open</span>(<span class="st">'datasets/usda_food/database.json'</span>))</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(db))</span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(db[<span class="dv">0</span>].keys())</span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(db[<span class="dv">0</span>][<span class="st">'nutrients'</span>][<span class="dv">0</span>])</span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>nutrients <span class="op">=</span> pd.DataFrame(db[<span class="dv">0</span>][<span class="st">'nutrients'</span>])</span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nutrients.head(<span class="dv">7</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>db <span class="op">=</span> json.load(<span class="bu">open</span>(<span class="st">'datasets/usda_food/database.json'</span>))</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(db))</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(db[<span class="dv">0</span>].keys())</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(db[<span class="dv">0</span>][<span class="st">'nutrients'</span>][<span class="dv">0</span>])</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>nutrients <span class="op">=</span> pd.DataFrame(db[<span class="dv">0</span>][<span class="st">'nutrients'</span>])</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nutrients.head(<span class="dv">7</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong><code>import json</code></strong>: Imports the <code>json</code> library for working with JSON data.</li>
 <li><strong><code>db = json.load(...)</code></strong>: Loads the JSON data from the file into a Python object (<code>db</code>). <code>db</code> will be a list of dictionaries.</li>
@@ -1252,11 +1288,11 @@ Anna,F,2604
 </section>
 <section id="extracting-food-information" class="level2">
 <h2 class="anchored" data-anchor-id="extracting-food-information">Extracting Food Information</h2>
-<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>info_keys <span class="op">=</span> [<span class="st">'description'</span>, <span class="st">'group'</span>, <span class="st">'id'</span>, <span class="st">'manufacturer'</span>]</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>info <span class="op">=</span> pd.DataFrame(db, columns<span class="op">=</span>info_keys)</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(info.head())</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(info.info())</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.value_counts(info[<span class="st">'group'</span>])[:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>info_keys <span class="op">=</span> [<span class="st">'description'</span>, <span class="st">'group'</span>, <span class="st">'id'</span>, <span class="st">'manufacturer'</span>]</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>info <span class="op">=</span> pd.DataFrame(db, columns<span class="op">=</span>info_keys)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(info.head())</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(info.info())</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.value_counts(info[<span class="st">'group'</span>])[:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Goal:</strong> Create a DataFrame (<code>info</code>) containing basic information about each food.</li>
 <li><strong><code>info_keys = [...]</code></strong>: Defines a list of the keys we want to extract.</li>
@@ -1268,15 +1304,15 @@ Anna,F,2604
 </section>
 <section id="processing-nutrient-data" class="level2">
 <h2 class="anchored" data-anchor-id="processing-nutrient-data">Processing Nutrient Data</h2>
-<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>nutrients <span class="op">=</span> []</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> rec <span class="kw">in</span> db:</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    fnuts <span class="op">=</span> pd.DataFrame(rec[<span class="st">'nutrients'</span>])</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    fnuts[<span class="st">'id'</span>] <span class="op">=</span> rec[<span class="st">'id'</span>]</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    nutrients.append(fnuts)</span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>nutrients <span class="op">=</span> pd.concat(nutrients, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nutrients)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>nutrients <span class="op">=</span> []</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> rec <span class="kw">in</span> db:</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    fnuts <span class="op">=</span> pd.DataFrame(rec[<span class="st">'nutrients'</span>])</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    fnuts[<span class="st">'id'</span>] <span class="op">=</span> rec[<span class="st">'id'</span>]</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    nutrients.append(fnuts)</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>nutrients <span class="op">=</span> pd.concat(nutrients, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nutrients)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Goal</strong>: Create a single DataFrame (<code>nutrients</code>) containing all nutrient information for all foods.</li>
 <li><strong>Looping through records:</strong>
@@ -1291,18 +1327,18 @@ Anna,F,2604
 </section>
 <section id="handling-duplicates-and-renaming" class="level2">
 <h2 class="anchored" data-anchor-id="handling-duplicates-and-renaming">Handling Duplicates and Renaming</h2>
-<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>nutrients.duplicated().<span class="bu">sum</span>()  <span class="co"># Check for duplicates</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>nutrients <span class="op">=</span> nutrients.drop_duplicates()  <span class="co"># Remove duplicates</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>col_mapping <span class="op">=</span> {<span class="st">'description'</span> : <span class="st">'food'</span>,</span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>               <span class="st">'group'</span>       : <span class="st">'fgroup'</span>}</span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>info <span class="op">=</span> info.rename(columns<span class="op">=</span>col_mapping, copy<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(info.info())</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>col_mapping <span class="op">=</span> {<span class="st">'description'</span> : <span class="st">'nutrient'</span>,</span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>               <span class="st">'group'</span> : <span class="st">'nutgroup'</span>}</span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>nutrients <span class="op">=</span> nutrients.rename(columns<span class="op">=</span>col_mapping, copy<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nutrients)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>nutrients.duplicated().<span class="bu">sum</span>()  <span class="co"># Check for duplicates</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>nutrients <span class="op">=</span> nutrients.drop_duplicates()  <span class="co"># Remove duplicates</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>col_mapping <span class="op">=</span> {<span class="st">'description'</span> : <span class="st">'food'</span>,</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>               <span class="st">'group'</span>       : <span class="st">'fgroup'</span>}</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>info <span class="op">=</span> info.rename(columns<span class="op">=</span>col_mapping, copy<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(info.info())</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>col_mapping <span class="op">=</span> {<span class="st">'description'</span> : <span class="st">'nutrient'</span>,</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>               <span class="st">'group'</span> : <span class="st">'nutgroup'</span>}</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>nutrients <span class="op">=</span> nutrients.rename(columns<span class="op">=</span>col_mapping, copy<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nutrients)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Duplicate Check</strong>: It is found that some rows of nutritional information are duplicated and need to be removed before proceeding.</li>
 <li><strong><code>nutrients.duplicated().sum()</code></strong>: Counts the number of duplicate rows in the <code>nutrients</code> DataFrame.</li>
@@ -1317,9 +1353,9 @@ Anna,F,2604
 </section>
 <section id="merging-dataframes" class="level2">
 <h2 class="anchored" data-anchor-id="merging-dataframes">Merging DataFrames</h2>
-<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>ndata <span class="op">=</span> pd.merge(nutrients, info, on<span class="op">=</span><span class="st">'id'</span>)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ndata.info())</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ndata.iloc[<span class="dv">30000</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>ndata <span class="op">=</span> pd.merge(nutrients, info, on<span class="op">=</span><span class="st">'id'</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ndata.info())</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ndata.iloc[<span class="dv">30000</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong><code>ndata = pd.merge(nutrients, info, on='id')</code></strong>: Combines the <code>nutrients</code> and <code>info</code> DataFrames based on the common ‘id’ column. This creates a single DataFrame with all food and nutrient information.</li>
 <li><strong><code>ndata.info()</code></strong>: Displays summary information about the merged DataFrame.</li>
@@ -1328,9 +1364,9 @@ Anna,F,2604
 </section>
 <section id="plotting-median-nutrient-values" class="level2">
 <h2 class="anchored" data-anchor-id="plotting-median-nutrient-values">Plotting Median Nutrient Values</h2>
-<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> ndata.groupby([<span class="st">'nutrient'</span>, <span class="st">'fgroup'</span>])[<span class="st">'value'</span>].quantile(<span class="fl">0.5</span>)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>result[<span class="st">'Zinc, Zn'</span>].sort_values().plot(kind<span class="op">=</span><span class="st">'barh'</span>)</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> ndata.groupby([<span class="st">'nutrient'</span>, <span class="st">'fgroup'</span>])[<span class="st">'value'</span>].quantile(<span class="fl">0.5</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>result[<span class="st">'Zinc, Zn'</span>].sort_values().plot(kind<span class="op">=</span><span class="st">'barh'</span>)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div>
 
 </div>
@@ -1365,14 +1401,14 @@ Anna,F,2604
 </section>
 <section id="finding-foods-with-maximum-nutrient-values" class="level2">
 <h2 class="anchored" data-anchor-id="finding-foods-with-maximum-nutrient-values">Finding Foods with Maximum Nutrient Values</h2>
-<div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>by_nutrient <span class="op">=</span> ndata.groupby([<span class="st">'nutgroup'</span>, <span class="st">'nutrient'</span>])</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_maximum(x):</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x.loc[x.value.idxmax()]</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>max_foods <span class="op">=</span> by_nutrient.<span class="bu">apply</span>(get_maximum)[[<span class="st">'value'</span>, <span class="st">'food'</span>]]</span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>max_foods[<span class="st">'food'</span>] <span class="op">=</span> max_foods[<span class="st">'food'</span>].<span class="bu">str</span>[:<span class="dv">50</span>]</span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(max_foods.loc[<span class="st">'Amino Acids'</span>][<span class="st">'food'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>by_nutrient <span class="op">=</span> ndata.groupby([<span class="st">'nutgroup'</span>, <span class="st">'nutrient'</span>])</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_maximum(x):</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x.loc[x.value.idxmax()]</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>max_foods <span class="op">=</span> by_nutrient.<span class="bu">apply</span>(get_maximum)[[<span class="st">'value'</span>, <span class="st">'food'</span>]]</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>max_foods[<span class="st">'food'</span>] <span class="op">=</span> max_foods[<span class="st">'food'</span>].<span class="bu">str</span>[:<span class="dv">50</span>]</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(max_foods.loc[<span class="st">'Amino Acids'</span>][<span class="st">'food'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Goal</strong>: Identify the food that has the highest value for each nutrient.</li>
 <li><strong><code>by_nutrient = ndata.groupby(['nutgroup', 'nutrient'])</code></strong>: Groups the data by nutrient group and nutrient name.</li>
@@ -1410,10 +1446,10 @@ Anna,F,2604
 </ul>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>fec <span class="op">=</span> pd.read_csv(<span class="st">'datasets/fec/P00000001-ALL.csv'</span>, low_memory<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fec.info())</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fec.iloc[<span class="dv">123456</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>fec <span class="op">=</span> pd.read_csv(<span class="st">'datasets/fec/P00000001-ALL.csv'</span>, low_memory<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fec.info())</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fec.iloc[<span class="dv">123456</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="quarto-layout-row">
@@ -1433,28 +1469,28 @@ Anna,F,2604
 </section>
 <section id="adding-party-affiliation" class="level2">
 <h2 class="anchored" data-anchor-id="adding-party-affiliation">Adding Party Affiliation</h2>
-<div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>unique_cands <span class="op">=</span> fec[<span class="st">'cand_nm'</span>].unique()</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(unique_cands)</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>parties <span class="op">=</span> {<span class="st">'Bachmann, Michelle'</span>: <span class="st">'Republican'</span>,</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Cain, Herman'</span>: <span class="st">'Republican'</span>,</span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Gingrich, Newt'</span>: <span class="st">'Republican'</span>,</span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Huntsman, Jon'</span>: <span class="st">'Republican'</span>,</span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Johnson, Gary Earl'</span>: <span class="st">'Republican'</span>,</span>
-<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>           <span class="st">'McCotter, Thaddeus G'</span>: <span class="st">'Republican'</span>,</span>
-<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Obama, Barack'</span>: <span class="st">'Democrat'</span>,</span>
-<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Paul, Ron'</span>: <span class="st">'Republican'</span>,</span>
-<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Pawlenty, Timothy'</span>: <span class="st">'Republican'</span>,</span>
-<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Perry, Rick'</span>: <span class="st">'Republican'</span>,</span>
-<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Roemer, Charles E. 'Buddy' III"</span>: <span class="st">'Republican'</span>,</span>
-<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Romney, Mitt'</span>: <span class="st">'Republican'</span>,</span>
-<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Santorum, Rick'</span>: <span class="st">'Republican'</span>}</span>
-<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fec[<span class="st">'cand_nm'</span>][<span class="dv">123456</span>:<span class="dv">123461</span>])</span>
-<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fec[<span class="st">'cand_nm'</span>][<span class="dv">123456</span>:<span class="dv">123461</span>].<span class="bu">map</span>(parties))</span>
-<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a>fec[<span class="st">'party'</span>] <span class="op">=</span> fec[<span class="st">'cand_nm'</span>].<span class="bu">map</span>(parties)</span>
-<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fec[<span class="st">'party'</span>].value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>unique_cands <span class="op">=</span> fec[<span class="st">'cand_nm'</span>].unique()</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(unique_cands)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>parties <span class="op">=</span> {<span class="st">'Bachmann, Michelle'</span>: <span class="st">'Republican'</span>,</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Cain, Herman'</span>: <span class="st">'Republican'</span>,</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Gingrich, Newt'</span>: <span class="st">'Republican'</span>,</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Huntsman, Jon'</span>: <span class="st">'Republican'</span>,</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Johnson, Gary Earl'</span>: <span class="st">'Republican'</span>,</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>           <span class="st">'McCotter, Thaddeus G'</span>: <span class="st">'Republican'</span>,</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Obama, Barack'</span>: <span class="st">'Democrat'</span>,</span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Paul, Ron'</span>: <span class="st">'Republican'</span>,</span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Pawlenty, Timothy'</span>: <span class="st">'Republican'</span>,</span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Perry, Rick'</span>: <span class="st">'Republican'</span>,</span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Roemer, Charles E. 'Buddy' III"</span>: <span class="st">'Republican'</span>,</span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Romney, Mitt'</span>: <span class="st">'Republican'</span>,</span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a>           <span class="st">'Santorum, Rick'</span>: <span class="st">'Republican'</span>}</span>
+<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fec[<span class="st">'cand_nm'</span>][<span class="dv">123456</span>:<span class="dv">123461</span>])</span>
+<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fec[<span class="st">'cand_nm'</span>][<span class="dv">123456</span>:<span class="dv">123461</span>].<span class="bu">map</span>(parties))</span>
+<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a>fec[<span class="st">'party'</span>] <span class="op">=</span> fec[<span class="st">'cand_nm'</span>].<span class="bu">map</span>(parties)</span>
+<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fec[<span class="st">'party'</span>].value_counts())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong><code>unique_cands = fec['cand_nm'].unique()</code></strong>: Gets a list of all unique candidate names.</li>
 <li><strong><code>parties = {...}</code></strong>: Creates a dictionary mapping candidate names to their political party affiliations.</li>
@@ -1465,9 +1501,9 @@ Anna,F,2604
 </section>
 <section id="filtering-contributions" class="level2">
 <h2 class="anchored" data-anchor-id="filtering-contributions">Filtering Contributions</h2>
-<div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((fec[<span class="st">'contb_receipt_amt'</span>] <span class="op">&gt;</span> <span class="dv">0</span>).value_counts())</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>fec <span class="op">=</span> fec[fec[<span class="st">'contb_receipt_amt'</span>] <span class="op">&gt;</span> <span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((fec[<span class="st">'contb_receipt_amt'</span>] <span class="op">&gt;</span> <span class="dv">0</span>).value_counts())</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>fec <span class="op">=</span> fec[fec[<span class="st">'contb_receipt_amt'</span>] <span class="op">&gt;</span> <span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Problem</strong>: The dataset includes both contributions (positive amounts) and refunds (negative amounts).</li>
 <li><strong><code>(fec['contb_receipt_amt'] &gt; 0).value_counts()</code></strong>: Checks how many contributions are positive and how many are negative.</li>
@@ -1476,7 +1512,7 @@ Anna,F,2604
 </section>
 <section id="filtering-by-candidate" class="level2">
 <h2 class="anchored" data-anchor-id="filtering-by-candidate">Filtering by Candidate</h2>
-<div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>fec_mrbo <span class="op">=</span> fec[fec[<span class="st">'cand_nm'</span>].isin([<span class="st">'Obama, Barack'</span>, <span class="st">'Romney, Mitt'</span>])]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>fec_mrbo <span class="op">=</span> fec[fec[<span class="st">'cand_nm'</span>].isin([<span class="st">'Obama, Barack'</span>, <span class="st">'Romney, Mitt'</span>])]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Goal:</strong> Focus on contributions to the two main candidates (Obama and Romney).</li>
 <li><strong><code>fec_mrbo = fec[fec['cand_nm'].isin(['Obama, Barack', 'Romney, Mitt'])]</code></strong>: Filters the <code>fec</code> DataFrame to keep only records where the candidate name is either “Obama, Barack” or “Romney, Mitt”.</li>
@@ -1484,20 +1520,20 @@ Anna,F,2604
 </section>
 <section id="donation-statistics-by-occupation-and-employer" class="level2">
 <h2 class="anchored" data-anchor-id="donation-statistics-by-occupation-and-employer">Donation Statistics by Occupation and Employer</h2>
-<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fec[<span class="st">'contbr_occupation'</span>].value_counts()[:<span class="dv">10</span>])</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>occ_mapping <span class="op">=</span> {</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'INFORMATION REQUESTED PER BEST EFFORTS'</span> : <span class="st">'NOT PROVIDED'</span>,</span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'INFORMATION REQUESTED'</span> : <span class="st">'NOT PROVIDED'</span>,</span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'INFORMATION REQUESTED (BEST EFFORTS)'</span> : <span class="st">'NOT PROVIDED'</span>,</span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'C.E.O.'</span>: <span class="st">'CEO'</span></span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_occ(x):</span>
-<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># If no mapping provided, return x</span></span>
-<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> occ_mapping.get(x, x)</span>
-<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>fec[<span class="st">'contbr_occupation'</span>] <span class="op">=</span> fec[<span class="st">'contbr_occupation'</span>].<span class="bu">map</span>(get_occ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fec[<span class="st">'contbr_occupation'</span>].value_counts()[:<span class="dv">10</span>])</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>occ_mapping <span class="op">=</span> {</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'INFORMATION REQUESTED PER BEST EFFORTS'</span> : <span class="st">'NOT PROVIDED'</span>,</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'INFORMATION REQUESTED'</span> : <span class="st">'NOT PROVIDED'</span>,</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'INFORMATION REQUESTED (BEST EFFORTS)'</span> : <span class="st">'NOT PROVIDED'</span>,</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'C.E.O.'</span>: <span class="st">'CEO'</span></span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_occ(x):</span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># If no mapping provided, return x</span></span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> occ_mapping.get(x, x)</span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>fec[<span class="st">'contbr_occupation'</span>] <span class="op">=</span> fec[<span class="st">'contbr_occupation'</span>].<span class="bu">map</span>(get_occ)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong><code>fec['contbr_occupation'].value_counts()[:10]</code></strong>: Counts the number of contributions for each occupation and shows the top 10.</li>
 <li><strong>Problem:</strong> There are many variations of similar occupations (e.g., “INFORMATION REQUESTED” in multiple forms). We need to clean this up.</li>
@@ -1511,25 +1547,25 @@ Anna,F,2604
 </section>
 <section id="donation-statistics-by-occupation-and-employer-cont." class="level2">
 <h2 class="anchored" data-anchor-id="donation-statistics-by-occupation-and-employer-cont.">Donation Statistics by Occupation and Employer (Cont.)</h2>
-<div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>emp_mapping <span class="op">=</span> {</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'INFORMATION REQUESTED PER BEST EFFORTS'</span> : <span class="st">'NOT PROVIDED'</span>,</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'INFORMATION REQUESTED'</span> : <span class="st">'NOT PROVIDED'</span>,</span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'SELF'</span> : <span class="st">'SELF-EMPLOYED'</span>,</span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'SELF EMPLOYED'</span> : <span class="st">'SELF-EMPLOYED'</span>,</span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_emp(x):</span>
-<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># If no mapping provided, return x</span></span>
-<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> emp_mapping.get(x, x)</span>
-<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>fec[<span class="st">'contbr_employer'</span>] <span class="op">=</span> fec[<span class="st">'contbr_employer'</span>].<span class="bu">map</span>(get_emp)</span>
-<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>by_occupation <span class="op">=</span> fec.pivot_table(<span class="st">'contb_receipt_amt'</span>,</span>
-<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>                                index<span class="op">=</span><span class="st">'contbr_occupation'</span>,</span>
-<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>                                columns<span class="op">=</span><span class="st">'party'</span>, aggfunc<span class="op">=</span><span class="st">'sum'</span>)</span>
-<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a>over_2mm <span class="op">=</span> by_occupation[by_occupation.<span class="bu">sum</span>(axis<span class="op">=</span><span class="st">"columns"</span>) <span class="op">&gt;</span> <span class="dv">2000000</span>]</span>
-<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(over_2mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>emp_mapping <span class="op">=</span> {</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'INFORMATION REQUESTED PER BEST EFFORTS'</span> : <span class="st">'NOT PROVIDED'</span>,</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'INFORMATION REQUESTED'</span> : <span class="st">'NOT PROVIDED'</span>,</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'SELF'</span> : <span class="st">'SELF-EMPLOYED'</span>,</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'SELF EMPLOYED'</span> : <span class="st">'SELF-EMPLOYED'</span>,</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_emp(x):</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># If no mapping provided, return x</span></span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> emp_mapping.get(x, x)</span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>fec[<span class="st">'contbr_employer'</span>] <span class="op">=</span> fec[<span class="st">'contbr_employer'</span>].<span class="bu">map</span>(get_emp)</span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>by_occupation <span class="op">=</span> fec.pivot_table(<span class="st">'contb_receipt_amt'</span>,</span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>                                index<span class="op">=</span><span class="st">'contbr_occupation'</span>,</span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>                                columns<span class="op">=</span><span class="st">'party'</span>, aggfunc<span class="op">=</span><span class="st">'sum'</span>)</span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a>over_2mm <span class="op">=</span> by_occupation[by_occupation.<span class="bu">sum</span>(axis<span class="op">=</span><span class="st">"columns"</span>) <span class="op">&gt;</span> <span class="dv">2000000</span>]</span>
+<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(over_2mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>The process for employer is almost identical to occupation.</li>
 <li><strong><code>by_occupation = fec.pivot_table(...)</code></strong>: Creates a pivot table to analyze contributions by occupation and party.
@@ -1542,8 +1578,8 @@ Anna,F,2604
 <li><strong><code>over_2mm = ...</code></strong>: Filters the <code>by_occupation</code> DataFrame to keep only occupations with total contributions (across both parties) greater than $2 million.</li>
 <li><strong><code>print(over_2mm)</code></strong>: Displays the resulting DataFrame.</li>
 </ul>
-<div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>over_2mm.plot(kind<span class="op">=</span><span class="st">'barh'</span>)</span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>over_2mm.plot(kind<span class="op">=</span><span class="st">'barh'</span>)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div>
 
 </div>
@@ -1567,13 +1603,13 @@ Anna,F,2604
 </section>
 <section id="top-donor-occupations-and-employers" class="level2">
 <h2 class="anchored" data-anchor-id="top-donor-occupations-and-employers">Top Donor Occupations and Employers</h2>
-<div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_top_amounts(group, key, n<span class="op">=</span><span class="dv">5</span>):</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    totals <span class="op">=</span> group.groupby(key)[<span class="st">'contb_receipt_amt'</span>].<span class="bu">sum</span>()</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> totals.nlargest(n)</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> fec_mrbo.groupby(<span class="st">'cand_nm'</span>)</span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grouped.<span class="bu">apply</span>(get_top_amounts, <span class="st">'contbr_occupation'</span>, n<span class="op">=</span><span class="dv">7</span>))</span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grouped.<span class="bu">apply</span>(get_top_amounts, <span class="st">'contbr_employer'</span>, n<span class="op">=</span><span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_top_amounts(group, key, n<span class="op">=</span><span class="dv">5</span>):</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    totals <span class="op">=</span> group.groupby(key)[<span class="st">'contb_receipt_amt'</span>].<span class="bu">sum</span>()</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> totals.nlargest(n)</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> fec_mrbo.groupby(<span class="st">'cand_nm'</span>)</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grouped.<span class="bu">apply</span>(get_top_amounts, <span class="st">'contbr_occupation'</span>, n<span class="op">=</span><span class="dv">7</span>))</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grouped.<span class="bu">apply</span>(get_top_amounts, <span class="st">'contbr_employer'</span>, n<span class="op">=</span><span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong><code>get_top_amounts(group, key, n=5)</code> function:</strong>
 <ul>
@@ -1590,21 +1626,21 @@ Anna,F,2604
 </section>
 <section id="bucketing-donation-amounts" class="level2">
 <h2 class="anchored" data-anchor-id="bucketing-donation-amounts">Bucketing Donation Amounts</h2>
-<div class="sourceCode" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">1000</span>, <span class="dv">10000</span>, <span class="dv">100_000</span>, <span class="dv">1_000_000</span>, <span class="dv">10_000_000</span>])</span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> pd.cut(fec_mrbo[<span class="st">'contb_receipt_amt'</span>], bins)</span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(labels)</span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> fec_mrbo.groupby([<span class="st">'cand_nm'</span>, labels])</span>
-<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grouped.size().unstack(level<span class="op">=</span><span class="dv">0</span>))</span>
-<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>bucket_sums <span class="op">=</span> grouped[<span class="st">'contb_receipt_amt'</span>].<span class="bu">sum</span>().unstack(level<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>normed_sums <span class="op">=</span> bucket_sums.div(bucket_sums.<span class="bu">sum</span>(axis<span class="op">=</span><span class="st">"columns"</span>),</span>
-<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>                              axis<span class="op">=</span><span class="st">"index"</span>)</span>
-<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(normed_sums)</span>
-<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>normed_sums[:<span class="op">-</span><span class="dv">2</span>].plot(kind<span class="op">=</span><span class="st">'barh'</span>)</span>
-<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">1000</span>, <span class="dv">10000</span>, <span class="dv">100_000</span>, <span class="dv">1_000_000</span>, <span class="dv">10_000_000</span>])</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> pd.cut(fec_mrbo[<span class="st">'contb_receipt_amt'</span>], bins)</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(labels)</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> fec_mrbo.groupby([<span class="st">'cand_nm'</span>, labels])</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(grouped.size().unstack(level<span class="op">=</span><span class="dv">0</span>))</span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>bucket_sums <span class="op">=</span> grouped[<span class="st">'contb_receipt_amt'</span>].<span class="bu">sum</span>().unstack(level<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>normed_sums <span class="op">=</span> bucket_sums.div(bucket_sums.<span class="bu">sum</span>(axis<span class="op">=</span><span class="st">"columns"</span>),</span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>                              axis<span class="op">=</span><span class="st">"index"</span>)</span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(normed_sums)</span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>normed_sums[:<span class="op">-</span><span class="dv">2</span>].plot(kind<span class="op">=</span><span class="st">'barh'</span>)</span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div>
 
 </div>
@@ -1635,13 +1671,13 @@ Anna,F,2604
 </section>
 <section id="donation-statistics-by-state" class="level2">
 <h2 class="anchored" data-anchor-id="donation-statistics-by-state">Donation Statistics by State</h2>
-<div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> fec_mrbo.groupby([<span class="st">'cand_nm'</span>, <span class="st">'contbr_st'</span>])</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>totals <span class="op">=</span> grouped[<span class="st">'contb_receipt_amt'</span>].<span class="bu">sum</span>().unstack(level<span class="op">=</span><span class="dv">0</span>).fillna(<span class="dv">0</span>)</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>totals <span class="op">=</span> totals[totals.<span class="bu">sum</span>(axis<span class="op">=</span><span class="st">"columns"</span>) <span class="op">&gt;</span> <span class="dv">100000</span>]</span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(totals.head(<span class="dv">10</span>))</span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>percent <span class="op">=</span> totals.div(totals.<span class="bu">sum</span>(axis<span class="op">=</span><span class="st">"columns"</span>), axis<span class="op">=</span><span class="st">"index"</span>)</span>
-<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(percent.head(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> fec_mrbo.groupby([<span class="st">'cand_nm'</span>, <span class="st">'contbr_st'</span>])</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>totals <span class="op">=</span> grouped[<span class="st">'contb_receipt_amt'</span>].<span class="bu">sum</span>().unstack(level<span class="op">=</span><span class="dv">0</span>).fillna(<span class="dv">0</span>)</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>totals <span class="op">=</span> totals[totals.<span class="bu">sum</span>(axis<span class="op">=</span><span class="st">"columns"</span>) <span class="op">&gt;</span> <span class="dv">100000</span>]</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(totals.head(<span class="dv">10</span>))</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>percent <span class="op">=</span> totals.div(totals.<span class="bu">sum</span>(axis<span class="op">=</span><span class="st">"columns"</span>), axis<span class="op">=</span><span class="st">"index"</span>)</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(percent.head(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><strong>Goal:</strong> Analyze contributions based on the state of the contributor.</li>
 <li><strong><code>grouped = fec_mrbo.groupby(['cand_nm', 'contbr_st'])</code></strong>: Groups the data by candidate name and contributor state.</li>

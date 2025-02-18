@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>pandas3ed5</title>
+<title>Python for Data Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -131,59 +131,84 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Python for Data Analysis</h1>
+<p class="subtitle lead">Getting Started with pandas</p>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<pre class="qmd"><code>---
-title: "Getting Started with pandas"
-author: "Your Name"
-format:
-  revealjs:
-    theme: sky
-    slide-number: true
-    show-slide-number: all
-    preview-links: auto
----
+    
+  
+    
+  </div>
+  
 
-## Introduction to pandas 🐼
 
-::: {layout-ncol=2}
-- **What is pandas?**
-    -  A powerful Python library for data manipulation and analysis.
-    -  Think of it as Excel, but much more powerful and flexible, all within Python.
-    -  Provides data structures like `Series` (1D) and `DataFrame` (2D) to efficiently store and process data.
--   **Why use pandas?**
-    -  Simplifies data cleaning, transformation, and analysis.
-    -  Integrates well with other Python libraries (NumPy, SciPy, scikit-learn, matplotlib).
-    -  Handles heterogeneous data (different data types in different columns).
-    - Large and active open source community
+</header>
 
-![](./figs/pandas-logo.png)
-:::
 
-## Key Concepts: Data Structures
+<section id="introduction-to-pandas" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-pandas">Introduction to pandas 🐼</h2>
+<div>
 
-- **Series:**
-    -  A one-dimensional labeled array.  Like a single column in a spreadsheet.
-    -  Can hold data of various types (integers, floats, strings, etc.).
-    -  Has an *index*, which labels each element.
-    -  Analogy: A list with custom labels (the index) for each item.
-
-- **DataFrame:**
-    -  A two-dimensional labeled data structure.  Like a spreadsheet or a SQL table.
-    -  Essentially a collection of Series that share the same index.
-    -  Each column can have a different data type.
-    -  Analogy: A dictionary where each key is a column name and each value is a Series (the column's data).
-
-## Importing pandas and Conventions
-
-- The standard way to import pandas:
-
-```python
-import pandas as pd  # 'pd' is the conventional alias
-import numpy as np   # NumPy is often used with pandas</code></pre>
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<ul>
+<li><strong>What is pandas?</strong>
+<ul>
+<li>A powerful Python library for data manipulation and analysis.</li>
+<li>Think of it as Excel, but much more powerful and flexible, all within Python.</li>
+<li>Provides data structures like <code>Series</code> (1D) and <code>DataFrame</code> (2D) to efficiently store and process data.</li>
+</ul></li>
+<li><strong>Why use pandas?</strong>
+<ul>
+<li>Simplifies data cleaning, transformation, and analysis.</li>
+<li>Integrates well with other Python libraries (NumPy, SciPy, scikit-learn, matplotlib).</li>
+<li>Handles heterogeneous data (different data types in different columns).</li>
+<li>Large and active open source community</li>
+</ul></li>
+</ul>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="./figs/pandas-logo.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="key-concepts-data-structures" class="level2">
+<h2 class="anchored" data-anchor-id="key-concepts-data-structures">Key Concepts: Data Structures</h2>
+<ul>
+<li><strong>Series:</strong>
+<ul>
+<li>A one-dimensional labeled array. Like a single column in a spreadsheet.</li>
+<li>Can hold data of various types (integers, floats, strings, etc.).</li>
+<li>Has an <em>index</em>, which labels each element.</li>
+<li>Analogy: A list with custom labels (the index) for each item.</li>
+</ul></li>
+<li><strong>DataFrame:</strong>
+<ul>
+<li>A two-dimensional labeled data structure. Like a spreadsheet or a SQL table.</li>
+<li>Essentially a collection of Series that share the same index.</li>
+<li>Each column can have a different data type.</li>
+<li>Analogy: A dictionary where each key is a column name and each value is a Series (the column’s data).</li>
+</ul></li>
+</ul>
+</section>
+<section id="importing-pandas-and-conventions" class="level2">
+<h2 class="anchored" data-anchor-id="importing-pandas-and-conventions">Importing pandas and Conventions</h2>
+<ul>
+<li>The standard way to import pandas:</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd  <span class="co"># 'pd' is the conventional alias</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np   <span class="co"># NumPy is often used with pandas</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Common practice: Import <code>Series</code> and <code>DataFrame</code> directly:</li>
 </ul>
@@ -191,6 +216,7 @@ import numpy as np   # NumPy is often used with pandas</code></pre>
 <ul>
 <li>This makes your code cleaner and easier to read.</li>
 </ul>
+</section>
 <section id="series-your-first-pandas-data-structure" class="level2">
 <h2 class="anchored" data-anchor-id="series-your-first-pandas-data-structure">Series: Your First pandas Data Structure</h2>
 <ul>

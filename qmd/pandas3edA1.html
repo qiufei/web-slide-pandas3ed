@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>pandas3eda1</title>
+<title>Python for Data Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -131,67 +131,100 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Python for Data Analysis</h1>
+<p class="subtitle lead">Advanced NumPy</p>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<pre class="qmd"><code>---
-title: "Advanced NumPy"
-format:
-  revealjs:
-    theme: sky
-    footer: "Python for Data Analysis"
-    multiplex: true
----
+    
+  
+    
+  </div>
+  
 
-## Introduction to Advanced NumPy
 
-::: {layout-ncol=2}
--   So far, we've learned about the basics of NumPy.
--   In this lecture, we will go *deeper* into NumPy.
-    -   Internal details of the `ndarray` type.
-    -   Advanced array manipulations and algorithms.
+</header>
 
--   This will include topics like:
 
-    -   `ndarray` Object Internals
-    -   Data Type Hierarchy
-    -   Array Manipulation
-    -   Broadcasting
-    -   Advanced `ufunc` Usage
-    -   Structured Arrays
-    -   Sorting
-    -   Writing Fast NumPy Functions with Numba
+<section id="introduction-to-advanced-numpy" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-advanced-numpy">Introduction to Advanced NumPy</h2>
+<div>
 
-![](page1_1.png){.absolute top=0 right=0 width="400"}
-:::
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<ul>
+<li><p>So far, we’ve learned about the basics of NumPy.</p></li>
+<li><p>In this lecture, we will go <em>deeper</em> into NumPy.</p>
+<ul>
+<li>Internal details of the <code>ndarray</code> type.</li>
+<li>Advanced array manipulations and algorithms.</li>
+</ul></li>
+<li><p>This will include topics like:</p>
+<ul>
+<li><code>ndarray</code> Object Internals</li>
+<li>Data Type Hierarchy</li>
+<li>Array Manipulation</li>
+<li>Broadcasting</li>
+<li>Advanced <code>ufunc</code> Usage</li>
+<li>Structured Arrays</li>
+<li>Sorting</li>
+<li>Writing Fast NumPy Functions with Numba</li>
+</ul></li>
+</ul>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="page1_1.png" class="absolute img-fluid" data-top="0" data-right="0" width="400"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="ndarray-object-internals" class="level2">
+<h2 class="anchored" data-anchor-id="ndarray-object-internals"><code>ndarray</code> Object Internals</h2>
+<ul>
+<li><p>The NumPy <code>ndarray</code> provides a way to interpret a block of <strong>homogeneously typed data</strong> as a multidimensional array object.</p>
+<ul>
+<li><em>Homogeneously typed data</em>: All elements in the array have the <strong>same data type</strong>.</li>
+<li>It can be <em>contiguous</em> or <em>strided</em>.</li>
+</ul></li>
+<li><p><strong>Data Type (<code>dtype</code>)</strong>: Determines how the data is interpreted (e.g., floating point, integer, boolean).</p></li>
+<li><p><strong>Strided View</strong>: Every array object is a <em>strided view</em> on a block of data, enabling operations like <code>arr[::2, ::-1]</code> <strong>without copying data</strong>.</p></li>
+</ul>
+</section>
+<section id="ndarray-object-internals-contd" class="level2">
+<h2 class="anchored" data-anchor-id="ndarray-object-internals-contd"><code>ndarray</code> Object Internals (Cont’d)</h2>
+<ul>
+<li><p>An <code>ndarray</code> internally consists of:</p>
+<ol type="1">
+<li><strong>A pointer to data</strong>: A block of data in RAM or in a memory-mapped file.</li>
+<li><strong>The data type (<code>dtype</code>)</strong>: Describes fixed-size value cells in the array.</li>
+<li><strong>A tuple indicating the array’s shape</strong>: E.g., <code>(10, 5)</code> for a 10x5 array.</li>
+<li><strong>A tuple of strides</strong>: Integers indicating the number of bytes to “step” in order to advance one element along a dimension.</li>
+</ol></li>
+</ul>
+<div>
 
-##  `ndarray` Object Internals
-
--   The NumPy `ndarray` provides a way to interpret a block of **homogeneously typed data** as a multidimensional array object.
-
-    -   *Homogeneously typed data*: All elements in the array have the **same data type**.
-    -   It can be *contiguous* or *strided*.
-
--   **Data Type (`dtype`)**: Determines how the data is interpreted (e.g., floating point, integer, boolean).
-
--   **Strided View**: Every array object is a *strided view* on a block of data, enabling operations like `arr[::2, ::-1]` **without copying data**.
-
-## `ndarray` Object Internals (Cont'd)
-
-- An `ndarray` internally consists of:
-
-    1.  **A pointer to data**: A block of data in RAM or in a memory-mapped file.
-    2.  **The data type (`dtype`)**: Describes fixed-size value cells in the array.
-    3.  **A tuple indicating the array's shape**:  E.g., `(10, 5)` for a 10x5 array.
-    4.  **A tuple of strides**: Integers indicating the number of bytes to "step" in order to advance one element along a dimension.
-
-::: {layout-ncol=2}
-```python
-import numpy as np
-rng = np.random.default_rng(seed=12345)</code></pre>
-<p><img src="page1_1.png" class="img-fluid"> :::</p>
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">12345</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="page1_1.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</section>
 <section id="visualizing-ndarray" class="level2">
 <h2 class="anchored" data-anchor-id="visualizing-ndarray">Visualizing <code>ndarray</code></h2>
 <div class="nonincremental">

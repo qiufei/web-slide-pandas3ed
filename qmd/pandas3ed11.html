@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>pandas3ed11</title>
+<title>Python for Data Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -131,74 +131,89 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Python for Data Analysis</h1>
+<p class="subtitle lead">Chapter 11: Time Series</p>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<pre class="qmd"><code>---
-title: "Chapter 11: Time Series"
-author: "Your Name"
-format:
-  revealjs:
-    theme: sky
-    slide-number: true
-    show-slide-number: all
-    preview-links: auto
----
+    
+  
+    
+  </div>
+  
 
-## Introduction to Time Series Data
 
-Time series data is a sequence of data points collected over time intervals. ⏱️ It's a crucial data type in various fields:
+</header>
 
--   **Finance:** Stock prices, trading volume, interest rates 💰
--   **Economics:** GDP, inflation, unemployment rates 📈
--   **Ecology:** Population sizes, temperature changes 🌡️
--   **Neuroscience:** Brainwave activity, neural signals 🧠
--   **Physics:** Motion, velocity, acceleration 🚀
 
-Essentially, anything recorded repeatedly over time forms a time series.
-
-## Types of Time Series Data
-
-Time series data can be categorized based on how data points are measured concerning time:
-
-1.  **Timestamps:** Specific instants in time (e.g., 2024-10-27 09:30:00).
-2.  **Fixed Periods:**  Represent entire durations (e.g., January 2017, the year 2020).
-3.  **Intervals of Time:** Indicated by a start and end timestamp (e.g., a user session from 2:00 PM to 2:30 PM).
-4.  **Experiment or Elapsed Time:** Time relative to a starting point (e.g., seconds since a cookie was placed in the oven).
-
-::: {.callout-note}
-This chapter focuses primarily on the first three categories (timestamps, fixed periods, and intervals).
-:::
-
-## Time Series: Regular vs. Irregular
-
-Time series can also be:
-
--   **Fixed Frequency (Regular):** Data points occur at regular intervals (e.g., every 15 seconds, every 5 minutes, monthly).
--   **Irregular:** Data points don't follow a fixed time unit (e.g., timestamps of website visits).
-
-The choice of representation depends on the specific application.
-
-## Time Series in pandas
-
-`pandas` is a powerful Python library that offers extensive tools for time series analysis. It allows you to:
-
--   Work with large time series efficiently.
--   Slice, dice, and aggregate data.
--   Resample both irregular and fixed-frequency time series.
--   Handle missing data.
-
-These capabilities are vital for financial and economic applications, but they are equally applicable to analyzing diverse datasets like server logs.
-
-## Importing Necessary Libraries
-
-Before diving into time series manipulations, let's import the essential libraries: `NumPy` for numerical operations and `pandas` for data analysis.
-
-```python
-import numpy as np
-import pandas as pd</code></pre>
+<section id="introduction-to-time-series-data" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-time-series-data">Introduction to Time Series Data</h2>
+<p>Time series data is a sequence of data points collected over time intervals. ⏱️ It’s a crucial data type in various fields:</p>
+<ul>
+<li><strong>Finance:</strong> Stock prices, trading volume, interest rates 💰</li>
+<li><strong>Economics:</strong> GDP, inflation, unemployment rates 📈</li>
+<li><strong>Ecology:</strong> Population sizes, temperature changes 🌡️</li>
+<li><strong>Neuroscience:</strong> Brainwave activity, neural signals 🧠</li>
+<li><strong>Physics:</strong> Motion, velocity, acceleration 🚀</li>
+</ul>
+<p>Essentially, anything recorded repeatedly over time forms a time series.</p>
+</section>
+<section id="types-of-time-series-data" class="level2">
+<h2 class="anchored" data-anchor-id="types-of-time-series-data">Types of Time Series Data</h2>
+<p>Time series data can be categorized based on how data points are measured concerning time:</p>
+<ol type="1">
+<li><strong>Timestamps:</strong> Specific instants in time (e.g., 2024-10-27 09:30:00).</li>
+<li><strong>Fixed Periods:</strong> Represent entire durations (e.g., January 2017, the year 2020).</li>
+<li><strong>Intervals of Time:</strong> Indicated by a start and end timestamp (e.g., a user session from 2:00 PM to 2:30 PM).</li>
+<li><strong>Experiment or Elapsed Time:</strong> Time relative to a starting point (e.g., seconds since a cookie was placed in the oven).</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This chapter focuses primarily on the first three categories (timestamps, fixed periods, and intervals).</p>
+</div>
+</div>
+</section>
+<section id="time-series-regular-vs.-irregular" class="level2">
+<h2 class="anchored" data-anchor-id="time-series-regular-vs.-irregular">Time Series: Regular vs.&nbsp;Irregular</h2>
+<p>Time series can also be:</p>
+<ul>
+<li><strong>Fixed Frequency (Regular):</strong> Data points occur at regular intervals (e.g., every 15 seconds, every 5 minutes, monthly).</li>
+<li><strong>Irregular:</strong> Data points don’t follow a fixed time unit (e.g., timestamps of website visits).</li>
+</ul>
+<p>The choice of representation depends on the specific application.</p>
+</section>
+<section id="time-series-in-pandas" class="level2">
+<h2 class="anchored" data-anchor-id="time-series-in-pandas">Time Series in pandas</h2>
+<p><code>pandas</code> is a powerful Python library that offers extensive tools for time series analysis. It allows you to:</p>
+<ul>
+<li>Work with large time series efficiently.</li>
+<li>Slice, dice, and aggregate data.</li>
+<li>Resample both irregular and fixed-frequency time series.</li>
+<li>Handle missing data.</li>
+</ul>
+<p>These capabilities are vital for financial and economic applications, but they are equally applicable to analyzing diverse datasets like server logs.</p>
+</section>
+<section id="importing-necessary-libraries" class="level2">
+<h2 class="anchored" data-anchor-id="importing-necessary-libraries">Importing Necessary Libraries</h2>
+<p>Before diving into time series manipulations, let’s import the essential libraries: <code>NumPy</code> for numerical operations and <code>pandas</code> for data analysis.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 <section id="date-and-time-data-types-and-tools" class="level2">
 <h2 class="anchored" data-anchor-id="date-and-time-data-types-and-tools">Date and Time Data Types and Tools</h2>
 <p>Python’s standard library provides modules for handling dates and times:</p>
