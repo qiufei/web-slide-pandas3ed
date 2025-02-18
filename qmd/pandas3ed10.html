@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Your Name">
 
-<title>pandas3ed10</title>
+<title>Data Aggregation and Group Operations</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,10 +21,44 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <link href="../https://assets.qiufei.site/personal/profile.jpg" rel="icon" type="image/jpeg">
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
@@ -53,6 +88,12 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -76,12 +117,8 @@ ul.task-list li input[type="checkbox"] {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://qiufei.github.io/web-slide-r"> 
-<span class="menu-text">R课件</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="https://qiufei.github.io/web-slide-marketing"> 
-<span class="menu-text">营销课件</span></a>
+    <a class="nav-link" href="https://qiufei.github.io/web-slide"> 
+<span class="menu-text">课件</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../about.html"> 
@@ -101,13 +138,3396 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data Aggregation and Group Operations</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Your Name </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<section id="what-well-learn" class="level2">
+<h2 class="anchored" data-anchor-id="what-well-learn">What We’ll Learn 🤔</h2>
+<p>This chapter focuses on a critical part of data analysis: <strong>data aggregation and group operations</strong>. We’ll explore how to categorize a dataset and apply functions to each group, a fundamental step in many data workflows.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We will learn how to use pandas’s versatile <code>groupby</code> interface to slice, dice, and summarize datasets, similar to how SQL works with relational databases, but with greater flexibility.</p>
+</div>
+</div>
+</section>
+<section id="key-operations" class="level2">
+<h2 class="anchored" data-anchor-id="key-operations">Key Operations ⚙️</h2>
+<p>We’ll cover the following key operations:</p>
+<ul>
+<li>Splitting a pandas object into groups using one or more keys.</li>
+<li>Calculating group summary statistics (e.g., count, mean, standard deviation).</li>
+<li>Applying transformations within groups (e.g., normalization, linear regression).</li>
+<li>Computing pivot tables and cross-tabulations.</li>
+<li>Performing quantile analysis and other statistical group analyses.</li>
+<li>Using <code>transform</code> and <code>apply</code> methods for general group-wise operations.</li>
+</ul>
+</section>
+<section id="why-is-this-important" class="level2">
+<h2 class="anchored" data-anchor-id="why-is-this-important">Why is this important? 📈</h2>
+<p>Grouping and aggregating data allows us to:</p>
+<ul>
+<li><strong>Gain insights</strong> from large datasets by summarizing information.</li>
+<li><strong>Compare</strong> different groups within the data.</li>
+<li><strong>Prepare data</strong> for further analysis or visualization.</li>
+<li><strong>Uncover patterns</strong> and relationships that might not be apparent in the raw data.</li>
+</ul>
+</section>
+</section>
+<section id="how-to-think-about-group-operations" class="level1">
+<h1>How to Think About Group Operations</h1>
+<section id="the-split-apply-combine-paradigm" class="level2">
+<h2 class="anchored" data-anchor-id="the-split-apply-combine-paradigm">The Split-Apply-Combine Paradigm 💡</h2>
+<p>Hadley Wickham coined the term <strong>“split-apply-combine”</strong> to describe group operations. It’s a powerful way to think about data manipulation. This process involves three steps:</p>
+<ol type="1">
+<li><strong>Split:</strong> Data is divided into groups based on one or more “keys”.</li>
+<li><strong>Apply:</strong> A function is applied to each group independently.</li>
+<li><strong>Combine:</strong> The results from each group are combined into a final result.</li>
+</ol>
+</section>
+<section id="visualizing-split-apply-combine" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-split-apply-combine">Visualizing Split-Apply-Combine 📊</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    A[Data] --&gt; B(Split by Key)
+    B --&gt; C1[Group 1]
+    B --&gt; C2[Group 2]
+    B --&gt; C3[Group 3]
+    C1 --&gt; D1(Apply Function)
+    C2 --&gt; D2(Apply Function)
+    C3 --&gt; D3(Apply Function)
+    D1 --&gt; E[Combine Results]
+    D2 --&gt; E
+    D3 --&gt; E
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="grouping-keys" class="level2">
+<h2 class="anchored" data-anchor-id="grouping-keys">Grouping Keys 🔑</h2>
+<p>Grouping keys can take many forms:</p>
+<ul>
+<li>A list or array of values.</li>
+<li>A column name in a DataFrame.</li>
+<li>A dictionary or Series mapping values to group names.</li>
+<li>A function applied to the axis index or labels.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It’s important to realize the latter three methods are shortcuts for producing an array of values to be used to split up the object.</p>
+</div>
+</div>
+</section>
+<section id="example-simple-group-aggregation" class="level2">
+<h2 class="anchored" data-anchor-id="example-simple-group-aggregation">Example: Simple Group Aggregation</h2>
+<p>Let’s look at the image provided in the material.</p>
+<pre class="{r}"><code>#| echo: false
+#| out.width: "80%"
+#knitr::include_graphics("images/groupby.png")
+</code></pre>
+<ul>
+<li><strong>Key and Data</strong>: The initial table shows a ‘Key’ column and a ‘Data’ column.</li>
+<li><strong>Split</strong>: The data is split into three groups (A, B, C) based on the ‘Key’ column.</li>
+<li><strong>Apply</strong>: The <code>Sum</code> function is applied to the ‘Data’ column of each group.</li>
+<li><strong>Combine</strong>: The sums for each group are combined into a new table.</li>
+</ul>
+</section>
+</section>
+<section id="hands-on-with-pandas-creating-a-dataframe" class="level1">
+<h1>Hands-on with Pandas: Creating a DataFrame</h1>
+<p>First, let’s create a sample DataFrame to work with.</p>
+<div id="77ab29a9" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 修改示例数据的创建方式</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"key1"</span>: [<span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"b"</span>, <span class="st">"a"</span>],  <span class="co"># 移除 None 值</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"key2"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>],            <span class="co"># 使用普通整数</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data1"</span>: np.random.randn(<span class="dv">5</span>),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data2"</span>: np.random.randn(<span class="dv">5</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">key1</th>
+<th data-quarto-table-cell-role="th">key2</th>
+<th data-quarto-table-cell-role="th">data1</th>
+<th data-quarto-table-cell-role="th">data2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>a</td>
+<td>1</td>
+<td>-1.085631</td>
+<td>1.651437</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>a</td>
+<td>2</td>
+<td>0.997345</td>
+<td>-2.426679</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>b</td>
+<td>1</td>
+<td>0.282978</td>
+<td>-0.428913</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>b</td>
+<td>2</td>
+<td>-1.506295</td>
+<td>1.265936</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>a</td>
+<td>1</td>
+<td>-0.578600</td>
+<td>-0.866740</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>This DataFrame has two key columns (<code>key1</code>, <code>key2</code>) and two data columns (<code>data1</code>, <code>data2</code>). Notice the use of <code>"Int64"</code> to allow for <code>None</code> values in an integer column.</p>
+</section>
+<section id="basic-groupby-operations" class="level1">
+<h1>Basic GroupBy Operations</h1>
+<section id="grouping-by-a-single-column" class="level2">
+<h2 class="anchored" data-anchor-id="grouping-by-a-single-column">Grouping by a Single Column</h2>
+<p>Let’s calculate the mean of <code>data1</code> for each group in <code>key1</code>.</p>
+<div id="7c14ed7d" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> df[<span class="st">"data1"</span>].groupby(df[<span class="st">"key1"</span>])</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>grouped.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>key1
+a   -0.222295
+b   -0.611658
+Name: data1, dtype: float64</code></pre>
+</div>
+</div>
+<ul>
+<li><code>df["data1"]</code>: Selects the <code>data1</code> column.</li>
+<li><code>.groupby(df["key1"])</code>: Groups the data by the values in <code>key1</code>.</li>
+<li><code>grouped</code> is now a special <code>GroupBy</code> object that stores the group information.</li>
+<li><code>.mean()</code>: Calculates the mean for each group.</li>
+<li>Note the automatic exclusion of <code>None</code> values in <code>key1</code>.</li>
+</ul>
+</section>
+<section id="grouping-by-multiple-columns" class="level2">
+<h2 class="anchored" data-anchor-id="grouping-by-multiple-columns">Grouping by Multiple Columns</h2>
+<p>We can also group by multiple columns, creating a hierarchical index.</p>
+<div id="acfeb4b2" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 修改聚合方式</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>])</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>grouped.agg({<span class="st">"data1"</span>: [<span class="st">"mean"</span>, <span class="st">"std"</span>],</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>             <span class="st">"data2"</span>: [<span class="st">"mean"</span>, <span class="st">"std"</span>]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, the data is grouped by unique combinations of <code>key1</code> and <code>key2</code>.</p>
+</section>
+<section id="unstacking" class="level2">
+<h2 class="anchored" data-anchor-id="unstacking">Unstacking</h2>
+<p>The <code>unstack()</code> method can reshape the result for easier readability.</p>
+<div id="c68e9222" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create sample data</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"key1"</span>: [<span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"b"</span>, <span class="st">"a"</span>],</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"key2"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>],</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data1"</span>: np.random.randn(<span class="dv">5</span>),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data2"</span>: np.random.randn(<span class="dv">5</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Group by multiple columns and calculate means</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>means <span class="op">=</span> df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>])[<span class="st">"data1"</span>].mean()</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>means</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>key1  key2
+a     1      -0.561434
+      2      -0.094709
+b     1       1.491390
+      2      -0.638902
+Name: data1, dtype: float64</code></pre>
+</div>
+</div>
+<div id="540f1f53" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now unstack works because means is defined</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>means.unstack()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">key2</th>
+<th data-quarto-table-cell-role="th">1</th>
+<th data-quarto-table-cell-role="th">2</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">key1</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">a</td>
+<td>-0.561434</td>
+<td>-0.094709</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">b</td>
+<td>1.491390</td>
+<td>-0.638902</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="grouping-with-series-and-arrays" class="level2">
+<h2 class="anchored" data-anchor-id="grouping-with-series-and-arrays">Grouping with Series and Arrays</h2>
+<p>The grouping keys can be Series or arrays, not just DataFrame columns.</p>
+<div id="7703333c" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 修改示例代码</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建新的DataFrame示例</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"key1"</span>: [<span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"b"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"a"</span>],</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"key2"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>],</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data1"</span>: np.random.randn(<span class="dv">7</span>),  <span class="co"># 增加到7行以匹配states和years的长度</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data2"</span>: np.random.randn(<span class="dv">7</span>)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 外部数组用于分组</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> np.array([<span class="st">"OH"</span>, <span class="st">"CA"</span>, <span class="st">"CA"</span>, <span class="st">"OH"</span>, <span class="st">"OH"</span>, <span class="st">"CA"</span>, <span class="st">"OH"</span>])</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> np.array([<span class="dv">2005</span>, <span class="dv">2005</span>, <span class="dv">2006</span>, <span class="dv">2005</span>, <span class="dv">2006</span>, <span class="dv">2005</span>, <span class="dv">2006</span>])</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 现在进行分组计算</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> df[<span class="st">"data1"</span>].groupby([states, years]).mean()</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">分组结果:"</span>)</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用unstack()来重塑结果</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">重塑后的结果:"</span>)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result.unstack())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+分组结果:
+CA  2005    0.426490
+    2006   -0.935834
+OH  2005    0.956599
+    2006   -0.173388
+Name: data1, dtype: float64
+
+重塑后的结果:
+        2005      2006
+CA  0.426490 -0.935834
+OH  0.956599 -0.173388</code></pre>
+</div>
+</div>
+<p>Here, we group <code>data1</code> by <code>states</code> and <code>years</code>, which are external arrays.</p>
+</section>
+<section id="grouping-using-column-names-directly" class="level2">
+<h2 class="anchored" data-anchor-id="grouping-using-column-names-directly">Grouping Using Column Names Directly</h2>
+<p>If the grouping information is within the DataFrame, we can use column names directly.</p>
+<div id="6544e542" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"key1"</span>).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">key2</th>
+<th data-quarto-table-cell-role="th">data1</th>
+<th data-quarto-table-cell-role="th">data2</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">key1</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">a</td>
+<td>1.250000</td>
+<td>0.470331</td>
+<td>-1.266804</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">b</td>
+<td>1.666667</td>
+<td>-0.132585</td>
+<td>-0.962969</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>key2</code> will be included in the result, and non-numeric column <code>key1</code> is automatically excluded as a <strong>nuisance column</strong>.</p>
+</div>
+</div>
+<div id="c3d5d366" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>]).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">data1</th>
+<th data-quarto-table-cell-role="th">data2</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">key1</th>
+<th data-quarto-table-cell-role="th">key2</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">a</td>
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.130198</td>
+<td>-1.642382</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1.490732</td>
+<td>-0.140069</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">b</td>
+<td data-quarto-table-cell-role="th">1</td>
+<td>-0.935834</td>
+<td>-0.861755</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0.269039</td>
+<td>-1.013576</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="group-size" class="level2">
+<h2 class="anchored" data-anchor-id="group-size">Group Size</h2>
+<p>The <code>size()</code> method shows the number of data points in each group.</p>
+<div id="a8a45061" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>]).size()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>key1  key2
+a     1       3
+      2       1
+b     1       1
+      2       2
+dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="handling-missing-values-in-group-keys" class="level2">
+<h2 class="anchored" data-anchor-id="handling-missing-values-in-group-keys">Handling Missing Values in Group Keys</h2>
+<p>By default, missing values in group keys are excluded. We can include them with <code>dropna=False</code>.</p>
+<div id="03a8757d" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"key1"</span>, dropna<span class="op">=</span><span class="va">False</span>).size()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>key1
+a    4
+b    3
+dtype: int64</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="iterating-over-groups" class="level1">
+<h1>Iterating Over Groups</h1>
+<section id="iterating-with-a-single-key" class="level2">
+<h2 class="anchored" data-anchor-id="iterating-with-a-single-key">Iterating with a Single Key</h2>
+<p>The <code>GroupBy</code> object supports iteration, yielding the group name and the data chunk.</p>
+<div id="ed5da2d9" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, group <span class="kw">in</span> df.groupby(<span class="st">"key1"</span>):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Group Name: </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Group Name: a
+  key1  key2     data1     data2
+0    a     1  0.737369 -1.428681
+1    a     2  1.490732 -0.140069
+4    a     1 -1.253881 -2.798589
+6    a     1  0.907105 -0.699877
+Group Name: b
+  key1  key2     data1     data2
+2    b     1 -0.935834 -0.861755
+3    b     2  1.175829 -0.255619
+5    b     2 -0.637752 -1.771533</code></pre>
+</div>
+</div>
+</section>
+<section id="iterating-with-multiple-keys" class="level2">
+<h2 class="anchored" data-anchor-id="iterating-with-multiple-keys">Iterating with Multiple Keys</h2>
+<p>When grouping by multiple keys, the group name is a tuple.</p>
+<div id="198bf79d" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k1, k2), group <span class="kw">in</span> df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>]):</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Group Keys: </span><span class="sc">{</span>(k1, k2)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Group Keys: ('a', np.int64(1))
+  key1  key2     data1     data2
+0    a     1  0.737369 -1.428681
+4    a     1 -1.253881 -2.798589
+6    a     1  0.907105 -0.699877
+Group Keys: ('a', np.int64(2))
+  key1  key2     data1     data2
+1    a     2  1.490732 -0.140069
+Group Keys: ('b', np.int64(1))
+  key1  key2     data1     data2
+2    b     1 -0.935834 -0.861755
+Group Keys: ('b', np.int64(2))
+  key1  key2     data1     data2
+3    b     2  1.175829 -0.255619
+5    b     2 -0.637752 -1.771533</code></pre>
+</div>
+</div>
+</section>
+<section id="creating-a-dictionary-of-data-pieces" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-dictionary-of-data-pieces">Creating a Dictionary of Data Pieces</h2>
+<p>A useful one-liner creates a dictionary where keys are group names and values are data chunks.</p>
+<div id="e1ac6250" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pieces <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">list</span>(df.groupby(<span class="st">"key1"</span>)))</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>pieces[<span class="st">"b"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">key1</th>
+<th data-quarto-table-cell-role="th">key2</th>
+<th data-quarto-table-cell-role="th">data1</th>
+<th data-quarto-table-cell-role="th">data2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>b</td>
+<td>1</td>
+<td>-0.935834</td>
+<td>-0.861755</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>b</td>
+<td>2</td>
+<td>1.175829</td>
+<td>-0.255619</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">5</td>
+<td>b</td>
+<td>2</td>
+<td>-0.637752</td>
+<td>-1.771533</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="grouping-by-columns-axis1" class="level1">
+<h1>Grouping by Columns (axis=1)</h1>
+<p>We can group by columns instead of rows using <code>axis="columns"</code>.</p>
+<div id="8273ced9" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> df.groupby({<span class="st">"key1"</span>: <span class="st">"key"</span>, <span class="st">"key2"</span>: <span class="st">"key"</span>,</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"data1"</span>: <span class="st">"data"</span>, <span class="st">"data2"</span>: <span class="st">"data"</span>}, axis<span class="op">=</span><span class="st">"columns"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> group_key, group_values <span class="kw">in</span> grouped:</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(group_key)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(group_values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>data
+      data1     data2
+0  0.737369 -1.428681
+1  1.490732 -0.140069
+2 -0.935834 -0.861755
+3  1.175829 -0.255619
+4 -1.253881 -2.798589
+5 -0.637752 -1.771533
+6  0.907105 -0.699877
+key
+  key1  key2
+0    a     1
+1    a     2
+2    b     1
+3    b     2
+4    a     1
+5    b     2
+6    a     1</code></pre>
+</div>
+</div>
+</section>
+<section id="selecting-columns-for-aggregation" class="level1">
+<h1>Selecting Columns for Aggregation</h1>
+<section id="selecting-a-single-column" class="level2">
+<h2 class="anchored" data-anchor-id="selecting-a-single-column">Selecting a Single Column</h2>
+<p>To aggregate only specific columns, index the <code>GroupBy</code> object.</p>
+<div id="8e88634a" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SeriesGroupBy</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>])[<span class="st">"data2"</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>key1  key2
+a     1      -1.642382
+      2      -0.140069
+b     1      -0.861755
+      2      -1.013576
+Name: data2, dtype: float64</code></pre>
+</div>
+</div>
+<p>This is a shorthand for <code>df["data2"].groupby([df["key1"], df["key2"]]).mean()</code>. The result is a <em>Series</em>.</p>
+</section>
+<section id="selecting-multiple-columns" class="level2">
+<h2 class="anchored" data-anchor-id="selecting-multiple-columns">Selecting Multiple Columns</h2>
+<div id="0ac86f6d" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DataFrameGroupBy</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>])[[<span class="st">"data2"</span>]].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">data2</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">key1</th>
+<th data-quarto-table-cell-role="th">key2</th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">a</td>
+<td data-quarto-table-cell-role="th">1</td>
+<td>-1.642382</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>-0.140069</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">b</td>
+<td data-quarto-table-cell-role="th">1</td>
+<td>-0.861755</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>-1.013576</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>This is equivalent to <code>df[["data2"]].groupby([df["key1"], df["key2"]]).mean()</code>. The result is a <em>DataFrame</em>.</p>
+</section>
+</section>
+<section id="grouping-with-dictionaries-and-series" class="level1">
+<h1>Grouping with Dictionaries and Series</h1>
+<p>Grouping information can also be provided as dictionaries or Series.</p>
+<div id="feaa76f3" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>people <span class="op">=</span> pd.DataFrame(np.random.standard_normal((<span class="dv">5</span>, <span class="dv">5</span>)),</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                   columns<span class="op">=</span>[<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>],</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                   index<span class="op">=</span>[<span class="st">"Joe"</span>, <span class="st">"Steve"</span>, <span class="st">"Wanda"</span>, <span class="st">"Jill"</span>, <span class="st">"Trey"</span>])</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>people.iloc[<span class="dv">2</span>:<span class="dv">3</span>, [<span class="dv">1</span>, <span class="dv">2</span>]] <span class="op">=</span> np.nan  <span class="co"># Add some NA values</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>mapping <span class="op">=</span> {<span class="st">"a"</span>: <span class="st">"red"</span>, <span class="st">"b"</span>: <span class="st">"red"</span>, <span class="st">"c"</span>: <span class="st">"blue"</span>,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>           <span class="st">"d"</span>: <span class="st">"blue"</span>, <span class="st">"e"</span>: <span class="st">"red"</span>, <span class="st">"f"</span> : <span class="st">"orange"</span>} <span class="co"># 'f' is unused</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>by_column <span class="op">=</span> people.groupby(mapping, axis<span class="op">=</span><span class="st">"columns"</span>)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>by_column.<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">blue</th>
+<th data-quarto-table-cell-role="th">red</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Joe</td>
+<td>0.691069</td>
+<td>-0.125710</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Steve</td>
+<td>-2.118569</td>
+<td>0.052067</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Wanda</td>
+<td>0.412912</td>
+<td>1.317325</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Jill</td>
+<td>0.704924</td>
+<td>0.145995</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Trey</td>
+<td>2.645593</td>
+<td>2.594643</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Here, the <code>mapping</code> dictionary defines how columns should be grouped.</p>
+</section>
+<section id="grouping-with-functions" class="level1">
+<h1>Grouping with Functions</h1>
+<p>We can use functions to define group mappings. The function is called once per index value (or column if <code>axis="columns"</code>).</p>
+<div id="5d723c39" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>people.groupby(<span class="bu">len</span>).<span class="bu">sum</span>() <span class="co"># Group by name length</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">a</th>
+<th data-quarto-table-cell-role="th">b</th>
+<th data-quarto-table-cell-role="th">c</th>
+<th data-quarto-table-cell-role="th">d</th>
+<th data-quarto-table-cell-role="th">e</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3</td>
+<td>0.927462</td>
+<td>-0.173636</td>
+<td>0.002846</td>
+<td>0.688223</td>
+<td>-0.879536</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4</td>
+<td>2.267827</td>
+<td>-0.224769</td>
+<td>-0.148082</td>
+<td>3.498598</td>
+<td>0.697581</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">5</td>
+<td>0.622216</td>
+<td>-0.805367</td>
+<td>-1.727669</td>
+<td>0.022012</td>
+<td>1.552542</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Here, <code>len</code> is applied to each index value (name) to determine the groups.</p>
+</section>
+<section id="grouping-by-index-levels" class="level1">
+<h1>Grouping by Index Levels</h1>
+<p>For hierarchically indexed DataFrames, we can group by index levels.</p>
+<div id="1d8f4442" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> pd.MultiIndex.from_arrays([[<span class="st">"US"</span>, <span class="st">"US"</span>, <span class="st">"US"</span>, <span class="st">"JP"</span>, <span class="st">"JP"</span>],</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>                                    [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">3</span>]],</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                                   names<span class="op">=</span>[<span class="st">"cty"</span>, <span class="st">"tenor"</span>])</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>hier_df <span class="op">=</span> pd.DataFrame(np.random.standard_normal((<span class="dv">4</span>, <span class="dv">5</span>)), columns<span class="op">=</span>columns)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>hier_df.groupby(level<span class="op">=</span><span class="st">"cty"</span>, axis<span class="op">=</span><span class="st">"columns"</span>).count()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">cty</th>
+<th data-quarto-table-cell-role="th">JP</th>
+<th data-quarto-table-cell-role="th">US</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>We group by the <code>cty</code> level of the column MultiIndex.</p>
+</section>
+<section id="data-aggregation" class="level1">
+<h1>Data Aggregation</h1>
+<section id="optimized-aggregation-methods" class="level2">
+<h2 class="anchored" data-anchor-id="optimized-aggregation-methods">Optimized Aggregation Methods</h2>
+<p>Data aggregation transforms arrays into scalar values. pandas provides optimized methods for common aggregations. Here are some of them.</p>
+<div class="nonincremental">
+<ul>
+<li><strong><code>count</code></strong>: Number of non-NA values</li>
+<li><strong><code>sum</code></strong>: Sum of non-NA values</li>
+<li><strong><code>mean</code></strong>: Mean of non-NA values</li>
+<li><strong><code>median</code></strong>: Arithmetic median of non-NA values</li>
+<li><strong><code>std</code>, <code>var</code></strong>: Sample standard deviation and variance</li>
+<li><strong><code>min</code>, <code>max</code></strong>: Minimum and maximum of non-NA values</li>
+<li><strong><code>prod</code></strong>: Product of non-NA values</li>
+<li><strong><code>first</code>, <code>last</code></strong>: First and last non-NA values</li>
+<li><strong><code>any</code>, <code>all</code></strong>: Return <code>True</code> if any (one or more values) or all non-NA values are “truthy”</li>
+<li><strong><code>cummin</code>, <code>cummax</code></strong>: Cumulative minimum and maximum of non-NA values</li>
+<li><strong><code>cumsum</code></strong>: Cumulative sum of non-NA values</li>
+<li><strong><code>cumprod</code></strong>: Cumulative product of non-NA values</li>
+<li><strong><code>nth</code></strong>: Retrieve value that would appear at position n with the data in sorted order</li>
+<li><strong><code>ohlc</code></strong>: Compute four “open-high-low-close” statistics for time series-like data</li>
+<li><strong><code>quantile</code></strong>: Compute sample quantile</li>
+<li><strong><code>rank</code></strong>: Ordinal ranks of non-NA values, like calling <code>Series.rank</code></li>
+<li><strong><code>size</code></strong>: Compute group sizes, returning result as a <code>Series</code></li>
+</ul>
+</div>
+</section>
+<section id="using-your-own-aggregation-functions" class="level2">
+<h2 class="anchored" data-anchor-id="using-your-own-aggregation-functions">Using Your Own Aggregation Functions</h2>
+<p>You can define custom aggregation functions using the <code>agg</code> (or <code>aggregate</code>) method.</p>
+<div id="d3b040ba" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> peak_to_peak(arr):</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> arr.<span class="bu">max</span>() <span class="op">-</span> arr.<span class="bu">min</span>()</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> df.groupby(<span class="st">"key1"</span>)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>grouped.agg(peak_to_peak)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">key2</th>
+<th data-quarto-table-cell-role="th">data1</th>
+<th data-quarto-table-cell-role="th">data2</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">key1</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">a</td>
+<td>1</td>
+<td>2.744613</td>
+<td>2.658520</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">b</td>
+<td>1</td>
+<td>2.111663</td>
+<td>1.515914</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="the-describe-method" class="level2">
+<h2 class="anchored" data-anchor-id="the-describe-method">The <code>describe</code> Method</h2>
+<p>Even methods like <code>describe</code>, which aren’t strictly aggregations, can be used with <code>GroupBy</code>.</p>
+<div id="4753a927" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>grouped.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th colspan="8" data-quarto-table-cell-role="th" data-halign="left">key2</th>
+<th colspan="5" data-quarto-table-cell-role="th" data-halign="left">data1</th>
+<th colspan="8" data-quarto-table-cell-role="th" data-halign="left">data2</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">25%</th>
+<th data-quarto-table-cell-role="th">50%</th>
+<th data-quarto-table-cell-role="th">75%</th>
+<th data-quarto-table-cell-role="th">max</th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">75%</th>
+<th data-quarto-table-cell-role="th">max</th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">25%</th>
+<th data-quarto-table-cell-role="th">50%</th>
+<th data-quarto-table-cell-role="th">75%</th>
+<th data-quarto-table-cell-role="th">max</th>
+</tr>
+<tr class="header">
+<th data-quarto-table-cell-role="th">key1</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">a</td>
+<td>4.0</td>
+<td>1.250000</td>
+<td>0.50000</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>1.25</td>
+<td>2.0</td>
+<td>4.0</td>
+<td>0.470331</td>
+<td>...</td>
+<td>1.053012</td>
+<td>1.490732</td>
+<td>4.0</td>
+<td>-1.266804</td>
+<td>1.149421</td>
+<td>-2.798589</td>
+<td>-1.771158</td>
+<td>-1.064279</td>
+<td>-0.559925</td>
+<td>-0.140069</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">b</td>
+<td>3.0</td>
+<td>1.666667</td>
+<td>0.57735</td>
+<td>1.0</td>
+<td>1.5</td>
+<td>2.0</td>
+<td>2.00</td>
+<td>2.0</td>
+<td>3.0</td>
+<td>-0.132585</td>
+<td>...</td>
+<td>0.269039</td>
+<td>1.175829</td>
+<td>3.0</td>
+<td>-0.962969</td>
+<td>0.763008</td>
+<td>-1.771533</td>
+<td>-1.316644</td>
+<td>-0.861755</td>
+<td>-0.558687</td>
+<td>-0.255619</td>
+</tr>
+</tbody>
+</table>
+
+<p>2 rows × 24 columns</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="column-wise-and-multiple-function-application" class="level1">
+<h1>Column-Wise and Multiple Function Application</h1>
+<section id="multiple-functions-on-a-single-column" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-functions-on-a-single-column">Multiple Functions on a Single Column</h2>
+<p>Let’s load a tips dataset.</p>
+<div id="af1856a7" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> pd.read_csv(<span class="st">"examples/tips.csv"</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">"tip_pct"</span>] <span class="op">=</span> tips[<span class="st">"tip"</span>] <span class="op">/</span> tips[<span class="st">"total_bill"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can apply multiple functions to <code>tip_pct</code>.</p>
+<div id="33f5919a" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> tips.groupby([<span class="st">"day"</span>, <span class="st">"smoker"</span>])</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>grouped_pct <span class="op">=</span> grouped[<span class="st">"tip_pct"</span>]</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>grouped_pct.agg([<span class="st">"mean"</span>, <span class="st">"std"</span>, peak_to_peak])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">peak_to_peak</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Fri</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>0.151650</td>
+<td>0.028123</td>
+<td>0.067349</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>0.174783</td>
+<td>0.051293</td>
+<td>0.159925</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Sat</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>0.158048</td>
+<td>0.039767</td>
+<td>0.235193</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>0.147906</td>
+<td>0.061375</td>
+<td>0.290095</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Sun</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>0.160113</td>
+<td>0.042347</td>
+<td>0.193226</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>0.187250</td>
+<td>0.154134</td>
+<td>0.644685</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Thur</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>0.160298</td>
+<td>0.038774</td>
+<td>0.193350</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>0.163863</td>
+<td>0.039389</td>
+<td>0.151240</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="custom-column-names" class="level2">
+<h2 class="anchored" data-anchor-id="custom-column-names">Custom Column Names</h2>
+<p>We can provide custom names for the aggregated columns using (name, function) tuples.</p>
+<div id="a8cf89c3" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>grouped_pct.agg([(<span class="st">"average"</span>, <span class="st">"mean"</span>), (<span class="st">"stdev"</span>, np.std)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">average</th>
+<th data-quarto-table-cell-role="th">stdev</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Fri</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>0.151650</td>
+<td>0.028123</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>0.174783</td>
+<td>0.051293</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Sat</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>0.158048</td>
+<td>0.039767</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>0.147906</td>
+<td>0.061375</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Sun</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>0.160113</td>
+<td>0.042347</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>0.187250</td>
+<td>0.154134</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Thur</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>0.160298</td>
+<td>0.038774</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>0.163863</td>
+<td>0.039389</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="different-functions-for-different-columns" class="level2">
+<h2 class="anchored" data-anchor-id="different-functions-for-different-columns">Different Functions for Different Columns</h2>
+<p>We can apply different functions to different columns using a dictionary.</p>
+<div id="166f223e" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>functions <span class="op">=</span> [<span class="st">"count"</span>, <span class="st">"mean"</span>, <span class="st">"max"</span>]</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> grouped[[<span class="st">"tip_pct"</span>, <span class="st">"total_bill"</span>]].agg(functions)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th colspan="3" data-quarto-table-cell-role="th" data-halign="left">tip_pct</th>
+<th colspan="3" data-quarto-table-cell-role="th" data-halign="left">total_bill</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">max</th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">max</th>
+</tr>
+<tr class="header">
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Fri</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>4</td>
+<td>0.151650</td>
+<td>0.187735</td>
+<td>4</td>
+<td>18.420000</td>
+<td>22.75</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>15</td>
+<td>0.174783</td>
+<td>0.263480</td>
+<td>15</td>
+<td>16.813333</td>
+<td>40.17</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Sat</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>45</td>
+<td>0.158048</td>
+<td>0.291990</td>
+<td>45</td>
+<td>19.661778</td>
+<td>48.33</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>42</td>
+<td>0.147906</td>
+<td>0.325733</td>
+<td>42</td>
+<td>21.276667</td>
+<td>50.81</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Sun</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>57</td>
+<td>0.160113</td>
+<td>0.252672</td>
+<td>57</td>
+<td>20.506667</td>
+<td>48.17</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>19</td>
+<td>0.187250</td>
+<td>0.710345</td>
+<td>19</td>
+<td>24.120000</td>
+<td>45.35</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Thur</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>45</td>
+<td>0.160298</td>
+<td>0.266312</td>
+<td>45</td>
+<td>17.113111</td>
+<td>41.19</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>17</td>
+<td>0.163863</td>
+<td>0.241255</td>
+<td>17</td>
+<td>19.190588</td>
+<td>43.11</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="ec5260d4" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>grouped.agg({<span class="st">"tip"</span> : np.<span class="bu">max</span>, <span class="st">"size"</span> : <span class="st">"sum"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">tip</th>
+<th data-quarto-table-cell-role="th">size</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Fri</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>3.50</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>4.73</td>
+<td>31</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Sat</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>9.00</td>
+<td>115</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>10.00</td>
+<td>104</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Sun</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>6.00</td>
+<td>167</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>6.50</td>
+<td>49</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Thur</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>6.70</td>
+<td>112</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>5.00</td>
+<td>40</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="ef559bab" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>grouped.agg({<span class="st">"tip_pct"</span> : [<span class="st">"min"</span>, <span class="st">"max"</span>, <span class="st">"mean"</span>, <span class="st">"std"</span>],</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">"size"</span> : <span class="st">"sum"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th colspan="4" data-quarto-table-cell-role="th" data-halign="left">tip_pct</th>
+<th data-quarto-table-cell-role="th">size</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">max</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">sum</th>
+</tr>
+<tr class="header">
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Fri</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>0.120385</td>
+<td>0.187735</td>
+<td>0.151650</td>
+<td>0.028123</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>0.103555</td>
+<td>0.263480</td>
+<td>0.174783</td>
+<td>0.051293</td>
+<td>31</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Sat</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>0.056797</td>
+<td>0.291990</td>
+<td>0.158048</td>
+<td>0.039767</td>
+<td>115</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>0.035638</td>
+<td>0.325733</td>
+<td>0.147906</td>
+<td>0.061375</td>
+<td>104</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Sun</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>0.059447</td>
+<td>0.252672</td>
+<td>0.160113</td>
+<td>0.042347</td>
+<td>167</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>0.065660</td>
+<td>0.710345</td>
+<td>0.187250</td>
+<td>0.154134</td>
+<td>49</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Thur</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>0.072961</td>
+<td>0.266312</td>
+<td>0.160298</td>
+<td>0.038774</td>
+<td>112</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>0.090014</td>
+<td>0.241255</td>
+<td>0.163863</td>
+<td>0.039389</td>
+<td>40</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="returning-aggregated-data-without-row-indexes" class="level1">
+<h1>Returning Aggregated Data Without Row Indexes</h1>
+<p>Use <code>as_index=False</code> to prevent group keys from becoming the index.</p>
+<div id="e3918694" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#tips.groupby(["day", "smoker"], as_index=False).mean()</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 只选择数值列进行分组计算</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>numeric_cols <span class="op">=</span> tips.select_dtypes(include<span class="op">=</span>[np.number]).columns</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>tips.groupby([<span class="st">"day"</span>, <span class="st">"smoker"</span>], as_index<span class="op">=</span><span class="va">False</span>)[numeric_cols].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th">total_bill</th>
+<th data-quarto-table-cell-role="th">tip</th>
+<th data-quarto-table-cell-role="th">size</th>
+<th data-quarto-table-cell-role="th">tip_pct</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Fri</td>
+<td>No</td>
+<td>18.420000</td>
+<td>2.812500</td>
+<td>2.250000</td>
+<td>0.151650</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Fri</td>
+<td>Yes</td>
+<td>16.813333</td>
+<td>2.714000</td>
+<td>2.066667</td>
+<td>0.174783</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Sat</td>
+<td>No</td>
+<td>19.661778</td>
+<td>3.102889</td>
+<td>2.555556</td>
+<td>0.158048</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Sat</td>
+<td>Yes</td>
+<td>21.276667</td>
+<td>2.875476</td>
+<td>2.476190</td>
+<td>0.147906</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Sun</td>
+<td>No</td>
+<td>20.506667</td>
+<td>3.167895</td>
+<td>2.929825</td>
+<td>0.160113</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>Sun</td>
+<td>Yes</td>
+<td>24.120000</td>
+<td>3.516842</td>
+<td>2.578947</td>
+<td>0.187250</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>Thur</td>
+<td>No</td>
+<td>17.113111</td>
+<td>2.673778</td>
+<td>2.488889</td>
+<td>0.160298</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>Thur</td>
+<td>Yes</td>
+<td>19.190588</td>
+<td>3.030000</td>
+<td>2.352941</td>
+<td>0.163863</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="apply-general-split-apply-combine" class="level1">
+<h1><code>apply</code>: General split-apply-combine</h1>
+<section id="the-power-of-apply" class="level2">
+<h2 class="anchored" data-anchor-id="the-power-of-apply">The Power of <code>apply</code> 💪</h2>
+<p>The <code>apply</code> method is the most general-purpose <code>GroupBy</code> method. It splits the data, applies a function to each piece, and concatenates the results.</p>
+</section>
+<section id="example-selecting-top-rows" class="level2">
+<h2 class="anchored" data-anchor-id="example-selecting-top-rows">Example: Selecting Top Rows</h2>
+<div id="0c42ed6a" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> top(df, n<span class="op">=</span><span class="dv">5</span>, column<span class="op">=</span><span class="st">"tip_pct"</span>):</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df.sort_values(column, ascending<span class="op">=</span><span class="va">False</span>)[:n]</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>tips.groupby(<span class="st">"smoker"</span>).<span class="bu">apply</span>(top)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">total_bill</th>
+<th data-quarto-table-cell-role="th">tip</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">time</th>
+<th data-quarto-table-cell-role="th">size</th>
+<th data-quarto-table-cell-role="th">tip_pct</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="5" data-quarto-table-cell-role="th" data-valign="top">No</td>
+<td data-quarto-table-cell-role="th">232</td>
+<td>11.61</td>
+<td>3.39</td>
+<td>No</td>
+<td>Sat</td>
+<td>Dinner</td>
+<td>2</td>
+<td>0.291990</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">149</td>
+<td>7.51</td>
+<td>2.00</td>
+<td>No</td>
+<td>Thur</td>
+<td>Lunch</td>
+<td>2</td>
+<td>0.266312</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">51</td>
+<td>10.29</td>
+<td>2.60</td>
+<td>No</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>2</td>
+<td>0.252672</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">185</td>
+<td>20.69</td>
+<td>5.00</td>
+<td>No</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>5</td>
+<td>0.241663</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">88</td>
+<td>24.71</td>
+<td>5.85</td>
+<td>No</td>
+<td>Thur</td>
+<td>Lunch</td>
+<td>2</td>
+<td>0.236746</td>
+</tr>
+<tr class="even">
+<td rowspan="5" data-quarto-table-cell-role="th" data-valign="top">Yes</td>
+<td data-quarto-table-cell-role="th">172</td>
+<td>7.25</td>
+<td>5.15</td>
+<td>Yes</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>2</td>
+<td>0.710345</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">178</td>
+<td>9.60</td>
+<td>4.00</td>
+<td>Yes</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>2</td>
+<td>0.416667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">67</td>
+<td>3.07</td>
+<td>1.00</td>
+<td>Yes</td>
+<td>Sat</td>
+<td>Dinner</td>
+<td>1</td>
+<td>0.325733</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">183</td>
+<td>23.17</td>
+<td>6.50</td>
+<td>Yes</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>4</td>
+<td>0.280535</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">109</td>
+<td>14.31</td>
+<td>4.00</td>
+<td>Yes</td>
+<td>Sat</td>
+<td>Dinner</td>
+<td>2</td>
+<td>0.279525</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="passing-arguments-to-apply" class="level2">
+<h2 class="anchored" data-anchor-id="passing-arguments-to-apply">Passing Arguments to <code>apply</code></h2>
+<div id="2b862037" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>tips.groupby([<span class="st">"smoker"</span>, <span class="st">"day"</span>]).<span class="bu">apply</span>(top, n<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="st">"total_bill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">total_bill</th>
+<th data-quarto-table-cell-role="th">tip</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">time</th>
+<th data-quarto-table-cell-role="th">size</th>
+<th data-quarto-table-cell-role="th">tip_pct</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="4" data-quarto-table-cell-role="th" data-valign="top">No</td>
+<td data-quarto-table-cell-role="th">Fri</td>
+<td data-quarto-table-cell-role="th">94</td>
+<td>22.75</td>
+<td>3.25</td>
+<td>No</td>
+<td>Fri</td>
+<td>Dinner</td>
+<td>2</td>
+<td>0.142857</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Sat</td>
+<td data-quarto-table-cell-role="th">212</td>
+<td>48.33</td>
+<td>9.00</td>
+<td>No</td>
+<td>Sat</td>
+<td>Dinner</td>
+<td>4</td>
+<td>0.186220</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Sun</td>
+<td data-quarto-table-cell-role="th">156</td>
+<td>48.17</td>
+<td>5.00</td>
+<td>No</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>6</td>
+<td>0.103799</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Thur</td>
+<td data-quarto-table-cell-role="th">142</td>
+<td>41.19</td>
+<td>5.00</td>
+<td>No</td>
+<td>Thur</td>
+<td>Lunch</td>
+<td>5</td>
+<td>0.121389</td>
+</tr>
+<tr class="odd">
+<td rowspan="4" data-quarto-table-cell-role="th" data-valign="top">Yes</td>
+<td data-quarto-table-cell-role="th">Fri</td>
+<td data-quarto-table-cell-role="th">95</td>
+<td>40.17</td>
+<td>4.73</td>
+<td>Yes</td>
+<td>Fri</td>
+<td>Dinner</td>
+<td>4</td>
+<td>0.117750</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Sat</td>
+<td data-quarto-table-cell-role="th">170</td>
+<td>50.81</td>
+<td>10.00</td>
+<td>Yes</td>
+<td>Sat</td>
+<td>Dinner</td>
+<td>3</td>
+<td>0.196812</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Sun</td>
+<td data-quarto-table-cell-role="th">182</td>
+<td>45.35</td>
+<td>3.50</td>
+<td>Yes</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>3</td>
+<td>0.077178</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Thur</td>
+<td data-quarto-table-cell-role="th">197</td>
+<td>43.11</td>
+<td>5.00</td>
+<td>Yes</td>
+<td>Thur</td>
+<td>Lunch</td>
+<td>4</td>
+<td>0.115982</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="suppressing-group-keys-in-apply" class="level2">
+<h2 class="anchored" data-anchor-id="suppressing-group-keys-in-apply">Suppressing Group Keys in <code>apply</code></h2>
+<p>Use <code>group_keys=False</code> to prevent group keys from being added to the index.</p>
+<div id="aa5e74c0" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>tips.groupby(<span class="st">"smoker"</span>, group_keys<span class="op">=</span><span class="va">False</span>).<span class="bu">apply</span>(top)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">total_bill</th>
+<th data-quarto-table-cell-role="th">tip</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">time</th>
+<th data-quarto-table-cell-role="th">size</th>
+<th data-quarto-table-cell-role="th">tip_pct</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">232</td>
+<td>11.61</td>
+<td>3.39</td>
+<td>No</td>
+<td>Sat</td>
+<td>Dinner</td>
+<td>2</td>
+<td>0.291990</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">149</td>
+<td>7.51</td>
+<td>2.00</td>
+<td>No</td>
+<td>Thur</td>
+<td>Lunch</td>
+<td>2</td>
+<td>0.266312</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">51</td>
+<td>10.29</td>
+<td>2.60</td>
+<td>No</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>2</td>
+<td>0.252672</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">185</td>
+<td>20.69</td>
+<td>5.00</td>
+<td>No</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>5</td>
+<td>0.241663</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">88</td>
+<td>24.71</td>
+<td>5.85</td>
+<td>No</td>
+<td>Thur</td>
+<td>Lunch</td>
+<td>2</td>
+<td>0.236746</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">172</td>
+<td>7.25</td>
+<td>5.15</td>
+<td>Yes</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>2</td>
+<td>0.710345</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">178</td>
+<td>9.60</td>
+<td>4.00</td>
+<td>Yes</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>2</td>
+<td>0.416667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">67</td>
+<td>3.07</td>
+<td>1.00</td>
+<td>Yes</td>
+<td>Sat</td>
+<td>Dinner</td>
+<td>1</td>
+<td>0.325733</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">183</td>
+<td>23.17</td>
+<td>6.50</td>
+<td>Yes</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>4</td>
+<td>0.280535</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">109</td>
+<td>14.31</td>
+<td>4.00</td>
+<td>Yes</td>
+<td>Sat</td>
+<td>Dinner</td>
+<td>2</td>
+<td>0.279525</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="quantile-and-bucket-analysis" class="level1">
+<h1>Quantile and Bucket Analysis</h1>
+<section id="using-cut-and-qcut-with-groupby" class="level2">
+<h2 class="anchored" data-anchor-id="using-cut-and-qcut-with-groupby">Using <code>cut</code> and <code>qcut</code> with <code>groupby</code></h2>
+<p>The <code>cut</code> and <code>qcut</code> functions can be combined with <code>groupby</code> for bucket and quantile analysis.</p>
+<div id="de85b522" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> pd.DataFrame({<span class="st">"data1"</span>: np.random.standard_normal(<span class="dv">1000</span>),</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"data2"</span>: np.random.standard_normal(<span class="dv">1000</span>)})</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>quartiles <span class="op">=</span> pd.cut(frame[<span class="st">"data1"</span>], <span class="dv">4</span>)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_stats(group):</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.DataFrame(</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"min"</span>: group.<span class="bu">min</span>(), <span class="st">"max"</span>: group.<span class="bu">max</span>(),</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>        <span class="st">"count"</span>: group.count(), <span class="st">"mean"</span>: group.mean()}</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> frame.groupby(quartiles)</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>grouped.<span class="bu">apply</span>(get_stats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">max</th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">data1</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">(-3.238, -1.53]</td>
+<td data-quarto-table-cell-role="th">data1</td>
+<td>-3.231055</td>
+<td>-1.530513</td>
+<td>71</td>
+<td>-1.952386</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">data2</td>
+<td>-3.587494</td>
+<td>2.067490</td>
+<td>71</td>
+<td>-0.057670</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">(-1.53, 0.17]</td>
+<td data-quarto-table-cell-role="th">data1</td>
+<td>-1.518108</td>
+<td>0.168722</td>
+<td>525</td>
+<td>-0.506486</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">data2</td>
+<td>-3.801378</td>
+<td>2.850708</td>
+<td>525</td>
+<td>0.038355</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">(0.17, 1.871]</td>
+<td data-quarto-table-cell-role="th">data1</td>
+<td>0.177192</td>
+<td>1.868726</td>
+<td>384</td>
+<td>0.817880</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">data2</td>
+<td>-2.780837</td>
+<td>2.555894</td>
+<td>384</td>
+<td>0.028667</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">(1.871, 3.572]</td>
+<td data-quarto-table-cell-role="th">data1</td>
+<td>1.875801</td>
+<td>3.571579</td>
+<td>20</td>
+<td>2.253871</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">data2</td>
+<td>-2.352358</td>
+<td>1.573240</td>
+<td>20</td>
+<td>-0.358152</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>And same result could have been computed more simply with:</p>
+<div id="3b9fa684" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>grouped.agg([<span class="st">"min"</span>, <span class="st">"max"</span>, <span class="st">"count"</span>, <span class="st">"mean"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th colspan="4" data-quarto-table-cell-role="th" data-halign="left">data1</th>
+<th colspan="4" data-quarto-table-cell-role="th" data-halign="left">data2</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">max</th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">max</th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+</tr>
+<tr class="header">
+<th data-quarto-table-cell-role="th">data1</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">(-3.238, -1.53]</td>
+<td>-3.231055</td>
+<td>-1.530513</td>
+<td>71</td>
+<td>-1.952386</td>
+<td>-3.587494</td>
+<td>2.067490</td>
+<td>71</td>
+<td>-0.057670</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">(-1.53, 0.17]</td>
+<td>-1.518108</td>
+<td>0.168722</td>
+<td>525</td>
+<td>-0.506486</td>
+<td>-3.801378</td>
+<td>2.850708</td>
+<td>525</td>
+<td>0.038355</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">(0.17, 1.871]</td>
+<td>0.177192</td>
+<td>1.868726</td>
+<td>384</td>
+<td>0.817880</td>
+<td>-2.780837</td>
+<td>2.555894</td>
+<td>384</td>
+<td>0.028667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">(1.871, 3.572]</td>
+<td>1.875801</td>
+<td>3.571579</td>
+<td>20</td>
+<td>2.253871</td>
+<td>-2.352358</td>
+<td>1.573240</td>
+<td>20</td>
+<td>-0.358152</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="equal-size-buckets-with-qcut" class="level2">
+<h2 class="anchored" data-anchor-id="equal-size-buckets-with-qcut">Equal-Size Buckets with <code>qcut</code></h2>
+<div id="1eee7f41" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>quartiles_samp <span class="op">=</span> pd.qcut(frame[<span class="st">"data1"</span>], <span class="dv">4</span>, labels<span class="op">=</span><span class="va">False</span>)  <span class="co"># labels=False for indices</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> frame.groupby(quartiles_samp)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>grouped.<span class="bu">apply</span>(get_stats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">max</th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">data1</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">0</td>
+<td data-quarto-table-cell-role="th">data1</td>
+<td>-3.231055</td>
+<td>-0.683226</td>
+<td>250</td>
+<td>-1.305832</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">data2</td>
+<td>-3.587494</td>
+<td>2.273105</td>
+<td>250</td>
+<td>-0.042877</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">1</td>
+<td data-quarto-table-cell-role="th">data1</td>
+<td>-0.682765</td>
+<td>-0.038321</td>
+<td>250</td>
+<td>-0.341488</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">data2</td>
+<td>-2.362864</td>
+<td>2.850708</td>
+<td>250</td>
+<td>0.120847</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">2</td>
+<td data-quarto-table-cell-role="th">data1</td>
+<td>-0.035605</td>
+<td>0.630488</td>
+<td>250</td>
+<td>0.265004</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">data2</td>
+<td>-3.801378</td>
+<td>2.555894</td>
+<td>250</td>
+<td>0.039723</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">3</td>
+<td data-quarto-table-cell-role="th">data1</td>
+<td>0.631948</td>
+<td>3.571579</td>
+<td>250</td>
+<td>1.200791</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">data2</td>
+<td>-2.780837</td>
+<td>2.547870</td>
+<td>250</td>
+<td>-0.038145</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="example-filling-missing-values-with-group-specific-values" class="level1">
+<h1>Example: Filling Missing Values with Group-Specific Values</h1>
+<section id="filling-with-the-mean" class="level2">
+<h2 class="anchored" data-anchor-id="filling-with-the-mean">Filling with the Mean</h2>
+<div id="b99f5f44" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series(np.random.standard_normal(<span class="dv">6</span>))</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>s[::<span class="dv">2</span>] <span class="op">=</span> np.nan</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>s.fillna(s.mean())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="35">
+<pre><code>0   -0.753499
+1   -0.715937
+2   -0.753499
+3    0.269473
+4   -0.753499
+5   -1.814033
+dtype: float64</code></pre>
+</div>
+</div>
+</section>
+<section id="filling-with-group-specific-means" class="level2">
+<h2 class="anchored" data-anchor-id="filling-with-group-specific-means">Filling with Group-Specific Means</h2>
+<div id="94e6e7a6" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> [<span class="st">"Ohio"</span>, <span class="st">"New York"</span>, <span class="st">"Vermont"</span>, <span class="st">"Florida"</span>,</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Oregon"</span>, <span class="st">"Nevada"</span>, <span class="st">"California"</span>, <span class="st">"Idaho"</span>]</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>group_key <span class="op">=</span> [<span class="st">"East"</span>] <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> [<span class="st">"West"</span>] <span class="op">*</span> <span class="dv">4</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.Series(np.random.standard_normal(<span class="dv">8</span>), index<span class="op">=</span>states)</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>data[[<span class="st">"Vermont"</span>, <span class="st">"Nevada"</span>, <span class="st">"Idaho"</span>]] <span class="op">=</span> np.nan</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fill_mean(group):</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group.fillna(group.mean())</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>data.groupby(group_key).<span class="bu">apply</span>(fill_mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="36">
+<pre><code>East  Ohio          0.115240
+      New York      1.162630
+      Vermont       0.419994
+      Florida      -0.017888
+West  Oregon        0.403002
+      Nevada       -0.143319
+      California   -0.689640
+      Idaho        -0.143319
+dtype: float64</code></pre>
+</div>
+</div>
+</section>
+<section id="predefined-fill-values" class="level2">
+<h2 class="anchored" data-anchor-id="predefined-fill-values">Predefined Fill Values</h2>
+<div id="3bdecc55" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>fill_values <span class="op">=</span> {<span class="st">"East"</span>: <span class="fl">0.5</span>, <span class="st">"West"</span>: <span class="op">-</span><span class="dv">1</span>}</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fill_func(group):</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group.fillna(fill_values[group.name])</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>data.groupby(group_key).<span class="bu">apply</span>(fill_func)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="37">
+<pre><code>East  Ohio          0.115240
+      New York      1.162630
+      Vermont       0.500000
+      Florida      -0.017888
+West  Oregon        0.403002
+      Nevada       -1.000000
+      California   -0.689640
+      Idaho        -1.000000
+dtype: float64</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="example-random-sampling-and-permutation" class="level1">
+<h1>Example: Random Sampling and Permutation</h1>
+<section id="simulating-a-deck-of-cards" class="level2">
+<h2 class="anchored" data-anchor-id="simulating-a-deck-of-cards">Simulating a Deck of Cards</h2>
+<div id="b755a08d" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>suits <span class="op">=</span> [<span class="st">"H"</span>, <span class="st">"S"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>]</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>card_val <span class="op">=</span> (<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>)) <span class="op">+</span> [<span class="dv">10</span>] <span class="op">*</span> <span class="dv">3</span>) <span class="op">*</span> <span class="dv">4</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>base_names <span class="op">=</span> [<span class="st">"A"</span>] <span class="op">+</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">11</span>)) <span class="op">+</span> [<span class="st">"J"</span>, <span class="st">"K"</span>, <span class="st">"Q"</span>]</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>cards <span class="op">=</span> []</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> suit <span class="kw">in</span> suits:</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>    cards.extend(<span class="bu">str</span>(num) <span class="op">+</span> suit <span class="cf">for</span> num <span class="kw">in</span> base_names)</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>deck <span class="op">=</span> pd.Series(card_val, index<span class="op">=</span>cards)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="drawing-a-random-hand" class="level2">
+<h2 class="anchored" data-anchor-id="drawing-a-random-hand">Drawing a Random Hand</h2>
+<div id="167b68db" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> draw(deck, n<span class="op">=</span><span class="dv">5</span>):</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> deck.sample(n)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>draw(deck)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="39">
+<pre><code>7C    7
+5C    5
+8S    8
+5S    5
+6H    6
+dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="drawing-two-random-cards-from-each-suit" class="level2">
+<h2 class="anchored" data-anchor-id="drawing-two-random-cards-from-each-suit">Drawing Two Random Cards from Each Suit</h2>
+<div id="5af6c4c6" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_suit(card):</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> card[<span class="op">-</span><span class="dv">1</span>]  <span class="co"># last letter is suit</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>deck.groupby(get_suit).<span class="bu">apply</span>(draw, n<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="40">
+<pre><code>C  7C      7
+   KC     10
+D  6D      6
+   10D    10
+H  2H      2
+   10H    10
+S  AS      1
+   4S      4
+dtype: int64</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="example-group-weighted-average-and-correlation" class="level1">
+<h1>Example: Group Weighted Average and Correlation</h1>
+<section id="group-weighted-average" class="level2">
+<h2 class="anchored" data-anchor-id="group-weighted-average">Group Weighted Average</h2>
+<div id="2c69f914" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">"category"</span>: [<span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"a"</span>,</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"b"</span>, <span class="st">"b"</span>, <span class="st">"b"</span>, <span class="st">"b"</span>],</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"data"</span>: np.random.standard_normal(<span class="dv">8</span>),</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"weights"</span>: np.random.uniform(size<span class="op">=</span><span class="dv">8</span>)})</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> df.groupby(<span class="st">"category"</span>)</span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_wavg(group):</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.average(group[<span class="st">"data"</span>], weights<span class="op">=</span>group[<span class="st">"weights"</span>])</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>grouped.<span class="bu">apply</span>(get_wavg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="41">
+<pre><code>category
+a   -0.054703
+b    0.515110
+dtype: float64</code></pre>
+</div>
+</div>
+</section>
+<section id="correlation-with-spx-sp-500-index" class="level2">
+<h2 class="anchored" data-anchor-id="correlation-with-spx-sp-500-index">Correlation with SPX (S&amp;P 500 Index)</h2>
+<div id="f793e0f0" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>close_px <span class="op">=</span> pd.read_csv(<span class="st">"examples/stock_px.csv"</span>, parse_dates<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>                       index_col<span class="op">=</span><span class="dv">0</span>) <span class="co"># Make sure stock_px.csv in the same dir</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>rets <span class="op">=</span> close_px.pct_change().dropna()</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_year(x):</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x.year</span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>by_year <span class="op">=</span> rets.groupby(get_year)</span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> spx_corr(group):</span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group.corrwith(group[<span class="st">"SPX"</span>])</span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>by_year.<span class="bu">apply</span>(spx_corr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="42">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">AAPL</th>
+<th data-quarto-table-cell-role="th">MSFT</th>
+<th data-quarto-table-cell-role="th">XOM</th>
+<th data-quarto-table-cell-role="th">SPX</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2003</td>
+<td>0.541124</td>
+<td>0.745174</td>
+<td>0.661265</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2004</td>
+<td>0.374283</td>
+<td>0.588531</td>
+<td>0.557742</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2005</td>
+<td>0.467540</td>
+<td>0.562374</td>
+<td>0.631010</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2006</td>
+<td>0.428267</td>
+<td>0.406126</td>
+<td>0.518514</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2007</td>
+<td>0.508118</td>
+<td>0.658770</td>
+<td>0.786264</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2008</td>
+<td>0.681434</td>
+<td>0.804626</td>
+<td>0.828303</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2009</td>
+<td>0.707103</td>
+<td>0.654902</td>
+<td>0.797921</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2010</td>
+<td>0.710105</td>
+<td>0.730118</td>
+<td>0.839057</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2011</td>
+<td>0.691931</td>
+<td>0.800996</td>
+<td>0.859975</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="intercolumn-correlation-apple-and-microsoft" class="level2">
+<h2 class="anchored" data-anchor-id="intercolumn-correlation-apple-and-microsoft">Intercolumn Correlation (Apple and Microsoft)</h2>
+<div id="c70b6e47" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> corr_aapl_msft(group):</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group[<span class="st">"AAPL"</span>].corr(group[<span class="st">"MSFT"</span>])</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>by_year.<span class="bu">apply</span>(corr_aapl_msft)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<pre><code>2003    0.480868
+2004    0.259024
+2005    0.300093
+2006    0.161735
+2007    0.417738
+2008    0.611901
+2009    0.432738
+2010    0.571946
+2011    0.581987
+dtype: float64</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="example-group-wise-linear-regression" class="level1">
+<h1>Example: Group-Wise Linear Regression</h1>
+<div id="604a8163" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> regress(data, yvar<span class="op">=</span><span class="va">None</span>, xvars<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>    Y <span class="op">=</span> data[yvar]</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> data[xvars]</span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>    X[<span class="st">"intercept"</span>] <span class="op">=</span> <span class="fl">1.</span></span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> sm.OLS(Y, X).fit()</span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result.params</span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>by_year.<span class="bu">apply</span>(regress, yvar<span class="op">=</span><span class="st">"AAPL"</span>, xvars<span class="op">=</span>[<span class="st">"SPX"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="44">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">SPX</th>
+<th data-quarto-table-cell-role="th">intercept</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2003</td>
+<td>1.195406</td>
+<td>0.000710</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2004</td>
+<td>1.363463</td>
+<td>0.004201</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2005</td>
+<td>1.766415</td>
+<td>0.003246</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2006</td>
+<td>1.645496</td>
+<td>0.000080</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2007</td>
+<td>1.198761</td>
+<td>0.003438</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2008</td>
+<td>0.968016</td>
+<td>-0.001110</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2009</td>
+<td>0.879103</td>
+<td>0.002954</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2010</td>
+<td>1.052608</td>
+<td>0.001261</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2011</td>
+<td>0.806605</td>
+<td>0.001514</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="transform-group-transforms-and-unwrapped-groupbys" class="level1">
+<h1><code>transform</code>: Group Transforms and “Unwrapped” GroupBys</h1>
+<section id="the-transform-method" class="level2">
+<h2 class="anchored" data-anchor-id="the-transform-method">The <code>transform</code> Method</h2>
+<p>The <code>transform</code> method is similar to <code>apply</code> but with more constraints:</p>
+<ul>
+<li>It can produce a scalar value to broadcast.</li>
+<li>It can produce an object of the same shape as the input group.</li>
+<li>It must not mutate its input.</li>
+</ul>
+<div id="4ee2ec1c" class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'key'</span>: [<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>] <span class="op">*</span> <span class="dv">4</span>,</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'value'</span>: np.arange(<span class="fl">12.</span>)})</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> df.groupby(<span class="st">'key'</span>)[<span class="st">'value'</span>]</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_mean(group):</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> group.mean()</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>g.transform(get_mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="45">
+<pre><code>0     4.5
+1     5.5
+2     6.5
+3     4.5
+4     5.5
+5     6.5
+6     4.5
+7     5.5
+8     6.5
+9     4.5
+10    5.5
+11    6.5
+Name: value, dtype: float64</code></pre>
+</div>
+</div>
+<p>We can pass a string alias as with the GroupBy <code>agg</code> method:</p>
+<div id="1666a297" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>g.transform(<span class="st">'mean'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="46">
+<pre><code>0     4.5
+1     5.5
+2     6.5
+3     4.5
+4     5.5
+5     6.5
+6     4.5
+7     5.5
+8     6.5
+9     4.5
+10    5.5
+11    6.5
+Name: value, dtype: float64</code></pre>
+</div>
+</div>
+<p>Like <code>apply</code>, <code>transform</code> works with functions that return Series, but the result must be the same size as the input. For example, we can multiply each group by 2 using a helper function:</p>
+<div id="49e51aeb" class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> times_two(group):</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> group <span class="op">*</span> <span class="dv">2</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>g.transform(times_two)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="47">
+<pre><code>0      0.0
+1      2.0
+2      4.0
+3      6.0
+4      8.0
+5     10.0
+6     12.0
+7     14.0
+8     16.0
+9     18.0
+10    20.0
+11    22.0
+Name: value, dtype: float64</code></pre>
+</div>
+</div>
+<p>As a more complicated example, we can compute the ranks in descending order for each group:</p>
+<div id="bb0032f0" class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_ranks(group):</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group.rank(ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>g.transform(get_ranks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="48">
+<pre><code>0     4.0
+1     4.0
+2     4.0
+3     3.0
+4     3.0
+5     3.0
+6     2.0
+7     2.0
+8     2.0
+9     1.0
+10    1.0
+11    1.0
+Name: value, dtype: float64</code></pre>
+</div>
+</div>
+</section>
+<section id="unwrapped-group-operations" class="level2">
+<h2 class="anchored" data-anchor-id="unwrapped-group-operations">“Unwrapped” Group Operations</h2>
+<p>Consider a group transformation function composed from simple aggregations:</p>
+<div id="045bd883" class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normalize(x):</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> (x <span class="op">-</span> x.mean()) <span class="op">/</span> x.std()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can obtain equivalent results in this case using either <code>transform</code> or <code>apply</code>:</p>
+<div id="f677934a" class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>g.transform(normalize)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="50">
+<pre><code>0    -1.161895
+1    -1.161895
+2    -1.161895
+3    -0.387298
+4    -0.387298
+5    -0.387298
+6     0.387298
+7     0.387298
+8     0.387298
+9     1.161895
+10    1.161895
+11    1.161895
+Name: value, dtype: float64</code></pre>
+</div>
+</div>
+<div id="ffc1b862" class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>g.<span class="bu">apply</span>(normalize)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="51">
+<pre><code>key    
+a    0    -1.161895
+     3    -0.387298
+     6     0.387298
+     9     1.161895
+b    1    -1.161895
+     4    -0.387298
+     7     0.387298
+     10    1.161895
+c    2    -1.161895
+     5    -0.387298
+     8     0.387298
+     11    1.161895
+Name: value, dtype: float64</code></pre>
+</div>
+</div>
+<p>“Unwrapped” group operations combine multiple <code>GroupBy</code> operations arithmetically, often faster than using <code>apply</code> directly.</p>
+<div id="47aaaa59" class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>normalized <span class="op">=</span> (df[<span class="st">'value'</span>] <span class="op">-</span> g.transform(<span class="st">'mean'</span>)) <span class="op">/</span> g.transform(<span class="st">'std'</span>)</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>normalized</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="52">
+<pre><code>0    -1.161895
+1    -1.161895
+2    -1.161895
+3    -0.387298
+4    -0.387298
+5    -0.387298
+6     0.387298
+7     0.387298
+8     0.387298
+9     1.161895
+10    1.161895
+11    1.161895
+Name: value, dtype: float64</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="pivot-tables-and-cross-tabulation" class="level1">
+<h1>Pivot Tables and Cross-Tabulation</h1>
+<section id="what-is-a-pivot-table" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-a-pivot-table">What is a Pivot Table? 🤔</h2>
+<p>A pivot table aggregates data by one or more keys, arranging the data in a rectangle. It’s a common tool in spreadsheet software.</p>
+</section>
+<section id="pivot-tables-with-pandas" class="level2">
+<h2 class="anchored" data-anchor-id="pivot-tables-with-pandas">Pivot Tables with pandas</h2>
+<p>pandas provides the <code>pivot_table</code> method and function, leveraging <code>groupby</code> and hierarchical indexing.</p>
+<div id="8ee08e08" class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co">#tips.pivot_table(index=["day", "smoker"])</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 指定要聚合的值列</span></span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>tips.pivot_table(</span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>    values<span class="op">=</span>[<span class="st">'total_bill'</span>, <span class="st">'tip'</span>],  <span class="co"># 指定要聚合的数值列</span></span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">'day'</span>, <span class="st">'smoker'</span>],       <span class="co"># 行索引</span></span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a>    aggfunc<span class="op">=</span><span class="st">'mean'</span>                 <span class="co"># 聚合函数</span></span>
+<span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="53">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">tip</th>
+<th data-quarto-table-cell-role="th">total_bill</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Fri</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>2.812500</td>
+<td>18.420000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>2.714000</td>
+<td>16.813333</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Sat</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>3.102889</td>
+<td>19.661778</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>2.875476</td>
+<td>21.276667</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Sun</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>3.167895</td>
+<td>20.506667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>3.516842</td>
+<td>24.120000</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Thur</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>2.673778</td>
+<td>17.113111</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>3.030000</td>
+<td>19.190588</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="grouping-by-multiple-variables" class="level2">
+<h2 class="anchored" data-anchor-id="grouping-by-multiple-variables">Grouping by Multiple Variables</h2>
+<div id="f500d7df" class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>tips.pivot_table(index<span class="op">=</span>[<span class="st">"time"</span>, <span class="st">"day"</span>], columns<span class="op">=</span><span class="st">"smoker"</span>,</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>                 values<span class="op">=</span>[<span class="st">"tip_pct"</span>, <span class="st">"size"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="54">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th colspan="2" data-quarto-table-cell-role="th" data-halign="left">size</th>
+<th colspan="2" data-quarto-table-cell-role="th" data-halign="left">tip_pct</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th">No</th>
+<th data-quarto-table-cell-role="th">Yes</th>
+<th data-quarto-table-cell-role="th">No</th>
+<th data-quarto-table-cell-role="th">Yes</th>
+</tr>
+<tr class="header">
+<th data-quarto-table-cell-role="th">time</th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="4" data-quarto-table-cell-role="th" data-valign="top">Dinner</td>
+<td data-quarto-table-cell-role="th">Fri</td>
+<td>2.000000</td>
+<td>2.222222</td>
+<td>0.139622</td>
+<td>0.165347</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Sat</td>
+<td>2.555556</td>
+<td>2.476190</td>
+<td>0.158048</td>
+<td>0.147906</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Sun</td>
+<td>2.929825</td>
+<td>2.578947</td>
+<td>0.160113</td>
+<td>0.187250</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Thur</td>
+<td>2.000000</td>
+<td>NaN</td>
+<td>0.159744</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Lunch</td>
+<td data-quarto-table-cell-role="th">Fri</td>
+<td>3.000000</td>
+<td>1.833333</td>
+<td>0.187735</td>
+<td>0.188937</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Thur</td>
+<td>2.500000</td>
+<td>2.352941</td>
+<td>0.160311</td>
+<td>0.163863</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="adding-margins-partial-totals" class="level2">
+<h2 class="anchored" data-anchor-id="adding-margins-partial-totals">Adding Margins (Partial Totals)</h2>
+<div id="c90cd4c2" class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>tips.pivot_table(index<span class="op">=</span>[<span class="st">"time"</span>, <span class="st">"day"</span>], columns<span class="op">=</span><span class="st">"smoker"</span>,</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>                 values<span class="op">=</span>[<span class="st">"tip_pct"</span>, <span class="st">"size"</span>], margins<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="55">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th colspan="3" data-quarto-table-cell-role="th" data-halign="left">size</th>
+<th colspan="3" data-quarto-table-cell-role="th" data-halign="left">tip_pct</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th">No</th>
+<th data-quarto-table-cell-role="th">Yes</th>
+<th data-quarto-table-cell-role="th">All</th>
+<th data-quarto-table-cell-role="th">No</th>
+<th data-quarto-table-cell-role="th">Yes</th>
+<th data-quarto-table-cell-role="th">All</th>
+</tr>
+<tr class="header">
+<th data-quarto-table-cell-role="th">time</th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="4" data-quarto-table-cell-role="th" data-valign="top">Dinner</td>
+<td data-quarto-table-cell-role="th">Fri</td>
+<td>2.000000</td>
+<td>2.222222</td>
+<td>2.166667</td>
+<td>0.139622</td>
+<td>0.165347</td>
+<td>0.158916</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Sat</td>
+<td>2.555556</td>
+<td>2.476190</td>
+<td>2.517241</td>
+<td>0.158048</td>
+<td>0.147906</td>
+<td>0.153152</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Sun</td>
+<td>2.929825</td>
+<td>2.578947</td>
+<td>2.842105</td>
+<td>0.160113</td>
+<td>0.187250</td>
+<td>0.166897</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Thur</td>
+<td>2.000000</td>
+<td>NaN</td>
+<td>2.000000</td>
+<td>0.159744</td>
+<td>NaN</td>
+<td>0.159744</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Lunch</td>
+<td data-quarto-table-cell-role="th">Fri</td>
+<td>3.000000</td>
+<td>1.833333</td>
+<td>2.000000</td>
+<td>0.187735</td>
+<td>0.188937</td>
+<td>0.188765</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Thur</td>
+<td>2.500000</td>
+<td>2.352941</td>
+<td>2.459016</td>
+<td>0.160311</td>
+<td>0.163863</td>
+<td>0.161301</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">All</td>
+<td data-quarto-table-cell-role="th"></td>
+<td>2.668874</td>
+<td>2.408602</td>
+<td>2.569672</td>
+<td>0.159328</td>
+<td>0.163196</td>
+<td>0.160803</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="using-different-aggregation-functions" class="level2">
+<h2 class="anchored" data-anchor-id="using-different-aggregation-functions">Using Different Aggregation Functions</h2>
+<div id="79792b60" class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>tips.pivot_table(index<span class="op">=</span>[<span class="st">"time"</span>, <span class="st">"smoker"</span>], columns<span class="op">=</span><span class="st">"day"</span>,</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>                 values<span class="op">=</span><span class="st">"tip_pct"</span>, aggfunc<span class="op">=</span><span class="bu">len</span>, margins<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="56">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">Fri</th>
+<th data-quarto-table-cell-role="th">Sat</th>
+<th data-quarto-table-cell-role="th">Sun</th>
+<th data-quarto-table-cell-role="th">Thur</th>
+<th data-quarto-table-cell-role="th">All</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">time</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Dinner</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>3.0</td>
+<td>45.0</td>
+<td>57.0</td>
+<td>1.0</td>
+<td>106</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>9.0</td>
+<td>42.0</td>
+<td>19.0</td>
+<td>NaN</td>
+<td>70</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Lunch</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>1.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>44.0</td>
+<td>45</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>6.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>17.0</td>
+<td>23</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">All</td>
+<td data-quarto-table-cell-role="th"></td>
+<td>19.0</td>
+<td>87.0</td>
+<td>76.0</td>
+<td>62.0</td>
+<td>244</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="cross-tabulations-crosstab" class="level2">
+<h2 class="anchored" data-anchor-id="cross-tabulations-crosstab">Cross-Tabulations (Crosstab)</h2>
+<p>A crosstab is a special case of a pivot table that computes group frequencies.</p>
+<div id="5945a55b" class="cell" data-execution_count="58">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> io <span class="im">import</span> StringIO</span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_table(StringIO(<span class="st">"""Sample Nationality Handedness</span></span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a><span class="st">1 USA Right-handed</span></span>
+<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a><span class="st">2 Japan Left-handed</span></span>
+<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a><span class="st">3 USA Right-handed</span></span>
+<span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a><span class="st">4 Japan Right-handed</span></span>
+<span id="cb81-9"><a href="#cb81-9" aria-hidden="true" tabindex="-1"></a><span class="st">5 Japan Left-handed</span></span>
+<span id="cb81-10"><a href="#cb81-10" aria-hidden="true" tabindex="-1"></a><span class="st">6 Japan Right-handed</span></span>
+<span id="cb81-11"><a href="#cb81-11" aria-hidden="true" tabindex="-1"></a><span class="st">7 USA Right-handed</span></span>
+<span id="cb81-12"><a href="#cb81-12" aria-hidden="true" tabindex="-1"></a><span class="st">8 USA Left-handed</span></span>
+<span id="cb81-13"><a href="#cb81-13" aria-hidden="true" tabindex="-1"></a><span class="st">9 Japan Right-handed</span></span>
+<span id="cb81-14"><a href="#cb81-14" aria-hidden="true" tabindex="-1"></a><span class="st">10 USA Right-handed"""</span>), sep<span class="op">=</span><span class="st">"\s+"</span>)</span>
+<span id="cb81-15"><a href="#cb81-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-16"><a href="#cb81-16" aria-hidden="true" tabindex="-1"></a>pd.crosstab(data[<span class="st">"Nationality"</span>], data[<span class="st">"Handedness"</span>], margins<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="57">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Handedness</th>
+<th data-quarto-table-cell-role="th">Left-handed</th>
+<th data-quarto-table-cell-role="th">Right-handed</th>
+<th data-quarto-table-cell-role="th">All</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Nationality</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Japan</td>
+<td>2</td>
+<td>3</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">USA</td>
+<td>1</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">All</td>
+<td>3</td>
+<td>7</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="9ddd77da" class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>pd.crosstab([tips[<span class="st">"time"</span>], tips[<span class="st">"day"</span>]], tips[<span class="st">"smoker"</span>], margins<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="58">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th">No</th>
+<th data-quarto-table-cell-role="th">Yes</th>
+<th data-quarto-table-cell-role="th">All</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">time</th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="4" data-quarto-table-cell-role="th" data-valign="top">Dinner</td>
+<td data-quarto-table-cell-role="th">Fri</td>
+<td>3</td>
+<td>9</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Sat</td>
+<td>45</td>
+<td>42</td>
+<td>87</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Sun</td>
+<td>57</td>
+<td>19</td>
+<td>76</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Thur</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Lunch</td>
+<td data-quarto-table-cell-role="th">Fri</td>
+<td>1</td>
+<td>6</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Thur</td>
+<td>44</td>
+<td>17</td>
+<td>61</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">All</td>
+<td data-quarto-table-cell-role="th"></td>
+<td>151</td>
+<td>93</td>
+<td>244</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="summary" class="level1">
+<h1>Summary</h1>
+<ul>
+<li>We’ve explored data aggregation and group operations in pandas, a crucial skill for data analysis.</li>
+<li>We learned about the split-apply-combine paradigm, <code>groupby</code>, <code>apply</code>, and <code>transform</code>.</li>
+<li>We saw how to create pivot tables and cross-tabulations.</li>
+<li>These techniques are essential for summarizing, comparing, and preparing data.</li>
+</ul>
+</section>
+<section id="thoughts-and-discussion" class="level1">
+<h1>Thoughts and Discussion</h1>
+<ul>
+<li>Can you think of other real-world scenarios where group operations would be useful?</li>
+<li>How might you combine the techniques we’ve learned in creative ways?</li>
+<li>What are the limitations of <code>groupby</code>, and when might you need alternative approaches?</li>
+<li>Discuss the trade-offs between using <code>apply</code>, <code>transform</code>, and direct aggregation methods.</li>
+<li>How does the concept of “unwrapped” group operations relate to performance optimization?</li>
+</ul>
+<p>Let’s discuss! 🧑‍🏫</p>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Your Name">
 
-<title>pandas3ed3</title>
+<title>Built-In Data Structures, Functions, and Files</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -76,12 +111,8 @@ ul.task-list li input[type="checkbox"] {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://qiufei.github.io/web-slide-r"> 
-<span class="menu-text">R课件</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="https://qiufei.github.io/web-slide-marketing"> 
-<span class="menu-text">营销课件</span></a>
+    <a class="nav-link" href="https://qiufei.github.io/web-slide"> 
+<span class="menu-text">课件</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../about.html"> 
@@ -101,13 +132,1496 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Built-In Data Structures, Functions, and Files</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Your Name </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<section id="chapter-3-built-in-data-structures-functions-and-files" class="level2">
+<h2 class="anchored" data-anchor-id="chapter-3-built-in-data-structures-functions-and-files">Chapter 3: Built-In Data Structures, Functions, and Files</h2>
+<p>This chapter delves into the fundamental building blocks of Python that are essential for data analysis. We’ll explore Python’s built-in data structures, how to create reusable functions, and how to interact with files.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>While libraries like pandas and NumPy offer advanced functionalities for larger datasets, they are designed to work in conjunction with Python’s core data manipulation tools. Therefore, mastering these basics is extremely important.</p>
+</div>
+</div>
+</section>
+<section id="data-structures-and-sequences" class="level2">
+<h2 class="anchored" data-anchor-id="data-structures-and-sequences">Data Structures and Sequences</h2>
+<p>Python provides several versatile and powerful data structures. Let’s start with some of the most frequently used ones: <strong>tuples</strong>, <strong>lists</strong>, and <strong>dictionaries</strong>. Understanding these is a crucial step towards becoming proficient in Python.</p>
+</section>
+<section id="tuple-definition" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-definition">Tuple: Definition</h2>
+<p>A tuple is a <strong>fixed-length</strong>, <strong>immutable</strong> sequence of Python objects. This means once a tuple is created, you <em>cannot</em> change its elements or its size.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Immutability
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Immutability means that the contents of the tuple cannot be changed after it’s created. This provides data integrity. Think of it like a sealed container – you can see what’s inside, but you can’t swap things out.</p>
+</div>
+</div>
+</section>
+<section id="tuple-creation" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-creation">Tuple: Creation</h2>
+<p>The simplest way to create a tuple is with a comma-separated sequence of values, usually enclosed in parentheses:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>tup <span class="op">=</span> (<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tup)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Parentheses can often be omitted:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tup <span class="op">=</span> <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tup)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tuple-conversion-and-accessing" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-conversion-and-accessing">Tuple: Conversion and Accessing</h2>
+<p>You can convert any sequence or iterator to a tuple using the <code>tuple()</code> function:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> [<span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">2</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>my_tuple <span class="op">=</span> <span class="bu">tuple</span>(my_list)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_tuple)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>string_tuple <span class="op">=</span> <span class="bu">tuple</span>(<span class="st">'string'</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(string_tuple)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Elements are accessed using square brackets <code>[]</code>, and like most programming languages, Python uses <em>zero-based indexing</em>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(string_tuple[<span class="dv">0</span>])  <span class="co"># Access the first element</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tuple-nested-tuples" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-nested-tuples">Tuple: Nested Tuples</h2>
+<p>Tuples can contain other tuples, creating nested structures:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>nested_tup <span class="op">=</span> (<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>), (<span class="dv">7</span>, <span class="dv">8</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nested_tup)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nested_tup[<span class="dv">0</span>]) <span class="co"># Access the first tuple</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nested_tup[<span class="dv">1</span>][<span class="dv">0</span>]) <span class="co">#Access the first element from the second tuple.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tuple-immutability-detailed-example" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-immutability-detailed-example">Tuple: Immutability (Detailed Example)</h2>
+<p>While the objects <em>within</em> a tuple might be mutable (like a list), the tuple itself, once created, cannot be modified:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tup <span class="op">=</span> <span class="bu">tuple</span>([<span class="st">'foo'</span>, [<span class="dv">1</span>, <span class="dv">2</span>], <span class="va">True</span>])</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># tup[2] = False  # This will raise a TypeError</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># However, if an element is mutable (like a list), you can modify it IN PLACE:</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>tup[<span class="dv">1</span>].append(<span class="dv">3</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tup) <span class="co"># Output: ('foo', [1, 2, 3], True)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You cannot assign a new object to a slot in the tuple, but you can modify the <em>contents</em> of a mutable object <em>within</em> the tuple.</p>
+</div>
+</div>
+</section>
+<section id="tuple-concatenation-and-multiplication" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-concatenation-and-multiplication">Tuple: Concatenation and Multiplication</h2>
+<p>Tuples can be concatenated using the <code>+</code> operator:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tuple1 <span class="op">=</span> (<span class="dv">4</span>, <span class="va">None</span>, <span class="st">'foo'</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tuple2 <span class="op">=</span> (<span class="dv">6</span>, <span class="dv">0</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>tuple3 <span class="op">=</span> (<span class="st">'bar'</span>,)  <span class="co"># Note the comma for a single-element tuple</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>combined_tuple <span class="op">=</span> tuple1 <span class="op">+</span> tuple2 <span class="op">+</span> tuple3</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(combined_tuple)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Multiplying a tuple by an integer repeats the tuple:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>repeated_tuple <span class="op">=</span> (<span class="st">'foo'</span>, <span class="st">'bar'</span>) <span class="op">*</span> <span class="dv">4</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(repeated_tuple)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Only references to the objects are copied, not the objects themselves.</p>
+</div>
+</div>
+</section>
+<section id="tuple-unpacking" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-unpacking">Tuple: Unpacking</h2>
+<p>Python allows you to “unpack” tuples, assigning the values to individual variables:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tup <span class="op">=</span> (<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>a, b, c <span class="op">=</span> tup</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Even nested tuples can be unpacked:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>tup <span class="op">=</span> <span class="dv">4</span>, <span class="dv">5</span>, (<span class="dv">6</span>, <span class="dv">7</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>a, b, (c, d) <span class="op">=</span> tup</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tuple-swapping-variables" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-swapping-variables">Tuple: Swapping Variables</h2>
+<p>A classic use of tuple unpacking is swapping variable values elegantly:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>a, b <span class="op">=</span> <span class="dv">1</span>, <span class="dv">2</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"a: </span><span class="sc">{</span>a<span class="sc">}</span><span class="ss">, b: </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>b, a <span class="op">=</span> a, b  <span class="co"># Swaps the values of a and b</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"a: </span><span class="sc">{</span>a<span class="sc">}</span><span class="ss">, b: </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tuple-rest-and-_" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-rest-and-_">Tuple: *rest (and _)</h2>
+<p>Sometimes you want to “pluck” a few elements from the beginning of a tuple. The <code>*rest</code> syntax captures the remaining elements:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>a, b, <span class="op">*</span>rest <span class="op">=</span> values</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>By convention, the underscore <code>_</code> is often used for unwanted variables during unpacking:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>a, b, <span class="op">*</span>_ <span class="op">=</span> values <span class="co"># We don't care about the rest</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tuple-methods-count" class="level2">
+<h2 class="anchored" data-anchor-id="tuple-methods-count">Tuple: Methods (count)</h2>
+<p>Because tuples are immutable, they have very few built-in methods. A useful one is <code>count()</code>:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">2</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>count_of_2 <span class="op">=</span> a.count(<span class="dv">2</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(count_of_2)  <span class="co"># Output: 4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>count</code> method returns the number of occurrences of a specified value.</p>
+</section>
+<section id="list-definition-and-mutability" class="level2">
+<h2 class="anchored" data-anchor-id="list-definition-and-mutability">List: Definition and Mutability</h2>
+<p>Lists, in contrast to tuples, are <strong>variable-length</strong> and <strong>mutable</strong>. You can change their contents and size after creation.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Mutability
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Mutability means you <em>can</em> change the list’s elements, add new ones, or remove existing ones after the list has been created. This makes lists very flexible for storing and manipulating collections of data.</p>
+</div>
+</div>
+</section>
+<section id="list-creation" class="level2">
+<h2 class="anchored" data-anchor-id="list-creation">List: Creation</h2>
+<p>Lists are defined using square brackets <code>[]</code> or the <code>list()</code> type function:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>a_list <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="va">None</span>]</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>tup <span class="op">=</span> (<span class="st">'foo'</span>, <span class="st">'bar'</span>, <span class="st">'baz'</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>b_list <span class="op">=</span> <span class="bu">list</span>(tup)  <span class="co"># Convert a tuple to a list</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can modify elements in a list:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>b_list[<span class="dv">1</span>] <span class="op">=</span> <span class="st">'peekaboo'</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="list-materializing-iterators" class="level2">
+<h2 class="anchored" data-anchor-id="list-materializing-iterators">List: Materializing Iterators</h2>
+<p>The <code>list()</code> function is frequently used to materialize an iterator or generator expression:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>gen <span class="op">=</span> <span class="bu">range</span>(<span class="dv">10</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gen)  <span class="co"># This is a range object (an iterator)</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> <span class="bu">list</span>(gen)  <span class="co"># Convert the iterator to a list</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="list-adding-and-removing-elements" class="level2">
+<h2 class="anchored" data-anchor-id="list-adding-and-removing-elements">List: Adding and Removing Elements</h2>
+<ul>
+<li><code>append()</code>: Adds an element to the <em>end</em> of the list.</li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>b_list.append(<span class="st">'dwarf'</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>insert()</code>: Inserts an element at a <em>specific position</em>.</li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>b_list.insert(<span class="dv">1</span>, <span class="st">'red'</span>) <span class="co"># insert 'red' at index 1</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>insert</code> is computationally more expensive than <code>append</code> because it has to shift subsequent elements.</p>
+</div>
+</div>
+</section>
+<section id="list-removing-elements-pop-and-remove" class="level2">
+<h2 class="anchored" data-anchor-id="list-removing-elements-pop-and-remove">List: Removing Elements (pop and remove)</h2>
+<ul>
+<li><code>pop()</code>: Removes and <em>returns</em> an element at a specific index.</li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>removed_element <span class="op">=</span> b_list.pop(<span class="dv">2</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(removed_element)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>remove()</code>: Removes the <em>first</em> occurrence of a specific value.</li>
+</ul>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>b_list.append(<span class="st">'foo'</span>)  <span class="co"># Add another 'foo'</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>b_list.remove(<span class="st">'foo'</span>)  <span class="co"># Removes the *first* 'foo'</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="list-checking-for-membership-in-and-not-in" class="level2">
+<h2 class="anchored" data-anchor-id="list-checking-for-membership-in-and-not-in">List: Checking for Membership (in and not in)</h2>
+<p>Use the <code>in</code> and <code>not in</code> keywords to check if a list contains a value:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'dwarf'</span> <span class="kw">in</span> b_list)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'dwarf'</span> <span class="kw">not</span> <span class="kw">in</span> b_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Checking <code>in</code> or <code>not in</code> in list is slow. Checking membership in a list is much slower than with dictionaries or sets because Python has to perform a linear scan of the list, while it can check dictionaries and sets (which are based on hash tables) in constant time.</p>
+</div>
+</div>
+</section>
+<section id="list-concatenation-and-combining" class="level2">
+<h2 class="anchored" data-anchor-id="list-concatenation-and-combining">List: Concatenation and Combining</h2>
+<p>Similar to tuples, use <code>+</code> to concatenate lists:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>list1 <span class="op">=</span> [<span class="dv">4</span>, <span class="va">None</span>, <span class="st">'foo'</span>]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>list2 <span class="op">=</span> [<span class="dv">7</span>, <span class="dv">8</span>, (<span class="dv">2</span>, <span class="dv">3</span>)]</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>combined_list <span class="op">=</span> list1 <span class="op">+</span> list2</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(combined_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Use <code>extend()</code> to append multiple elements from another iterable:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">4</span>, <span class="va">None</span>, <span class="st">'foo'</span>]</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>x.extend([<span class="dv">7</span>, <span class="dv">8</span>, (<span class="dv">2</span>, <span class="dv">3</span>)])</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>extend()</code> is generally faster than using <code>+</code> for combining lists, especially large ones, as <code>+</code> creates a new list and copies elements.</p>
+</div>
+</div>
+</section>
+<section id="list-sorting-sort-and-sorted" class="level2">
+<h2 class="anchored" data-anchor-id="list-sorting-sort-and-sorted">List: Sorting (sort and sorted)</h2>
+<ul>
+<li><code>sort()</code>: Sorts the list <em>in place</em> (modifies the original list).</li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">3</span>]</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>a.sort()</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>key</code> argument: provide customized sorting method.</li>
+</ul>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> [<span class="st">'saw'</span>, <span class="st">'small'</span>, <span class="st">'He'</span>, <span class="st">'foxes'</span>, <span class="st">'six'</span>]</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>b.sort(key<span class="op">=</span><span class="bu">len</span>)  <span class="co"># Sort by the length of the strings</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="list-slicing" class="level2">
+<h2 class="anchored" data-anchor-id="list-slicing">List: Slicing</h2>
+<p>Slicing allows you to select a section of a list using the <code>start:stop</code> notation within square brackets:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>seq <span class="op">=</span> [<span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">0</span>, <span class="dv">1</span>]</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>sub_list <span class="op">=</span> seq[<span class="dv">1</span>:<span class="dv">5</span>]  <span class="co"># Elements from index 1 (inclusive) to 5 (exclusive)</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sub_list)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>seq[<span class="dv">3</span>:<span class="dv">5</span>] <span class="op">=</span> [<span class="dv">6</span>,<span class="dv">3</span>] <span class="co"># replace elements using slicing</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(seq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="list-slicing-omitting-startstop-and-negative-indices" class="level2">
+<h2 class="anchored" data-anchor-id="list-slicing-omitting-startstop-and-negative-indices">List: Slicing (Omitting Start/Stop and Negative Indices)</h2>
+<ul>
+<li>Omitting <code>start</code>: Defaults to the beginning of the list.</li>
+<li>Omitting <code>stop</code>: Defaults to the end of the list.</li>
+<li>Negative indices: Count from the end of the list.</li>
+</ul>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(seq[:<span class="dv">5</span>])  <span class="co"># First 5 elements</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(seq[<span class="dv">3</span>:])  <span class="co"># Elements from index 3 to the end</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(seq[<span class="op">-</span><span class="dv">4</span>:]) <span class="co"># Last 4 elements</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(seq[<span class="op">-</span><span class="dv">6</span>:<span class="op">-</span><span class="dv">2</span>]) <span class="co"># From 6th last (inclusive) to 2nd last (exclusive)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="list-slicing-step" class="level2">
+<h2 class="anchored" data-anchor-id="list-slicing-step">List: Slicing (Step)</h2>
+<p>A <em>step</em> can be used to select every nth element:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(seq[::<span class="dv">2</span>])   <span class="co"># Every other element</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(seq[::<span class="op">-</span><span class="dv">1</span>])  <span class="co"># Reverse the list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="list-slicing-illustration" class="level2">
+<h2 class="anchored" data-anchor-id="list-slicing-illustration">List slicing illustration</h2>
+<center>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">0</th>
+<th style="text-align: left;">1</th>
+<th style="text-align: left;">2</th>
+<th style="text-align: left;">3</th>
+<th style="text-align: left;">4</th>
+<th style="text-align: left;">5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">H</td>
+<td style="text-align: left;">E</td>
+<td style="text-align: left;">L</td>
+<td style="text-align: left;">L</td>
+<td style="text-align: left;">O</td>
+<td style="text-align: left;">!</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">-6</td>
+<td style="text-align: left;">-5</td>
+<td style="text-align: left;">-4</td>
+<td style="text-align: left;">-3</td>
+<td style="text-align: left;">-2</td>
+<td style="text-align: left;">-1</td>
+</tr>
+</tbody>
+</table>
+</center>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>string <span class="op">=</span> <span class="st">"HELLO!"</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(string[<span class="dv">2</span>:<span class="dv">4</span>]) <span class="co"># slicing with positive indices</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(string[<span class="op">-</span><span class="dv">5</span>:<span class="op">-</span><span class="dv">2</span>]) <span class="co"># slicing with negative indices</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This figure illustrates slicing on the string “HELLO!”. Indices are shown at the “bin edges” to help show where the slice selections start and stop using positive or negative indices.</p>
+</section>
+<section id="dictionary-dict-definition-and-key-value-pairs" class="level2">
+<h2 class="anchored" data-anchor-id="dictionary-dict-definition-and-key-value-pairs">Dictionary (dict): Definition and Key-Value Pairs</h2>
+<p>A dictionary (or <code>dict</code>) is a highly important built-in data structure. Also known as a hash map or associative array, it stores a collection of <em>key-value</em> pairs.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key-Value Pairs
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Each <em>key</em> is associated with a <em>value</em>. Keys must be <em>unique</em> and <em>immutable</em> (like strings, numbers, or tuples), while values can be of any data type.</p>
+</div>
+</div>
+</section>
+<section id="dictionary-creation" class="level2">
+<h2 class="anchored" data-anchor-id="dictionary-creation">Dictionary: Creation</h2>
+<p>Use curly braces <code>{}</code> and colons <code>:</code> to separate keys and values:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>empty_dict <span class="op">=</span> {}</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>d1 <span class="op">=</span> {<span class="st">'a'</span>: <span class="st">'some value'</span>, <span class="st">'b'</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]}</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="dictionary-accessing-inserting-and-setting-elements" class="level2">
+<h2 class="anchored" data-anchor-id="dictionary-accessing-inserting-and-setting-elements">Dictionary: Accessing, Inserting, and Setting Elements</h2>
+<p>Access, insert, or set elements using the same syntax as lists, but with keys instead of indices:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>d1[<span class="dv">7</span>] <span class="op">=</span> <span class="st">'an integer'</span>  <span class="co"># Add a new key-value pair</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1[<span class="st">'b'</span>])       <span class="co"># Access the value associated with key 'b'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="dictionary-checking-for-keys-in" class="level2">
+<h2 class="anchored" data-anchor-id="dictionary-checking-for-keys-in">Dictionary: Checking for Keys (in)</h2>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'b'</span> <span class="kw">in</span> d1)  <span class="co"># Checks if 'b' is a *key* in d1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="dictionary-deleting-values-del-and-pop" class="level2">
+<h2 class="anchored" data-anchor-id="dictionary-deleting-values-del-and-pop">Dictionary: Deleting Values (del and pop)</h2>
+<ul>
+<li><code>del</code>: Deletes a key-value pair.</li>
+</ul>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>d1[<span class="dv">5</span>] <span class="op">=</span> <span class="st">'some value'</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>d1[<span class="st">'dummy'</span>] <span class="op">=</span> <span class="st">'another value'</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> d1[<span class="dv">5</span>]</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>pop()</code>: Removes a key-value pair and <em>returns</em> the value.</li>
+</ul>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>ret <span class="op">=</span> d1.pop(<span class="st">'dummy'</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ret)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="dictionary-keys-and-values-methods" class="level2">
+<h2 class="anchored" data-anchor-id="dictionary-keys-and-values-methods">Dictionary: keys() and values() Methods</h2>
+<ul>
+<li><code>keys()</code>: Returns an iterator of the dictionary’s keys.</li>
+<li><code>values()</code>: Returns an iterator of the dictionary’s values.</li>
+<li><code>items()</code>: Returns an iterator of the dictionary’s items(key-value pairs).</li>
+</ul>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(d1.keys()))   <span class="co"># Convert the iterator to a list</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(d1.values())) <span class="co"># Convert the iterator to a list</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(d1.items()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The order of keys depends on the insertion order. The <code>keys</code> and <code>values</code> methods return iterators in the <em>same</em> order.</p>
+</div>
+</div>
+</section>
+<section id="dictionary-merging-with-update" class="level2">
+<h2 class="anchored" data-anchor-id="dictionary-merging-with-update">Dictionary: Merging with update()</h2>
+<p>The <code>update()</code> method merges one dictionary into another:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>d1.update({<span class="st">'b'</span>: <span class="st">'foo'</span>, <span class="st">'c'</span>: <span class="dv">12</span>})  <span class="co"># Updates existing key 'b', adds new key 'c'</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>update()</code> changes dictionaries <em>in place</em>. Any existing keys in the dictionary passed to <code>update()</code> will have their old values discarded.</p>
+</div>
+</div>
+</section>
+<section id="dictionary-creating-from-sequences" class="level2">
+<h2 class="anchored" data-anchor-id="dictionary-creating-from-sequences">Dictionary: Creating from Sequences</h2>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Not how you would normally do it, but illustrates the concept</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>key_list <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>]</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>value_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>mapping <span class="op">=</span> {}</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key, value <span class="kw">in</span> <span class="bu">zip</span>(key_list, value_list):</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    mapping[key] <span class="op">=</span> value</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mapping)</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="co"># A more concise way using dict() and zip()</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>mapping <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">zip</span>(<span class="bu">range</span>(<span class="dv">5</span>), <span class="bu">reversed</span>(<span class="bu">range</span>(<span class="dv">5</span>))))</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mapping)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>zip</code> function can pair up elements of multiple sequences. <code>dict</code> accepts a list of 2-tuples.</p>
+</section>
+<section id="dictionary-default-values-get-and-setdefault" class="level2">
+<h2 class="anchored" data-anchor-id="dictionary-default-values-get-and-setdefault">Dictionary: Default Values (get and setdefault)</h2>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Common but verbose way to handle missing keys</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'some_key'</span> <span class="kw">in</span> some_dict:</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    value <span class="op">=</span> some_dict[<span class="st">'some_key'</span>]</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    value <span class="op">=</span> default_value</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="co"># More concise using get()</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>value <span class="op">=</span> some_dict.get(<span class="st">'some_key'</span>, default_value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>get</code> returns <code>None</code> if the key is not present (or a specified default value), <code>pop</code> will raise an exception.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># setdefault for setting values conditionally</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>words <span class="op">=</span> [<span class="st">'apple'</span>, <span class="st">'bat'</span>, <span class="st">'bar'</span>, <span class="st">'atom'</span>, <span class="st">'book'</span>]</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>by_letter <span class="op">=</span> {}</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> word <span class="kw">in</span> words:</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    letter <span class="op">=</span> word[<span class="dv">0</span>]</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    by_letter.setdefault(letter, []).append(word)  <span class="co"># Use setdefault</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(by_letter)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>setdefault(key, default)</code>: If <code>key</code> exists, return its value. If not, insert <code>key</code> with a value of <code>default</code> and return <code>default</code>.</p>
+</section>
+<section id="dictionary-defaultdict" class="level2">
+<h2 class="anchored" data-anchor-id="dictionary-defaultdict">Dictionary: defaultdict</h2>
+<p>The <code>collections</code> module provides <code>defaultdict</code>, which simplifies the creation of dictionaries where each value is initialized with a default value:</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>by_letter <span class="op">=</span> defaultdict(<span class="bu">list</span>) <span class="co"># Use defaultdict for a more concise way</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> word <span class="kw">in</span> words:</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    by_letter[word[<span class="dv">0</span>]].append(word)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(by_letter)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="dictionary-valid-key-types-hashability" class="level2">
+<h2 class="anchored" data-anchor-id="dictionary-valid-key-types-hashability">Dictionary: Valid Key Types (Hashability)</h2>
+<ul>
+<li>Keys must be <em>immutable</em> objects (like scalar types or tuples).</li>
+<li>The technical term is <em>hashability</em>.</li>
+<li>Check if an object is hashable using <code>hash()</code>:</li>
+</ul>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">hash</span>(<span class="st">'string'</span>))</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">hash</span>((<span class="dv">1</span>, <span class="dv">2</span>, (<span class="dv">2</span>, <span class="dv">3</span>))))</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co"># print(hash((1, 2, [2, 3])))  # TypeError: unhashable type: 'list'</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="co"># To use a list as a key, convert it to a tuple:</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {}</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>d[<span class="bu">tuple</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])] <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="set-definition-and-uniqueness" class="level2">
+<h2 class="anchored" data-anchor-id="set-definition-and-uniqueness">Set: Definition and Uniqueness</h2>
+<p>A set is an <em>unordered</em> collection of <em>unique</em> elements. Think of them like dictionaries, but with only keys and no values.</p>
+</section>
+<section id="set-creation" class="level2">
+<h2 class="anchored" data-anchor-id="set-creation">Set: Creation</h2>
+<p>Create sets using curly braces <code>{}</code> (like dictionaries, but without colons) or the <code>set()</code> function:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>set1 <span class="op">=</span> {<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>}  <span class="co"># Using curly braces</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(set1) <span class="co"># Output: {1, 2, 3}  (duplicates are removed)</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>set2 <span class="op">=</span> <span class="bu">set</span>([<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>])  <span class="co"># Using the set() function</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(set2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="set-operations-union-intersection-etc." class="level2">
+<h2 class="anchored" data-anchor-id="set-operations-union-intersection-etc.">Set: Operations (Union, Intersection, etc.)</h2>
+<p>Sets support mathematical set operations:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> {<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>}</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> {<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>}</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Union (| or union())</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a.union(b))</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a <span class="op">|</span> b)</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Intersection (&amp; or intersection())</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a.intersection(b))</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a <span class="op">&amp;</span> b)</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Difference (- or difference())</span></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a.difference(b)) <span class="co"># elements in a but not in b</span></span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a <span class="op">-</span> b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="set-operations" class="level2">
+<h2 class="anchored" data-anchor-id="set-operations">Set operations</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 14%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Function</th>
+<th style="text-align: left;">Alternative Syntax</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>a.add(x)</code></td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">Add element x to set a</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>a.clear()</code></td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">Reset set a to an empty state, discarding all of its elements</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>a.remove(x)</code></td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">Remove element x from set a</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>a.pop()</code></td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">Remove an arbitrary element from set a, raising KeyError if the set is empty</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>a.union(b)</code></td>
+<td style="text-align: left;"><code>a \| b</code></td>
+<td style="text-align: left;">All of the unique elements in a and b</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>a.update(b)</code></td>
+<td style="text-align: left;"><code>a \|= b</code></td>
+<td style="text-align: left;">Set the contents of a to be the union of the elements in a and b</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>a.intersection(b)</code></td>
+<td style="text-align: left;"><code>a &amp; b</code></td>
+<td style="text-align: left;">All of the elements in both a and b</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>a.intersection_update(b)</code></td>
+<td style="text-align: left;"><code>a &amp;= b</code></td>
+<td style="text-align: left;">Set the contents of a to be the intersection of the elements in a and b</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>a.difference(b)</code></td>
+<td style="text-align: left;"><code>a - b</code></td>
+<td style="text-align: left;">The elements in a that are not in b</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>a.difference_update(b)</code></td>
+<td style="text-align: left;"><code>a -= b</code></td>
+<td style="text-align: left;">Set a to the elements in a that are not in b</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>a.symmetric_difference(b)</code></td>
+<td style="text-align: left;"><code>a ^ b</code></td>
+<td style="text-align: left;">All of the elements in either a or b but not both</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>a.symmetric_difference_update(b)</code></td>
+<td style="text-align: left;"><code>a ^= b</code></td>
+<td style="text-align: left;">Set a to contain the elements in either a or b but not both</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>a.issubset(b)</code></td>
+<td style="text-align: left;"><code>&lt;=</code></td>
+<td style="text-align: left;">True if the elements of a are all contained in b</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>a.issuperset(b)</code></td>
+<td style="text-align: left;"><code>&gt;=</code></td>
+<td style="text-align: left;">True if the elements of b are all contained in a</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>a.isdisjoint(b)</code></td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">True if a and b have no elements in common</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="set-in-place-operations" class="level2">
+<h2 class="anchored" data-anchor-id="set-in-place-operations">Set: In-Place Operations</h2>
+<p>All set operations have in-place counterparts (e.g., <code>a |= b</code> for union):</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> a.copy()</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>c <span class="op">|=</span> b  <span class="co"># In-place union (modifies c)</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> a.copy()</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>d <span class="op">&amp;=</span> b</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In-place operation is more efficient, especially when handling large sets.</p>
+</div>
+</div>
+</section>
+<section id="set-element-hashability" class="level2">
+<h2 class="anchored" data-anchor-id="set-element-hashability">Set: Element Hashability</h2>
+<p>Like dictionary keys, set elements must be <em>immutable</em> and <em>hashable</em>.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>my_data <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co"># my_set = {my_data}  # TypeError: unhashable type: 'list'</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>my_set <span class="op">=</span> {<span class="bu">tuple</span>(my_data)}  <span class="co"># Convert the list to a tuple first</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_set)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="set-subset-and-superset" class="level2">
+<h2 class="anchored" data-anchor-id="set-subset-and-superset">Set: Subset and Superset</h2>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>a_set <span class="op">=</span> {<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>}</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>({<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>}.issubset(a_set))   <span class="co"># Check if {1, 2, 3} is a subset of a_set</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a_set.issuperset({<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>}))  <span class="co"># Check if a_set is a superset of {1, 2, 3}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="set-equality" class="level2">
+<h2 class="anchored" data-anchor-id="set-equality">Set: Equality</h2>
+<p>Sets are equal if and only if their contents are equal:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>({<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>} <span class="op">==</span> {<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="built-in-sequence-functions-enumerate" class="level2">
+<h2 class="anchored" data-anchor-id="built-in-sequence-functions-enumerate">Built-In Sequence Functions: enumerate</h2>
+<p><code>enumerate</code> is a useful function when you need to keep track of the index while iterating over a sequence:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instead of doing this:</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>collection <span class="op">=</span> [<span class="st">'foo'</span>, <span class="st">'bar'</span>, <span class="st">'baz'</span>]</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> value <span class="kw">in</span> collection:</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># do something with value</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Index: </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">, Value: </span><span class="sc">{</span>value<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>    i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Use enumerate:</span></span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, value <span class="kw">in</span> <span class="bu">enumerate</span>(collection):</span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Index: </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">, Value: </span><span class="sc">{</span>value<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># do something with value</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>enumerate</code> returns a sequence of <code>(index, value)</code> tuples.</p>
+</section>
+<section id="built-in-sequence-functions-sorted" class="level2">
+<h2 class="anchored" data-anchor-id="built-in-sequence-functions-sorted">Built-In Sequence Functions: sorted</h2>
+<p>The <code>sorted</code> function returns a <em>new</em> sorted list from any sequence:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sorted</span>([<span class="dv">7</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">2</span>]))</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sorted</span>(<span class="st">'horse race'</span>)) <span class="co"># Sorts the characters in the string</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>sorted()</code> returns a <em>new</em> list, while the <code>sort()</code> method of lists sorts <em>in place</em>.</p>
+</div>
+</div>
+</section>
+<section id="built-in-sequence-functions-zip" class="level2">
+<h2 class="anchored" data-anchor-id="built-in-sequence-functions-zip">Built-In Sequence Functions: zip</h2>
+<p><code>zip</code> “pairs up” elements from multiple sequences, creating a list of tuples:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>seq1 <span class="op">=</span> [<span class="st">'foo'</span>, <span class="st">'bar'</span>, <span class="st">'baz'</span>]</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>seq2 <span class="op">=</span> [<span class="st">'one'</span>, <span class="st">'two'</span>, <span class="st">'three'</span>]</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>zipped <span class="op">=</span> <span class="bu">zip</span>(seq1, seq2)  <span class="co"># Create a zip object</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(zipped))     <span class="co"># Convert the zip object to a list of tuples</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>zip</code> can take any number of sequences. The number of elements produced is determined by the <em>shortest</em> sequence:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>seq3 <span class="op">=</span> [<span class="va">False</span>, <span class="va">True</span>]</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(<span class="bu">zip</span>(seq1, seq2, seq3)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="built-in-sequence-functions-zip-with-enumerate" class="level2">
+<h2 class="anchored" data-anchor-id="built-in-sequence-functions-zip-with-enumerate">Built-In Sequence Functions: zip (with enumerate)</h2>
+<p>A common use of <code>zip</code> is to iterate over multiple sequences simultaneously, often combined with <code>enumerate</code>:</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (a, b) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(seq1, seq2)):</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>a<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="built-in-sequence-functions-reversed" class="level2">
+<h2 class="anchored" data-anchor-id="built-in-sequence-functions-reversed">Built-In Sequence Functions: reversed</h2>
+<p><code>reversed</code> iterates over a sequence in <em>reverse</em> order:</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(<span class="bu">reversed</span>(<span class="bu">range</span>(<span class="dv">10</span>))))  <span class="co"># reversed() returns a generator</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>reversed</code> is a generator, so it doesn’t create the reversed sequence until materialized (e.g., with <code>list</code> or a <code>for</code> loop).</p>
+</div>
+</div>
+</section>
+<section id="list-set-and-dictionary-comprehensions" class="level2">
+<h2 class="anchored" data-anchor-id="list-set-and-dictionary-comprehensions">List, Set, and Dictionary Comprehensions</h2>
+<p>Comprehensions provide a concise way to create new lists, sets, or dictionaries by applying an expression and an optional filter to an existing sequence.</p>
+</section>
+<section id="list-comprehension-basic-form" class="level2">
+<h2 class="anchored" data-anchor-id="list-comprehension-basic-form">List Comprehension: Basic Form</h2>
+<div class="sourceCode" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># General form: [expr for val in collection if condition]</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Equivalent for loop:</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> []</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> val <span class="kw">in</span> collection:</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> condition:</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>        result.append(expr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Example:</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>strings <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'as'</span>, <span class="st">'bat'</span>, <span class="st">'car'</span>, <span class="st">'dove'</span>, <span class="st">'python'</span>]</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>upper_case_long_strings <span class="op">=</span> [x.upper() <span class="cf">for</span> x <span class="kw">in</span> strings <span class="cf">if</span> <span class="bu">len</span>(x) <span class="op">&gt;</span> <span class="dv">2</span>]</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(upper_case_long_strings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="set-comprehension" class="level2">
+<h2 class="anchored" data-anchor-id="set-comprehension">Set Comprehension</h2>
+<div class="sourceCode" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># General form: {expr for val in collection if condition}</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>strings <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'as'</span>, <span class="st">'bat'</span>, <span class="st">'car'</span>, <span class="st">'dove'</span>, <span class="st">'python'</span>]</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>unique_lengths <span class="op">=</span> {<span class="bu">len</span>(x) <span class="cf">for</span> x <span class="kw">in</span> strings}  <span class="co"># Create a set of unique string lengths</span></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(unique_lengths)</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a><span class="co"># using map function</span></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">set</span>(<span class="bu">map</span>(<span class="bu">len</span>, strings)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Set comprehension is very similar to list comprehensions, but it uses curly braces <code>{}</code> and creates a set (unique elements).</p>
+</section>
+<section id="dictionary-comprehension" class="level2">
+<h2 class="anchored" data-anchor-id="dictionary-comprehension">Dictionary Comprehension</h2>
+<div class="sourceCode" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># General form: {key_expr: value_expr for val in collection if condition}</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Create a dictionary mapping strings to their locations in a list</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>strings <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'as'</span>, <span class="st">'bat'</span>, <span class="st">'car'</span>, <span class="st">'dove'</span>, <span class="st">'python'</span>]</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>loc_mapping <span class="op">=</span> {val: index <span class="cf">for</span> index, val <span class="kw">in</span> <span class="bu">enumerate</span>(strings)}</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(loc_mapping)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="nested-list-comprehensions" class="level2">
+<h2 class="anchored" data-anchor-id="nested-list-comprehensions">Nested List Comprehensions</h2>
+<p>List comprehensions can be nested:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>all_data <span class="op">=</span> [[<span class="st">'John'</span>, <span class="st">'Emily'</span>, <span class="st">'Michael'</span>, <span class="st">'Mary'</span>, <span class="st">'Steven'</span>],</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>            [<span class="st">'Maria'</span>, <span class="st">'Juan'</span>, <span class="st">'Javier'</span>, <span class="st">'Natalia'</span>, <span class="st">'Pilar'</span>]]</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Find names with two or more 'a's</span></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>names_of_interest <span class="op">=</span> [name <span class="cf">for</span> names <span class="kw">in</span> all_data <span class="cf">for</span> name <span class="kw">in</span> names</span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>                     <span class="cf">if</span> name.count(<span class="st">'a'</span>) <span class="op">&gt;=</span> <span class="dv">2</span>]</span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(names_of_interest)</span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Flatten a list of tuples into a single list</span></span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>some_tuples <span class="op">=</span> [(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), (<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>), (<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>)]</span>
+<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a>flattened <span class="op">=</span> [x <span class="cf">for</span> tup <span class="kw">in</span> some_tuples <span class="cf">for</span> x <span class="kw">in</span> tup]</span>
+<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(flattened)</span>
+<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a><span class="co"># List comprehension inside a list comprehension.</span></span>
+<span id="cb59-16"><a href="#cb59-16" aria-hidden="true" tabindex="-1"></a>flattened <span class="op">=</span> [[x <span class="cf">for</span> x <span class="kw">in</span> tup] <span class="cf">for</span> tup <span class="kw">in</span> some_tuples]</span>
+<span id="cb59-17"><a href="#cb59-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(flattened)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The order of the <code>for</code> expressions in a nested list comprehension is the same as it would be in nested <code>for</code> loops.</p>
+</div>
+</div>
+</section>
+<section id="functions" class="level2">
+<h2 class="anchored" data-anchor-id="functions">3.2 Functions</h2>
+<p>Functions are a fundamental way to organize and reuse code in Python. They enhance readability and maintainability.</p>
+</section>
+<section id="function-declaration-def" class="level2">
+<h2 class="anchored" data-anchor-id="function-declaration-def">Function Declaration (def)</h2>
+<p>Functions are declared using the <code>def</code> keyword:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_function(x, y):</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""This is a docstring, explaining what the function does."""</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> my_function(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_function.__doc__)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>The <code>return</code> statement sends a value back to the caller.</li>
+<li>If a function reaches the end without a <code>return</code> statement, it implicitly returns <code>None</code>.</li>
+</ul>
+</section>
+<section id="function-arguments-positional-and-keyword" class="level2">
+<h2 class="anchored" data-anchor-id="function-arguments-positional-and-keyword">Function Arguments (Positional and Keyword)</h2>
+<div class="sourceCode" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_function2(x, y, z<span class="op">=</span><span class="fl">1.5</span>):  <span class="co"># z is a keyword argument with a default value</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> z <span class="op">&gt;</span> <span class="dv">1</span>:</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> z <span class="op">*</span> (x <span class="op">+</span> y)</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> z <span class="op">/</span> (x <span class="op">+</span> y)</span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_function2(<span class="dv">5</span>, <span class="dv">6</span>, z<span class="op">=</span><span class="fl">0.7</span>))  <span class="co"># Using the keyword</span></span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_function2(<span class="fl">3.14</span>, <span class="dv">7</span>, <span class="fl">3.5</span>))  <span class="co"># Positional arguments</span></span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_function2(<span class="dv">10</span>, <span class="dv">20</span>))        <span class="co"># Using the default value for z</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><em>Positional arguments</em> must be provided in the correct order.</li>
+<li><em>Keyword arguments</em> can be specified in any order and often have default values.</li>
+<li>Keyword arguments must <em>follow</em> positional arguments.</li>
+</ul>
+</section>
+<section id="namespaces-scope-and-local-functions" class="level2">
+<h2 class="anchored" data-anchor-id="namespaces-scope-and-local-functions">Namespaces, Scope, and Local Functions</h2>
+<ul>
+<li>Variables assigned within a function are in the <em>local namespace</em> by default.</li>
+<li>The local namespace is created when the function is called and destroyed when the function finishes.</li>
+</ul>
+<div class="sourceCode" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> func():</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> []  <span class="co"># 'a' is local to the function</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>        a.append(i)</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>func()</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a><span class="co"># print(a)  # NameError: name 'a' is not defined (outside the function's scope)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>You can access variables in enclosing scopes (e.g., global variables), but to modify them, you generally need to use the <code>global</code> or <code>nonlocal</code> keywords.</li>
+</ul>
+<div class="sourceCode" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> []  <span class="co"># 'a' is a global variable</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> func2():</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>        a.append(i)  <span class="co"># Modifies the *global* 'a'</span></span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>func2()</span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span>
+<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="va">None</span> <span class="co"># 'b' is a global variable</span></span>
+<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bind_b_variable():</span>
+<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">global</span> b  <span class="co"># Declare 'b' as global to modify it within the function</span></span>
+<span id="cb63-13"><a href="#cb63-13" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> []</span>
+<span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a>bind_b_variable()</span>
+<span id="cb63-15"><a href="#cb63-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Generally, avoid excessive use of the <code>global</code> keyword. It’s often better to design your code to minimize reliance on global state for better modularity.</p>
+</div>
+</div>
+</section>
+<section id="returning-multiple-values" class="level2">
+<h2 class="anchored" data-anchor-id="returning-multiple-values">Returning Multiple Values</h2>
+<p>Functions can return multiple values using tuples (or other data structures):</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f():</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> <span class="dv">6</span></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> <span class="dv">7</span></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a, b, c  <span class="co"># Returns a tuple</span></span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>x, y, z <span class="op">=</span> f()  <span class="co"># Unpack the returned tuple</span></span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x, y, z)</span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Or return a dictionary</span></span>
+<span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f2():</span>
+<span id="cb64-12"><a href="#cb64-12" aria-hidden="true" tabindex="-1"></a>  a <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb64-13"><a href="#cb64-13" aria-hidden="true" tabindex="-1"></a>  b <span class="op">=</span> <span class="dv">6</span></span>
+<span id="cb64-14"><a href="#cb64-14" aria-hidden="true" tabindex="-1"></a>  c <span class="op">=</span> <span class="dv">7</span></span>
+<span id="cb64-15"><a href="#cb64-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> {<span class="st">'a'</span> : a, <span class="st">'b'</span> : b, <span class="st">'c'</span> : c}</span>
+<span id="cb64-16"><a href="#cb64-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-17"><a href="#cb64-17" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> f2()</span>
+<span id="cb64-18"><a href="#cb64-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="functions-are-objects" class="level2">
+<h2 class="anchored" data-anchor-id="functions-are-objects">Functions Are Objects</h2>
+<p>Functions in Python are first-class objects, which means you can:</p>
+<ul>
+<li>Pass them as arguments to other functions.</li>
+<li>Assign them to variables.</li>
+<li>Return them from other functions.</li>
+</ul>
+<div class="sourceCode" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Data cleaning</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re <span class="co"># regular expression operations</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> [<span class="st">'   Alabama '</span>, <span class="st">'Georgia!'</span>, <span class="st">'Georgia'</span>, <span class="st">'georgia'</span>, <span class="st">'FlOrIda'</span>,</span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>          <span class="st">'south   carolina##'</span>, <span class="st">'West virginia?'</span>]</span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_strings(strings):</span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> []</span>
+<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> value <span class="kw">in</span> strings:</span>
+<span id="cb65-10"><a href="#cb65-10" aria-hidden="true" tabindex="-1"></a>        value <span class="op">=</span> value.strip()  <span class="co"># Remove whitespace</span></span>
+<span id="cb65-11"><a href="#cb65-11" aria-hidden="true" tabindex="-1"></a>        value <span class="op">=</span> re.sub(<span class="st">'[!#?]'</span>, <span class="st">''</span>, value)  <span class="co"># Remove punctuation</span></span>
+<span id="cb65-12"><a href="#cb65-12" aria-hidden="true" tabindex="-1"></a>        value <span class="op">=</span> value.title()  <span class="co"># Title case</span></span>
+<span id="cb65-13"><a href="#cb65-13" aria-hidden="true" tabindex="-1"></a>        result.append(value)</span>
+<span id="cb65-14"><a href="#cb65-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span>
+<span id="cb65-15"><a href="#cb65-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-16"><a href="#cb65-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(clean_strings(states))</span>
+<span id="cb65-17"><a href="#cb65-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-18"><a href="#cb65-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternative approach using a list of functions:</span></span>
+<span id="cb65-19"><a href="#cb65-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> remove_punctuation(value):</span>
+<span id="cb65-20"><a href="#cb65-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> re.sub(<span class="st">'[!#?]'</span>, <span class="st">''</span>, value)</span>
+<span id="cb65-21"><a href="#cb65-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-22"><a href="#cb65-22" aria-hidden="true" tabindex="-1"></a>clean_ops <span class="op">=</span> [<span class="bu">str</span>.strip, remove_punctuation, <span class="bu">str</span>.title]</span>
+<span id="cb65-23"><a href="#cb65-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-24"><a href="#cb65-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_strings_functional(strings, ops):</span>
+<span id="cb65-25"><a href="#cb65-25" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> []</span>
+<span id="cb65-26"><a href="#cb65-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> value <span class="kw">in</span> strings:</span>
+<span id="cb65-27"><a href="#cb65-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> function <span class="kw">in</span> ops:</span>
+<span id="cb65-28"><a href="#cb65-28" aria-hidden="true" tabindex="-1"></a>            value <span class="op">=</span> function(value)</span>
+<span id="cb65-29"><a href="#cb65-29" aria-hidden="true" tabindex="-1"></a>        result.append(value)</span>
+<span id="cb65-30"><a href="#cb65-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span>
+<span id="cb65-31"><a href="#cb65-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-32"><a href="#cb65-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(clean_strings_functional(states, clean_ops))</span>
+<span id="cb65-33"><a href="#cb65-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-34"><a href="#cb65-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-35"><a href="#cb65-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Using functions with map:</span></span>
+<span id="cb65-36"><a href="#cb65-36" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> <span class="bu">map</span>(remove_punctuation, states):</span>
+<span id="cb65-37"><a href="#cb65-37" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This functional approach makes the code very flexible and reusable.</p>
+</section>
+<section id="anonymous-lambda-functions" class="level2">
+<h2 class="anchored" data-anchor-id="anonymous-lambda-functions">Anonymous (Lambda) Functions</h2>
+<p>Lambda functions are small, anonymous functions defined using the <code>lambda</code> keyword:</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Equivalent to:</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="co"># def short_function(x):</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="co">#     return x * 2</span></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>equiv_anon <span class="op">=</span> <span class="kw">lambda</span> x: x <span class="op">*</span> <span class="dv">2</span></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(equiv_anon(<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Lambda functions are particularly useful when passing short, simple functions as arguments to other functions:</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> apply_to_list(some_list, f):</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [f(x) <span class="cf">for</span> x <span class="kw">in</span> some_list]</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>ints <span class="op">=</span> [<span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">6</span>]</span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> apply_to_list(ints, <span class="kw">lambda</span> x: x <span class="op">*</span> <span class="dv">2</span>) <span class="co"># Pass a lambda function</span></span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Another example</span></span>
+<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a>strings <span class="op">=</span> [<span class="st">'foo'</span>, <span class="st">'card'</span>, <span class="st">'bar'</span>, <span class="st">'aaaa'</span>, <span class="st">'abab'</span>]</span>
+<span id="cb67-10"><a href="#cb67-10" aria-hidden="true" tabindex="-1"></a>strings.sort(key<span class="op">=</span><span class="kw">lambda</span> x: <span class="bu">len</span>(<span class="bu">set</span>(x))) <span class="co"># Sort by number of distinct letters</span></span>
+<span id="cb67-11"><a href="#cb67-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(strings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="generators" class="level2">
+<h2 class="anchored" data-anchor-id="generators">Generators</h2>
+<p>Generators are a special kind of iterator that produce values <em>on demand</em>, rather than computing them all at once. This makes them very memory-efficient, especially when working with large sequences.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> squares(n<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Generating squares from 1 to </span><span class="sc">%d</span><span class="st">'</span> <span class="op">%</span> n <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">yield</span> i <span class="op">**</span> <span class="dv">2</span>  <span class="co"># Use 'yield' instead of 'return'</span></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>gen <span class="op">=</span> squares()  <span class="co"># Create a generator object</span></span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gen)</span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Nothing is computed until you request values:</span></span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> gen:</span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(x, end<span class="op">=</span><span class="st">' '</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Use the <code>yield</code> keyword instead of <code>return</code>.</li>
+<li>Generators don’t execute immediately. They produce values only when iterated over.</li>
+</ul>
+</section>
+<section id="generator-expressions" class="level2">
+<h2 class="anchored" data-anchor-id="generator-expressions">Generator Expressions</h2>
+<p>Generator expressions are concise ways to create generators, analogous to list/set/dict comprehensions:</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List comprehension: [x ** 2 for x in range(100)]</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Generator expression:</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>gen <span class="op">=</span> (x <span class="op">**</span> <span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>)) <span class="co"># using parenthese</span></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gen)</span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sum</span>(gen))</span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Can be used as function arguments:</span></span>
+<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sum</span>(x <span class="op">**</span> <span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>)))</span>
+<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">dict</span>((i, i <span class="op">**</span><span class="dv">2</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="itertools-module" class="level2">
+<h2 class="anchored" data-anchor-id="itertools-module">itertools Module</h2>
+<p>The <code>itertools</code> module provides a collection of useful generators for common data algorithms:</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> first_letter(x):</span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x[<span class="dv">0</span>]</span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">'Alan'</span>, <span class="st">'Adam'</span>, <span class="st">'Wes'</span>, <span class="st">'Will'</span>, <span class="st">'Albert'</span>, <span class="st">'Steven'</span>]</span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> letter, names_iter <span class="kw">in</span> itertools.groupby(names, first_letter):</span>
+<span id="cb70-9"><a href="#cb70-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(letter, <span class="bu">list</span>(names_iter)) <span class="co"># names is a generator</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>itertools.groupby</code> groups consecutive elements based on the return value of a function.</p>
+</section>
+<section id="useful-itertools-functions" class="level2">
+<h2 class="anchored" data-anchor-id="useful-itertools-functions">Useful itertools Functions</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 80%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Function</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>chain(*iterables)</code></td>
+<td style="text-align: left;">Generates a sequence by chaining iterators.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>combinations(iterable, k)</code></td>
+<td style="text-align: left;">Generates k-tuples of elements, ignoring order, without replacement.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>permutations(iterable, k)</code></td>
+<td style="text-align: left;">Generates k-tuples of elements, respecting order.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>groupby(iterable[, keyfunc])</code></td>
+<td style="text-align: left;">Generates (key, sub-iterator) for each unique key.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>product(*iterables, repeat=1)</code></td>
+<td style="text-align: left;">Generates the Cartesian product of input iterables (similar to nested for loops).</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Check out the official Python documentation for the <code>itertools</code> module. It’s a treasure trove of useful tools!</p>
+</div>
+</div>
+</section>
+<section id="errors-and-exception-handling" class="level2">
+<h2 class="anchored" data-anchor-id="errors-and-exception-handling">Errors and Exception Handling</h2>
+<p>Handling errors (exceptions) gracefully is crucial for writing robust code.</p>
+</section>
+<section id="try-except-blocks" class="level2">
+<h2 class="anchored" data-anchor-id="try-except-blocks">try-except Blocks</h2>
+<div class="sourceCode" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> attempt_float(x):</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">float</span>(x)</span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:  <span class="co"># Catches *any* exception</span></span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x</span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(attempt_float(<span class="st">'1.2345'</span>))</span>
+<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(attempt_float(<span class="st">'something'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>The <code>try</code> block contains the code that might raise an exception.</li>
+<li>The <code>except</code> block is executed if an exception occurs in the <code>try</code> block.</li>
+</ul>
+</section>
+<section id="catching-specific-exceptions" class="level2">
+<h2 class="anchored" data-anchor-id="catching-specific-exceptions">Catching Specific Exceptions</h2>
+<div class="sourceCode" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> attempt_float2(x):</span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">float</span>(x)</span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">ValueError</span>:  <span class="co"># Only catch ValueError</span></span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x</span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a><span class="co"># print(attempt_float2((1, 2)))  # TypeError will not be caught</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can specify the type of exception to catch. This is generally preferred over catching all exceptions, as it allows you to handle specific errors appropriately.</p>
+</section>
+<section id="catching-multiple-exception-types" class="level2">
+<h2 class="anchored" data-anchor-id="catching-multiple-exception-types">Catching Multiple Exception Types</h2>
+<div class="sourceCode" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> attempt_float3(x):</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">float</span>(x)</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> (<span class="pp">TypeError</span>, <span class="pp">ValueError</span>):  <span class="co"># Catch multiple exception types</span></span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Use a tuple of exception types to catch multiple kinds of exceptions.</p>
+</section>
+<section id="finally-and-else" class="level2">
+<h2 class="anchored" data-anchor-id="finally-and-else">finally and else</h2>
+<ul>
+<li><p><code>finally</code>: Code in the <code>finally</code> block <em>always</em> executes, regardless of whether an exception occurred or not. Useful for cleanup (e.g., closing files).</p></li>
+<li><p><code>else</code>: Code in the <code>else</code> block executes only if the <code>try</code> block completed <em>without</em> raising an exception.</p></li>
+</ul>
+<div class="sourceCode" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example illustrating finally</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="bu">open</span>(<span class="st">"tempfile.txt"</span>, mode <span class="op">=</span> <span class="st">"w"</span>)</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># write_to_file(f)  # Assume this function might raise an exception</span></span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"example text"</span>)</span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
+<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a>    f.close()  <span class="co"># Always close the file</span></span>
+<span id="cb74-8"><a href="#cb74-8" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> os <span class="co"># operating system operation</span></span>
+<span id="cb74-9"><a href="#cb74-9" aria-hidden="true" tabindex="-1"></a>    os.remove(<span class="st">"tempfile.txt"</span>) <span class="co"># Removes the file named "tempfile.txt"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example illustrating else</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="bu">open</span>(<span class="st">"tempfile.txt"</span>, mode <span class="op">=</span> <span class="st">"w"</span>)</span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#write_to_file(f)</span></span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>    f.write(<span class="st">"example text"</span>)</span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
+<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Failed'</span>)</span>
+<span id="cb75-8"><a href="#cb75-8" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb75-9"><a href="#cb75-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Succeeded'</span>)</span>
+<span id="cb75-10"><a href="#cb75-10" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:</span>
+<span id="cb75-11"><a href="#cb75-11" aria-hidden="true" tabindex="-1"></a>    f.close()</span>
+<span id="cb75-12"><a href="#cb75-12" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> os</span>
+<span id="cb75-13"><a href="#cb75-13" aria-hidden="true" tabindex="-1"></a>    os.remove(<span class="st">"tempfile.txt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="exceptions-in-ipython" class="level2">
+<h2 class="anchored" data-anchor-id="exceptions-in-ipython">Exceptions in IPython</h2>
+<p>IPython provides helpful stack traces (tracebacks) when exceptions occur, making debugging easier. You can control the level of detail using the <code>%xmode</code> magic command (Plain, Context, Verbose).</p>
+</section>
+<section id="files-and-the-operating-system" class="level2">
+<h2 class="anchored" data-anchor-id="files-and-the-operating-system">3.3 Files and the Operating System</h2>
+<p>Interacting with files is a common task in data analysis.</p>
+</section>
+<section id="opening-files-open" class="level2">
+<h2 class="anchored" data-anchor-id="opening-files-open">Opening Files (open)</h2>
+<div class="sourceCode" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> <span class="st">'examples/segismundo.txt'</span>  <span class="co"># Replace with your file path</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Use a raw string (r'...') or escape backslashes for Windows paths</span></span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a><span class="co"># path = r'C:\Users\YourName\Documents\myfile.txt'</span></span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a><span class="co"># default encoding varies from platform to platform, better to specify explicitly.</span></span>
+<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="bu">open</span>(path, encoding<span class="op">=</span><span class="st">'utf-8'</span>)  <span class="co"># Open in read mode ('r' is the default)</span></span>
+<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a><span class="co">#f = open(path, mode = "r", encoding='utf-8') # is equal to previous line</span></span>
+<span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> line <span class="kw">in</span> f:</span>
+<span id="cb76-9"><a href="#cb76-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(line.rstrip()) <span class="co"># remove trailing whitespaces.</span></span>
+<span id="cb76-10"><a href="#cb76-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-11"><a href="#cb76-11" aria-hidden="true" tabindex="-1"></a>f.close() <span class="co"># close the file after using it.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>open(path, mode='r', encoding=None)</code> opens a file.
+<ul>
+<li><code>path</code>: The file path (relative or absolute).</li>
+<li><code>mode</code>: ‘r’ (read), ‘w’ (write), ‘a’ (append), ‘x’ (create, fail if exists), ‘rb’ (binary read), ‘wb’ (binary write), etc.</li>
+<li><code>encoding</code>: Specify the file encoding (e.g., ‘utf-8’ for text files with Unicode characters). It is a good habit to set <code>encoding</code> parameter.</li>
+</ul></li>
+<li>It’s <em>essential</em> to close files after you’re finished with them using <code>f.close()</code>.</li>
+</ul>
+</section>
+<section id="reading-from-files" class="level2">
+<h2 class="anchored" data-anchor-id="reading-from-files">Reading from Files</h2>
+<div class="sourceCode" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reading all the lines</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="bu">open</span>(path, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>lines <span class="op">=</span> [x.rstrip() <span class="cf">for</span> x <span class="kw">in</span> f]  <span class="co"># Read lines, remove trailing whitespace</span></span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lines)</span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>f.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="using-with-for-automatic-file-closing" class="level2">
+<h2 class="anchored" data-anchor-id="using-with-for-automatic-file-closing">Using with for Automatic File Closing</h2>
+<p>The <code>with</code> statement provides a cleaner way to handle files, automatically closing them when the block finishes:</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(path, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> [x.rstrip() <span class="cf">for</span> x <span class="kw">in</span> f]</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lines)</span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="co"># The file 'f' is automatically closed here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Using <code>with</code> is the recommended way to work with files in Python. It ensures proper cleanup, even if errors occur.</p>
+</div>
+</div>
+</section>
+<section id="file-modes" class="level2">
+<h2 class="anchored" data-anchor-id="file-modes">File Modes</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 95%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Mode</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">r</td>
+<td style="text-align: left;">Read-only mode</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">w</td>
+<td style="text-align: left;">Write-only mode; creates a new file (erasing any existing file with the same name)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">x</td>
+<td style="text-align: left;">Write-only mode; creates a new file, but fails if the file path already exists</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">a</td>
+<td style="text-align: left;">Append to existing file (creates the file if it doesn’t exist)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">r+</td>
+<td style="text-align: left;">Read and write</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">b</td>
+<td style="text-align: left;">Add to mode for binary files (e.g., ‘rb’ or ‘wb’)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">t</td>
+<td style="text-align: left;">Text mode (automatically decoding bytes to Unicode); this is the default</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="read-seek-and-tell" class="level2">
+<h2 class="anchored" data-anchor-id="read-seek-and-tell">read, seek, and tell</h2>
+<div class="sourceCode" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>f1 <span class="op">=</span> <span class="bu">open</span>(path, encoding <span class="op">=</span> <span class="st">"utf-8"</span>)</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f1.read(<span class="dv">10</span>))  <span class="co"># Read the first 10 *characters*</span></span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>f2 <span class="op">=</span> <span class="bu">open</span>(path, mode<span class="op">=</span><span class="st">'rb'</span>)  <span class="co"># Open in binary mode</span></span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f2.read(<span class="dv">10</span>))  <span class="co"># Read the first 10 *bytes*</span></span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f1.tell())  <span class="co"># Current file position (characters)</span></span>
+<span id="cb79-8"><a href="#cb79-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f2.tell())  <span class="co"># Current file position (bytes)</span></span>
+<span id="cb79-9"><a href="#cb79-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-10"><a href="#cb79-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb79-11"><a href="#cb79-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sys.getdefaultencoding()) <span class="co"># get the default encoding</span></span>
+<span id="cb79-12"><a href="#cb79-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-13"><a href="#cb79-13" aria-hidden="true" tabindex="-1"></a>f1.seek(<span class="dv">3</span>)  <span class="co"># Move to the 3rd byte (character) in the file</span></span>
+<span id="cb79-14"><a href="#cb79-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f1.read(<span class="dv">1</span>))</span>
+<span id="cb79-15"><a href="#cb79-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-16"><a href="#cb79-16" aria-hidden="true" tabindex="-1"></a>f1.close()</span>
+<span id="cb79-17"><a href="#cb79-17" aria-hidden="true" tabindex="-1"></a>f2.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>read(n)</code>: Reads <code>n</code> characters (text mode) or bytes (binary mode).</li>
+<li><code>tell()</code>: Returns the current file position.</li>
+<li><code>seek(position)</code>: Moves the file pointer to a specific position (in bytes).</li>
+<li>Be cautious using <code>seek</code> with text files encoded in UTF-8, as seeking to a position in the middle of a multi-byte character can lead to errors.</li>
+</ul>
+</section>
+<section id="writing-to-files" class="level2">
+<h2 class="anchored" data-anchor-id="writing-to-files">Writing to Files</h2>
+<div class="sourceCode" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'tmp.txt'</span>, <span class="st">'w'</span>, encoding <span class="op">=</span> <span class="st">"utf-8"</span>) <span class="im">as</span> handle:</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>    handle.writelines(x <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">open</span>(path, encoding <span class="op">=</span> <span class="st">"utf-8"</span>) <span class="cf">if</span> <span class="bu">len</span>(x) <span class="op">&gt;</span> <span class="dv">1</span>) <span class="co"># write lines into a file</span></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'tmp.txt'</span>, encoding <span class="op">=</span> <span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> f.readlines()</span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lines)</span>
+<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-8"><a href="#cb80-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb80-9"><a href="#cb80-9" aria-hidden="true" tabindex="-1"></a>os.remove(<span class="st">"tmp.txt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>write(string)</code>: Writes a string to the file.</li>
+<li><code>writelines(list_of_strings)</code>: Writes a list of strings to the file.</li>
+</ul>
+</section>
+<section id="important-file-methodsattributes" class="level2">
+<h2 class="anchored" data-anchor-id="important-file-methodsattributes">Important File Methods/Attributes</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 85%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Method/Attribute</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>read([size])</code></td>
+<td style="text-align: left;">Return data from file as bytes or string, with optional size argument.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>readable()</code></td>
+<td style="text-align: left;">Return <code>True</code> if the file supports read operations.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>readlines([size])</code></td>
+<td style="text-align: left;">Return list of lines in the file, with optional size argument.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>write(string)</code></td>
+<td style="text-align: left;">Write passed string to file.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>writable()</code></td>
+<td style="text-align: left;">Return <code>True</code> if the file supports write operations.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>writelines(strings)</code></td>
+<td style="text-align: left;">Write passed sequence of strings to the file.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>close()</code></td>
+<td style="text-align: left;">Close the file object.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>flush()</code></td>
+<td style="text-align: left;">Flush the internal I/O buffer to disk.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>seek(pos)</code></td>
+<td style="text-align: left;">Move to indicated file position (integer).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>seekable()</code></td>
+<td style="text-align: left;">Return <code>True</code> if the file object supports seeking.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>tell()</code></td>
+<td style="text-align: left;">Return current file position as integer.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>closed</code></td>
+<td style="text-align: left;"><code>True</code> if the file is closed.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>encoding</code></td>
+<td style="text-align: left;">The encoding used to interpret bytes in the file as Unicode (typically UTF-8).</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bytes-and-unicode-with-files" class="level2">
+<h2 class="anchored" data-anchor-id="bytes-and-unicode-with-files">Bytes and Unicode with Files</h2>
+<ul>
+<li>Default behavior is <em>text mode</em> (working with strings/Unicode).</li>
+<li>Use <code>mode='rb'</code> or <code>'wb'</code> for <em>binary mode</em> (working with raw bytes).</li>
+</ul>
+<div class="sourceCode" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(path, encoding <span class="op">=</span> <span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>    chars <span class="op">=</span> f.read(<span class="dv">10</span>)  <span class="co"># read 10 characters</span></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(chars))</span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(path, <span class="st">'rb'</span>) <span class="im">as</span> f:</span>
+<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> f.read(<span class="dv">10</span>) <span class="co"># read 10 bytes</span></span>
+<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span>
+<span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-9"><a href="#cb81-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.decode(<span class="st">'utf-8'</span>))  <span class="co"># Decode bytes to a string</span></span>
+<span id="cb81-10"><a href="#cb81-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-11"><a href="#cb81-11" aria-hidden="true" tabindex="-1"></a><span class="co"># print(data[:4].decode('utf-8')) # UnicodeDecodeError if incomplete character</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>UTF-8 is a variable-length encoding. Reading a specific number of <em>characters</em> might involve reading a different number of <em>bytes</em>.</li>
+<li>In binary mode, <code>read</code> returns exactly the requested number of bytes.</li>
+<li>When decoding bytes to strings, ensure that you’re decoding complete characters.</li>
+</ul>
+<div class="sourceCode" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>sink_path <span class="op">=</span> <span class="st">'sink.txt'</span></span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(path, encoding <span class="op">=</span> <span class="st">"utf-8"</span>) <span class="im">as</span> source:</span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(sink_path, <span class="st">'x'</span>, encoding<span class="op">=</span><span class="st">'iso-8859-1'</span>) <span class="im">as</span> sink:</span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a>        sink.write(source.read())</span>
+<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-6"><a href="#cb82-6" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(sink_path, encoding<span class="op">=</span><span class="st">'iso-8859-1'</span>) <span class="im">as</span> f:</span>
+<span id="cb82-7"><a href="#cb82-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(f.read(<span class="dv">10</span>))</span>
+<span id="cb82-8"><a href="#cb82-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-9"><a href="#cb82-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb82-10"><a href="#cb82-10" aria-hidden="true" tabindex="-1"></a>os.remove(sink_path)</span>
+<span id="cb82-11"><a href="#cb82-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb82-12"><a href="#cb82-12" aria-hidden="true" tabindex="-1"></a><span class="co"># caution</span></span>
+<span id="cb82-13"><a href="#cb82-13" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="bu">open</span>(path, encoding <span class="op">=</span> <span class="st">"utf-8"</span>)</span>
+<span id="cb82-14"><a href="#cb82-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f.read(<span class="dv">5</span>))</span>
+<span id="cb82-15"><a href="#cb82-15" aria-hidden="true" tabindex="-1"></a>f.seek(<span class="dv">4</span>)</span>
+<span id="cb82-16"><a href="#cb82-16" aria-hidden="true" tabindex="-1"></a><span class="co"># print(f.read(1)) # UnicodeDecodeError: 'utf-8' codec can't decode byte 0xb1 in position 0: invalid start byte</span></span>
+<span id="cb82-17"><a href="#cb82-17" aria-hidden="true" tabindex="-1"></a>f.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Beware using <code>seek</code> when opening files in any mode other than binary.</p>
+</div>
+</div>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>This chapter covered essential Python concepts for data analysis:</p>
+<ul>
+<li><strong>Data Structures</strong>: Tuples (immutable), Lists (mutable), Dictionaries (key-value pairs), Sets (unique, unordered collections).</li>
+<li><strong>Built-in Functions</strong>: <code>enumerate</code>, <code>sorted</code>, <code>zip</code>, <code>reversed</code>.</li>
+<li><strong>Comprehensions</strong>: Concise ways to create lists, sets, and dictionaries.</li>
+<li><strong>Functions</strong>: Defining functions, arguments (positional and keyword), namespaces, returning multiple values, functions as objects, lambda functions.</li>
+<li><strong>Generators</strong>: Memory-efficient iterators using <code>yield</code> and generator expressions.</li>
+<li><strong><code>itertools</code> Module</strong>: Useful functions for working with iterators.</li>
+<li><strong>Error Handling</strong>: <code>try</code>, <code>except</code>, <code>finally</code>, <code>else</code>.</li>
+<li><strong>File Handling</strong>: Opening, reading, writing, and closing files; text vs.&nbsp;binary mode; Unicode and encodings.</li>
+</ul>
+<p>These fundamentals provide a solid foundation for working with data in Python. You’ll build upon these concepts as you learn more advanced libraries like NumPy and pandas.</p>
+</section>
+<section id="thoughts-and-discussion" class="level2">
+<h2 class="anchored" data-anchor-id="thoughts-and-discussion">Thoughts and Discussion 🤔</h2>
+<ol type="1">
+<li><p>Consider a scenario where you are reading data from a very large CSV file (larger than your computer’s RAM). How would you use the concepts from this chapter (specifically generators and file handling) to process this data efficiently without loading the entire file into memory at once?</p></li>
+<li><p>Discuss the trade-offs between using lists and tuples. When would you choose one over the other? Give specific examples.</p></li>
+<li><p>Explain the difference between a list comprehension and a generator expression. When would you prefer to use a generator expression?</p></li>
+<li><p>Why is it important to handle exceptions in your code? Provide an example of a situation where exception handling is crucial in a data analysis context.</p></li>
+<li><p>What are the advantages of using the <code>with</code> statement when working with files?</p></li>
+<li><p>Explain the difference between text mode and binary mode when working with files. Why is it important to understand the encoding of a text file?</p></li>
+<li><p>How to decide to use <code>dict</code> or <code>set</code>?</p></li>
+</ol>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

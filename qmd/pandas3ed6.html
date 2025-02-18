@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Your Name">
 
-<title>pandas3ed6</title>
+<title>Chapter 6: Data Loading, Storage, and File Formats</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -53,6 +88,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -76,12 +114,8 @@ ul.task-list li input[type="checkbox"] {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://qiufei.github.io/web-slide-r"> 
-<span class="menu-text">R课件</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="https://qiufei.github.io/web-slide-marketing"> 
-<span class="menu-text">营销课件</span></a>
+    <a class="nav-link" href="https://qiufei.github.io/web-slide"> 
+<span class="menu-text">课件</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../about.html"> 
@@ -101,13 +135,938 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Chapter 6: Data Loading, Storage, and File Formats</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Your Name </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<section id="introduction-to-data-loading" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-data-loading">Introduction to Data Loading</h2>
+<div style="font-size: 0.9em;">
+<ul>
+<li><p><strong>Data loading</strong> is the crucial first step in any data analysis project. It involves reading data from various sources and making it accessible for processing.</p></li>
+<li><p>The term <strong>parsing</strong> is often used interchangeably with data loading, referring to the process of interpreting text data and converting it into structured formats like tables with specific data types.</p></li>
+<li><p>While various libraries exist, this chapter focuses on using <strong>pandas</strong>, a powerful Python library, for data input and output.</p></li>
+<li><p>This chapter focuses on loading from text files, efficient storage format, database, and interact with web APIs.</p></li>
+</ul>
+</div>
+</section>
+<section id="why-data-loading-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-data-loading-matters">Why Data Loading Matters</h2>
+<div style="font-size: 0.9em;">
+<ul>
+<li><strong>Foundation for Analysis:</strong> Without loading data, you can’t perform any analysis! 🤯</li>
+<li><strong>Data Variety:</strong> Data comes in many shapes and sizes: text files, databases, web APIs, and more. Learning to handle these different formats is essential.</li>
+<li><strong>Efficiency:</strong> Efficient data loading techniques can save you significant time and computational resources, especially with large datasets.</li>
+<li><strong>Data Cleaning:</strong> The loading process often involves initial data cleaning, such as handling missing values or inconsistent formatting.</li>
+</ul>
+</div>
+</section>
+<section id="core-concepts-data-mining-and-machine-learning" class="level2">
+<h2 class="anchored" data-anchor-id="core-concepts-data-mining-and-machine-learning">Core Concepts: Data Mining and Machine Learning</h2>
+<div style="font-size: 0.9em;">
+<p>Before diving into data loading, let’s clarify some fundamental concepts.</p>
+<ul>
+<li><p><strong>Data Mining:</strong> The process of discovering patterns, anomalies, and insights from large datasets. It’s like searching for gold 🪙 in a mountain of data!</p></li>
+<li><p><strong>Machine Learning (ML):</strong> A subfield of artificial intelligence (AI) where algorithms learn from data without explicit programming. Think of it as teaching a computer to learn from examples. 🤖</p></li>
+<li><p><strong>Statistical Learning:</strong> Often used synonymously with Machine Learning, it emphasizes the statistical foundations of learning algorithms. It focuses on building mathematical models to understand and predict data.</p></li>
+</ul>
+</div>
+</section>
+<section id="relationship-between-these-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="relationship-between-these-concepts">Relationship Between These Concepts</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    A[Data Mining] --&gt; C(Common Ground)
+    B[Machine Learning] --&gt; C
+    D[Statistical Learning] --&gt; C
+    C --&gt; E[Insights &amp; Predictions]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<div style="font-size: 0.85em;">
+<ul>
+<li>Data mining often <em>uses</em> machine learning techniques to find patterns.</li>
+<li>Machine Learning builds <em>on</em> Statistical Learning.</li>
+<li>All aim to extract insights and make predictions from data.</li>
+</ul>
+</div>
+</section>
+<section id="introduction-to-python-and-pandas" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-python-and-pandas">Introduction to Python and Pandas</h2>
+<div style="font-size: 0.9em;">
+<ul>
+<li><p><strong>Python:</strong> A versatile, high-level programming language known for its readability and extensive libraries. It’s a favorite for data analysis and machine learning. 🐍</p></li>
+<li><p><strong>Pandas:</strong> A powerful Python library specifically designed for data manipulation and analysis. It provides data structures like <code>DataFrame</code> to efficiently store and work with tabular data. Think of it as Excel, but supercharged! 💪</p></li>
+<li><p><strong>Why Pandas?</strong></p>
+<ul>
+<li>Easy-to-use data structures.</li>
+<li>Powerful data manipulation tools.</li>
+<li>Excellent for handling missing data.</li>
+<li>Built-in functions for data loading, cleaning, and analysis.</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="reading-and-writing-data-in-text-format-with-pandas" class="level2">
+<h2 class="anchored" data-anchor-id="reading-and-writing-data-in-text-format-with-pandas">Reading and Writing Data in Text Format with Pandas</h2>
+<div style="font-size: 0.9em;">
+<ul>
+<li>Pandas provides several functions for reading tabular data into a <code>DataFrame</code> object.</li>
+<li><code>read_csv</code> is one of the most commonly used functions, designed for reading comma-separated values (CSV) files. But it’s much more flexible than just CSV!</li>
+<li>Other functions handle different formats (see the table below).</li>
+</ul>
+</div>
+</section>
+<section id="pandas-data-loading-functions-part-1" class="level2">
+<h2 class="anchored" data-anchor-id="pandas-data-loading-functions-part-1">Pandas Data Loading Functions (Part 1)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 83%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>read_csv</code></td>
+<td>Load delimited data (comma is the default).</td>
+</tr>
+<tr class="even">
+<td><code>read_fwf</code></td>
+<td>Read data in fixed-width column format.</td>
+</tr>
+<tr class="odd">
+<td><code>read_clipboard</code></td>
+<td>Reads data from the clipboard (useful for web tables).</td>
+</tr>
+<tr class="even">
+<td><code>read_excel</code></td>
+<td>Read data from Excel XLS or XLSX files.</td>
+</tr>
+<tr class="odd">
+<td><code>read_hdf</code></td>
+<td>Read HDF5 files written by pandas.</td>
+</tr>
+<tr class="even">
+<td><code>read_html</code></td>
+<td>Read all tables from an HTML document.</td>
+</tr>
+<tr class="odd">
+<td><code>read_json</code></td>
+<td>Read data from a JSON string, file, or URL.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pandas-data-loading-functions-part-2" class="level2">
+<h2 class="anchored" data-anchor-id="pandas-data-loading-functions-part-2">Pandas Data Loading Functions (Part 2)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 82%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>read_feather</code></td>
+<td>Read the Feather binary file format.</td>
+</tr>
+<tr class="even">
+<td><code>read_orc</code></td>
+<td>Read the Apache ORC binary file format.</td>
+</tr>
+<tr class="odd">
+<td><code>read_parquet</code></td>
+<td>Read the Apache Parquet binary file format.</td>
+</tr>
+<tr class="even">
+<td><code>read_pickle</code></td>
+<td>Read a pandas object stored in Python pickle format.</td>
+</tr>
+<tr class="odd">
+<td><code>read_sas</code></td>
+<td>Read a SAS dataset.</td>
+</tr>
+<tr class="even">
+<td><code>read_spss</code></td>
+<td>Read a data file created by SPSS.</td>
+</tr>
+<tr class="odd">
+<td><code>read_sql</code></td>
+<td>Read the result of a SQL query.</td>
+</tr>
+<tr class="even">
+<td><code>read_sql_table</code></td>
+<td>Read a whole SQL table.</td>
+</tr>
+<tr class="odd">
+<td><code>read_stata</code></td>
+<td>Read a dataset from Stata file format.</td>
+</tr>
+<tr class="even">
+<td><code>read_xml</code></td>
+<td>Read a table of data from an XML file.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="common-read_csv-optional-arguments" class="level2">
+<h2 class="anchored" data-anchor-id="common-read_csv-optional-arguments">Common <code>read_csv</code> Optional Arguments</h2>
+<div style="font-size: 0.8em;">
+<p>The <code>read_csv</code> function (and others) has <em>many</em> optional arguments, categorized as:</p>
+<ol type="1">
+<li><strong>Indexing:</strong> Control which columns become the DataFrame’s index (row labels).</li>
+<li><strong>Type Inference and Data Conversion:</strong> Pandas tries to automatically detect data types (integer, float, string, etc.). You can customize this.</li>
+<li><strong>Date and Time Parsing:</strong> Combine and parse date/time information spread across multiple columns.</li>
+<li><strong>Iterating:</strong> For very large files, read the file in chunks.</li>
+<li><strong>Unclean Data Issues:</strong> Handle issues like skipping rows, comments, and unusual numeric formats.</li>
+</ol>
+<p>Don’t be overwhelmed by all the options! The pandas documentation has excellent examples. 📚</p>
+</div>
+</section>
+<section id="example-reading-a-simple-csv" class="level2">
+<h2 class="anchored" data-anchor-id="example-reading-a-simple-csv">Example: Reading a Simple CSV</h2>
+<div style="font-size: 0.9em;">
+<p>Let’s start with a basic CSV file (<code>ex1.csv</code>):</p>
+<pre class="csv"><code>a,b,c,d,message
+1,2,3,4,hello
+5,6,7,8,world
+9,10,11,12,foo</code></pre>
+<p>We can read this using <code>pd.read_csv</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"examples/ex1.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div style="font-size: 0.8em;">
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>The output is:</p>
+<pre><code>   a   b   c   d message
+0  1   2   3   4   hello
+1  5   6   7   8   world
+2  9  10  11  12     foo</code></pre>
+</div>
+</div>
+</div>
+<ul>
+<li>Pandas automatically detected the header row and inferred the data types.</li>
+<li>The <code>DataFrame</code> is displayed with row indices (0, 1, 2) and column names.</li>
+</ul>
+</div>
+</section>
+<section id="example-no-header-row" class="level2">
+<h2 class="anchored" data-anchor-id="example-no-header-row">Example: No Header Row</h2>
+<div style="font-size: 0.9em;">
+<p>Consider <code>ex2.csv</code>:</p>
+<pre><code>1,2,3,4,hello
+5,6,7,8,world
+9,10,11,12,foo</code></pre>
+</div>
+<div style="font-size: 0.8em;">
+<ul>
+<li><p><strong>Option 1: Let pandas assign default column names:</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"examples/ex2.csv"</span>, header<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<pre><code>   0   1   2   3      4
+0  1   2   3   4  hello
+1  5   6   7   8  world
+2  9  10  11  12    foo</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div style="font-size: 0.8em;">
+<ul>
+<li><p><strong>Option 2: Specify column names:</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"examples/ex2.csv"</span>, names<span class="op">=</span>[<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"message"</span>])</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<pre><code>   a   b   c   d message
+0  1   2   3   4   hello
+1  5   6   7   8   world
+2  9  10  11  12     foo</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="setting-the-index" class="level2">
+<h2 class="anchored" data-anchor-id="setting-the-index">Setting the Index</h2>
+<div style="font-size: 0.9em;">
+<p>You can specify which column(s) should be the index using <code>index_col</code>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"message"</span>]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"examples/ex2.csv"</span>, names<span class="op">=</span>names, index_col<span class="op">=</span><span class="st">"message"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<pre><code>         a   b   c   d
+message
+hello    1   2   3   4
+world    5   6   7   8
+foo      9  10  11  12</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="hierarchical-index" class="level2">
+<h2 class="anchored" data-anchor-id="hierarchical-index">Hierarchical Index</h2>
+<div style="font-size: 0.9em;">
+<ul>
+<li>Create a hierarchical (multi-level) index by passing a list of column names or indices to <code>index_col</code>:</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming a file 'csv_mindex.csv' with columns: key1,key2,value1,value2</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>parsed <span class="op">=</span> pd.read_csv(<span class="st">"examples/csv_mindex.csv"</span>, index_col<span class="op">=</span>[<span class="st">"key1"</span>, <span class="st">"key2"</span>])</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(parsed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<pre><code>           value1  value2
+key1 key2
+one  a          1       2
+     b          3       4
+     c          5       6
+     d          7       8
+two  a          9      10
+     b         11      12
+     c         13      14
+     d         15      16</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="handling-non-standard-delimiters" class="level2">
+<h2 class="anchored" data-anchor-id="handling-non-standard-delimiters">Handling Non-Standard Delimiters</h2>
+<div style="font-size: 0.9em;">
+<ul>
+<li><p>If your file uses a delimiter other than a comma (e.g., spaces, tabs), use the <code>sep</code> argument.</p></li>
+<li><p>For variable whitespace, use a regular expression: <code>sep='\s+'</code></p></li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming a file 'ex3.txt' with whitespace as a delimiter</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> pd.read_csv(<span class="st">"examples/ex3.txt"</span>, sep<span class="op">=</span><span class="st">"\s+"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<pre><code>         A         B         C
+aaa -0.264438 -1.026059 -0.619500
+bbb  0.927272  0.302904 -0.032399
+ccc -0.264273 -0.386314 -0.217601
+ddd -0.871858 -0.348382  1.100491</code></pre>
+</div>
+</div>
+</div>
+<ul>
+<li>Pandas infers the first column as the index because there’s one fewer column name than data rows.</li>
+</ul>
+</div>
+</section>
+<section id="skipping-rows" class="level2">
+<h2 class="anchored" data-anchor-id="skipping-rows">Skipping Rows</h2>
+<div style="font-size: 0.9em;">
+<ul>
+<li>Use <code>skiprows</code> to skip specific rows:</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming a file 'ex4.csv' with comments and a header</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"examples/ex4.csv"</span>, skiprows<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<pre><code>   a   b   c   d message
+0  1   2   3   4   hello
+1  5   6   7   8   world
+2  9  10  11  12     foo
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="handling-missing-values" class="level2">
+<h2 class="anchored" data-anchor-id="handling-missing-values">Handling Missing Values</h2>
+<div style="font-size: 0.9em;">
+<ul>
+<li><p>Missing data is common in real-world datasets.</p></li>
+<li><p>Pandas uses sentinels like <code>NA</code> and <code>NULL</code> to represent missing values.</p></li>
+<li><p>You can customize these using <code>na_values</code>:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> pd.read_csv(<span class="st">"examples/ex5.csv"</span>, na_values<span class="op">=</span>[<span class="st">"NULL"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Disable default NA values with <code>keep_default_na=False</code>.</p></li>
+<li><p>Specify different sentinels per column using a dictionary:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sentinels <span class="op">=</span> {<span class="st">"message"</span>: [<span class="st">"foo"</span>, <span class="st">"NA"</span>], <span class="st">"something"</span>: [<span class="st">"two"</span>]}</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> pd.read_csv(<span class="st">"examples/ex5.csv"</span>, na_values<span class="op">=</span>sentinels, keep_default_na<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+</div>
+</section>
+<section id="pd.isna" class="level2">
+<h2 class="anchored" data-anchor-id="pd.isna"><code>pd.isna()</code></h2>
+<div style="font-size: 0.9em;">
+<ul>
+<li>Use <code>pd.isna(dataframe)</code> to check for missing values, which returns a boolean DataFrame.</li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> pd.read_csv(<span class="st">"examples/ex5.csv"</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.isna(result))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<pre><code>  something      a      b      c      d  message
+0     False  False  False  False  False     True
+1     False  False  False   True  False    False
+2     False  False  False  False  False    False
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="more-read_csv-arguments" class="level2">
+<h2 class="anchored" data-anchor-id="more-read_csv-arguments">More <code>read_csv</code> Arguments</h2>
+<div style="font-size: 0.9em;">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 83%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Argument</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>path</code></td>
+<td style="text-align: left;">Filesystem location, URL, or file-like object.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>sep/delimiter</code></td>
+<td style="text-align: left;">Character sequence or regular expression to split fields.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>header</code></td>
+<td style="text-align: left;">Row number to use as column names (default is 0, None for no header).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>index_col</code></td>
+<td style="text-align: left;">Column number(s) or name(s) to use as the row index.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>names</code></td>
+<td style="text-align: left;">List of column names.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>skiprows</code></td>
+<td style="text-align: left;">Number of rows to skip or list of row numbers to skip.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>na_values</code></td>
+<td style="text-align: left;">Sequence of values to replace with <code>NA</code>.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>keep_default_na</code></td>
+<td style="text-align: left;">Whether to use the default NA value list.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>comment</code></td>
+<td style="text-align: left;">Character(s) to split comments off the end of lines.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>parse_dates</code></td>
+<td style="text-align: left;">Attempt to parse data to <code>datetime</code> (False by default).</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>converters</code></td>
+<td style="text-align: left;">Dictionary containing column number or name mapping to functions.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>nrows</code></td>
+<td style="text-align: left;">Number of rows to read from beginning of file</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="even-more-read_csv-arguments" class="level2">
+<h2 class="anchored" data-anchor-id="even-more-read_csv-arguments">Even More <code>read_csv</code> Arguments</h2>
+<div style="font-size: 0.8em;">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 91%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Argument</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>iterator</code></td>
+<td style="text-align: left;">Return a <code>TextFileReader</code> object for reading the file piecemeal.</td>
+</tr>
+<tr class="even">
+<td><code>chunksize</code></td>
+<td style="text-align: left;">For iteration, the size of file chunks.</td>
+</tr>
+<tr class="odd">
+<td><code>skip_footer</code></td>
+<td style="text-align: left;">Number of lines to ignore at the end of the file.</td>
+</tr>
+<tr class="even">
+<td><code>verbose</code></td>
+<td style="text-align: left;">Print various parsing information.</td>
+</tr>
+<tr class="odd">
+<td><code>encoding</code></td>
+<td style="text-align: left;">Text encoding (e.g., ‘utf-8’).</td>
+</tr>
+<tr class="even">
+<td><code>squeeze</code></td>
+<td style="text-align: left;">If the parsed data only contains one column, return a Series.</td>
+</tr>
+<tr class="odd">
+<td><code>thousands</code></td>
+<td style="text-align: left;">Separator for thousands (e.g., ‘,’ or ‘.’).</td>
+</tr>
+<tr class="even">
+<td><code>decimal</code></td>
+<td style="text-align: left;">Decimal separator in numbers (e.g., ‘.’ or ‘,’).</td>
+</tr>
+<tr class="odd">
+<td><code>engine</code></td>
+<td style="text-align: left;">CSV parsing engine (‘c’, ‘python’, or ‘pyarrow’). ‘c’ is the default and fastest, ‘pyarrow’ is newer and faster for some files, ‘python’ is slower but has more features.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="reading-text-files-in-pieces" class="level2">
+<h2 class="anchored" data-anchor-id="reading-text-files-in-pieces">Reading Text Files in Pieces</h2>
+<div style="font-size: 0.9em;">
+<ul>
+<li>For very large files, read in chunks using <code>chunksize</code>:</li>
+</ul>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>chunker <span class="op">=</span> pd.read_csv(<span class="st">"examples/ex6.csv"</span>, chunksize<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>tot <span class="op">=</span> pd.Series([], dtype<span class="op">=</span><span class="st">'int64'</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> piece <span class="kw">in</span> chunker:</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    tot <span class="op">=</span> tot.add(piece[<span class="st">"key"</span>].value_counts(), fill_value<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>tot <span class="op">=</span> tot.sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tot[:<span class="dv">10</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>The <code>TextFileReader</code> object returned by <code>read_csv</code> with <code>chunksize</code> allows iteration.</li>
+<li>You can also use the <code>nrows</code> arguments to read small number of rows.</li>
+</ul>
+</div>
+</section>
+<section id="writing-data-to-text-format" class="level2">
+<h2 class="anchored" data-anchor-id="writing-data-to-text-format">Writing Data to Text Format</h2>
+<div style="font-size: 0.9em;">
+<ul>
+<li><p>Use the <code>to_csv</code> method to write a DataFrame to a CSV file:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"examples/ex5.csv"</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>data.to_csv(<span class="st">"examples/out.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Customize the delimiter using <code>sep</code>:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>data.to_csv(sys.stdout, sep<span class="op">=</span><span class="st">"|"</span>) <span class="co"># Output to console for demonstration</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+</div>
+</section>
+<section id="handling-missing-values-in-output" class="level2">
+<h2 class="anchored" data-anchor-id="handling-missing-values-in-output">Handling Missing Values in Output</h2>
+<div style="font-size: 0.9em;">
+<ul>
+<li>By default, missing values are represented as empty strings.</li>
+<li>Use <code>na_rep</code> to specify a different representation:</li>
+</ul>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>data.to_csv(sys.stdout, na_rep<span class="op">=</span><span class="st">"NULL"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="controlling-row-and-column-labels" class="level2">
+<h2 class="anchored" data-anchor-id="controlling-row-and-column-labels">Controlling Row and Column Labels</h2>
+<ul>
+<li>By default, both row and column labels are written.</li>
+<li>Disable them using <code>index=False</code> and <code>header=False</code>:</li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>data.to_csv(sys.stdout, index<span class="op">=</span><span class="va">False</span>, header<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Write a subset of columns in a specific order:</li>
+</ul>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>data.to_csv(sys.stdout, index<span class="op">=</span><span class="va">False</span>, columns<span class="op">=</span>[<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="working-with-other-delimited-formats" class="level2">
+<h2 class="anchored" data-anchor-id="working-with-other-delimited-formats">Working with Other Delimited Formats</h2>
+<div style="font-size: 0.85em;">
+<ul>
+<li>For files with single-character delimiters, use Python’s built-in <code>csv</code> module:</li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> csv</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="bu">open</span>(<span class="st">"examples/ex7.csv"</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>reader <span class="op">=</span> csv.reader(f)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> line <span class="kw">in</span> reader:</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(line)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>f.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>You can create a dictionary of data columns like this:</li>
+</ul>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"examples/ex7.csv"</span>) <span class="im">as</span> f:</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> <span class="bu">list</span>(csv.reader(f))</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>header, values <span class="op">=</span> lines[<span class="dv">0</span>], lines[<span class="dv">1</span>:]</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>data_dict <span class="op">=</span> {h: v <span class="cf">for</span> h, v <span class="kw">in</span> <span class="bu">zip</span>(header, <span class="bu">zip</span>(<span class="op">*</span>values))}</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data_dict)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="csv-dialect-options" class="level2">
+<h2 class="anchored" data-anchor-id="csv-dialect-options">CSV Dialect Options</h2>
+<div style="font-size: 0.85em;">
+<ul>
+<li>Customize CSV parsing with the <code>csv.Dialect</code> class or by passing options directly to <code>csv.reader</code>:</li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 88%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Argument</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>delimiter</code></td>
+<td style="text-align: left;">One-character string to separate fields (default is ‘,’).</td>
+</tr>
+<tr class="even">
+<td><code>lineterminator</code></td>
+<td style="text-align: left;">Line terminator for writing (default is ‘’).</td>
+</tr>
+<tr class="odd">
+<td><code>quotechar</code></td>
+<td style="text-align: left;">Quote character for fields with special characters (default is ‘“’).</td>
+</tr>
+<tr class="even">
+<td><code>quoting</code></td>
+<td style="text-align: left;">Quoting convention (e.g., <code>csv.QUOTE_MINIMAL</code>).</td>
+</tr>
+<tr class="odd">
+<td><code>skipinitialspace</code></td>
+<td style="text-align: left;">Ignore whitespace after each delimiter (default is False).</td>
+</tr>
+<tr class="even">
+<td><code>doublequote</code></td>
+<td style="text-align: left;">How to handle quoting character inside a field.</td>
+</tr>
+<tr class="odd">
+<td><code>escapechar</code></td>
+<td style="text-align: left;">String to escape the delimiter if quoting is set to <code>csv.QUOTE_NONE</code>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="json-data" class="level2">
+<h2 class="anchored" data-anchor-id="json-data">JSON Data</h2>
+<div style="font-size: 0.9em;">
+<ul>
+<li>JSON (JavaScript Object Notation) is a common format for web data.</li>
+<li>It’s more free-form than CSV.</li>
+<li>Use the <code>json</code> module to work with JSON data:</li>
+</ul>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="st">{"name": "Wes",</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="st"> "cities_lived": ["Akron", "Nashville", "New York", "San Francisco"],</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="st"> "pet": null,</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="st"> "siblings": [{"name": "Scott", "age": 34, "hobbies": ["guitars", "soccer"]},</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="st">              {"name": "Katie", "age": 42, "hobbies": ["diving", "art"]}]</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> json.loads(obj) <span class="co"># Convert JSON string to Python object</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>asjson <span class="op">=</span> json.dumps(result) <span class="co"># Convert Python object back to JSON</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(asjson)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="json-and-pandas" class="level2">
+<h2 class="anchored" data-anchor-id="json-and-pandas">JSON and Pandas</h2>
+<div style="font-size: 0.9em;">
+<ul>
+<li><p>Convert a list of dictionaries (from JSON) to a DataFrame:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>siblings <span class="op">=</span> pd.DataFrame(result[<span class="st">"siblings"</span>], columns<span class="op">=</span>[<span class="st">"name"</span>, <span class="st">"age"</span>])</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(siblings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><code>pd.read_json</code> can automatically convert JSON datasets into a Series or DataFrame:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_json(<span class="st">"examples/example.json"</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Export data to JSON using <code>to_json</code>: <code>python     print(data.to_json())     print(data.to_json(orient="records"))</code></p></li>
+</ul>
+</div>
+</section>
+<section id="xml-and-html-web-scraping" class="level2">
+<h2 class="anchored" data-anchor-id="xml-and-html-web-scraping">XML and HTML: Web Scraping</h2>
+<div style="font-size: 0.9em;">
+<ul>
+<li>Python libraries like <code>lxml</code>, <code>Beautiful Soup</code>, and <code>html5lib</code> are used for parsing HTML and XML.</li>
+<li><code>pandas.read_html</code> uses these libraries to parse tables from HTML files:</li>
+</ul>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>tables <span class="op">=</span> pd.read_html(<span class="st">"examples/fdic_failed_bank_list.html"</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>failures <span class="op">=</span> tables[<span class="dv">0</span>]</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(failures.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>You can perform data cleaning and analysis, for example, calculating bank failures by year: <code>python     close_timestamps = pd.to_datetime(failures['Closing Date'])     print(close_timestamps.dt.year.value_counts())</code></li>
+</ul>
+</div>
+</section>
+<section id="parsing-xml-with-lxml.objectify" class="level2">
+<h2 class="anchored" data-anchor-id="parsing-xml-with-lxml.objectify">Parsing XML with <code>lxml.objectify</code></h2>
+<div style="font-size: 0.85em;">
+<ul>
+<li>For more complex, structured XML data use <code>lxml.objectify</code></li>
+</ul>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lxml <span class="im">import</span> objectify</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> <span class="st">"datasets/mta_perf/Performance_MNR.xml"</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(path) <span class="im">as</span> f:</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    parsed <span class="op">=</span> objectify.parse(f)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>root <span class="op">=</span> parsed.getroot()</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>skip_fields <span class="op">=</span> [<span class="st">"PARENT_SEQ"</span>, <span class="st">"INDICATOR_SEQ"</span>, <span class="st">"DESIRED_CHANGE"</span>, <span class="st">"DECIMAL_PLACES"</span>]</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> elt <span class="kw">in</span> root.INDICATOR:</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>  el_data <span class="op">=</span> {}</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> child <span class="kw">in</span> elt.getchildren():</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> child.tag <span class="kw">in</span> skip_fields:</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>    el_data[child.tag] <span class="op">=</span> child.pyval</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>  data.append(el_data)</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>perf <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(perf.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>pandas.read_xml</code> provides a one-line solution for this example: <code>python     perf2 = pd.read_xml(path)     print(perf2.head())</code></li>
+</ul>
+</div>
+</section>
+<section id="binary-data-formats" class="level2">
+<h2 class="anchored" data-anchor-id="binary-data-formats">Binary Data Formats</h2>
+<div style="font-size: 0.9em;">
+<ul>
+<li><p><strong>Pickle:</strong> Python’s built-in serialization module. Use <code>to_pickle</code> and <code>read_pickle</code> for short-term storage. <code>python     frame = pd.read_csv("examples/ex1.csv")     frame.to_pickle("examples/frame_pickle")     pd.read_pickle("examples/frame_pickle")</code></p></li>
+<li><p><strong>Caution:</strong> Pickle is not recommended for long-term storage due to potential compatibility issues. ⚠️</p></li>
+<li><p><strong>Other binary formats supported by pandas:</strong> HDF5, ORC, Parquet, etc. These offer advantages like compression and efficient I/O, especially for large datasets.</p></li>
+</ul>
+</div>
+</section>
+<section id="reading-microsoft-excel-files" class="level2">
+<h2 class="anchored" data-anchor-id="reading-microsoft-excel-files">Reading Microsoft Excel Files</h2>
+<div style="font-size: 0.9em;">
+<ul>
+<li>Use <code>pandas.ExcelFile</code> or <code>pandas.read_excel</code>:</li>
+</ul>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using ExcelFile (efficient for multiple sheets)</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>xlsx <span class="op">=</span> pd.ExcelFile(<span class="st">"examples/ex1.xlsx"</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> xlsx.parse(sheet_name<span class="op">=</span><span class="st">"Sheet1"</span>, index_col<span class="op">=</span><span class="dv">0</span>) <span class="co">#read first sheet</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Using read_excel</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> pd.read_excel(<span class="st">"examples/ex1.xlsx"</span>, sheet_name<span class="op">=</span><span class="st">"Sheet1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Write pandas data to excel:</li>
+</ul>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>writer <span class="op">=</span> pd.ExcelWriter(<span class="st">"examples/ex2.xlsx"</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>frame.to_excel(writer, <span class="st">"Sheet1"</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>writer.save()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Or simply: <code>frame.to_excel("examples/ex2.xlsx")</code></li>
+</ul>
+</div>
+</section>
+<section id="using-hdf5-format" class="level2">
+<h2 class="anchored" data-anchor-id="using-hdf5-format">Using HDF5 Format</h2>
+<div style="font-size: 0.85em;">
+<ul>
+<li><p>HDF5 (Hierarchical Data Format) is designed for storing large, scientific array data.</p></li>
+<li><p>Install PyTables: <code>conda install pytables</code> or <code>pip install tables</code></p></li>
+</ul>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> pd.DataFrame({<span class="st">"a"</span>: np.random.standard_normal(<span class="dv">100</span>)})</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>store <span class="op">=</span> pd.HDFStore(<span class="st">"examples/mydata.h5"</span>)  <span class="co"># Create HDFStore object</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>store[<span class="st">"obj1"</span>] <span class="op">=</span> frame         <span class="co"># Store DataFrame like a dictionary</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>store[<span class="st">"obj1_col"</span>] <span class="op">=</span> frame[<span class="st">"a"</span>] <span class="co"># Store a Series</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(store[<span class="st">"obj1"</span>]) <span class="co">#retrieve stored objects</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>HDFStore supports two storage schemas: <code>fixed</code> and <code>table</code>.</li>
+</ul>
+<p>-<code>table</code> schema support query operation, like:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>store.put(<span class="st">"obj2"</span>, frame, <span class="bu">format</span><span class="op">=</span><span class="st">"table"</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(store.select(<span class="st">"obj2"</span>, where<span class="op">=</span>[<span class="st">"index &gt;= 10 and index &lt;= 15"</span>]))</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>store.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p><code>pandas.read_hdf</code> provides a shortcut.</p></li>
+<li><p>HDF5 is <em>not</em> a database. It’s best for write-once, read-many datasets.</p></li>
+</ul>
+</div>
+</section>
+<section id="interacting-with-web-apis" class="level2">
+<h2 class="anchored" data-anchor-id="interacting-with-web-apis">Interacting with Web APIs</h2>
+<div style="font-size: 0.9em;">
+<ul>
+<li><p>Many websites offer data through public APIs, often returning JSON.</p></li>
+<li><p>Use the <code>requests</code> library to access these APIs:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://api.github.com/repos/pandas-dev/pandas/issues"</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>resp <span class="op">=</span> requests.get(url)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>resp.raise_for_status() <span class="co"># Check for HTTP errors</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> resp.json()      <span class="co"># Parse JSON response</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Create a DataFrame from the API response: <code>python     issues = pd.DataFrame(data, columns=["number", "title", "labels", "state"])     print(issues)</code></p></li>
+</ul>
+</div>
+</section>
+<section id="interacting-with-databases" class="level2">
+<h2 class="anchored" data-anchor-id="interacting-with-databases">Interacting with Databases</h2>
+<div style="font-size: 0.9em;">
+<ul>
+<li>SQL-based relational databases are common in business settings.</li>
+<li>Use <code>sqlite3</code> (built-in) for a simple example:</li>
+</ul>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="st">CREATE TABLE test</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="st">(a VARCHAR(20), b VARCHAR(20),</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="st"> c REAL,        d INTEGER</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="st">);"""</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>con <span class="op">=</span> sqlite3.<span class="ex">connect</span>(<span class="st">"mydata.sqlite"</span>)</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>con.execute(query)</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>con.commit()</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [(<span class="st">"Atlanta"</span>, <span class="st">"Georgia"</span>, <span class="fl">1.25</span>, <span class="dv">6</span>),</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"Tallahassee"</span>, <span class="st">"Florida"</span>, <span class="fl">2.6</span>, <span class="dv">3</span>),</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"Sacramento"</span>, <span class="st">"California"</span>, <span class="fl">1.7</span>, <span class="dv">5</span>)]</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>stmt <span class="op">=</span> <span class="st">"INSERT INTO test VALUES(?, ?, ?, ?)"</span></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>con.executemany(stmt, data)</span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>con.commit()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="reading-data-from-database" class="level2">
+<h2 class="anchored" data-anchor-id="reading-data-from-database">Reading Data from Database</h2>
+<div style="font-size: 0.9em;">
+<ul>
+<li><p>Retrieve data and create a DataFrame:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>cursor <span class="op">=</span> con.execute(<span class="st">"SELECT * FROM test"</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> cursor.fetchall()</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(rows, columns<span class="op">=</span>[x[<span class="dv">0</span>] <span class="cf">for</span> x <span class="kw">in</span> cursor.description])</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>SQLAlchemy provides a higher-level interface, abstracting differences between SQL databases. Install using <code>conda install sqlalchemy</code>. <code>python     import sqlalchemy as sqla     db = sqla.create_engine("sqlite:///mydata.sqlite")     df_sql = pd.read_sql("SELECT * FROM test", db)     print(df_sql)</code></p></li>
+</ul>
+</div>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<div style="font-size: 0.9em;">
+<ul>
+<li>We’ve covered a wide range of data loading techniques using pandas:
+<ul>
+<li>Reading and writing text files (CSV, delimited).</li>
+<li>Handling various file formats (JSON, XML, HTML, Excel, HDF5).</li>
+<li>Interacting with web APIs and databases.</li>
+</ul></li>
+<li>These skills are fundamental for any data analysis project.</li>
+<li>Efficient data loading is key to efficient analysis! ⚡️</li>
+</ul>
+</div>
+</section>
+<section id="thoughts-and-discussion" class="level2">
+<h2 class="anchored" data-anchor-id="thoughts-and-discussion">Thoughts and Discussion 🤔</h2>
+<div style="font-size: 0.9em;">
+<ul>
+<li>Which data formats have you encountered in your own work or studies?</li>
+<li>What are some challenges you’ve faced when loading data?</li>
+<li>How might you choose between different file formats (e.g., CSV, JSON, HDF5) for a particular project? Consider factors like file size, complexity, and read/write frequency.</li>
+<li>Can you think of other web APIs that might be interesting to explore?</li>
+<li>How can efficient data loading techniques improve the overall data analysis workflow?</li>
+<li>Beyond the tools discussed, what are some other data sources you might encounter (e.g., streaming data, sensor data)?</li>
+</ul>
+</div>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -76,12 +110,8 @@ ul.task-list li input[type="checkbox"] {
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://qiufei.github.io/web-slide-r"> 
-<span class="menu-text">R课件</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="https://qiufei.github.io/web-slide-marketing"> 
-<span class="menu-text">营销课件</span></a>
+    <a class="nav-link" href="https://qiufei.github.io/web-slide"> 
+<span class="menu-text">课件</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../about.html"> 
@@ -106,8 +136,1915 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<pre class="qmd"><code>---
+title: "Getting Started with pandas"
+author: "Your Name"
+format:
+  revealjs:
+    theme: sky
+    slide-number: true
+    show-slide-number: all
+    preview-links: auto
+---
+
+## Introduction to pandas 🐼
+
+::: {layout-ncol=2}
+- **What is pandas?**
+    -  A powerful Python library for data manipulation and analysis.
+    -  Think of it as Excel, but much more powerful and flexible, all within Python.
+    -  Provides data structures like `Series` (1D) and `DataFrame` (2D) to efficiently store and process data.
+-   **Why use pandas?**
+    -  Simplifies data cleaning, transformation, and analysis.
+    -  Integrates well with other Python libraries (NumPy, SciPy, scikit-learn, matplotlib).
+    -  Handles heterogeneous data (different data types in different columns).
+    - Large and active open source community
+
+![](./figs/pandas-logo.png)
+:::
+
+## Key Concepts: Data Structures
+
+- **Series:**
+    -  A one-dimensional labeled array.  Like a single column in a spreadsheet.
+    -  Can hold data of various types (integers, floats, strings, etc.).
+    -  Has an *index*, which labels each element.
+    -  Analogy: A list with custom labels (the index) for each item.
+
+- **DataFrame:**
+    -  A two-dimensional labeled data structure.  Like a spreadsheet or a SQL table.
+    -  Essentially a collection of Series that share the same index.
+    -  Each column can have a different data type.
+    -  Analogy: A dictionary where each key is a column name and each value is a Series (the column's data).
+
+## Importing pandas and Conventions
+
+- The standard way to import pandas:
+
+```python
+import pandas as pd  # 'pd' is the conventional alias
+import numpy as np   # NumPy is often used with pandas</code></pre>
+<ul>
+<li>Common practice: Import <code>Series</code> and <code>DataFrame</code> directly:</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pandas <span class="im">import</span> Series, DataFrame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>This makes your code cleaner and easier to read.</li>
+</ul>
+<section id="series-your-first-pandas-data-structure" class="level2">
+<h2 class="anchored" data-anchor-id="series-your-first-pandas-data-structure">Series: Your First pandas Data Structure</h2>
+<ul>
+<li>Creating a simple Series:</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> pd.Series([<span class="dv">4</span>, <span class="dv">7</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">3</span>])</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>obj</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>0    4
+1    7
+2   -5
+3    3
+dtype: int64</code></pre>
+</div>
+<ul>
+<li><strong>Explanation:</strong>
+<ul>
+<li>The left column is the <em>index</em> (automatically generated here: 0, 1, 2, 3).</li>
+<li>The right column contains the <em>values</em>.</li>
+<li><code>dtype: int64</code> indicates the data type (64-bit integer).</li>
+</ul></li>
+</ul>
+</section>
+<section id="accessing-series-data" class="level2">
+<h2 class="anchored" data-anchor-id="accessing-series-data">Accessing Series Data</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the values as a PandasArray</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>obj.array</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>&lt;PandasArray&gt;
+[4, 7, -5, 3]
+Length: 4, dtype: int64</code></pre>
+</div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the index</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>obj.index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>RangeIndex(start=0, stop=4, step=1)</code></pre>
+</div>
+<ul>
+<li><code>.array</code> provides the underlying data. Usually a NumPy array, but can hold “extension array types” (more advanced).</li>
+<li><code>.index</code> gives you the index object (labels for each value).</li>
+</ul>
+</section>
+<section id="series-with-custom-index" class="level2">
+<h2 class="anchored" data-anchor-id="series-with-custom-index">Series with Custom Index</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>obj2 <span class="op">=</span> pd.Series([<span class="dv">4</span>, <span class="dv">7</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">3</span>], index<span class="op">=</span>[<span class="st">'d'</span>, <span class="st">'b'</span>, <span class="st">'a'</span>, <span class="st">'c'</span>])</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>obj2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>d    4
+b    7
+a   -5
+c    3
+dtype: int64</code></pre>
+</div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>obj2.index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>Index(['d', 'b', 'a', 'c'], dtype='object')</code></pre>
+</div>
+<ul>
+<li>Now, we have custom labels (strings) instead of default integer indices.</li>
+<li><code>dtype='object'</code> indicates the index type (strings are considered “objects” in pandas).</li>
+</ul>
+</section>
+<section id="selecting-data-in-a-series" class="level2">
+<h2 class="anchored" data-anchor-id="selecting-data-in-a-series">Selecting Data in a Series</h2>
+<ul>
+<li>Use index labels, similar to dictionary keys:</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>obj2[<span class="st">'a'</span>]  <span class="co"># Access the value at index 'a'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>-5</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>obj2[<span class="st">'d'</span>] <span class="op">=</span> <span class="dv">6</span> <span class="co"># Modify the value at index 'd'</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>obj2[[<span class="st">'c'</span>, <span class="st">'a'</span>, <span class="st">'d'</span>]]  <span class="co"># Select multiple values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>c    3
+a   -5
+d    6
+dtype: int64</code></pre>
+</div>
+<ul>
+<li><strong>Key difference from NumPy:</strong> You can use your custom labels for selection!</li>
+</ul>
+</section>
+<section id="filtering-and-operations" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-and-operations">Filtering and Operations</h2>
+<ul>
+<li>NumPy-like operations work on Series and preserve the index-value links:</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>obj2[obj2 <span class="op">&gt;</span> <span class="dv">0</span>]  <span class="co"># Boolean indexing (select values &gt; 0)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>d    6
+b    7
+c    3
+dtype: int64</code></pre>
+</div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>obj2 <span class="op">*</span> <span class="dv">2</span>  <span class="co"># Scalar multiplication</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>d    12
+b    14
+a   -10
+c     6
+dtype: int64</code></pre>
+</div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>np.exp(obj2)  <span class="co"># Apply a NumPy function (exponential)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>d     403.428793
+b    1096.633158
+a       0.006738
+c      20.085537
+dtype: float64</code></pre>
+</div>
+<ul>
+<li><strong>Important:</strong> The index is always maintained!</li>
+</ul>
+</section>
+<section id="series-as-ordered-dictionaries" class="level2">
+<h2 class="anchored" data-anchor-id="series-as-ordered-dictionaries">Series as Ordered Dictionaries</h2>
+<ul>
+<li>A Series is like a fixed-length, ordered dictionary.</li>
+</ul>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">'b'</span> <span class="kw">in</span> obj2  <span class="co"># Check if index 'b' exists</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>True</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">'e'</span> <span class="kw">in</span> obj2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>False</code></pre>
+<p>:::</p>
+<ul>
+<li>You can create a Series directly from a Python dictionary:</li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>sdata <span class="op">=</span> {<span class="st">'Ohio'</span>: <span class="dv">35000</span>, <span class="st">'Texas'</span>: <span class="dv">71000</span>, <span class="st">'Oregon'</span>: <span class="dv">16000</span>, <span class="st">'Utah'</span>: <span class="dv">5000</span>}</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>obj3 <span class="op">=</span> pd.Series(sdata)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>obj3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>Ohio      35000
+Texas     71000
+Oregon    16000
+Utah       5000
+dtype: int64</code></pre>
+</div>
+<ul>
+<li>Keys become the index, and values become the Series values.</li>
+<li>to_dict method:</li>
+</ul>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>obj3.to_dict()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>{'Ohio': 35000, 'Texas': 71000, 'Oregon': 16000, 'Utah': 5000}</code></pre>
+</div>
+</section>
+<section id="controlling-the-index-order" class="level2">
+<h2 class="anchored" data-anchor-id="controlling-the-index-order">Controlling the Index Order</h2>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> [<span class="st">'California'</span>, <span class="st">'Ohio'</span>, <span class="st">'Oregon'</span>, <span class="st">'Texas'</span>]</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>obj4 <span class="op">=</span> pd.Series(sdata, index<span class="op">=</span>states)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>obj4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>California        NaN
+Ohio          35000.0
+Oregon        16000.0
+Texas         71000.0
+dtype: float64</code></pre>
+</div>
+<ul>
+<li><strong>Explanation:</strong>
+<ul>
+<li>We provide a specific index (<code>states</code>).</li>
+<li>‘California’ is in <code>states</code> but not in <code>sdata</code>, so it gets a <code>NaN</code> (Not a Number) value, representing missing data.</li>
+<li>‘Utah’ is in <code>sdata</code> but not in <code>states</code>, so it’s excluded.</li>
+</ul></li>
+</ul>
+</section>
+<section id="handling-missing-data" class="level2">
+<h2 class="anchored" data-anchor-id="handling-missing-data">Handling Missing Data</h2>
+<ul>
+<li><code>NaN</code> (Not a Number) is pandas’ way of representing missing values.</li>
+<li>Functions to detect missing data:</li>
+</ul>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>pd.isna(obj4)  <span class="co"># Check for NaN values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>California     True
+Ohio          False
+Oregon        False
+Texas         False
+dtype: bool</code></pre>
+</div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>pd.notna(obj4) <span class="co"># Check for non-NaN values (the opposite)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>California    False
+Ohio           True
+Oregon         True
+Texas          True
+dtype: bool</code></pre>
+</div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>obj4.isna()  <span class="co"># Series also has these as methods</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>California     True
+Ohio          False
+Oregon        False
+Texas         False
+dtype: bool</code></pre>
+</div>
+</section>
+<section id="data-alignment" class="level2">
+<h2 class="anchored" data-anchor-id="data-alignment">Data Alignment</h2>
+<ul>
+<li>A powerful feature: Arithmetic operations automatically align data by index label.</li>
+</ul>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>obj3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>Ohio      35000
+Texas     71000
+Oregon    16000
+Utah       5000
+dtype: int64</code></pre>
+</div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>obj4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>California        NaN
+Ohio          35000.0
+Oregon        16000.0
+Texas         71000.0
+dtype: float64</code></pre>
+</div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>obj3 <span class="op">+</span> obj4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>California         NaN
+Ohio           70000.0
+Oregon         32000.0
+Texas         142000.0
+Utah               NaN
+dtype: float64</code></pre>
+</div>
+<ul>
+<li><strong>Explanation:</strong>
+<ul>
+<li>Only indices present in <em>both</em> Series are used in the calculation.</li>
+<li>If an index is in one Series but not the other, the result is <code>NaN</code>.</li>
+<li>Similar to a database <em>join</em> operation.</li>
+</ul></li>
+</ul>
+</section>
+<section id="naming-series-and-their-index" class="level2">
+<h2 class="anchored" data-anchor-id="naming-series-and-their-index">Naming Series and their Index</h2>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>obj4.name <span class="op">=</span> <span class="st">'population'</span>  <span class="co"># Name the Series itself</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>obj4.index.name <span class="op">=</span> <span class="st">'state'</span> <span class="co"># Name the index</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>obj4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>state
+California        NaN
+Ohio          35000.0
+Oregon        16000.0
+Texas         71000.0
+Name: population, dtype: float64</code></pre>
+</div>
+<ul>
+<li>These names are used in various pandas operations and outputs.</li>
+</ul>
+</section>
+<section id="changing-the-index-in-place" class="level2">
+<h2 class="anchored" data-anchor-id="changing-the-index-in-place">Changing the Index In-Place</h2>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>obj</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>0    4
+1    7
+2   -5
+3    3
+dtype: int64</code></pre>
+</div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>obj.index <span class="op">=</span> [<span class="st">'Bob'</span>, <span class="st">'Steve'</span>, <span class="st">'Jeff'</span>, <span class="st">'Ryan'</span>]  <span class="co"># Assign a new index</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>obj</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>Bob      4
+Steve    7
+Jeff    -5
+Ryan     3
+dtype: int64</code></pre>
+</div>
+<ul>
+<li>Be careful: The new index must have the same length as the Series.</li>
+</ul>
+</section>
+<section id="dataframe-the-spreadsheet-of-pandas" class="level2">
+<h2 class="anchored" data-anchor-id="dataframe-the-spreadsheet-of-pandas">DataFrame: The Spreadsheet of pandas</h2>
+<ul>
+<li>Creating a DataFrame from a dictionary:</li>
+</ul>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {<span class="st">'state'</span>: [<span class="st">'Ohio'</span>, <span class="st">'Ohio'</span>, <span class="st">'Ohio'</span>, <span class="st">'Nevada'</span>, <span class="st">'Nevada'</span>, <span class="st">'Nevada'</span>],</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>        <span class="st">'year'</span>: [<span class="dv">2000</span>, <span class="dv">2001</span>, <span class="dv">2002</span>, <span class="dv">2001</span>, <span class="dv">2002</span>, <span class="dv">2003</span>],</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">'pop'</span>: [<span class="fl">1.5</span>, <span class="fl">1.7</span>, <span class="fl">3.6</span>, <span class="fl">2.4</span>, <span class="fl">2.9</span>, <span class="fl">3.2</span>]}</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>frame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>Explanation:</strong>
+<ul>
+<li>Each key in the <code>data</code> dictionary becomes a column name.</li>
+<li>Each value (a list) becomes the data for that column.</li>
+<li>The index is automatically generated (0, 1, 2, …).</li>
+</ul></li>
+<li>Displayed as a nicely formatted table in Jupyter.</li>
+</ul>
+</section>
+<section id="dataframe.head-and-dataframe.tail" class="level2">
+<h2 class="anchored" data-anchor-id="dataframe.head-and-dataframe.tail">DataFrame.head() and DataFrame.tail()</h2>
+<ul>
+<li><code>frame.head()</code> shows the first five rows.</li>
+<li><code>frame.tail()</code> shows the last five rows.</li>
+<li>Useful for quickly inspecting large DataFrames.</li>
+</ul>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>frame.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>    state  year  pop
+0    Ohio  2000  1.5
+1    Ohio  2001  1.7
+2    Ohio  2002  3.6
+3  Nevada  2001  2.4
+4  Nevada  2002  2.9</code></pre>
+</div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>frame.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>    state  year  pop
+1    Ohio  2001  1.7
+2    Ohio  2002  3.6
+3  Nevada  2001  2.4
+4  Nevada  2002  2.9
+5  Nevada  2003  3.2</code></pre>
+</div>
+</section>
+<section id="specifying-column-order" class="level2">
+<h2 class="anchored" data-anchor-id="specifying-column-order">Specifying Column Order</h2>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(data, columns<span class="op">=</span>[<span class="st">'year'</span>, <span class="st">'state'</span>, <span class="st">'pop'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>   year   state  pop
+0  2000    Ohio  1.5
+1  2001    Ohio  1.7
+2  2002    Ohio  3.6
+3  2001  Nevada  2.4
+4  2002  Nevada  2.9
+5  2003  Nevada  3.2</code></pre>
+</div>
+<ul>
+<li>The <code>columns</code> parameter lets you control the order of the columns.</li>
+</ul>
+</section>
+<section id="handling-missing-columns" class="level2">
+<h2 class="anchored" data-anchor-id="handling-missing-columns">Handling Missing Columns</h2>
+<div class="sourceCode" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>frame2 <span class="op">=</span> pd.DataFrame(data, columns<span class="op">=</span>[<span class="st">'year'</span>, <span class="st">'state'</span>, <span class="st">'pop'</span>, <span class="st">'debt'</span>])</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>frame2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>   year   state  pop  debt
+0  2000    Ohio  1.5   NaN
+1  2001    Ohio  1.7   NaN
+2  2002    Ohio  3.6   NaN
+3  2001  Nevada  2.4   NaN
+4  2002  Nevada  2.9   NaN
+5  2003  Nevada  3.2   NaN
+</code></pre>
+</div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>frame2.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>Index(['year', 'state', 'pop', 'debt'], dtype='object')</code></pre>
+</div>
+<ul>
+<li>If you include a column name that’s not in the <code>data</code> dictionary (like ‘debt’), it will be filled with <code>NaN</code> values.</li>
+</ul>
+</section>
+<section id="retrieving-columns" class="level2">
+<h2 class="anchored" data-anchor-id="retrieving-columns">Retrieving Columns</h2>
+<ul>
+<li>Two ways to get a column (as a Series):</li>
+</ul>
+<div class="sourceCode" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>frame2[<span class="st">'state'</span>]  <span class="co"># Dictionary-like notation (works for any column name)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>0      Ohio
+1      Ohio
+2      Ohio
+3    Nevada
+4    Nevada
+5    Nevada
+Name: state, dtype: object</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>frame2.year  <span class="co"># Attribute-like notation (only works for valid Python variable names)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>0    2000
+1    2001
+2    2002
+3    2001
+4    2002
+5    2003
+Name: year, dtype: int64</code></pre>
+<ul>
+<li><strong>Important:</strong> <code>frame2.column_name</code> only works if the column name is a valid Python variable name (no spaces, special characters, etc.) and doesn’t conflict with DataFrame methods.</li>
+</ul>
+</section>
+<section id="retrieving-rows-loc-and-iloc" class="level2">
+<h2 class="anchored" data-anchor-id="retrieving-rows-loc-and-iloc">Retrieving Rows: loc and iloc</h2>
+<div class="sourceCode" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>frame2.loc[<span class="dv">1</span>]  <span class="co"># Select row by label (index value)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>year     2001
+state    Ohio
+pop       1.7
+debt      NaN
+Name: 1, dtype: object</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>frame2.iloc[<span class="dv">2</span>]  <span class="co"># Select row by integer position</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>year     2002
+state    Ohio
+pop       3.6
+debt      NaN
+Name: 2, dtype: object</code></pre>
+<ul>
+<li><code>loc</code>: Selects by <em>label</em>.</li>
+<li><code>iloc</code>: Selects by <em>integer position</em>.</li>
+<li><strong>Key Concept:</strong> These are very important for selecting data in DataFrames.</li>
+</ul>
+</section>
+<section id="modifying-columns" class="level2">
+<h2 class="anchored" data-anchor-id="modifying-columns">Modifying Columns</h2>
+<ul>
+<li>Assign a single value to a column:</li>
+</ul>
+<div class="sourceCode" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>frame2[<span class="st">'debt'</span>] <span class="op">=</span> <span class="fl">16.5</span>  <span class="co"># Assign 16.5 to all rows in the 'debt' column</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>frame2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>   year   state  pop  debt
+0  2000    Ohio  1.5  16.5
+1  2001    Ohio  1.7  16.5
+2  2002    Ohio  3.6  16.5
+3  2001  Nevada  2.4  16.5
+4  2002  Nevada  2.9  16.5
+5  2003  Nevada  3.2  16.5</code></pre>
+</div>
+<ul>
+<li>Assign an array or Series:</li>
+</ul>
+<div class="sourceCode" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>frame2[<span class="st">'debt'</span>] <span class="op">=</span> np.arange(<span class="fl">6.</span>)  <span class="co"># Assign values from 0 to 5</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>frame2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>   year   state  pop  debt
+0  2000    Ohio  1.5   0.0
+1  2001    Ohio  1.7   1.0
+2  2002    Ohio  3.6   2.0
+3  2001  Nevada  2.4   3.0
+4  2002  Nevada  2.9   4.0
+5  2003  Nevada  3.2   5.0</code></pre>
+</div>
+<ul>
+<li>When assigning a Series, it aligns by index:</li>
+</ul>
+<div class="sourceCode" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>val <span class="op">=</span> pd.Series([<span class="op">-</span><span class="fl">1.2</span>, <span class="op">-</span><span class="fl">1.5</span>, <span class="op">-</span><span class="fl">1.7</span>], index<span class="op">=</span>[<span class="st">'two'</span>, <span class="st">'four'</span>, <span class="st">'five'</span>]) <span class="co">#No Effect</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>frame2[<span class="st">'debt'</span>] <span class="op">=</span> val</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>frame2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>   year   state  pop  debt
+0  2000    Ohio  1.5   NaN
+1  2001    Ohio  1.7   NaN
+2  2002    Ohio  3.6   NaN
+3  2001  Nevada  2.4   NaN
+4  2002  Nevada  2.9   NaN
+5  2003  Nevada  3.2   NaN</code></pre>
+</div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>val <span class="op">=</span> pd.Series([<span class="op">-</span><span class="fl">1.2</span>, <span class="op">-</span><span class="fl">1.5</span>, <span class="op">-</span><span class="fl">1.7</span>], index<span class="op">=</span>[<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>]) <span class="co">#Have Effect</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>frame2[<span class="st">'debt'</span>] <span class="op">=</span> val</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>frame2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>   year   state  pop  debt
+0  2000    Ohio  1.5   NaN
+1  2001    Ohio  1.7   NaN
+2  2002    Ohio  3.6  -1.2
+3  2001  Nevada  2.4   NaN
+4  2002  Nevada  2.9  -1.5
+5  2003  Nevada  3.2  -1.7</code></pre>
+</div>
+</section>
+<section id="creating-and-deleting-columns" class="level2">
+<h2 class="anchored" data-anchor-id="creating-and-deleting-columns">Creating and Deleting Columns</h2>
+<ul>
+<li>Assigning to a non-existent column creates a new column:</li>
+</ul>
+<div class="sourceCode" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>frame2[<span class="st">'eastern'</span>] <span class="op">=</span> frame2[<span class="st">'state'</span>] <span class="op">==</span> <span class="st">'Ohio'</span>  <span class="co"># Create 'eastern' based on a condition</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>frame2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>   year   state  pop  debt  eastern
+0  2000    Ohio  1.5   NaN     True
+1  2001    Ohio  1.7   NaN     True
+2  2002    Ohio  3.6  -1.2     True
+3  2001  Nevada  2.4   NaN    False
+4  2002  Nevada  2.9  -1.5    False
+5  2003  Nevada  3.2  -1.7    False</code></pre>
+</div>
+<ul>
+<li>Delete a column using <code>del</code>:</li>
+</ul>
+<div class="sourceCode" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> frame2[<span class="st">'eastern'</span>]</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>frame2.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>Index(['year', 'state', 'pop', 'debt'], dtype='object')</code></pre>
+</div>
+<ul>
+<li><strong>Important</strong>: New columns <em>cannot</em> be created using the attribute-like syntax (e.g., <code>frame2.eastern = ...</code> will not work).</li>
+</ul>
+</section>
+<section id="nested-dictionaries" class="level2">
+<h2 class="anchored" data-anchor-id="nested-dictionaries">Nested Dictionaries</h2>
+<ul>
+<li>You can create a DataFrame from a nested dictionary:</li>
+</ul>
+<div class="sourceCode" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>populations <span class="op">=</span> {<span class="st">'Ohio'</span>: {<span class="dv">2000</span>: <span class="fl">1.5</span>, <span class="dv">2001</span>: <span class="fl">1.7</span>, <span class="dv">2002</span>: <span class="fl">3.6</span>},</span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>               <span class="st">'Nevada'</span>: {<span class="dv">2001</span>: <span class="fl">2.4</span>, <span class="dv">2002</span>: <span class="fl">2.9</span>}}</span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>frame3 <span class="op">=</span> pd.DataFrame(populations)</span>
+<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a>frame3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>      Ohio  Nevada
+2000   1.5     NaN
+2001   1.7     2.4
+2002   3.6     2.9</code></pre>
+</div>
+<ul>
+<li><strong>Explanation:</strong>
+<ul>
+<li>Outer keys become column names.</li>
+<li>Inner keys become row indices.</li>
+</ul></li>
+</ul>
+</section>
+<section id="transposing-a-dataframe" class="level2">
+<h2 class="anchored" data-anchor-id="transposing-a-dataframe">Transposing a DataFrame</h2>
+<ul>
+<li>Swap rows and columns using <code>.T</code>:</li>
+</ul>
+<div class="sourceCode" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>frame3.T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>        2000  2001  2002
+Ohio     1.5   1.7   3.6
+Nevada   NaN   2.4   2.9</code></pre>
+</div>
+</section>
+<section id="dataframe-from-series" class="level2">
+<h2 class="anchored" data-anchor-id="dataframe-from-series">DataFrame from Series</h2>
+<div class="sourceCode" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>pdata <span class="op">=</span> {<span class="st">'Ohio'</span>: frame3[<span class="st">'Ohio'</span>][:<span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>         <span class="st">'Nevada'</span>: frame3[<span class="st">'Nevada'</span>][:<span class="dv">2</span>]}</span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(pdata)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>      Ohio  Nevada
+2000   1.5     NaN
+2001   1.7     2.4</code></pre>
+</div>
+<ul>
+<li><strong>Explanation:</strong>
+<ul>
+<li><code>frame3['Ohio'][:-1]</code> selects all but the last element of the ‘Ohio’ column.</li>
+<li><code>frame3['Nevada'][:2]</code> selects the first two elements of the ‘Nevada’ column.</li>
+<li>The index is formed by the union of the indices of the Series.</li>
+</ul></li>
+</ul>
+</section>
+<section id="dataframe-indexcolumn-names-and-values" class="level2">
+<h2 class="anchored" data-anchor-id="dataframe-indexcolumn-names-and-values">DataFrame Index/Column Names, and Values</h2>
+<div class="sourceCode" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>frame3.index.name <span class="op">=</span> <span class="st">'year'</span></span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>frame3.columns.name <span class="op">=</span> <span class="st">'state'</span></span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>frame3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>state  Ohio  Nevada
+year
+2000    1.5     NaN
+2001    1.7     2.4
+2002    3.6     2.9</code></pre>
+</div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>frame3.to_numpy() <span class="co"># or frame3.values (older versions of pandas)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>array([[1.5, nan],
+       [1.7, 2.4],
+       [3.6, 2.9]])</code></pre>
+</div>
+<ul>
+<li><code>.to_numpy()</code> returns a 2D NumPy array.</li>
+<li>If columns have different data types, the array’s <code>dtype</code> will accommodate all columns (often <code>object</code>).</li>
+</ul>
+</section>
+<section id="index-objects" class="level2">
+<h2 class="anchored" data-anchor-id="index-objects">Index Objects</h2>
+<ul>
+<li>pandas Index objects hold axis labels and metadata.</li>
+</ul>
+<div class="sourceCode" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> pd.Series(np.arange(<span class="dv">3</span>), index<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>])</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>index <span class="op">=</span> obj.index</span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>Index(['a', 'b', 'c'], dtype='object')</code></pre>
+</div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>index[<span class="dv">1</span>:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>Index(['b', 'c'], dtype='object')</code></pre>
+</div>
+<ul>
+<li><strong>Immutability:</strong> Index objects are immutable (you can’t change them directly).</li>
+</ul>
+<div class="sourceCode" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># index[1] = 'd'  # This will raise a TypeError</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Immutability makes it safer to share Index objects between data structures.</li>
+</ul>
+<div class="sourceCode" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> pd.Index(np.arange(<span class="dv">3</span>))</span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>obj2 <span class="op">=</span> pd.Series([<span class="fl">1.5</span>, <span class="op">-</span><span class="fl">2.5</span>, <span class="dv">0</span>], index<span class="op">=</span>labels)</span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>obj2.index <span class="kw">is</span> labels</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>True</code></pre>
+</section>
+<section id="index-as-a-fixed-size-set" class="level2">
+<h2 class="anchored" data-anchor-id="index-as-a-fixed-size-set">Index as a Fixed-Size Set</h2>
+<ul>
+<li>An Index behaves like an array <em>and</em> a fixed-size set.</li>
+</ul>
+<div class="sourceCode" id="cb99"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>frame3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>state  Ohio  Nevada
+year
+2000    1.5     NaN
+2001    1.7     2.4
+2002    3.6     2.9</code></pre>
+</div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>frame3.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>Index(['Ohio', 'Nevada'], dtype='object', name='state')</code></pre>
+</div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="co">'Ohio'</span> <span class="kw">in</span> frame3.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>True</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2003</span> <span class="kw">in</span> frame3.index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>False</code></pre>
+<ul>
+<li><strong>Difference from Python sets:</strong> pandas Indexes <em>can</em> contain duplicate labels.</li>
+</ul>
+<div class="sourceCode" id="cb107"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>pd.Index([<span class="st">'foo'</span>, <span class="st">'foo'</span>, <span class="st">'bar'</span>, <span class="st">'bar'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>Index(['foo', 'foo', 'bar', 'bar'], dtype='object')</code></pre>
+</section>
+<section id="index-methods-and-properties" class="level2">
+<h2 class="anchored" data-anchor-id="index-methods-and-properties">Index Methods and Properties</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 90%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method/Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>append()</code></td>
+<td>Concatenate with additional Index objects, producing a new Index.</td>
+</tr>
+<tr class="even">
+<td><code>difference()</code></td>
+<td>Compute the set difference as an Index.</td>
+</tr>
+<tr class="odd">
+<td><code>intersection()</code></td>
+<td>Compute the set intersection.</td>
+</tr>
+<tr class="even">
+<td><code>union()</code></td>
+<td>Compute the set union.</td>
+</tr>
+<tr class="odd">
+<td><code>isin()</code></td>
+<td>Compute a boolean array indicating whether each value is contained in the passed collection.</td>
+</tr>
+<tr class="even">
+<td><code>delete()</code></td>
+<td>Compute a new Index with the element at index <code>i</code> deleted.</td>
+</tr>
+<tr class="odd">
+<td><code>drop()</code></td>
+<td>Compute a new Index by deleting passed values.</td>
+</tr>
+<tr class="even">
+<td><code>insert()</code></td>
+<td>Compute a new Index by inserting an element at index <code>i</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>is_monotonic</code></td>
+<td>Returns True if each element is greater than or equal to the previous element.</td>
+</tr>
+<tr class="even">
+<td><code>is_unique</code></td>
+<td>Returns True if the Index has no duplicate values.</td>
+</tr>
+<tr class="odd">
+<td><code>unique()</code></td>
+<td>Compute the array of unique values in the Index.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="reindexing" class="level2">
+<h2 class="anchored" data-anchor-id="reindexing">Reindexing</h2>
+<ul>
+<li><code>reindex</code>: Create a <em>new</em> object with data aligned to a new index.</li>
+</ul>
+<div class="sourceCode" id="cb109"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> pd.Series([<span class="fl">4.5</span>, <span class="fl">7.2</span>, <span class="op">-</span><span class="fl">5.3</span>, <span class="fl">3.6</span>], index<span class="op">=</span>[<span class="st">'d'</span>, <span class="st">'b'</span>, <span class="st">'a'</span>, <span class="st">'c'</span>])</span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>obj2 <span class="op">=</span> obj.reindex([<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>, <span class="st">'e'</span>])</span>
+<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a>obj2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>a   -5.3
+b    7.2
+c    3.6
+d    4.5
+e    NaN
+dtype: float64</code></pre>
+</div>
+<ul>
+<li><strong>Explanation:</strong>
+<ul>
+<li>Rearranges data according to the new index.</li>
+<li>Introduces <code>NaN</code> for missing values (‘e’ was not in the original index).</li>
+</ul></li>
+</ul>
+</section>
+<section id="interpolation-with-reindex" class="level2">
+<h2 class="anchored" data-anchor-id="interpolation-with-reindex">Interpolation with reindex</h2>
+<ul>
+<li>For ordered data (e.g., time series), you can fill missing values during reindexing.</li>
+</ul>
+<div class="sourceCode" id="cb111"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>obj3 <span class="op">=</span> pd.Series([<span class="st">'blue'</span>, <span class="st">'purple'</span>, <span class="st">'yellow'</span>], index<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>])</span>
+<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>obj3.reindex(np.arange(<span class="dv">6</span>), method<span class="op">=</span><span class="st">'ffill'</span>)  <span class="co"># Forward fill</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>0      blue
+1      blue
+2    purple
+3    purple
+4    yellow
+5    yellow
+dtype: object</code></pre>
+</div>
+<ul>
+<li><code>method='ffill'</code> forward-fills the values (carries the previous valid value forward).</li>
+</ul>
+</section>
+<section id="reindexing-dataframes" class="level2">
+<h2 class="anchored" data-anchor-id="reindexing-dataframes">Reindexing DataFrames</h2>
+<ul>
+<li><code>reindex</code> can modify rows, columns, or both.</li>
+</ul>
+<div class="sourceCode" id="cb113"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> pd.DataFrame(np.arange(<span class="dv">9</span>).reshape((<span class="dv">3</span>, <span class="dv">3</span>)),</span>
+<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a>                     index<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>],</span>
+<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a>                     columns<span class="op">=</span>[<span class="st">'Ohio'</span>, <span class="st">'Texas'</span>, <span class="st">'California'</span>])</span>
+<span id="cb113-4"><a href="#cb113-4" aria-hidden="true" tabindex="-1"></a>frame2 <span class="op">=</span> frame.reindex(index<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>])</span>
+<span id="cb113-5"><a href="#cb113-5" aria-hidden="true" tabindex="-1"></a>frame2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>   Ohio  Texas  California
+a   0.0    1.0         2.0
+b   NaN    NaN         NaN
+c   3.0    4.0         5.0
+d   6.0    7.0         8.0</code></pre>
+</div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> [<span class="st">'Texas'</span>, <span class="st">'Utah'</span>, <span class="st">'California'</span>]</span>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>frame.reindex(columns<span class="op">=</span>states)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>   Texas  Utah  California
+a      1   NaN           2
+c      4   NaN           5
+d      7   NaN           8</code></pre>
+</div>
+<ul>
+<li>You can also use <code>axis='columns'</code> or <code>axis='index'</code> explicitly.</li>
+</ul>
+<pre><code>frame.reindex(states, axis="columns")</code></pre>
+<div style="font-size: 0.8em;">
+<pre><code>Texas  Utah  California
+a      1   NaN           2
+c      4   NaN           5
+d      7   NaN           8</code></pre>
+</div>
+<ul>
+<li><strong>Key Concept:</strong> Reindexing is a fundamental operation for aligning and reshaping data.</li>
+<li>More arguments for <code>reindex</code> are in Table 5-3.</li>
+</ul>
+</section>
+<section id="dropping-entries" class="level2">
+<h2 class="anchored" data-anchor-id="dropping-entries">Dropping Entries</h2>
+<ul>
+<li><code>drop</code>: Remove rows or columns by label.</li>
+</ul>
+<div class="sourceCode" id="cb119"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> pd.Series(np.arange(<span class="fl">5.</span>), index<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>, <span class="st">'e'</span>])</span>
+<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>new_obj <span class="op">=</span> obj.drop(<span class="st">'c'</span>) <span class="co"># drop row 'c'</span></span>
+<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a>new_obj</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>a    0.0
+b    1.0
+d    3.0
+e    4.0
+dtype: float64</code></pre>
+</div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>obj.drop([<span class="st">'d'</span>, <span class="st">'c'</span>]) <span class="co"># drop multiple rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>a    0.0
+b    1.0
+e    4.0
+dtype: float64</code></pre>
+</div>
+<ul>
+<li>Dropping from a DataFrame:</li>
+</ul>
+<div class="sourceCode" id="cb123"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame(np.arange(<span class="dv">16</span>).reshape((<span class="dv">4</span>, <span class="dv">4</span>)),</span>
+<span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a>                    index<span class="op">=</span>[<span class="st">'Ohio'</span>, <span class="st">'Colorado'</span>, <span class="st">'Utah'</span>, <span class="st">'New York'</span>],</span>
+<span id="cb123-3"><a href="#cb123-3" aria-hidden="true" tabindex="-1"></a>                    columns<span class="op">=</span>[<span class="st">'one'</span>, <span class="st">'two'</span>, <span class="st">'three'</span>, <span class="st">'four'</span>])</span>
+<span id="cb123-4"><a href="#cb123-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-5"><a href="#cb123-5" aria-hidden="true" tabindex="-1"></a>data.drop(index<span class="op">=</span>[<span class="st">'Colorado'</span>, <span class="st">'Ohio'</span>]) <span class="co"># drop by row label.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>          one  two  three  four
+Utah        8    9     10    11
+New York   12   13     14    15</code></pre>
+</div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a>data.drop(columns<span class="op">=</span>[<span class="st">'two'</span>]) <span class="co"># drop by column label</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>          one  three  four
+Ohio        0      2     3
+Colorado    4      6     7
+Utah        8     10    11
+New York   12     14    15</code></pre>
+</div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a>data.drop(<span class="st">'two'</span>, axis<span class="op">=</span><span class="dv">1</span>)  <span class="co"># axis=1 is equivalent to columns='two'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>          one  three  four
+Ohio        0      2     3
+Colorado    4      6     7
+Utah        8     10    11
+New York   12     14    15</code></pre>
+</div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a>data.drop([<span class="st">'two'</span>, <span class="st">'four'</span>], axis<span class="op">=</span><span class="st">'columns'</span>) <span class="co"># drop multiple columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>          one  three
+Ohio        0      2
+Colorado    4      6
+Utah        8     10
+New York   12     14</code></pre>
+</div>
+</section>
+<section id="indexing-selection-and-filtering" class="level2">
+<h2 class="anchored" data-anchor-id="indexing-selection-and-filtering">Indexing, Selection, and Filtering</h2>
+<ul>
+<li>Series indexing works like NumPy array indexing, but you can use index labels.</li>
+</ul>
+<div class="sourceCode" id="cb131"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> pd.Series(np.arange(<span class="fl">4.</span>), index<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>])</span>
+<span id="cb131-2"><a href="#cb131-2" aria-hidden="true" tabindex="-1"></a>obj[<span class="st">'b'</span>]  <span class="co"># Select by label</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>1.0</code></pre>
+<div class="sourceCode" id="cb133"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>obj[<span class="dv">1</span>]  <span class="co"># Select by integer position</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>1.0</code></pre>
+<div class="sourceCode" id="cb135"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a>obj[<span class="dv">2</span>:<span class="dv">4</span>]  <span class="co"># Slicing</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>c    2.0
+d    3.0
+dtype: float64</code></pre>
+</div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a>obj[[<span class="st">'b'</span>, <span class="st">'a'</span>, <span class="st">'d'</span>]]  <span class="co"># Selection with a list of labels</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>b    1.0
+a    0.0
+d    3.0
+dtype: float64</code></pre>
+</div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a>obj[[<span class="dv">1</span>, <span class="dv">3</span>]] <span class="co"># Selection with a list of integer</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>b    1.0
+d    3.0
+dtype: float64</code></pre>
+</div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a>obj[obj <span class="op">&lt;</span> <span class="dv">2</span>]  <span class="co"># Boolean indexing</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>a    0.0
+b    1.0
+dtype: float64</code></pre>
+</div>
+</section>
+<section id="loc-and-iloc-for-series" class="level2">
+<h2 class="anchored" data-anchor-id="loc-and-iloc-for-series">loc and iloc for Series</h2>
+<ul>
+<li><strong>Preferred way</strong> to select by label or integer position:</li>
+</ul>
+<div class="sourceCode" id="cb143"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a>obj.loc[[<span class="st">'b'</span>, <span class="st">'a'</span>, <span class="st">'d'</span>]]  <span class="co"># Select by label (loc)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>b    1.0
+a    0.0
+d    3.0
+dtype: float64</code></pre>
+</div>
+<ul>
+<li><strong>Why use <code>loc</code>?</strong> Avoids ambiguity with integer indexes.
+<ul>
+<li><code>obj[1]</code> might be interpreted as a label or a position, depending on the index type.</li>
+<li><code>loc</code> is <em>always</em> interpreted as a label.</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb145"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a>obj1 <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], index<span class="op">=</span>[<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb145-2"><a href="#cb145-2" aria-hidden="true" tabindex="-1"></a>obj2 <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], index<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>])</span>
+<span id="cb145-3"><a href="#cb145-3" aria-hidden="true" tabindex="-1"></a>obj1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>2    1
+0    2
+1    3
+dtype: int64</code></pre>
+</div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a>obj2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>a    1
+b    2
+c    3
+dtype: int64</code></pre>
+</div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a>obj1[[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>]] <span class="co"># Ambiguous: label or position?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>0    2
+1    3
+2    1
+dtype: int64</code></pre>
+</div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a>obj2[[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>]] <span class="co"># Also ambiguous</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>a    1
+b    2
+c    3
+dtype: int64</code></pre>
+</div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="co"># obj2.loc[[0, 1]] # Error: 0 and 1 are not labels in obj2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>iloc</code> is <em>always</em> interpreted as an integer position:</li>
+</ul>
+<div class="sourceCode" id="cb154"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb154-1"><a href="#cb154-1" aria-hidden="true" tabindex="-1"></a>obj1.iloc[[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>]]  <span class="co"># Select by integer position (iloc)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>2    1
+0    2
+1    3
+dtype: int64</code></pre>
+</div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a>obj2.iloc[[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>a    1
+b    2
+c    3
+dtype: int64</code></pre>
+</div>
+</section>
+<section id="slicing-with-labels" class="level2">
+<h2 class="anchored" data-anchor-id="slicing-with-labels">Slicing with Labels</h2>
+<ul>
+<li><strong>Important difference:</strong> Slicing with labels <em>includes</em> the endpoint (unlike regular Python slicing).</li>
+</ul>
+<div class="sourceCode" id="cb158"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb158-1"><a href="#cb158-1" aria-hidden="true" tabindex="-1"></a>obj2.loc[<span class="st">'b'</span>:<span class="st">'c'</span>]  <span class="co"># Includes 'c'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>b    2
+c    3
+dtype: int64</code></pre>
+</div>
+<ul>
+<li>You can assign values using slicing:</li>
+</ul>
+<div class="sourceCode" id="cb160"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a>obj2.loc[<span class="st">'b'</span>:<span class="st">'c'</span>] <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb160-2"><a href="#cb160-2" aria-hidden="true" tabindex="-1"></a>obj2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>a    1
+b    5
+c    5
+dtype: int64</code></pre>
+</div>
+</section>
+<section id="dataframe-indexing" class="level2">
+<h2 class="anchored" data-anchor-id="dataframe-indexing">DataFrame Indexing</h2>
+<ul>
+<li>Indexing into a DataFrame retrieves one or more <em>columns</em>.</li>
+</ul>
+<div class="sourceCode" id="cb162"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb162-1"><a href="#cb162-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame(np.arange(<span class="dv">16</span>).reshape((<span class="dv">4</span>, <span class="dv">4</span>)),</span>
+<span id="cb162-2"><a href="#cb162-2" aria-hidden="true" tabindex="-1"></a>                    index<span class="op">=</span>[<span class="st">'Ohio'</span>, <span class="st">'Colorado'</span>, <span class="st">'Utah'</span>, <span class="st">'New York'</span>],</span>
+<span id="cb162-3"><a href="#cb162-3" aria-hidden="true" tabindex="-1"></a>                    columns<span class="op">=</span>[<span class="st">'one'</span>, <span class="st">'two'</span>, <span class="st">'three'</span>, <span class="st">'four'</span>])</span>
+<span id="cb162-4"><a href="#cb162-4" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'two'</span>]  <span class="co"># Select column 'two'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>Ohio         1
+Colorado     5
+Utah         9
+New York    13
+Name: two, dtype: int64</code></pre>
+</div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb164-1"><a href="#cb164-1" aria-hidden="true" tabindex="-1"></a>data[[<span class="st">'three'</span>, <span class="st">'one'</span>]]  <span class="co"># Select multiple columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>          three  one
+Ohio          2    0
+Colorado      6    4
+Utah         10    8
+New York     14   12</code></pre>
+</div>
+<ul>
+<li>Special cases: Slicing or boolean arrays select <em>rows</em>.</li>
+</ul>
+<div class="sourceCode" id="cb166"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb166-1"><a href="#cb166-1" aria-hidden="true" tabindex="-1"></a>data[:<span class="dv">2</span>]  <span class="co"># Select rows by integer position (slice)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>          one  two  three  four
+Ohio        0    1      2     3
+Colorado    4    5      6     7</code></pre>
+</div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb168-1"><a href="#cb168-1" aria-hidden="true" tabindex="-1"></a>data[data[<span class="st">'three'</span>] <span class="op">&gt;</span> <span class="dv">5</span>]  <span class="co"># Select rows where 'three' &gt; 5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>          one  two  three  four
+Colorado    4    5      6     7
+Utah        8    9     10    11
+New York   12   13     14    15</code></pre>
+</div>
+</section>
+<section id="boolean-dataframe-indexing" class="level2">
+<h2 class="anchored" data-anchor-id="boolean-dataframe-indexing">Boolean DataFrame Indexing</h2>
+<div class="sourceCode" id="cb170"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb170-1"><a href="#cb170-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">&lt;</span> <span class="dv">5</span>  <span class="co"># Element-wise comparison, creating a boolean DataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>            one    two  three   four
+Ohio       True   True   True   True
+Colorado   True  False  False  False
+Utah      False  False  False  False
+New York  False  False  False  False</code></pre>
+</div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb172-1"><a href="#cb172-1" aria-hidden="true" tabindex="-1"></a>data[data <span class="op">&lt;</span> <span class="dv">5</span>] <span class="op">=</span> <span class="dv">0</span>  <span class="co"># Set values &lt; 5 to 0</span></span>
+<span id="cb172-2"><a href="#cb172-2" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>          one  two  three  four
+Ohio        0    0      0     0
+Colorado    0    5      6     7
+Utah        8    9     10    11
+New York   12   13     14    15</code></pre>
+</div>
+</section>
+<section id="selection-on-dataframe-with-loc-and-iloc" class="level2">
+<h2 class="anchored" data-anchor-id="selection-on-dataframe-with-loc-and-iloc">Selection on DataFrame with loc and iloc</h2>
+<ul>
+<li><code>loc</code>: Select rows and columns by <em>label</em>.</li>
+<li><code>iloc</code>: Select rows and columns by <em>integer position</em>.</li>
+</ul>
+<div class="sourceCode" id="cb174"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb174-1"><a href="#cb174-1" aria-hidden="true" tabindex="-1"></a>data.loc[<span class="st">'Colorado'</span>]  <span class="co"># Select row by label</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>one      0
+two      5
+three    6
+four     7
+Name: Colorado, dtype: int64</code></pre>
+</div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb176-1"><a href="#cb176-1" aria-hidden="true" tabindex="-1"></a>data.loc[[<span class="st">'Colorado'</span>, <span class="st">'New York'</span>]]  <span class="co"># Select multiple rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>          one  two  three  four
+Colorado    0    5      6     7
+New York   12   13     14    15</code></pre>
+</div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb178-1"><a href="#cb178-1" aria-hidden="true" tabindex="-1"></a>data.loc[<span class="st">'Colorado'</span>, [<span class="st">'two'</span>, <span class="st">'three'</span>]]  <span class="co"># Select rows and columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>two      5
+three    6
+Name: Colorado, dtype: int64</code></pre>
+</div>
+<ul>
+<li><code>iloc</code> examples:</li>
+</ul>
+<div class="sourceCode" id="cb180"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb180-1"><a href="#cb180-1" aria-hidden="true" tabindex="-1"></a>data.iloc[<span class="dv">2</span>]  <span class="co"># Select row by integer position</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>one       8
+two       9
+three    10
+four     11
+Name: Utah, dtype: int64</code></pre>
+</div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb182-1"><a href="#cb182-1" aria-hidden="true" tabindex="-1"></a>data.iloc[[<span class="dv">2</span>, <span class="dv">1</span>]] <span class="co"># Select multiple rows by integer position</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>          one  two  three  four
+Utah        8    9     10    11
+Colorado    0    5      6     7</code></pre>
+</div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb184-1"><a href="#cb184-1" aria-hidden="true" tabindex="-1"></a>data.iloc[<span class="dv">2</span>, [<span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">1</span>]]  <span class="co"># Select rows and columns by integer position</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>four    11
+one      8
+two      9
+Name: Utah, dtype: int64</code></pre>
+</div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb186-1"><a href="#cb186-1" aria-hidden="true" tabindex="-1"></a>data.iloc[[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>          four  one  two
+Colorado     7    0    5
+Utah        11    8    9</code></pre>
+</div>
+</section>
+<section id="slicing-with-loc-and-iloc" class="level2">
+<h2 class="anchored" data-anchor-id="slicing-with-loc-and-iloc">Slicing with loc and iloc</h2>
+<ul>
+<li>Both <code>loc</code> and <code>iloc</code> work with slicing.</li>
+</ul>
+<div class="sourceCode" id="cb188"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb188-1"><a href="#cb188-1" aria-hidden="true" tabindex="-1"></a>data.loc[:<span class="st">'Utah'</span>, <span class="st">'two'</span>]  <span class="co"># Slicing with labels (inclusive)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>Ohio        0
+Colorado    5
+Utah        9
+Name: two, dtype: int64</code></pre>
+</div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb190-1"><a href="#cb190-1" aria-hidden="true" tabindex="-1"></a>data.iloc[:, :<span class="dv">3</span>][data.three <span class="op">&gt;</span> <span class="dv">5</span>]  <span class="co"># Combine slicing and boolean indexing</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>          one  two  three
+Colorado    0    5      6
+Utah        8    9     10
+New York   12   13     14</code></pre>
+</div>
+<ul>
+<li>Boolean arrays work with <code>loc</code> but not <code>iloc</code>:</li>
+</ul>
+<div class="sourceCode" id="cb192"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb192-1"><a href="#cb192-1" aria-hidden="true" tabindex="-1"></a>data.loc[data.three <span class="op">&gt;=</span> <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>          one  two  three  four
+Utah        8    9     10    11
+New York   12   13     14    15</code></pre>
+</div>
+<ul>
+<li><strong>Summary of indexing options:</strong> See Table 5-4.</li>
+</ul>
+</section>
+<section id="integer-indexing-pitfalls" class="level2">
+<h2 class="anchored" data-anchor-id="integer-indexing-pitfalls">Integer Indexing Pitfalls</h2>
+<ul>
+<li>Integer indexing can be tricky because it’s label-oriented if the index contains integers.</li>
+</ul>
+<div class="sourceCode" id="cb194"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb194-1"><a href="#cb194-1" aria-hidden="true" tabindex="-1"></a>ser <span class="op">=</span> pd.Series(np.arange(<span class="fl">3.</span>))</span>
+<span id="cb194-2"><a href="#cb194-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ser[-1]  # Error: -1 is not a label in the integer index</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Use <code>loc</code> (for labels) or <code>iloc</code> (for integer positions) to be explicit and avoid ambiguity.</li>
+</ul>
+<div class="sourceCode" id="cb195"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb195-1"><a href="#cb195-1" aria-hidden="true" tabindex="-1"></a>ser.iloc[<span class="op">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>2.0</code></pre>
+<ul>
+<li>Slicing with integers is always integer-oriented:</li>
+</ul>
+<div class="sourceCode" id="cb197"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb197-1"><a href="#cb197-1" aria-hidden="true" tabindex="-1"></a>ser[:<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>0    0.0
+1    1.0
+dtype: float64</code></pre>
+</div>
+</section>
+<section id="pitfalls-with-chained-indexing" class="level2">
+<h2 class="anchored" data-anchor-id="pitfalls-with-chained-indexing">Pitfalls with Chained Indexing</h2>
+<ul>
+<li>Avoid chained indexing when assigning values.</li>
+</ul>
+<div class="sourceCode" id="cb199"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb199-1"><a href="#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bad:</span></span>
+<span id="cb199-2"><a href="#cb199-2" aria-hidden="true" tabindex="-1"></a><span class="co"># data.loc[data.three == 5]['three'] = 6  # Might modify a copy, not the original</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Use a single <code>loc</code> or <code>iloc</code> operation instead:</li>
+</ul>
+<div class="sourceCode" id="cb200"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb200-1"><a href="#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Good:</span></span>
+<span id="cb200-2"><a href="#cb200-2" aria-hidden="true" tabindex="-1"></a>data.loc[data.three <span class="op">==</span> <span class="dv">5</span>, <span class="st">'three'</span>] <span class="op">=</span> <span class="dv">6</span>  <span class="co"># Modifies the original DataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>Rule of thumb:</strong> Avoid chained indexing in assignments. It can lead to subtle bugs and <code>SettingWithCopyWarning</code>.</li>
+</ul>
+</section>
+<section id="arithmetic-and-data-alignment" class="level2">
+<h2 class="anchored" data-anchor-id="arithmetic-and-data-alignment">Arithmetic and Data Alignment</h2>
+<ul>
+<li>pandas simplifies working with objects that have different indexes.</li>
+<li>When adding objects, the result’s index is the <em>union</em> of the input indexes.</li>
+</ul>
+<div class="sourceCode" id="cb201"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb201-1"><a href="#cb201-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> pd.Series([<span class="fl">7.3</span>, <span class="op">-</span><span class="fl">2.5</span>, <span class="fl">3.4</span>, <span class="fl">1.5</span>], index<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>, <span class="st">'e'</span>])</span>
+<span id="cb201-2"><a href="#cb201-2" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> pd.Series([<span class="op">-</span><span class="fl">2.1</span>, <span class="fl">3.6</span>, <span class="op">-</span><span class="fl">1.5</span>, <span class="dv">4</span>, <span class="fl">3.1</span>], index<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'c'</span>, <span class="st">'e'</span>, <span class="st">'f'</span>, <span class="st">'g'</span>])</span>
+<span id="cb201-3"><a href="#cb201-3" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">+</span> s2  <span class="co"># Aligns by index, introduces NaN where labels don't match</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>a    5.2
+c    1.1
+d    NaN
+e    0.0
+f    NaN
+g    NaN
+dtype: float64</code></pre>
+</div>
+<ul>
+<li>DataFrame alignment applies to both rows and columns:</li>
+</ul>
+<div class="sourceCode" id="cb203"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb203-1"><a href="#cb203-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.DataFrame(np.arange(<span class="fl">9.</span>).reshape((<span class="dv">3</span>, <span class="dv">3</span>)), columns<span class="op">=</span><span class="bu">list</span>(<span class="st">'bcd'</span>),</span>
+<span id="cb203-2"><a href="#cb203-2" aria-hidden="true" tabindex="-1"></a>                   index<span class="op">=</span>[<span class="st">'Ohio'</span>, <span class="st">'Texas'</span>, <span class="st">'Colorado'</span>])</span>
+<span id="cb203-3"><a href="#cb203-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.DataFrame(np.arange(<span class="fl">12.</span>).reshape((<span class="dv">4</span>, <span class="dv">3</span>)), columns<span class="op">=</span><span class="bu">list</span>(<span class="st">'bde'</span>),</span>
+<span id="cb203-4"><a href="#cb203-4" aria-hidden="true" tabindex="-1"></a>                   index<span class="op">=</span>[<span class="st">'Utah'</span>, <span class="st">'Ohio'</span>, <span class="st">'Texas'</span>, <span class="st">'Oregon'</span>])</span>
+<span id="cb203-5"><a href="#cb203-5" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">+</span> df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>            b   c     d   e
+Colorado  NaN NaN   NaN NaN
+Ohio      3.0 NaN   6.0 NaN
+Oregon    NaN NaN   NaN NaN
+Texas     9.0 NaN  12.0 NaN
+Utah      NaN NaN   NaN NaN</code></pre>
+</div>
+</section>
+<section id="arithmetic-methods-with-fill-values" class="level2">
+<h2 class="anchored" data-anchor-id="arithmetic-methods-with-fill-values">Arithmetic Methods with Fill Values</h2>
+<ul>
+<li>Use arithmetic methods (like <code>add</code>, <code>sub</code>, <code>div</code>, <code>mul</code>) with <code>fill_value</code> to handle missing values.</li>
+</ul>
+<div class="sourceCode" id="cb205"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb205-1"><a href="#cb205-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.DataFrame(np.arange(<span class="fl">12.</span>).reshape((<span class="dv">3</span>, <span class="dv">4</span>)), columns<span class="op">=</span><span class="bu">list</span>(<span class="st">'abcd'</span>))</span>
+<span id="cb205-2"><a href="#cb205-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.DataFrame(np.arange(<span class="fl">20.</span>).reshape((<span class="dv">4</span>, <span class="dv">5</span>)), columns<span class="op">=</span><span class="bu">list</span>(<span class="st">'abcde'</span>))</span>
+<span id="cb205-3"><a href="#cb205-3" aria-hidden="true" tabindex="-1"></a>df2.loc[<span class="dv">1</span>, <span class="st">'b'</span>] <span class="op">=</span> np.nan</span>
+<span id="cb205-4"><a href="#cb205-4" aria-hidden="true" tabindex="-1"></a>df1.add(df2, fill_value<span class="op">=</span><span class="dv">0</span>)  <span class="co"># Fill missing values with 0 before adding</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.6em;">
+<pre><code>      a     b     c     d     e
+0   0.0   2.0   4.0   6.0   4.0
+1   9.0   5.0  13.0  15.0   9.0
+2  18.0  20.0  22.0  24.0  14.0
+3  15.0  16.0  17.0  18.0  19.0</code></pre>
+</div>
+<ul>
+<li><strong>Important:</strong> <code>fill_value</code> is used <em>before</em> the operation.</li>
+<li>There are also “r”-prefixed methods (e.g., <code>rdiv</code> for reversed division: <code>1 / df1</code> is equivalent to <code>df1.rdiv(1)</code>).</li>
+</ul>
+<div class="sourceCode" id="cb207"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb207-1"><a href="#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">/</span> df1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>          a         b         c         d
+0       inf  1.000000  0.500000  0.333333
+1  0.250000  0.200000  0.166667  0.142857
+2  0.125000  0.111111  0.100000  0.090909</code></pre>
+</div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb209-1"><a href="#cb209-1" aria-hidden="true" tabindex="-1"></a>df1.rdiv(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>          a         b         c         d
+0       inf  1.000000  0.500000  0.333333
+1  0.250000  0.200000  0.166667  0.142857
+2  0.125000  0.111111  0.100000  0.090909</code></pre>
+</div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb211-1"><a href="#cb211-1" aria-hidden="true" tabindex="-1"></a>df1.reindex(columns<span class="op">=</span>df2.columns, fill_value<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>   a    b     c     d  e
+0  0.0  1.0   2.0   3.0  0
+1  4.0  5.0   6.0   7.0  0
+2  8.0  9.0  10.0  11.0  0</code></pre>
+</div>
+<ul>
+<li><strong>Flexible arithmetic methods:</strong> See Table 5-5.</li>
+</ul>
+</section>
+<section id="operations-between-dataframe-and-series" class="level2">
+<h2 class="anchored" data-anchor-id="operations-between-dataframe-and-series">Operations between DataFrame and Series</h2>
+<ul>
+<li>Broadcasting: Operations between a DataFrame and a Series are applied row-wise or column-wise.</li>
+</ul>
+<div class="sourceCode" id="cb213"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb213-1"><a href="#cb213-1" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> pd.DataFrame(np.arange(<span class="fl">12.</span>).reshape((<span class="dv">4</span>, <span class="dv">3</span>)),</span>
+<span id="cb213-2"><a href="#cb213-2" aria-hidden="true" tabindex="-1"></a>                     columns<span class="op">=</span><span class="bu">list</span>(<span class="st">'bde'</span>),</span>
+<span id="cb213-3"><a href="#cb213-3" aria-hidden="true" tabindex="-1"></a>                     index<span class="op">=</span>[<span class="st">'Utah'</span>, <span class="st">'Ohio'</span>, <span class="st">'Texas'</span>, <span class="st">'Oregon'</span>])</span>
+<span id="cb213-4"><a href="#cb213-4" aria-hidden="true" tabindex="-1"></a>series <span class="op">=</span> frame.iloc[<span class="dv">0</span>]  <span class="co"># Series is the first row of the DataFrame</span></span>
+<span id="cb213-5"><a href="#cb213-5" aria-hidden="true" tabindex="-1"></a>frame <span class="op">-</span> series  <span class="co"># Subtract the Series from each row (broadcasting)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>          b    d    e
+Utah    0.0  0.0  0.0
+Ohio    3.0  3.0  3.0
+Texas   6.0  6.0  6.0
+Oregon  9.0  9.0  9.0</code></pre>
+</div>
+<ul>
+<li>Matching is done on the columns by default.</li>
+<li>If an index value isn’t found in both, the result will be reindexed:</li>
+</ul>
+<div class="sourceCode" id="cb215"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb215-1"><a href="#cb215-1" aria-hidden="true" tabindex="-1"></a>series2 <span class="op">=</span> pd.Series(np.arange(<span class="dv">3</span>), index<span class="op">=</span>[<span class="st">'b'</span>, <span class="st">'e'</span>, <span class="st">'f'</span>])</span>
+<span id="cb215-2"><a href="#cb215-2" aria-hidden="true" tabindex="-1"></a>frame <span class="op">+</span> series2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>          b   d     e   f
+Utah    0.0 NaN   3.0 NaN
+Ohio    3.0 NaN   6.0 NaN
+Texas   6.0 NaN   9.0 NaN
+Oregon  9.0 NaN  12.0 NaN</code></pre>
+</div>
+<ul>
+<li>To broadcast over columns, use arithmetic methods and specify the <code>axis</code>:</li>
+</ul>
+<div class="sourceCode" id="cb217"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb217-1"><a href="#cb217-1" aria-hidden="true" tabindex="-1"></a>series3 <span class="op">=</span> frame[<span class="st">'d'</span>]</span>
+<span id="cb217-2"><a href="#cb217-2" aria-hidden="true" tabindex="-1"></a>frame.sub(series3, axis<span class="op">=</span><span class="st">'index'</span>)  <span class="co"># Subtract series3 from each column (match on rows)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>          b    d    e
+Utah   -1.0  0.0  1.0
+Ohio   -1.0  0.0  1.0
+Texas  -1.0  0.0  1.0
+Oregon -1.0  0.0  1.0</code></pre>
+</div>
+<ul>
+<li><strong>Key concept:</strong> <code>axis='index'</code> or <code>axis=0</code> means you want to match on the <em>rows</em> and broadcast <em>across the columns</em>.</li>
+</ul>
+</section>
+<section id="function-application-and-mapping" class="level2">
+<h2 class="anchored" data-anchor-id="function-application-and-mapping">Function Application and Mapping</h2>
+<ul>
+<li>NumPy ufuncs (element-wise array methods) work with pandas objects:</li>
+</ul>
+<div class="sourceCode" id="cb219"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb219-1"><a href="#cb219-1" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> pd.DataFrame(np.random.standard_normal((<span class="dv">4</span>, <span class="dv">3</span>)),</span>
+<span id="cb219-2"><a href="#cb219-2" aria-hidden="true" tabindex="-1"></a>                     columns<span class="op">=</span><span class="bu">list</span>(<span class="st">'bde'</span>),</span>
+<span id="cb219-3"><a href="#cb219-3" aria-hidden="true" tabindex="-1"></a>                     index<span class="op">=</span>[<span class="st">'Utah'</span>, <span class="st">'Ohio'</span>, <span class="st">'Texas'</span>, <span class="st">'Oregon'</span>])</span>
+<span id="cb219-4"><a href="#cb219-4" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">abs</span>(frame)  <span class="co"># Apply NumPy's absolute value function element-wise</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>              b         d         e
+Utah   0.204708  0.478943  0.519439
+Ohio   0.555730  1.965781  1.393406
+Texas  0.092908  0.281746  0.769023
+Oregon 1.246435  1.007189  1.296221</code></pre>
+</div>
+<ul>
+<li><code>apply</code>: Apply a function along an axis (row-wise or column-wise).</li>
+</ul>
+<div class="sourceCode" id="cb221"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb221-1"><a href="#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f1(x):</span>
+<span id="cb221-2"><a href="#cb221-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x.<span class="bu">max</span>() <span class="op">-</span> x.<span class="bu">min</span>()</span>
+<span id="cb221-3"><a href="#cb221-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-4"><a href="#cb221-4" aria-hidden="true" tabindex="-1"></a>frame.<span class="bu">apply</span>(f1)  <span class="co"># Apply f1 to each column (default)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>b    1.802165
+d    1.684034
+e    2.689627
+dtype: float64</code></pre>
+</div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb223-1"><a href="#cb223-1" aria-hidden="true" tabindex="-1"></a>frame.<span class="bu">apply</span>(f1, axis<span class="op">=</span><span class="st">'columns'</span>)  <span class="co"># Apply f1 to each row</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>Utah      0.998382
+Ohio      2.521511
+Texas     0.676115
+Oregon    2.542656
+dtype: float64</code></pre>
+</div>
+<ul>
+<li>The function passed to <code>apply</code> can return a scalar or a Series.</li>
+<li>Many common array statistics are DataFrame methods (e.g., <code>sum</code>, <code>mean</code>), so <code>apply</code> isn’t always needed.</li>
+</ul>
+<div class="sourceCode" id="cb225"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb225-1"><a href="#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f2(x):</span>
+<span id="cb225-2"><a href="#cb225-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.Series([x.<span class="bu">min</span>(), x.<span class="bu">max</span>()], index<span class="op">=</span>[<span class="st">'min'</span>, <span class="st">'max'</span>])</span>
+<span id="cb225-3"><a href="#cb225-3" aria-hidden="true" tabindex="-1"></a>frame.<span class="bu">apply</span>(f2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>            b         d         e
+min -0.555730  0.281746 -1.296221
+max  1.246435  1.965781  1.393406</code></pre>
+</div>
+<ul>
+<li><code>applymap</code>: Apply a function element-wise to a DataFrame.</li>
+</ul>
+<div class="sourceCode" id="cb227"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb227-1"><a href="#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_format(x):</span>
+<span id="cb227-2"><a href="#cb227-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f'</span><span class="sc">{</span>x<span class="sc">:.2f}</span><span class="ss">'</span></span>
+<span id="cb227-3"><a href="#cb227-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb227-4"><a href="#cb227-4" aria-hidden="true" tabindex="-1"></a>frame.applymap(my_format)  <span class="co"># Format each value as a string with 2 decimal places</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>           b      d      e
+Utah    -0.20   0.48  -0.52
+Ohio    -0.56   1.97   1.39
+Texas    0.09   0.28   0.77
+Oregon   1.25   1.01  -1.30</code></pre>
+</div>
+<ul>
+<li><code>map</code>: Apply a function element-wise to a <em>Series</em>.</li>
+</ul>
+<div class="sourceCode" id="cb229"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb229-1"><a href="#cb229-1" aria-hidden="true" tabindex="-1"></a>frame[<span class="st">'e'</span>].<span class="bu">map</span>(my_format)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>Utah      -0.52
+Ohio       1.39
+Texas      0.77
+Oregon    -1.30
+Name: e, dtype: object</code></pre>
+</div>
+</section>
+<section id="sorting-and-ranking" class="level2">
+<h2 class="anchored" data-anchor-id="sorting-and-ranking">Sorting and Ranking</h2>
+<ul>
+<li><code>sort_index</code>: Sort by row or column labels.</li>
+</ul>
+<div class="sourceCode" id="cb231"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb231-1"><a href="#cb231-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> pd.Series(np.arange(<span class="dv">4</span>), index<span class="op">=</span>[<span class="st">'d'</span>, <span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>])</span>
+<span id="cb231-2"><a href="#cb231-2" aria-hidden="true" tabindex="-1"></a>obj.sort_index()  <span class="co"># Sort by index labels</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>a    1
+b    2
+c    3
+d    0
+dtype: int64</code></pre>
+</div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb233-1"><a href="#cb233-1" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> pd.DataFrame(np.arange(<span class="dv">8</span>).reshape((<span class="dv">2</span>, <span class="dv">4</span>)),</span>
+<span id="cb233-2"><a href="#cb233-2" aria-hidden="true" tabindex="-1"></a>                     index<span class="op">=</span>[<span class="st">'three'</span>, <span class="st">'one'</span>],</span>
+<span id="cb233-3"><a href="#cb233-3" aria-hidden="true" tabindex="-1"></a>                     columns<span class="op">=</span>[<span class="st">'d'</span>, <span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>])</span>
+<span id="cb233-4"><a href="#cb233-4" aria-hidden="true" tabindex="-1"></a>frame.sort_index()  <span class="co"># Sort by row labels</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>       d  a  b  c
+one    4  5  6  7
+three  0  1  2  3</code></pre>
+</div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb235-1"><a href="#cb235-1" aria-hidden="true" tabindex="-1"></a>frame.sort_index(axis<span class="op">=</span><span class="st">'columns'</span>)  <span class="co"># Sort by column labels</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>       a  b  c  d
+three  1  2  3  0
+one    5  6  7  4</code></pre>
+</div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb237-1"><a href="#cb237-1" aria-hidden="true" tabindex="-1"></a>frame.sort_index(axis<span class="op">=</span><span class="st">'columns'</span>, ascending<span class="op">=</span><span class="va">False</span>) <span class="co">#Descending sort</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>       d  c  b  a
+three  0  3  2  1
+one    4  7  6  5</code></pre>
+</div>
+<ul>
+<li><code>sort_values</code>: Sort by the values in a Series or DataFrame.</li>
+</ul>
+<div class="sourceCode" id="cb239"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb239-1"><a href="#cb239-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> pd.Series([<span class="dv">4</span>, <span class="dv">7</span>, <span class="op">-</span><span class="dv">3</span>, <span class="dv">2</span>])</span>
+<span id="cb239-2"><a href="#cb239-2" aria-hidden="true" tabindex="-1"></a>obj.sort_values()  <span class="co"># Sort by values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>2   -3
+3    2
+0    4
+1    7
+dtype: int64</code></pre>
+</div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb241-1"><a href="#cb241-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> pd.Series([<span class="dv">4</span>, np.nan, <span class="dv">7</span>, np.nan, <span class="op">-</span><span class="dv">3</span>, <span class="dv">2</span>])</span>
+<span id="cb241-2"><a href="#cb241-2" aria-hidden="true" tabindex="-1"></a>obj.sort_values() <span class="co">#Missing values are sorted to the end by default.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>4   -3.0
+5    2.0
+0    4.0
+2    7.0
+1    NaN
+3    NaN
+dtype: float64</code></pre>
+</div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb243-1"><a href="#cb243-1" aria-hidden="true" tabindex="-1"></a>obj.sort_values(na_position<span class="op">=</span><span class="st">"first"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>1    NaN
+3    NaN
+4   -3.0
+5    2.0
+0    4.0
+2    7.0
+dtype: float64</code></pre>
+</div>
+<ul>
+<li>For a DataFrame, you can sort by one or more columns:</li>
+</ul>
+<div class="sourceCode" id="cb245"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb245-1"><a href="#cb245-1" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> pd.DataFrame({<span class="st">'b'</span>: [<span class="dv">4</span>, <span class="dv">7</span>, <span class="op">-</span><span class="dv">3</span>, <span class="dv">2</span>], <span class="st">'a'</span>: [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>]})</span>
+<span id="cb245-2"><a href="#cb245-2" aria-hidden="true" tabindex="-1"></a>frame.sort_values(<span class="st">'b'</span>)  <span class="co"># Sort by column 'b'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>   b  a
+2 -3  0
+3  2  1
+0  4  0
+1  7  1</code></pre>
+</div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb247-1"><a href="#cb247-1" aria-hidden="true" tabindex="-1"></a>frame.sort_values([<span class="st">'a'</span>, <span class="st">'b'</span>])  <span class="co"># Sort by 'a' first, then 'b'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>   b  a
+2 -3  0
+0  4  0
+3  2  1
+1  7  1</code></pre>
+</div>
+<ul>
+<li><code>rank</code>: Assign ranks to data (from lowest to highest).</li>
+</ul>
+<div class="sourceCode" id="cb249"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb249-1"><a href="#cb249-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> pd.Series([<span class="dv">7</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">4</span>])</span>
+<span id="cb249-2"><a href="#cb249-2" aria-hidden="true" tabindex="-1"></a>obj.rank()  <span class="co"># Default: average rank for ties</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>0    6.5
+1    1.0
+2    6.5
+3    4.5
+4    3.0
+5    2.0
+6    4.5
+dtype: float64</code></pre>
+</div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb251-1"><a href="#cb251-1" aria-hidden="true" tabindex="-1"></a>obj.rank(method<span class="op">=</span><span class="st">'first'</span>)  <span class="co"># Rank according to order in data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>0    6.0
+1    1.0
+2    7.0
+3    4.0
+4    3.0
+5    2.0
+6    5.0
+dtype: float64</code></pre>
+</div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb253-1"><a href="#cb253-1" aria-hidden="true" tabindex="-1"></a>obj.rank(ascending<span class="op">=</span><span class="va">False</span>) <span class="co">#Descending rank</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>0    1.5
+1    7.0
+2    1.5
+3    3.5
+4    5.0
+5    6.0
+6    3.5
+dtype: float64</code></pre>
+</div>
+<ul>
+<li>DataFrame can compute ranks over rows or columns:</li>
+</ul>
+<div class="sourceCode" id="cb255"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb255-1"><a href="#cb255-1" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> pd.DataFrame({<span class="st">'b'</span>: [<span class="fl">4.3</span>, <span class="dv">7</span>, <span class="op">-</span><span class="dv">3</span>, <span class="dv">2</span>], <span class="st">'a'</span>: [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>],</span>
+<span id="cb255-2"><a href="#cb255-2" aria-hidden="true" tabindex="-1"></a>                      <span class="st">'c'</span>: [<span class="op">-</span><span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="op">-</span><span class="fl">2.5</span>]})</span>
+<span id="cb255-3"><a href="#cb255-3" aria-hidden="true" tabindex="-1"></a>frame.rank(axis<span class="op">=</span><span class="st">'columns'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>     b    a    c
+0  3.0  2.0  1.0
+1  3.0  1.0  2.0
+2  1.0  2.0  3.0
+3  3.0  2.0  1.0</code></pre>
+</div>
+<ul>
+<li><strong>Tie-breaking methods:</strong> See Table 5-6.</li>
+</ul>
+</section>
+<section id="axis-indexes-with-duplicate-labels" class="level2">
+<h2 class="anchored" data-anchor-id="axis-indexes-with-duplicate-labels">Axis Indexes with Duplicate Labels</h2>
+<ul>
+<li>pandas <em>allows</em> duplicate index labels (unlike many other data analysis tools).</li>
+</ul>
+<div class="sourceCode" id="cb257"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb257-1"><a href="#cb257-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> pd.Series(np.arange(<span class="dv">5</span>), index<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>])</span>
+<span id="cb257-2"><a href="#cb257-2" aria-hidden="true" tabindex="-1"></a>obj.index.is_unique  <span class="co"># Check if index labels are unique</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>False</code></pre>
+</div>
+<ul>
+<li>Indexing a label with multiple entries returns a Series:</li>
+</ul>
+<div class="sourceCode" id="cb259"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb259-1"><a href="#cb259-1" aria-hidden="true" tabindex="-1"></a>obj[<span class="st">'a'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>a    0
+a    1
+dtype: int64</code></pre>
+</div>
+<ul>
+<li>Indexing a unique label returns a scalar:</li>
+</ul>
+<div class="sourceCode" id="cb261"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb261-1"><a href="#cb261-1" aria-hidden="true" tabindex="-1"></a>obj[<span class="st">'c'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>4</code></pre>
+</div>
+<ul>
+<li><strong>Important:</strong> This can make your code’s behavior depend on whether labels are unique or not. Be mindful of this when working with data that might have duplicate labels.</li>
+<li>The same logic applies to DataFrames:</li>
+</ul>
+<div class="sourceCode" id="cb263"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb263-1"><a href="#cb263-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(np.random.standard_normal((<span class="dv">5</span>, <span class="dv">3</span>)),</span>
+<span id="cb263-2"><a href="#cb263-2" aria-hidden="true" tabindex="-1"></a>                  index<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>])</span>
+<span id="cb263-3"><a href="#cb263-3" aria-hidden="true" tabindex="-1"></a>df.loc[<span class="st">'b'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>          0         1         2
+b  1.669025 -0.438570 -0.539741
+b  0.476985  3.248944 -1.021228</code></pre>
+</div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb265-1"><a href="#cb265-1" aria-hidden="true" tabindex="-1"></a>df.loc[<span class="st">'c'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>0   -0.577087
+1    0.124121
+2    0.302614
+Name: c, dtype: float64</code></pre>
+</div>
+</section>
+<section id="summarizing-and-computing-descriptive-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="summarizing-and-computing-descriptive-statistics">Summarizing and Computing Descriptive Statistics</h2>
+<ul>
+<li>pandas objects have built-in methods for common statistical calculations.</li>
+<li>These methods automatically handle missing data (unlike NumPy).</li>
+</ul>
+<div class="sourceCode" id="cb267"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb267-1"><a href="#cb267-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame([[<span class="fl">1.4</span>, np.nan], [<span class="fl">7.1</span>, <span class="op">-</span><span class="fl">4.5</span>],</span>
+<span id="cb267-2"><a href="#cb267-2" aria-hidden="true" tabindex="-1"></a>                   [np.nan, np.nan], [<span class="fl">0.75</span>, <span class="op">-</span><span class="fl">1.3</span>]],</span>
+<span id="cb267-3"><a href="#cb267-3" aria-hidden="true" tabindex="-1"></a>                  index<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>],</span>
+<span id="cb267-4"><a href="#cb267-4" aria-hidden="true" tabindex="-1"></a>                  columns<span class="op">=</span>[<span class="st">'one'</span>, <span class="st">'two'</span>])</span>
+<span id="cb267-5"><a href="#cb267-5" aria-hidden="true" tabindex="-1"></a>df.<span class="bu">sum</span>()  <span class="co"># Sum of each column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>one    9.25
+two   -5.80
+dtype: float64</code></pre>
+</div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb269-1"><a href="#cb269-1" aria-hidden="true" tabindex="-1"></a>df.<span class="bu">sum</span>(axis<span class="op">=</span><span class="st">'columns'</span>)  <span class="co"># Sum of each row</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>a    1.40
+b    2.60
+c    0.00
+d   -0.55
+dtype: float64</code></pre>
+</div>
+<ul>
+<li><code>skipna</code>: Controls whether missing values are excluded (default is <code>True</code>).</li>
+</ul>
+<div class="sourceCode" id="cb271"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb271-1"><a href="#cb271-1" aria-hidden="true" tabindex="-1"></a>df.<span class="bu">sum</span>(axis<span class="op">=</span><span class="st">'index'</span>, skipna<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>one   NaN
+two   NaN
+dtype: float64</code></pre>
+</div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb273-1"><a href="#cb273-1" aria-hidden="true" tabindex="-1"></a>df.<span class="bu">sum</span>(axis<span class="op">=</span><span class="st">'columns'</span>, skipna<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>a     NaN
+b    2.60
+c     NaN
+d   -0.55
+dtype: float64</code></pre>
+</div>
+<ul>
+<li>Some methods require at least one non-NA value:</li>
+</ul>
+<div class="sourceCode" id="cb275"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb275-1"><a href="#cb275-1" aria-hidden="true" tabindex="-1"></a>df.mean(axis<span class="op">=</span><span class="st">'columns'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>a    1.400
+b    1.300
+c      NaN
+d   -0.275
+dtype: float64</code></pre>
+</div>
+<ul>
+<li><code>idxmax</code>, <code>idxmin</code>: Return the index label where the maximum or minimum value occurs.</li>
+</ul>
+<div class="sourceCode" id="cb277"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb277-1"><a href="#cb277-1" aria-hidden="true" tabindex="-1"></a>df.idxmax()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>one    b
+two    d
+dtype: object</code></pre>
+</div>
+<ul>
+<li><code>cumsum</code>: Cumulative sum.</li>
+</ul>
+<div class="sourceCode" id="cb279"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb279-1"><a href="#cb279-1" aria-hidden="true" tabindex="-1"></a>df.cumsum()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>    one  two
+a  1.40  NaN
+b  8.50 -4.5
+c   NaN  NaN
+d  9.25 -5.8</code></pre>
+</div>
+<ul>
+<li><code>describe</code>: Generate multiple summary statistics in one go.</li>
+</ul>
+<div class="sourceCode" id="cb281"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb281-1"><a href="#cb281-1" aria-hidden="true" tabindex="-1"></a>df.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>         one       two
+count  3.000000  2.000000
+mean   3.083333 -2.900000
+std    3.493685  2.262742
+min    0.750000 -4.500000
+25%    1.075000 -3.700000
+50%    1.400000 -2.900000
+75%    4.250000 -2.100000
+max    7.100000 -1.300000</code></pre>
+</div>
+<ul>
+<li>For non-numeric data, <code>describe</code> provides different summaries:</li>
+</ul>
+<div class="sourceCode" id="cb283"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb283-1"><a href="#cb283-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> pd.Series([<span class="st">'a'</span>, <span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>] <span class="op">*</span> <span class="dv">4</span>)</span>
+<span id="cb283-2"><a href="#cb283-2" aria-hidden="true" tabindex="-1"></a>obj.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>count     16
+unique     3
+top        a
+freq       8
+dtype: object</code></pre>
+</div>
+<ul>
+<li><strong>List of descriptive statistics methods:</strong> See Table 5-8.</li>
+<li><strong>Options for reduction methods:</strong> See Table 5-7.</li>
+</ul>
+</section>
+<section id="correlation-and-covariance" class="level2">
+<h2 class="anchored" data-anchor-id="correlation-and-covariance">Correlation and Covariance</h2>
+<div class="sourceCode" id="cb285"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb285-1"><a href="#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assume 'price' and 'volume' DataFrames are already loaded (see book for details)</span></span>
+<span id="cb285-2"><a href="#cb285-2" aria-hidden="true" tabindex="-1"></a><span class="co"># In real situations, you could load the data using:</span></span>
+<span id="cb285-3"><a href="#cb285-3" aria-hidden="true" tabindex="-1"></a><span class="co"># price = pd.read_pickle("examples/yahoo_price.pkl")</span></span>
+<span id="cb285-4"><a href="#cb285-4" aria-hidden="true" tabindex="-1"></a><span class="co"># volume = pd.read_pickle("examples/yahoo_volume.pkl")</span></span>
+<span id="cb285-5"><a href="#cb285-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb285-6"><a href="#cb285-6" aria-hidden="true" tabindex="-1"></a><span class="co"># For demonstration, create dummy DataFrames:</span></span>
+<span id="cb285-7"><a href="#cb285-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb285-8"><a href="#cb285-8" aria-hidden="true" tabindex="-1"></a>price <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb285-9"><a href="#cb285-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'AAPL'</span>: [<span class="dv">150</span>, <span class="dv">152</span>, <span class="dv">151</span>, <span class="dv">153</span>],</span>
+<span id="cb285-10"><a href="#cb285-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'GOOG'</span>: [<span class="dv">2500</span>, <span class="dv">2520</span>, <span class="dv">2510</span>, <span class="dv">2530</span>],</span>
+<span id="cb285-11"><a href="#cb285-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">'IBM'</span>: [<span class="dv">90</span>, <span class="dv">91</span>, <span class="fl">90.5</span>, <span class="fl">91.5</span>],</span>
+<span id="cb285-12"><a href="#cb285-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">'MSFT'</span>: [<span class="dv">300</span>, <span class="dv">305</span>, <span class="dv">303</span>, <span class="dv">306</span>]</span>
+<span id="cb285-13"><a href="#cb285-13" aria-hidden="true" tabindex="-1"></a>}, index<span class="op">=</span>pd.to_datetime([<span class="st">'2023-10-26'</span>, <span class="st">'2023-10-27'</span>, <span class="st">'2023-10-30'</span>, <span class="st">'2023-10-31'</span>]))</span>
+<span id="cb285-14"><a href="#cb285-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb285-15"><a href="#cb285-15" aria-hidden="true" tabindex="-1"></a>volume <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb285-16"><a href="#cb285-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'AAPL'</span>: [<span class="dv">100000</span>, <span class="dv">105000</span>, <span class="dv">98000</span>, <span class="dv">102000</span>],</span>
+<span id="cb285-17"><a href="#cb285-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'GOOG'</span>: [<span class="dv">50000</span>, <span class="dv">52000</span>, <span class="dv">49000</span>, <span class="dv">51000</span>],</span>
+<span id="cb285-18"><a href="#cb285-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">'IBM'</span>: [<span class="dv">40000</span>, <span class="dv">41000</span>, <span class="dv">39000</span>, <span class="dv">40500</span>],</span>
+<span id="cb285-19"><a href="#cb285-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">'MSFT'</span>: [<span class="dv">60000</span>, <span class="dv">62000</span>, <span class="dv">59000</span>, <span class="dv">61000</span>]</span>
+<span id="cb285-20"><a href="#cb285-20" aria-hidden="true" tabindex="-1"></a>}, index<span class="op">=</span>pd.to_datetime([<span class="st">'2023-10-26'</span>, <span class="st">'2023-10-27'</span>, <span class="st">'2023-10-30'</span>, <span class="st">'2023-10-31'</span>]))</span>
+<span id="cb285-21"><a href="#cb285-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb285-22"><a href="#cb285-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb285-23"><a href="#cb285-23" aria-hidden="true" tabindex="-1"></a>returns <span class="op">=</span> price.pct_change()  <span class="co"># Compute percent changes</span></span>
+<span id="cb285-24"><a href="#cb285-24" aria-hidden="true" tabindex="-1"></a>returns.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.65em;">
+<pre><code></code></pre>
+<pre><code>             AAPL      GOOG       IBM      MSFT</code></pre>
+<p>2023-10-26 NaN NaN NaN NaN 2023-10-27 0.013333 0.008000 0.011111 0.016667 2023-10-30 -0.006579 -0.003968 -0.005495 -0.006557 2023-10-31 0.013245 0.007968 0.011050 0.009901</p>
+<pre><code>:::
+
+- `corr`, `cov`: Compute correlation and covariance.
+
+```python
+returns['MSFT'].corr(returns['IBM'])  # Correlation between MSFT and IBM returns</code></pre>
+<pre><code>0.8291737285918034</code></pre>
+<div class="sourceCode" id="cb290"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb290-1"><a href="#cb290-1" aria-hidden="true" tabindex="-1"></a>returns[<span class="st">'MSFT'</span>].cov(returns[<span class="st">'IBM'</span>])  <span class="co"># Covariance</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>8.688717548738278e-05</code></pre>
+<ul>
+<li>Since MSFT is a valid Python variable name, we can also select these columns using more concise syntax:</li>
+</ul>
+<pre><code>returns.MSFT.corr(returns.IBM)</code></pre>
+<pre><code>0.8291737285918034</code></pre>
+<ul>
+<li>DataFrame methods return full correlation/covariance matrices:</li>
+</ul>
+<div class="sourceCode" id="cb294"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb294-1"><a href="#cb294-1" aria-hidden="true" tabindex="-1"></a>returns.corr()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>          AAPL      GOOG       IBM      MSFT
+AAPL  1.000000  0.854256  0.924038  0.989172
+GOOG  0.854256  1.000000  0.719842  0.882348
+IBM   0.924038  0.719842  1.000000  0.829174
+MSFT  0.989172  0.882348  0.829174  1.000000</code></pre>
+</div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb296-1"><a href="#cb296-1" aria-hidden="true" tabindex="-1"></a>returns.cov()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>          AAPL          GOOG           IBM          MSFT
+AAPL  0.000177  1.567807e-04  1.575587e-04  1.828619e-04
+GOOG  0.000157  1.885524e-04  1.282353e-04  1.641686e-04
+IBM   0.000158  1.282353e-04  1.754194e-04  1.499066e-04
+MSFT  0.000183  1.641686e-04  1.499066e-04  1.968199e-04</code></pre>
+</div>
+<ul>
+<li><code>corrwith</code>: Compute pairwise correlations between a DataFrame’s columns/rows and another Series/DataFrame.</li>
+</ul>
+<div class="sourceCode" id="cb298"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb298-1"><a href="#cb298-1" aria-hidden="true" tabindex="-1"></a>returns.corrwith(returns[<span class="st">'IBM'</span>])  <span class="co"># Correlation with IBM returns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>AAPL    0.924038
+GOOG    0.719842
+IBM     1.000000
+MSFT    0.829174
+dtype: float64</code></pre>
+</div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb300-1"><a href="#cb300-1" aria-hidden="true" tabindex="-1"></a>returns.corrwith(volume)  <span class="co"># Correlation with volume</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div data-style-="font-size:0.8em;">
+<pre><code>AAPL   -0.974948
+GOOG   -0.999841
+IBM    -0.824252
+MSFT   -0.957479
+dtype: float64</code></pre>
+</div>
+<section id="unique-values-value-counts-and-membership" class="level2">
+<h2 class="anchored" data-anchor-id="unique-values-value-counts-and-membership">Unique Values, Value Counts, and Membership</h2>
+<div class="sourceCode" id="cb302"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb302-1"><a href="#cb302-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> pd.Series([<span class="st">'c'</span>, <span class="st">'a'</span>, <span class="st">'d'</span>, <span class="st">'a'</span>, <span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'c'</span>])</span>
+<span id="cb302-2"><a href="#cb302-2" aria-hidden="true" tabindex="-1"></a>uniques <span class="op">=</span> obj.unique()  <span class="co"># Get unique values (not necessarily sorted)</span></span>
+<span id="cb302-3"><a href="#cb302-3" aria-hidden="true" tabindex="-1"></a>uniques</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>array(['c', 'a', 'd', 'b'], dtype=object)</code></pre>
+</div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb304-1"><a href="#cb304-1" aria-hidden="true" tabindex="-1"></a>obj.value_counts()  <span class="co"># Count occurrences of each value (sorted by frequency)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>c    3
+a    3
+b    2
+d    1
+Name: count, dtype: int64</code></pre>
+</div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb306-1"><a href="#cb306-1" aria-hidden="true" tabindex="-1"></a>pd.value_counts(obj.to_numpy(), sort<span class="op">=</span><span class="va">False</span>)  <span class="co"># Can be used with NumPy arrays too</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>c    3
+a    3
+d    1
+b    2
+Name: count, dtype: int64</code></pre>
+</div>
+<ul>
+<li><code>isin</code>: Check membership (vectorized set membership).</li>
+</ul>
+<div class="sourceCode" id="cb308"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb308-1"><a href="#cb308-1" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> obj.isin([<span class="st">'b'</span>, <span class="st">'c'</span>])  <span class="co"># Check if each value is in ['b', 'c']</span></span>
+<span id="cb308-2"><a href="#cb308-2" aria-hidden="true" tabindex="-1"></a>mask</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>0     True
+1    False
+2    False
+3    False
+4    False
+5     True
+6     True
+7     True
+8     True
+dtype: bool</code></pre>
+</div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb310-1"><a href="#cb310-1" aria-hidden="true" tabindex="-1"></a>obj[mask]  <span class="co"># Select values where mask is True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>0    c
+5    b
+6    b
+7    c
+8    c
+dtype: object</code></pre>
+</div>
+<ul>
+<li><code>Index.get_indexer</code>: Get index locations for an array of values.</li>
+</ul>
+<div class="sourceCode" id="cb312"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb312-1"><a href="#cb312-1" aria-hidden="true" tabindex="-1"></a>to_match <span class="op">=</span> pd.Series([<span class="st">'c'</span>, <span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'a'</span>])</span>
+<span id="cb312-2"><a href="#cb312-2" aria-hidden="true" tabindex="-1"></a>unique_vals <span class="op">=</span> pd.Series([<span class="st">'c'</span>, <span class="st">'b'</span>, <span class="st">'a'</span>])</span>
+<span id="cb312-3"><a href="#cb312-3" aria-hidden="true" tabindex="-1"></a>indices <span class="op">=</span> pd.Index(unique_vals).get_indexer(to_match)</span>
+<span id="cb312-4"><a href="#cb312-4" aria-hidden="true" tabindex="-1"></a>indices</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>array([0, 2, 1, 1, 0, 2])</code></pre>
+</div>
+<ul>
+<li><strong>Unique, value counts, and set membership methods:</strong> See Table 5-9.</li>
+</ul>
+</section>
+<section id="histograms" class="level2">
+<h2 class="anchored" data-anchor-id="histograms">Histograms</h2>
+<ul>
+<li>You can compute histograms on multiple related columns using <code>apply</code> and <code>pd.value_counts</code>.</li>
+</ul>
+<div class="sourceCode" id="cb314"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb314-1"><a href="#cb314-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({<span class="st">'Qu1'</span>: [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">4</span>],</span>
+<span id="cb314-2"><a href="#cb314-2" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'Qu2'</span>: [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>],</span>
+<span id="cb314-3"><a href="#cb314-3" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'Qu3'</span>: [<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">4</span>]})</span>
+<span id="cb314-4"><a href="#cb314-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> data.<span class="bu">apply</span>(pd.value_counts).fillna(<span class="dv">0</span>) <span class="co"># fillna(0) replace NaN with 0</span></span>
+<span id="cb314-5"><a href="#cb314-5" aria-hidden="true" tabindex="-1"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.7em;">
+<pre><code>   Qu1  Qu2  Qu3
+1  1.0  1.0  1.0
+2  0.0  2.0  1.0
+3  2.0  2.0  0.0
+4  2.0  0.0  2.0
+5  0.0  0.0  1.0</code></pre>
+</div>
+<ul>
+<li>The row labels are the distinct values, and the values are the counts.</li>
+<li>There is also a DataFrame.value_counts method, but it computes counts considering each row of the DataFrame as a tuple</li>
+</ul>
+<div class="sourceCode" id="cb316"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb316-1"><a href="#cb316-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({<span class="st">"a"</span>: [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>], <span class="st">"b"</span>: [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>]})</span>
+<span id="cb316-2"><a href="#cb316-2" aria-hidden="true" tabindex="-1"></a>data.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size: 0.8em;">
+<pre><code>a  b
+1  0    2
+2  0    2
+1  1    1
+Name: count, dtype: int64</code></pre>
+</div>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<ul>
+<li><strong>pandas</strong> is your essential tool for data analysis in Python.</li>
+<li><strong>Series</strong> and <strong>DataFrames</strong> are the core data structures.</li>
+<li>Master <strong>indexing</strong> (<code>[]</code>, <code>.loc</code>, <code>.iloc</code>) for selecting and modifying data.</li>
+<li>Understand <strong>data alignment</strong> – how pandas handles operations on objects with different indexes.</li>
+<li>Use <strong>built-in methods</strong> for common tasks (arithmetic, statistics, sorting, etc.).</li>
+<li>Be aware of <strong>integer indexing pitfalls</strong> and <strong>chained indexing</strong>.</li>
+<li><strong>Missing data</strong> (<code>NaN</code>) is handled gracefully.</li>
+<li><strong>Reindexing</strong> and dropping are important for reshaping data.</li>
+</ul>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="./figs/pandas-summary.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="thoughts-and-discussion" class="level2">
+<h2 class="anchored" data-anchor-id="thoughts-and-discussion">Thoughts and Discussion 🤔</h2>
+<ul>
+<li>How does pandas’ data alignment feature compare to joining tables in SQL? What are the advantages and disadvantages?</li>
+<li>When might you prefer to use <code>loc</code> versus <code>iloc</code> for selecting data? Give specific examples.</li>
+<li>How does the <code>apply</code> method enable you to perform more complex operations on DataFrames? Can you think of a real-world example where you might use it?</li>
+<li>Why is it important to be aware of duplicate index labels in pandas? How might this affect your analysis?</li>
+<li>Consider a dataset with missing values. How would you decide whether to drop rows/columns with missing data, fill them with a specific value, or use interpolation? What are the trade-offs?</li>
+<li>Practice and experiment with these concepts. The more you use pandas, the more intuitive it will become!</li>
+</ul>
 
 
+</section>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
