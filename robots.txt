@@ -1,1 +1,1 @@
-Sitemap: https://qiufei.github.io/web-slide-r/sitemap.xml
+Sitemap: https://qiufei.github.io/web-slide-pandas3ed/sitemap.xml
