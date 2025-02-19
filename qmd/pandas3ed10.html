@@ -95,7 +95,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="https://assets.qiufei.site/setup/styles.css">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -251,7 +251,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="hands-on-with-pandas-creating-a-dataframe" class="level1">
 <h1>Hands-on with Pandas: Creating a DataFrame</h1>
 <p>Let’s create a sample DataFrame:</p>
-<div id="f68a6258" class="cell" data-execution_count="1">
+<div id="8d5f0d82" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -281,36 +281,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td data-quarto-table-cell-role="th">0</td>
 <td>a</td>
 <td>1</td>
-<td>-2.030478</td>
-<td>-0.161887</td>
+<td>0.426112</td>
+<td>0.847764</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>a</td>
 <td>2</td>
-<td>-1.580641</td>
-<td>-0.859843</td>
+<td>-1.891397</td>
+<td>1.393190</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
 <td>b</td>
 <td>1</td>
-<td>0.038516</td>
-<td>-0.505324</td>
+<td>1.717483</td>
+<td>-0.131616</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>b</td>
 <td>2</td>
-<td>-1.473432</td>
-<td>-0.295977</td>
+<td>-0.530317</td>
+<td>1.916081</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
 <td>a</td>
 <td>1</td>
-<td>-0.357180</td>
-<td>1.122552</td>
+<td>0.872105</td>
+<td>1.378631</td>
 </tr>
 </tbody>
 </table>
@@ -325,13 +325,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="grouping-by-a-single-column" class="level2">
 <h2 class="anchored" data-anchor-id="grouping-by-a-single-column">Grouping by a Single Column</h2>
 <p>Calculate the mean of <code>data1</code> for each group in <code>key1</code>:</p>
-<div id="59e654bb" class="cell" data-execution_count="2">
+<div id="508f7631" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> df[<span class="st">"data1"</span>].groupby(df[<span class="st">"key1"</span>])</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>grouped.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>key1
-a   -1.322766
-b   -0.717458
+a   -0.197726
+b    0.593583
 Name: data1, dtype: float64</code></pre>
 </div>
 </div>
@@ -345,7 +345,7 @@ Name: data1, dtype: float64</code></pre>
 <section id="grouping-by-multiple-columns" class="level2">
 <h2 class="anchored" data-anchor-id="grouping-by-multiple-columns">Grouping by Multiple Columns</h2>
 <p>Group by multiple columns (hierarchical index):</p>
-<div id="aa7aa554" class="cell" data-execution_count="3">
+<div id="20181282" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>])</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>grouped.agg({<span class="st">"data1"</span>: [<span class="st">"mean"</span>, <span class="st">"std"</span>],</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">"data2"</span>: [<span class="st">"mean"</span>, <span class="st">"std"</span>]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -382,31 +382,31 @@ Name: data1, dtype: float64</code></pre>
 <tr class="odd">
 <td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">a</td>
 <td data-quarto-table-cell-role="th">1</td>
-<td>-1.193829</td>
-<td>1.183201</td>
-<td>0.480332</td>
-<td>0.908236</td>
+<td>0.649109</td>
+<td>0.315365</td>
+<td>1.113197</td>
+<td>0.375379</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2</td>
-<td>-1.580641</td>
+<td>-1.891397</td>
 <td>NaN</td>
-<td>-0.859843</td>
+<td>1.393190</td>
 <td>NaN</td>
 </tr>
 <tr class="odd">
 <td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">b</td>
 <td data-quarto-table-cell-role="th">1</td>
-<td>0.038516</td>
+<td>1.717483</td>
 <td>NaN</td>
-<td>-0.505324</td>
+<td>-0.131616</td>
 <td>NaN</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2</td>
-<td>-1.473432</td>
+<td>-0.530317</td>
 <td>NaN</td>
-<td>-0.295977</td>
+<td>1.916081</td>
 <td>NaN</td>
 </tr>
 </tbody>
@@ -420,7 +420,7 @@ Name: data1, dtype: float64</code></pre>
 <section id="unstacking" class="level2">
 <h2 class="anchored" data-anchor-id="unstacking">Unstacking</h2>
 <p><code>unstack()</code> reshapes the result:</p>
-<div id="167dd586" class="cell" data-execution_count="4">
+<div id="492828ad" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>means <span class="op">=</span> df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>])[<span class="st">"data1"</span>].mean()</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>means.unstack()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
@@ -443,13 +443,13 @@ Name: data1, dtype: float64</code></pre>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">a</td>
-<td>-1.193829</td>
-<td>-1.580641</td>
+<td>0.649109</td>
+<td>-1.891397</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">b</td>
-<td>0.038516</td>
-<td>-1.473432</td>
+<td>1.717483</td>
+<td>-0.530317</td>
 </tr>
 </tbody>
 </table>
@@ -461,7 +461,7 @@ Name: data1, dtype: float64</code></pre>
 <section id="grouping-with-series-and-arrays" class="level2">
 <h2 class="anchored" data-anchor-id="grouping-with-series-and-arrays">Grouping with Series and Arrays</h2>
 <p>Keys can be external Series or arrays:</p>
-<div id="66a350d4" class="cell" data-execution_count="5">
+<div id="3ba307fc" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> np.array([<span class="st">"OH"</span>, <span class="st">"CA"</span>, <span class="st">"CA"</span>, <span class="st">"OH"</span>, <span class="st">"OH"</span>, <span class="st">"CA"</span>, <span class="st">"OH"</span>])</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> np.array([<span class="dv">2005</span>, <span class="dv">2005</span>, <span class="dv">2006</span>, <span class="dv">2005</span>, <span class="dv">2006</span>, <span class="dv">2005</span>, <span class="dv">2006</span>])</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -482,16 +482,16 @@ Name: data1, dtype: float64</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Grouping Result:
-CA  2005    0.316543
-    2006    2.805202
-OH  2005   -0.727099
-    2006   -0.423066
+CA  2005   -0.186098
+    2006    0.580181
+OH  2005    0.096911
+    2006    0.397674
 Name: data1, dtype: float64
 
 Unstacked Result:
         2005      2006
-CA  0.316543  2.805202
-OH -0.727099 -0.423066</code></pre>
+CA -0.186098  0.580181
+OH  0.096911  0.397674</code></pre>
 </div>
 </div>
 <p>Here, we group <code>data1</code> by external arrays <code>states</code> and <code>years</code>.</p>
@@ -499,7 +499,7 @@ OH -0.727099 -0.423066</code></pre>
 <section id="grouping-using-column-names-directly" class="level2">
 <h2 class="anchored" data-anchor-id="grouping-using-column-names-directly">Grouping Using Column Names Directly</h2>
 <p>Use column names directly if grouping info is in the DataFrame:</p>
-<div id="4ebb5958" class="cell" data-execution_count="6">
+<div id="0e003533" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"key1"</span>).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
@@ -524,14 +524,14 @@ OH -0.727099 -0.423066</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">a</td>
 <td>1.333333</td>
-<td>-1.322766</td>
-<td>0.033607</td>
+<td>-0.197726</td>
+<td>1.206528</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">b</td>
 <td>1.500000</td>
-<td>-0.717458</td>
-<td>-0.400650</td>
+<td>0.593583</td>
+<td>0.892233</td>
 </tr>
 </tbody>
 </table>
@@ -540,7 +540,7 @@ OH -0.727099 -0.423066</code></pre>
 </div>
 </div>
 <p>Non-numeric column <code>key1</code> is automatically excluded as a <strong>nuisance column</strong></p>
-<div id="f5a6b4dc" class="cell" data-execution_count="7">
+<div id="61bcdbff" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>]).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div>
@@ -565,24 +565,24 @@ OH -0.727099 -0.423066</code></pre>
 <tr class="odd">
 <td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">a</td>
 <td data-quarto-table-cell-role="th">1</td>
-<td>-1.193829</td>
-<td>0.480332</td>
+<td>0.649109</td>
+<td>1.113197</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2</td>
-<td>-1.580641</td>
-<td>-0.859843</td>
+<td>-1.891397</td>
+<td>1.393190</td>
 </tr>
 <tr class="odd">
 <td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">b</td>
 <td data-quarto-table-cell-role="th">1</td>
-<td>0.038516</td>
-<td>-0.505324</td>
+<td>1.717483</td>
+<td>-0.131616</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2</td>
-<td>-1.473432</td>
-<td>-0.295977</td>
+<td>-0.530317</td>
+<td>1.916081</td>
 </tr>
 </tbody>
 </table>
@@ -594,7 +594,7 @@ OH -0.727099 -0.423066</code></pre>
 <section id="group-size" class="level2">
 <h2 class="anchored" data-anchor-id="group-size">Group Size</h2>
 <p><code>size()</code> shows the number of data points in each group:</p>
-<div id="114e7b11" class="cell" data-execution_count="8">
+<div id="ff75a09d" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>]).size()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>key1  key2
@@ -609,7 +609,7 @@ dtype: int64</code></pre>
 <section id="handling-missing-values-in-group-keys" class="level2">
 <h2 class="anchored" data-anchor-id="handling-missing-values-in-group-keys">Handling Missing Values in Group Keys</h2>
 <p>Missing values in group keys are excluded by default. Include them with <code>dropna=False</code>:</p>
-<div id="a4573a89" class="cell" data-execution_count="9">
+<div id="7e696b64" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"key1"</span>, dropna<span class="op">=</span><span class="va">False</span>).size()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>key1
@@ -625,51 +625,51 @@ dtype: int64</code></pre>
 <section id="iterating-with-a-single-key" class="level2">
 <h2 class="anchored" data-anchor-id="iterating-with-a-single-key">Iterating with a Single Key</h2>
 <p><code>GroupBy</code> supports iteration, yielding group name and data chunk:</p>
-<div id="7ca27063" class="cell" data-execution_count="10">
+<div id="9f70e8e8" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, group <span class="kw">in</span> df.groupby(<span class="st">"key1"</span>):</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Group Name: </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Group Name: a
   key1  key2     data1     data2
-0    a     1 -2.030478 -0.161887
-1    a     2 -1.580641 -0.859843
-4    a     1 -0.357180  1.122552
+0    a     1  0.426112  0.847764
+1    a     2 -1.891397  1.393190
+4    a     1  0.872105  1.378631
 Group Name: b
   key1  key2     data1     data2
-2    b     1  0.038516 -0.505324
-3    b     2 -1.473432 -0.295977</code></pre>
+2    b     1  1.717483 -0.131616
+3    b     2 -0.530317  1.916081</code></pre>
 </div>
 </div>
 </section>
 <section id="iterating-with-multiple-keys" class="level2">
 <h2 class="anchored" data-anchor-id="iterating-with-multiple-keys">Iterating with Multiple Keys</h2>
 <p>With multiple keys, the group name is a tuple:</p>
-<div id="70e4dafd" class="cell" data-execution_count="11">
+<div id="52088206" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k1, k2), group <span class="kw">in</span> df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>]):</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Group Keys: </span><span class="sc">{</span>(k1, k2)<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Group Keys: ('a', np.int64(1))
   key1  key2     data1     data2
-0    a     1 -2.030478 -0.161887
-4    a     1 -0.357180  1.122552
+0    a     1  0.426112  0.847764
+4    a     1  0.872105  1.378631
 Group Keys: ('a', np.int64(2))
-  key1  key2     data1     data2
-1    a     2 -1.580641 -0.859843
+  key1  key2     data1    data2
+1    a     2 -1.891397  1.39319
 Group Keys: ('b', np.int64(1))
   key1  key2     data1     data2
-2    b     1  0.038516 -0.505324
+2    b     1  1.717483 -0.131616
 Group Keys: ('b', np.int64(2))
   key1  key2     data1     data2
-3    b     2 -1.473432 -0.295977</code></pre>
+3    b     2 -0.530317  1.916081</code></pre>
 </div>
 </div>
 </section>
 <section id="creating-a-dictionary-of-data-pieces" class="level2">
 <h2 class="anchored" data-anchor-id="creating-a-dictionary-of-data-pieces">Creating a Dictionary of Data Pieces</h2>
 <p>Create a dictionary of group data:</p>
-<div id="074a90d5" class="cell" data-execution_count="12">
+<div id="1ce39cdc" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pieces <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">list</span>(df.groupby(<span class="st">"key1"</span>)))</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>pieces[<span class="st">"b"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
@@ -691,15 +691,15 @@ Group Keys: ('b', np.int64(2))
 <td data-quarto-table-cell-role="th">2</td>
 <td>b</td>
 <td>1</td>
-<td>0.038516</td>
-<td>-0.505324</td>
+<td>1.717483</td>
+<td>-0.131616</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>b</td>
 <td>2</td>
-<td>-1.473432</td>
-<td>-0.295977</td>
+<td>-0.530317</td>
+<td>1.916081</td>
 </tr>
 </tbody>
 </table>
@@ -712,7 +712,7 @@ Group Keys: ('b', np.int64(2))
 <section id="grouping-by-columns-axis1" class="level1">
 <h1>Grouping by Columns (axis=1)</h1>
 <p>Group by columns using <code>axis="columns"</code>:</p>
-<div id="0ea9762a" class="cell" data-execution_count="13">
+<div id="5340df82" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> df.groupby({<span class="st">"key1"</span>: <span class="st">"key"</span>, <span class="st">"key2"</span>: <span class="st">"key"</span>,</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"data1"</span>: <span class="st">"data"</span>, <span class="st">"data2"</span>: <span class="st">"data"</span>}, axis<span class="op">=</span><span class="st">"columns"</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -722,11 +722,11 @@ Group Keys: ('b', np.int64(2))
 <div class="cell-output cell-output-stdout">
 <pre><code>data
       data1     data2
-0 -2.030478 -0.161887
-1 -1.580641 -0.859843
-2  0.038516 -0.505324
-3 -1.473432 -0.295977
-4 -0.357180  1.122552
+0  0.426112  0.847764
+1 -1.891397  1.393190
+2  1.717483 -0.131616
+3 -0.530317  1.916081
+4  0.872105  1.378631
 key
   key1  key2
 0    a     1
@@ -736,7 +736,7 @@ key
 4    a     1</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_3090/3240993064.py:1: FutureWarning: DataFrame.groupby with axis=1 is deprecated. Do `frame.T.groupby(...)` without axis instead.
+<pre><code>/tmp/ipykernel_3083/3240993064.py:1: FutureWarning: DataFrame.groupby with axis=1 is deprecated. Do `frame.T.groupby(...)` without axis instead.
   grouped = df.groupby({"key1": "key", "key2": "key",</code></pre>
 </div>
 </div>
@@ -746,14 +746,14 @@ key
 <section id="selecting-a-single-column-seriesgroupby" class="level2">
 <h2 class="anchored" data-anchor-id="selecting-a-single-column-seriesgroupby">Selecting a Single Column (SeriesGroupBy)</h2>
 <p>Index the <code>GroupBy</code> object to aggregate specific columns:</p>
-<div id="f8977833" class="cell" data-execution_count="14">
+<div id="07d22fb5" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>])[<span class="st">"data2"</span>].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>key1  key2
-a     1       0.480332
-      2      -0.859843
-b     1      -0.505324
-      2      -0.295977
+a     1       1.113197
+      2       1.393190
+b     1      -0.131616
+      2       1.916081
 Name: data2, dtype: float64</code></pre>
 </div>
 </div>
@@ -761,7 +761,7 @@ Name: data2, dtype: float64</code></pre>
 </section>
 <section id="selecting-multiple-columns-dataframegroupby" class="level2">
 <h2 class="anchored" data-anchor-id="selecting-multiple-columns-dataframegroupby">Selecting Multiple Columns (DataFrameGroupBy)</h2>
-<div id="a49980c8" class="cell" data-execution_count="15">
+<div id="91bfba36" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>])[[<span class="st">"data2"</span>]].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <div>
@@ -784,20 +784,20 @@ Name: data2, dtype: float64</code></pre>
 <tr class="odd">
 <td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">a</td>
 <td data-quarto-table-cell-role="th">1</td>
-<td>0.480332</td>
+<td>1.113197</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2</td>
-<td>-0.859843</td>
+<td>1.393190</td>
 </tr>
 <tr class="odd">
 <td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">b</td>
 <td data-quarto-table-cell-role="th">1</td>
-<td>-0.505324</td>
+<td>-0.131616</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2</td>
-<td>-0.295977</td>
+<td>1.916081</td>
 </tr>
 </tbody>
 </table>
@@ -811,7 +811,7 @@ Name: data2, dtype: float64</code></pre>
 <section id="grouping-with-dictionaries-and-series" class="level1">
 <h1>Grouping with Dictionaries and Series</h1>
 <p>Use dictionaries or Series for grouping:</p>
-<div id="5c0e1cb4" class="cell" data-execution_count="16">
+<div id="82d4942e" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>people <span class="op">=</span> pd.DataFrame(np.random.standard_normal((<span class="dv">5</span>, <span class="dv">5</span>)),</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>                   columns<span class="op">=</span>[<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>],</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                   index<span class="op">=</span>[<span class="st">"Joe"</span>, <span class="st">"Steve"</span>, <span class="st">"Wanda"</span>, <span class="st">"Jill"</span>, <span class="st">"Trey"</span>])</span>
@@ -823,7 +823,7 @@ Name: data2, dtype: float64</code></pre>
 <span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>by_column <span class="op">=</span> people.groupby(mapping, axis<span class="op">=</span><span class="st">"columns"</span>)</span>
 <span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>by_column.<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_3090/253226115.py:9: FutureWarning: DataFrame.groupby with axis=1 is deprecated. Do `frame.T.groupby(...)` without axis instead.
+<pre><code>/tmp/ipykernel_3083/253226115.py:9: FutureWarning: DataFrame.groupby with axis=1 is deprecated. Do `frame.T.groupby(...)` without axis instead.
   by_column = people.groupby(mapping, axis="columns")</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="16">
@@ -841,28 +841,28 @@ Name: data2, dtype: float64</code></pre>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Joe</td>
-<td>-0.236532</td>
-<td>2.982579</td>
+<td>-1.073945</td>
+<td>0.750989</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Steve</td>
-<td>0.605535</td>
-<td>1.200803</td>
+<td>1.209293</td>
+<td>1.754971</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Wanda</td>
-<td>-1.307647</td>
-<td>2.501828</td>
+<td>-1.450276</td>
+<td>-2.645875</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Jill</td>
-<td>0.140740</td>
-<td>1.506278</td>
+<td>-1.821696</td>
+<td>-0.370597</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Trey</td>
-<td>0.884876</td>
-<td>-2.163500</td>
+<td>-0.229982</td>
+<td>-1.950966</td>
 </tr>
 </tbody>
 </table>
@@ -875,7 +875,7 @@ Name: data2, dtype: float64</code></pre>
 <section id="grouping-with-functions" class="level1">
 <h1>Grouping with Functions</h1>
 <p>Use functions to define group mappings (called once per index value):</p>
-<div id="d9054a48" class="cell" data-execution_count="17">
+<div id="396bd4d1" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>people.groupby(<span class="bu">len</span>).<span class="bu">sum</span>()  <span class="co"># Group by name length</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <div>
@@ -895,27 +895,27 @@ Name: data2, dtype: float64</code></pre>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">3</td>
-<td>2.313486</td>
-<td>0.081647</td>
-<td>-0.049878</td>
-<td>-0.186654</td>
-<td>0.587445</td>
+<td>-0.320619</td>
+<td>0.624221</td>
+<td>0.213165</td>
+<td>-1.287109</td>
+<td>0.447387</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">4</td>
-<td>-1.249818</td>
-<td>1.720163</td>
-<td>1.329952</td>
-<td>-0.304335</td>
-<td>-1.127567</td>
+<td>-0.108257</td>
+<td>-1.181704</td>
+<td>0.039811</td>
+<td>-2.091488</td>
+<td>-1.031601</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">5</td>
-<td>3.278082</td>
-<td>0.510924</td>
-<td>-0.144239</td>
-<td>-0.557873</td>
-<td>-0.086376</td>
+<td>-1.677849</td>
+<td>0.947207</td>
+<td>0.700116</td>
+<td>-0.941098</td>
+<td>-0.160262</td>
 </tr>
 </tbody>
 </table>
@@ -927,14 +927,14 @@ Name: data2, dtype: float64</code></pre>
 <section id="grouping-by-index-levels" class="level1">
 <h1>Grouping by Index Levels</h1>
 <p>Group by levels of a hierarchical index:</p>
-<div id="6f772d55" class="cell" data-execution_count="18">
+<div id="0197c04b" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> pd.MultiIndex.from_arrays([[<span class="st">"US"</span>, <span class="st">"US"</span>, <span class="st">"US"</span>, <span class="st">"JP"</span>, <span class="st">"JP"</span>],</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>                                    [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">3</span>]],</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>                                   names<span class="op">=</span>[<span class="st">"cty"</span>, <span class="st">"tenor"</span>])</span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>hier_df <span class="op">=</span> pd.DataFrame(np.random.standard_normal((<span class="dv">4</span>, <span class="dv">5</span>)), columns<span class="op">=</span>columns)</span>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>hier_df.groupby(level<span class="op">=</span><span class="st">"cty"</span>, axis<span class="op">=</span><span class="st">"columns"</span>).count()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_3090/2610824549.py:5: FutureWarning: DataFrame.groupby with axis=1 is deprecated. Do `frame.T.groupby(...)` without axis instead.
+<pre><code>/tmp/ipykernel_3083/2610824549.py:5: FutureWarning: DataFrame.groupby with axis=1 is deprecated. Do `frame.T.groupby(...)` without axis instead.
   hier_df.groupby(level="cty", axis="columns").count()</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="18">
@@ -992,7 +992,7 @@ Name: data2, dtype: float64</code></pre>
 <section id="using-your-own-aggregation-functions" class="level2">
 <h2 class="anchored" data-anchor-id="using-your-own-aggregation-functions">Using Your Own Aggregation Functions</h2>
 <p>Define custom functions with <code>agg</code>:</p>
-<div id="d8a73905" class="cell" data-execution_count="19">
+<div id="32023cd8" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> peak_to_peak(arr):</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> arr.<span class="bu">max</span>() <span class="op">-</span> arr.<span class="bu">min</span>()</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1021,14 +1021,14 @@ Name: data2, dtype: float64</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">a</td>
 <td>1</td>
-<td>1.673299</td>
-<td>1.982396</td>
+<td>2.763502</td>
+<td>0.545426</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">b</td>
 <td>1</td>
-<td>1.511948</td>
-<td>0.209347</td>
+<td>2.247800</td>
+<td>2.047698</td>
 </tr>
 </tbody>
 </table>
@@ -1040,7 +1040,7 @@ Name: data2, dtype: float64</code></pre>
 <section id="the-describe-method" class="level2">
 <h2 class="anchored" data-anchor-id="the-describe-method">The <code>describe</code> Method</h2>
 <p>Use non-aggregation methods like <code>describe</code>:</p>
-<div id="3f1697f8" class="cell" data-execution_count="20">
+<div id="de6fb005" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>grouped.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <div>
@@ -1115,18 +1115,18 @@ Name: data2, dtype: float64</code></pre>
 <td>1.50</td>
 <td>2.0</td>
 <td>3.0</td>
-<td>-1.322766</td>
+<td>-0.197726</td>
 <td>...</td>
-<td>-0.968910</td>
-<td>-0.357180</td>
+<td>0.649109</td>
+<td>0.872105</td>
 <td>3.0</td>
-<td>0.033607</td>
-<td>1.005553</td>
-<td>-0.859843</td>
-<td>-0.510865</td>
-<td>-0.161887</td>
-<td>0.480332</td>
-<td>1.122552</td>
+<td>1.206528</td>
+<td>0.310784</td>
+<td>0.847764</td>
+<td>1.113197</td>
+<td>1.378631</td>
+<td>1.385910</td>
+<td>1.393190</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">b</td>
@@ -1139,18 +1139,18 @@ Name: data2, dtype: float64</code></pre>
 <td>1.75</td>
 <td>2.0</td>
 <td>2.0</td>
-<td>-0.717458</td>
+<td>0.593583</td>
 <td>...</td>
-<td>-0.339471</td>
-<td>0.038516</td>
+<td>1.155533</td>
+<td>1.717483</td>
 <td>2.0</td>
-<td>-0.400650</td>
-<td>0.148030</td>
-<td>-0.505324</td>
-<td>-0.452987</td>
-<td>-0.400650</td>
-<td>-0.348314</td>
-<td>-0.295977</td>
+<td>0.892233</td>
+<td>1.447941</td>
+<td>-0.131616</td>
+<td>0.380308</td>
+<td>0.892233</td>
+<td>1.404157</td>
+<td>1.916081</td>
 </tr>
 </tbody>
 </table>
@@ -1166,12 +1166,12 @@ Name: data2, dtype: float64</code></pre>
 <section id="multiple-functions-on-a-single-column" class="level2">
 <h2 class="anchored" data-anchor-id="multiple-functions-on-a-single-column">Multiple Functions on a Single Column</h2>
 <p>Load a tips dataset:</p>
-<div id="1b4d3f49" class="cell" data-execution_count="21">
+<div id="1bd5af5f" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> pd.read_csv(<span class="st">"examples/tips.csv"</span>)  <span class="co"># Ensure 'examples' folder with 'tips.csv' exists</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">"tip_pct"</span>] <span class="op">=</span> tips[<span class="st">"tip"</span>] <span class="op">/</span> tips[<span class="st">"total_bill"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Apply multiple functions:</p>
-<div id="35acef33" class="cell" data-execution_count="22">
+<div id="0362845a" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> tips.groupby([<span class="st">"day"</span>, <span class="st">"smoker"</span>])</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>grouped_pct <span class="op">=</span> grouped[<span class="st">"tip_pct"</span>]</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>grouped_pct.agg([<span class="st">"mean"</span>, <span class="st">"std"</span>, peak_to_peak])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1259,10 +1259,10 @@ Name: data2, dtype: float64</code></pre>
 <section id="custom-column-names" class="level2">
 <h2 class="anchored" data-anchor-id="custom-column-names">Custom Column Names</h2>
 <p>Provide custom names:</p>
-<div id="f885cdfa" class="cell" data-execution_count="23">
+<div id="9edaf914" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>grouped_pct.agg([(<span class="st">"average"</span>, <span class="st">"mean"</span>), (<span class="st">"stdev"</span>, np.std)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_3090/1734782830.py:1: FutureWarning: The provided callable &lt;function std at 0x7f5a0402bd80&gt; is currently using SeriesGroupBy.std. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "std" instead.
+<pre><code>/tmp/ipykernel_3083/1734782830.py:1: FutureWarning: The provided callable &lt;function std at 0x7f428012fd80&gt; is currently using SeriesGroupBy.std. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "std" instead.
   grouped_pct.agg([("average", "mean"), ("stdev", np.std)])</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="23">
@@ -1339,7 +1339,7 @@ Name: data2, dtype: float64</code></pre>
 <section id="different-functions-for-different-columns" class="level2">
 <h2 class="anchored" data-anchor-id="different-functions-for-different-columns">Different Functions for Different Columns</h2>
 <p>Apply different functions to different columns:</p>
-<div id="ec846bde" class="cell" data-execution_count="24">
+<div id="89ea0f9b" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>functions <span class="op">=</span> [<span class="st">"count"</span>, <span class="st">"mean"</span>, <span class="st">"max"</span>]</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> grouped[[<span class="st">"tip_pct"</span>, <span class="st">"total_bill"</span>]].agg(functions)</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1459,10 +1459,10 @@ Name: data2, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="9a045298" class="cell" data-execution_count="25">
+<div id="de537dea" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>grouped.agg({<span class="st">"tip"</span> : np.<span class="bu">max</span>, <span class="st">"size"</span> : <span class="st">"sum"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_3090/2044707828.py:1: FutureWarning: The provided callable &lt;function max at 0x7f5a0402b240&gt; is currently using SeriesGroupBy.max. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "max" instead.
+<pre><code>/tmp/ipykernel_3083/2044707828.py:1: FutureWarning: The provided callable &lt;function max at 0x7f428012f240&gt; is currently using SeriesGroupBy.max. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "max" instead.
   grouped.agg({"tip" : np.max, "size" : "sum"})</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="25">
@@ -1535,7 +1535,7 @@ Name: data2, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="bdcfc6d9" class="cell" data-execution_count="26">
+<div id="709afeb6" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>grouped.agg({<span class="st">"tip_pct"</span> : [<span class="st">"min"</span>, <span class="st">"max"</span>, <span class="st">"mean"</span>, <span class="st">"std"</span>],</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">"size"</span> : <span class="st">"sum"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
@@ -1649,7 +1649,7 @@ Name: data2, dtype: float64</code></pre>
 <section id="returning-aggregated-data-without-row-indexes" class="level1">
 <h1>Returning Aggregated Data Without Row Indexes</h1>
 <p>Use <code>as_index=False</code> to prevent group keys becoming the index:</p>
-<div id="32aa0f14" class="cell" data-execution_count="27">
+<div id="28a9f84c" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>numeric_cols <span class="op">=</span> tips.select_dtypes(include<span class="op">=</span>[np.number]).columns</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>tips.groupby([<span class="st">"day"</span>, <span class="st">"smoker"</span>], as_index<span class="op">=</span><span class="va">False</span>)[numeric_cols].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
@@ -1756,13 +1756,13 @@ Name: data2, dtype: float64</code></pre>
 </section>
 <section id="example-selecting-top-rows" class="level2">
 <h2 class="anchored" data-anchor-id="example-selecting-top-rows">Example: Selecting Top Rows</h2>
-<div id="a6f2a940" class="cell" data-execution_count="28">
+<div id="403cef34" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> top(df, n<span class="op">=</span><span class="dv">5</span>, column<span class="op">=</span><span class="st">"tip_pct"</span>):</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df.sort_values(column, ascending<span class="op">=</span><span class="va">False</span>)[:n]</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>tips.groupby(<span class="st">"smoker"</span>).<span class="bu">apply</span>(top)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_3090/2138158964.py:4: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+<pre><code>/tmp/ipykernel_3083/2138158964.py:4: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
   tips.groupby("smoker").apply(top)</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="28">
@@ -1906,10 +1906,10 @@ Name: data2, dtype: float64</code></pre>
 </section>
 <section id="passing-arguments-to-apply" class="level2">
 <h2 class="anchored" data-anchor-id="passing-arguments-to-apply">Passing Arguments to <code>apply</code></h2>
-<div id="9b8a229e" class="cell" data-execution_count="29">
+<div id="47ab53b8" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>tips.groupby([<span class="st">"smoker"</span>, <span class="st">"day"</span>]).<span class="bu">apply</span>(top, n<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="st">"total_bill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_3090/643835440.py:1: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+<pre><code>/tmp/ipykernel_3083/643835440.py:1: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
   tips.groupby(["smoker", "day"]).apply(top, n=1, column="total_bill")</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="29">
@@ -2044,10 +2044,10 @@ Name: data2, dtype: float64</code></pre>
 <section id="suppressing-group-keys-in-apply" class="level2">
 <h2 class="anchored" data-anchor-id="suppressing-group-keys-in-apply">Suppressing Group Keys in <code>apply</code></h2>
 <p>Use <code>group_keys=False</code>:</p>
-<div id="790ed613" class="cell" data-execution_count="30">
+<div id="106b0d89" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>tips.groupby(<span class="st">"smoker"</span>, group_keys<span class="op">=</span><span class="va">False</span>).<span class="bu">apply</span>(top)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_3090/3851957478.py:1: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+<pre><code>/tmp/ipykernel_3083/3851957478.py:1: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
   tips.groupby("smoker", group_keys=False).apply(top)</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="30">
@@ -2181,7 +2181,7 @@ Name: data2, dtype: float64</code></pre>
 <section id="using-cut-and-qcut-with-groupby" class="level2">
 <h2 class="anchored" data-anchor-id="using-cut-and-qcut-with-groupby">Using <code>cut</code> and <code>qcut</code> with <code>groupby</code></h2>
 <p>Combine <code>cut</code>/<code>qcut</code> with <code>groupby</code> for bucket/quantile analysis:</p>
-<div id="4581359c" class="cell" data-execution_count="31">
+<div id="6488b433" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> pd.DataFrame({<span class="st">"data1"</span>: np.random.standard_normal(<span class="dv">1000</span>),</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"data2"</span>: np.random.standard_normal(<span class="dv">1000</span>)})</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>quartiles <span class="op">=</span> pd.cut(frame[<span class="st">"data1"</span>], <span class="dv">4</span>)</span>
@@ -2195,7 +2195,7 @@ Name: data2, dtype: float64</code></pre>
 <span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> frame.groupby(quartiles)</span>
 <span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>grouped.<span class="bu">apply</span>(get_stats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_3090/1865646795.py:11: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+<pre><code>/tmp/ipykernel_3083/1865646795.py:11: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
   grouped = frame.groupby(quartiles)</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="31">
@@ -2223,64 +2223,64 @@ Name: data2, dtype: float64</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">(-3.481, -1.56]</td>
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">(-2.654, -1.138]</td>
 <td data-quarto-table-cell-role="th">data1</td>
-<td>-3.473169</td>
-<td>-1.573241</td>
-<td>68</td>
-<td>-2.014898</td>
+<td>-2.648335</td>
+<td>-1.143165</td>
+<td>127</td>
+<td>-1.626919</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">data2</td>
-<td>-2.061777</td>
-<td>1.925488</td>
-<td>68</td>
-<td>0.034487</td>
+<td>-3.293595</td>
+<td>2.586536</td>
+<td>127</td>
+<td>-0.122091</td>
 </tr>
 <tr class="odd">
-<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">(-1.56, 0.353]</td>
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">(-1.138, 0.372]</td>
 <td data-quarto-table-cell-role="th">data1</td>
-<td>-1.556375</td>
-<td>0.340241</td>
-<td>563</td>
-<td>-0.453515</td>
+<td>-1.137230</td>
+<td>0.370304</td>
+<td>535</td>
+<td>-0.276302</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">data2</td>
-<td>-2.340597</td>
-<td>3.026618</td>
-<td>563</td>
-<td>0.053003</td>
+<td>-3.179507</td>
+<td>3.266020</td>
+<td>535</td>
+<td>-0.082234</td>
 </tr>
 <tr class="odd">
-<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">(0.353, 2.266]</td>
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">(0.372, 1.882]</td>
 <td data-quarto-table-cell-role="th">data1</td>
-<td>0.354398</td>
-<td>2.223254</td>
-<td>354</td>
-<td>0.995837</td>
+<td>0.371958</td>
+<td>1.856821</td>
+<td>308</td>
+<td>0.902120</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">data2</td>
-<td>-3.442817</td>
-<td>3.322963</td>
-<td>354</td>
-<td>-0.034284</td>
+<td>-2.603367</td>
+<td>2.851988</td>
+<td>308</td>
+<td>0.085488</td>
 </tr>
 <tr class="odd">
-<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">(2.266, 4.179]</td>
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">(1.882, 3.392]</td>
 <td data-quarto-table-cell-role="th">data1</td>
-<td>2.289207</td>
-<td>4.178979</td>
-<td>15</td>
-<td>2.618178</td>
+<td>1.913280</td>
+<td>3.391539</td>
+<td>30</td>
+<td>2.362945</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">data2</td>
-<td>-2.603689</td>
-<td>1.916209</td>
-<td>15</td>
-<td>0.264203</td>
+<td>-1.817838</td>
+<td>1.658547</td>
+<td>30</td>
+<td>-0.306679</td>
 </tr>
 </tbody>
 </table>
@@ -2289,7 +2289,7 @@ Name: data2, dtype: float64</code></pre>
 </div>
 </div>
 <p>Same result could have been computed more simply with:</p>
-<div id="9d6a1536" class="cell" data-execution_count="32">
+<div id="6a27eb0c" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>grouped.agg([<span class="st">"min"</span>, <span class="st">"max"</span>, <span class="st">"count"</span>, <span class="st">"mean"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="32">
 <div>
@@ -2327,48 +2327,48 @@ Name: data2, dtype: float64</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">(-3.481, -1.56]</td>
-<td>-3.473169</td>
-<td>-1.573241</td>
-<td>68</td>
-<td>-2.014898</td>
-<td>-2.061777</td>
-<td>1.925488</td>
-<td>68</td>
-<td>0.034487</td>
+<td data-quarto-table-cell-role="th">(-2.654, -1.138]</td>
+<td>-2.648335</td>
+<td>-1.143165</td>
+<td>127</td>
+<td>-1.626919</td>
+<td>-3.293595</td>
+<td>2.586536</td>
+<td>127</td>
+<td>-0.122091</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">(-1.56, 0.353]</td>
-<td>-1.556375</td>
-<td>0.340241</td>
-<td>563</td>
-<td>-0.453515</td>
-<td>-2.340597</td>
-<td>3.026618</td>
-<td>563</td>
-<td>0.053003</td>
+<td data-quarto-table-cell-role="th">(-1.138, 0.372]</td>
+<td>-1.137230</td>
+<td>0.370304</td>
+<td>535</td>
+<td>-0.276302</td>
+<td>-3.179507</td>
+<td>3.266020</td>
+<td>535</td>
+<td>-0.082234</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">(0.353, 2.266]</td>
-<td>0.354398</td>
-<td>2.223254</td>
-<td>354</td>
-<td>0.995837</td>
-<td>-3.442817</td>
-<td>3.322963</td>
-<td>354</td>
-<td>-0.034284</td>
+<td data-quarto-table-cell-role="th">(0.372, 1.882]</td>
+<td>0.371958</td>
+<td>1.856821</td>
+<td>308</td>
+<td>0.902120</td>
+<td>-2.603367</td>
+<td>2.851988</td>
+<td>308</td>
+<td>0.085488</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">(2.266, 4.179]</td>
-<td>2.289207</td>
-<td>4.178979</td>
-<td>15</td>
-<td>2.618178</td>
-<td>-2.603689</td>
-<td>1.916209</td>
-<td>15</td>
-<td>0.264203</td>
+<td data-quarto-table-cell-role="th">(1.882, 3.392]</td>
+<td>1.913280</td>
+<td>3.391539</td>
+<td>30</td>
+<td>2.362945</td>
+<td>-1.817838</td>
+<td>1.658547</td>
+<td>30</td>
+<td>-0.306679</td>
 </tr>
 </tbody>
 </table>
@@ -2379,7 +2379,7 @@ Name: data2, dtype: float64</code></pre>
 </section>
 <section id="equal-size-buckets-with-qcut" class="level2">
 <h2 class="anchored" data-anchor-id="equal-size-buckets-with-qcut">Equal-Size Buckets with <code>qcut</code></h2>
-<div id="7f4e71e7" class="cell" data-execution_count="33">
+<div id="8cfff5f8" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>quartiles_samp <span class="op">=</span> pd.qcut(frame[<span class="st">"data1"</span>], <span class="dv">4</span>, labels<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> frame.groupby(quartiles_samp)</span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>grouped.<span class="bu">apply</span>(get_stats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2410,62 +2410,62 @@ Name: data2, dtype: float64</code></pre>
 <tr class="odd">
 <td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">0</td>
 <td data-quarto-table-cell-role="th">data1</td>
-<td>-3.473169</td>
-<td>-0.701153</td>
+<td>-2.648335</td>
+<td>-0.643537</td>
 <td>250</td>
-<td>-1.323093</td>
+<td>-1.256611</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">data2</td>
-<td>-2.061777</td>
-<td>3.026618</td>
+<td>-3.293595</td>
+<td>3.088596</td>
 <td>250</td>
-<td>-0.005418</td>
+<td>-0.131350</td>
 </tr>
 <tr class="odd">
 <td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">1</td>
 <td data-quarto-table-cell-role="th">data1</td>
-<td>-0.694293</td>
-<td>0.007813</td>
+<td>-0.642962</td>
+<td>0.016546</td>
 <td>250</td>
-<td>-0.341299</td>
+<td>-0.289224</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">data2</td>
-<td>-2.340597</td>
-<td>2.588074</td>
+<td>-2.795529</td>
+<td>3.266020</td>
 <td>250</td>
-<td>0.044147</td>
+<td>-0.081967</td>
 </tr>
 <tr class="odd">
 <td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">2</td>
 <td data-quarto-table-cell-role="th">data1</td>
-<td>0.008357</td>
-<td>0.683184</td>
+<td>0.018610</td>
+<td>0.599237</td>
 <td>250</td>
-<td>0.336485</td>
+<td>0.301965</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">data2</td>
-<td>-3.442817</td>
-<td>3.322963</td>
+<td>-2.641046</td>
+<td>2.475233</td>
 <td>250</td>
-<td>0.123727</td>
+<td>0.004850</td>
 </tr>
 <tr class="odd">
 <td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">3</td>
 <td data-quarto-table-cell-role="th">data1</td>
-<td>0.686494</td>
-<td>4.178979</td>
+<td>0.601934</td>
+<td>3.391539</td>
 <td>250</td>
-<td>1.325734</td>
+<td>1.221075</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">data2</td>
-<td>-2.804531</td>
-<td>2.107504</td>
+<td>-2.603367</td>
+<td>2.851988</td>
 <td>250</td>
-<td>-0.066406</td>
+<td>0.038984</td>
 </tr>
 </tbody>
 </table>
@@ -2479,24 +2479,24 @@ Name: data2, dtype: float64</code></pre>
 <h1>Example: Filling Missing Values with Group-Specific Values</h1>
 <section id="filling-with-the-mean" class="level2">
 <h2 class="anchored" data-anchor-id="filling-with-the-mean">Filling with the Mean</h2>
-<div id="39b6d439" class="cell" data-execution_count="34">
+<div id="eec0d53c" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series(np.random.standard_normal(<span class="dv">6</span>))</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>s[::<span class="dv">2</span>] <span class="op">=</span> np.nan</span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>s.fillna(s.mean())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
-<pre><code>0   -0.533636
-1   -1.744369
-2   -0.533636
-3    0.572330
-4   -0.533636
-5   -0.428868
+<pre><code>0   -0.213880
+1   -0.901388
+2   -0.213880
+3    0.089309
+4   -0.213880
+5    0.170439
 dtype: float64</code></pre>
 </div>
 </div>
 </section>
 <section id="filling-with-group-specific-means" class="level2">
 <h2 class="anchored" data-anchor-id="filling-with-group-specific-means">Filling with Group-Specific Means</h2>
-<div id="bd62a736" class="cell" data-execution_count="35">
+<div id="ca48e1de" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> [<span class="st">"Ohio"</span>, <span class="st">"New York"</span>, <span class="st">"Vermont"</span>, <span class="st">"Florida"</span>,</span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Oregon"</span>, <span class="st">"Nevada"</span>, <span class="st">"California"</span>, <span class="st">"Idaho"</span>]</span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>group_key <span class="op">=</span> [<span class="st">"East"</span>] <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> [<span class="st">"West"</span>] <span class="op">*</span> <span class="dv">4</span></span>
@@ -2508,34 +2508,34 @@ dtype: float64</code></pre>
 <span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>data.groupby(group_key).<span class="bu">apply</span>(fill_mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="35">
-<pre><code>East  Ohio          0.629027
-      New York     -0.926963
-      Vermont       0.563943
-      Florida       1.989766
-West  Oregon        0.698349
-      Nevada        0.476998
-      California    0.255647
-      Idaho         0.476998
+<pre><code>East  Ohio         -1.577912
+      New York      0.409985
+      Vermont      -0.174399
+      Florida       0.644731
+West  Oregon        1.045286
+      Nevada        0.217003
+      California   -0.611281
+      Idaho         0.217003
 dtype: float64</code></pre>
 </div>
 </div>
 </section>
 <section id="predefined-fill-values" class="level2">
 <h2 class="anchored" data-anchor-id="predefined-fill-values">Predefined Fill Values</h2>
-<div id="39007cca" class="cell" data-execution_count="36">
+<div id="f19f1d3d" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>fill_values <span class="op">=</span> {<span class="st">"East"</span>: <span class="fl">0.5</span>, <span class="st">"West"</span>: <span class="op">-</span><span class="dv">1</span>}</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fill_func(group):</span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group.fillna(fill_values[group.name])</span>
 <span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>data.groupby(group_key).<span class="bu">apply</span>(fill_func)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="36">
-<pre><code>East  Ohio          0.629027
-      New York     -0.926963
+<pre><code>East  Ohio         -1.577912
+      New York      0.409985
       Vermont       0.500000
-      Florida       1.989766
-West  Oregon        0.698349
+      Florida       0.644731
+West  Oregon        1.045286
       Nevada       -1.000000
-      California    0.255647
+      California   -0.611281
       Idaho        -1.000000
 dtype: float64</code></pre>
 </div>
@@ -2546,7 +2546,7 @@ dtype: float64</code></pre>
 <h1>Example: Random Sampling and Permutation</h1>
 <section id="simulating-a-deck-of-cards" class="level2">
 <h2 class="anchored" data-anchor-id="simulating-a-deck-of-cards">Simulating a Deck of Cards</h2>
-<div id="55a6144c" class="cell" data-execution_count="37">
+<div id="497df10f" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>suits <span class="op">=</span> [<span class="st">"H"</span>, <span class="st">"S"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>]</span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>card_val <span class="op">=</span> (<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>)) <span class="op">+</span> [<span class="dv">10</span>] <span class="op">*</span> <span class="dv">3</span>) <span class="op">*</span> <span class="dv">4</span></span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>base_names <span class="op">=</span> [<span class="st">"A"</span>] <span class="op">+</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">11</span>)) <span class="op">+</span> [<span class="st">"J"</span>, <span class="st">"K"</span>, <span class="st">"Q"</span>]</span>
@@ -2559,37 +2559,37 @@ dtype: float64</code></pre>
 </section>
 <section id="drawing-a-random-hand" class="level2">
 <h2 class="anchored" data-anchor-id="drawing-a-random-hand">Drawing a Random Hand</h2>
-<div id="539980f5" class="cell" data-execution_count="38">
+<div id="27508d7f" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> draw(deck, n<span class="op">=</span><span class="dv">5</span>):</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> deck.sample(n)</span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>draw(deck)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="38">
-<pre><code>9H     9
-JS    10
-QD    10
-KS    10
-AH     1
+<pre><code>JH    10
+KC    10
+6S     6
+8H     8
+6C     6
 dtype: int64</code></pre>
 </div>
 </div>
 </section>
 <section id="drawing-two-random-cards-from-each-suit" class="level2">
 <h2 class="anchored" data-anchor-id="drawing-two-random-cards-from-each-suit">Drawing Two Random Cards from Each Suit</h2>
-<div id="0c2ac203" class="cell" data-execution_count="39">
+<div id="ea130175" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_suit(card):</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> card[<span class="op">-</span><span class="dv">1</span>]</span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>deck.groupby(get_suit).<span class="bu">apply</span>(draw, n<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="39">
-<pre><code>C  JC     10
+<pre><code>C  2C      2
    9C      9
-D  10D    10
-   AD      1
-H  QH     10
-   AH      1
-S  6S      6
-   AS      1
+D  JD     10
+   10D    10
+H  6H      6
+   7H      7
+S  AS      1
+   9S      9
 dtype: int64</code></pre>
 </div>
 </div>
@@ -2599,7 +2599,7 @@ dtype: int64</code></pre>
 <h1>Example: Group Weighted Average and Correlation</h1>
 <section id="group-weighted-average" class="level2">
 <h2 class="anchored" data-anchor-id="group-weighted-average">Group Weighted Average</h2>
-<div id="e2a55e89" class="cell" data-execution_count="40">
+<div id="d986e326" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">"category"</span>: [<span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"a"</span>,</span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"b"</span>, <span class="st">"b"</span>, <span class="st">"b"</span>, <span class="st">"b"</span>],</span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"data"</span>: np.random.standard_normal(<span class="dv">8</span>),</span>
@@ -2611,20 +2611,20 @@ dtype: int64</code></pre>
 <span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>grouped.<span class="bu">apply</span>(get_wavg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_3090/783275467.py:10: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+<pre><code>/tmp/ipykernel_3083/783275467.py:10: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
   grouped.apply(get_wavg)</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="40">
 <pre><code>category
-a    0.009728
-b   -0.372592
+a   -0.103134
+b   -0.054153
 dtype: float64</code></pre>
 </div>
 </div>
 </section>
 <section id="correlation-with-spx-sp-500-index" class="level2">
 <h2 class="anchored" data-anchor-id="correlation-with-spx-sp-500-index">Correlation with SPX (S&amp;P 500 Index)</h2>
-<div id="e50c25fb" class="cell" data-execution_count="41">
+<div id="eae133b5" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming 'examples' folder with 'stock_px.csv' exists</span></span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>close_px <span class="op">=</span> pd.read_csv(<span class="st">"examples/stock_px.csv"</span>, parse_dates<span class="op">=</span><span class="va">True</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2726,7 +2726,7 @@ dtype: float64</code></pre>
 </section>
 <section id="intercolumn-correlation-apple-and-microsoft" class="level2">
 <h2 class="anchored" data-anchor-id="intercolumn-correlation-apple-and-microsoft">Intercolumn Correlation (Apple and Microsoft)</h2>
-<div id="ba685901" class="cell" data-execution_count="42">
+<div id="033ce308" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> corr_aapl_msft(group):</span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group[<span class="st">"AAPL"</span>].corr(group[<span class="st">"MSFT"</span>])</span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2748,7 +2748,7 @@ dtype: float64</code></pre>
 </section>
 <section id="example-group-wise-linear-regression" class="level1">
 <h1>Example: Group-Wise Linear Regression</h1>
-<div id="218ebbd6" class="cell" data-execution_count="43">
+<div id="3e23bb5f" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> regress(data, yvar<span class="op">=</span><span class="va">None</span>, xvars<span class="op">=</span><span class="va">None</span>):</span>
@@ -2834,7 +2834,7 @@ dtype: float64</code></pre>
 <li>Produces an object of the same shape as the input.</li>
 <li>Must not mutate its input.</li>
 </ul>
-<div id="bf45d150" class="cell" data-execution_count="44">
+<div id="34b08aae" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'key'</span>: [<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>] <span class="op">*</span> <span class="dv">4</span>,</span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'value'</span>: np.arange(<span class="fl">12.</span>)})</span>
 <span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> df.groupby(<span class="st">'key'</span>)[<span class="st">'value'</span>]</span>
@@ -2859,7 +2859,7 @@ Name: value, dtype: float64</code></pre>
 </div>
 </div>
 <p>We can pass a string alias as with the GroupBy <code>agg</code> method:</p>
-<div id="1eabc712" class="cell" data-execution_count="45">
+<div id="ae887df4" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>g.transform(<span class="st">'mean'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="45">
 <pre><code>0     4.5
@@ -2878,7 +2878,7 @@ Name: value, dtype: float64</code></pre>
 </div>
 </div>
 <p>Like <code>apply</code>, <code>transform</code> works with functions that return Series, but the result must be the same size as the input. For example, we can multiply each group by 2 using a helper function:</p>
-<div id="e3e59fef" class="cell" data-execution_count="46">
+<div id="870b887a" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> times_two(group):</span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> group <span class="op">*</span> <span class="dv">2</span></span>
 <span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>g.transform(times_two)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2899,7 +2899,7 @@ Name: value, dtype: float64</code></pre>
 </div>
 </div>
 <p>As a more complicated example, we can compute the ranks in descending order for each group:</p>
-<div id="831eb3a4" class="cell" data-execution_count="47">
+<div id="49181ef0" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_ranks(group):</span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group.rank(ascending<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>g.transform(get_ranks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2923,7 +2923,7 @@ Name: value, dtype: float64</code></pre>
 <section id="unwrapped-group-operations" class="level2">
 <h2 class="anchored" data-anchor-id="unwrapped-group-operations">“Unwrapped” Group Operations</h2>
 <p>“Unwrapped” operations are often faster than <code>apply</code>:</p>
-<div id="d64b6d82" class="cell" data-execution_count="48">
+<div id="8acf9643" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normalize(x):</span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x <span class="op">-</span> x.mean()) <span class="op">/</span> x.std()</span>
 <span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2944,7 +2944,7 @@ Name: value, dtype: float64</code></pre>
 Name: value, dtype: float64</code></pre>
 </div>
 </div>
-<div id="a022a7b6" class="cell" data-execution_count="49">
+<div id="b196e238" class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>g.<span class="bu">apply</span>(normalize)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="49">
 <pre><code>key    
@@ -2963,7 +2963,7 @@ c    2    -1.161895
 Name: value, dtype: float64</code></pre>
 </div>
 </div>
-<div id="13baf900" class="cell" data-execution_count="50">
+<div id="7fbfef5b" class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>normalized <span class="op">=</span> (df[<span class="st">'value'</span>] <span class="op">-</span> g.transform(<span class="st">'mean'</span>)) <span class="op">/</span> g.transform(<span class="st">'std'</span>)</span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>normalized</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="50">
@@ -2993,7 +2993,7 @@ Name: value, dtype: float64</code></pre>
 <section id="pivot-tables-with-pandas" class="level2">
 <h2 class="anchored" data-anchor-id="pivot-tables-with-pandas">Pivot Tables with pandas</h2>
 <p><code>pivot_table</code> leverages <code>groupby</code> and hierarchical indexing:</p>
-<div id="e1b50b50" class="cell" data-execution_count="51">
+<div id="9e8b29a6" class="cell" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>tips.pivot_table(</span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>    values<span class="op">=</span>[<span class="st">'total_bill'</span>, <span class="st">'tip'</span>],</span>
 <span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">'day'</span>, <span class="st">'smoker'</span>],</span>
@@ -3072,7 +3072,7 @@ Name: value, dtype: float64</code></pre>
 </section>
 <section id="grouping-by-multiple-variables" class="level2">
 <h2 class="anchored" data-anchor-id="grouping-by-multiple-variables">Grouping by Multiple Variables</h2>
-<div id="0f0edf32" class="cell" data-execution_count="52">
+<div id="752e59ee" class="cell" data-execution_count="52">
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>tips.pivot_table(index<span class="op">=</span>[<span class="st">"time"</span>, <span class="st">"day"</span>], columns<span class="op">=</span><span class="st">"smoker"</span>,</span>
 <span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>                 values<span class="op">=</span>[<span class="st">"tip_pct"</span>, <span class="st">"size"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="52">
@@ -3158,7 +3158,7 @@ Name: value, dtype: float64</code></pre>
 </section>
 <section id="adding-margins-partial-totals" class="level2">
 <h2 class="anchored" data-anchor-id="adding-margins-partial-totals">Adding Margins (Partial Totals)</h2>
-<div id="3430fefb" class="cell" data-execution_count="53">
+<div id="f633c692" class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>tips.pivot_table(index<span class="op">=</span>[<span class="st">"time"</span>, <span class="st">"day"</span>], columns<span class="op">=</span><span class="st">"smoker"</span>,</span>
 <span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>                 values<span class="op">=</span>[<span class="st">"tip_pct"</span>, <span class="st">"size"</span>], margins<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="53">
@@ -3270,7 +3270,7 @@ Name: value, dtype: float64</code></pre>
 </section>
 <section id="using-different-aggregation-functions" class="level2">
 <h2 class="anchored" data-anchor-id="using-different-aggregation-functions">Using Different Aggregation Functions</h2>
-<div id="3e5676ac" class="cell" data-execution_count="54">
+<div id="9a0d4520" class="cell" data-execution_count="54">
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>tips.pivot_table(index<span class="op">=</span>[<span class="st">"time"</span>, <span class="st">"smoker"</span>], columns<span class="op">=</span><span class="st">"day"</span>,</span>
 <span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>                 values<span class="op">=</span><span class="st">"tip_pct"</span>, aggfunc<span class="op">=</span><span class="bu">len</span>, margins<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="54">
@@ -3352,7 +3352,7 @@ Name: value, dtype: float64</code></pre>
 <section id="cross-tabulations-crosstab" class="level2">
 <h2 class="anchored" data-anchor-id="cross-tabulations-crosstab">Cross-Tabulations (Crosstab)</h2>
 <p>Crosstab computes group frequencies:</p>
-<div id="9353e797" class="cell" data-execution_count="55">
+<div id="ba62237b" class="cell" data-execution_count="55">
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> io <span class="im">import</span> StringIO</span>
 <span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_table(StringIO(<span class="st">"""Sample Nationality Handedness</span></span>
@@ -3371,7 +3371,7 @@ Name: value, dtype: float64</code></pre>
 <div class="cell-output cell-output-stderr">
 <pre><code>&lt;&gt;:13: SyntaxWarning: invalid escape sequence '\s'
 &lt;&gt;:13: SyntaxWarning: invalid escape sequence '\s'
-/tmp/ipykernel_3090/3956268491.py:13: SyntaxWarning: invalid escape sequence '\s'
+/tmp/ipykernel_3083/3956268491.py:13: SyntaxWarning: invalid escape sequence '\s'
   10 USA Right-handed"""), sep="\s+")</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="55">
@@ -3418,7 +3418,7 @@ Name: value, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="e26821e3" class="cell" data-execution_count="56">
+<div id="d5e2f327" class="cell" data-execution_count="56">
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>pd.crosstab([tips[<span class="st">"time"</span>], tips[<span class="st">"day"</span>]], tips[<span class="st">"smoker"</span>], margins<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="56">
 <div>

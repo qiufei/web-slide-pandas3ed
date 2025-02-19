@@ -92,7 +92,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="https://assets.qiufei.site/setup/styles.css">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -267,7 +267,7 @@ Note
 </section>
 <section id="导入-pandas" class="level2">
 <h2 class="anchored" data-anchor-id="导入-pandas">导入 pandas</h2>
-<div id="1ea2e71f" class="cell" data-execution_count="1">
+<div id="0b62cd68" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd  <span class="co"># 导入 pandas，并将其别名为 'pd'</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np   <span class="co"># 导入 NumPy，并将其别名为 'np'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -283,7 +283,7 @@ Note
 <li>它可以保存任何类型的数据（整数、浮点数、字符串等）。</li>
 <li>它有一个 <em>索引</em>，用于标记每个元素。</li>
 </ul>
-<div id="6cb5fa6f" class="cell" data-execution_count="2">
+<div id="c6a242de" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> pd.Series([<span class="dv">4</span>, <span class="dv">7</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">3</span>]) <span class="co"># 从列表创建一个 Series</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>obj</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
@@ -297,7 +297,7 @@ dtype: int64</code></pre>
 </section>
 <section id="series索引和值" class="level2">
 <h2 class="anchored" data-anchor-id="series索引和值">Series：索引和值</h2>
-<div id="8132a23b" class="cell" data-execution_count="3">
+<div id="8a60c34c" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(obj.array)  <span class="co"># 访问底层数据 (PandasArray)</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(obj.index)  <span class="co"># 访问索引（默认为：0, 1, 2, ...）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -323,7 +323,7 @@ Note
 </section>
 <section id="带有自定义索引的-series" class="level2">
 <h2 class="anchored" data-anchor-id="带有自定义索引的-series">带有自定义索引的 Series</h2>
-<div id="48e717dd" class="cell" data-execution_count="4">
+<div id="e516aa5c" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>obj2 <span class="op">=</span> pd.Series([<span class="dv">4</span>, <span class="dv">7</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">3</span>], index<span class="op">=</span>[<span class="st">'d'</span>, <span class="st">'b'</span>, <span class="st">'a'</span>, <span class="st">'c'</span>]) <span class="co"># 创建一个带有自定义索引的 Series</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>obj2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
@@ -337,7 +337,7 @@ dtype: int64</code></pre>
 </section>
 <section id="series自定义索引-续" class="level2">
 <h2 class="anchored" data-anchor-id="series自定义索引-续">Series：自定义索引 (续)</h2>
-<div id="067a216e" class="cell" data-execution_count="5">
+<div id="c4a2d644" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>obj2.index <span class="co"># 访问自定义索引</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>Index(['d', 'b', 'a', 'c'], dtype='object')</code></pre>
@@ -359,7 +359,7 @@ Note
 </section>
 <section id="访问-series-元素" class="level2">
 <h2 class="anchored" data-anchor-id="访问-series-元素">访问 Series 元素</h2>
-<div id="e94c46c0" class="cell" data-execution_count="6">
+<div id="aa276003" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>obj2[<span class="st">'a'</span>]  <span class="co"># 通过索引标签 'a' 访问元素</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>np.int64(-5)</code></pre>
@@ -368,13 +368,13 @@ Note
 </section>
 <section id="访问-series-元素-续" class="level2">
 <h2 class="anchored" data-anchor-id="访问-series-元素-续">访问 Series 元素 (续)</h2>
-<div id="d8cb310d" class="cell" data-execution_count="7">
+<div id="b0ce3288" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>obj2[<span class="st">'d'</span>] <span class="op">=</span> <span class="dv">6</span>  <span class="co"># 修改索引标签 'd' 处的元素</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="访问-series-元素-续-1" class="level2">
 <h2 class="anchored" data-anchor-id="访问-series-元素-续-1">访问 Series 元素 (续)</h2>
-<div id="8a30e5ae" class="cell" data-execution_count="8">
+<div id="9b95ea70" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>obj2[[<span class="st">'c'</span>, <span class="st">'a'</span>, <span class="st">'d'</span>]]  <span class="co"># 使用标签列表访问多个元素</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>c    3
@@ -399,7 +399,7 @@ Note
 </section>
 <section id="过滤-series" class="level2">
 <h2 class="anchored" data-anchor-id="过滤-series">过滤 Series</h2>
-<div id="4f9d2264" class="cell" data-execution_count="9">
+<div id="d100c03c" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>obj2[obj2 <span class="op">&gt;</span> <span class="dv">0</span>]  <span class="co"># 选择大于 0 的元素（布尔索引）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>d    6
@@ -411,7 +411,7 @@ dtype: int64</code></pre>
 </section>
 <section id="过滤-series-续" class="level2">
 <h2 class="anchored" data-anchor-id="过滤-series-续">过滤 Series (续)</h2>
-<div id="d8503bb8" class="cell" data-execution_count="10">
+<div id="5e8f0f73" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>obj2 <span class="op">*</span> <span class="dv">2</span> <span class="co"># 将每个元素乘以 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>d    12
@@ -424,7 +424,7 @@ dtype: int64</code></pre>
 </section>
 <section id="过滤-series-续-1" class="level2">
 <h2 class="anchored" data-anchor-id="过滤-series-续-1">过滤 Series (续)</h2>
-<div id="f19852e7" class="cell" data-execution_count="11">
+<div id="ddc192bd" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>np.exp(obj2) <span class="co"># 逐元素应用指数函数（来自 NumPy）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>d     403.428793
@@ -450,7 +450,7 @@ Note
 </section>
 <section id="series-作为固定长度的有序字典" class="level2">
 <h2 class="anchored" data-anchor-id="series-作为固定长度的有序字典">Series 作为固定长度的有序字典</h2>
-<div id="37cd2829" class="cell" data-execution_count="12">
+<div id="3e6e5cfd" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">'b'</span> <span class="kw">in</span> obj2  <span class="co"># 检查 'b' 是否在索引中（类似于检查字典中的键）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>True</code></pre>
@@ -459,7 +459,7 @@ Note
 </section>
 <section id="series-作为固定长度的有序字典-续" class="level2">
 <h2 class="anchored" data-anchor-id="series-作为固定长度的有序字典-续">Series 作为固定长度的有序字典 (续)</h2>
-<div id="71f17aa9" class="cell" data-execution_count="13">
+<div id="eb0be10c" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">'e'</span> <span class="kw">in</span> obj2  <span class="co"># 检查 'e' 是否在索引中</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>False</code></pre>
@@ -481,7 +481,7 @@ Note
 </section>
 <section id="从字典创建-series" class="level2">
 <h2 class="anchored" data-anchor-id="从字典创建-series">从字典创建 Series</h2>
-<div id="f2c28713" class="cell" data-execution_count="14">
+<div id="2d763d01" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>sdata <span class="op">=</span> {<span class="st">'Ohio'</span>: <span class="dv">35000</span>, <span class="st">'Texas'</span>: <span class="dv">71000</span>, <span class="st">'Oregon'</span>: <span class="dv">16000</span>, <span class="st">'Utah'</span>: <span class="dv">5000</span>}</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>obj3 <span class="op">=</span> pd.Series(sdata) <span class="co"># 从字典创建一个 Series</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>obj3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -496,7 +496,7 @@ dtype: int64</code></pre>
 </section>
 <section id="从字典创建-series-续" class="level2">
 <h2 class="anchored" data-anchor-id="从字典创建-series-续">从字典创建 Series (续)</h2>
-<div id="eb64893f" class="cell" data-execution_count="15">
+<div id="e42f417f" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>obj3.to_dict() <span class="co">#转换回字典</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>{'Ohio': 35000, 'Texas': 71000, 'Oregon': 16000, 'Utah': 5000}</code></pre>
@@ -505,7 +505,7 @@ dtype: int64</code></pre>
 </section>
 <section id="series处理缺失数据" class="level2">
 <h2 class="anchored" data-anchor-id="series处理缺失数据">Series：处理缺失数据</h2>
-<div id="52e92509" class="cell" data-execution_count="16">
+<div id="a3dfcca8" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> [<span class="st">'California'</span>, <span class="st">'Ohio'</span>, <span class="st">'Oregon'</span>, <span class="st">'Texas'</span>]</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>obj4 <span class="op">=</span> pd.Series(sdata, index<span class="op">=</span>states)  <span class="co"># 使用指定的索引创建一个 Series</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>obj4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -533,7 +533,7 @@ Note
 </section>
 <section id="检测缺失数据" class="level2">
 <h2 class="anchored" data-anchor-id="检测缺失数据">检测缺失数据</h2>
-<div id="0d141f45" class="cell" data-execution_count="17">
+<div id="a5e853c9" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>pd.isna(obj4)  <span class="co"># 检查缺失值 (NaN) - 返回一个布尔 Series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>California     True
@@ -546,7 +546,7 @@ dtype: bool</code></pre>
 </section>
 <section id="检测缺失数据-续" class="level2">
 <h2 class="anchored" data-anchor-id="检测缺失数据-续">检测缺失数据 (续)</h2>
-<div id="3b85c9c7" class="cell" data-execution_count="18">
+<div id="65ce30bd" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>pd.notna(obj4) <span class="co"># 检查非缺失值 - 返回一个布尔 Series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>California    False
@@ -572,7 +572,7 @@ Note
 </section>
 <section id="series自动对齐" class="level2">
 <h2 class="anchored" data-anchor-id="series自动对齐">Series：自动对齐</h2>
-<div id="64a70fc8" class="cell" data-execution_count="19">
+<div id="4e638704" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>obj3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>Ohio      35000
@@ -585,7 +585,7 @@ dtype: int64</code></pre>
 </section>
 <section id="series自动对齐-续" class="level2">
 <h2 class="anchored" data-anchor-id="series自动对齐-续">Series：自动对齐 (续)</h2>
-<div id="2e044673" class="cell" data-execution_count="20">
+<div id="eb9b3c8a" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>obj4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>California        NaN
@@ -598,7 +598,7 @@ dtype: float64</code></pre>
 </section>
 <section id="series自动对齐-续-1" class="level2">
 <h2 class="anchored" data-anchor-id="series自动对齐-续-1">Series：自动对齐 (续)</h2>
-<div id="c71ccb37" class="cell" data-execution_count="21">
+<div id="c42e5ebc" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>obj3 <span class="op">+</span> obj4  <span class="co"># 将两个 Series 相加；值按索引标签对齐</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>California         NaN
@@ -625,7 +625,7 @@ Note
 </section>
 <section id="seriesname-属性" class="level2">
 <h2 class="anchored" data-anchor-id="seriesname-属性">Series：<code>name</code> 属性</h2>
-<div id="6d8ef423" class="cell" data-execution_count="22">
+<div id="a1a62e1c" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>obj4.name <span class="op">=</span> <span class="st">'population'</span>  <span class="co"># 设置 Series 的名称</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>obj4.index.name <span class="op">=</span> <span class="st">'state'</span>  <span class="co"># 设置索引的名称</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>obj4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -654,7 +654,7 @@ Note
 </section>
 <section id="就地更改-series-索引" class="level2">
 <h2 class="anchored" data-anchor-id="就地更改-series-索引">就地更改 Series 索引</h2>
-<div id="c4dc3660" class="cell" data-execution_count="23">
+<div id="904f70ed" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>obj</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
 <pre><code>0    4
@@ -667,7 +667,7 @@ dtype: int64</code></pre>
 </section>
 <section id="就地更改-series-索引-续" class="level2">
 <h2 class="anchored" data-anchor-id="就地更改-series-索引-续">就地更改 Series 索引 (续)</h2>
-<div id="e6901ec3" class="cell" data-execution_count="24">
+<div id="de2e7ccb" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>obj.index <span class="op">=</span> [<span class="st">'Bob'</span>, <span class="st">'Steve'</span>, <span class="st">'Jeff'</span>, <span class="st">'Ryan'</span>]  <span class="co"># 就地修改索引</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>obj</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
@@ -703,7 +703,7 @@ Note
 </section>
 <section id="创建-dataframe" class="level2">
 <h2 class="anchored" data-anchor-id="创建-dataframe">创建 DataFrame</h2>
-<div id="f5665978" class="cell" data-execution_count="25">
+<div id="6043c736" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {<span class="st">'state'</span>: [<span class="st">'Ohio'</span>, <span class="st">'Ohio'</span>, <span class="st">'Ohio'</span>, <span class="st">'Nevada'</span>, <span class="st">'Nevada'</span>, <span class="st">'Nevada'</span>],</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>        <span class="st">'year'</span>: [<span class="dv">2000</span>, <span class="dv">2001</span>, <span class="dv">2002</span>, <span class="dv">2001</span>, <span class="dv">2002</span>, <span class="dv">2003</span>],</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">'pop'</span>: [<span class="fl">1.5</span>, <span class="fl">1.7</span>, <span class="fl">3.6</span>, <span class="fl">2.4</span>, <span class="fl">2.9</span>, <span class="fl">3.2</span>]}</span>
@@ -781,7 +781,7 @@ Note
 </section>
 <section id="dataframehead-和-tail" class="level2">
 <h2 class="anchored" data-anchor-id="dataframehead-和-tail">DataFrame：<code>head()</code> 和 <code>tail()</code></h2>
-<div id="84c5f639" class="cell" data-execution_count="26">
+<div id="068d890e" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>frame.head()  <span class="co"># 显示前 5 行</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
 <div>
@@ -836,7 +836,7 @@ Note
 </section>
 <section id="dataframehead-和-tail-续" class="level2">
 <h2 class="anchored" data-anchor-id="dataframehead-和-tail-续">DataFrame：<code>head()</code> 和 <code>tail()</code> (续)</h2>
-<div id="962a5e1b" class="cell" data-execution_count="27">
+<div id="ba68a6e4" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>frame.tail() <span class="co"># 显示最后 5 行</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 <div>
@@ -891,7 +891,7 @@ Note
 </section>
 <section id="dataframe指定列顺序" class="level2">
 <h2 class="anchored" data-anchor-id="dataframe指定列顺序">DataFrame：指定列顺序</h2>
-<div id="0fabaabb" class="cell" data-execution_count="28">
+<div id="ba896913" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(data, columns<span class="op">=</span>[<span class="st">'year'</span>, <span class="st">'state'</span>, <span class="st">'pop'</span>]) <span class="co"># 指定列顺序</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
 <div>
@@ -965,7 +965,7 @@ Note
 </section>
 <section id="dataframe缺失数据" class="level2">
 <h2 class="anchored" data-anchor-id="dataframe缺失数据">DataFrame：缺失数据</h2>
-<div id="754ce041" class="cell" data-execution_count="29">
+<div id="b1177215" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>frame2 <span class="op">=</span> pd.DataFrame(data, columns<span class="op">=</span>[<span class="st">'year'</span>, <span class="st">'state'</span>, <span class="st">'pop'</span>, <span class="st">'debt'</span>]) <span class="co"># 'debt' 是一个新列</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>frame2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
@@ -1034,7 +1034,7 @@ Note
 </section>
 <section id="dataframe缺失数据-续" class="level2">
 <h2 class="anchored" data-anchor-id="dataframe缺失数据-续">DataFrame：缺失数据 (续)</h2>
-<div id="589995a4" class="cell" data-execution_count="30">
+<div id="1ab22229" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>frame2.columns  <span class="co"># 显示列名</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
 <pre><code>Index(['year', 'state', 'pop', 'debt'], dtype='object')</code></pre>
@@ -1056,7 +1056,7 @@ Note
 </section>
 <section id="检索列" class="level2">
 <h2 class="anchored" data-anchor-id="检索列">检索列</h2>
-<div id="5b68ce57" class="cell" data-execution_count="31">
+<div id="db0359f2" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>frame2[<span class="st">'state'</span>]  <span class="co"># 检索 'state' 列（类似字典的表示法）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
 <pre><code>0      Ohio
@@ -1071,7 +1071,7 @@ Name: state, dtype: object</code></pre>
 </section>
 <section id="检索列-续" class="level2">
 <h2 class="anchored" data-anchor-id="检索列-续">检索列 (续)</h2>
-<div id="698b922b" class="cell" data-execution_count="32">
+<div id="62334963" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>frame2.year  <span class="co"># 检索 'year' 列（类似属性的访问）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="32">
 <pre><code>0    2000
@@ -1099,7 +1099,7 @@ Note
 </section>
 <section id="检索行" class="level2">
 <h2 class="anchored" data-anchor-id="检索行">检索行</h2>
-<div id="0dcf1b72" class="cell" data-execution_count="33">
+<div id="b131c427" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>frame2.loc[<span class="dv">1</span>]  <span class="co"># 按标签访问行（索引 '1'）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="33">
 <pre><code>year     2001
@@ -1112,7 +1112,7 @@ Name: 1, dtype: object</code></pre>
 </section>
 <section id="检索行-续" class="level2">
 <h2 class="anchored" data-anchor-id="检索行-续">检索行 (续)</h2>
-<div id="6034a8bb" class="cell" data-execution_count="34">
+<div id="21b6c73c" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>frame2.iloc[<span class="dv">2</span>]  <span class="co"># 按整数位置访问行（索引 2）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
 <pre><code>year     2002
@@ -1138,7 +1138,7 @@ Note
 </section>
 <section id="修改列" class="level2">
 <h2 class="anchored" data-anchor-id="修改列">修改列</h2>
-<div id="30c4e1ce" class="cell" data-execution_count="35">
+<div id="0073e125" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>frame2[<span class="st">'debt'</span>] <span class="op">=</span> <span class="fl">16.5</span>  <span class="co"># 将标量值赋给 'debt' 列</span></span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>frame2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="35">
@@ -1207,7 +1207,7 @@ Note
 </section>
 <section id="修改列-续" class="level2">
 <h2 class="anchored" data-anchor-id="修改列-续">修改列 (续)</h2>
-<div id="a0d7f1fa" class="cell" data-execution_count="36">
+<div id="29fff22b" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>frame2[<span class="st">'debt'</span>] <span class="op">=</span> np.arange(<span class="fl">6.</span>)  <span class="co"># 将 NumPy 数组赋给 'debt' 列</span></span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>frame2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="36">
@@ -1276,7 +1276,7 @@ Note
 </section>
 <section id="赋值-series" class="level2">
 <h2 class="anchored" data-anchor-id="赋值-series">赋值 Series</h2>
-<div id="4db77d4c" class="cell" data-execution_count="37">
+<div id="6623d0eb" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>val <span class="op">=</span> pd.Series([<span class="op">-</span><span class="fl">1.2</span>, <span class="op">-</span><span class="fl">1.5</span>, <span class="op">-</span><span class="fl">1.7</span>], index<span class="op">=</span>[<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>])  <span class="co"># 创建带有自定义索引的 Series</span></span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>frame2[<span class="st">'debt'</span>] <span class="op">=</span> val  <span class="co"># 将 Series 赋给 'debt' 列</span></span>
 <span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>frame2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1359,7 +1359,7 @@ Note
 </section>
 <section id="创建新列" class="level2">
 <h2 class="anchored" data-anchor-id="创建新列">创建新列</h2>
-<div id="ae8d33a1" class="cell" data-execution_count="38">
+<div id="35f7a8f7" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>frame2[<span class="st">'eastern'</span>] <span class="op">=</span> frame2[<span class="st">'state'</span>] <span class="op">==</span> <span class="st">'Ohio'</span>  <span class="co"># 创建一个新列 'eastern'</span></span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>frame2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="38">
@@ -1448,7 +1448,7 @@ Note
 </section>
 <section id="删除列" class="level2">
 <h2 class="anchored" data-anchor-id="删除列">删除列</h2>
-<div id="9243c1f0" class="cell" data-execution_count="39">
+<div id="3e5ebfb6" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> frame2[<span class="st">'eastern'</span>]  <span class="co"># 删除 'eastern' 列</span></span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>frame2.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="39">
@@ -1471,7 +1471,7 @@ Note
 </section>
 <section id="从嵌套字典创建-dataframe" class="level2">
 <h2 class="anchored" data-anchor-id="从嵌套字典创建-dataframe">从嵌套字典创建 DataFrame</h2>
-<div id="f3680b76" class="cell" data-execution_count="40">
+<div id="6e949be9" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>populations <span class="op">=</span> {<span class="st">'Ohio'</span>: {<span class="dv">2000</span>: <span class="fl">1.5</span>, <span class="dv">2001</span>: <span class="fl">1.7</span>, <span class="dv">2002</span>: <span class="fl">3.6</span>},</span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>               <span class="st">'Nevada'</span>: {<span class="dv">2001</span>: <span class="fl">2.4</span>, <span class="dv">2002</span>: <span class="fl">2.9</span>}}</span>
 <span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>frame3 <span class="op">=</span> pd.DataFrame(populations) <span class="co"># 从嵌套字典创建 DataFrame</span></span>
@@ -1526,7 +1526,7 @@ Note
 </section>
 <section id="转置-dataframe" class="level2">
 <h2 class="anchored" data-anchor-id="转置-dataframe">转置 DataFrame</h2>
-<div id="ff17aef2" class="cell" data-execution_count="41">
+<div id="0a8f045f" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>frame3.T  <span class="co"># 转置 DataFrame（交换行和列）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="41">
 <div>
@@ -1576,7 +1576,7 @@ Note
 </section>
 <section id="dataframeindex.name-和-columns.name" class="level2">
 <h2 class="anchored" data-anchor-id="dataframeindex.name-和-columns.name">DataFrame：<code>index.name</code> 和 <code>columns.name</code></h2>
-<div id="c2b10c5e" class="cell" data-execution_count="42">
+<div id="7e0b9448" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>frame3.index.name <span class="op">=</span> <span class="st">'year'</span>    <span class="co"># 设置行索引的名称</span></span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>frame3.columns.name <span class="op">=</span> <span class="st">'state'</span> <span class="co"># 设置列索引的名称</span></span>
 <span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>frame3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1622,7 +1622,7 @@ Note
 </section>
 <section id="dataframeto_numpy" class="level2">
 <h2 class="anchored" data-anchor-id="dataframeto_numpy">DataFrame：<code>to_numpy()</code></h2>
-<div id="8f8604f8" class="cell" data-execution_count="43">
+<div id="d0fd3954" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>frame3.to_numpy()  <span class="co"># 将 DataFrame 转换为 NumPy 数组</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="43">
 <pre><code>array([[1.5, nan],
@@ -1646,7 +1646,7 @@ Note
 </section>
 <section id="索引对象" class="level2">
 <h2 class="anchored" data-anchor-id="索引对象">索引对象</h2>
-<div id="31a8528c" class="cell" data-execution_count="44">
+<div id="27d335ee" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> pd.Series(np.arange(<span class="dv">3</span>), index<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>])</span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>index <span class="op">=</span> obj.index  <span class="co"># 获取 Index 对象</span></span>
 <span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1657,7 +1657,7 @@ Note
 </section>
 <section id="索引对象-续" class="level2">
 <h2 class="anchored" data-anchor-id="索引对象-续">索引对象 (续)</h2>
-<div id="621a077b" class="cell" data-execution_count="45">
+<div id="274c34e2" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>index[<span class="dv">1</span>:]  <span class="co"># 对 Index 对象进行切片（类似于列表）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="45">
 <pre><code>Index(['b', 'c'], dtype='object')</code></pre>
@@ -1679,7 +1679,7 @@ Note
 </section>
 <section id="索引的不可变性" class="level2">
 <h2 class="anchored" data-anchor-id="索引的不可变性">索引的不可变性</h2>
-<div id="61d7c87f" class="cell" data-execution_count="46">
+<div id="3bb9d9b6" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>index[<span class="dv">1</span>] <span class="op">=</span> <span class="st">'d'</span>  <span class="co"># TypeError: Index does not support mutable operations</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -1698,7 +1698,7 @@ Note
 </section>
 <section id="索引作为固定大小的集合" class="level2">
 <h2 class="anchored" data-anchor-id="索引作为固定大小的集合">索引作为固定大小的集合</h2>
-<div id="4e08dceb" class="cell" data-execution_count="47">
+<div id="6d6c62fa" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>frame3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="46">
 <div>
@@ -1742,7 +1742,7 @@ Note
 </section>
 <section id="索引作为固定大小的集合-续" class="level2">
 <h2 class="anchored" data-anchor-id="索引作为固定大小的集合-续">索引作为固定大小的集合 (续)</h2>
-<div id="1843e671" class="cell" data-execution_count="48">
+<div id="c52debaa" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co">'Ohio'</span> <span class="kw">in</span> frame3.columns  <span class="co"># 检查列成员资格</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="47">
 <pre><code>True</code></pre>
@@ -1751,7 +1751,7 @@ Note
 </section>
 <section id="索引作为固定大小的集合-续-1" class="level2">
 <h2 class="anchored" data-anchor-id="索引作为固定大小的集合-续-1">索引作为固定大小的集合 (续)</h2>
-<div id="6eec5d3e" class="cell" data-execution_count="49">
+<div id="25b0e71b" class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2003</span> <span class="kw">in</span> frame3.index  <span class="co"># 检查行索引成员资格</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="48">
 <pre><code>False</code></pre>
@@ -1763,7 +1763,7 @@ Note
 <ul>
 <li><code>reindex</code> 创建一个<em>新</em>对象；数据会根据新索引进行调整。</li>
 </ul>
-<div id="51978241" class="cell" data-execution_count="50">
+<div id="ea8fa5b7" class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> pd.Series([<span class="fl">4.5</span>, <span class="fl">7.2</span>, <span class="op">-</span><span class="fl">5.3</span>, <span class="fl">3.6</span>], index<span class="op">=</span>[<span class="st">'d'</span>, <span class="st">'b'</span>, <span class="st">'a'</span>, <span class="st">'c'</span>])</span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>obj</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="49">
@@ -1777,7 +1777,7 @@ dtype: float64</code></pre>
 </section>
 <section id="重新索引-续" class="level2">
 <h2 class="anchored" data-anchor-id="重新索引-续">重新索引 (续)</h2>
-<div id="eb53575e" class="cell" data-execution_count="51">
+<div id="129ae84d" class="cell" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>obj2 <span class="op">=</span> obj.reindex([<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>, <span class="st">'e'</span>])  <span class="co"># 重新索引 Series</span></span>
 <span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>obj2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="50">
@@ -1805,7 +1805,7 @@ Note
 </section>
 <section id="重新索引插值的-method" class="level2">
 <h2 class="anchored" data-anchor-id="重新索引插值的-method">重新索引：插值的 <code>method</code></h2>
-<div id="ec5bb056" class="cell" data-execution_count="52">
+<div id="51219aee" class="cell" data-execution_count="52">
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>obj3 <span class="op">=</span> pd.Series([<span class="st">'blue'</span>, <span class="st">'purple'</span>, <span class="st">'yellow'</span>], index<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>])</span>
 <span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>obj3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="51">
@@ -1818,7 +1818,7 @@ dtype: object</code></pre>
 </section>
 <section id="重新索引插值的-method-续" class="level2">
 <h2 class="anchored" data-anchor-id="重新索引插值的-method-续">重新索引：插值的 <code>method</code> (续)</h2>
-<div id="aa888f5d" class="cell" data-execution_count="53">
+<div id="601a56a0" class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>obj3.reindex(np.arange(<span class="dv">6</span>), method<span class="op">=</span><span class="st">'ffill'</span>)  <span class="co"># 前向填充缺失值</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="52">
 <pre><code>0      blue
@@ -1846,7 +1846,7 @@ Note
 </section>
 <section id="使用-dataframe-重新索引" class="level2">
 <h2 class="anchored" data-anchor-id="使用-dataframe-重新索引">使用 DataFrame 重新索引</h2>
-<div id="7e11319b" class="cell" data-execution_count="54">
+<div id="89acd918" class="cell" data-execution_count="54">
 <div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> pd.DataFrame(np.arange(<span class="dv">9</span>).reshape((<span class="dv">3</span>, <span class="dv">3</span>)),</span>
 <span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>                     index<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>],</span>
 <span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>                     columns<span class="op">=</span>[<span class="st">'Ohio'</span>, <span class="st">'Texas'</span>, <span class="st">'California'</span>])</span>
@@ -1892,7 +1892,7 @@ Note
 </section>
 <section id="使用-dataframe-重新索引-续" class="level2">
 <h2 class="anchored" data-anchor-id="使用-dataframe-重新索引-续">使用 DataFrame 重新索引 (续)</h2>
-<div id="948a3a05" class="cell" data-execution_count="55">
+<div id="1c276fa4" class="cell" data-execution_count="55">
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>frame2 <span class="op">=</span> frame.reindex(index<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>]) <span class="co"># 重新索引行</span></span>
 <span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>frame2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="54">
@@ -1955,7 +1955,7 @@ Note
 </section>
 <section id="重新索引列" class="level2">
 <h2 class="anchored" data-anchor-id="重新索引列">重新索引列</h2>
-<div id="0bbb4fe5" class="cell" data-execution_count="56">
+<div id="97ac6ae9" class="cell" data-execution_count="56">
 <div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> [<span class="st">'Texas'</span>, <span class="st">'Utah'</span>, <span class="st">'California'</span>]</span>
 <span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>frame.reindex(columns<span class="op">=</span>states)  <span class="co"># 重新索引列</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="55">
@@ -1999,7 +1999,7 @@ Note
 </section>
 <section id="删除条目" class="level2">
 <h2 class="anchored" data-anchor-id="删除条目">删除条目</h2>
-<div id="a0744813" class="cell" data-execution_count="57">
+<div id="2bddb28b" class="cell" data-execution_count="57">
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> pd.Series(np.arange(<span class="fl">5.</span>), index<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>, <span class="st">'e'</span>])</span>
 <span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>obj</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="56">
@@ -2014,7 +2014,7 @@ dtype: float64</code></pre>
 </section>
 <section id="删除条目-续" class="level2">
 <h2 class="anchored" data-anchor-id="删除条目-续">删除条目 (续)</h2>
-<div id="1af83dac" class="cell" data-execution_count="58">
+<div id="b744c779" class="cell" data-execution_count="58">
 <div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>new_obj <span class="op">=</span> obj.drop(<span class="st">'c'</span>)  <span class="co"># 删除条目 'c'（创建一个新的 Series）</span></span>
 <span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>new_obj</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="57">
@@ -2028,7 +2028,7 @@ dtype: float64</code></pre>
 </section>
 <section id="删除条目-续-1" class="level2">
 <h2 class="anchored" data-anchor-id="删除条目-续-1">删除条目 (续)</h2>
-<div id="dfd21d19" class="cell" data-execution_count="59">
+<div id="bff694a4" class="cell" data-execution_count="59">
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>obj.drop([<span class="st">'d'</span>, <span class="st">'c'</span>])  <span class="co"># 删除多个条目</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="58">
 <pre><code>a    0.0
@@ -2040,7 +2040,7 @@ dtype: float64</code></pre>
 </section>
 <section id="从-dataframe-中删除" class="level2">
 <h2 class="anchored" data-anchor-id="从-dataframe-中删除">从 DataFrame 中删除</h2>
-<div id="16d82bb8" class="cell" data-execution_count="60">
+<div id="e6f69a75" class="cell" data-execution_count="60">
 <div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame(np.arange(<span class="dv">16</span>).reshape((<span class="dv">4</span>, <span class="dv">4</span>)),</span>
 <span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>                    index<span class="op">=</span>[<span class="st">'Ohio'</span>, <span class="st">'Colorado'</span>, <span class="st">'Utah'</span>, <span class="st">'New York'</span>],</span>
 <span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>                    columns<span class="op">=</span>[<span class="st">'one'</span>, <span class="st">'two'</span>, <span class="st">'three'</span>, <span class="st">'four'</span>])</span>
@@ -2097,7 +2097,7 @@ dtype: float64</code></pre>
 </section>
 <section id="从-dataframe-中删除-续" class="level2">
 <h2 class="anchored" data-anchor-id="从-dataframe-中删除-续">从 DataFrame 中删除 (续)</h2>
-<div id="2644db28" class="cell" data-execution_count="61">
+<div id="c75c6693" class="cell" data-execution_count="61">
 <div class="sourceCode cell-code" id="cb101"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>data.drop(index<span class="op">=</span>[<span class="st">'Colorado'</span>, <span class="st">'Ohio'</span>])  <span class="co"># 按索引标签删除行</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="60">
 <div>
@@ -2137,7 +2137,7 @@ dtype: float64</code></pre>
 </section>
 <section id="从-dataframe-中删除-续-1" class="level2">
 <h2 class="anchored" data-anchor-id="从-dataframe-中删除-续-1">从 DataFrame 中删除 (续)</h2>
-<div id="9aa2cac9" class="cell" data-execution_count="62">
+<div id="0fb57e47" class="cell" data-execution_count="62">
 <div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>data.drop(columns<span class="op">=</span>[<span class="st">'two'</span>]) <span class="co"># 按列名删除列</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="61">
 <div>
@@ -2186,7 +2186,7 @@ dtype: float64</code></pre>
 </section>
 <section id="从-dataframe-中删除-续-2" class="level2">
 <h2 class="anchored" data-anchor-id="从-dataframe-中删除-续-2">从 DataFrame 中删除 (续)</h2>
-<div id="7274fca5" class="cell" data-execution_count="63">
+<div id="2d78a51e" class="cell" data-execution_count="63">
 <div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>data.drop(<span class="st">'two'</span>, axis<span class="op">=</span><span class="dv">1</span>) <span class="co"># 使用 axis=1 删除列（与上述相同）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="62">
 <div>
@@ -2235,7 +2235,7 @@ dtype: float64</code></pre>
 </section>
 <section id="索引选择和过滤" class="level2">
 <h2 class="anchored" data-anchor-id="索引选择和过滤">索引、选择和过滤</h2>
-<div id="76f53c0c" class="cell" data-execution_count="64">
+<div id="f076da80" class="cell" data-execution_count="64">
 <div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> pd.Series(np.arange(<span class="fl">4.</span>), index<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>])</span>
 <span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>obj</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="63">
@@ -2249,7 +2249,7 @@ dtype: float64</code></pre>
 </section>
 <section id="索引选择和过滤-续" class="level2">
 <h2 class="anchored" data-anchor-id="索引选择和过滤-续">索引、选择和过滤 (续)</h2>
-<div id="cd120383" class="cell" data-execution_count="65">
+<div id="a7f15ed6" class="cell" data-execution_count="65">
 <div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>obj[<span class="st">'b'</span>]  <span class="co"># 按标签选择</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="64">
 <pre><code>np.float64(1.0)</code></pre>
@@ -2258,10 +2258,10 @@ dtype: float64</code></pre>
 </section>
 <section id="索引选择和过滤-续-1" class="level2">
 <h2 class="anchored" data-anchor-id="索引选择和过滤-续-1">索引、选择和过滤 (续)</h2>
-<div id="2eec0a0a" class="cell" data-execution_count="66">
+<div id="0a229f9d" class="cell" data-execution_count="66">
 <div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>obj[<span class="dv">1</span>]  <span class="co"># 按整数位置选择</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_3353/3909875360.py:1: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+<pre><code>/tmp/ipykernel_3356/3909875360.py:1: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
   obj[1]  # 按整数位置选择</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="65">
@@ -2271,7 +2271,7 @@ dtype: float64</code></pre>
 </section>
 <section id="索引选择和过滤-续-2" class="level2">
 <h2 class="anchored" data-anchor-id="索引选择和过滤-续-2">索引、选择和过滤 (续)</h2>
-<div id="9bede1df" class="cell" data-execution_count="67">
+<div id="0d495ce3" class="cell" data-execution_count="67">
 <div class="sourceCode cell-code" id="cb111"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>obj[<span class="dv">2</span>:<span class="dv">4</span>]  <span class="co"># 切片</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="66">
 <pre><code>c    2.0
@@ -2282,7 +2282,7 @@ dtype: float64</code></pre>
 </section>
 <section id="索引选择和过滤-续-3" class="level2">
 <h2 class="anchored" data-anchor-id="索引选择和过滤-续-3">索引、选择和过滤 (续)</h2>
-<div id="46a591f4" class="cell" data-execution_count="68">
+<div id="dc8421dc" class="cell" data-execution_count="68">
 <div class="sourceCode cell-code" id="cb113"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>obj[[<span class="st">'b'</span>, <span class="st">'a'</span>, <span class="st">'d'</span>]]  <span class="co"># 选择多个标签</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="67">
 <pre><code>b    1.0
@@ -2294,10 +2294,10 @@ dtype: float64</code></pre>
 </section>
 <section id="索引选择和过滤-续-4" class="level2">
 <h2 class="anchored" data-anchor-id="索引选择和过滤-续-4">索引、选择和过滤 (续)</h2>
-<div id="6e1296e9" class="cell" data-execution_count="69">
+<div id="e56ee908" class="cell" data-execution_count="69">
 <div class="sourceCode cell-code" id="cb115"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>obj[[<span class="dv">1</span>, <span class="dv">3</span>]]  <span class="co"># 选择多个整数位置</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_3353/2120319348.py:1: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
+<pre><code>/tmp/ipykernel_3356/2120319348.py:1: FutureWarning: Series.__getitem__ treating keys as positions is deprecated. In a future version, integer keys will always be treated as labels (consistent with DataFrame behavior). To access a value by position, use `ser.iloc[pos]`
   obj[[1, 3]]  # 选择多个整数位置</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="68">
@@ -2309,7 +2309,7 @@ dtype: float64</code></pre>
 </section>
 <section id="索引选择和过滤-续-5" class="level2">
 <h2 class="anchored" data-anchor-id="索引选择和过滤-续-5">索引、选择和过滤 (续)</h2>
-<div id="b5882de6" class="cell" data-execution_count="70">
+<div id="74f943b6" class="cell" data-execution_count="70">
 <div class="sourceCode cell-code" id="cb118"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>obj[obj <span class="op">&lt;</span> <span class="dv">2</span>]  <span class="co"># 布尔索引</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="69">
 <pre><code>a    0.0
@@ -2324,7 +2324,7 @@ dtype: float64</code></pre>
 <li><code>loc</code>：按<em>标签</em>选择。</li>
 <li><code>iloc</code>：按<em>整数位置</em>选择。</li>
 </ul>
-<div id="13d2ef63" class="cell" data-execution_count="71">
+<div id="a7b20f08" class="cell" data-execution_count="71">
 <div class="sourceCode cell-code" id="cb120"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>obj.loc[[<span class="st">'b'</span>, <span class="st">'a'</span>, <span class="st">'d'</span>]] <span class="co"># 使用 loc 按标签选择</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="70">
 <pre><code>b    1.0
@@ -2336,14 +2336,14 @@ dtype: float64</code></pre>
 </section>
 <section id="使用-loc-和-iloc-进行索引续" class="level2">
 <h2 class="anchored" data-anchor-id="使用-loc-和-iloc-进行索引续">使用 <code>loc</code> 和 <code>iloc</code> 进行索引(续)</h2>
-<div id="507ff100" class="cell" data-execution_count="72">
+<div id="970d4fcf" class="cell" data-execution_count="72">
 <div class="sourceCode cell-code" id="cb122"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a>obj1 <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], index<span class="op">=</span>[<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>])</span>
 <span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a>obj2 <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], index<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="使用-loc-和-iloc-进行索引续-1" class="level2">
 <h2 class="anchored" data-anchor-id="使用-loc-和-iloc-进行索引续-1">使用 <code>loc</code> 和 <code>iloc</code> 进行索引(续)</h2>
-<div id="acbdc6ad" class="cell" data-execution_count="73">
+<div id="bf3cf529" class="cell" data-execution_count="73">
 <div class="sourceCode cell-code" id="cb123"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>obj1[[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>]] <span class="co">#如果Series的索引是整数,则默认按标签选择</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="72">
 <pre><code>0    2
@@ -2355,13 +2355,13 @@ dtype: int64</code></pre>
 </section>
 <section id="使用-loc-和-iloc-进行索引续-2" class="level2">
 <h2 class="anchored" data-anchor-id="使用-loc-和-iloc-进行索引续-2">使用 <code>loc</code> 和 <code>iloc</code> 进行索引(续)</h2>
-<div id="ae4e7349" class="cell" data-execution_count="74">
+<div id="f83f10d7" class="cell" data-execution_count="74">
 <div class="sourceCode cell-code" id="cb125"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a>obj2.loc[[<span class="dv">0</span>, <span class="dv">1</span>]] <span class="co"># 索引是字符串，0和1不是obj2的标签时，会出错</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="使用-loc-和-iloc-进行索引-续" class="level2">
 <h2 class="anchored" data-anchor-id="使用-loc-和-iloc-进行索引-续">使用 <code>loc</code> 和 <code>iloc</code> 进行索引 (续)</h2>
-<div id="16eafc2e" class="cell" data-execution_count="75">
+<div id="13c8ad59" class="cell" data-execution_count="75">
 <div class="sourceCode cell-code" id="cb126"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a>obj1.iloc[[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>]] <span class="co"># iloc 使用整数位置</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="73">
 <pre><code>2    1
@@ -2373,7 +2373,7 @@ dtype: int64</code></pre>
 </section>
 <section id="使用-loc-和-iloc-进行索引-续-1" class="level2">
 <h2 class="anchored" data-anchor-id="使用-loc-和-iloc-进行索引-续-1">使用 <code>loc</code> 和 <code>iloc</code> 进行索引 (续)</h2>
-<div id="6dd90b8f" class="cell" data-execution_count="76">
+<div id="1c4d2372" class="cell" data-execution_count="76">
 <div class="sourceCode cell-code" id="cb128"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a>obj2.iloc[[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>]] <span class="co"># iloc 使用整数位置</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="74">
 <pre><code>a    1
@@ -2398,7 +2398,7 @@ Note
 </section>
 <section id="使用标签切片包含" class="level2">
 <h2 class="anchored" data-anchor-id="使用标签切片包含">使用标签切片（包含）</h2>
-<div id="d95b0c0d" class="cell" data-execution_count="77">
+<div id="cf858563" class="cell" data-execution_count="77">
 <div class="sourceCode cell-code" id="cb130"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a>obj2.loc[<span class="st">'b'</span>:<span class="st">'c'</span>]  <span class="co"># 包括端点 ('c')！</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="75">
 <pre><code>b    2
@@ -2409,7 +2409,7 @@ dtype: int64</code></pre>
 </section>
 <section id="使用标签切片包含续" class="level2">
 <h2 class="anchored" data-anchor-id="使用标签切片包含续">使用标签切片（包含）(续)</h2>
-<div id="0a44d302" class="cell" data-execution_count="78">
+<div id="74e386da" class="cell" data-execution_count="78">
 <div class="sourceCode cell-code" id="cb132"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a>obj2.loc[<span class="st">'b'</span>:<span class="st">'c'</span>] <span class="op">=</span> <span class="dv">5</span>  <span class="co"># 使用基于标签的切片赋值</span></span>
 <span id="cb132-2"><a href="#cb132-2" aria-hidden="true" tabindex="-1"></a>obj2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="76">
@@ -2435,7 +2435,7 @@ Note
 </section>
 <section id="索引到-dataframe-中" class="level2">
 <h2 class="anchored" data-anchor-id="索引到-dataframe-中">索引到 DataFrame 中</h2>
-<div id="ab548a03" class="cell" data-execution_count="79">
+<div id="841ff356" class="cell" data-execution_count="79">
 <div class="sourceCode cell-code" id="cb134"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame(np.arange(<span class="dv">16</span>).reshape((<span class="dv">4</span>, <span class="dv">4</span>)),</span>
 <span id="cb134-2"><a href="#cb134-2" aria-hidden="true" tabindex="-1"></a>                    index<span class="op">=</span>[<span class="st">'Ohio'</span>, <span class="st">'Colorado'</span>, <span class="st">'Utah'</span>, <span class="st">'New York'</span>],</span>
 <span id="cb134-3"><a href="#cb134-3" aria-hidden="true" tabindex="-1"></a>                    columns<span class="op">=</span>[<span class="st">'one'</span>, <span class="st">'two'</span>, <span class="st">'three'</span>, <span class="st">'four'</span>])</span>
@@ -2492,7 +2492,7 @@ Note
 </section>
 <section id="索引到-dataframe-中-续" class="level2">
 <h2 class="anchored" data-anchor-id="索引到-dataframe-中-续">索引到 DataFrame 中 (续)</h2>
-<div id="725c739a" class="cell" data-execution_count="80">
+<div id="ec7ee4c3" class="cell" data-execution_count="80">
 <div class="sourceCode cell-code" id="cb135"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'two'</span>]  <span class="co"># 选择列 'two'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="78">
 <pre><code>Ohio         1
@@ -2505,7 +2505,7 @@ Name: two, dtype: int64</code></pre>
 </section>
 <section id="索引到-dataframe-中-续-1" class="level2">
 <h2 class="anchored" data-anchor-id="索引到-dataframe-中-续-1">索引到 DataFrame 中 (续)</h2>
-<div id="80eb196b" class="cell" data-execution_count="81">
+<div id="f4b499ba" class="cell" data-execution_count="81">
 <div class="sourceCode cell-code" id="cb137"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a>data[[<span class="st">'three'</span>, <span class="st">'one'</span>]]  <span class="co"># 选择多列</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="79">
 <div>
@@ -2549,7 +2549,7 @@ Name: two, dtype: int64</code></pre>
 </section>
 <section id="dataframe索引的特殊情况" class="level2">
 <h2 class="anchored" data-anchor-id="dataframe索引的特殊情况">DataFrame：索引的特殊情况</h2>
-<div id="a744af54" class="cell" data-execution_count="82">
+<div id="dcaad400" class="cell" data-execution_count="82">
 <div class="sourceCode cell-code" id="cb138"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a>data[:<span class="dv">2</span>]  <span class="co"># 切片行（选择第 0 行和第 1 行）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="80">
 <div>
@@ -2589,7 +2589,7 @@ Name: two, dtype: int64</code></pre>
 </section>
 <section id="dataframe索引的特殊情况-续" class="level2">
 <h2 class="anchored" data-anchor-id="dataframe索引的特殊情况-续">DataFrame：索引的特殊情况 (续)</h2>
-<div id="37f478fa" class="cell" data-execution_count="83">
+<div id="e4539f25" class="cell" data-execution_count="83">
 <div class="sourceCode cell-code" id="cb139"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a>data[data[<span class="st">'three'</span>] <span class="op">&gt;</span> <span class="dv">5</span>]  <span class="co"># 布尔索引（选择 'three' &gt; 5 的行）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="81">
 <div>
@@ -2636,7 +2636,7 @@ Name: two, dtype: int64</code></pre>
 </section>
 <section id="dataframe布尔索引" class="level2">
 <h2 class="anchored" data-anchor-id="dataframe布尔索引">DataFrame：布尔索引</h2>
-<div id="28314546" class="cell" data-execution_count="84">
+<div id="7ffd15e0" class="cell" data-execution_count="84">
 <div class="sourceCode cell-code" id="cb140"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">&lt;</span> <span class="dv">5</span>  <span class="co"># 逐元素比较（返回一个布尔 DataFrame）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="82">
 <div>
@@ -2690,7 +2690,7 @@ Name: two, dtype: int64</code></pre>
 </section>
 <section id="dataframe布尔索引-续" class="level2">
 <h2 class="anchored" data-anchor-id="dataframe布尔索引-续">DataFrame：布尔索引 (续)</h2>
-<div id="420b11ae" class="cell" data-execution_count="85">
+<div id="7e4b8e58" class="cell" data-execution_count="85">
 <div class="sourceCode cell-code" id="cb141"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a>data[data <span class="op">&lt;</span> <span class="dv">5</span>] <span class="op">=</span> <span class="dv">0</span>  <span class="co"># 将小于 5 的值设置为 0</span></span>
 <span id="cb141-2"><a href="#cb141-2" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="83">
@@ -2745,7 +2745,7 @@ Name: two, dtype: int64</code></pre>
 </section>
 <section id="使用-loc-和-iloc-在-dataframe-上进行选择" class="level2">
 <h2 class="anchored" data-anchor-id="使用-loc-和-iloc-在-dataframe-上进行选择">使用 <code>loc</code> 和 <code>iloc</code> 在 DataFrame 上进行选择</h2>
-<div id="7d1c5250" class="cell" data-execution_count="86">
+<div id="8eff2d9f" class="cell" data-execution_count="86">
 <div class="sourceCode cell-code" id="cb142"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a>data.loc[<span class="st">'Colorado'</span>] <span class="co"># 按标签选择一行</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="84">
 <pre><code>one      0
@@ -2758,7 +2758,7 @@ Name: Colorado, dtype: int64</code></pre>
 </section>
 <section id="使用-loc-和-iloc-在-dataframe-上进行选择-续" class="level2">
 <h2 class="anchored" data-anchor-id="使用-loc-和-iloc-在-dataframe-上进行选择-续">使用 <code>loc</code> 和 <code>iloc</code> 在 DataFrame 上进行选择 (续)</h2>
-<div id="60f11258" class="cell" data-execution_count="87">
+<div id="023cebe3" class="cell" data-execution_count="87">
 <div class="sourceCode cell-code" id="cb144"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a>data.loc[[<span class="st">'Colorado'</span>, <span class="st">'New York'</span>]] <span class="co"># 按标签选择多行</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="85">
 <div>
@@ -2798,7 +2798,7 @@ Name: Colorado, dtype: int64</code></pre>
 </section>
 <section id="使用-loc-和-iloc-在-dataframe-上进行选择-续-1" class="level2">
 <h2 class="anchored" data-anchor-id="使用-loc-和-iloc-在-dataframe-上进行选择-续-1">使用 <code>loc</code> 和 <code>iloc</code> 在 DataFrame 上进行选择 (续)</h2>
-<div id="e5b2585b" class="cell" data-execution_count="88">
+<div id="b1e64430" class="cell" data-execution_count="88">
 <div class="sourceCode cell-code" id="cb145"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a>data.loc[<span class="st">'Colorado'</span>, [<span class="st">'two'</span>, <span class="st">'three'</span>]]  <span class="co"># 按标签选择行和列</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="86">
 <pre><code>two      5
@@ -2809,7 +2809,7 @@ Name: Colorado, dtype: int64</code></pre>
 </section>
 <section id="使用-loc-和-iloc-在-dataframe-上进行选择-续-2" class="level2">
 <h2 class="anchored" data-anchor-id="使用-loc-和-iloc-在-dataframe-上进行选择-续-2">使用 <code>loc</code> 和 <code>iloc</code> 在 DataFrame 上进行选择 (续)</h2>
-<div id="97f546f1" class="cell" data-execution_count="89">
+<div id="14988d91" class="cell" data-execution_count="89">
 <div class="sourceCode cell-code" id="cb147"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a>data.iloc[<span class="dv">2</span>] <span class="co"># 按位置选择一行</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="87">
 <pre><code>one       8
@@ -2822,7 +2822,7 @@ Name: Utah, dtype: int64</code></pre>
 </section>
 <section id="使用-loc-和-iloc-在-dataframe-上进行选择-续-3" class="level2">
 <h2 class="anchored" data-anchor-id="使用-loc-和-iloc-在-dataframe-上进行选择-续-3">使用 <code>loc</code> 和 <code>iloc</code> 在 DataFrame 上进行选择 (续)</h2>
-<div id="cde2601a" class="cell" data-execution_count="90">
+<div id="60200998" class="cell" data-execution_count="90">
 <div class="sourceCode cell-code" id="cb149"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a>data.iloc[[<span class="dv">2</span>, <span class="dv">1</span>]] <span class="co"># 按位置选择多行</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="88">
 <div>
@@ -2862,7 +2862,7 @@ Name: Utah, dtype: int64</code></pre>
 </section>
 <section id="使用-loc-和-iloc-在-dataframe-上进行选择-续-4" class="level2">
 <h2 class="anchored" data-anchor-id="使用-loc-和-iloc-在-dataframe-上进行选择-续-4">使用 <code>loc</code> 和 <code>iloc</code> 在 DataFrame 上进行选择 (续)</h2>
-<div id="202134ef" class="cell" data-execution_count="91">
+<div id="34250e3b" class="cell" data-execution_count="91">
 <div class="sourceCode cell-code" id="cb150"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a>data.iloc[<span class="dv">2</span>, [<span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">1</span>]] <span class="co"># 按位置选择行和列</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="89">
 <pre><code>four    11
@@ -2874,7 +2874,7 @@ Name: Utah, dtype: int64</code></pre>
 </section>
 <section id="使用-loc-和-iloc-在-dataframe-上进行选择-续-5" class="level2">
 <h2 class="anchored" data-anchor-id="使用-loc-和-iloc-在-dataframe-上进行选择-续-5">使用 <code>loc</code> 和 <code>iloc</code> 在 DataFrame 上进行选择 (续)</h2>
-<div id="f3a42e69" class="cell" data-execution_count="92">
+<div id="c0f588ca" class="cell" data-execution_count="92">
 <div class="sourceCode cell-code" id="cb152"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a>data.iloc[[<span class="dv">1</span>, <span class="dv">2</span>], [<span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">1</span>]] <span class="co"># 按位置选择行和列</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="90">
 <div>
@@ -2915,14 +2915,14 @@ Name: Utah, dtype: int64</code></pre>
 <li>执行算术运算时，数据按索引标签对齐。</li>
 <li>在标签不重叠的地方使用 NaN。</li>
 </ul>
-<div id="7241ad7b" class="cell" data-execution_count="93">
+<div id="002613e0" class="cell" data-execution_count="93">
 <div class="sourceCode cell-code" id="cb153"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> pd.Series([<span class="fl">7.3</span>, <span class="op">-</span><span class="fl">2.5</span>, <span class="fl">3.4</span>, <span class="fl">1.5</span>], index<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>, <span class="st">'e'</span>])</span>
 <span id="cb153-2"><a href="#cb153-2" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> pd.Series([<span class="op">-</span><span class="fl">2.1</span>, <span class="fl">3.6</span>, <span class="op">-</span><span class="fl">1.5</span>, <span class="dv">4</span>, <span class="fl">3.1</span>], index<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'c'</span>, <span class="st">'e'</span>, <span class="st">'f'</span>, <span class="st">'g'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="算术和数据对齐-续" class="level2">
 <h2 class="anchored" data-anchor-id="算术和数据对齐-续">算术和数据对齐 (续)</h2>
-<div id="87c6164b" class="cell" data-execution_count="94">
+<div id="b78ddc45" class="cell" data-execution_count="94">
 <div class="sourceCode cell-code" id="cb154"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb154-1"><a href="#cb154-1" aria-hidden="true" tabindex="-1"></a>s1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="92">
 <pre><code>a    7.3
@@ -2932,7 +2932,7 @@ e    1.5
 dtype: float64</code></pre>
 </div>
 </div>
-<div id="6fff3fdb" class="cell" data-execution_count="95">
+<div id="d7d2e450" class="cell" data-execution_count="95">
 <div class="sourceCode cell-code" id="cb156"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a>s2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="93">
 <pre><code>a   -2.1
@@ -2946,7 +2946,7 @@ dtype: float64</code></pre>
 </section>
 <section id="算术和数据对齐-续-1" class="level2">
 <h2 class="anchored" data-anchor-id="算术和数据对齐-续-1">算术和数据对齐 (续)</h2>
-<div id="64926fbc" class="cell" data-execution_count="96">
+<div id="6d924c7d" class="cell" data-execution_count="96">
 <div class="sourceCode cell-code" id="cb158"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb158-1"><a href="#cb158-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">+</span> s2  <span class="co"># Series 相加；按索引标签对齐</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="94">
 <pre><code>a    5.2
@@ -2961,7 +2961,7 @@ dtype: float64</code></pre>
 </section>
 <section id="dataframe-的算术运算" class="level2">
 <h2 class="anchored" data-anchor-id="dataframe-的算术运算">DataFrame 的算术运算</h2>
-<div id="be142e15" class="cell" data-execution_count="97">
+<div id="673a7519" class="cell" data-execution_count="97">
 <div class="sourceCode cell-code" id="cb160"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.DataFrame(np.arange(<span class="fl">9.</span>).reshape((<span class="dv">3</span>, <span class="dv">3</span>)), columns<span class="op">=</span><span class="bu">list</span>(<span class="st">'bcd'</span>),</span>
 <span id="cb160-2"><a href="#cb160-2" aria-hidden="true" tabindex="-1"></a>                   index<span class="op">=</span>[<span class="st">'Ohio'</span>, <span class="st">'Texas'</span>, <span class="st">'Colorado'</span>])</span>
 <span id="cb160-3"><a href="#cb160-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.DataFrame(np.arange(<span class="fl">12.</span>).reshape((<span class="dv">4</span>, <span class="dv">3</span>)), columns<span class="op">=</span><span class="bu">list</span>(<span class="st">'bde'</span>),</span>
@@ -2970,7 +2970,7 @@ dtype: float64</code></pre>
 </section>
 <section id="dataframe-的算术运算-续" class="level2">
 <h2 class="anchored" data-anchor-id="dataframe-的算术运算-续">DataFrame 的算术运算 (续)</h2>
-<div id="0b0b18b0" class="cell" data-execution_count="98">
+<div id="55cf4001" class="cell" data-execution_count="98">
 <div class="sourceCode cell-code" id="cb161"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb161-1"><a href="#cb161-1" aria-hidden="true" tabindex="-1"></a>df1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="96">
 <div>
@@ -3013,7 +3013,7 @@ dtype: float64</code></pre>
 </section>
 <section id="dataframe-的算术运算-续-1" class="level2">
 <h2 class="anchored" data-anchor-id="dataframe-的算术运算-续-1">DataFrame 的算术运算 (续)</h2>
-<div id="70545b37" class="cell" data-execution_count="99">
+<div id="2155404c" class="cell" data-execution_count="99">
 <div class="sourceCode cell-code" id="cb162"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb162-1"><a href="#cb162-1" aria-hidden="true" tabindex="-1"></a>df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="97">
 <div>
@@ -3062,7 +3062,7 @@ dtype: float64</code></pre>
 </section>
 <section id="dataframe-的算术运算-续-2" class="level2">
 <h2 class="anchored" data-anchor-id="dataframe-的算术运算-续-2">DataFrame 的算术运算 (续)</h2>
-<div id="90f9174f" class="cell" data-execution_count="100">
+<div id="206e1875" class="cell" data-execution_count="100">
 <div class="sourceCode cell-code" id="cb163"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb163-1"><a href="#cb163-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">+</span> df2  <span class="co"># DataFrame 相加；按行和列标签对齐</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="98">
 <div>
@@ -3123,7 +3123,7 @@ dtype: float64</code></pre>
 </section>
 <section id="具有填充值的算术方法" class="level2">
 <h2 class="anchored" data-anchor-id="具有填充值的算术方法">具有填充值的算术方法</h2>
-<div id="94fcbd8d" class="cell" data-execution_count="101">
+<div id="ac5ed8bc" class="cell" data-execution_count="101">
 <div class="sourceCode cell-code" id="cb164"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb164-1"><a href="#cb164-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.DataFrame(np.arange(<span class="fl">12.</span>).reshape((<span class="dv">3</span>, <span class="dv">4</span>)),</span>
 <span id="cb164-2"><a href="#cb164-2" aria-hidden="true" tabindex="-1"></a>                   columns<span class="op">=</span><span class="bu">list</span>(<span class="st">'abcd'</span>))</span>
 <span id="cb164-3"><a href="#cb164-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.DataFrame(np.arange(<span class="fl">20.</span>).reshape((<span class="dv">4</span>, <span class="dv">5</span>)),</span>
@@ -3133,7 +3133,7 @@ dtype: float64</code></pre>
 </section>
 <section id="具有填充值的算术方法-续" class="level2">
 <h2 class="anchored" data-anchor-id="具有填充值的算术方法-续">具有填充值的算术方法 (续)</h2>
-<div id="5530bdf2" class="cell" data-execution_count="102">
+<div id="3943888e" class="cell" data-execution_count="102">
 <div class="sourceCode cell-code" id="cb165"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb165-1"><a href="#cb165-1" aria-hidden="true" tabindex="-1"></a>df1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="100">
 <div>
@@ -3180,7 +3180,7 @@ dtype: float64</code></pre>
 </section>
 <section id="具有填充值的算术方法-续-1" class="level2">
 <h2 class="anchored" data-anchor-id="具有填充值的算术方法-续-1">具有填充值的算术方法 (续)</h2>
-<div id="bd437a6a" class="cell" data-execution_count="103">
+<div id="8cc59be8" class="cell" data-execution_count="103">
 <div class="sourceCode cell-code" id="cb166"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb166-1"><a href="#cb166-1" aria-hidden="true" tabindex="-1"></a>df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="101">
 <div>
@@ -3239,7 +3239,7 @@ dtype: float64</code></pre>
 </section>
 <section id="具有填充值的算术方法-续-2" class="level2">
 <h2 class="anchored" data-anchor-id="具有填充值的算术方法-续-2">具有填充值的算术方法 (续)</h2>
-<div id="6cb84eca" class="cell" data-execution_count="104">
+<div id="db75e4f0" class="cell" data-execution_count="104">
 <div class="sourceCode cell-code" id="cb167"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb167-1"><a href="#cb167-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">+</span> df2  <span class="co"># 相加，可能产生 NaN</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="102">
 <div>
@@ -3311,7 +3311,7 @@ Note
 </section>
 <section id="使用-add-和-fill_value" class="level2">
 <h2 class="anchored" data-anchor-id="使用-add-和-fill_value">使用 <code>add</code> 和 <code>fill_value</code></h2>
-<div id="e79eed16" class="cell" data-execution_count="105">
+<div id="4b575fdf" class="cell" data-execution_count="105">
 <div class="sourceCode cell-code" id="cb168"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb168-1"><a href="#cb168-1" aria-hidden="true" tabindex="-1"></a>df1.add(df2, fill_value<span class="op">=</span><span class="dv">0</span>)  <span class="co"># 相加，在相加*之前*用 0 填充缺失值</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="103">
 <div>
@@ -3425,7 +3425,7 @@ Note
 </section>
 <section id="dataframe-和-series-之间的运算" class="level2">
 <h2 class="anchored" data-anchor-id="dataframe-和-series-之间的运算">DataFrame 和 Series 之间的运算</h2>
-<div id="5b1994db" class="cell" data-execution_count="106">
+<div id="1ca7d929" class="cell" data-execution_count="106">
 <div class="sourceCode cell-code" id="cb169"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb169-1"><a href="#cb169-1" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> pd.DataFrame(np.arange(<span class="fl">12.</span>).reshape((<span class="dv">4</span>, <span class="dv">3</span>)),</span>
 <span id="cb169-2"><a href="#cb169-2" aria-hidden="true" tabindex="-1"></a>                     columns<span class="op">=</span><span class="bu">list</span>(<span class="st">'bde'</span>),</span>
 <span id="cb169-3"><a href="#cb169-3" aria-hidden="true" tabindex="-1"></a>                     index<span class="op">=</span>[<span class="st">'Utah'</span>, <span class="st">'Ohio'</span>, <span class="st">'Texas'</span>, <span class="st">'Oregon'</span>])</span>
@@ -3434,7 +3434,7 @@ Note
 </section>
 <section id="dataframe-和-series-之间的运算-续" class="level2">
 <h2 class="anchored" data-anchor-id="dataframe-和-series-之间的运算-续">DataFrame 和 Series 之间的运算 (续)</h2>
-<div id="f09670e6" class="cell" data-execution_count="107">
+<div id="43117311" class="cell" data-execution_count="107">
 <div class="sourceCode cell-code" id="cb170"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb170-1"><a href="#cb170-1" aria-hidden="true" tabindex="-1"></a>frame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="105">
 <div>
@@ -3483,7 +3483,7 @@ Note
 </section>
 <section id="dataframe-和-series-之间的运算-续-1" class="level2">
 <h2 class="anchored" data-anchor-id="dataframe-和-series-之间的运算-续-1">DataFrame 和 Series 之间的运算 (续)</h2>
-<div id="b3b9db39" class="cell" data-execution_count="108">
+<div id="4bdad83e" class="cell" data-execution_count="108">
 <div class="sourceCode cell-code" id="cb171"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb171-1"><a href="#cb171-1" aria-hidden="true" tabindex="-1"></a>series</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="106">
 <pre><code>b    0.0
@@ -3495,7 +3495,7 @@ Name: Utah, dtype: float64</code></pre>
 </section>
 <section id="dataframe-和-series-之间的运算-续-2" class="level2">
 <h2 class="anchored" data-anchor-id="dataframe-和-series-之间的运算-续-2">DataFrame 和 Series 之间的运算 (续)</h2>
-<div id="8ff61750" class="cell" data-execution_count="109">
+<div id="3c78f285" class="cell" data-execution_count="109">
 <div class="sourceCode cell-code" id="cb173"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb173-1"><a href="#cb173-1" aria-hidden="true" tabindex="-1"></a>frame <span class="op">-</span> series  <span class="co"># 从 DataFrame 中减去 Series（广播）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="107">
 <div>
@@ -3557,7 +3557,7 @@ Note
 </section>
 <section id="跨列广播" class="level2">
 <h2 class="anchored" data-anchor-id="跨列广播">跨列广播</h2>
-<div id="bb7a3fe1" class="cell" data-execution_count="110">
+<div id="fba542c0" class="cell" data-execution_count="110">
 <div class="sourceCode cell-code" id="cb174"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb174-1"><a href="#cb174-1" aria-hidden="true" tabindex="-1"></a>series3 <span class="op">=</span> frame[<span class="st">'d'</span>]  <span class="co"># 获取 'd' 列</span></span>
 <span id="cb174-2"><a href="#cb174-2" aria-hidden="true" tabindex="-1"></a>series3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="108">
@@ -3571,7 +3571,7 @@ Name: d, dtype: float64</code></pre>
 </section>
 <section id="跨列广播-续" class="level2">
 <h2 class="anchored" data-anchor-id="跨列广播-续">跨列广播 (续)</h2>
-<div id="4600dc8b" class="cell" data-execution_count="111">
+<div id="3fe9b7d5" class="cell" data-execution_count="111">
 <div class="sourceCode cell-code" id="cb176"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb176-1"><a href="#cb176-1" aria-hidden="true" tabindex="-1"></a>frame.sub(series3, axis<span class="op">=</span><span class="st">'index'</span>)  <span class="co"># 匹配索引（行），跨列广播</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="109">
 <div>
@@ -3633,7 +3633,7 @@ Note
 </section>
 <section id="函数应用和映射" class="level2">
 <h2 class="anchored" data-anchor-id="函数应用和映射">函数应用和映射</h2>
-<div id="cbbd2b61" class="cell" data-execution_count="112">
+<div id="893f26e5" class="cell" data-execution_count="112">
 <div class="sourceCode cell-code" id="cb177"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb177-1"><a href="#cb177-1" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> pd.DataFrame(np.random.standard_normal((<span class="dv">4</span>, <span class="dv">3</span>)),</span>
 <span id="cb177-2"><a href="#cb177-2" aria-hidden="true" tabindex="-1"></a>                     columns<span class="op">=</span><span class="bu">list</span>(<span class="st">'bde'</span>),</span>
 <span id="cb177-3"><a href="#cb177-3" aria-hidden="true" tabindex="-1"></a>                     index<span class="op">=</span>[<span class="st">'Utah'</span>, <span class="st">'Ohio'</span>, <span class="st">'Texas'</span>, <span class="st">'Oregon'</span>])</span>
@@ -3654,27 +3654,27 @@ Note
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Utah</td>
-<td>1.894368</td>
-<td>1.212774</td>
-<td>0.773385</td>
+<td>-0.095058</td>
+<td>0.786790</td>
+<td>-1.784754</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Ohio</td>
-<td>-0.169902</td>
-<td>-0.066438</td>
-<td>-1.373140</td>
+<td>1.063067</td>
+<td>-0.125233</td>
+<td>-1.423655</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Texas</td>
-<td>-0.113497</td>
-<td>-1.960043</td>
-<td>0.937547</td>
+<td>0.445527</td>
+<td>-0.577088</td>
+<td>-0.346081</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Oregon</td>
-<td>0.790789</td>
-<td>-0.871289</td>
-<td>0.403299</td>
+<td>0.548949</td>
+<td>1.135611</td>
+<td>-0.626587</td>
 </tr>
 </tbody>
 </table>
@@ -3685,7 +3685,7 @@ Note
 </section>
 <section id="函数应用和映射-续" class="level2">
 <h2 class="anchored" data-anchor-id="函数应用和映射-续">函数应用和映射 (续)</h2>
-<div id="23b7b843" class="cell" data-execution_count="113">
+<div id="408c63ed" class="cell" data-execution_count="113">
 <div class="sourceCode cell-code" id="cb178"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb178-1"><a href="#cb178-1" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">abs</span>(frame)  <span class="co"># 逐元素应用 NumPy 的绝对值函数 (ufunc)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="111">
 <div>
@@ -3703,27 +3703,27 @@ Note
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Utah</td>
-<td>1.894368</td>
-<td>1.212774</td>
-<td>0.773385</td>
+<td>0.095058</td>
+<td>0.786790</td>
+<td>1.784754</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Ohio</td>
-<td>0.169902</td>
-<td>0.066438</td>
-<td>1.373140</td>
+<td>1.063067</td>
+<td>0.125233</td>
+<td>1.423655</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Texas</td>
-<td>0.113497</td>
-<td>1.960043</td>
-<td>0.937547</td>
+<td>0.445527</td>
+<td>0.577088</td>
+<td>0.346081</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Oregon</td>
-<td>0.790789</td>
-<td>0.871289</td>
-<td>0.403299</td>
+<td>0.548949</td>
+<td>1.135611</td>
+<td>0.626587</td>
 </tr>
 </tbody>
 </table>
@@ -3734,35 +3734,35 @@ Note
 </section>
 <section id="使用-apply-应用函数" class="level2">
 <h2 class="anchored" data-anchor-id="使用-apply-应用函数">使用 <code>apply</code> 应用函数</h2>
-<div id="55f7c55d" class="cell" data-execution_count="114">
+<div id="e460f8cc" class="cell" data-execution_count="114">
 <div class="sourceCode cell-code" id="cb179"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb179-1"><a href="#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f1(x):</span>
 <span id="cb179-2"><a href="#cb179-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x.<span class="bu">max</span>() <span class="op">-</span> x.<span class="bu">min</span>() <span class="co"># 定义一个对 Series 进行操作的函数</span></span>
 <span id="cb179-3"><a href="#cb179-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb179-4"><a href="#cb179-4" aria-hidden="true" tabindex="-1"></a>frame.<span class="bu">apply</span>(f1)  <span class="co"># 沿列应用函数（默认轴是 'index'）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="112">
-<pre><code>b    2.064270
-d    3.172817
-e    2.310687
+<pre><code>b    1.158125
+d    1.712699
+e    1.438673
 dtype: float64</code></pre>
 </div>
 </div>
 </section>
 <section id="使用-apply-应用函数-续" class="level2">
 <h2 class="anchored" data-anchor-id="使用-apply-应用函数-续">使用 <code>apply</code> 应用函数 (续)</h2>
-<div id="10d97c61" class="cell" data-execution_count="115">
+<div id="44158e10" class="cell" data-execution_count="115">
 <div class="sourceCode cell-code" id="cb181"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb181-1"><a href="#cb181-1" aria-hidden="true" tabindex="-1"></a>frame.<span class="bu">apply</span>(f1, axis<span class="op">=</span><span class="st">'columns'</span>)  <span class="co"># 沿行应用函数 (axis='columns')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="113">
-<pre><code>Utah      1.120983
-Ohio      1.306702
-Texas     2.897590
-Oregon    1.662078
+<pre><code>Utah      2.571543
+Ohio      2.486722
+Texas     1.022615
+Oregon    1.762199
 dtype: float64</code></pre>
 </div>
 </div>
 </section>
 <section id="应用返回-series-的函数" class="level2">
 <h2 class="anchored" data-anchor-id="应用返回-series-的函数">应用返回 Series 的函数</h2>
-<div id="25231f06" class="cell" data-execution_count="116">
+<div id="1d10e1c4" class="cell" data-execution_count="116">
 <div class="sourceCode cell-code" id="cb183"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb183-1"><a href="#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f2(x):</span>
 <span id="cb183-2"><a href="#cb183-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 定义一个返回带有 'min' 和 'max' 的 Series 的函数</span></span>
 <span id="cb183-3"><a href="#cb183-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.Series([x.<span class="bu">min</span>(), x.<span class="bu">max</span>()], index<span class="op">=</span>[<span class="st">'min'</span>, <span class="st">'max'</span>])</span>
@@ -3784,15 +3784,15 @@ dtype: float64</code></pre>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">min</td>
-<td>-0.169902</td>
-<td>-1.960043</td>
-<td>-1.373140</td>
+<td>-0.095058</td>
+<td>-0.577088</td>
+<td>-1.784754</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">max</td>
-<td>1.894368</td>
-<td>1.212774</td>
-<td>0.937547</td>
+<td>1.063067</td>
+<td>1.135611</td>
+<td>-0.346081</td>
 </tr>
 </tbody>
 </table>
@@ -3803,13 +3803,13 @@ dtype: float64</code></pre>
 </section>
 <section id="使用-applymap-进行逐元素格式化" class="level2">
 <h2 class="anchored" data-anchor-id="使用-applymap-进行逐元素格式化">使用 <code>applymap</code> 进行逐元素格式化</h2>
-<div id="f1c1a1f3" class="cell" data-execution_count="117">
+<div id="45aa4003" class="cell" data-execution_count="117">
 <div class="sourceCode cell-code" id="cb184"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb184-1"><a href="#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_format(x):</span>
 <span id="cb184-2"><a href="#cb184-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span>x<span class="sc">:.2f}</span><span class="ss">"</span>  <span class="co"># 定义一个格式化函数</span></span>
 <span id="cb184-3"><a href="#cb184-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb184-4"><a href="#cb184-4" aria-hidden="true" tabindex="-1"></a>frame.applymap(my_format) <span class="co"># 对 DataFrame 逐元素应用</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_3353/116467557.py:4: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
+<pre><code>/tmp/ipykernel_3356/116467557.py:4: FutureWarning: DataFrame.applymap has been deprecated. Use DataFrame.map instead.
   frame.applymap(my_format) # 对 DataFrame 逐元素应用</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="115">
@@ -3828,27 +3828,27 @@ dtype: float64</code></pre>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Utah</td>
-<td>1.89</td>
-<td>1.21</td>
-<td>0.77</td>
+<td>-0.10</td>
+<td>0.79</td>
+<td>-1.78</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Ohio</td>
-<td>-0.17</td>
-<td>-0.07</td>
-<td>-1.37</td>
+<td>1.06</td>
+<td>-0.13</td>
+<td>-1.42</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Texas</td>
-<td>-0.11</td>
-<td>-1.96</td>
-<td>0.94</td>
+<td>0.45</td>
+<td>-0.58</td>
+<td>-0.35</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Oregon</td>
-<td>0.79</td>
-<td>-0.87</td>
-<td>0.40</td>
+<td>0.55</td>
+<td>1.14</td>
+<td>-0.63</td>
 </tr>
 </tbody>
 </table>
@@ -3872,7 +3872,7 @@ Note
 </section>
 <section id="排序" class="level2">
 <h2 class="anchored" data-anchor-id="排序">排序</h2>
-<div id="1f0e1bf1" class="cell" data-execution_count="118">
+<div id="a1a6b30a" class="cell" data-execution_count="118">
 <div class="sourceCode cell-code" id="cb186"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb186-1"><a href="#cb186-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> pd.Series(np.arange(<span class="dv">4</span>), index<span class="op">=</span>[<span class="st">'d'</span>, <span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>])</span>
 <span id="cb186-2"><a href="#cb186-2" aria-hidden="true" tabindex="-1"></a>obj.sort_index()  <span class="co"># 按索引标签排序</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="116">
@@ -3886,7 +3886,7 @@ dtype: int64</code></pre>
 </section>
 <section id="排序-续" class="level2">
 <h2 class="anchored" data-anchor-id="排序-续">排序 (续)</h2>
-<div id="086963f6" class="cell" data-execution_count="119">
+<div id="0ab248b5" class="cell" data-execution_count="119">
 <div class="sourceCode cell-code" id="cb188"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb188-1"><a href="#cb188-1" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> pd.DataFrame(np.arange(<span class="dv">8</span>).reshape((<span class="dv">2</span>, <span class="dv">4</span>)),</span>
 <span id="cb188-2"><a href="#cb188-2" aria-hidden="true" tabindex="-1"></a>                     index<span class="op">=</span>[<span class="st">'three'</span>, <span class="st">'one'</span>],</span>
 <span id="cb188-3"><a href="#cb188-3" aria-hidden="true" tabindex="-1"></a>                     columns<span class="op">=</span>[<span class="st">'d'</span>, <span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>])</span>
@@ -3929,7 +3929,7 @@ dtype: int64</code></pre>
 </section>
 <section id="排序-续-1" class="level2">
 <h2 class="anchored" data-anchor-id="排序-续-1">排序 (续)</h2>
-<div id="41233bdb" class="cell" data-execution_count="120">
+<div id="a6ad0275" class="cell" data-execution_count="120">
 <div class="sourceCode cell-code" id="cb189"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb189-1"><a href="#cb189-1" aria-hidden="true" tabindex="-1"></a>frame.sort_index(axis<span class="op">=</span><span class="st">'columns'</span>) <span class="co"># 按列索引排序</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="118">
 <div>
@@ -3969,7 +3969,7 @@ dtype: int64</code></pre>
 </section>
 <section id="排序-续-2" class="level2">
 <h2 class="anchored" data-anchor-id="排序-续-2">排序 (续)</h2>
-<div id="714eddb5" class="cell" data-execution_count="121">
+<div id="3f8e0e93" class="cell" data-execution_count="121">
 <div class="sourceCode cell-code" id="cb190"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb190-1"><a href="#cb190-1" aria-hidden="true" tabindex="-1"></a>frame.sort_index(axis<span class="op">=</span><span class="st">'columns'</span>, ascending<span class="op">=</span><span class="va">False</span>) <span class="co"># 降序排序</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="119">
 <div>
@@ -4009,7 +4009,7 @@ dtype: int64</code></pre>
 </section>
 <section id="按值排序" class="level2">
 <h2 class="anchored" data-anchor-id="按值排序">按值排序</h2>
-<div id="2596930c" class="cell" data-execution_count="122">
+<div id="7522516f" class="cell" data-execution_count="122">
 <div class="sourceCode cell-code" id="cb191"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb191-1"><a href="#cb191-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> pd.Series([<span class="dv">4</span>, <span class="dv">7</span>, <span class="op">-</span><span class="dv">3</span>, <span class="dv">2</span>])</span>
 <span id="cb191-2"><a href="#cb191-2" aria-hidden="true" tabindex="-1"></a>obj.sort_values()  <span class="co"># 按值排序</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="120">
@@ -4023,7 +4023,7 @@ dtype: int64</code></pre>
 </section>
 <section id="按值排序-续" class="level2">
 <h2 class="anchored" data-anchor-id="按值排序-续">按值排序 (续)</h2>
-<div id="cb899b89" class="cell" data-execution_count="123">
+<div id="35d22680" class="cell" data-execution_count="123">
 <div class="sourceCode cell-code" id="cb193"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb193-1"><a href="#cb193-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> pd.Series([<span class="dv">4</span>, np.nan, <span class="dv">7</span>, np.nan, <span class="op">-</span><span class="dv">3</span>, <span class="dv">2</span>])</span>
 <span id="cb193-2"><a href="#cb193-2" aria-hidden="true" tabindex="-1"></a>obj.sort_values()  <span class="co"># 缺失值 (NaN) 默认排序到末尾</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="121">
@@ -4039,7 +4039,7 @@ dtype: float64</code></pre>
 </section>
 <section id="按列对-dataframe-排序" class="level2">
 <h2 class="anchored" data-anchor-id="按列对-dataframe-排序">按列对 DataFrame 排序</h2>
-<div id="e616837a" class="cell" data-execution_count="124">
+<div id="d62455da" class="cell" data-execution_count="124">
 <div class="sourceCode cell-code" id="cb195"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb195-1"><a href="#cb195-1" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> pd.DataFrame({<span class="st">'b'</span>: [<span class="dv">4</span>, <span class="dv">7</span>, <span class="op">-</span><span class="dv">3</span>, <span class="dv">2</span>], <span class="st">'a'</span>: [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>]})</span>
 <span id="cb195-2"><a href="#cb195-2" aria-hidden="true" tabindex="-1"></a>frame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="122">
@@ -4084,7 +4084,7 @@ dtype: float64</code></pre>
 </section>
 <section id="按列对-dataframe-排序-续" class="level2">
 <h2 class="anchored" data-anchor-id="按列对-dataframe-排序-续">按列对 DataFrame 排序 (续)</h2>
-<div id="2648d608" class="cell" data-execution_count="125">
+<div id="83281531" class="cell" data-execution_count="125">
 <div class="sourceCode cell-code" id="cb196"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb196-1"><a href="#cb196-1" aria-hidden="true" tabindex="-1"></a>frame.sort_values(<span class="st">'b'</span>)  <span class="co"># 按 'b' 列排序</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="123">
 <div>
@@ -4128,7 +4128,7 @@ dtype: float64</code></pre>
 </section>
 <section id="按列对-dataframe-排序-续-1" class="level2">
 <h2 class="anchored" data-anchor-id="按列对-dataframe-排序-续-1">按列对 DataFrame 排序 (续)</h2>
-<div id="a44a14b0" class="cell" data-execution_count="126">
+<div id="c53f643e" class="cell" data-execution_count="126">
 <div class="sourceCode cell-code" id="cb197"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb197-1"><a href="#cb197-1" aria-hidden="true" tabindex="-1"></a>frame.sort_values([<span class="st">'a'</span>, <span class="st">'b'</span>])  <span class="co"># 按多列排序（先 'a'，再 'b'）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="124">
 <div>
@@ -4172,7 +4172,7 @@ dtype: float64</code></pre>
 </section>
 <section id="排名" class="level2">
 <h2 class="anchored" data-anchor-id="排名">排名</h2>
-<div id="3a76e2f7" class="cell" data-execution_count="127">
+<div id="9e8551de" class="cell" data-execution_count="127">
 <div class="sourceCode cell-code" id="cb198"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb198-1"><a href="#cb198-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> pd.Series([<span class="dv">7</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">4</span>])</span>
 <span id="cb198-2"><a href="#cb198-2" aria-hidden="true" tabindex="-1"></a>obj.rank()  <span class="co"># 分配排名（平局使用平均排名）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="125">
@@ -4231,7 +4231,7 @@ Note
 </section>
 <section id="具有重复标签的轴索引" class="level2">
 <h2 class="anchored" data-anchor-id="具有重复标签的轴索引">具有重复标签的轴索引</h2>
-<div id="12ddd13b" class="cell" data-execution_count="128">
+<div id="6c81fe40" class="cell" data-execution_count="128">
 <div class="sourceCode cell-code" id="cb200"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb200-1"><a href="#cb200-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> pd.Series(np.arange(<span class="dv">5</span>), index<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>])</span>
 <span id="cb200-2"><a href="#cb200-2" aria-hidden="true" tabindex="-1"></a>obj</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="126">
@@ -4246,7 +4246,7 @@ dtype: int64</code></pre>
 </section>
 <section id="具有重复标签的轴索引-续" class="level2">
 <h2 class="anchored" data-anchor-id="具有重复标签的轴索引-续">具有重复标签的轴索引 (续)</h2>
-<div id="d3a25301" class="cell" data-execution_count="129">
+<div id="bcf10bc2" class="cell" data-execution_count="129">
 <div class="sourceCode cell-code" id="cb202"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb202-1"><a href="#cb202-1" aria-hidden="true" tabindex="-1"></a>obj.index.is_unique  <span class="co"># 检查索引标签是否唯一</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="127">
 <pre><code>False</code></pre>
@@ -4255,7 +4255,7 @@ dtype: int64</code></pre>
 </section>
 <section id="具有重复标签的轴索引-续-1" class="level2">
 <h2 class="anchored" data-anchor-id="具有重复标签的轴索引-续-1">具有重复标签的轴索引 (续)</h2>
-<div id="4357bd0e" class="cell" data-execution_count="130">
+<div id="e2fc7d78" class="cell" data-execution_count="130">
 <div class="sourceCode cell-code" id="cb204"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb204-1"><a href="#cb204-1" aria-hidden="true" tabindex="-1"></a>obj[<span class="st">'a'</span>]  <span class="co"># 返回一个 Series（因为 'a' 重复）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="128">
 <pre><code>a    0
@@ -4266,7 +4266,7 @@ dtype: int64</code></pre>
 </section>
 <section id="具有重复标签的轴索引-续-2" class="level2">
 <h2 class="anchored" data-anchor-id="具有重复标签的轴索引-续-2">具有重复标签的轴索引 (续)</h2>
-<div id="28837669" class="cell" data-execution_count="131">
+<div id="4b1150b4" class="cell" data-execution_count="131">
 <div class="sourceCode cell-code" id="cb206"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb206-1"><a href="#cb206-1" aria-hidden="true" tabindex="-1"></a>obj[<span class="st">'c'</span>]  <span class="co"># 返回一个标量（因为 'c' 唯一）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="129">
 <pre><code>np.int64(4)</code></pre>
@@ -4275,7 +4275,7 @@ dtype: int64</code></pre>
 </section>
 <section id="汇总和计算描述性统计" class="level2">
 <h2 class="anchored" data-anchor-id="汇总和计算描述性统计">汇总和计算描述性统计</h2>
-<div id="b0e81ab5" class="cell" data-execution_count="132">
+<div id="c607fd37" class="cell" data-execution_count="132">
 <div class="sourceCode cell-code" id="cb208"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb208-1"><a href="#cb208-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame([[<span class="fl">1.4</span>, np.nan], [<span class="fl">7.1</span>, <span class="op">-</span><span class="fl">4.5</span>],</span>
 <span id="cb208-2"><a href="#cb208-2" aria-hidden="true" tabindex="-1"></a>                   [np.nan, np.nan], [<span class="fl">0.75</span>, <span class="op">-</span><span class="fl">1.3</span>]],</span>
 <span id="cb208-3"><a href="#cb208-3" aria-hidden="true" tabindex="-1"></a>                  index<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>],</span>
@@ -4323,7 +4323,7 @@ dtype: int64</code></pre>
 </section>
 <section id="汇总和计算描述性统计-续" class="level2">
 <h2 class="anchored" data-anchor-id="汇总和计算描述性统计-续">汇总和计算描述性统计 (续)</h2>
-<div id="5924f2f7" class="cell" data-execution_count="133">
+<div id="e6021d2e" class="cell" data-execution_count="133">
 <div class="sourceCode cell-code" id="cb209"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb209-1"><a href="#cb209-1" aria-hidden="true" tabindex="-1"></a>df.<span class="bu">sum</span>()  <span class="co"># 计算列总和</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="131">
 <pre><code>one    9.25
@@ -4334,7 +4334,7 @@ dtype: float64</code></pre>
 </section>
 <section id="汇总和计算描述性统计-续-1" class="level2">
 <h2 class="anchored" data-anchor-id="汇总和计算描述性统计-续-1">汇总和计算描述性统计 (续)</h2>
-<div id="51e270f8" class="cell" data-execution_count="134">
+<div id="a228e342" class="cell" data-execution_count="134">
 <div class="sourceCode cell-code" id="cb211"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb211-1"><a href="#cb211-1" aria-hidden="true" tabindex="-1"></a>df.<span class="bu">sum</span>(axis<span class="op">=</span><span class="st">'columns'</span>)  <span class="co"># 计算行总和</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="132">
 <pre><code>a    1.40
@@ -4347,7 +4347,7 @@ dtype: float64</code></pre>
 </section>
 <section id="处理归约中的缺失值" class="level2">
 <h2 class="anchored" data-anchor-id="处理归约中的缺失值">处理归约中的缺失值</h2>
-<div id="10710d05" class="cell" data-execution_count="135">
+<div id="fe14bd79" class="cell" data-execution_count="135">
 <div class="sourceCode cell-code" id="cb213"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb213-1"><a href="#cb213-1" aria-hidden="true" tabindex="-1"></a>df.<span class="bu">sum</span>(axis<span class="op">=</span><span class="st">'index'</span>, skipna<span class="op">=</span><span class="va">False</span>) <span class="co"># 在计算中包含 NaN</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="133">
 <pre><code>one   NaN
@@ -4358,7 +4358,7 @@ dtype: float64</code></pre>
 </section>
 <section id="处理归约中的缺失值-续" class="level2">
 <h2 class="anchored" data-anchor-id="处理归约中的缺失值-续">处理归约中的缺失值 (续)</h2>
-<div id="8cb3f1d3" class="cell" data-execution_count="136">
+<div id="dccecd3c" class="cell" data-execution_count="136">
 <div class="sourceCode cell-code" id="cb215"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb215-1"><a href="#cb215-1" aria-hidden="true" tabindex="-1"></a>df.mean(axis<span class="op">=</span><span class="st">'columns'</span>) <span class="co"># 计算平均值，排除 NaN（默认）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="134">
 <pre><code>a    1.400
@@ -4392,7 +4392,7 @@ dtype: float64</code></pre>
 </section>
 <section id="间接统计" class="level2">
 <h2 class="anchored" data-anchor-id="间接统计">间接统计</h2>
-<div id="7a535ed3" class="cell" data-execution_count="137">
+<div id="990d0d7b" class="cell" data-execution_count="137">
 <div class="sourceCode cell-code" id="cb217"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb217-1"><a href="#cb217-1" aria-hidden="true" tabindex="-1"></a>df.idxmax()  <span class="co"># 最大值的索引标签（对于每列）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="135">
 <pre><code>one    b
@@ -4403,7 +4403,7 @@ dtype: object</code></pre>
 </section>
 <section id="间接统计-续" class="level2">
 <h2 class="anchored" data-anchor-id="间接统计-续">间接统计 (续)</h2>
-<div id="bfb81a8b" class="cell" data-execution_count="138">
+<div id="e234db71" class="cell" data-execution_count="138">
 <div class="sourceCode cell-code" id="cb219"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb219-1"><a href="#cb219-1" aria-hidden="true" tabindex="-1"></a>df.cumsum()  <span class="co"># 累积和（对于每列）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="136">
 <div>
@@ -4447,7 +4447,7 @@ dtype: object</code></pre>
 </section>
 <section id="describe-方法" class="level2">
 <h2 class="anchored" data-anchor-id="describe-方法"><code>describe()</code> 方法</h2>
-<div id="dd300ed1" class="cell" data-execution_count="139">
+<div id="c74b4d33" class="cell" data-execution_count="139">
 <div class="sourceCode cell-code" id="cb220"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb220-1"><a href="#cb220-1" aria-hidden="true" tabindex="-1"></a>df.describe()  <span class="co"># 生成描述性统计</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="137">
 <div>
@@ -4511,7 +4511,7 @@ dtype: object</code></pre>
 </section>
 <section id="describe-方法-续" class="level2">
 <h2 class="anchored" data-anchor-id="describe-方法-续"><code>describe()</code> 方法 (续)</h2>
-<div id="b7840b11" class="cell" data-execution_count="140">
+<div id="5131a1c2" class="cell" data-execution_count="140">
 <div class="sourceCode cell-code" id="cb221"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb221-1"><a href="#cb221-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> pd.Series([<span class="st">'a'</span>, <span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>] <span class="op">*</span> <span class="dv">4</span>)</span>
 <span id="cb221-2"><a href="#cb221-2" aria-hidden="true" tabindex="-1"></a>obj.describe() <span class="co"># 非数值数据的描述性统计</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="138">
@@ -4575,14 +4575,14 @@ dtype: object</code></pre>
 <section id="相关性和协方差" class="level2">
 <h2 class="anchored" data-anchor-id="相关性和协方差">相关性和协方差</h2>
 <p>首先加载数据</p>
-<div id="4c7f528e" class="cell" data-execution_count="141">
+<div id="bd9875b8" class="cell" data-execution_count="141">
 <div class="sourceCode cell-code" id="cb223"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb223-1"><a href="#cb223-1" aria-hidden="true" tabindex="-1"></a>price <span class="op">=</span> pd.read_pickle(<span class="st">'examples/yahoo_price.pkl'</span>)</span>
 <span id="cb223-2"><a href="#cb223-2" aria-hidden="true" tabindex="-1"></a>volume <span class="op">=</span> pd.read_pickle(<span class="st">'examples/yahoo_volume.pkl'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="相关性和协方差-续" class="level2">
 <h2 class="anchored" data-anchor-id="相关性和协方差-续">相关性和协方差 (续)</h2>
-<div id="a154d57c" class="cell" data-execution_count="142">
+<div id="dde92711" class="cell" data-execution_count="142">
 <div class="sourceCode cell-code" id="cb224"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb224-1"><a href="#cb224-1" aria-hidden="true" tabindex="-1"></a>returns <span class="op">=</span> price.pct_change() <span class="co"># 变化百分比</span></span>
 <span id="cb224-2"><a href="#cb224-2" aria-hidden="true" tabindex="-1"></a>returns.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="140">
@@ -4651,7 +4651,7 @@ dtype: object</code></pre>
 </section>
 <section id="相关性和协方差-续-1" class="level2">
 <h2 class="anchored" data-anchor-id="相关性和协方差-续-1">相关性和协方差 (续)</h2>
-<div id="2bd6b20a" class="cell" data-execution_count="143">
+<div id="fdebe95e" class="cell" data-execution_count="143">
 <div class="sourceCode cell-code" id="cb225"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb225-1"><a href="#cb225-1" aria-hidden="true" tabindex="-1"></a>returns[<span class="st">'MSFT'</span>].corr(returns[<span class="st">'IBM'</span>]) <span class="co"># MSFT 和 IBM 收益率之间的相关性</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="141">
 <pre><code>np.float64(0.49976361144151144)</code></pre>
@@ -4660,7 +4660,7 @@ dtype: object</code></pre>
 </section>
 <section id="相关性和协方差-续-2" class="level2">
 <h2 class="anchored" data-anchor-id="相关性和协方差-续-2">相关性和协方差 (续)</h2>
-<div id="0a353505" class="cell" data-execution_count="144">
+<div id="0f98dd73" class="cell" data-execution_count="144">
 <div class="sourceCode cell-code" id="cb227"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb227-1"><a href="#cb227-1" aria-hidden="true" tabindex="-1"></a>returns[<span class="st">'MSFT'</span>].cov(returns[<span class="st">'IBM'</span>])  <span class="co"># MSFT 和 IBM 收益率之间的协方差</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="142">
 <pre><code>np.float64(8.870655479703546e-05)</code></pre>
@@ -4682,7 +4682,7 @@ Note
 </section>
 <section id="dataframe-上的-corr-和-cov" class="level2">
 <h2 class="anchored" data-anchor-id="dataframe-上的-corr-和-cov">DataFrame 上的 <code>corr</code> 和 <code>cov</code></h2>
-<div id="c1c253b8" class="cell" data-execution_count="145">
+<div id="9a40d471" class="cell" data-execution_count="145">
 <div class="sourceCode cell-code" id="cb229"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb229-1"><a href="#cb229-1" aria-hidden="true" tabindex="-1"></a>returns.corr()  <span class="co"># 相关矩阵</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="143">
 <div>
@@ -4736,7 +4736,7 @@ Note
 </section>
 <section id="corr-和-cov-on-dataframe-续" class="level2">
 <h2 class="anchored" data-anchor-id="corr-和-cov-on-dataframe-续"><code>corr</code> 和 <code>cov</code> on DataFrame (续)</h2>
-<div id="5e48a526" class="cell" data-execution_count="146">
+<div id="c0727e53" class="cell" data-execution_count="146">
 <div class="sourceCode cell-code" id="cb230"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb230-1"><a href="#cb230-1" aria-hidden="true" tabindex="-1"></a>returns.cov()  <span class="co"># 协方差矩阵</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="144">
 <div>
@@ -4790,7 +4790,7 @@ Note
 </section>
 <section id="corrwith-方法" class="level2">
 <h2 class="anchored" data-anchor-id="corrwith-方法"><code>corrwith</code> 方法</h2>
-<div id="1fd9fb57" class="cell" data-execution_count="147">
+<div id="3bdd46a1" class="cell" data-execution_count="147">
 <div class="sourceCode cell-code" id="cb231"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb231-1"><a href="#cb231-1" aria-hidden="true" tabindex="-1"></a>returns.corrwith(returns[<span class="st">'IBM'</span>])  <span class="co"># 与 IBM 收益率的成对相关性</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="145">
 <pre><code>AAPL    0.386817
@@ -4803,7 +4803,7 @@ dtype: float64</code></pre>
 </section>
 <section id="corrwith-方法-续" class="level2">
 <h2 class="anchored" data-anchor-id="corrwith-方法-续"><code>corrwith</code> 方法 (续)</h2>
-<div id="d385a3bb" class="cell" data-execution_count="148">
+<div id="4ebc97c9" class="cell" data-execution_count="148">
 <div class="sourceCode cell-code" id="cb233"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb233-1"><a href="#cb233-1" aria-hidden="true" tabindex="-1"></a>returns.corrwith(volume)  <span class="co"># 与成交量的成对相关性</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="146">
 <pre><code>AAPL   -0.075565
@@ -4829,7 +4829,7 @@ Note
 </section>
 <section id="唯一值值计数和成员资格" class="level2">
 <h2 class="anchored" data-anchor-id="唯一值值计数和成员资格">唯一值、值计数和成员资格</h2>
-<div id="2f0330f2" class="cell" data-execution_count="149">
+<div id="1659af59" class="cell" data-execution_count="149">
 <div class="sourceCode cell-code" id="cb235"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb235-1"><a href="#cb235-1" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> pd.Series([<span class="st">'c'</span>, <span class="st">'a'</span>, <span class="st">'d'</span>, <span class="st">'a'</span>, <span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'c'</span>])</span>
 <span id="cb235-2"><a href="#cb235-2" aria-hidden="true" tabindex="-1"></a>uniques <span class="op">=</span> obj.unique()  <span class="co"># 获取唯一值</span></span>
 <span id="cb235-3"><a href="#cb235-3" aria-hidden="true" tabindex="-1"></a>uniques</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -4840,7 +4840,7 @@ Note
 </section>
 <section id="唯一值值计数和成员资格-续" class="level2">
 <h2 class="anchored" data-anchor-id="唯一值值计数和成员资格-续">唯一值、值计数和成员资格 (续)</h2>
-<div id="4d81e17b" class="cell" data-execution_count="150">
+<div id="53e4d5c9" class="cell" data-execution_count="150">
 <div class="sourceCode cell-code" id="cb237"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb237-1"><a href="#cb237-1" aria-hidden="true" tabindex="-1"></a>obj.value_counts()  <span class="co"># 计算每个值的出现次数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="148">
 <pre><code>c    3
@@ -4853,10 +4853,10 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="唯一值值计数和成员资格-续-1" class="level2">
 <h2 class="anchored" data-anchor-id="唯一值值计数和成员资格-续-1">唯一值、值计数和成员资格 (续)</h2>
-<div id="69f8219e" class="cell" data-execution_count="151">
+<div id="8bf82c5f" class="cell" data-execution_count="151">
 <div class="sourceCode cell-code" id="cb239"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb239-1"><a href="#cb239-1" aria-hidden="true" tabindex="-1"></a>pd.value_counts(obj.to_numpy(), sort<span class="op">=</span><span class="va">False</span>) <span class="co">#使用pd.value_counts()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_3353/2588954155.py:1: FutureWarning: pandas.value_counts is deprecated and will be removed in a future version. Use pd.Series(obj).value_counts() instead.
+<pre><code>/tmp/ipykernel_3356/2588954155.py:1: FutureWarning: pandas.value_counts is deprecated and will be removed in a future version. Use pd.Series(obj).value_counts() instead.
   pd.value_counts(obj.to_numpy(), sort=False) #使用pd.value_counts()</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="149">
@@ -4870,7 +4870,7 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="isin-方法" class="level2">
 <h2 class="anchored" data-anchor-id="isin-方法"><code>isin</code> 方法</h2>
-<div id="625baed6" class="cell" data-execution_count="152">
+<div id="4f276c00" class="cell" data-execution_count="152">
 <div class="sourceCode cell-code" id="cb242"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb242-1"><a href="#cb242-1" aria-hidden="true" tabindex="-1"></a>obj</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="150">
 <pre><code>0    c
@@ -4888,7 +4888,7 @@ dtype: object</code></pre>
 </section>
 <section id="isin-方法续" class="level2">
 <h2 class="anchored" data-anchor-id="isin-方法续"><code>isin</code> 方法(续)</h2>
-<div id="6bae1bf9" class="cell" data-execution_count="153">
+<div id="22dde63e" class="cell" data-execution_count="153">
 <div class="sourceCode cell-code" id="cb244"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb244-1"><a href="#cb244-1" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> obj.isin([<span class="st">'b'</span>, <span class="st">'c'</span>])  <span class="co"># 检查是否属于 ['b', 'c']</span></span>
 <span id="cb244-2"><a href="#cb244-2" aria-hidden="true" tabindex="-1"></a>mask</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="151">
@@ -4907,7 +4907,7 @@ dtype: bool</code></pre>
 </section>
 <section id="isin-方法-续" class="level2">
 <h2 class="anchored" data-anchor-id="isin-方法-续"><code>isin</code> 方法 (续)</h2>
-<div id="441173af" class="cell" data-execution_count="154">
+<div id="e79413a4" class="cell" data-execution_count="154">
 <div class="sourceCode cell-code" id="cb246"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb246-1"><a href="#cb246-1" aria-hidden="true" tabindex="-1"></a>obj[mask]  <span class="co"># 选择 mask 为 True 的元素</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="152">
 <pre><code>0    c

@@ -89,7 +89,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="https://assets.qiufei.site/setup/styles.css">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -153,7 +153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="a14294eb" class="cell" data-execution_count="1">
+<div id="63e62e00" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">12345</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -215,7 +215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>A 10 x 5 array has shape <code>(10, 5)</code>:</li>
 </ul>
-<div id="c764045b" class="cell" data-execution_count="2">
+<div id="011c5f4a" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>arr_2d <span class="op">=</span> np.ones((<span class="dv">10</span>, <span class="dv">5</span>))</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>arr_2d.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
@@ -225,7 +225,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>A 3 x 4 x 5 array of <code>float64</code> (8 bytes) typically has strides <code>(160, 40, 8)</code> (C order):</li>
 </ul>
-<div id="dcbf2386" class="cell" data-execution_count="3">
+<div id="8df39177" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>arr_3d <span class="op">=</span> np.ones((<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>), dtype<span class="op">=</span>np.float64)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>arr_3d.strides</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -253,7 +253,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>NumPy has a rich data type hierarchy.</li>
 <li>Use <strong>superclasses</strong> (e.g., <code>np.integer</code>, <code>np.floating</code>) and <code>np.issubdtype</code> to check array types:</li>
 </ul>
-<div id="7e97012d" class="cell" data-execution_count="4">
+<div id="4e7034ee" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ints <span class="op">=</span> np.ones(<span class="dv">10</span>, dtype<span class="op">=</span>np.uint16)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>floats <span class="op">=</span> np.ones(<span class="dv">10</span>, dtype<span class="op">=</span>np.float32)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.issubdtype(ints.dtype, np.integer))</span>
@@ -269,7 +269,7 @@ True</code></pre>
 <ul>
 <li>See parent classes with <code>.mro()</code> (Method Resolution Order):</li>
 </ul>
-<div id="83caffac" class="cell" data-execution_count="5">
+<div id="8eba3f91" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>np.float64.mro()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>[numpy.float64,
@@ -298,7 +298,7 @@ True</code></pre>
 <li><strong>Reshaping</strong>: Change an array’s shape <em>without copying data</em>.</li>
 <li>Use the <code>reshape()</code> method with a shape tuple:</li>
 </ul>
-<div id="58b7c1bd" class="cell" data-execution_count="6">
+<div id="ae53c93d" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">8</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>arr.reshape((<span class="dv">4</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
@@ -311,7 +311,7 @@ True</code></pre>
 </section>
 <section id="reshaping-multidimensional-arrays" class="level2">
 <h2 class="anchored" data-anchor-id="reshaping-multidimensional-arrays">Reshaping Multidimensional Arrays</h2>
-<div id="1b09924c" class="cell" data-execution_count="7">
+<div id="70ab4162" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>arr.reshape((<span class="dv">4</span>, <span class="dv">2</span>)).reshape((<span class="dv">2</span>, <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>array([[0, 1, 2, 3],
@@ -321,7 +321,7 @@ True</code></pre>
 <ul>
 <li>Use <code>-1</code> for one dimension to infer the size:</li>
 </ul>
-<div id="0c217cd3" class="cell" data-execution_count="8">
+<div id="620ec3ea" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">15</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>arr.reshape((<span class="dv">5</span>, <span class="op">-</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
@@ -335,7 +335,7 @@ True</code></pre>
 </section>
 <section id="reshaping-with-shape-attribute" class="level2">
 <h2 class="anchored" data-anchor-id="reshaping-with-shape-attribute">Reshaping with Shape Attribute</h2>
-<div id="de5b6324" class="cell" data-execution_count="9">
+<div id="73324efa" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>other_arr <span class="op">=</span> np.ones((<span class="dv">3</span>, <span class="dv">5</span>))</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>arr.reshape(other_arr.shape) <span class="co"># Reuse shape from another array</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
@@ -351,7 +351,7 @@ True</code></pre>
 <li><strong>Flattening/Raveling</strong>: Convert multidimensional array to 1D.</li>
 <li><code>ravel()</code>: Does <em>not</em> copy if values were contiguous.</li>
 </ul>
-<div id="b1b5e6fa" class="cell" data-execution_count="10">
+<div id="05754df3" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">15</span>).reshape((<span class="dv">5</span>, <span class="dv">3</span>))</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>arr.ravel()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
@@ -361,7 +361,7 @@ True</code></pre>
 <ul>
 <li><code>flatten()</code>: Always returns a <em>copy</em>.</li>
 </ul>
-<div id="b44dc26f" class="cell" data-execution_count="11">
+<div id="bcb48aef" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>arr.flatten()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14])</code></pre>
@@ -375,7 +375,7 @@ True</code></pre>
 <li><strong>Column major (FORTRAN)</strong>: Consecutive column elements are stored together.</li>
 <li><code>reshape</code> and <code>ravel</code> accept an <code>order</code> argument (<code>'C'</code> or <code>'F'</code>).</li>
 </ul>
-<div id="a0ccecfc" class="cell" data-execution_count="12">
+<div id="f679a781" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">12</span>).reshape((<span class="dv">3</span>, <span class="dv">4</span>))</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.ravel())      <span class="co"># Default: 'C' order</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.ravel(<span class="st">'F'</span>))  <span class="co"># FORTRAN order</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -397,7 +397,7 @@ True</code></pre>
 <ul>
 <li><strong><code>numpy.concatenate</code></strong>: Joins arrays along an existing axis.</li>
 </ul>
-<div id="03753876" class="cell" data-execution_count="13">
+<div id="0229ea87" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>arr1 <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]])</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>arr2 <span class="op">=</span> np.array([[<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>], [<span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>]])</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.concatenate([arr1, arr2], axis<span class="op">=</span><span class="dv">0</span>))  <span class="co"># Stack vertically</span></span>
@@ -420,7 +420,7 @@ True</code></pre>
 <li><code>column_stack</code>: Like <code>hstack</code>, but converts 1D arrays to 2D columns first.</li>
 <li><code>dstack</code>: Stack by “depth” (axis 2).</li>
 </ul>
-<div id="c6db1c43" class="cell" data-execution_count="14">
+<div id="6feac1c4" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.vstack((arr1, arr2)))</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.hstack((arr1, arr2)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -438,7 +438,7 @@ True</code></pre>
 <ul>
 <li><code>split</code>: Slices an array into multiple arrays along an axis.</li>
 </ul>
-<div id="96673455" class="cell" data-execution_count="15">
+<div id="486bf5f7" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal((<span class="dv">5</span>, <span class="dv">2</span>))</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>first, second, third <span class="op">=</span> np.split(arr, [<span class="dv">1</span>, <span class="dv">3</span>])</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>first<span class="op">=</span><span class="sc">}</span><span class="ss">"</span>)</span>
@@ -506,7 +506,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>r_</code> and <code>c_</code> make stacking more concise:</li>
 </ul>
-<div id="044b314a" class="cell" data-execution_count="16">
+<div id="e1a47e0a" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">6</span>)</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>arr1 <span class="op">=</span> arr.reshape((<span class="dv">3</span>, <span class="dv">2</span>))</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>arr2 <span class="op">=</span> rng.standard_normal((<span class="dv">3</span>, <span class="dv">2</span>))</span>
@@ -533,7 +533,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>repeat</code>: Replicates each element:</li>
 </ul>
-<div id="392bdb68" class="cell" data-execution_count="17">
+<div id="9a48411b" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">3</span>)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.repeat(<span class="dv">3</span>))</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.repeat([<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]))  <span class="co"># Different repetition for each element</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -545,7 +545,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li>2D array example:</li>
 </ul>
-<div id="d4e4bc19" class="cell" data-execution_count="18">
+<div id="13cefe01" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal((<span class="dv">2</span>, <span class="dv">2</span>))</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>arr.repeat(<span class="dv">2</span>, axis<span class="op">=</span><span class="dv">0</span>) <span class="co"># repeat along rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
@@ -561,7 +561,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>tile</code>: Stacks copies of an array along an axis:</li>
 </ul>
-<div id="ea1f4251" class="cell" data-execution_count="19">
+<div id="ace2d19c" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal((<span class="dv">2</span>, <span class="dv">2</span>))</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.tile(arr, <span class="dv">2</span>))  <span class="co"># Repeat array twice along rows</span></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.tile(arr, (<span class="dv">2</span>, <span class="dv">1</span>)))  <span class="co"># 2 repetitions along rows, 1 along columns</span></span>
@@ -587,7 +587,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>take</code>: Selects elements by integer indices:</li>
 </ul>
-<div id="f0308d89" class="cell" data-execution_count="20">
+<div id="d11e528f" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">10</span>) <span class="op">*</span> <span class="dv">100</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>inds <span class="op">=</span> [<span class="dv">7</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">6</span>]</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>arr.take(inds)  <span class="co"># Like arr[inds]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -598,7 +598,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>put</code>: Assigns values to indices (in-place). <em>Doesn’t</em> accept axis argument:</li>
 </ul>
-<div id="910a25f0" class="cell" data-execution_count="21">
+<div id="1d819ced" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>arr.put(inds, <span class="dv">42</span>)</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>arr.put(inds, [<span class="dv">40</span>, <span class="dv">41</span>, <span class="dv">42</span>, <span class="dv">43</span>])</span>
@@ -615,7 +615,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <li><strong>Broadcasting</strong>: How operations work between arrays of <em>different</em> shapes.</li>
 <li>Simplest: Scalar and array:</li>
 </ul>
-<div id="5fde59d7" class="cell" data-execution_count="22">
+<div id="902a4989" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">5</span>)</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">*</span> <span class="dv">4</span>  <span class="co"># 4 is "broadcast" to all elements</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
@@ -625,7 +625,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li>Demeaning:</li>
 </ul>
-<div id="25f76639" class="cell" data-execution_count="23">
+<div id="5088f1c1" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal((<span class="dv">4</span>, <span class="dv">3</span>))</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>demeaned <span class="op">=</span> arr <span class="op">-</span> arr.mean(<span class="dv">0</span>)  <span class="co"># mean(0) is mean of each column</span></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>demeaned</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -656,7 +656,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 </section>
 <section id="broadcasting-example-subtracting-row-means" class="level2">
 <h2 class="anchored" data-anchor-id="broadcasting-example-subtracting-row-means">Broadcasting Example: Subtracting Row Means</h2>
-<div id="bf974e52" class="cell" data-execution_count="24">
+<div id="666b5edc" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal((<span class="dv">4</span>, <span class="dv">3</span>))</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>row_means <span class="op">=</span> arr.mean(<span class="dv">1</span>)  <span class="co"># Mean of each row</span></span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(row_means.shape)</span>
@@ -676,7 +676,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <li>Reshape for broadcasting over axes other than 0.</li>
 <li>Use <code>np.newaxis</code> and slicing to add a new axis of length 1:</li>
 </ul>
-<div id="aa5cad38" class="cell" data-execution_count="25">
+<div id="9623e511" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.zeros((<span class="dv">4</span>, <span class="dv">4</span>))</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>arr_3d <span class="op">=</span> arr[:, np.newaxis, :]  <span class="co"># New axis in the middle</span></span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr_3d.shape)</span>
@@ -698,7 +698,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li>Broadcasting applies to setting values:</li>
 </ul>
-<div id="865f3070" class="cell" data-execution_count="26">
+<div id="9a7d50b3" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.zeros((<span class="dv">4</span>, <span class="dv">3</span>))</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>arr[:] <span class="op">=</span> <span class="dv">5</span>  <span class="co"># Set all to 5</span></span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)</span>
@@ -724,7 +724,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <li><strong>Universal functions (ufuncs)</strong> have methods for vectorized operations.</li>
 <li><code>reduce</code>: Aggregates by binary operations:</li>
 </ul>
-<div id="e23e84eb" class="cell" data-execution_count="27">
+<div id="806737e8" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">10</span>)</span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>np.add.<span class="bu">reduce</span>(arr)  <span class="co"># Like arr.sum()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
@@ -737,7 +737,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>accumulate</code>: Intermediate “accumulated” values:</li>
 </ul>
-<div id="0169a86a" class="cell" data-execution_count="28">
+<div id="bcc01df7" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">15</span>).reshape((<span class="dv">3</span>, <span class="dv">5</span>))</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>np.add.accumulate(arr, axis<span class="op">=</span><span class="dv">1</span>)  <span class="co"># Cumulative sum along rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
@@ -749,7 +749,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>outer</code>: Pair-wise cross product:</li>
 </ul>
-<div id="d48e8690" class="cell" data-execution_count="29">
+<div id="1c55e24b" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">3</span>).repeat([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>])</span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>np.multiply.outer(arr, np.arange(<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
@@ -766,14 +766,14 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>reduceat</code>: “Local reduce” (array groupby):</li>
 </ul>
-<div id="553fbb76" class="cell" data-execution_count="30">
+<div id="d908bcc1" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">10</span>)</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>np.add.reduceat(arr, [<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">8</span>])  <span class="co"># Reduce [0:5], [5:8], [8:]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
 <pre><code>array([10, 18, 17])</code></pre>
 </div>
 </div>
-<div id="40734506" class="cell" data-execution_count="31">
+<div id="db83ce7f" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.multiply.outer(np.arange(<span class="dv">4</span>), np.arange(<span class="dv">5</span>))</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>np.add.reduceat(arr, [<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>], axis<span class="op">=</span><span class="dv">1</span>) <span class="co"># Reduce along columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
@@ -828,7 +828,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <li>Uses <strong>LLVM</strong> to translate Python to machine code.</li>
 <li>Example: Pure Python function:</li>
 </ul>
-<div id="4726596c" class="cell" data-execution_count="32">
+<div id="a9bcb9bd" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mean_distance(x, y):</span>
@@ -846,7 +846,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li>This is <em>slow</em>. Compile with <code>numba.jit</code>:</li>
 </ul>
-<div id="803f7da4" class="cell" data-execution_count="33">
+<div id="d60bd919" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numba <span class="im">as</span> nb</span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>numba_mean_distance <span class="op">=</span> nb.jit(mean_distance)</span>
@@ -871,7 +871,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>numba.vectorize</code> creates compiled NumPy <code>ufuncs</code>:</li>
 </ul>
-<div id="86dcf052" class="cell" data-execution_count="34">
+<div id="9e23fd94" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numba <span class="im">import</span> vectorize</span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="at">@vectorize</span></span>
@@ -888,7 +888,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <li><code>ndarray</code> is usually homogeneous.</li>
 <li><strong>Structured arrays</strong>: Each element represents a “struct” (like in C) or SQL table row.</li>
 </ul>
-<div id="d50b6ddd" class="cell" data-execution_count="35">
+<div id="272c3f03" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>dtype <span class="op">=</span> [(<span class="st">'x'</span>, np.float64), (<span class="st">'y'</span>, np.int32)]  <span class="co"># Field names and types</span></span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>sarr <span class="op">=</span> np.array([(<span class="fl">1.5</span>, <span class="dv">6</span>), (np.pi, <span class="op">-</span><span class="dv">2</span>)], dtype<span class="op">=</span>dtype)</span>
 <span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sarr)</span>
@@ -903,7 +903,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 </section>
 <section id="nested-data-types-and-multidimensional-fields" class="level2">
 <h2 class="anchored" data-anchor-id="nested-data-types-and-multidimensional-fields">Nested Data Types and Multidimensional Fields</h2>
-<div id="412250fb" class="cell" data-execution_count="36">
+<div id="0cecbec0" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>dtype <span class="op">=</span> [(<span class="st">'x'</span>, np.int64, <span class="dv">3</span>), (<span class="st">'y'</span>, np.int32)]  <span class="co"># 'x' is an array of 3 int64</span></span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.zeros(<span class="dv">4</span>, dtype<span class="op">=</span>dtype)</span>
 <span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)</span>
@@ -928,7 +928,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>ndarray.sort()</code>: In-place sort:</li>
 </ul>
-<div id="022a1d11" class="cell" data-execution_count="37">
+<div id="92923dee" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal(<span class="dv">6</span>)</span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>arr.sort()  <span class="co"># Ascending</span></span>
 <span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -939,7 +939,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>numpy.sort()</code>: Creates a <em>new</em>, sorted copy.</li>
 </ul>
-<div id="988868c9" class="cell" data-execution_count="38">
+<div id="45e62c9c" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal(<span class="dv">5</span>)</span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.sort(arr))  <span class="co"># Sorted copy</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -949,7 +949,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li>Both methods accept <code>axis</code></li>
 </ul>
-<div id="0101d256" class="cell" data-execution_count="39">
+<div id="45970587" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal((<span class="dv">3</span>, <span class="dv">5</span>))</span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>arr.sort(axis<span class="op">=</span><span class="dv">1</span>)  <span class="co"># Sort each row</span></span>
 <span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -966,7 +966,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <li><strong>Indirect sorts</strong>: Return integer <em>indices</em> to reorder data.</li>
 <li><code>argsort()</code>: Indices that would sort:</li>
 </ul>
-<div id="9007478e" class="cell" data-execution_count="40">
+<div id="15fb45ae" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> np.array([<span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>])</span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>indexer <span class="op">=</span> values.argsort()</span>
 <span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(indexer)</span>
@@ -982,7 +982,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>lexsort()</code>: Lexicographical sort on multiple keys (<em>last</em> array is primary key):</li>
 </ul>
-<div id="13c7fc05" class="cell" data-execution_count="41">
+<div id="fbe669b6" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>first_name <span class="op">=</span> np.array([<span class="st">'Bob'</span>, <span class="st">'Jane'</span>, <span class="st">'Steve'</span>, <span class="st">'Bill'</span>, <span class="st">'Barbara'</span>])</span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>last_name <span class="op">=</span> np.array([<span class="st">'Jones'</span>, <span class="st">'Arnold'</span>, <span class="st">'Arnold'</span>, <span class="st">'Jones'</span>, <span class="st">'Walters'</span>])</span>
 <span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>sorter <span class="op">=</span> np.lexsort((first_name, last_name))  <span class="co"># Sort by last_name, then first_name</span></span>
@@ -998,7 +998,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <li>Algorithms: <code>quicksort</code> (default), <code>mergesort</code>, <code>heapsort</code>, <code>timsort</code>.</li>
 <li><strong>Stable</strong> sort: Preserves relative position of equal elements (<code>mergesort</code> is stable).</li>
 </ul>
-<div id="6b9894c4" class="cell" data-execution_count="42">
+<div id="12b49eec" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> np.array([<span class="st">'2:first'</span>, <span class="st">'2:second'</span>, <span class="st">'1:first'</span>, <span class="st">'1:second'</span>, <span class="st">'1:third'</span>])</span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>key <span class="op">=</span> np.array([<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>])</span>
 <span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>indexer <span class="op">=</span> key.argsort(kind<span class="op">=</span><span class="st">'mergesort'</span>)  <span class="co"># For stability</span></span>
@@ -1060,7 +1060,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>numpy.partition</code>, <code>np.argpartition</code>: Partition around k-th smallest element.</li>
 </ul>
-<div id="a486d7a4" class="cell" data-execution_count="43">
+<div id="fdf5a20a" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">12345</span>)</span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal(<span class="dv">20</span>)</span>
 <span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>np.partition(arr, <span class="dv">3</span>)  <span class="co"># First 3 are smallest (unsorted)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1074,7 +1074,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>np.argpartition</code> returns indices:</li>
 </ul>
-<div id="d729a602" class="cell" data-execution_count="44">
+<div id="9cae8c80" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>indices <span class="op">=</span> np.argpartition(arr, <span class="dv">3</span>)</span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>arr.take(indices)  <span class="co"># Partial sort</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="44">
@@ -1090,7 +1090,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>searchsorted</code>: Binary search on sorted array; returns insertion index.</li>
 </ul>
-<div id="f1a27d89" class="cell" data-execution_count="45">
+<div id="e2b61afd" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">15</span>])</span>
 <span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.searchsorted(<span class="dv">9</span>))   <span class="co"># Where to insert 9?</span></span>
 <span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.searchsorted([<span class="dv">0</span>, <span class="dv">8</span>, <span class="dv">11</span>, <span class="dv">16</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1105,7 +1105,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 </section>
 <section id="searchsorted-example-binning" class="level2">
 <h2 class="anchored" data-anchor-id="searchsorted-example-binning"><code>searchsorted</code> Example: Binning</h2>
-<div id="6ec08a64" class="cell" data-execution_count="46">
+<div id="1629a9bc" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.floor(rng.uniform(<span class="dv">0</span>, <span class="dv">10000</span>, size<span class="op">=</span><span class="dv">50</span>))</span>
 <span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">1000</span>, <span class="dv">5000</span>, <span class="dv">10000</span>])</span>
 <span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> bins.searchsorted(data)  <span class="co"># Bin each data point</span></span>
@@ -1126,7 +1126,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <li><code>memmap</code>: NumPy’s ndarray-like object. Read/write segments without loading whole file.</li>
 <li>Create with <code>np.memmap</code>: specify path, dtype, shape, mode:</li>
 </ul>
-<div id="d00618d4" class="cell" data-execution_count="47">
+<div id="e86ebb44" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>mmap <span class="op">=</span> np.memmap(<span class="st">'mymmap'</span>, dtype<span class="op">=</span><span class="st">'float64'</span>, mode<span class="op">=</span><span class="st">'w+'</span>,</span>
 <span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>                 shape<span class="op">=</span>(<span class="dv">10000</span>, <span class="dv">10000</span>))</span>
 <span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mmap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1146,20 +1146,20 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li>Slicing returns <em>views</em> on disk:</li>
 </ul>
-<div id="0f236a2a" class="cell" data-execution_count="48">
+<div id="677bc71f" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>section <span class="op">=</span> mmap[:<span class="dv">5</span>]  <span class="co"># First 5 rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Assigning buffers in memory; use <code>flush()</code> to write:</li>
 </ul>
-<div id="928f3c73" class="cell" data-execution_count="49">
+<div id="8abef3ae" class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>section[:] <span class="op">=</span> rng.standard_normal((<span class="dv">5</span>, <span class="dv">10000</span>))</span>
 <span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>mmap.flush()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Opening existing map still requires dtype and shape:</li>
 </ul>
-<div id="37eeb83a" class="cell" data-execution_count="50">
+<div id="2eabaa74" class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>mmap <span class="op">=</span> np.memmap(<span class="st">'mymmap'</span>, dtype<span class="op">=</span><span class="st">'float64'</span>, shape<span class="op">=</span>(<span class="dv">10000</span>, <span class="dv">10000</span>))</span>
 <span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mmap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1201,7 +1201,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <li>NumPy arrays are C-contiguous by default; transpose is Fortran-contiguous.</li>
 <li>Check with <code>flags</code>:</li>
 </ul>
-<div id="a6133dd9" class="cell" data-execution_count="51">
+<div id="4d8a6bb2" class="cell" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>arr_c <span class="op">=</span> np.ones((<span class="dv">100</span>, <span class="dv">10000</span>), order<span class="op">=</span><span class="st">'C'</span>)</span>
 <span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>arr_f <span class="op">=</span> np.ones((<span class="dv">100</span>, <span class="dv">10000</span>), order<span class="op">=</span><span class="st">'F'</span>)</span>
 <span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr_c.flags)  <span class="co"># C_CONTIGUOUS: True, F_CONTIGUOUS: False</span></span>
@@ -1230,7 +1230,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <li>Summing rows of C-contiguous array is <em>usually</em> faster.</li>
 <li>If needed, use <code>copy()</code> with <code>'C'</code> or <code>'F'</code>:</li>
 </ul>
-<div id="01a59c08" class="cell" data-execution_count="52">
+<div id="fac22c4d" class="cell" data-execution_count="52">
 <div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>arr_f.copy(<span class="st">'C'</span>).flags</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="52">
 <pre><code>  C_CONTIGUOUS : True
