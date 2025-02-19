@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Python 数据分析</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<link href="../https://assets.qiufei.site/personal/profile.jpg" rel="icon" type="image/jpeg">
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-681fbf911679f9b3dbf9743eb275ba49.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7e49aeac8059a213a463aa1a739e8272.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://qiufei.github.io"> 
+<span class="menu-text">首页</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://qiufei.github.io/web-slide"> 
+<span class="menu-text">课件</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Python 数据分析</h1>
+<p class="subtitle lead">IPython 系统详解</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="简介超越基础" class="level2">
+<h2 class="anchored" data-anchor-id="简介超越基础">简介：超越基础 🚀</h2>
+<ul>
+<li>我们之前已经介绍了 IPython shell 和 Jupyter notebooks 的基础知识。</li>
+<li>现在，我们将深入探讨 IPython 的高级功能，无论是在控制台还是 Jupyter 环境中都非常有用。</li>
+<li>可以将 IPython 视为您的<em>增强型</em> Python 解释器 – 一个用于交互式计算和数据分析的强大工具。</li>
+<li>本节内容可作为补充资源，像电子游戏中的道具一样增强您的学习体验！🎮</li>
+</ul>
+</section>
+<section id="终端键盘快捷键" class="level2">
+<h2 class="anchored" data-anchor-id="终端键盘快捷键">终端键盘快捷键 ⌨️</h2>
+<ul>
+<li>IPython 提供了许多键盘快捷键，用于高效导航和命令历史记录。</li>
+<li>这些快捷键类似于 Emacs 或 Unix bash shell 中的快捷键。</li>
+<li>掌握这些快捷键将显著提高您的工作效率！⚡</li>
+</ul>
+</section>
+<section id="终端键盘快捷键导航" class="level2">
+<h2 class="anchored" data-anchor-id="终端键盘快捷键导航">终端键盘快捷键：导航</h2>
+<ul>
+<li><code>Ctrl-A</code>: 将光标移动到行<em>首</em>。</li>
+<li><code>Ctrl-E</code>: 将光标移动到行<em>尾</em>。</li>
+<li><code>Ctrl-F</code>: 将光标向<em>前</em>移动一个字符。</li>
+<li><code>Ctrl-B</code>: 将光标向<em>后</em>移动一个字符。</li>
+</ul>
+</section>
+<section id="终端键盘快捷键命令历史记录" class="level2">
+<h2 class="anchored" data-anchor-id="终端键盘快捷键命令历史记录">终端键盘快捷键：命令历史记录</h2>
+<ul>
+<li><code>Ctrl-P</code> 或向上箭头：在命令历史记录中向<em>后</em>搜索（匹配当前文本）。</li>
+<li><code>Ctrl-N</code> 或向下箭头：在命令历史记录中向<em>前</em>搜索（匹配当前文本）。</li>
+<li><code>Ctrl-R</code>: Readline 风格的反向历史搜索（部分匹配）。</li>
+</ul>
+</section>
+<section id="终端键盘快捷键编辑和控制" class="level2">
+<h2 class="anchored" data-anchor-id="终端键盘快捷键编辑和控制">终端键盘快捷键：编辑和控制</h2>
+<ul>
+<li><code>Ctrl-Shift-V</code>: 从剪贴板粘贴文本。</li>
+<li><code>Ctrl-C</code>: <strong>中断</strong>当前正在执行的代码。 🛑</li>
+<li><code>Ctrl-K</code>: 删除从光标到行尾的文本。</li>
+<li><code>Ctrl-U</code>: 删除当前行上的所有文本。</li>
+<li><code>Ctrl-L</code>: 清除屏幕。 💨</li>
+</ul>
+</section>
+<section id="快捷键可视化" class="level2">
+<h2 class="anchored" data-anchor-id="快捷键可视化">快捷键可视化 🖼️</h2>
+<ul>
+<li><p>以下是 IPython shell 中一些键盘快捷键的图示。</p></li>
+<li><p><strong>C-b, C-f:</strong> 对应于 Ctrl-B 和 Ctrl-F，用于光标移动。</p></li>
+<li><p><strong>C-a, C-e:</strong> 对应于 Ctrl-A 和 Ctrl-E，用于移动到行的开头/结尾。</p></li>
+<li><p><strong>C-k:</strong> 对应于 Ctrl-K，用于删除到行尾的文本。</p></li>
+<li><p><strong>C-u:</strong> 对应于 Ctrl-U，用于删除整行。</p></li>
+<li><p>对 <code>a_variable</code> 的操作显示了文本操作。</p></li>
+<li><p>注意：Jupyter notebooks 有<em>自己的一套</em>快捷键。 请探索 Jupyter 的集成帮助！</p></li>
+</ul>
+</section>
+<section id="魔法命令ipython-的超能力" class="level2">
+<h2 class="anchored" data-anchor-id="魔法命令ipython-的超能力">魔法命令：IPython 的超能力 🧙‍♂️</h2>
+<ul>
+<li><strong>魔法命令</strong>是 IPython <em>特有</em>的特殊命令，<em>不是</em>内置的 Python 函数。</li>
+<li>它们以百分号 (<code>%</code>) 作为前缀。</li>
+<li>这些命令简化了常见任务，并允许您控制 IPython 的行为。 可以将它们视为 IPython 本身的“快捷方式”！</li>
+</ul>
+</section>
+<section id="示例timeit---测量执行时间" class="level2">
+<h2 class="anchored" data-anchor-id="示例timeit---测量执行时间">示例：<code>%timeit</code> ⏱️ - 测量执行时间</h2>
+<ul>
+<li><code>%timeit</code> 测量 Python 语句的执行时间。 这对于性能分析非常有用！</li>
+</ul>
+<div id="6e3bff6f" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np  <span class="co"># 导入 numpy 库，并将其命名为 np</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.random.standard_normal((<span class="dv">100</span>, <span class="dv">100</span>))  <span class="co"># 创建一个 100x100 的标准正态分布随机数数组</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit np.dot(a, a)  <span class="co"># 使用 %timeit 魔法命令测量 a 与 a 的点积运算的执行时间</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>45.9 μs ± 66.6 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)</code></pre>
+</div>
+</div>
+<ul>
+<li>输出显示多次运行的<em>平均</em>执行时间和标准差。</li>
+<li>结果中，如 <code>92.5 µs ± 3.43 µs per loop</code>， <code>µs</code> 代表微秒。</li>
+</ul>
+</section>
+<section id="探索魔法命令---获取帮助" class="level2">
+<h2 class="anchored" data-anchor-id="探索魔法命令---获取帮助">探索魔法命令 ❓ - 获取帮助</h2>
+<ul>
+<li>在魔法命令后使用 <code>?</code> 可以查看其“命令行”选项（类似于帮助手册）。</li>
+</ul>
+<div id="1a38d31a" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>debug?</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用 ? 查看 %debug 魔法命令的详细用法</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 包括调试器激活、断点设置和事后调试等</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="automagic-无需-的魔法" class="level2">
+<h2 class="anchored" data-anchor-id="automagic-无需-的魔法"><code>automagic</code>: 无需 <code>%</code> 的魔法 ✨</h2>
+<ul>
+<li><code>automagic</code> 允许您在<em>不使用</em> <code>%</code> 前缀的情况下使用魔法命令，只要没有变量共享相同的名称。</li>
+<li>您可以使用 <code>%automagic</code> 打开或关闭它。</li>
+</ul>
+<div id="89c92873" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>automagic  <span class="co"># 打开或关闭 automagic 功能</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pwd         <span class="co"># 如果 automagic 开启且 'pwd' 不是变量名，则等同于 %pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="分配魔法命令的输出" class="level2">
+<h2 class="anchored" data-anchor-id="分配魔法命令的输出">分配魔法命令的输出</h2>
+<ul>
+<li>某些魔法命令的行为类似于函数，允许您将其输出分配给变量。</li>
+</ul>
+<div id="9121be7b" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>directory <span class="op">=</span> <span class="op">%</span>pwd  <span class="co"># 将当前工作目录存储在 'directory' 变量中</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(directory) <span class="co">#打印当前工作目录</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="常用魔法命令---快速参考" class="level2">
+<h2 class="anchored" data-anchor-id="常用魔法命令---快速参考">常用魔法命令 📜 - 快速参考</h2>
+<ul>
+<li><code>%quickref</code>: 显示 IPython 快速参考卡。</li>
+</ul>
+</section>
+<section id="常用魔法命令---文档" class="level2">
+<h2 class="anchored" data-anchor-id="常用魔法命令---文档">常用魔法命令 📜 - 文档</h2>
+<ul>
+<li><code>%magic</code>: 显示<em>所有</em>可用魔法命令的详细文档。</li>
+</ul>
+</section>
+<section id="常用魔法命令---调试" class="level2">
+<h2 class="anchored" data-anchor-id="常用魔法命令---调试">常用魔法命令 📜 - 调试</h2>
+<ul>
+<li><code>%debug</code>: 在<em>最后一个异常回溯</em>处进入交互式调试器。</li>
+<li><code>%pdb</code>: 在<em>任何</em>异常发生后<em>自动</em>进入调试器。</li>
+</ul>
+</section>
+<section id="常用魔法命令---历史记录" class="level2">
+<h2 class="anchored" data-anchor-id="常用魔法命令---历史记录">常用魔法命令 📜 - 历史记录</h2>
+<ul>
+<li><code>%hist</code>: 打印命令输入历史记录（可选择包含输出）。</li>
+</ul>
+</section>
+<section id="常用魔法命令---代码执行" class="level2">
+<h2 class="anchored" data-anchor-id="常用魔法命令---代码执行">常用魔法命令 📜 - 代码执行</h2>
+<ul>
+<li><code>%paste</code>: 执行剪贴板中预格式化的 Python 代码。</li>
+<li><code>%cpaste</code>: 打开一个特殊提示符，用于手动粘贴代码。</li>
+<li><code>%run script.py</code>: 在 IPython <em>内部</em>运行 Python 脚本。</li>
+<li><code>%prun statement</code>: 使用 cProfile 执行语句并报告性能分析结果。</li>
+<li><code>%time statement</code>: 报告单条语句的执行时间。</li>
+</ul>
+</section>
+<section id="常用魔法命令---计时和性能分析" class="level2">
+<h2 class="anchored" data-anchor-id="常用魔法命令---计时和性能分析">常用魔法命令 📜 - 计时和性能分析</h2>
+<ul>
+<li><code>%timeit statement</code>: 精确测量平均执行时间。</li>
+<li><code>%prun statement</code>: 使用 cProfile 执行语句并报告性能分析器输出。</li>
+</ul>
+</section>
+<section id="常用魔法命令---命名空间管理" class="level2">
+<h2 class="anchored" data-anchor-id="常用魔法命令---命名空间管理">常用魔法命令 📜 - 命名空间管理</h2>
+<ul>
+<li><p><code>%reset</code>: 删除交互式命名空间中的所有变量/名称。</p></li>
+<li><p><code>%page OBJECT</code>: 以分页方式漂亮地打印一个对象并显示它。</p></li>
+<li><p><code>%who</code>, <code>%who_ls</code>, <code>%whos</code>: 显示命名空间中的变量，具有不同的详细程度。</p></li>
+<li><p><code>%xdel variable</code>: 删除一个变量并尝试清除其所有引用。</p></li>
+<li><p>按 <code>q</code> 退出 <code>%quickref</code> 或 <code>%magic</code> 分页器。</p></li>
+</ul>
+</section>
+<section id="run-命令---执行脚本" class="level2">
+<h2 class="anchored" data-anchor-id="run-命令---执行脚本"><code>%run</code> 命令 🏃 - 执行脚本</h2>
+<ul>
+<li>在您的 IPython 会话中执行 Python 脚本。</li>
+<li>脚本在<em>空命名空间</em>中运行（最初没有先前的导入或变量）。</li>
+<li>脚本中的变量、函数和导入在执行<em>后</em>可在您的 IPython shell 中访问。</li>
+</ul>
+<div id="ebee13d1" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 在名为 'my_script.py' 的文件中：</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_function(x):  <span class="co"># 定义一个名为 my_function 的函数，它接受一个参数 x</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">*</span> <span class="dv">2</span>      <span class="co"># 返回 x 乘以 2 的结果</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> my_function(<span class="dv">5</span>)  <span class="co"># 调用 my_function 函数，传入参数 5，并将结果赋值给 result</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 在 IPython 中：</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>run my_script.py  <span class="co"># 使用 %run 魔法命令运行 my_script.py 脚本</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)      <span class="co"># 打印 result 变量的值，输出：10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="run--i-访问现有变量" class="level2">
+<h2 class="anchored" data-anchor-id="run--i-访问现有变量"><code>%run -i</code>: 访问现有变量</h2>
+<ul>
+<li><code>%run -i</code> 允许脚本访问 IPython 会话中<em>已定义</em>的变量。</li>
+</ul>
+<div id="a2e8f559" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 在 IPython 中：</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>my_var <span class="op">=</span> <span class="dv">10</span>  <span class="co"># 定义一个名为 my_var 的变量，并赋值为 10</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 在 'script_with_access.py' 文件中：</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_var <span class="op">*</span> <span class="dv">3</span>)  <span class="co"># 打印 my_var 变量乘以 3 的结果</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 回到 IPython：</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>run <span class="op">-</span>i script_with_access.py  <span class="co"># 使用 %run -i 魔法命令运行 script_with_access.py 脚本，输出：30</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="load-将脚本导入单元格-jupyter" class="level2">
+<h2 class="anchored" data-anchor-id="load-将脚本导入单元格-jupyter"><code>%load</code>: 将脚本导入单元格 (Jupyter)</h2>
+<ul>
+<li>在 Jupyter notebooks 中，<code>%load</code> 将脚本<em>直接导入</em>代码单元格。</li>
+</ul>
+<div id="5053df14" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %load my_script.py  # 这将被脚本的内容替换</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>然后，代码单元格的内容将是：</li>
+<li></li>
+</ul>
+<div id="c1b2b6bb" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_function(x):  <span class="co"># 定义一个名为 my_function 的函数，它接受一个参数 x</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">*</span> <span class="dv">2</span>      <span class="co"># 返回 x 乘以 2 的结果</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> my_function(<span class="dv">5</span>)  <span class="co"># 调用 my_function 函数，传入参数 5，并将结果赋值给 result</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="中断正在运行的代码" class="level2">
+<h2 class="anchored" data-anchor-id="中断正在运行的代码">中断正在运行的代码 ✋</h2>
+<ul>
+<li><p>按 <code>Ctrl-C</code> 中断正在运行的代码（无论是来自 <code>%run</code> 还是长时间运行的命令）。</p></li>
+<li><p>这将引发 <code>KeyboardInterrupt</code> 异常，立即停止大多数 Python 程序。</p></li>
+<li><p>注意：对于编译的扩展，<code>Ctrl-C</code> 可能不会立即生效。</p></li>
+<li><p>如果 <code>Ctrl-C</code> 没有立即停止执行（特别是当涉及编译的扩展时），您可能需要使用操作系统的工具（例如，Windows 上的任务管理器，Linux 上的 <code>kill</code>）来强制终止进程。</p></li>
+</ul>
+</section>
+<section id="从剪贴板执行代码" class="level2">
+<h2 class="anchored" data-anchor-id="从剪贴板执行代码">从剪贴板执行代码 📋</h2>
+<ul>
+<li><code>%paste</code> 和 <code>%cpaste</code> 对于运行从其他地方复制的代码非常有用（在 Jupyter 中相关性较低，因为 Jupyter 支持直接粘贴）。</li>
+<li><code>%paste</code> 将剪贴板内容作为<em>单个块</em>执行。</li>
+</ul>
+<div id="6ab67f10" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 剪贴板上的示例代码：</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">5</span>               <span class="co"># 定义变量 x 并赋值为 5</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">2</span>:          <span class="co"># 如果 x 大于 2</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"x is greater than 2"</span>)  <span class="co"># 打印 "x is greater than 2"</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 在 IPython 中：</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>paste  <span class="co"># 立即执行代码</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="从剪贴板执行代码cpaste" class="level2">
+<h2 class="anchored" data-anchor-id="从剪贴板执行代码cpaste">从剪贴板执行代码：<code>%cpaste</code></h2>
+<ul>
+<li><code>%cpaste</code> 打开一个特殊提示符，允许粘贴多个代码块并在执行前进行编辑。</li>
+<li>按 Ctrl-D 执行。</li>
+<li>按 Ctrl-C 退出提示。</li>
+</ul>
+</section>
+<section id="命令历史记录您的-ipython-记忆" class="level2">
+<h2 class="anchored" data-anchor-id="命令历史记录您的-ipython-记忆">命令历史记录：您的 IPython 记忆 🧠</h2>
+<ul>
+<li>IPython 维护已执行命令的数据库。 这对于以下方面很有价值：
+<ul>
+<li>搜索和重用过去的命令。</li>
+<li>在<em>会话之间</em>持久保存历史记录。</li>
+<li>将输入/输出记录到文件。</li>
+</ul></li>
+</ul>
+</section>
+<section id="搜索和重用命令" class="level2">
+<h2 class="anchored" data-anchor-id="搜索和重用命令">搜索和重用命令 🔎</h2>
+<ul>
+<li><strong>向上箭头 (<code>Ctrl-P</code>):</strong> 在历史记录中向<em>后</em>搜索，匹配已键入的文本。</li>
+<li><strong>向下箭头 (<code>Ctrl-N</code>):</strong> 在历史记录中向<em>前</em>搜索。</li>
+<li><strong><code>Ctrl-R</code>:</strong> <em>反向搜索</em>（类似于 bash）。 键入字符以查找匹配的命令。 重复按 Ctrl-R 可循环浏览匹配项。</li>
+</ul>
+</section>
+<section id="输入和输出变量" class="level2">
+<h2 class="anchored" data-anchor-id="输入和输出变量">输入和输出变量 ↩︎️</h2>
+<ul>
+<li>IPython 存储输入和输出以便于访问：
+<ul>
+<li><code>_</code> (一个下划线): 引用<em>上一个</em>输出。</li>
+<li><code>__</code> (两个下划线): 引用<em>倒数第二个</em>输出。</li>
+<li><code>_iX</code>: 将第 <code>X</code> 行的<em>输入</em>表示为<em>字符串</em>（例如，<code>_i5</code> 表示第 5 行的输入）。</li>
+<li><code>_X</code>: 表示第 <code>X</code> 行的<em>输出</em>。</li>
+</ul></li>
+</ul>
+<div id="542984b0" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span>      <span class="co"># 输出：4</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> _  <span class="co"># result 现在是 4</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(_i1)  <span class="co"># 打印字符串 "2 + 2"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="使用历史记录hist" class="level2">
+<h2 class="anchored" data-anchor-id="使用历史记录hist">使用历史记录：<code>%hist</code></h2>
+<ul>
+<li><code>%hist</code>: 打印输入历史记录，可选择带有行号。</li>
+</ul>
+</section>
+<section id="使用历史记录reset" class="level2">
+<h2 class="anchored" data-anchor-id="使用历史记录reset">使用历史记录：<code>%reset</code></h2>
+<ul>
+<li><code>%reset</code>: 清除交互式命名空间，以及可选的输入/输出缓存。</li>
+</ul>
+</section>
+<section id="使用历史记录xdel" class="level2">
+<h2 class="anchored" data-anchor-id="使用历史记录xdel">使用历史记录：<code>%xdel</code></h2>
+<ul>
+<li><p><code>%xdel variable</code>: 删除变量并尝试清除 IPython 对它的内部引用。 这对于内存管理非常有用，尤其是在处理大型数据集时。</p></li>
+<li><p>即使在使用 <code>del</code> 之后，IPython 的输入/输出历史记录也可能会将大型对象保留在内存中。 请谨慎使用 <code>%xdel</code> 和 <code>%reset</code> 来缓解内存问题。</p></li>
+</ul>
+</section>
+<section id="与操作系统交互" class="level2">
+<h2 class="anchored" data-anchor-id="与操作系统交互">与操作系统交互 💻</h2>
+<ul>
+<li>IPython 允许<em>直接从 shell</em> 与您的操作系统进行交互。</li>
+<li>您可以运行 shell 命令、更改目录并捕获命令输出。</li>
+</ul>
+</section>
+<section id="使用-执行-shell-命令" class="level2">
+<h2 class="anchored" data-anchor-id="使用-执行-shell-命令">使用 <code>!</code> 执行 Shell 命令 💥</h2>
+<ul>
+<li>在行首添加 <code>!</code> 前缀以将其作为 shell 命令执行。</li>
+</ul>
+<div id="9201200e" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>ls  <span class="co"># 列出当前目录中的文件（Linux/macOS）</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span><span class="bu">dir</span> <span class="co"># 列出文件（Windows）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>_quarto.yml  pandas3ed10cn.qmd    pandas3ed5.qmd
+csv_mindex.csv   pandas3ed11.qmd      pandas3ed5cn.qmd
+datasets     pandas3ed11cn.html   pandas3ed6.html
+ex1.csv      pandas3ed11cn.qmd    pandas3ed6.qmd
+ex1.xlsx     pandas3ed11cn_files  pandas3ed6cn.html
+ex2.csv      pandas3ed12.qmd      pandas3ed6cn.qmd
+ex3.txt      pandas3ed12cn.qmd    pandas3ed7.qmd
+ex4.csv      pandas3ed13.html     pandas3ed7cn.html
+ex5.csv      pandas3ed13.qmd      pandas3ed7cn.qmd
+ex6.csv      pandas3ed13cn.qmd    pandas3ed8.qmd
+ex7.csv      pandas3ed1cn.qmd     pandas3ed8cn.qmd
+example.json     pandas3ed2.html      pandas3ed9.qmd
+examples     pandas3ed2.qmd       pandas3ed9cn.qmd
+frame_pickle     pandas3ed2cn.qmd     pandas3edA1.qmd
+my.css       pandas3ed3.qmd       pandas3edA1cn.qmd
+out.csv      pandas3ed3cn.qmd     pandas3edA2.qmd
+pandas3ed1.qmd   pandas3ed4.qmd       pandas3edA2cn.qmd
+pandas3ed10.qmd  pandas3ed4cn.qmd     pandas3edA2cn.quarto_ipynb
+_quarto.yml  pandas3ed10cn.qmd    pandas3ed5.qmd
+csv_mindex.csv   pandas3ed11.qmd      pandas3ed5cn.qmd
+datasets     pandas3ed11cn.html   pandas3ed6.html
+ex1.csv      pandas3ed11cn.qmd    pandas3ed6.qmd
+ex1.xlsx     pandas3ed11cn_files  pandas3ed6cn.html
+ex2.csv      pandas3ed12.qmd      pandas3ed6cn.qmd
+ex3.txt      pandas3ed12cn.qmd    pandas3ed7.qmd
+ex4.csv      pandas3ed13.html     pandas3ed7cn.html
+ex5.csv      pandas3ed13.qmd      pandas3ed7cn.qmd
+ex6.csv      pandas3ed13cn.qmd    pandas3ed8.qmd
+ex7.csv      pandas3ed1cn.qmd     pandas3ed8cn.qmd
+example.json     pandas3ed2.html      pandas3ed9.qmd
+examples     pandas3ed2.qmd       pandas3ed9cn.qmd
+frame_pickle     pandas3ed2cn.qmd     pandas3edA1.qmd
+my.css       pandas3ed3.qmd       pandas3edA1cn.qmd
+out.csv      pandas3ed3cn.qmd     pandas3edA2.qmd
+pandas3ed1.qmd   pandas3ed4.qmd       pandas3edA2cn.qmd
+pandas3ed10.qmd  pandas3ed4cn.qmd     pandas3edA2cn.quarto_ipynb</code></pre>
+</div>
+</div>
+</section>
+<section id="捕获-shell-输出" class="level2">
+<h2 class="anchored" data-anchor-id="捕获-shell-输出">捕获 Shell 输出</h2>
+<ul>
+<li>将 <code>!</code> 命令的输出分配给 Python 变量。</li>
+</ul>
+<div id="f90a7ead" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>file_list <span class="op">=</span> <span class="op">!</span>ls  <span class="co"># 将 !ls 命令（列出当前目录文件）的输出赋值给 file_list 变量</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(file_list)  <span class="co"># 打印 file_list 变量的内容，即文件列表</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['_quarto.yml', 'csv_mindex.csv', 'datasets', 'ex1.csv', 'ex1.xlsx', 'ex2.csv', 'ex3.txt', 'ex4.csv', 'ex5.csv', 'ex6.csv', 'ex7.csv', 'example.json', 'examples', 'frame_pickle', 'my.css', 'out.csv', 'pandas3ed1.qmd', 'pandas3ed10.qmd', 'pandas3ed10cn.qmd', 'pandas3ed11.qmd', 'pandas3ed11cn.html', 'pandas3ed11cn.qmd', 'pandas3ed11cn_files', 'pandas3ed12.qmd', 'pandas3ed12cn.qmd', 'pandas3ed13.html', 'pandas3ed13.qmd', 'pandas3ed13cn.qmd', 'pandas3ed1cn.qmd', 'pandas3ed2.html', 'pandas3ed2.qmd', 'pandas3ed2cn.qmd', 'pandas3ed3.qmd', 'pandas3ed3cn.qmd', 'pandas3ed4.qmd', 'pandas3ed4cn.qmd', 'pandas3ed5.qmd', 'pandas3ed5cn.qmd', 'pandas3ed6.html', 'pandas3ed6.qmd', 'pandas3ed6cn.html', 'pandas3ed6cn.qmd', 'pandas3ed7.qmd', 'pandas3ed7cn.html', 'pandas3ed7cn.qmd', 'pandas3ed8.qmd', 'pandas3ed8cn.qmd', 'pandas3ed9.qmd', 'pandas3ed9cn.qmd', 'pandas3edA1.qmd', 'pandas3edA1cn.qmd', 'pandas3edA2.qmd', 'pandas3edA2cn.qmd', 'pandas3edA2cn.quarto_ipynb']</code></pre>
+</div>
+</div>
+<ul>
+<li>返回的对象是一个自定义列表，其中包含控制台输出的各种版本。</li>
+</ul>
+</section>
+<section id="shell-命令中的-python-变量" class="level2">
+<h2 class="anchored" data-anchor-id="shell-命令中的-python-变量">Shell 命令中的 Python 变量：<code>$</code></h2>
+<ul>
+<li>使用 <code>$</code> 将 Python 变量的值替换到 shell 命令中。</li>
+</ul>
+<div id="b35970ac" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>my_directory <span class="op">=</span> <span class="st">"data_files"</span>  <span class="co"># 定义一个名为 my_directory 的变量，并赋值为 "data_files"</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>ls $my_directory  <span class="co"># 使用 !ls 命令列出 'data_files' 目录中的文件，其中 $my_directory 会被替换为 "data_files"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="别名shell-命令的快捷方式" class="level2">
+<h2 class="anchored" data-anchor-id="别名shell-命令的快捷方式">别名：Shell 命令的快捷方式</h2>
+<ul>
+<li><code>%alias</code>: 为常用 shell 命令创建快捷方式（别名）。</li>
+</ul>
+<div id="e6ca05e9" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>alias ll ls <span class="op">-</span>l  <span class="co"># 创建一个别名 'll'，用于执行 'ls -l' 命令</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ll <span class="op">/</span>usr<span class="op">/</span><span class="bu">bin</span>  <span class="co"># 现在可以使用 'll' 命令</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>注意：别名在会话之间<em>不</em>持久，除非显式配置。</li>
+</ul>
+</section>
+<section id="书签目录的快捷方式" class="level2">
+<h2 class="anchored" data-anchor-id="书签目录的快捷方式">书签：目录的快捷方式</h2>
+<ul>
+<li><code>%bookmark</code>: 为经常访问的目录创建书签。</li>
+</ul>
+<div id="409725c1" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>bookmark mydata <span class="op">/</span>path<span class="op">/</span>to<span class="op">/</span>my<span class="op">/</span>data  <span class="co"># 创建一个名为 'mydata' 的书签，指向 '/path/to/my/data' 目录</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>cd mydata       <span class="co"># 使用 cd 命令跳转到书签 'mydata' 所指向的目录</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>bookmark <span class="op">-</span>l    <span class="co"># 列出所有书签</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>书签在会话之间<em>是</em>持久的。</li>
+</ul>
+</section>
+<section id="目录历史记录" class="level2">
+<h2 class="anchored" data-anchor-id="目录历史记录">目录历史记录</h2>
+<ul>
+<li><code>%cd</code>: 更改当前工作目录。</li>
+<li><code>%pwd</code>: 返回当前工作目录。</li>
+<li><code>%pushd</code>: 将当前目录放置在堆栈上并更改为目标目录。</li>
+<li><code>%popd</code>: 更改为从堆栈顶部弹出的目录。</li>
+<li><code>%dirs</code>: 返回包含当前目录堆栈的列表。</li>
+<li><code>%dhist</code>: 打印访问过的目录的历史记录。</li>
+</ul>
+</section>
+<section id="环境变量" class="level2">
+<h2 class="anchored" data-anchor-id="环境变量">环境变量</h2>
+<ul>
+<li><code>%env</code>: 以字典形式返回系统环境变量。</li>
+<li><code>%matplotlib</code>: 配置<code>matplotlib</code> 集成选项</li>
+</ul>
+</section>
+<section id="软件开发工具" class="level2">
+<h2 class="anchored" data-anchor-id="软件开发工具">软件开发工具 🛠️</h2>
+<ul>
+<li>IPython 不仅对交互式探索有价值，而且对软件开发也有价值。</li>
+<li>关键工具包括：
+<ul>
+<li><strong>交互式调试器：</strong> <code>pdb</code> 的增强版本。</li>
+<li><strong>代码计时：</strong> <code>%time</code> 和 <code>%timeit</code>。</li>
+<li><strong>性能分析：</strong> <code>%prun</code> 和 <code>%lprun</code>。</li>
+</ul></li>
+</ul>
+</section>
+<section id="交互式调试器debug" class="level2">
+<h2 class="anchored" data-anchor-id="交互式调试器debug">交互式调试器：<code>%debug</code> 🐞</h2>
+<ul>
+<li><code>%debug</code>: 在异常发生<em>后</em>激活调试器（事后调试）。</li>
+<li>它将您置于错误发生的堆栈帧中。</li>
+<li>通过选项卡补全、语法高亮和回溯上下文等功能进行了增强。</li>
+</ul>
+<div id="9d23b165" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 假设 some_script.py 包含错误：</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>run some_script.py  <span class="co"># 运行 some_script.py 脚本</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>debug  <span class="co"># 在错误发生处进入调试器</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="调试器命令---导航" class="level2">
+<h2 class="anchored" data-anchor-id="调试器命令---导航">调试器命令 🧭 - 导航</h2>
+<ul>
+<li>在调试器中：
+<ul>
+<li><code>u</code> (up): 在调用堆栈中向<em>上</em>移动。</li>
+<li><code>d</code> (down): 在调用堆栈中向<em>下</em>移动。</li>
+<li><code>s</code> (step): <em>进入</em>函数调用。</li>
+<li><code>n</code> (next): 执行当前行并移动到<em>下一行</em>（在同一级别）。</li>
+</ul></li>
+</ul>
+</section>
+<section id="调试器命令---控制流" class="level2">
+<h2 class="anchored" data-anchor-id="调试器命令---控制流">调试器命令 🧭 - 控制流</h2>
+<ul>
+<li><code>c</code> (continue): 继续执行，直到下一个断点或程序结束。</li>
+<li><code>q</code> (quit): 退出调试器。</li>
+</ul>
+</section>
+<section id="调试器命令---检查" class="level2">
+<h2 class="anchored" data-anchor-id="调试器命令---检查">调试器命令 🧭 - 检查</h2>
+<ul>
+<li><code>p variable</code>: 打印 <code>variable</code> 的值。</li>
+<li><code>!variable</code>: 检查变量内容，当变量名与调试器命令相同时很有用。</li>
+</ul>
+</section>
+<section id="pdb-自动调试" class="level2">
+<h2 class="anchored" data-anchor-id="pdb-自动调试"><code>%pdb</code>: 自动调试</h2>
+<ul>
+<li><code>%pdb</code>: 在<em>任何异常</em>发生时自动进入调试器。 这对于调试非常有用！</li>
+</ul>
+<div id="61b0b100" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pdb on  <span class="co"># 启用自动调试</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 现在，任何错误都将自动启动调试器</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pdb off <span class="co"># 禁用自动调试</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="使用调试器进行开发" class="level2">
+<h2 class="anchored" data-anchor-id="使用调试器进行开发">使用调试器进行开发</h2>
+<ul>
+<li><code>%run -d script.py</code>: 在运行脚本<em>之前</em>启动调试器。 键入 <code>s</code> 以进入脚本。</li>
+<li><code>%run -d -b line_number script.py</code>: 在指定的 <code>line_number</code> 处设置断点。</li>
+<li><code>set_trace()</code>: 一个“穷人的断点”函数； 将其插入到您的代码中以创建临时断点。</li>
+<li><code>debug(function, *args, **kwargs)</code>: 轻松进入特定函数调用。</li>
+</ul>
+</section>
+<section id="set_trace-和-debug-函数" class="level2">
+<h2 class="anchored" data-anchor-id="set_trace-和-debug-函数"><code>set_trace()</code> 和 <code>debug()</code> 函数</h2>
+<div id="964345f3" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.core.debugger <span class="im">import</span> Pdb  <span class="co"># 从 IPython.core.debugger 模块导入 Pdb 类</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys <span class="co"># 导入 sys 模块</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> set_trace():  <span class="co"># 定义一个名为 set_trace 的函数</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    Pdb().set_trace(sys._getframe().f_back)  <span class="co"># 创建一个 Pdb 对象，并在调用 set_trace 的位置设置一个跟踪点</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> debug(f, <span class="op">*</span>args, <span class="op">**</span>kwargs):  <span class="co"># 定义一个名为 debug 的函数，它接受一个函数 f 以及任意数量的位置参数和关键字参数</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    pdb <span class="op">=</span> Pdb()  <span class="co"># 创建一个 Pdb 对象</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pdb.runcall(f, <span class="op">*</span>args, <span class="op">**</span>kwargs)  <span class="co"># 使用 pdb.runcall 调用函数 f，并传入参数，这将允许您单步调试函数 f</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>在代码中调用 <code>set_trace()</code> 来设置断点。</li>
+<li><code>debug(f, *args, **kwargs)</code> 允许通过传入函数 <code>f</code> 及其参数来单步调试函数 <code>f</code>。</li>
+</ul>
+</section>
+<section id="代码计时time-和-timeit-回顾" class="level2">
+<h2 class="anchored" data-anchor-id="代码计时time-和-timeit-回顾">代码计时：<code>%time</code> 和 <code>%timeit</code> (回顾)</h2>
+<ul>
+<li><code>%time</code>: 测量语句的执行时间<em>一次</em>。</li>
+<li><code>%timeit</code>: <em>多次</em>测量执行时间，以提供更准确的平均值。 它非常适合非常短的操作。</li>
+</ul>
+<div id="61342eda" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">100000</span>))  <span class="co"># 创建一个包含 0 到 99999 的整数列表</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):  <span class="bu">sum</span>(my_list)  <span class="co"># 使用 %time 测量循环 100 次计算 my_list 总和的时间</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit <span class="bu">sum</span>(my_list)  <span class="co"># 使用 %timeit 测量计算 my_list 总和的平均时间</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 76.2 ms, sys: 1 μs, total: 76.2 ms
+Wall time: 75.9 ms
+751 μs ± 196 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)</code></pre>
+</div>
+</div>
+</section>
+<section id="基本性能分析prun-和-run--p" class="level2">
+<h2 class="anchored" data-anchor-id="基本性能分析prun-和-run--p">基本性能分析：<code>%prun</code> 和 <code>%run -p</code> 🕵️‍♀️</h2>
+<ul>
+<li><strong>性能分析</strong>揭示了您的代码将时间花在<em>哪里</em>。</li>
+<li><code>%prun statement</code>: 分析单个 Python 语句。</li>
+<li><code>%run -p script.py</code>: 分析整个脚本。</li>
+<li>这些命令在内部使用 <code>cProfile</code>。</li>
+<li>输出结果包括以下关键指标：
+<ul>
+<li><code>ncalls</code>: 调用次数。</li>
+<li><code>tottime</code>: 函数中花费的总时间（不包括子函数调用）。</li>
+<li><code>percall</code>: 每次调用的时间 (tottime / ncalls)。</li>
+<li><code>cumtime</code>: 函数<em>及其</em>子函数中的<em>累积</em>时间。</li>
+<li><code>percall</code>: 每次调用的累积时间 (cumtime / ncalls)。</li>
+<li><code>filename:lineno(function)</code>: 函数位置。</li>
+</ul></li>
+</ul>
+<div id="fb8218d9" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#示例</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> slow_function():   <span class="co"># 定义一个名为 slow_function 的函数</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> []        <span class="co"># 初始化一个空列表 result</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>): <span class="co"># 循环 1000 次</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>        result.append(i <span class="op">*</span> <span class="dv">2</span>)  <span class="co"># 将 i 乘以 2 的结果添加到 result 列表中</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result   <span class="co"># 返回 result 列表</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>prun slow_function()   <span class="co"># 使用 %prun 分析 slow_function 函数的性能</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> </code></pre>
+</div>
+</div>
+</section>
+<section id="行级性能分析lprun" class="level2">
+<h2 class="anchored" data-anchor-id="行级性能分析lprun">行级性能分析：<code>%lprun</code> 📏</h2>
+<ul>
+<li><code>%lprun</code>: 提供特定函数的<em>逐行</em>性能分析，提供比 <code>%prun</code> 更详细的信息。</li>
+<li>需要 <code>line_profiler</code> IPython 扩展。
+<ul>
+<li>启用：将 <code>c.InteractiveShellApp.extensions = ['line_profiler']</code> 添加到 <code>ipython_config.py</code> 或使用 <code>%load_ext line_profiler</code>。</li>
+</ul></li>
+<li>语法：<code>%lprun -f function1 -f function2 statement_to_profile</code></li>
+<li>输出包括：
+<ul>
+<li><code>Line #</code>: 行号。</li>
+<li><code>Hits</code>: 该行被执行的次数。</li>
+<li><code>Time</code>: 在该行上花费的总时间（以计时器单位）。</li>
+<li><code>Per Hit</code>: 每次执行该行的时间。</li>
+<li><code>% Time</code>: 在该行上花费的时间百分比。</li>
+<li><code>Line Contents</code>: 该行的源代码。</li>
+</ul></li>
+</ul>
+<div id="eec86646" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 假设 line_profiler 已启用且 prof_mod.py 存在：</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prof_mod <span class="im">import</span> add_and_sum, call_function <span class="co"># 从 prof_mod 模块导入 add_and_sum 和 call_function 函数（示例文件，您需要创建它）</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>lprun <span class="op">-</span>f add_and_sum call_function()  <span class="co"># 使用 %lprun 对 add_and_sum 函数进行逐行性能分析，分析语句为 call_function()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="高效代码开发技巧---重新加载" class="level2">
+<h2 class="anchored" data-anchor-id="高效代码开发技巧---重新加载">高效代码开发技巧 📝 - 重新加载</h2>
+<ul>
+<li><strong>重新加载模块依赖项：</strong>
+<ul>
+<li>问题：对导入模块的更改不会自动反映。</li>
+<li>解决方案：
+<ul>
+<li><code>importlib.reload(module)</code>: 重新加载单个模块。</li>
+<li><code>dreload(module)</code> (IPython 特有): <em>深度</em>（递归）重新加载模块及其依赖项 – 一个更强大的解决方案。</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="高效代码开发技巧---代码设计" class="level2">
+<h2 class="anchored" data-anchor-id="高效代码开发技巧---代码设计">高效代码开发技巧 📝 - 代码设计</h2>
+<ul>
+<li><em>保持相关对象和数据存活</em>: 避免将所有代码都放在 <code>main()</code> 函数中。 将重要变量保留在顶层，以便在 IPython 中轻松检查。</li>
+<li><em>扁平化优于嵌套</em>: 尽量减少深度嵌套的代码结构。 这简化了调试和测试。</li>
+<li><em>克服对较长文件的恐惧</em>: 在合理范围内，较长、组织良好的模块通常优于许多小型、相互连接的模块（减少重新加载开销）。</li>
+<li><em>保持高内聚</em>: 在模块内将相关代码逻辑地分组在一起。</li>
+</ul>
+</section>
+<section id="ipython-配置文件和配置" class="level2">
+<h2 class="anchored" data-anchor-id="ipython-配置文件和配置">IPython 配置文件和配置 ⚙️</h2>
+<ul>
+<li>使用配置文件 (<code>ipython_config.py</code>) 自定义 IPython 的外观和行为。</li>
+<li>这些文件通常位于您的 IPython 目录中（通常是 <code>~/.ipython/profile_default/</code>）。</li>
+<li>您可以为不同的项目或设置创建<em>多个配置文件</em>。</li>
+<li>创建新配置文件：<code>ipython profile create my_profile</code></li>
+<li>使用特定配置文件启动 IPython：<code>ipython --profile=my_profile</code></li>
+<li>注意：Jupyter 有自己独立的配置系统。</li>
+</ul>
+</section>
+<section id="结论" class="level2">
+<h2 class="anchored" data-anchor-id="结论">结论 📖</h2>
+<ul>
+<li>IPython 和 Jupyter 是用于交互式探索和软件开发的强大工具。</li>
+<li>掌握它们的功能 – 快捷键、魔法命令、调试器、性能分析器和配置选项 – 将显著提高您的工作效率。</li>
+<li>进行实验以找到最适合您个人风格的工作流程！</li>
+</ul>
+</section>
+<section id="总结" class="level2">
+<h2 class="anchored" data-anchor-id="总结">总结</h2>
+<ul>
+<li>我们探索了高级 IPython 功能，扩展了基本的 shell 交互。</li>
+<li>我们介绍了键盘快捷键、魔法命令以及与操作系统的交互。</li>
+<li>我们研究了用于调试、代码计时和性能分析的工具。</li>
+<li>我们讨论了编写针对 IPython 中的交互式开发进行优化的代码的技巧。</li>
+<li>我们介绍了 IPython 配置文件。</li>
+</ul>
+</section>
+<section id="思考与讨论" class="level2">
+<h2 class="anchored" data-anchor-id="思考与讨论">思考与讨论 🤔</h2>
+<ul>
+<li>您预计哪些 IPython 功能在<em>您的</em>工作中会最有用？</li>
+<li>您如何将这些工具集成到您的数据分析和编码例程中？</li>
+<li>考虑创建一个自定义 IPython 配置文件来简化您经常执行的任务。</li>
+<li>与传统的 Python IDE 相比，使用 IPython 有哪些优点和缺点？</li>
+<li>“扁平化优于嵌套”和“克服对较长文件的恐惧”的原则如何应用于您自己的编码风格？</li>
+<li>您如何使用调试器和性能分析器来提高代码的正确性和效率？</li>
+<li><code>%run</code> 与简单地从命令行执行 Python 脚本有何不同？</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/qiufei\.github\.io\/web-slide-pandas3ed");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>🔋<a href="https://posit.co"><img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" class="img-fluid" alt="Posit" width="65"></a></p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ 邱飞 © 2025
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://beian.miit.gov.cn">
+<p>浙ICP备 2024072710号-1</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33021202002511">
+<p>浙公网安备 33021202002511号</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:hfutqiufei@163.com">
+      <i class="bi bi-envelope-at-fill" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

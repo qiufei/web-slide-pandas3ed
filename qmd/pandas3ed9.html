@@ -274,6 +274,9 @@ Note
 <li><strong><code>np.arange(10)</code></strong>: Creates an array of numbers from 0 to 9.</li>
 <li><strong><code>plt.plot(data)</code></strong>: Plots the data as a line chart.</li>
 </ul>
+</section>
+<section id="simple-line-plot-result" class="level2">
+<h2 class="anchored" data-anchor-id="simple-line-plot-result">Simple Line Plot Result</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -320,10 +323,18 @@ Note
 <li>Select the 1st subplot (numbered from 1).</li>
 <li><strong>Analogy</strong>: It is just like the form in Excel to select a range of cells.</li>
 </ul></li>
+</ul>
+</section>
+<section id="create-additional-subplots" class="level2">
+<h2 class="anchored" data-anchor-id="create-additional-subplots">Create Additional Subplots</h2>
+<ul>
 <li>Create additional subplots:</li>
 </ul>
 <div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> fig.add_subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ax3 <span class="op">=</span> fig.add_subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="an-empty-figure-with-three-subplots" class="level2">
+<h2 class="anchored" data-anchor-id="an-empty-figure-with-three-subplots">An Empty Figure with Three Subplots</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -371,6 +382,9 @@ Note
 <li>Example:</li>
 </ul>
 <div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ax3.plot(np.random.standard_normal(<span class="dv">50</span>).cumsum(), color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="data-visualization-after-a-single-plot" class="level2">
+<h2 class="anchored" data-anchor-id="data-visualization-after-a-single-plot">Data Visualization After a Single Plot</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -410,6 +424,9 @@ Note
 <li><strong><code>ax2.scatter(...)</code></strong>: Creates a scatter plot.</li>
 <li><code>alpha=0.3</code>: Sets the transparency of the plot.</li>
 </ul>
+</section>
+<section id="data-visualization-after-additional-plots" class="level2">
+<h2 class="anchored" data-anchor-id="data-visualization-after-additional-plots">Data Visualization After Additional Plots</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -511,6 +528,9 @@ Note
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        axes[i, j].hist(np.random.standard_normal(<span class="dv">500</span>), bins<span class="op">=</span><span class="dv">50</span>,</span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                        color<span class="op">=</span><span class="st">"black"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(wspace<span class="op">=</span><span class="dv">0</span>, hspace<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="data-visualization-with-no-inter-subplot-spacing" class="level2">
+<h2 class="anchored" data-anchor-id="data-visualization-with-no-inter-subplot-spacing">Data Visualization with No Inter-Subplot Spacing</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -527,8 +547,8 @@ Note
 </div>
 </div>
 </section>
-<section id="overlapping-axis-labels-겹침" class="level2">
-<h2 class="anchored" data-anchor-id="overlapping-axis-labels-겹침">Overlapping Axis Labels 겹침</h2>
+<section id="overlapping-axis-labels" class="level2">
+<h2 class="anchored" data-anchor-id="overlapping-axis-labels">Overlapping Axis Labels</h2>
 <ul>
 <li>matplotlib doesn’t check for overlapping labels.</li>
 <li>Fix labels by specifying tick locations and labels.</li>
@@ -556,6 +576,9 @@ Note
 </ul>
 <div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ax.plot(np.random.standard_normal(<span class="dv">30</span>).cumsum(), color<span class="op">=</span><span class="st">"black"</span>,</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>        linestyle<span class="op">=</span><span class="st">"dashed"</span>, marker<span class="op">=</span><span class="st">"o"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="line-plot-with-markers" class="level2">
+<h2 class="anchored" data-anchor-id="line-plot-with-markers">Line Plot with Markers</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -573,7 +596,7 @@ Note
 </div>
 </section>
 <section id="drawstyle-option" class="level2">
-<h2 class="anchored" data-anchor-id="drawstyle-option">drawstyle Option 🎨</h2>
+<h2 class="anchored" data-anchor-id="drawstyle-option"><code>drawstyle</code> Option 🎨</h2>
 <ul>
 <li>Linear interpolation is the default.</li>
 <li>Change with the <code>drawstyle</code> option:</li>
@@ -582,6 +605,9 @@ Note
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ax.plot(data, color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>,</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>        drawstyle<span class="op">=</span><span class="st">"steps-post"</span>, label<span class="op">=</span><span class="st">"steps-post"</span>)</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>ax.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="line-plot-with-different-drawstyle-options" class="level2">
+<h2 class="anchored" data-anchor-id="line-plot-with-different-drawstyle-options">Line Plot with Different <code>drawstyle</code> Options</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -617,6 +643,9 @@ Note
 </ul>
 <div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>ax.plot(np.random.standard_normal(<span class="dv">1000</span>).cumsum())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="simple-plot-for-illustrating-xticks" class="level2">
+<h2 class="anchored" data-anchor-id="simple-plot-for-illustrating-xticks">Simple Plot for Illustrating <code>xticks</code></h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -632,9 +661,9 @@ Note
 </div>
 </div>
 </div>
-<ul>
-<li>Set ticks and tick labels</li>
-</ul>
+</section>
+<section id="set-ticks-and-tick-labels" class="level2">
+<h2 class="anchored" data-anchor-id="set-ticks-and-tick-labels">Set Ticks and Tick Labels</h2>
 <div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ticks <span class="op">=</span> ax.set_xticks([<span class="dv">0</span>, <span class="dv">250</span>, <span class="dv">500</span>, <span class="dv">750</span>, <span class="dv">1000</span>])</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> ax.set_xticklabels([<span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"three"</span>, <span class="st">"four"</span>, <span class="st">"five"</span>],</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                            rotation<span class="op">=</span><span class="dv">30</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -643,6 +672,9 @@ Note
 <h2 class="anchored" data-anchor-id="setting-title-and-axis-labels">Setting Title and Axis Labels 📝</h2>
 <div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Stages"</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"My first matplotlib plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="simple-plot-for-illustrating-custom-xticks" class="level2">
+<h2 class="anchored" data-anchor-id="simple-plot-for-illustrating-custom-xticks">Simple Plot for Illustrating Custom <code>xticks</code></h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -682,6 +714,9 @@ Note
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>ax.plot(np.random.randn(<span class="dv">1000</span>).cumsum(), color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, label<span class="op">=</span><span class="st">"two"</span>)</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>ax.plot(np.random.randn(<span class="dv">1000</span>).cumsum(), color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"dotted"</span>, label<span class="op">=</span><span class="st">"three"</span>)</span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>ax.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="simple-plot-with-three-lines-and-legend" class="level2">
+<h2 class="anchored" data-anchor-id="simple-plot-with-three-lines-and-legend">Simple Plot with Three Lines and Legend</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -726,26 +761,33 @@ Note
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"examples/spx.csv"</span>, index_col<span class="op">=</span><span class="dv">0</span>, parse_dates<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>spx <span class="op">=</span> data[<span class="st">"SPX"</span>]</span>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>spx.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">"black"</span>)</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>crisis_data <span class="op">=</span> [</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    (datetime(<span class="dv">2007</span>, <span class="dv">10</span>, <span class="dv">11</span>), <span class="st">"Peak of bull market"</span>),</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    (datetime(<span class="dv">2008</span>, <span class="dv">3</span>, <span class="dv">12</span>), <span class="st">"Bear Stearns Fails"</span>),</span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>    (datetime(<span class="dv">2008</span>, <span class="dv">9</span>, <span class="dv">15</span>), <span class="st">"Lehman Bankruptcy"</span>)</span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> date, label <span class="kw">in</span> crisis_data:</span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>    ax.annotate(label, xy<span class="op">=</span>(date, spx.asof(date) <span class="op">+</span> <span class="dv">75</span>),</span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>                xytext<span class="op">=</span>(date, spx.asof(date) <span class="op">+</span> <span class="dv">225</span>),</span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>                arrowprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">"black"</span>, headwidth<span class="op">=</span><span class="dv">4</span>, width<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>                                headlength<span class="op">=</span><span class="dv">4</span>),</span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>                horizontalalignment<span class="op">=</span><span class="st">"left"</span>, verticalalignment<span class="op">=</span><span class="st">"top"</span>)</span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Zoom in on 2007-2010</span></span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="st">"1/1/2007"</span>, <span class="st">"1/1/2011"</span>])</span>
-<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">600</span>, <span class="dv">1800</span>])</span>
-<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Important dates in the 2008-2009 financial crisis"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>spx.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="annotating-the-sp-500-index-continued" class="level2">
+<h2 class="anchored" data-anchor-id="annotating-the-sp-500-index-continued">Annotating the S&amp;P 500 Index (Continued)</h2>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>crisis_data <span class="op">=</span> [</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    (datetime(<span class="dv">2007</span>, <span class="dv">10</span>, <span class="dv">11</span>), <span class="st">"Peak of bull market"</span>),</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    (datetime(<span class="dv">2008</span>, <span class="dv">3</span>, <span class="dv">12</span>), <span class="st">"Bear Stearns Fails"</span>),</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    (datetime(<span class="dv">2008</span>, <span class="dv">9</span>, <span class="dv">15</span>), <span class="st">"Lehman Bankruptcy"</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> date, label <span class="kw">in</span> crisis_data:</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    ax.annotate(label, xy<span class="op">=</span>(date, spx.asof(date) <span class="op">+</span> <span class="dv">75</span>),</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>                xytext<span class="op">=</span>(date, spx.asof(date) <span class="op">+</span> <span class="dv">225</span>),</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>                arrowprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">"black"</span>, headwidth<span class="op">=</span><span class="dv">4</span>, width<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>                                headlength<span class="op">=</span><span class="dv">4</span>),</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>                horizontalalignment<span class="op">=</span><span class="st">"left"</span>, verticalalignment<span class="op">=</span><span class="st">"top"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="annotating-the-sp-500-index-continued-1" class="level2">
+<h2 class="anchored" data-anchor-id="annotating-the-sp-500-index-continued-1">Annotating the S&amp;P 500 Index (Continued)</h2>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Zoom in on 2007-2010</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="st">"1/1/2007"</span>, <span class="st">"1/1/2011"</span>])</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">600</span>, <span class="dv">1800</span>])</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Important dates in the 2008-2009 financial crisis"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="important-dates-in-the-20082009-financial-crisis" class="level2">
+<h2 class="anchored" data-anchor-id="important-dates-in-the-20082009-financial-crisis">Important Dates in the 2008–2009 Financial Crisis</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -778,16 +820,19 @@ Note
 <li>Full set: <code>matplotlib.patches</code>.</li>
 <li>Add to plot using <code>ax.add_patch</code>:</li>
 </ul>
-<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>rect <span class="op">=</span> plt.Rectangle((<span class="fl">0.2</span>, <span class="fl">0.75</span>), <span class="fl">0.4</span>, <span class="fl">0.15</span>, color<span class="op">=</span><span class="st">"black"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>circ <span class="op">=</span> plt.Circle((<span class="fl">0.7</span>, <span class="fl">0.2</span>), <span class="fl">0.15</span>, color<span class="op">=</span><span class="st">"blue"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>pgon <span class="op">=</span> plt.Polygon([[<span class="fl">0.15</span>, <span class="fl">0.15</span>], [<span class="fl">0.35</span>, <span class="fl">0.4</span>], [<span class="fl">0.2</span>, <span class="fl">0.6</span>]],</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>                    color<span class="op">=</span><span class="st">"green"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>ax.add_patch(rect)</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>ax.add_patch(circ)</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>ax.add_patch(pgon)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>rect <span class="op">=</span> plt.Rectangle((<span class="fl">0.2</span>, <span class="fl">0.75</span>), <span class="fl">0.4</span>, <span class="fl">0.15</span>, color<span class="op">=</span><span class="st">"black"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>circ <span class="op">=</span> plt.Circle((<span class="fl">0.7</span>, <span class="fl">0.2</span>), <span class="fl">0.15</span>, color<span class="op">=</span><span class="st">"blue"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>pgon <span class="op">=</span> plt.Polygon([[<span class="fl">0.15</span>, <span class="fl">0.15</span>], [<span class="fl">0.35</span>, <span class="fl">0.4</span>], [<span class="fl">0.2</span>, <span class="fl">0.6</span>]],</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                    color<span class="op">=</span><span class="st">"green"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>ax.add_patch(rect)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>ax.add_patch(circ)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>ax.add_patch(pgon)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="data-visualization-composed-from-three-different-patches" class="level2">
+<h2 class="anchored" data-anchor-id="data-visualization-composed-from-three-different-patches">Data Visualization Composed from Three Different Patches</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -810,12 +855,12 @@ Note
 <li><code>savefig</code> instance method: Saves the active figure.</li>
 <li>Example:</li>
 </ul>
-<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">"figpath.svg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">"figpath.svg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>File type inferred from extension (e.g., <code>.pdf</code>, <code>.png</code>).</li>
 <li><code>dpi</code>: Controls dots-per-inch resolution.</li>
 </ul>
-<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">"figpath.png"</span>, dpi<span class="op">=</span><span class="dv">400</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">"figpath.png"</span>, dpi<span class="op">=</span><span class="dv">400</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="savefig-options" class="level2">
 <h2 class="anchored" data-anchor-id="savefig-options"><code>savefig</code> Options ⚙️</h2>
@@ -872,7 +917,7 @@ Note
 <li><code>rc</code> method: Modifies configuration programmatically.</li>
 <li>Example: Set default figure size to 10x10.</li>
 </ul>
-<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>plt.rc(<span class="st">"figure"</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>plt.rc(<span class="st">"figure"</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="restoring-default-configuration-values" class="level2">
 <h2 class="anchored" data-anchor-id="restoring-default-configuration-values">Restoring Default Configuration Values 🔄</h2>
@@ -888,7 +933,7 @@ Note
 <li>Followed by keyword arguments for new parameters.</li>
 <li>Example:</li>
 </ul>
-<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>plt.rc(<span class="st">"font"</span>, family<span class="op">=</span><span class="st">"monospace"</span>, weight<span class="op">=</span><span class="st">"bold"</span>, size<span class="op">=</span><span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>plt.rc(<span class="st">"font"</span>, family<span class="op">=</span><span class="st">"monospace"</span>, weight<span class="op">=</span><span class="st">"bold"</span>, size<span class="op">=</span><span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="matplotlibrc-configuration-file" class="level2">
 <h2 class="anchored" data-anchor-id="matplotlibrc-configuration-file"><code>matplotlibrc</code> Configuration File 📝</h2>
@@ -920,8 +965,11 @@ Note
 <li><code>Series</code> and <code>DataFrame</code> have a <code>plot</code> attribute.</li>
 <li><code>plot()</code> makes line plots by default:</li>
 </ul>
-<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series(np.random.standard_normal(<span class="dv">10</span>).cumsum(), index<span class="op">=</span>np.arange(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">10</span>))</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>s.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series(np.random.standard_normal(<span class="dv">10</span>).cumsum(), index<span class="op">=</span>np.arange(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">10</span>))</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>s.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="simple-series-plot" class="level2">
+<h2 class="anchored" data-anchor-id="simple-series-plot">Simple Series Plot</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1038,11 +1086,14 @@ Note
 </section>
 <section id="dataframe-line-plots" class="level2">
 <h2 class="anchored" data-anchor-id="dataframe-line-plots">DataFrame Line Plots 📊</h2>
-<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(np.random.standard_normal((<span class="dv">10</span>, <span class="dv">4</span>)).cumsum(<span class="dv">0</span>),</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>                  columns<span class="op">=</span>[<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>],</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>                  index<span class="op">=</span>np.arange(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">10</span>))</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'grayscale'</span>) <span class="co">#use grayscale style to adapt to black and white publication</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>df.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(np.random.standard_normal((<span class="dv">10</span>, <span class="dv">4</span>)).cumsum(<span class="dv">0</span>),</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>                  columns<span class="op">=</span>[<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>],</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>                  index<span class="op">=</span>np.arange(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">10</span>))</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'grayscale'</span>) <span class="co">#use grayscale style to adapt to black and white publication</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>df.plot()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="simple-dataframe-plot" class="level2">
+<h2 class="anchored" data-anchor-id="simple-dataframe-plot">Simple DataFrame Plot</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1125,10 +1176,16 @@ Note
 <li><code>plot.barh()</code>: Horizontal bar plots.</li>
 <li>Series/DataFrame index: Used for x (bar) or y (barh) ticks.</li>
 </ul>
-<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.Series(np.random.uniform(size<span class="op">=</span><span class="dv">16</span>), index<span class="op">=</span><span class="bu">list</span>(<span class="st">"abcdefghijklmnop"</span>))</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>data.plot.bar(ax<span class="op">=</span>axes[<span class="dv">0</span>], color<span class="op">=</span><span class="st">"black"</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>data.plot.barh(ax<span class="op">=</span>axes[<span class="dv">1</span>], color<span class="op">=</span><span class="st">"black"</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.Series(np.random.uniform(size<span class="op">=</span><span class="dv">16</span>), index<span class="op">=</span><span class="bu">list</span>(<span class="st">"abcdefghijklmnop"</span>))</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>data.plot.bar(ax<span class="op">=</span>axes[<span class="dv">0</span>], color<span class="op">=</span><span class="st">"black"</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="bar-plots-continued" class="level2">
+<h2 class="anchored" data-anchor-id="bar-plots-continued">Bar Plots (Continued)</h2>
+<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>data.plot.barh(ax<span class="op">=</span>axes[<span class="dv">1</span>], color<span class="op">=</span><span class="st">"black"</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="horizontal-and-vertical-bar-plot" class="level2">
+<h2 class="anchored" data-anchor-id="horizontal-and-vertical-bar-plot">Horizontal and Vertical Bar Plot</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1147,10 +1204,13 @@ Note
 </section>
 <section id="dataframe-bar-plots" class="level2">
 <h2 class="anchored" data-anchor-id="dataframe-bar-plots">DataFrame Bar Plots 📊</h2>
-<div class="sourceCode" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(np.random.uniform(size<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>)),</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>                  index<span class="op">=</span>[<span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"three"</span>, <span class="st">"four"</span>, <span class="st">"five"</span>, <span class="st">"six"</span>],</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>                  columns<span class="op">=</span>pd.Index([<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>], name<span class="op">=</span><span class="st">"Genus"</span>))</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>df.plot.bar()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(np.random.uniform(size<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>)),</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>                  index<span class="op">=</span>[<span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"three"</span>, <span class="st">"four"</span>, <span class="st">"five"</span>, <span class="st">"six"</span>],</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>                  columns<span class="op">=</span>pd.Index([<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>], name<span class="op">=</span><span class="st">"Genus"</span>))</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>df.plot.bar()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="dataframe-bar-plot" class="level2">
+<h2 class="anchored" data-anchor-id="dataframe-bar-plot">DataFrame Bar Plot</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1177,7 +1237,10 @@ Note
 <li><code>stacked=True</code>: Creates stacked bar plots.</li>
 <li>Values in each row are stacked together.</li>
 </ul>
-<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df.plot.barh(stacked<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df.plot.barh(stacked<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="dataframe-stacked-bar-plot" class="level2">
+<h2 class="anchored" data-anchor-id="dataframe-stacked-bar-plot">DataFrame Stacked Bar Plot</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1200,17 +1263,25 @@ Note
 <li>Visualize tipping data: Percentage of data points for each party size, per day.</li>
 <li><code>read_csv</code>: Load data.</li>
 <li><code>crosstab</code>: Cross-tabulation by day and party size.</li>
+</ul>
+<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> pd.read_csv(<span class="st">"examples/tips.csv"</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>party_counts <span class="op">=</span> pd.crosstab(tips[<span class="st">"day"</span>], tips[<span class="st">"size"</span>])</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>party_counts <span class="op">=</span> party_counts.reindex(index<span class="op">=</span>[<span class="st">"Thur"</span>, <span class="st">"Fri"</span>, <span class="st">"Sat"</span>, <span class="st">"Sun"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="restaurant-tipping-data-continued" class="level2">
+<h2 class="anchored" data-anchor-id="restaurant-tipping-data-continued">Restaurant Tipping Data (Continued)</h2>
+<ul>
 <li>Calculate the frequency of two columns in the dataframe.</li>
 </ul>
-<div class="sourceCode" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> pd.read_csv(<span class="st">"examples/tips.csv"</span>)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>party_counts <span class="op">=</span> pd.crosstab(tips[<span class="st">"day"</span>], tips[<span class="st">"size"</span>])</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>party_counts <span class="op">=</span> party_counts.reindex(index<span class="op">=</span>[<span class="st">"Thur"</span>, <span class="st">"Fri"</span>, <span class="st">"Sat"</span>, <span class="st">"Sun"</span>])</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove 1- and 6-person parties</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>party_counts <span class="op">=</span> party_counts.loc[:, <span class="dv">2</span>:<span class="dv">5</span>]</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalize to sum to 1</span></span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>party_pcts <span class="op">=</span> party_counts.div(party_counts.<span class="bu">sum</span>(axis<span class="op">=</span><span class="st">"columns"</span>), axis<span class="op">=</span><span class="st">"index"</span>)</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>party_pcts.plot.bar(stacked<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove 1- and 6-person parties</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>party_counts <span class="op">=</span> party_counts.loc[:, <span class="dv">2</span>:<span class="dv">5</span>]</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalize to sum to 1</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>party_pcts <span class="op">=</span> party_counts.div(party_counts.<span class="bu">sum</span>(axis<span class="op">=</span><span class="st">"columns"</span>), axis<span class="op">=</span><span class="st">"index"</span>)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>party_pcts.plot.bar(stacked<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="fraction-of-parties-by-size-within-each-day" class="level2">
+<h2 class="anchored" data-anchor-id="fraction-of-parties-by-size-within-each-day">Fraction of Parties by Size within Each Day</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1233,10 +1304,13 @@ Note
 <li>seaborn simplifies plotting with aggregated/summarized data.</li>
 <li>Example: Tipping percentage by day.</li>
 </ul>
-<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">"tip_pct"</span>] <span class="op">=</span> tips[<span class="st">"tip"</span>] <span class="op">/</span> (tips[<span class="st">"total_bill"</span>] <span class="op">-</span> tips[<span class="st">"tip"</span>])</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">"tip_pct"</span>, y<span class="op">=</span><span class="st">"day"</span>, data<span class="op">=</span>tips, orient<span class="op">=</span><span class="st">"h"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">"tip_pct"</span>] <span class="op">=</span> tips[<span class="st">"tip"</span>] <span class="op">/</span> (tips[<span class="st">"total_bill"</span>] <span class="op">-</span> tips[<span class="st">"tip"</span>])</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">"tip_pct"</span>, y<span class="op">=</span><span class="st">"day"</span>, data<span class="op">=</span>tips, orient<span class="op">=</span><span class="st">"h"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tipping-percentage-by-day-with-error-bars" class="level2">
+<h2 class="anchored" data-anchor-id="tipping-percentage-by-day-with-error-bars">Tipping Percentage by Day with Error Bars</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1264,7 +1338,10 @@ Note
 <ul>
 <li><code>hue</code> option in <code>seaborn.barplot</code>: Split by another categorical value.</li>
 </ul>
-<div class="sourceCode" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">"tip_pct"</span>, y<span class="op">=</span><span class="st">"day"</span>, hue<span class="op">=</span><span class="st">"time"</span>, data<span class="op">=</span>tips, orient<span class="op">=</span><span class="st">"h"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">"tip_pct"</span>, y<span class="op">=</span><span class="st">"day"</span>, hue<span class="op">=</span><span class="st">"time"</span>, data<span class="op">=</span>tips, orient<span class="op">=</span><span class="st">"h"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tipping-percentage-by-day-and-time" class="level2">
+<h2 class="anchored" data-anchor-id="tipping-percentage-by-day-and-time">Tipping Percentage by Day and Time</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1292,11 +1369,11 @@ Note
 </ul></li>
 <li><code>seaborn.set_style</code>: Switch between plot appearances.</li>
 </ul>
-<div class="sourceCode" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">"whitegrid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">"whitegrid"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>For grayscale, set a greyscale color palette:</li>
 </ul>
-<div class="sourceCode" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>sns.set_palette(<span class="st">"Greys_r"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>sns.set_palette(<span class="st">"Greys_r"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="histograms-and-density-plots" class="level2">
 <h2 class="anchored" data-anchor-id="histograms-and-density-plots">Histograms and Density Plots 📊</h2>
@@ -1305,7 +1382,10 @@ Note
 <li>Data points are binned, and the count in each bin is plotted.</li>
 <li><code>plot.hist</code>: Create a histogram.</li>
 </ul>
-<div class="sourceCode" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">"tip_pct"</span>].plot.hist(bins<span class="op">=</span><span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">"tip_pct"</span>].plot.hist(bins<span class="op">=</span><span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="histogram-of-tip-percentages" class="level2">
+<h2 class="anchored" data-anchor-id="histogram-of-tip-percentages">Histogram of Tip Percentages</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1330,7 +1410,10 @@ Note
 <li>Also known as kernel density estimate (KDE) plots.</li>
 <li><code>plot.density</code>: Create a density plot.</li>
 </ul>
-<div class="sourceCode" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">"tip_pct"</span>].plot.density()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">"tip_pct"</span>].plot.density()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="density-plot-of-tip-percentages" class="level2">
+<h2 class="anchored" data-anchor-id="density-plot-of-tip-percentages">Density Plot of Tip Percentages</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1367,10 +1450,13 @@ Note
 <li><code>histplot</code>: Plots both histogram and continuous density estimate.</li>
 <li>Example: Bimodal distribution.</li>
 </ul>
-<div class="sourceCode" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>comp1 <span class="op">=</span> np.random.standard_normal(<span class="dv">200</span>)</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>comp2 <span class="op">=</span> <span class="dv">10</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> np.random.standard_normal(<span class="dv">200</span>)</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> pd.Series(np.concatenate([comp1, comp2]))</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>sns.histplot(values, bins<span class="op">=</span><span class="dv">100</span>, color<span class="op">=</span><span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>comp1 <span class="op">=</span> np.random.standard_normal(<span class="dv">200</span>)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>comp2 <span class="op">=</span> <span class="dv">10</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> np.random.standard_normal(<span class="dv">200</span>)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> pd.Series(np.concatenate([comp1, comp2]))</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>sns.histplot(values, bins<span class="op">=</span><span class="dv">100</span>, color<span class="op">=</span><span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="normalized-histogram-of-normal-mixture" class="level2">
+<h2 class="anchored" data-anchor-id="normalized-histogram-of-normal-mixture">Normalized Histogram of Normal Mixture</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1393,17 +1479,20 @@ Note
 <li>Examine the relationship between two 1D data series.</li>
 <li>Example: Load macrodata, compute log differences.</li>
 </ul>
-<div class="sourceCode" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>macro <span class="op">=</span> pd.read_csv(<span class="st">"examples/macrodata.csv"</span>)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> macro[[<span class="st">"cpi"</span>, <span class="st">"m1"</span>, <span class="st">"tbilrate"</span>, <span class="st">"unemp"</span>]]</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>trans_data <span class="op">=</span> np.log(data).diff().dropna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>macro <span class="op">=</span> pd.read_csv(<span class="st">"examples/macrodata.csv"</span>)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> macro[[<span class="st">"cpi"</span>, <span class="st">"m1"</span>, <span class="st">"tbilrate"</span>, <span class="st">"unemp"</span>]]</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>trans_data <span class="op">=</span> np.log(data).diff().dropna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="seaborns-regplot" class="level2">
 <h2 class="anchored" data-anchor-id="seaborns-regplot">seaborn’s <code>regplot</code> 📈</h2>
 <ul>
 <li><code>regplot</code>: Makes a scatter plot and fits a linear regression line.</li>
 </ul>
-<div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.regplot(x<span class="op">=</span><span class="st">"m1"</span>, y<span class="op">=</span><span class="st">"unemp"</span>, data<span class="op">=</span>trans_data)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>ax.title(<span class="st">"Changes in log(m1) versus log(unemp)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.regplot(x<span class="op">=</span><span class="st">"m1"</span>, y<span class="op">=</span><span class="st">"unemp"</span>, data<span class="op">=</span>trans_data)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>ax.title(<span class="st">"Changes in log(m1) versus log(unemp)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="a-seaborn-regressionscatter-plot" class="level2">
+<h2 class="anchored" data-anchor-id="a-seaborn-regressionscatter-plot">A seaborn Regression/Scatter Plot</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1427,7 +1516,10 @@ Note
 <li><code>seaborn.pairplot</code>: Creates a pairs plot.</li>
 <li>Supports histograms/density estimates on the diagonal.</li>
 </ul>
-<div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(trans_data, diag_kind<span class="op">=</span><span class="st">"kde"</span>, plot_kws<span class="op">=</span>{<span class="st">"alpha"</span>: <span class="fl">0.2</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(trans_data, diag_kind<span class="op">=</span><span class="st">"kde"</span>, plot_kws<span class="op">=</span>{<span class="st">"alpha"</span>: <span class="fl">0.2</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="pair-plot-matrix-of-statsmodels-macro-data" class="level2">
+<h2 class="anchored" data-anchor-id="pair-plot-matrix-of-statsmodels-macro-data">Pair Plot Matrix of Statsmodels Macro Data</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1458,8 +1550,11 @@ Note
 <li><strong>Facet grid</strong>: 2D layout, data split across plots based on variable values.</li>
 <li><code>seaborn.catplot</code>: Simplifies faceted plots.</li>
 </ul>
-<div class="sourceCode" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(x<span class="op">=</span><span class="st">"day"</span>, y<span class="op">=</span><span class="st">"tip_pct"</span>, hue<span class="op">=</span><span class="st">"time"</span>, col<span class="op">=</span><span class="st">"smoker"</span>,</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>            kind<span class="op">=</span><span class="st">"bar"</span>, data<span class="op">=</span>tips[tips.tip_pct <span class="op">&lt;</span> <span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(x<span class="op">=</span><span class="st">"day"</span>, y<span class="op">=</span><span class="st">"tip_pct"</span>, hue<span class="op">=</span><span class="st">"time"</span>, col<span class="op">=</span><span class="st">"smoker"</span>,</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>            kind<span class="op">=</span><span class="st">"bar"</span>, data<span class="op">=</span>tips[tips.tip_pct <span class="op">&lt;</span> <span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tipping-percentage-by-daytimesmoker" class="level2">
+<h2 class="anchored" data-anchor-id="tipping-percentage-by-daytimesmoker">Tipping Percentage by Day/Time/Smoker</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1481,8 +1576,11 @@ Note
 <ul>
 <li>Add one row per time value:</li>
 </ul>
-<div class="sourceCode" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(x<span class="op">=</span><span class="st">"day"</span>, y<span class="op">=</span><span class="st">"tip_pct"</span>, row<span class="op">=</span><span class="st">"time"</span>,</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>            col<span class="op">=</span><span class="st">"smoker"</span>, kind<span class="op">=</span><span class="st">"bar"</span>, data<span class="op">=</span>tips[tips.tip_pct <span class="op">&lt;</span> <span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(x<span class="op">=</span><span class="st">"day"</span>, y<span class="op">=</span><span class="st">"tip_pct"</span>, row<span class="op">=</span><span class="st">"time"</span>,</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>            col<span class="op">=</span><span class="st">"smoker"</span>, kind<span class="op">=</span><span class="st">"bar"</span>, data<span class="op">=</span>tips[tips.tip_pct <span class="op">&lt;</span> <span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tipping-percentage-by-day-split-by-timesmoker" class="level2">
+<h2 class="anchored" data-anchor-id="tipping-percentage-by-day-split-by-timesmoker">Tipping Percentage by Day Split by Time/Smoker</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1505,8 +1603,11 @@ Note
 <li><code>catplot</code> supports other plot types (e.g., box plots).</li>
 <li>Box plots show median, quartiles, and outliers.</li>
 </ul>
-<div class="sourceCode" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(x<span class="op">=</span><span class="st">"tip_pct"</span>, y<span class="op">=</span><span class="st">"day"</span>, kind<span class="op">=</span><span class="st">"box"</span>,</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>            data<span class="op">=</span>tips[tips.tip_pct <span class="op">&lt;</span> <span class="fl">0.5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(x<span class="op">=</span><span class="st">"tip_pct"</span>, y<span class="op">=</span><span class="st">"day"</span>, kind<span class="op">=</span><span class="st">"box"</span>,</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>            data<span class="op">=</span>tips[tips.tip_pct <span class="op">&lt;</span> <span class="fl">0.5</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="box-plot-of-tipping-percentage-by-day" class="level2">
+<h2 class="anchored" data-anchor-id="box-plot-of-tipping-percentage-by-day">Box Plot of Tipping Percentage by Day</h2>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1534,9 +1635,8 @@ Note
 <h2 class="anchored" data-anchor-id="other-python-visualization-tools">Other Python Visualization Tools 🛠️</h2>
 <ul>
 <li>Many options for creating graphics in Python.</li>
-<li>Focus on interactive graphics for the web: Altair, Bokeh, Plotly.</li>
-<li>For static graphics: Use matplotlib and libraries built on it (pandas, seaborn).</li>
 </ul>
+<p>```markdown - Focus on interactive graphics for the web: Altair, Bokeh, Plotly. - For static graphics: Use matplotlib and libraries built on it (pandas, seaborn).</p>
 </section>
 <section id="recommended-reading" class="level2">
 <h2 class="anchored" data-anchor-id="recommended-reading">Recommended Reading 📚</h2>
@@ -1570,8 +1670,18 @@ Note
 <li>How can you apply the visualization techniques learned in this chapter to your own data analysis projects?</li>
 <li>What are the advantages and disadvantages of using matplotlib, pandas, and seaborn for different visualization tasks?</li>
 <li>How can you effectively communicate your findings through visualizations?</li>
+</ul>
+</section>
+<section id="thoughts-and-discussion-continued" class="level2">
+<h2 class="anchored" data-anchor-id="thoughts-and-discussion-continued">Thoughts and Discussion (Continued) 🤔</h2>
+<ul>
 <li>What other Python visualization tools have you explored, and how do they compare to matplotlib, pandas, and seaborn?</li>
 <li>What are some best practices for creating clear, informative, and visually appealing plots?</li>
+</ul>
+</section>
+<section id="thoughts-and-discussion-continued-1" class="level2">
+<h2 class="anchored" data-anchor-id="thoughts-and-discussion-continued-1">Thoughts and Discussion (Continued) 🤔</h2>
+<ul>
 <li>Can you think of situations where a particular type of plot (e.g., histogram, scatter plot, box plot) would be most appropriate for conveying specific insights from your data?</li>
 <li>How can you customize matplotlib plots to enhance their clarity and visual impact (e.g., adjusting colors, labels, legends)?</li>
 </ul>

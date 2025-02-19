@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Python 数据分析</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<link href="../https://assets.qiufei.site/personal/profile.jpg" rel="icon" type="image/jpeg">
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-681fbf911679f9b3dbf9743eb275ba49.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7e49aeac8059a213a463aa1a739e8272.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://qiufei.github.io"> 
+<span class="menu-text">首页</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://qiufei.github.io/web-slide"> 
+<span class="menu-text">课件</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Python 数据分析</h1>
+<p class="subtitle lead">Python 建模库入门</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="简介" class="level2">
+<h2 class="anchored" data-anchor-id="简介">简介 📊</h2>
+<ul>
+<li>本章将介绍如何将使用 pandas 进行数据整理与使用 Python 专用库进行模型构建联系起来。</li>
+<li>我们将重点关注如何将 pandas 与 statsmodels 和 scikit-learn 等库连接起来。</li>
+<li>这是数据分析工作流程中的关键一步。</li>
+</ul>
+</section>
+<section id="关键概念" class="level2">
+<h2 class="anchored" data-anchor-id="关键概念">关键概念 🔑</h2>
+<p>让我们定义一些重要的术语：</p>
+<ul>
+<li><strong>数据挖掘：</strong> 从大型数据集中发现模式、异常和洞察力。它通常涉及各种技术，包括机器学习。</li>
+<li><strong>机器学习 (ML)：</strong> 人工智能的一个子集，使系统能够在没有明确编程的情况下从数据中学习。机器学习算法从“训练数据”构建模型以进行预测。</li>
+<li><strong>统计学习：</strong> 使用统计方法理解数据的框架。它与机器学习有重叠，但通常更强调推理和可解释性。</li>
+<li><strong>特征工程：</strong> 利用领域知识从原始数据中选择、转换和创建相关特征（变量）。这可以提高模型性能，并且<em>至关重要</em>。</li>
+</ul>
+</section>
+<section id="数据挖掘机器学习和统计学习的关系" class="level2">
+<h2 class="anchored" data-anchor-id="数据挖掘机器学习和统计学习的关系">数据挖掘、机器学习和统计学习的关系 🤝</h2>
+<p>数据挖掘、机器学习和统计学习是相关的：</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    A[数据挖掘] --&gt; C(共同点)  # 数据挖掘指向共同点
+    B[机器学习] --&gt; C(共同点)  # 机器学习指向共同点
+    D[统计学习] --&gt; C(共同点)  # 统计学习指向共同点
+    C --&gt; E[洞察与预测]  # 共同点指向洞察与预测
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>它们都旨在提取洞察并进行预测。机器学习和统计学习提供了在更广泛的数据挖掘环境中使用的工具。</p>
+</section>
+<section id="python-在数据分析中的作用" class="level2">
+<h2 class="anchored" data-anchor-id="python-在数据分析中的作用">Python 在数据分析中的作用 🐍</h2>
+<p>Python 在数据分析中占据主导地位，原因如下：</p>
+<ul>
+<li><strong>丰富的生态系统：</strong> pandas（数据处理）、NumPy（数值计算）、statsmodels（统计建模）、scikit-learn（机器学习）以及 Matplotlib/Seaborn（可视化）等库提供了完整的工具包。</li>
+<li><strong>易用性：</strong> Python 清晰的语法和交互性（例如 Jupyter）使其易于学习，即使没有编程背景。</li>
+<li><strong>社区支持：</strong> 庞大而活跃的社区开发库、提供支持并创建文档。</li>
+</ul>
+</section>
+<section id="常见工作流程" class="level2">
+<h2 class="anchored" data-anchor-id="常见工作流程">常见工作流程 🔄</h2>
+<p>典型的模型开发工作流程：</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    A[数据加载 (pandas)] --&gt; B[数据清洗 (pandas)]  # 数据加载指向数据清洗
+    B --&gt; C[特征工程 (pandas, 其他工具)]  # 数据清洗指向特征工程
+    C --&gt; D[模型构建 (statsmodels, scikit-learn)]  # 特征工程指向模型构建
+    D --&gt; E[模型评估 (statsmodels, scikit-learn)]  # 模型构建指向模型评估
+    E --&gt; F[预测/推理]  # 模型评估指向预测/推理
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<ol type="1">
+<li><strong>数据加载：</strong> pandas 读取数据（CSV、Excel、数据库等）。</li>
+<li><strong>数据清洗：</strong> pandas 处理缺失值、错误并转换数据。</li>
+<li><strong>特征工程：</strong> 创建/转换特征以获得更好的模型。</li>
+<li><strong>模型构建：</strong> statsmodels/scikit-learn 训练模型。</li>
+<li><strong>模型评估：</strong> 评估性能。</li>
+<li><strong>预测/推理：</strong> 进行预测或得出推论。</li>
+</ol>
+</section>
+<section id="pandas-和模型之间的接口" class="level2">
+<h2 class="anchored" data-anchor-id="pandas-和模型之间的接口">pandas 和模型之间的接口 ↔︎️</h2>
+<p>主要的接口通常是 NumPy 数组。pandas DataFrame 构建在 NumPy 之上，因此转换很容易。</p>
+</section>
+<section id="dataframe-到-numpy-数组" class="level2">
+<h2 class="anchored" data-anchor-id="dataframe-到-numpy-数组">DataFrame 到 NumPy 数组 ➡️</h2>
+<p>使用 <code>.to_numpy()</code> 将 DataFrame 转换为 NumPy 数组：</p>
+<div style="color: blue;">
+<p><strong>重要提示：</strong> <code>.to_numpy()</code> 优于 <code>.values</code>。</p>
+</div>
+</section>
+<section id="示例" class="level1">
+<h1>示例：</h1>
+<div id="36168534" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd  <span class="co"># 导入 pandas 库</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np  <span class="co"># 导入 numpy 库</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个 DataFrame</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'x0'</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>],  <span class="co"># 列 'x0'</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'x1'</span>: [<span class="fl">0.01</span>, <span class="op">-</span><span class="fl">0.01</span>, <span class="fl">0.25</span>, <span class="op">-</span><span class="fl">4.1</span>, <span class="fl">0.</span>],  <span class="co"># 列 'x1'</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'y'</span>: [<span class="op">-</span><span class="fl">1.5</span>, <span class="fl">0.</span>, <span class="fl">3.6</span>, <span class="fl">1.3</span>, <span class="op">-</span><span class="fl">2.</span>]  <span class="co"># 列 'y'</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)  <span class="co"># 打印 DataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   x0    x1    y
+0   1  0.01 -1.5
+1   2 -0.01  0.0
+2   3  0.25  3.6
+3   4 -4.10  1.3
+4   5  0.00 -2.0</code></pre>
+</div>
+</div>
+<div id="9a1ff8aa" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data_array <span class="op">=</span> data.to_numpy()  <span class="co"># 将 DataFrame 转换为 NumPy 数组</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">NumPy 数组:"</span>)  <span class="co"># 打印提示信息</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data_array)  <span class="co"># 打印 NumPy 数组</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+NumPy 数组:
+[[ 1.    0.01 -1.5 ]
+ [ 2.   -0.01  0.  ]
+ [ 3.    0.25  3.6 ]
+ [ 4.   -4.1   1.3 ]
+ [ 5.    0.   -2.  ]]</code></pre>
+</div>
+</div>
+<section id="numpy-数组到-dataframe" class="level2">
+<h2 class="anchored" data-anchor-id="numpy-数组到-dataframe">NumPy 数组到 DataFrame ⬅️</h2>
+<p>从 NumPy 数组创建 DataFrame：</p>
+<div id="428e1995" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用 NumPy 数组和列名创建 DataFrame</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.DataFrame(data_array, columns<span class="op">=</span>[<span class="st">'one'</span>, <span class="st">'two'</span>, <span class="st">'three'</span>])</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df2)  <span class="co"># 打印 DataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   one   two  three
+0  1.0  0.01   -1.5
+1  2.0 -0.01    0.0
+2  3.0  0.25    3.6
+3  4.0 -4.10    1.3
+4  5.0  0.00   -2.0</code></pre>
+</div>
+</div>
+<div style="color: green;">
+<p>我们在创建 DataFrame 时提供了列名。</p>
+</div>
+</section>
+<section id="同构数据与异构数据" class="level2">
+<h2 class="anchored" data-anchor-id="同构数据与异构数据">同构数据与异构数据 🤔</h2>
+<ul>
+<li><strong>同构数据：</strong> 相同类型（例如，所有数字）-&gt; 具有该类型的 NumPy 数组。</li>
+<li><strong>异构数据：</strong> 混合类型（数字和字符串）-&gt; <code>dtype=object</code> 数组（对于数值计算效率较低）。</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<div id="cd5a6bb0" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df3 <span class="op">=</span> data.copy()  <span class="co"># 复制 DataFrame</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df3[<span class="st">'strings'</span>] <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>, <span class="st">'e'</span>]  <span class="co"># 添加一个字符串列</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df3)  <span class="co"># 打印 DataFrame</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">异构数组:"</span>)  <span class="co"># 打印提示信息</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df3.to_numpy())  <span class="co"># 打印异构 NumPy 数组 (数据类型是object)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   x0    x1    y strings
+0   1  0.01 -1.5       a
+1   2 -0.01  0.0       b
+2   3  0.25  3.6       c
+3   4 -4.10  1.3       d
+4   5  0.00 -2.0       e
+
+异构数组:
+[[1 0.01 -1.5 'a']
+ [2 -0.01 0.0 'b']
+ [3 0.25 3.6 'c']
+ [4 -4.1 1.3 'd']
+ [5 0.0 -2.0 'e']]</code></pre>
+</div>
+</div>
+</section>
+<section id="选择列子集" class="level2">
+<h2 class="anchored" data-anchor-id="选择列子集">选择列子集 🤏</h2>
+<p>对于建模，在转换之前使用 <code>.loc</code> 选择列：</p>
+<div id="006f7223" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>model_cols <span class="op">=</span> [<span class="st">'x0'</span>, <span class="st">'x1'</span>]  <span class="co"># 定义要选择的列</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.loc[:, model_cols].to_numpy())  <span class="co"># 选择列并转换为 NumPy 数组</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[ 1.    0.01]
+ [ 2.   -0.01]
+ [ 3.    0.25]
+ [ 4.   -4.1 ]
+ [ 5.    0.  ]]</code></pre>
+</div>
+</div>
+</section>
+<section id="分类数据和虚拟变量" class="level2">
+<h2 class="anchored" data-anchor-id="分类数据和虚拟变量">分类数据和虚拟变量 🏷️</h2>
+<p>分类变量（例如，“male”、“female”）需要数值表示。使用<em>虚拟变量</em>（或<em>独热编码</em>）。</p>
+</section>
+<section id="pandas-get_dummies" class="level2">
+<h2 class="anchored" data-anchor-id="pandas-get_dummies">pandas <code>get_dummies()</code> 🐼</h2>
+<p><code>pd.get_dummies()</code> 简化了此操作：</p>
+<div id="a7c5f499" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个分类列</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'category'</span>] <span class="op">=</span> pd.Categorical([<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'a'</span>, <span class="st">'a'</span>, <span class="st">'b'</span>], categories<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'b'</span>])</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)  <span class="co"># 打印 DataFrame</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用 get_dummies() 创建虚拟变量</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>dummies <span class="op">=</span> pd.get_dummies(data.category, prefix<span class="op">=</span><span class="st">'category'</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">虚拟变量:"</span>)  <span class="co"># 打印提示信息</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dummies)  <span class="co"># 打印虚拟变量</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   x0    x1    y category
+0   1  0.01 -1.5        a
+1   2 -0.01  0.0        b
+2   3  0.25  3.6        a
+3   4 -4.10  1.3        a
+4   5  0.00 -2.0        b
+
+虚拟变量:
+   category_a  category_b
+0        True       False
+1       False        True
+2        True       False
+3        True       False
+4       False        True</code></pre>
+</div>
+</div>
+<div id="44c8dc76" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 删除原始分类列，并连接虚拟变量</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>data_with_dummies <span class="op">=</span> data.drop(<span class="st">'category'</span>, axis<span class="op">=</span><span class="dv">1</span>).join(dummies)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">包含虚拟变量的 DataFrame:"</span>)  <span class="co"># 打印提示信息</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data_with_dummies)  <span class="co"># 打印包含虚拟变量的 DataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+包含虚拟变量的 DataFrame:
+   x0    x1    y  category_a  category_b
+0   1  0.01 -1.5        True       False
+1   2 -0.01  0.0       False        True
+2   3  0.25  3.6        True       False
+3   4 -4.10  1.3        True       False
+4   5  0.00 -2.0       False        True</code></pre>
+</div>
+</div>
+<div style="color: blue;">
+<p><code>prefix</code> 添加一个前缀（例如，<code>category_a</code>）。</p>
+</div>
+</section>
+<section id="patsy模型描述" class="level2">
+<h2 class="anchored" data-anchor-id="patsy模型描述">Patsy：模型描述 📝</h2>
+<ul>
+<li><p>Patsy 使用公式语法（类似于 R）来指定模型，尤其是线性模型。</p></li>
+<li><p>它随 statsmodels 一起安装： <code>conda install statsmodels</code></p></li>
+</ul>
+</section>
+<section id="patsy-公式" class="level2">
+<h2 class="anchored" data-anchor-id="patsy-公式">Patsy 公式 ➕</h2>
+<p>示例公式：</p>
+<pre><code># y ~ x0 + x1</code></pre>
+<ul>
+<li><code>y</code>：因变量（响应变量）。</li>
+<li><code>x0</code>, <code>x1</code>：自变量（预测变量）。</li>
+<li><code>~</code>：分隔左侧（响应变量）和右侧（预测变量）。</li>
+<li><code>+</code>：包含项（不是数学加法！）。</li>
+</ul>
+</section>
+<section id="patsy.dmatrices" class="level2">
+<h2 class="anchored" data-anchor-id="patsy.dmatrices"><code>patsy.dmatrices()</code> 🧮</h2>
+<p><code>dmatrices()</code> 接受一个公式和数据，返回设计矩阵：</p>
+<div id="5d1d1e28" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> patsy  <span class="co"># 导入 patsy 库</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用 dmatrices() 创建设计矩阵</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>y, X <span class="op">=</span> patsy.dmatrices(<span class="st">'y ~ x0 + x1'</span>, data)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"y (响应变量的设计矩阵):"</span>)  <span class="co"># 打印提示信息</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)  <span class="co"># 打印响应变量的设计矩阵</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">X (预测变量的设计矩阵):"</span>)  <span class="co"># 打印提示信息</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X)  <span class="co"># 打印预测变量的设计矩阵</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>y (响应变量的设计矩阵):
+[[-1.5]
+ [ 0. ]
+ [ 3.6]
+ [ 1.3]
+ [-2. ]]
+
+X (预测变量的设计矩阵):
+[[ 1.    1.    0.01]
+ [ 1.    2.   -0.01]
+ [ 1.    3.    0.25]
+ [ 1.    4.   -4.1 ]
+ [ 1.    5.    0.  ]]</code></pre>
+</div>
+</div>
+<div style="color: DarkRed;">
+<p>Patsy 默认包含一个截距（一列 1）——当预测变量为零时的基线响应。</p>
+</div>
+</section>
+<section id="抑制截距" class="level2">
+<h2 class="anchored" data-anchor-id="抑制截距">抑制截距 ➖</h2>
+<p>使用 <code>+ 0</code> 删除截距：</p>
+<div id="1b99fd66" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建不包含截距的设计矩阵</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>X_no_intercept <span class="op">=</span> patsy.dmatrices(<span class="st">'y ~ x0 + x1 + 0'</span>, data)[<span class="dv">1</span>]  <span class="co"># [1] 仅获取 X</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_no_intercept)  <span class="co"># 打印不包含截距的 X</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[ 1.    0.01]
+ [ 2.   -0.01]
+ [ 3.    0.25]
+ [ 4.   -4.1 ]
+ [ 5.    0.  ]]</code></pre>
+</div>
+</div>
+</section>
+<section id="patsynumpy-和-statsmodels" class="level2">
+<h2 class="anchored" data-anchor-id="patsynumpy-和-statsmodels">Patsy、NumPy 和 statsmodels 🤝</h2>
+<p>Patsy 中的设计矩阵可与 NumPy（例如 <code>np.linalg.lstsq</code>）或 statsmodels 一起使用：</p>
+<div id="85ab5d60" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np  <span class="co"># 导入 numpy 库</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用 NumPy 的最小二乘法拟合线性模型</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>coef, resid, _, _ <span class="op">=</span> np.linalg.lstsq(X, y, rcond<span class="op">=</span><span class="va">None</span>) <span class="co"># 添加 rcond=None 以兼容</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(coef)  <span class="co"># 打印系数</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 将系数转换为 pandas Series</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>coef <span class="op">=</span> pd.Series(coef.squeeze(), index<span class="op">=</span>X.design_info.column_names)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(coef)  <span class="co"># 打印带有索引的系数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[ 0.31290976]
+ [-0.07910564]
+ [-0.26546384]]
+Intercept    0.312910
+x0          -0.079106
+x1          -0.265464
+dtype: float64</code></pre>
+</div>
+</div>
+</section>
+<section id="patsy数据转换" class="level2">
+<h2 class="anchored" data-anchor-id="patsy数据转换">Patsy：数据转换 ✨</h2>
+<p>在公式中包含 Python 代码以进行转换：</p>
+<div id="6b818d2e" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 在公式中使用 Python 函数进行数据转换</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>y, X <span class="op">=</span> patsy.dmatrices(<span class="st">'y ~ x0 + np.log(np.abs(x1) + 1)'</span>, data)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X)  <span class="co"># 打印转换后的 X</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1.         1.         0.00995033]
+ [1.         2.         0.00995033]
+ [1.         3.         0.22314355]
+ [1.         4.         1.62924054]
+ [1.         5.         0.        ]]</code></pre>
+</div>
+</div>
+<p>Patsy 在作用域中查找 <code>np.log</code> 等函数。</p>
+</section>
+<section id="内置函数standardizecenter" class="level2">
+<h2 class="anchored" data-anchor-id="内置函数standardizecenter">内置函数：<code>standardize</code>、<code>center</code> 🛠️</h2>
+<p>Patsy 具有内置函数：</p>
+<ul>
+<li><code>standardize(x)</code>：标准化 <code>x</code>（均值为 0，标准差为 1）。</li>
+<li><code>center(x)</code>：减去均值。</li>
+</ul>
+<div id="8734ddb9" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用 Patsy 的内置函数进行数据转换</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>y, X <span class="op">=</span> patsy.dmatrices(<span class="st">'y ~ standardize(x0) + center(x1)'</span>, data)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X)  <span class="co"># 打印转换后的 X</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[ 1.         -1.41421356  0.78      ]
+ [ 1.         -0.70710678  0.76      ]
+ [ 1.          0.          1.02      ]
+ [ 1.          0.70710678 -3.33      ]
+ [ 1.          1.41421356  0.77      ]]</code></pre>
+</div>
+</div>
+</section>
+<section id="有状态转换和-build_design_matrices" class="level2">
+<h2 class="anchored" data-anchor-id="有状态转换和-build_design_matrices">有状态转换和 <code>build_design_matrices</code> 💾</h2>
+<p>当应用像<code>center</code>和<code>standardize</code>这样的转换时，在转换新数据时使用原始数据集的统计数据。 <code>patsy.build_design_matrices</code> 可以提供帮助：</p>
+<div id="6939cbcb" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建新数据</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>new_data <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'x0'</span>: [<span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>],</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'x1'</span>: [<span class="fl">3.1</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="dv">0</span>, <span class="fl">2.3</span>],</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'y'</span> : [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用原始 X 的 design_info 构建新数据的设计矩阵</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>new_X <span class="op">=</span> patsy.build_design_matrices([X.design_info], new_data)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(new_X)  <span class="co"># 打印新数据的设计矩阵</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[DesignMatrix with shape (4, 3)
+  Intercept  standardize(x0)  center(x1)
+          1          2.12132        3.87
+          1          2.82843        0.27
+          1          3.53553        0.77
+          1          4.24264        3.07
+  Terms:
+    'Intercept' (column 0)
+    'standardize(x0)' (column 1)
+    'center(x1)' (column 2)]</code></pre>
+</div>
+</div>
+</section>
+<section id="按名称添加列" class="level2">
+<h2 class="anchored" data-anchor-id="按名称添加列">按名称添加列 ➕</h2>
+<p>要添加列，请将它们包装在 <code>I()</code> 中：</p>
+<div id="e676cd5c" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用 I() 添加列</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>y, X <span class="op">=</span> patsy.dmatrices(<span class="st">'y ~ I(x0 + x1)'</span>, data)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X) <span class="co"># 打印设计矩阵, I(x0 + x1)将x0 + x1作为一个整体加入</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[ 1.    1.01]
+ [ 1.    1.99]
+ [ 1.    3.25]
+ [ 1.   -0.1 ]
+ [ 1.    5.  ]]</code></pre>
+</div>
+</div>
+</section>
+<section id="分类数据和-patsy" class="level2">
+<h2 class="anchored" data-anchor-id="分类数据和-patsy">分类数据和 Patsy 🏷️</h2>
+<p>Patsy 自动处理分类变量：</p>
+<div id="5570b666" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个包含分类变量的 DataFrame</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'key1'</span>: [<span class="st">'a'</span>, <span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'b'</span>, <span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'a'</span>, <span class="st">'b'</span>],</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'key2'</span>: [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>],</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'v1'</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>],</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'v2'</span>: [<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">2.5</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">4.0</span>, <span class="op">-</span><span class="fl">1.2</span>, <span class="fl">0.2</span>, <span class="op">-</span><span class="fl">1.7</span>]</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用 Patsy 处理分类变量</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>y, X <span class="op">=</span> patsy.dmatrices(<span class="st">'v2 ~ key1'</span>, data)</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X)  <span class="co"># 打印设计矩阵</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1. 0.]
+ [1. 0.]
+ [1. 1.]
+ [1. 1.]
+ [1. 0.]
+ [1. 1.]
+ [1. 0.]
+ [1. 1.]]</code></pre>
+</div>
+</div>
+<div style="color: blue;">
+<p>Patsy 省略了一个级别以避免共线性（与截距）。</p>
+</div>
+</section>
+<section id="无截距分类变量" class="level2">
+<h2 class="anchored" data-anchor-id="无截距分类变量">无截距，分类变量 ➖🏷️</h2>
+<p>没有截距时，将包含所有类别列：</p>
+<div id="9a394539" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 在没有截距的情况下处理分类变量</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>y, X <span class="op">=</span> patsy.dmatrices(<span class="st">'v2 ~ key1 + 0'</span>, data)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X)  <span class="co"># 打印设计矩阵</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1. 0.]
+ [1. 0.]
+ [0. 1.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]
+ [1. 0.]
+ [0. 1.]]</code></pre>
+</div>
+</div>
+</section>
+<section id="将数值视为分类变量" class="level2">
+<h2 class="anchored" data-anchor-id="将数值视为分类变量">将数值视为分类变量 🔢➡️🏷️</h2>
+<p>使用 <code>C()</code> 将数字视为分类变量：</p>
+<div id="14e58700" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用 C() 将数值视为分类变量</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>y, X <span class="op">=</span> patsy.dmatrices(<span class="st">'v2 ~ C(key2)'</span>, data)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X) <span class="co"># 打印设计矩阵</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1. 0.]
+ [1. 1.]
+ [1. 0.]
+ [1. 1.]
+ [1. 0.]
+ [1. 1.]
+ [1. 0.]
+ [1. 0.]]</code></pre>
+</div>
+</div>
+</section>
+<section id="交互项" class="level2">
+<h2 class="anchored" data-anchor-id="交互项">交互项 🤝</h2>
+<p>交互项对组合效应进行建模。使用 <code>:</code>：</p>
+<div id="f23ac9ab" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 将 key2 映射为字符串</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'key2'</span>] <span class="op">=</span> data[<span class="st">'key2'</span>].<span class="bu">map</span>({<span class="dv">0</span>: <span class="st">'zero'</span>, <span class="dv">1</span>: <span class="st">'one'</span>})</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)  <span class="co"># 打印 DataFrame</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建包含交互项的设计矩阵</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>y, X <span class="op">=</span> patsy.dmatrices(<span class="st">'v2 ~ key1 + key2 + key1:key2'</span>, data)</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X)  <span class="co"># 打印设计矩阵</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  key1  key2  v1   v2
+0    a  zero   1 -1.0
+1    a   one   2  0.0
+2    b  zero   3  2.5
+3    b   one   4 -0.5
+4    a  zero   5  4.0
+5    b   one   6 -1.2
+6    a  zero   7  0.2
+7    b  zero   8 -1.7
+[[1. 0. 1. 0.]
+ [1. 0. 0. 0.]
+ [1. 1. 1. 1.]
+ [1. 1. 0. 0.]
+ [1. 0. 1. 0.]
+ [1. 1. 0. 0.]
+ [1. 0. 1. 0.]
+ [1. 1. 1. 1.]]</code></pre>
+</div>
+</div>
+</section>
+<section id="statsmodels-简介" class="level2">
+<h2 class="anchored" data-anchor-id="statsmodels-简介">statsmodels 简介 📈</h2>
+<p><code>statsmodels</code> 用于统计建模、假设检验和数据探索。它侧重于<em>统计推断</em>，与 scikit-learn 互补。</p>
+</section>
+<section id="statsmodels-中的模型" class="level2">
+<h2 class="anchored" data-anchor-id="statsmodels-中的模型">statsmodels 中的模型 🧮</h2>
+<p><code>statsmodels</code> 包括：</p>
+<ul>
+<li><strong>线性模型：</strong> OLS、GLS 等。</li>
+<li><strong>广义线性模型 (GLM)：</strong> 适用于各种响应类型（二元、计数）。</li>
+<li><strong>时间序列分析：</strong> ARIMA、VAR 等。</li>
+<li><strong>以及更多…</strong></li>
+</ul>
+</section>
+<section id="使用-statsmodels-的线性模型" class="level2">
+<h2 class="anchored" data-anchor-id="使用-statsmodels-的线性模型">使用 statsmodels 的线性模型 📏</h2>
+<p>使用数组和公式 API 拟合线性模型。</p>
+<p><strong>创建示例数据</strong>：</p>
+<div id="0062e84f" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm  <span class="co"># 导入 statsmodels.api 模块</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf  <span class="co"># 导入 statsmodels.formula.api 模块</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 可重现的示例</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">12345</span>)  <span class="co"># 设置随机数种子以实现可重复性</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义一个生成正态分布随机数的函数</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dnorm(mean, variance, size<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">isinstance</span>(size, <span class="bu">int</span>):  <span class="co"># 如果 size 是整数</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>        size <span class="op">=</span> size,  <span class="co"># 将其转换为元组</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mean <span class="op">+</span> np.sqrt(variance) <span class="op">*</span> rng.standard_normal(<span class="op">*</span>size)  <span class="co"># 生成正态分布随机数</span></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">100</span>  <span class="co"># 样本数量</span></span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 生成自变量 X</span></span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.c_[dnorm(<span class="dv">0</span>, <span class="fl">0.4</span>, size<span class="op">=</span>N),</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>          dnorm(<span class="dv">0</span>, <span class="fl">0.6</span>, size<span class="op">=</span>N),</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>          dnorm(<span class="dv">0</span>, <span class="fl">0.2</span>, size<span class="op">=</span>N)]</span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>eps <span class="op">=</span> dnorm(<span class="dv">0</span>, <span class="fl">0.1</span>, size<span class="op">=</span>N)  <span class="co"># 生成随机误差项</span></span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> [<span class="fl">0.1</span>, <span class="fl">0.3</span>, <span class="fl">0.5</span>]  <span class="co"># 系数</span></span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.dot(X, beta) <span class="op">+</span> eps  <span class="co"># 生成因变量 y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="基于数组的-api" class="level2">
+<h2 class="anchored" data-anchor-id="基于数组的-api">基于数组的 API ➕</h2>
+<div id="b1ce5c23" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>X_model <span class="op">=</span> sm.add_constant(X)  <span class="co"># 添加截距项</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.OLS(y, X_model)  <span class="co"># 创建普通最小二乘 (OLS) 模型</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> model.fit()  <span class="co"># 拟合模型</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results.params)  <span class="co"># 打印模型参数</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results.summary())  <span class="co"># 打印模型摘要</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[-0.02079903  0.06581276  0.26897046  0.44941894]
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                      y   R-squared:                       0.470
+Model:                            OLS   Adj. R-squared:                  0.453
+Method:                 Least Squares   F-statistic:                     28.36
+Date:                Wed, 19 Feb 2025   Prob (F-statistic):           3.23e-13
+Time:                        10:53:43   Log-Likelihood:                -25.390
+No. Observations:                 100   AIC:                             58.78
+Df Residuals:                      96   BIC:                             69.20
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         -0.0208      0.032     -0.653      0.516      -0.084       0.042
+x1             0.0658      0.054      1.220      0.226      -0.041       0.173
+x2             0.2690      0.043      6.312      0.000       0.184       0.354
+x3             0.4494      0.068      6.567      0.000       0.314       0.585
+==============================================================================
+Omnibus:                        0.429   Durbin-Watson:                   1.878
+Prob(Omnibus):                  0.807   Jarque-Bera (JB):                0.296
+Skew:                           0.133   Prob(JB):                        0.863
+Kurtosis:                       2.995   Cond. No.                         2.16
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</code></pre>
+</div>
+</div>
+<div style="color: blue;">
+<p><code>sm.add_constant(X)</code> 添加一列 1 以表示截距。</p>
+</div>
+</section>
+<section id="基于公式的-api" class="level2">
+<h2 class="anchored" data-anchor-id="基于公式的-api">基于公式的 API</h2>
+<div id="fa0a1310" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建包含自变量和因变量的 DataFrame</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame(X, columns<span class="op">=</span>[<span class="st">'col0'</span>, <span class="st">'col1'</span>, <span class="st">'col2'</span>])</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'y'</span>] <span class="op">=</span> y</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用公式 API 拟合 OLS 模型</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> smf.ols(<span class="st">'y ~ col0 + col1 + col2'</span>, data<span class="op">=</span>data).fit()</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results.params)  <span class="co"># 打印模型参数</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results.tvalues)  <span class="co"># 打印 t 值</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results.predict(data[:<span class="dv">5</span>]))  <span class="co"># 对前 5 个样本进行预测</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Intercept   -0.020799
+col0         0.065813
+col1         0.268970
+col2         0.449419
+dtype: float64
+Intercept   -0.652501
+col0         1.219768
+col1         6.312369
+col2         6.567428
+dtype: float64
+0   -0.592959
+1   -0.531160
+2    0.058636
+3    0.283658
+4   -0.102947
+dtype: float64</code></pre>
+</div>
+</div>
+<div style="color: green;">
+<p>公式 API 处理截距并与 DataFrame 一起使用。</p>
+</div>
+</section>
+<section id="使用-statsmodels-进行时间序列分析" class="level2">
+<h2 class="anchored" data-anchor-id="使用-statsmodels-进行时间序列分析">使用 statsmodels 进行时间序列分析 ⌚</h2>
+<p><code>statsmodels</code> 具有时间序列工具。示例：自回归 (AR) 模型：</p>
+<div id="8cb90fbc" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.ar_model <span class="im">import</span> AutoReg  <span class="co"># 导入 AutoReg 类</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>init_x <span class="op">=</span> <span class="dv">4</span>  <span class="co"># 初始值</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> [init_x, init_x]  <span class="co"># 初始值列表</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">1000</span>  <span class="co"># 时间序列长度</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>b0 <span class="op">=</span> <span class="fl">0.8</span>  <span class="co"># AR(1) 系数</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> <span class="op">-</span><span class="fl">0.4</span>  <span class="co"># AR(2) 系数</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>noise <span class="op">=</span> dnorm(<span class="dv">0</span>, <span class="fl">0.1</span>, N)  <span class="co"># 生成噪声</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 生成 AR(2) 时间序列</span></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>    new_x <span class="op">=</span> values[<span class="op">-</span><span class="dv">1</span>] <span class="op">*</span> b0 <span class="op">+</span> values[<span class="op">-</span><span class="dv">2</span>] <span class="op">*</span> b1 <span class="op">+</span> noise[i]</span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>    values.append(new_x)</span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>MAXLAGS <span class="op">=</span> <span class="dv">5</span>  <span class="co"># 最大滞后阶数</span></span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> AutoReg(values, MAXLAGS)  <span class="co"># 创建 AutoReg 模型</span></span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> model.fit()  <span class="co"># 拟合模型</span></span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results.params)  <span class="co"># 打印模型参数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[ 0.02346612  0.8096828  -0.42865278 -0.03336517  0.04267874 -0.05671529]</code></pre>
+</div>
+</div>
+</section>
+<section id="scikit-learn-简介" class="level2">
+<h2 class="anchored" data-anchor-id="scikit-learn-简介">scikit-learn 简介 🤖</h2>
+<p><code>scikit-learn</code> 是一个强大、广泛使用的机器学习库。它具有用于分类、回归、聚类等的算法。</p>
+</section>
+<section id="scikit-learn-特性" class="level2">
+<h2 class="anchored" data-anchor-id="scikit-learn-特性">scikit-learn 特性 ✨</h2>
+<ul>
+<li><strong>简单、一致的 API：</strong> 用户友好且一致。</li>
+<li><strong>许多算法：</strong> 涵盖常见的机器学习任务。</li>
+<li><strong>模型选择/评估：</strong> 交叉验证、超参数调整、性能指标。</li>
+<li><strong>数据预处理：</strong> 缩放、特征选择等。</li>
+</ul>
+</section>
+<section id="泰坦尼克号示例" class="level2">
+<h2 class="anchored" data-anchor-id="泰坦尼克号示例">泰坦尼克号示例 🚢</h2>
+<p>使用泰坦尼克号数据集展示 <code>scikit-learn</code> 工作流程。</p>
+<div id="45381f29" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取训练集和测试集</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>train <span class="op">=</span> pd.read_csv(<span class="st">'datasets/titanic/train.csv'</span>)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>test <span class="op">=</span> pd.read_csv(<span class="st">'datasets/titanic/test.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="9dbd5188" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>train.head(<span class="dv">4</span>)  <span class="co"># 显示训练集的前 4 行</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">PassengerId</th>
+<th data-quarto-table-cell-role="th">Survived</th>
+<th data-quarto-table-cell-role="th">Pclass</th>
+<th data-quarto-table-cell-role="th">Name</th>
+<th data-quarto-table-cell-role="th">Sex</th>
+<th data-quarto-table-cell-role="th">Age</th>
+<th data-quarto-table-cell-role="th">SibSp</th>
+<th data-quarto-table-cell-role="th">Parch</th>
+<th data-quarto-table-cell-role="th">Ticket</th>
+<th data-quarto-table-cell-role="th">Fare</th>
+<th data-quarto-table-cell-role="th">Cabin</th>
+<th data-quarto-table-cell-role="th">Embarked</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+<td>Braund, Mr. Owen Harris</td>
+<td>male</td>
+<td>22.0</td>
+<td>1</td>
+<td>0</td>
+<td>A/5 21171</td>
+<td>7.2500</td>
+<td>NaN</td>
+<td>S</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+<td>female</td>
+<td>38.0</td>
+<td>1</td>
+<td>0</td>
+<td>PC 17599</td>
+<td>71.2833</td>
+<td>C85</td>
+<td>C</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>3</td>
+<td>1</td>
+<td>3</td>
+<td>Heikkinen, Miss. Laina</td>
+<td>female</td>
+<td>26.0</td>
+<td>0</td>
+<td>0</td>
+<td>STON/O2. 3101282</td>
+<td>7.9250</td>
+<td>NaN</td>
+<td>S</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>4</td>
+<td>1</td>
+<td>1</td>
+<td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+<td>female</td>
+<td>35.0</td>
+<td>1</td>
+<td>0</td>
+<td>113803</td>
+<td>53.1000</td>
+<td>C123</td>
+<td>S</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="数据预处理" class="level2">
+<h2 class="anchored" data-anchor-id="数据预处理">数据预处理 🧹</h2>
+<div id="38062053" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 检查训练集和测试集中的缺失值数量</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(train.isna().<span class="bu">sum</span>())</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(test.isna().<span class="bu">sum</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>PassengerId      0
+Survived         0
+Pclass           0
+Name             0
+Sex              0
+Age            177
+SibSp            0
+Parch            0
+Ticket           0
+Fare             0
+Cabin          687
+Embarked         2
+dtype: int64
+PassengerId      0
+Pclass           0
+Name             0
+Sex              0
+Age             86
+SibSp            0
+Parch            0
+Ticket           0
+Fare             1
+Cabin          327
+Embarked         0
+dtype: int64</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="我们有缺失数据" class="level1">
+<h1>我们有缺失数据：</h1>
+<div id="60e7bb59" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>impute_value <span class="op">=</span> train[<span class="st">'Age'</span>].median()  <span class="co"># 计算 'Age' 列的中位数</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>train[<span class="st">'Age'</span>] <span class="op">=</span> train[<span class="st">'Age'</span>].fillna(impute_value)  <span class="co"># 使用中位数填充 'Age' 列中的缺失值</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>test[<span class="st">'Age'</span>] <span class="op">=</span> test[<span class="st">'Age'</span>].fillna(impute_value)  <span class="co"># 使用中位数填充 'Age' 列中的缺失值</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个新特征 'IsFemale'</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>train[<span class="st">'IsFemale'</span>] <span class="op">=</span> (train[<span class="st">'Sex'</span>] <span class="op">==</span> <span class="st">'female'</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>test[<span class="st">'IsFemale'</span>] <span class="op">=</span> (test[<span class="st">'Sex'</span>] <span class="op">==</span> <span class="st">'female'</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义预测变量</span></span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>predictors <span class="op">=</span> [<span class="st">'Pclass'</span>, <span class="st">'IsFemale'</span>, <span class="st">'Age'</span>]</span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> train[predictors].to_numpy()  <span class="co"># 获取训练集的特征</span></span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> test[predictors].to_numpy()  <span class="co"># 获取测试集的特征</span></span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>y_train <span class="op">=</span> train[<span class="st">'Survived'</span>].to_numpy()  <span class="co"># 获取训练集的标签</span></span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_train[:<span class="dv">5</span>])  <span class="co"># 打印前 5 个训练样本的特征</span></span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_train[:<span class="dv">5</span>])  <span class="co"># 打印前 5 个训练样本的标签</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[ 3.  0. 22.]
+ [ 1.  1. 38.]
+ [ 3.  1. 26.]
+ [ 1.  1. 35.]
+ [ 3.  0. 35.]]
+[0 1 1 1 0]</code></pre>
+</div>
+</div>
+<section id="模型训练和预测" class="level2">
+<h2 class="anchored" data-anchor-id="模型训练和预测">模型训练和预测 🏋️‍♀️</h2>
+<div id="a9b7d67e" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression  <span class="co"># 导入 LogisticRegression 类</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LogisticRegression()  <span class="co"># 创建 LogisticRegression 模型</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>model.fit(X_train, y_train)  <span class="co"># 使用训练数据训练模型</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>y_predict <span class="op">=</span> model.predict(X_test)  <span class="co"># 使用测试数据进行预测</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y_predict[:<span class="dv">10</span>])  <span class="co"># 打印前 10 个预测结果</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[0 0 0 0 1 0 1 0 1 0]</code></pre>
+</div>
+</div>
+</section>
+<section id="交叉验证" class="level2">
+<h2 class="anchored" data-anchor-id="交叉验证">交叉验证 🔄</h2>
+<div id="006e2be9" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegressionCV  <span class="co"># 导入 LogisticRegressionCV 类</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score  <span class="co"># 导入 cross_val_score 函数</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用交叉验证创建 LogisticRegression 模型</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>model_cv <span class="op">=</span> LogisticRegressionCV(Cs<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>model_cv.fit(X_train, y_train)  <span class="co"># 使用训练数据训练模型</span></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用交叉验证评估模型</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LogisticRegression(C<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> cross_val_score(model, X_train, y_train, cv<span class="op">=</span><span class="dv">4</span>)  <span class="co"># 进行 4 折交叉验证</span></span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(scores)  <span class="co"># 打印交叉验证分数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[0.77578475 0.79820628 0.77578475 0.78828829]</code></pre>
+</div>
+</div>
+<p>交叉验证有助于避免过拟合，并提供更稳健的模型。</p>
+</section>
+<section id="总结" class="level2">
+<h2 class="anchored" data-anchor-id="总结">总结 📝</h2>
+<ul>
+<li>我们使用 <code>statsmodels</code> 和 <code>scikit-learn</code> 将 pandas 数据整理和模型构建联系起来。</li>
+<li>使用 <code>.to_numpy()</code> 将 DataFrame 转换为 NumPy 数组。</li>
+<li>Patsy 为模型提供了一种公式语法。</li>
+<li><code>statsmodels</code> 擅长统计推断。</li>
+<li><code>scikit-learn</code> 对于许多机器学习任务具有通用性。</li>
+</ul>
+</section>
+<section id="思考与讨论" class="level2">
+<h2 class="anchored" data-anchor-id="思考与讨论">思考与讨论 🗣️</h2>
+<ul>
+<li>如何在 <code>statsmodels</code> 和 <code>scikit-learn</code> 之间进行选择？考虑推断与预测。</li>
+<li>如何在泰坦尼克号示例中改进特征？</li>
+<li>其他 Python 建模库（TensorFlow、PyTorch、XGBoost）？</li>
+<li>这与您的项目有何关系？</li>
+<li>数据分析将如何发展？</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/qiufei\.github\.io\/web-slide-pandas3ed");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>🔋<a href="https://posit.co"><img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" class="img-fluid" alt="Posit" width="65"></a></p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ 邱飞 © 2025
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://beian.miit.gov.cn">
+<p>浙ICP备 2024072710号-1</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33021202002511">
+<p>浙公网安备 33021202002511号</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:hfutqiufei@163.com">
+      <i class="bi bi-envelope-at-fill" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

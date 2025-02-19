@@ -1,0 +1,1934 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Python 数据分析</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<link href="../https://assets.qiufei.site/personal/profile.jpg" rel="icon" type="image/jpeg">
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-681fbf911679f9b3dbf9743eb275ba49.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7e49aeac8059a213a463aa1a739e8272.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://qiufei.github.io"> 
+<span class="menu-text">首页</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://qiufei.github.io/web-slide"> 
+<span class="menu-text">课件</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Python 数据分析</h1>
+<p class="subtitle lead">进阶 NumPy 🚀</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>好的，这是翻译成中文并添加了详细注释的幻灯片内容：</p>
+<!-- 导入 NumPy 库，并设置随机数生成器的种子 -->
+<div id="32adc162" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np  <span class="co"># 导入 NumPy 库，并将其别名设置为 np</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">12345</span>)  <span class="co"># 创建一个随机数生成器，并设置种子为 12345，以确保结果可复现</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="简介" class="level2">
+<h2 class="anchored" data-anchor-id="简介">简介</h2>
+<!-- NumPy 基础知识回顾及进阶内容预览 -->
+<p>我们已经学习了 NumPy 的基础知识。现在，让我们更深入地探索！🤿 我们将学习：</p>
+<ul>
+<li><code>ndarray</code> 的内部结构。</li>
+<li>高级数组操作技巧。</li>
+<li>以及一些很酷的技巧！😎</li>
+</ul>
+</section>
+<section id="主题大纲" class="level2">
+<h2 class="anchored" data-anchor-id="主题大纲">主题大纲</h2>
+<!-- 本次课程将涵盖的主题列表 -->
+<ul>
+<li><code>ndarray</code> 对象内部结构 🤔</li>
+<li>数据类型层级 🌳</li>
+<li>数组操作 🔄➕➗🔁</li>
+<li>广播机制 📡</li>
+<li><code>ufunc</code> 高级用法 🚀</li>
+<li>结构化数组 🏢</li>
+<li>排序 ️️️️️⬆️🔎</li>
+<li>使用 Numba 编写快速 NumPy 函数 🏎️</li>
+</ul>
+</section>
+<section id="ndarray-对象内部结构" class="level2">
+<h2 class="anchored" data-anchor-id="ndarray-对象内部结构"><code>ndarray</code> 对象内部结构 🤔</h2>
+<!-- 解释 ndarray 如何存储和解释数据 -->
+<ul>
+<li>NumPy 的 <code>ndarray</code> 将一块<strong>同质类型数据</strong>（所有元素具有<em>相同</em>数据类型）的内存块解释为多维数组。</li>
+<li>它可以是<em>连续的</em>或<em>跨步的</em>。</li>
+<li><strong>关键组成部分</strong>：
+<ul>
+<li><strong>数据类型 (<code>dtype</code>)</strong>：数据如何被解释（浮点数、整数、布尔值等）。</li>
+<li><strong>跨步视图</strong>：允许像 <code>arr[::2, ::-1]</code> 这样的操作，而<em>无需</em>复制数据！⚡️</li>
+</ul></li>
+</ul>
+</section>
+<section id="ndarray-内部结构" class="level2">
+<h2 class="anchored" data-anchor-id="ndarray-内部结构"><code>ndarray</code> 内部结构</h2>
+<!-- ndarray 的四个主要组成部分 -->
+<p>一个 <code>ndarray</code> 包含：</p>
+<ol type="1">
+<li><strong>数据指针</strong>：RAM 或内存映射文件中的一块数据。</li>
+<li><strong>数据类型 (<code>dtype</code>)</strong>：描述固定大小的值单元格（例如，float64、int32）。</li>
+<li><strong>形状元组</strong>：数组维度（例如，<code>(10, 5)</code> 表示 10x5 的数组）。</li>
+<li><strong>跨度元组</strong>：沿维度前进一个元素所需的“步长”字节数。</li>
+</ol>
+</section>
+<section id="ndarray-可视化" class="level2">
+<h2 class="anchored" data-anchor-id="ndarray-可视化"><code>ndarray</code> 可视化 🖼️</h2>
+<!-- ndarray 组成部分的可视化表示 -->
+<ul>
+<li><strong>数据</strong>：实际的数组数据。</li>
+<li><strong>dtype</strong>：数据类型信息（例如，<code>float64</code>）。</li>
+<li><strong>形状</strong>：数组维度（例如，<code>(3, 4, 5)</code>）。</li>
+<li><strong>跨度</strong>：跳转到每个维度中下一个元素所需的字节数。</li>
+</ul>
+</section>
+<section id="形状和跨度示例" class="level2">
+<h2 class="anchored" data-anchor-id="形状和跨度示例">形状和跨度示例</h2>
+<!-- 通过具体示例说明形状和跨度的概念 -->
+<ul>
+<li>一个 10 x 5 的数组具有形状 <code>(10, 5)</code>：</li>
+</ul>
+<div id="254faee9" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>arr_2d <span class="op">=</span> np.ones((<span class="dv">10</span>, <span class="dv">5</span>))  <span class="co"># 创建一个 10x5 的全 1 数组</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>arr_2d.shape  <span class="co"># 查看数组的形状</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>(10, 5)</code></pre>
+</div>
+</div>
+<ul>
+<li>一个 3 x 4 x 5 的 <code>float64</code>（8 字节）数组通常具有跨度 <code>(160, 40, 8)</code>（C 顺序）：</li>
+</ul>
+<div id="d42cdb0f" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>arr_3d <span class="op">=</span> np.ones((<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>), dtype<span class="op">=</span>np.float64)  <span class="co"># 创建一个 3x4x5 的 float64 类型全 1 数组</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>arr_3d.strides  <span class="co"># 查看数组的跨度</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>(160, 40, 8)</code></pre>
+</div>
+</div>
+</section>
+<section id="理解跨度" class="level2">
+<h2 class="anchored" data-anchor-id="理解跨度">理解跨度 🚶</h2>
+<!-- 详细解释跨度的含义和作用 -->
+<ul>
+<li><strong>跨度</strong>：在内存中移动以到达沿每个维度的下一个元素所需的字节数。</li>
+<li><strong>示例</strong>：<code>arr_3d.strides = (160, 40, 8)</code>
+<ul>
+<li><em>第一维度（行）</em>：移动 160 字节。</li>
+<li><em>第二维度（列）</em>：移动 40 字节。</li>
+<li><em>第三维度</em>：移动 8 字节（<code>float64</code> 大小）。</li>
+</ul></li>
+<li>轴上较大的跨度通常意味着沿该轴的计算<em>成本更高</em>。</li>
+<li>跨度<em>可以</em>是负数！</li>
+</ul>
+</section>
+<section id="numpy-数据类型层级" class="level2">
+<h2 class="anchored" data-anchor-id="numpy-数据类型层级">NumPy 数据类型层级 🌳</h2>
+<!-- 介绍 NumPy 中丰富的数据类型层级 -->
+<ul>
+<li>NumPy 具有丰富的数据类型层级。</li>
+<li>使用<strong>超类</strong>（例如，<code>np.integer</code>、<code>np.floating</code>）和 <code>np.issubdtype</code> 来检查数组类型：</li>
+</ul>
+<div id="1dd2c2df" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ints <span class="op">=</span> np.ones(<span class="dv">10</span>, dtype<span class="op">=</span>np.uint16)  <span class="co"># 创建一个 uint16 类型的全 1 数组</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>floats <span class="op">=</span> np.ones(<span class="dv">10</span>, dtype<span class="op">=</span>np.float32)  <span class="co"># 创建一个 float32 类型的全 1 数组</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.issubdtype(ints.dtype, np.integer))  <span class="co"># 检查 ints.dtype 是否是 np.integer 的子类型</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.issubdtype(floats.dtype, np.floating))  <span class="co"># 检查 floats.dtype 是否是 np.floating 的子类型</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>True
+True</code></pre>
+</div>
+</div>
+</section>
+<section id="数据类型层级续" class="level2">
+<h2 class="anchored" data-anchor-id="数据类型层级续">数据类型层级（续）</h2>
+<!-- 使用 .mro() 方法查看父类 -->
+<ul>
+<li>使用 <code>.mro()</code>（方法解析顺序）查看父类：</li>
+</ul>
+<div id="4f65eb58" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>np.float64.mro()  <span class="co"># 查看 np.float64 的方法解析顺序（继承关系）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>[numpy.float64,
+ numpy.floating,
+ numpy.inexact,
+ numpy.number,
+ numpy.generic,
+ float,
+ object]</code></pre>
+</div>
+</div>
+<ul>
+<li>这表明 <code>np.float64</code> 继承自 <code>np.floating</code>、<code>np.inexact</code>、…、<code>object</code>。</li>
+</ul>
+</section>
+<section id="numpy-数据类型层级可视化" class="level2">
+<h2 class="anchored" data-anchor-id="numpy-数据类型层级可视化">NumPy 数据类型层级可视化 📊</h2>
+<!-- 数据类型层级的可视化描述 -->
+<ul>
+<li><code>generic</code> 是根</li>
+<li><code>number</code>, <code>bool_</code> 等, 是 <code>generic</code> 的子类</li>
+</ul>
+</section>
+<section id="高级数组操作重塑" class="level2">
+<h2 class="anchored" data-anchor-id="高级数组操作重塑">高级数组操作：重塑 🔄</h2>
+<!-- 介绍 reshape() 方法及其作用 -->
+<ul>
+<li><strong>重塑</strong>：改变数组的形状，<em>不复制数据</em>。</li>
+<li>使用 <code>reshape()</code> 方法和一个形状元组：</li>
+</ul>
+<div id="d3de2791" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">8</span>)  <span class="co"># 创建一个包含 0 到 7 的一维数组</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>arr.reshape((<span class="dv">4</span>, <span class="dv">2</span>))  <span class="co"># 将数组重塑为 4x2 的二维数组</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>array([[0, 1],
+       [2, 3],
+       [4, 5],
+       [6, 7]])</code></pre>
+</div>
+</div>
+</section>
+<section id="重塑多维数组" class="level2">
+<h2 class="anchored" data-anchor-id="重塑多维数组">重塑多维数组</h2>
+<!-- 多维数组的重塑示例 -->
+<div id="e6af1e03" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>arr.reshape((<span class="dv">4</span>, <span class="dv">2</span>)).reshape((<span class="dv">2</span>, <span class="dv">4</span>))  <span class="co"># 将数组先重塑为 4x2，再重塑为 2x4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>array([[0, 1, 2, 3],
+       [4, 5, 6, 7]])</code></pre>
+</div>
+</div>
+<ul>
+<li>对一个维度使用 <code>-1</code> 来推断大小：</li>
+</ul>
+<div id="b4db8180" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">15</span>)  <span class="co"># 创建一个包含 0 到 14 的一维数组</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>arr.reshape((<span class="dv">5</span>, <span class="op">-</span><span class="dv">1</span>))  <span class="co"># 将数组重塑为 5 行，列数自动推断（这里是 3）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>array([[ 0,  1,  2],
+       [ 3,  4,  5],
+       [ 6,  7,  8],
+       [ 9, 10, 11],
+       [12, 13, 14]])</code></pre>
+</div>
+</div>
+</section>
+<section id="使用形状属性重塑" class="level2">
+<h2 class="anchored" data-anchor-id="使用形状属性重塑">使用形状属性重塑</h2>
+<!-- 使用其他数组的形状进行重塑 -->
+<div id="bda9d92d" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>other_arr <span class="op">=</span> np.ones((<span class="dv">3</span>, <span class="dv">5</span>))  <span class="co"># 创建一个 3x5 的全 1 数组</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>arr.reshape(other_arr.shape)  <span class="co"># 使用 other_arr 的形状重塑 arr</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>array([[ 0,  1,  2,  3,  4],
+       [ 5,  6,  7,  8,  9],
+       [10, 11, 12, 13, 14]])</code></pre>
+</div>
+</div>
+</section>
+<section id="扁平化或展开" class="level2">
+<h2 class="anchored" data-anchor-id="扁平化或展开">扁平化或展开 ➡️</h2>
+<!-- 介绍 ravel() 和 flatten() 方法 -->
+<ul>
+<li><strong>扁平化/展开</strong>：将多维数组转换为一维数组。</li>
+<li><code>ravel()</code>：如果值是连续的，则<em>不</em>复制。</li>
+</ul>
+<div id="991ac707" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">15</span>).reshape((<span class="dv">5</span>, <span class="dv">3</span>))  <span class="co"># 创建一个 5x3 的数组</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>arr.ravel()  <span class="co"># 将数组展开为一维数组</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14])</code></pre>
+</div>
+</div>
+<ul>
+<li><code>flatten()</code>：始终返回<em>副本</em>。</li>
+</ul>
+<div id="08ee8252" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>arr.flatten()  <span class="co"># 将数组展开为一维数组（返回副本）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14])</code></pre>
+</div>
+</div>
+</section>
+<section id="c-vs.-fortran-顺序" class="level2">
+<h2 class="anchored" data-anchor-id="c-vs.-fortran-顺序">C vs.&nbsp;FORTRAN 顺序 🔀</h2>
+<!-- 解释 C 顺序和 FORTRAN 顺序 -->
+<ul>
+<li><strong>行主序（C）</strong>：连续的行元素存储在一起。</li>
+<li><strong>列主序（FORTRAN）</strong>：连续的列元素存储在一起。</li>
+<li><code>reshape</code> 和 <code>ravel</code> 接受一个 <code>order</code> 参数（<code>'C'</code> 或 <code>'F'</code>）。</li>
+</ul>
+<div id="7da4d605" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">12</span>).reshape((<span class="dv">3</span>, <span class="dv">4</span>))  <span class="co"># 创建一个 3x4 的数组</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.ravel())      <span class="co"># 默认：'C' 顺序</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.ravel(<span class="st">'F'</span>))  <span class="co"># FORTRAN 顺序</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[ 0  1  2  3  4  5  6  7  8  9 10 11]
+[ 0  4  8  1  5  9  2  6 10  3  7 11]</code></pre>
+</div>
+</div>
+</section>
+<section id="c-vs.-fortran-顺序可视化" class="level2">
+<h2 class="anchored" data-anchor-id="c-vs.-fortran-顺序可视化">C vs.&nbsp;FORTRAN 顺序（可视化）</h2>
+<!-- C 顺序和 FORTRAN 顺序的可视化解释 -->
+<ul>
+<li><strong>C/行主序</strong>：<em>首先</em>遍历更高的维度。</li>
+<li><strong>FORTRAN/列主序</strong>：<em>最后</em>遍历更高的维度。</li>
+</ul>
+</section>
+<section id="连接数组" class="level2">
+<h2 class="anchored" data-anchor-id="连接数组">连接数组 ➕</h2>
+<!-- 介绍 concatenate() 函数 -->
+<ul>
+<li><strong><code>numpy.concatenate</code></strong>：沿现有轴连接数组。</li>
+</ul>
+<div id="4e099bb4" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>arr1 <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]])  <span class="co"># 创建一个 2x3 的数组</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>arr2 <span class="op">=</span> np.array([[<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>], [<span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>]])  <span class="co"># 创建一个 2x3 的数组</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.concatenate([arr1, arr2], axis<span class="op">=</span><span class="dv">0</span>))  <span class="co"># 沿行（axis=0）堆叠（垂直堆叠）</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.concatenate([arr1, arr2], axis<span class="op">=</span><span class="dv">1</span>))  <span class="co"># 沿列（axis=1）堆叠（水平堆叠）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[ 1  2  3]
+ [ 4  5  6]
+ [ 7  8  9]
+ [10 11 12]]
+[[ 1  2  3  7  8  9]
+ [ 4  5  6 10 11 12]]</code></pre>
+</div>
+</div>
+</section>
+<section id="连接辅助函数" class="level2">
+<h2 class="anchored" data-anchor-id="连接辅助函数">连接辅助函数</h2>
+<!-- 介绍 vstack、hstack、column_stack 和 dstack -->
+<ul>
+<li><code>vstack</code>, <code>row_stack</code>：按行堆叠（axis 0）。</li>
+<li><code>hstack</code>：按列堆叠（axis 1）。</li>
+<li><code>column_stack</code>：类似于 <code>hstack</code>，但首先将一维数组转换为二维列。</li>
+<li><code>dstack</code>：按“深度”堆叠（axis 2）。</li>
+</ul>
+<div id="08918685" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.vstack((arr1, arr2)))  <span class="co"># 垂直堆叠</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.hstack((arr1, arr2)))  <span class="co"># 水平堆叠</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[ 1  2  3]
+ [ 4  5  6]
+ [ 7  8  9]
+ [10 11 12]]
+[[ 1  2  3  7  8  9]
+ [ 4  5  6 10 11 12]]</code></pre>
+</div>
+</div>
+</section>
+<section id="拆分数组" class="level2">
+<h2 class="anchored" data-anchor-id="拆分数组">拆分数组 ➗</h2>
+<!-- 介绍 split() 函数 -->
+<ul>
+<li><code>split</code>：将数组沿轴拆分为多个数组。</li>
+</ul>
+<div id="ffaa84af" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal((<span class="dv">5</span>, <span class="dv">2</span>))  <span class="co"># 创建一个 5x2 的标准正态分布数组</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>first, second, third <span class="op">=</span> np.split(arr, [<span class="dv">1</span>, <span class="dv">3</span>])  <span class="co"># 将数组在索引 1 和 3 处拆分</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>first<span class="op">=</span><span class="sc">}</span><span class="ss">"</span>)  <span class="co"># 打印第一个拆分结果</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>second<span class="op">=</span><span class="sc">}</span><span class="ss">"</span>)  <span class="co"># 打印第二个拆分结果</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>third<span class="op">=</span><span class="sc">}</span><span class="ss">"</span>)  <span class="co"># 打印第三个拆分结果</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>first=array([[-1.42382504,  1.26372846]])
+second=array([[-0.87066174, -0.25917323],
+       [-0.07534331, -0.74088465]])
+third=array([[-1.3677927 ,  0.6488928 ],
+       [ 0.36105811, -1.95286306]])</code></pre>
+</div>
+</div>
+<ul>
+<li><code>hsplit</code>/<code>vsplit</code>：分别在轴 0 和 1 上拆分。</li>
+</ul>
+</section>
+<section id="数组连接函数表" class="level2">
+<h2 class="anchored" data-anchor-id="数组连接函数表">数组连接函数表</h2>
+<!-- 总结各种数组连接函数的表格 -->
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 76%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>concatenate</code></td>
+<td>通用函数，沿轴连接数组。</td>
+</tr>
+<tr class="even">
+<td><code>vstack</code>, <code>row_stack</code></td>
+<td>按行堆叠数组（axis 0）。</td>
+</tr>
+<tr class="odd">
+<td><code>hstack</code></td>
+<td>按列堆叠数组（axis 1）。</td>
+</tr>
+<tr class="even">
+<td><code>column_stack</code></td>
+<td>类似于 <code>hstack</code>，但将一维数组转换为二维列。</td>
+</tr>
+<tr class="odd">
+<td><code>dstack</code></td>
+<td>按“深度”堆叠数组（axis 2）。</td>
+</tr>
+<tr class="even">
+<td><code>split</code></td>
+<td>在沿轴的位置拆分数组。</td>
+</tr>
+<tr class="odd">
+<td><code>hsplit</code>/<code>vsplit</code></td>
+<td>分别在轴 0 和 1 上拆分。</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="堆叠辅助对象r_-和-c_" class="level2">
+<h2 class="anchored" data-anchor-id="堆叠辅助对象r_-和-c_">堆叠辅助对象：<code>r_</code> 和 <code>c_</code></h2>
+<!-- 介绍 r_ 和 c_ 对象 -->
+<ul>
+<li><code>r_</code> 和 <code>c_</code> 使堆叠更简洁：</li>
+</ul>
+<div id="c47d2172" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">6</span>)  <span class="co"># 创建一个包含 0 到 5 的一维数组</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>arr1 <span class="op">=</span> arr.reshape((<span class="dv">3</span>, <span class="dv">2</span>))  <span class="co"># 将数组重塑为 3x2</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>arr2 <span class="op">=</span> rng.standard_normal((<span class="dv">3</span>, <span class="dv">2</span>))  <span class="co"># 创建一个 3x2 的标准正态分布数组</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.r_[arr1, arr2])  <span class="co"># 类似于 row_stack</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.c_[np.r_[arr1, arr2], arr])  <span class="co"># 将 arr 作为新列连接</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[ 0.          1.        ]
+ [ 2.          3.        ]
+ [ 4.          5.        ]
+ [ 2.34740965  0.96849691]
+ [-0.75938718  0.90219827]
+ [-0.46695317 -0.06068952]]
+[[ 0.          1.          0.        ]
+ [ 2.          3.          1.        ]
+ [ 4.          5.          2.        ]
+ [ 2.34740965  0.96849691  3.        ]
+ [-0.75938718  0.90219827  4.        ]
+ [-0.46695317 -0.06068952  5.        ]]</code></pre>
+</div>
+</div>
+</section>
+<section id="重复元素tile-和-repeat" class="level2">
+<h2 class="anchored" data-anchor-id="重复元素tile-和-repeat">重复元素：<code>tile</code> 和 <code>repeat</code> 🔁</h2>
+<!-- 介绍 tile() 和 repeat() 方法 -->
+<ul>
+<li><code>repeat</code>：复制每个元素：</li>
+</ul>
+<div id="2543c093" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">3</span>)  <span class="co"># 创建一个包含 0 到 2 的一维数组</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.repeat(<span class="dv">3</span>))  <span class="co"># 每个元素重复 3 次</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.repeat([<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]))  <span class="co"># 每个元素分别重复 2、3、4 次</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[0 0 0 1 1 1 2 2 2]
+[0 0 1 1 1 2 2 2 2]</code></pre>
+</div>
+</div>
+<ul>
+<li>二维数组示例：</li>
+</ul>
+<div id="950958d0" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal((<span class="dv">2</span>, <span class="dv">2</span>))  <span class="co"># 创建一个 2x2 的标准正态分布数组</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>arr.repeat(<span class="dv">2</span>, axis<span class="op">=</span><span class="dv">0</span>) <span class="co"># 沿着行重复</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>array([[ 0.78884434, -1.25666813],
+       [ 0.78884434, -1.25666813],
+       [ 0.57585751,  1.39897899],
+       [ 0.57585751,  1.39897899]])</code></pre>
+</div>
+</div>
+</section>
+<section id="tile堆叠副本" class="level2">
+<h2 class="anchored" data-anchor-id="tile堆叠副本"><code>tile</code>：堆叠副本</h2>
+<!-- 介绍 tile() 函数 -->
+<ul>
+<li><code>tile</code>：沿轴堆叠数组的副本：</li>
+</ul>
+<div id="c8aeac44" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal((<span class="dv">2</span>, <span class="dv">2</span>))  <span class="co"># 创建一个 2x2 的标准正态分布数组</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.tile(arr, <span class="dv">2</span>))  <span class="co"># 沿行重复数组两次</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.tile(arr, (<span class="dv">2</span>, <span class="dv">1</span>)))  <span class="co"># 沿行重复 2 次，沿列重复 1 次</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.tile(arr, (<span class="dv">3</span>, <span class="dv">2</span>)))  <span class="co"># 沿行重复 3 次，沿列重复 2 次</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[ 1.32229806 -0.29969852  1.32229806 -0.29969852]
+ [ 0.90291934 -1.62158273  0.90291934 -1.62158273]]
+[[ 1.32229806 -0.29969852]
+ [ 0.90291934 -1.62158273]
+ [ 1.32229806 -0.29969852]
+ [ 0.90291934 -1.62158273]]
+[[ 1.32229806 -0.29969852  1.32229806 -0.29969852]
+ [ 0.90291934 -1.62158273  0.90291934 -1.62158273]
+ [ 1.32229806 -0.29969852  1.32229806 -0.29969852]
+ [ 0.90291934 -1.62158273  0.90291934 -1.62158273]
+ [ 1.32229806 -0.29969852  1.32229806 -0.29969852]
+ [ 0.90291934 -1.62158273  0.90291934 -1.62158273]]</code></pre>
+</div>
+</div>
+</section>
+<section id="使用-take-和-put-进行花式索引" class="level2">
+<h2 class="anchored" data-anchor-id="使用-take-和-put-进行花式索引">使用 <code>take</code> 和 <code>put</code> 进行花式索引</h2>
+<!-- 介绍 take() 和 put() 方法 -->
+<ul>
+<li><code>take</code>：通过整数索引选择元素：</li>
+</ul>
+<div id="f625b155" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">10</span>) <span class="op">*</span> <span class="dv">100</span>  <span class="co"># 创建一个 [0, 100, 200, ..., 900] 的数组</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>inds <span class="op">=</span> [<span class="dv">7</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">6</span>]  <span class="co"># 定义索引列表</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>arr.take(inds)  <span class="co"># 类似于 arr[inds]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<pre><code>array([700, 100, 200, 600])</code></pre>
+</div>
+</div>
+<ul>
+<li><code>put</code>：将值分配给索引（原地）。<em>不</em>接受轴参数：</li>
+</ul>
+<div id="8e2b7b33" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>arr.put(inds, <span class="dv">42</span>)  <span class="co"># 将索引位置的值设置为 42</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)  <span class="co"># 打印修改后的数组</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>arr.put(inds, [<span class="dv">40</span>, <span class="dv">41</span>, <span class="dv">42</span>, <span class="dv">43</span>])  <span class="co"># 将索引位置的值分别设置为 40、41、42、43</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)  <span class="co"># 打印修改后的数组</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[  0  42  42 300 400 500  42  42 800 900]
+[  0  41  42 300 400 500  43  40 800 900]</code></pre>
+</div>
+</div>
+</section>
+<section id="广播机制" class="level2">
+<h2 class="anchored" data-anchor-id="广播机制">广播机制 📡</h2>
+<!-- 介绍广播机制的概念 -->
+<ul>
+<li><strong>广播机制</strong>：<em>不同</em>形状的数组之间如何进行运算。</li>
+<li>最简单的情况：标量和数组：</li>
+</ul>
+<div id="06a1c1b9" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">5</span>)  <span class="co"># 创建一个包含 0 到 4 的一维数组</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">*</span> <span class="dv">4</span>  <span class="co"># 4 被“广播”到所有元素</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<pre><code>array([ 0,  4,  8, 12, 16])</code></pre>
+</div>
+</div>
+<ul>
+<li>均值消减：</li>
+</ul>
+<div id="89060677" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal((<span class="dv">4</span>, <span class="dv">3</span>))   <span class="co"># 创建一个4x3的标准正态分布的数组</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>demeaned <span class="op">=</span> arr <span class="op">-</span> arr.mean(<span class="dv">0</span>)  <span class="co">#  arr.mean(0)是计算每列的均值</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>demeaned</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<pre><code>array([[ 0.00978669,  0.05184267, -1.55788029],
+       [ 0.08628836,  1.32709867,  2.40388021],
+       [ 0.94533729,  0.43099193, -1.17326753],
+       [-1.04141234, -1.80993328,  0.32726761]])</code></pre>
+</div>
+</div>
+</section>
+<section id="广播规则" class="level2">
+<h2 class="anchored" data-anchor-id="广播规则">广播规则 📏</h2>
+<!-- 详细解释广播规则 -->
+<ul>
+<li>如果对于每个<em>尾随维度</em>：
+<ol type="1">
+<li>轴长度匹配，<strong>或者</strong></li>
+<li>其中一个长度为 1。</li>
+</ol></li>
+<li>则数组是兼容的。</li>
+<li>广播发生在缺失或长度为 1 的维度上。</li>
+</ul>
+</section>
+<section id="广播规则可视化" class="level2">
+<h2 class="anchored" data-anchor-id="广播规则可视化">广播规则（可视化）</h2>
+<!-- 广播规则的可视化解释 -->
+<ul>
+<li>这是一个将形状为 (3,) 的一维数组沿着 0 轴广播到形状为 (4, 3) 的二维数组的例子</li>
+</ul>
+</section>
+<section id="广播示例减去行均值" class="level2">
+<h2 class="anchored" data-anchor-id="广播示例减去行均值">广播示例：减去行均值</h2>
+<!-- 通过示例演示广播的应用 -->
+<div id="fea177eb" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal((<span class="dv">4</span>, <span class="dv">3</span>))  <span class="co"># 创建一个 4x3 的标准正态分布数组</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>row_means <span class="op">=</span> arr.mean(<span class="dv">1</span>)  <span class="co"># 计算每行的均值</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(row_means.shape)  <span class="co"># 打印行均值的形状</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 将 row_means 重塑为 (4, 1) 以进行广播</span></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>demeaned <span class="op">=</span> arr <span class="op">-</span> row_means.reshape((<span class="dv">4</span>, <span class="dv">1</span>))  <span class="co"># 减去行均值</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(demeaned.mean(<span class="dv">1</span>))  <span class="co"># 验证每行的均值现在为 0（或接近 0）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(4,)
+[ 3.70074342e-17 -1.85037171e-17 -1.85037171e-17  0.00000000e+00]</code></pre>
+</div>
+</div>
+</section>
+<section id="在其他轴上广播" class="level2">
+<h2 class="anchored" data-anchor-id="在其他轴上广播">在其他轴上广播</h2>
+<!-- 介绍如何通过添加新轴在其他轴上进行广播 -->
+<ul>
+<li>重塑以在轴 0 以外的轴上进行广播。</li>
+<li>使用 <code>np.newaxis</code> 和切片添加一个长度为 1 的新轴：</li>
+</ul>
+<div id="467f8e57" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.zeros((<span class="dv">4</span>, <span class="dv">4</span>))  <span class="co"># 创建一个 4x4 的全 0 数组</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>arr_3d <span class="op">=</span> arr[:, np.newaxis, :]  <span class="co"># 在中间添加一个新轴</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr_3d.shape)  <span class="co"># 打印新数组的形状</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>arr_1d <span class="op">=</span> rng.standard_normal(<span class="dv">3</span>)  <span class="co"># 创建一个长度为 3 的标准正态分布数组</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr_1d[:, np.newaxis])  <span class="co"># 转换为列向量</span></span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr_1d[np.newaxis, :])  <span class="co"># 转换为行向量</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(4, 1, 4)
+[[0.06114402]
+ [0.0709146 ]
+ [0.43365454]]
+[[0.06114402 0.0709146  0.43365454]]</code></pre>
+</div>
+</div>
+</section>
+<section id="通过广播设置值" class="level2">
+<h2 class="anchored" data-anchor-id="通过广播设置值">通过广播设置值</h2>
+<!-- 演示如何使用广播设置数组的值 -->
+<ul>
+<li>广播适用于设置值：</li>
+</ul>
+<div id="9e717c10" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.zeros((<span class="dv">4</span>, <span class="dv">3</span>))  <span class="co"># 创建一个 4x3 的全 0 数组</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>arr[:] <span class="op">=</span> <span class="dv">5</span>  <span class="co"># 将所有元素设置为 5</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)  <span class="co"># 打印修改后的数组</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>col <span class="op">=</span> np.array([<span class="fl">1.28</span>, <span class="op">-</span><span class="fl">0.42</span>, <span class="fl">0.44</span>, <span class="fl">1.6</span>])  <span class="co"># 创建一个包含 4 个元素的一维数组</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>arr[:] <span class="op">=</span> col[:, np.newaxis]  <span class="co"># 将 col 广播到 arr 的每一行</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)  <span class="co"># 打印修改后的数组</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[5. 5. 5.]
+ [5. 5. 5.]
+ [5. 5. 5.]
+ [5. 5. 5.]]
+[[ 1.28  1.28  1.28]
+ [-0.42 -0.42 -0.42]
+ [ 0.44  0.44  0.44]
+ [ 1.6   1.6   1.6 ]]</code></pre>
+</div>
+</div>
+</section>
+<section id="ufunc-高级用法" class="level2">
+<h2 class="anchored" data-anchor-id="ufunc-高级用法"><code>ufunc</code> 高级用法 🚀</h2>
+<!-- 介绍 ufunc 及其方法 -->
+<ul>
+<li><strong>通用函数 (ufunc)</strong> 具有用于向量化操作的方法。</li>
+<li><code>reduce</code>：通过二元运算进行聚合：</li>
+</ul>
+<div id="c93300e1" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">10</span>)  <span class="co"># 创建一个包含 0 到 9 的一维数组</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>np.add.<span class="bu">reduce</span>(arr)  <span class="co"># 类似于 arr.sum()，对数组元素求和</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<pre><code>np.int64(45)</code></pre>
+</div>
+</div>
+</section>
+<section id="ufunc-方法accumulate-和-outer" class="level2">
+<h2 class="anchored" data-anchor-id="ufunc-方法accumulate-和-outer"><code>ufunc</code> 方法：<code>accumulate</code> 和 <code>outer</code></h2>
+<!-- 介绍 accumulate() 和 outer() 方法 -->
+<ul>
+<li><code>accumulate</code>：中间“累积”值：</li>
+</ul>
+<div id="c310754d" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">15</span>).reshape((<span class="dv">3</span>, <span class="dv">5</span>))  <span class="co"># 创建一个 3x5 的数组</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>np.add.accumulate(arr, axis<span class="op">=</span><span class="dv">1</span>)  <span class="co"># 沿行计算累积和</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<pre><code>array([[ 0,  1,  3,  6, 10],
+       [ 5, 11, 18, 26, 35],
+       [10, 21, 33, 46, 60]])</code></pre>
+</div>
+</div>
+<ul>
+<li><code>outer</code>：成对的叉积：</li>
+</ul>
+<div id="d518bbb0" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">3</span>).repeat([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>])  <span class="co"># 创建一个 [0, 1, 1, 2, 2] 的数组</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>np.multiply.outer(arr, np.arange(<span class="dv">5</span>))  <span class="co"># 计算 arr 和 [0, 1, 2, 3, 4] 的外积</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<pre><code>array([[0, 0, 0, 0, 0],
+       [0, 1, 2, 3, 4],
+       [0, 1, 2, 3, 4],
+       [0, 2, 4, 6, 8],
+       [0, 2, 4, 6, 8]])</code></pre>
+</div>
+</div>
+</section>
+<section id="ufunc-方法reduceat" class="level2">
+<h2 class="anchored" data-anchor-id="ufunc-方法reduceat"><code>ufunc</code> 方法：<code>reduceat</code></h2>
+<!-- 介绍 reduceat() 方法 -->
+<ul>
+<li><code>reduceat</code>：“局部”归约（数组分组）：</li>
+</ul>
+<div id="f3eea96f" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">10</span>)  <span class="co"># 创建一个包含 0 到 9 的一维数组</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>np.add.reduceat(arr, [<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">8</span>])  <span class="co"># 归约 [0:5]、[5:8]、[8:]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>array([10, 18, 17])</code></pre>
+</div>
+</div>
+<div id="7f803016" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.multiply.outer(np.arange(<span class="dv">4</span>), np.arange(<span class="dv">5</span>))  <span class="co"># 计算外积</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>np.add.reduceat(arr, [<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>], axis<span class="op">=</span><span class="dv">1</span>) <span class="co"># 沿列归约</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<pre><code>array([[ 0,  0,  0],
+       [ 1,  5,  4],
+       [ 2, 10,  8],
+       [ 3, 15, 12]])</code></pre>
+</div>
+</div>
+</section>
+<section id="ufunc-方法表" class="level2">
+<h2 class="anchored" data-anchor-id="ufunc-方法表"><code>ufunc</code> 方法表</h2>
+<!-- 总结各种 ufunc 方法的表格 -->
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 82%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>accumulate(x)</code></td>
+<td>聚合，保留部分聚合。</td>
+</tr>
+<tr class="even">
+<td><code>at(x, i, b=None)</code></td>
+<td>在索引 <code>i</code> 处对 <code>x</code> 进行原地操作。</td>
+</tr>
+<tr class="odd">
+<td><code>reduce(x)</code></td>
+<td>通过连续操作进行聚合。</td>
+</tr>
+<tr class="even">
+<td><code>reduceat(x, bins)</code></td>
+<td>“局部”归约/分组；归约切片以生成聚合数组。</td>
+</tr>
+<tr class="odd">
+<td><code>outer(x, y)</code></td>
+<td>将操作应用于所有对；结果具有形状 <code>x.shape + y.shape</code>。</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="numba快速-numpy-函数" class="level2">
+<h2 class="anchored" data-anchor-id="numba快速-numpy-函数">Numba：快速 NumPy 函数 🏎️</h2>
+<!-- 介绍 Numba 及其作用 -->
+<ul>
+<li><strong>Numba</strong>：为类 NumPy 数据（CPU、GPU 等）创建快速函数。</li>
+<li>使用 <strong>LLVM</strong> 将 Python 转换为机器码。</li>
+<li>示例：纯 Python 函数：</li>
+</ul>
+<div id="550c0997" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np  <span class="co"># 导入 NumPy 库</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mean_distance(x, y):  <span class="co"># 定义一个计算平均距离的函数</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>    nx <span class="op">=</span> <span class="bu">len</span>(x)  <span class="co"># 获取 x 的长度</span></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># 初始化结果</span></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="dv">0</span>  <span class="co"># 初始化计数器</span></span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nx):  <span class="co"># 遍历 x</span></span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>        result <span class="op">+=</span> x[i] <span class="op">-</span> y[i]  <span class="co"># 累加差值</span></span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>        count <span class="op">+=</span> <span class="dv">1</span>  <span class="co"># 计数器加 1</span></span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result <span class="op">/</span> count  <span class="co"># 返回平均值</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="numba-编译" class="level2">
+<h2 class="anchored" data-anchor-id="numba-编译">Numba 编译</h2>
+<!-- 使用 Numba 编译 Python 函数 -->
+<ul>
+<li>这很<em>慢</em>。使用 <code>numba.jit</code> 编译：</li>
+</ul>
+<div id="17be71ca" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numba <span class="im">as</span> nb  <span class="co"># 导入 Numba 库</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>numba_mean_distance <span class="op">=</span> nb.jit(mean_distance)  <span class="co"># 使用 jit 装饰器编译 mean_distance 函数</span></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 或者，使用装饰器：</span></span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="at">@nb.jit</span>  <span class="co"># 使用 jit 装饰器</span></span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> numba_mean_distance(x, y):  <span class="co"># 定义一个计算平均距离的函数</span></span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>    nx <span class="op">=</span> <span class="bu">len</span>(x)  <span class="co"># 获取 x 的长度</span></span>
+<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="fl">0.0</span>  <span class="co"># 初始化结果</span></span>
+<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="dv">0</span>  <span class="co"># 初始化计数器</span></span>
+<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(nx):  <span class="co"># 遍历 x</span></span>
+<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a>        result <span class="op">+=</span> x[i] <span class="op">-</span> y[i]  <span class="co"># 累加差值</span></span>
+<span id="cb63-13"><a href="#cb63-13" aria-hidden="true" tabindex="-1"></a>        count <span class="op">+=</span> <span class="dv">1</span>  <span class="co"># 计数器加 1</span></span>
+<span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result <span class="op">/</span> count  <span class="co"># 返回平均值</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>numba_mean_distance</code> 速度<em>快得多</em>（甚至可能比 NumPy 的版本还要快！）。</li>
+</ul>
+</section>
+<section id="使用-numba-创建自定义-ufunc" class="level2">
+<h2 class="anchored" data-anchor-id="使用-numba-创建自定义-ufunc">使用 Numba 创建自定义 <code>ufunc</code></h2>
+<!-- 使用 Numba 创建自定义 ufunc -->
+<ul>
+<li><code>numba.vectorize</code> 创建编译的 NumPy <code>ufunc</code>：</li>
+</ul>
+<div id="472336e2" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numba <span class="im">import</span> vectorize  <span class="co"># 从 Numba 导入 vectorize 装饰器</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="at">@vectorize</span>  <span class="co"># 使用 vectorize 装饰器</span></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> nb_add(x, y):  <span class="co"># 定义一个加法函数</span></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y  <span class="co"># 返回 x + y</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>现在，<code>nb_add</code> 充当 <code>ufunc</code>。</li>
+</ul>
+</section>
+<section id="结构化数组" class="level2">
+<h2 class="anchored" data-anchor-id="结构化数组">结构化数组 🏢</h2>
+<!-- 介绍结构化数组的概念 -->
+<ul>
+<li><code>ndarray</code> 通常是同质的。</li>
+<li><strong>结构化数组</strong>：每个元素代表一个“结构”（类似于 C 中的结构）或 SQL 表行。</li>
+</ul>
+<div id="8f03074a" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>dtype <span class="op">=</span> [(<span class="st">'x'</span>, np.float64), (<span class="st">'y'</span>, np.int32)]  <span class="co"># 字段名称和类型</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>sarr <span class="op">=</span> np.array([(<span class="fl">1.5</span>, <span class="dv">6</span>), (np.pi, <span class="op">-</span><span class="dv">2</span>)], dtype<span class="op">=</span>dtype)  <span class="co"># 创建结构化数组</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sarr)  <span class="co"># 打印数组</span></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sarr[<span class="dv">0</span>])  <span class="co"># 打印第一个元素</span></span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sarr[<span class="dv">0</span>][<span class="st">'y'</span>])  <span class="co"># 访问第一个元素的 'y' 字段</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[(1.5       ,  6) (3.14159265, -2)]
+(1.5, 6)
+6</code></pre>
+</div>
+</div>
+</section>
+<section id="嵌套数据类型和多维字段" class="level2">
+<h2 class="anchored" data-anchor-id="嵌套数据类型和多维字段">嵌套数据类型和多维字段</h2>
+<!-- 介绍嵌套数据类型和多维字段 -->
+<div id="a0a9b884" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>dtype <span class="op">=</span> [(<span class="st">'x'</span>, np.int64, <span class="dv">3</span>), (<span class="st">'y'</span>, np.int32)]  <span class="co"># 'x' 是一个包含 3 个 int64 的数组</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.zeros(<span class="dv">4</span>, dtype<span class="op">=</span>dtype)  <span class="co"># 创建一个结构化数组</span></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)  <span class="co"># 打印数组</span></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr[<span class="dv">0</span>][<span class="st">'x'</span>])  <span class="co"># 访问第一个元素的 'x' 字段</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[([0, 0, 0], 0) ([0, 0, 0], 0) ([0, 0, 0], 0) ([0, 0, 0], 0)]
+[0 0 0]</code></pre>
+</div>
+</div>
+</section>
+<section id="为什么使用结构化数组" class="level2">
+<h2 class="anchored" data-anchor-id="为什么使用结构化数组">为什么使用结构化数组？</h2>
+<!-- 结构化数组的用途 -->
+<ul>
+<li>将内存解释为表格结构。</li>
+<li>对于磁盘 I/O（包括内存映射）很有效。</li>
+<li>表示来自 C/C++ 代码的数据。</li>
+<li>比 pandas DataFrame 更底层。</li>
+</ul>
+</section>
+<section id="排序" class="level2">
+<h2 class="anchored" data-anchor-id="排序">排序 ️️️️️⬆️</h2>
+<!-- 介绍 sort() 方法和 np.sort() 函数 -->
+<ul>
+<li><code>ndarray.sort()</code>：原地排序：</li>
+</ul>
+<div id="8baf6c88" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal(<span class="dv">6</span>)  <span class="co"># 创建一个包含 6 个标准正态分布元素的数组</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>arr.sort()  <span class="co"># 升序排序</span></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)  <span class="co"># 打印排序后的数组</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[-0.79501746  0.27748366  0.30003095  0.53025239  0.53672097  0.61835001]</code></pre>
+</div>
+</div>
+<ul>
+<li><code>numpy.sort()</code>：创建一个<em>新的</em>、排序的副本。</li>
+</ul>
+<div id="ef5fa441" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal(<span class="dv">5</span>)  <span class="co"># 创建一个包含 5 个标准正态分布元素的数组</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.sort(arr))  <span class="co"># 排序副本</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[-1.60270159 -1.26162378 -0.07127081  0.26679883  0.47404973]</code></pre>
+</div>
+</div>
+<ul>
+<li>两种方法都接受 <code>axis</code> 参数</li>
+</ul>
+<div id="c5cea251" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal((<span class="dv">3</span>, <span class="dv">5</span>))   <span class="co"># 创建一个3x5的标准正态分布的数组</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>arr.sort(axis<span class="op">=</span><span class="dv">1</span>)  <span class="co"># 对每一行进行排序</span></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)  <span class="co"># 打印排序后的数组</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[-1.64041784 -0.85725882 -0.41485376  0.0977165   0.68828179]
+ [-1.38835995 -1.15452958 -1.09542531 -0.90738246  0.65045239]
+ [-1.06580785 -0.18147274  0.00714569  0.5343599   1.6219518 ]]</code></pre>
+</div>
+</div>
+</section>
+<section id="间接排序argsort-和-lexsort" class="level2">
+<h2 class="anchored" data-anchor-id="间接排序argsort-和-lexsort">间接排序：<code>argsort</code> 和 <code>lexsort</code></h2>
+<!-- 介绍 argsort() 和 lexsort() 函数 -->
+<ul>
+<li><strong>间接排序</strong>：返回整数<em>索引</em>以重新排序数据。</li>
+<li><code>argsort()</code>：返回将对数组进行排序的索引：</li>
+</ul>
+<div id="1fa78937" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> np.array([<span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>])  <span class="co"># 创建一个一维数组</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>indexer <span class="op">=</span> values.argsort()  <span class="co"># 获取排序后的索引</span></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(indexer)  <span class="co"># 打印索引</span></span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(values[indexer])  <span class="co"># 使用索引对数组进行排序</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1 2 4 3 0]
+[0 1 2 3 5]</code></pre>
+</div>
+</div>
+</section>
+<section id="lexsort多个键" class="level2">
+<h2 class="anchored" data-anchor-id="lexsort多个键"><code>lexsort</code>：多个键</h2>
+<!-- 介绍 lexsort() 函数 -->
+<ul>
+<li><code>lexsort()</code>：对多个键进行字典序排序（<em>最后</em>一个数组是主键）：</li>
+</ul>
+<div id="7ca733d3" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>first_name <span class="op">=</span> np.array([<span class="st">'Bob'</span>, <span class="st">'Jane'</span>, <span class="st">'Steve'</span>, <span class="st">'Bill'</span>, <span class="st">'Barbara'</span>])  <span class="co"># 创建一个包含名字的数组</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>last_name <span class="op">=</span> np.array([<span class="st">'Jones'</span>, <span class="st">'Arnold'</span>, <span class="st">'Arnold'</span>, <span class="st">'Jones'</span>, <span class="st">'Walters'</span>])  <span class="co"># 创建一个包含姓氏的数组</span></span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>sorter <span class="op">=</span> np.lexsort((first_name, last_name))  <span class="co"># 先按姓氏排序，再按名字排序</span></span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(<span class="bu">zip</span>(last_name[sorter], first_name[sorter])))  <span class="co"># 打印排序后的姓名</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[(np.str_('Arnold'), np.str_('Jane')), (np.str_('Arnold'), np.str_('Steve')), (np.str_('Jones'), np.str_('Bill')), (np.str_('Jones'), np.str_('Bob')), (np.str_('Walters'), np.str_('Barbara'))]</code></pre>
+</div>
+</div>
+</section>
+<section id="替代排序算法" class="level2">
+<h2 class="anchored" data-anchor-id="替代排序算法">替代排序算法</h2>
+<!-- 介绍不同的排序算法 -->
+<ul>
+<li>算法：<code>quicksort</code>（默认）、<code>mergesort</code>、<code>heapsort</code>、<code>timsort</code>。</li>
+<li><strong>稳定</strong>排序：保留相等元素的相对位置（<code>mergesort</code> 是稳定的）。</li>
+</ul>
+<div id="707d0574" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> np.array([<span class="st">'2:first'</span>, <span class="st">'2:second'</span>, <span class="st">'1:first'</span>, <span class="st">'1:second'</span>, <span class="st">'1:third'</span>])  <span class="co"># 创建一个字符串数组</span></span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>key <span class="op">=</span> np.array([<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>])  <span class="co"># 创建一个键数组</span></span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>indexer <span class="op">=</span> key.argsort(kind<span class="op">=</span><span class="st">'mergesort'</span>)  <span class="co"># 使用稳定的 mergesort 进行排序</span></span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(values.take(indexer))  <span class="co"># 使用索引对值数组进行排序</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['1:first' '1:second' '1:third' '2:first' '2:second']</code></pre>
+</div>
+</div>
+</section>
+<section id="数组排序方法表" class="level2">
+<h2 class="anchored" data-anchor-id="数组排序方法表">数组排序方法表</h2>
+<!-- 总结各种排序算法的表格 -->
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>种类</th>
+<th>速度</th>
+<th>稳定性</th>
+<th>工作空间</th>
+<th>最坏情况</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>‘quicksort’</td>
+<td>1</td>
+<td>否</td>
+<td>0</td>
+<td>O(n^2)</td>
+</tr>
+<tr class="even">
+<td>‘mergesort’</td>
+<td>2</td>
+<td>是</td>
+<td>~n/2</td>
+<td>O(n log n)</td>
+</tr>
+<tr class="odd">
+<td>‘heapsort’</td>
+<td>3</td>
+<td>否</td>
+<td>0</td>
+<td>O(n log n)</td>
+</tr>
+<tr class="even">
+<td>‘timsort’</td>
+<td>4</td>
+<td>是</td>
+<td>~n/2</td>
+<td>O(n log n)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>注意：<code>timsort</code> 也是稳定的，并且通常非常高效。</li>
+</ul>
+</section>
+<section id="部分排序数组" class="level2">
+<h2 class="anchored" data-anchor-id="部分排序数组">部分排序数组</h2>
+<!-- 介绍 partition() 和 argpartition() 函数 -->
+<ul>
+<li><code>numpy.partition</code>, <code>np.argpartition</code>：围绕第 k 个最小元素进行分区。</li>
+</ul>
+<div id="82c57aae" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">12345</span>)  <span class="co"># 创建一个随机数生成器</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal(<span class="dv">20</span>)  <span class="co"># 创建一个包含 20 个标准正态分布元素的数组</span></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>np.partition(arr, <span class="dv">3</span>)  <span class="co"># 前 3 个是最小的（未排序）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<pre><code>array([-1.95286306, -1.42382504, -1.3677927 , -1.25666813, -0.87066174,
+       -0.75938718, -0.74088465, -0.46695317, -0.25917323, -0.07534331,
+       -0.06068952,  0.36105811,  0.57585751,  0.6488928 ,  0.78884434,
+        0.90219827,  0.96849691,  1.26372846,  1.39897899,  2.34740965])</code></pre>
+</div>
+</div>
+<ul>
+<li><code>np.argpartition</code> 返回索引：</li>
+</ul>
+<div id="68fd2834" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>indices <span class="op">=</span> np.argpartition(arr, <span class="dv">3</span>)  <span class="co"># 获取部分排序的索引</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>arr.take(indices)  <span class="co"># 部分排序</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="44">
+<pre><code>array([-1.95286306, -1.42382504, -1.3677927 , -1.25666813, -0.87066174,
+       -0.75938718, -0.74088465, -0.46695317, -0.25917323, -0.07534331,
+       -0.06068952,  0.36105811,  0.57585751,  0.6488928 ,  0.78884434,
+        0.90219827,  0.96849691,  1.26372846,  1.39897899,  2.34740965])</code></pre>
+</div>
+</div>
+</section>
+<section id="numpy.searchsorted查找元素" class="level2">
+<h2 class="anchored" data-anchor-id="numpy.searchsorted查找元素"><code>numpy.searchsorted</code>：查找元素 🔎</h2>
+<!-- 介绍 searchsorted() 函数 -->
+<ul>
+<li><code>searchsorted</code>：在排序数组上进行二分查找；返回插入索引。</li>
+</ul>
+<div id="352bfb82" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">15</span>])  <span class="co"># 创建一个排序数组</span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.searchsorted(<span class="dv">9</span>))   <span class="co"># 在哪里插入 9？</span></span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.searchsorted([<span class="dv">0</span>, <span class="dv">8</span>, <span class="dv">11</span>, <span class="dv">16</span>]))  <span class="co"># 查找多个值的插入位置</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>3
+[0 3 3 5]</code></pre>
+</div>
+</div>
+<ul>
+<li><code>side='right'</code> 更改相等值的行为。</li>
+</ul>
+</section>
+<section id="searchsorted-示例分箱" class="level2">
+<h2 class="anchored" data-anchor-id="searchsorted-示例分箱"><code>searchsorted</code> 示例：分箱</h2>
+<!-- 使用 searchsorted() 进行分箱的示例 -->
+<div id="1d919599" class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.floor(rng.uniform(<span class="dv">0</span>, <span class="dv">10000</span>, size<span class="op">=</span><span class="dv">50</span>))  <span class="co"># 生成 50 个 0 到 10000 之间的随机整数</span></span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">1000</span>, <span class="dv">5000</span>, <span class="dv">10000</span>])  <span class="co"># 定义分箱边界</span></span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> bins.searchsorted(data)  <span class="co"># 对每个数据点进行分箱</span></span>
+<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(labels)  <span class="co"># 打印每个数据点所属的箱子标签</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[2 3 3 3 3 4 3 3 2 4 4 4 4 4 4 4 4 4 3 3 3 4 3 4 3 3 3 3 1 4 3 2 4 3 3 3 3
+ 3 3 3 3 3 3 3 3 3 3 3 4 3]</code></pre>
+</div>
+</div>
+<ul>
+<li>与 pandas 的 <code>groupby</code> 结合使用以获取箱子统计信息。</li>
+</ul>
+</section>
+<section id="内存映射文件" class="level2">
+<h2 class="anchored" data-anchor-id="内存映射文件">内存映射文件 💾</h2>
+<!-- 介绍内存映射文件的概念 -->
+<ul>
+<li><strong>内存映射文件</strong>：与磁盘上的二进制数据交互，就像它在内存中一样。</li>
+<li><code>memmap</code>：NumPy 的类似 ndarray 的对象。读取/写入段，而无需加载整个文件。</li>
+<li>使用 <code>np.memmap</code> 创建：指定路径、dtype、形状、模式：</li>
+</ul>
+<div id="072bf48a" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>mmap <span class="op">=</span> np.memmap(<span class="st">'mymmap'</span>, dtype<span class="op">=</span><span class="st">'float64'</span>, mode<span class="op">=</span><span class="st">'w+'</span>,</span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>                 shape<span class="op">=</span>(<span class="dv">10000</span>, <span class="dv">10000</span>))  <span class="co"># 创建一个内存映射文件</span></span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mmap)  <span class="co"># 打印内存映射对象</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ ...
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]
+ [0. 0. 0. ... 0. 0. 0.]]</code></pre>
+</div>
+</div>
+</section>
+<section id="内存映射文件续" class="level2">
+<h2 class="anchored" data-anchor-id="内存映射文件续">内存映射文件（续）</h2>
+<!-- 内存映射文件的切片和写入操作 -->
+<ul>
+<li>切片返回磁盘上的<em>视图</em>：</li>
+</ul>
+<div id="ee6b9974" class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>section <span class="op">=</span> mmap[:<span class="dv">5</span>]  <span class="co"># 前 5 行</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>分配缓冲区在内存中；使用 <code>flush()</code> 写入：</li>
+</ul>
+<div id="dee6d6ac" class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>section[:] <span class="op">=</span> rng.standard_normal((<span class="dv">5</span>, <span class="dv">10000</span>))  <span class="co"># 将数据写入切片</span></span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>mmap.flush()  <span class="co"># 将更改刷新到磁盘</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>打开现有映射仍然需要 dtype 和形状：</li>
+</ul>
+<div id="dab094ba" class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>mmap <span class="op">=</span> np.memmap(<span class="st">'mymmap'</span>, dtype<span class="op">=</span><span class="st">'float64'</span>, shape<span class="op">=</span>(<span class="dv">10000</span>, <span class="dv">10000</span>))  <span class="co"># 打开现有的内存映射文件</span></span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mmap)  <span class="co"># 打印内存映射对象</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[-0.90738246 -1.09542531  0.00714569 ...  0.27528689 -1.164065
+   0.85209933]
+ [-0.01030507 -0.06457559 -1.06146483 ... -1.10033268  0.25046196
+   0.58323566]
+ [ 0.45830978  1.2992377   1.71366921 ...  0.86913463 -0.78886549
+  -0.24314164]
+ ...
+ [ 0.          0.          0.         ...  0.          0.
+   0.        ]
+ [ 0.          0.          0.         ...  0.          0.
+   0.        ]
+ [ 0.          0.          0.         ...  0.          0.
+   0.        ]]</code></pre>
+</div>
+</div>
+<ul>
+<li><code>memmap</code> 适用于结构化数据类型。</li>
+</ul>
+</section>
+<section id="性能提示" class="level2">
+<h2 class="anchored" data-anchor-id="性能提示">性能提示 🚀</h2>
+<!-- 提高 NumPy 代码性能的建议 -->
+<ul>
+<li><strong>关键</strong>：用 NumPy 数组/布尔运算替换循环/条件语句。</li>
+<li>使用广播。</li>
+<li>使用数组视图（切片）– 避免复制。</li>
+<li>使用 ufunc 和 ufunc 方法。</li>
+<li>如果需要，考虑 C、FORTRAN 或 Cython。</li>
+</ul>
+</section>
+<section id="连续内存" class="level2">
+<h2 class="anchored" data-anchor-id="连续内存">连续内存 🧠</h2>
+<!-- 介绍连续内存的概念及其对性能的影响 -->
+<ul>
+<li>内存布局影响性能。</li>
+<li><strong>连续</strong>：元素按顺序存储（C 或 FORTRAN）。</li>
+<li>访问连续块最快（CPU 缓存）。</li>
+<li>NumPy 数组默认为 C 连续；转置是 Fortran 连续的。</li>
+<li>使用 <code>flags</code> 检查：</li>
+</ul>
+<div id="83e1f274" class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>arr_c <span class="op">=</span> np.ones((<span class="dv">100</span>, <span class="dv">10000</span>), order<span class="op">=</span><span class="st">'C'</span>)  <span class="co"># 创建一个 C 连续数组</span></span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>arr_f <span class="op">=</span> np.ones((<span class="dv">100</span>, <span class="dv">10000</span>), order<span class="op">=</span><span class="st">'F'</span>)  <span class="co"># 创建一个 Fortran 连续数组</span></span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr_c.flags)  <span class="co"># C_CONTIGUOUS: True, F_CONTIGUOUS: False</span></span>
+<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr_f.flags)  <span class="co"># C_CONTIGUOUS: False, F_CONTIGUOUS: True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  C_CONTIGUOUS : True
+  F_CONTIGUOUS : False
+  OWNDATA : True
+  WRITEABLE : True
+  ALIGNED : True
+  WRITEBACKIFCOPY : False
+
+  C_CONTIGUOUS : False
+  F_CONTIGUOUS : True
+  OWNDATA : True
+  WRITEABLE : True
+  ALIGNED : True
+  WRITEBACKIFCOPY : False
+</code></pre>
+</div>
+</div>
+</section>
+<section id="连续内存续" class="level2">
+<h2 class="anchored" data-anchor-id="连续内存续">连续内存（续）</h2>
+<!-- 连续内存对性能的影响以及如何创建特定顺序的数组 -->
+<ul>
+<li>对 C 连续数组的行求和<em>通常</em>更快。</li>
+<li>如果需要，使用 <code>copy()</code> 和 <code>'C'</code> 或 <code>'F'</code>：</li>
+</ul>
+<div id="db37559d" class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>arr_f.copy(<span class="st">'C'</span>).flags  <span class="co"># 将 Fortran 连续数组复制为 C 连续数组</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="52">
+<pre><code>  C_CONTIGUOUS : True
+  F_CONTIGUOUS : False
+  OWNDATA : True
+  WRITEABLE : True
+  ALIGNED : True
+  WRITEBACKIFCOPY : False</code></pre>
+</div>
+</div>
+<ul>
+<li><em>重要</em>：视图<em>不保证</em>连续；检查 <code>flags.contiguous</code>。</li>
+</ul>
+</section>
+<section id="总结" class="level2">
+<h2 class="anchored" data-anchor-id="总结">总结 📚</h2>
+<ul>
+<li><code>ndarray</code> 内部结构：<code>dtype</code>、形状、跨度。</li>
+<li>数组操作：重塑、连接、拆分、重复。</li>
+<li>广播机制。</li>
+<li>高级 <code>ufunc</code> 方法。</li>
+<li>结构化数组。</li>
+<li>排序（间接、部分）。</li>
+<li>内存映射文件。</li>
+<li>性能：连续内存。</li>
+<li>Numba！</li>
+</ul>
+</section>
+<section id="思考与讨论" class="level2">
+<h2 class="anchored" data-anchor-id="思考与讨论">思考与讨论 💭</h2>
+<ul>
+<li><em>您</em>如何应用这些技术？</li>
+<li>内存映射文件在什么时候有用？</li>
+<li>什么时候使用 Numba？</li>
+<li>结构化数组 vs.&nbsp;pandas DataFrame？</li>
+<li>排序算法选择？</li>
+<li>向量化操作 vs.&nbsp;循环？</li>
+<li>进一步探索 Numba！</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/qiufei\.github\.io\/web-slide-pandas3ed");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>🔋<a href="https://posit.co"><img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" class="img-fluid" alt="Posit" width="65"></a></p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ 邱飞 © 2025
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://beian.miit.gov.cn">
+<p>浙ICP备 2024072710号-1</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33021202002511">
+<p>浙公网安备 33021202002511号</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:hfutqiufei@163.com">
+      <i class="bi bi-envelope-at-fill" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

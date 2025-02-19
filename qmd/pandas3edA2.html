@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Python for Data Analysis</title>
+<title>pandas3eda2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -131,380 +131,269 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Python for Data Analysis</h1>
-<p class="subtitle lead">More on the IPython System</p>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
 
 
 <section id="introduction-beyond-the-basics" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-beyond-the-basics">Introduction: Beyond the Basics 🚀</h2>
-<div class="incremental">
-<ul class="incremental">
-<li>In previous chapters, we touched upon the basics of the IPython shell and Jupyter notebooks.</li>
-<li>Now, we’ll dive deeper into IPython’s functionalities, useful both in console and Jupyter.</li>
-<li>Think of IPython as your <em>enhanced</em> Python interpreter, a powerful tool for interactive computing and data analysis.</li>
-<li>This appendix supplements your learning material, like a power-up in a video game! 🎮</li>
+<ul>
+<li>We’ve previously covered the basics of the IPython shell and Jupyter notebooks.</li>
+<li>Now, we’ll delve into IPython’s advanced functionalities, useful in both console and Jupyter environments.</li>
+<li>Consider IPython as your <em>enhanced</em> Python interpreter – a powerful tool for interactive computing and data analysis.</li>
+<li>This section serves as a supplementary resource, enhancing your learning like a power-up in a video game! 🎮</li>
 </ul>
-</div>
 </section>
 <section id="terminal-keyboard-shortcuts" class="level2">
 <h2 class="anchored" data-anchor-id="terminal-keyboard-shortcuts">Terminal Keyboard Shortcuts ⌨️</h2>
 <ul>
-<li>IPython boasts numerous keyboard shortcuts for efficient navigation and command history interaction.</li>
-<li>Familiar to users of Emacs or Unix bash shell.</li>
+<li>IPython offers many keyboard shortcuts for efficient navigation and command history.</li>
+<li>These are similar to those found in Emacs or the Unix bash shell.</li>
 <li>Mastering these shortcuts will significantly boost your productivity! ⚡</li>
 </ul>
 </section>
-<section id="terminal-keyboard-shortcuts-continued" class="level2">
-<h2 class="anchored" data-anchor-id="terminal-keyboard-shortcuts-continued">Terminal Keyboard Shortcuts (Continued)</h2>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>The below table lists some of standard IPython keyboard shortcuts.</p>
-</div>
-</div>
-</div>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 26%">
-<col style="width: 73%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Keyboard Shortcut</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><code>Ctrl-P</code> or Up Arrow</td>
-<td style="text-align: left;">Search <em>backward</em> in command history (matching current text)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>Ctrl-N</code> or Down Arrow</td>
-<td style="text-align: left;">Search <em>forward</em> in command history (matching current text)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>Ctrl-R</code></td>
-<td style="text-align: left;">Readline-style reverse history search (partial matching)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>Ctrl-Shift-V</code></td>
-<td style="text-align: left;">Paste text from clipboard</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>Ctrl-C</code></td>
-<td style="text-align: left;"><strong>Interrupt</strong> currently executing code 🛑</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>Ctrl-A</code></td>
-<td style="text-align: left;">Move cursor to <em>beginning</em> of line</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>Ctrl-E</code></td>
-<td style="text-align: left;">Move cursor to <em>end</em> of line</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>Ctrl-K</code></td>
-<td style="text-align: left;">Delete text from cursor to end of line</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>Ctrl-U</code></td>
-<td style="text-align: left;">Discard all text on current line</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>Ctrl-F</code></td>
-<td style="text-align: left;">Move cursor forward one character</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>Ctrl-B</code></td>
-<td style="text-align: left;">Move cursor backward one character</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>Ctrl-L</code></td>
-<td style="text-align: left;">Clear screen 💨</td>
-</tr>
-</tbody>
-</table>
+<section id="terminal-keyboard-shortcuts-navigation" class="level2">
+<h2 class="anchored" data-anchor-id="terminal-keyboard-shortcuts-navigation">Terminal Keyboard Shortcuts: Navigation</h2>
+<ul>
+<li><code>Ctrl-A</code>: Move cursor to the <em>beginning</em> of the line.</li>
+<li><code>Ctrl-E</code>: Move cursor to the <em>end</em> of the line.</li>
+<li><code>Ctrl-F</code>: Move cursor <em>forward</em> one character.</li>
+<li><code>Ctrl-B</code>: Move cursor <em>backward</em> one character.</li>
+</ul>
+</section>
+<section id="terminal-keyboard-shortcuts-command-history" class="level2">
+<h2 class="anchored" data-anchor-id="terminal-keyboard-shortcuts-command-history">Terminal Keyboard Shortcuts: Command History</h2>
+<ul>
+<li><code>Ctrl-P</code> or Up Arrow: Search <em>backward</em> in command history (matching current text).</li>
+<li><code>Ctrl-N</code> or Down Arrow: Search <em>forward</em> in command history (matching current text).</li>
+<li><code>Ctrl-R</code>: Readline-style reverse history search (partial matching).</li>
+</ul>
+</section>
+<section id="terminal-keyboard-shortcuts-editing-and-control" class="level2">
+<h2 class="anchored" data-anchor-id="terminal-keyboard-shortcuts-editing-and-control">Terminal Keyboard Shortcuts: Editing and Control</h2>
+<ul>
+<li><code>Ctrl-Shift-V</code>: Paste text from the clipboard.</li>
+<li><code>Ctrl-C</code>: <strong>Interrupt</strong> currently executing code. 🛑</li>
+<li><code>Ctrl-K</code>: Delete text from the cursor to the end of the line.</li>
+<li><code>Ctrl-U</code>: Discard all text on the current line.</li>
+<li><code>Ctrl-L</code>: Clear the screen. 💨</li>
+</ul>
 </section>
 <section id="visualizing-shortcuts" class="level2">
 <h2 class="anchored" data-anchor-id="visualizing-shortcuts">Visualizing Shortcuts 🖼️</h2>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>This figure illustrates some of the keyboard shortcuts in action within the IPython shell.</p>
-</div>
-</div>
-</div>
-<img src="images/B-1.png" width="75%" height="75%" style="display: block; margin: 0 auto;">
 <ul>
-<li><strong>C-b, C-f:</strong> Move cursor back/forward (like Ctrl-B, Ctrl-F).</li>
-<li><strong>C-a, C-e:</strong> Jump to start/end of line (like Ctrl-A, Ctrl-E).</li>
-<li><strong>C-k:</strong> Delete text to end of line (like Ctrl-K).</li>
-<li><strong>C-u:</strong> Delete entire line (like Ctrl-U).</li>
-<li>The shortcuts marked on the <code>a_variable</code> are operations on the text.</li>
+<li><p>Here’s an illustration of some keyboard shortcuts in the IPython shell.</p></li>
+<li><p><strong>C-b, C-f:</strong> Correspond to Ctrl-B and Ctrl-F for cursor movement.</p></li>
+<li><p><strong>C-a, C-e:</strong> Correspond to Ctrl-A and Ctrl-E for moving to the start/end of a line.</p></li>
+<li><p><strong>C-k:</strong> Corresponds to Ctrl-K for deleting text to the end of the line.</p></li>
+<li><p><strong>C-u:</strong> Corresponds to Ctrl-U for deleting the entire line.</p></li>
+<li><p>Operations on <code>a_variable</code> show text manipulations.</p></li>
+<li><p>Note: Jupyter notebooks have <em>their own</em> set of shortcuts. Explore Jupyter’s integrated help!</p></li>
 </ul>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Jupyter notebooks have their <em>own</em> set of shortcuts. Explore Jupyter’s integrated help!</p>
-</div>
-</div>
-</div>
 </section>
 <section id="magic-commands-ipythons-superpowers" class="level2">
 <h2 class="anchored" data-anchor-id="magic-commands-ipythons-superpowers">Magic Commands: IPython’s Superpowers 🧙‍♂️</h2>
 <ul>
-<li><strong>Magic commands</strong> are special commands <em>unique</em> to IPython, <em>not</em> built-in Python.</li>
-<li>Prefixed with the percent symbol (<code>%</code>).</li>
-<li>They streamline common tasks and allow you to control IPython’s behavior. Think of them as “shortcuts” for IPython itself!</li>
+<li><strong>Magic commands</strong> are special commands <em>unique</em> to IPython, <em>not</em> built-in Python functions.</li>
+<li>They are prefixed with the percent symbol (<code>%</code>).</li>
+<li>These commands streamline common tasks and allow you to control IPython’s behavior. Think of them as “shortcuts” for IPython itself!</li>
 </ul>
 </section>
-<section id="example-timeit" class="level2">
-<h2 class="anchored" data-anchor-id="example-timeit">Example: <code>%timeit</code> ⏱️</h2>
+<section id="example-timeit---measuring-execution-time" class="level2">
+<h2 class="anchored" data-anchor-id="example-timeit---measuring-execution-time">Example: <code>%timeit</code> ⏱️ - Measuring Execution Time</h2>
 <ul>
-<li><code>%timeit</code> measures the execution time of a Python statement. Very useful for performance analysis!</li>
+<li><code>%timeit</code> measures the execution time of a Python statement. This is very useful for performance analysis!</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div id="8ceadd0f" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.random.standard_normal((<span class="dv">100</span>, <span class="dv">100</span>))</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit np.dot(a, a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>46.3 μs ± 10.5 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)</code></pre>
+</div>
+</div>
 <ul>
 <li>The output shows the <em>average</em> execution time and standard deviation over multiple runs.</li>
-<li>In the result <code>92.5 µs ± 3.43 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)</code>, <code>µs</code> means microsecond.</li>
+<li>In the result, such as <code>92.5 µs ± 3.43 µs per loop</code>, <code>µs</code> stands for microseconds.</li>
 </ul>
 </section>
-<section id="exploring-magic-commands" class="level2">
-<h2 class="anchored" data-anchor-id="exploring-magic-commands">Exploring Magic Commands ❓</h2>
+<section id="exploring-magic-commands---getting-help" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-magic-commands---getting-help">Exploring Magic Commands ❓ - Getting Help</h2>
 <ul>
 <li>Use <code>?</code> after a magic command to view its “command-line” options (like a help manual).</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>debug?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<div id="24609af3" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>debug?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-body-container">
-<p>This will show the detailed usage of the <code>%debug</code> command, including how to activate the interactive debugger, set breakpoints, and use it in post-mortem mode.</p>
-</div>
-</div>
-</div>
+<ul>
+<li>This displays detailed usage of the <code>%debug</code> command, including debugger activation, breakpoints, and post-mortem usage.</li>
+</ul>
 </section>
 <section id="automagic-magic-without-the" class="level2">
 <h2 class="anchored" data-anchor-id="automagic-magic-without-the"><code>automagic</code>: Magic Without the <code>%</code> ✨</h2>
 <ul>
-<li><code>automagic</code> lets you use magic commands <em>without</em> the <code>%</code> prefix, as long as no variable has the same name.</li>
-<li>Toggle it on/off with <code>%automagic</code>.</li>
+<li><code>automagic</code> allows you to use magic commands <em>without</em> the <code>%</code> prefix, as long as no variable shares the same name.</li>
+<li>You can toggle it on/off using <code>%automagic</code>.</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>automagic  <span class="co"># Turns automagic on or off</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pwd         <span class="co"># Equivalent to %pwd (if automagic is on and 'pwd' isn't a variable)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="97c5d3cf" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>automagic  <span class="co"># Turns automagic on or off</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pwd         <span class="co"># Equivalent to %pwd (if automagic is on and 'pwd' isn't a variable)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="assigning-magic-command-output" class="level2">
 <h2 class="anchored" data-anchor-id="assigning-magic-command-output">Assigning Magic Command Output</h2>
 <ul>
-<li>Some magic commands behave like functions; you can assign their output to variables.</li>
+<li>Some magic commands behave like functions, allowing you to assign their output to variables.</li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>directory <span class="op">=</span> <span class="op">%</span>pwd  <span class="co"># Stores the current working directory in 'directory'</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(directory)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="b1625831" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>directory <span class="op">=</span> <span class="op">%</span>pwd  <span class="co"># Stores the current working directory in 'directory'</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(directory)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="essential-magic-commands" class="level2">
-<h2 class="anchored" data-anchor-id="essential-magic-commands">Essential Magic Commands 📜</h2>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Here are some frequently used IPython magic commands:</p>
-</div>
-</div>
-</div>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 17%">
-<col style="width: 82%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Command</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><code>%quickref</code></td>
-<td style="text-align: left;">Display the IPython Quick Reference Card</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>%magic</code></td>
-<td style="text-align: left;">Display detailed documentation for <em>all</em> available magic commands</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>%debug</code></td>
-<td style="text-align: left;">Enter the interactive debugger at the <em>last exception traceback</em></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>%hist</code></td>
-<td style="text-align: left;">Print command input history (with optional output)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>%pdb</code></td>
-<td style="text-align: left;"><em>Automatically</em> enter debugger after <em>any</em> exception</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>%paste</code></td>
-<td style="text-align: left;">Execute preformatted Python code from clipboard</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>%cpaste</code></td>
-<td style="text-align: left;">Open a special prompt for manually pasting code</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>%reset</code></td>
-<td style="text-align: left;">Delete all variables/names in the interactive namespace</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>%page OBJECT</code></td>
-<td style="text-align: left;">Pretty-print an object and display it through a pager</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>%run script.py</code></td>
-<td style="text-align: left;">Run a Python script <em>inside</em> IPython</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>%prun statement</code></td>
-<td style="text-align: left;">Execute a statement with cProfile and report profiler output</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>%time statement</code></td>
-<td style="text-align: left;">Report the execution time of a single statement.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>%timeit statement</code></td>
-<td style="text-align: left;">Run a statement multiple times to compute an average execution time; useful for timing code with very short execution time.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>%who</code>, <code>%who_ls</code>, <code>%whos</code></td>
-<td style="text-align: left;">Display variables defined in interactive namespace, with varying levels of information/verbosity.</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>%xdel variable</code></td>
-<td style="text-align: left;">Delete a variable and attempt to clear any references to the object in the IPython internals.</td>
-</tr>
-</tbody>
-</table>
+<section id="essential-magic-commands---quick-reference" class="level2">
+<h2 class="anchored" data-anchor-id="essential-magic-commands---quick-reference">Essential Magic Commands 📜 - Quick Reference</h2>
 <ul>
-<li>Press <code>q</code> to exit the <code>%quickref</code> or <code>%magic</code> pager.</li>
+<li><code>%quickref</code>: Display the IPython Quick Reference Card.</li>
 </ul>
 </section>
-<section id="the-run-command" class="level2">
-<h2 class="anchored" data-anchor-id="the-run-command">The <code>%run</code> Command 🏃</h2>
+<section id="essential-magic-commands---documentation" class="level2">
+<h2 class="anchored" data-anchor-id="essential-magic-commands---documentation">Essential Magic Commands 📜 - Documentation</h2>
+<ul>
+<li><code>%magic</code>: Display detailed documentation for <em>all</em> available magic commands.</li>
+</ul>
+</section>
+<section id="essential-magic-commands---debugging" class="level2">
+<h2 class="anchored" data-anchor-id="essential-magic-commands---debugging">Essential Magic Commands 📜 - Debugging</h2>
+<ul>
+<li><code>%debug</code>: Enter the interactive debugger at the <em>last exception traceback</em>.</li>
+<li><code>%pdb</code>: <em>Automatically</em> enter the debugger after <em>any</em> exception.</li>
+</ul>
+</section>
+<section id="essential-magic-commands---history" class="level2">
+<h2 class="anchored" data-anchor-id="essential-magic-commands---history">Essential Magic Commands 📜 - History</h2>
+<ul>
+<li><code>%hist</code>: Print command input history (with optional output).</li>
+</ul>
+</section>
+<section id="essential-magic-commands---code-execution" class="level2">
+<h2 class="anchored" data-anchor-id="essential-magic-commands---code-execution">Essential Magic Commands 📜 - Code Execution</h2>
+<ul>
+<li><code>%paste</code>: Execute preformatted Python code from the clipboard.</li>
+<li><code>%cpaste</code>: Open a special prompt for manually pasting code.</li>
+<li><code>%run script.py</code>: Run a Python script <em>inside</em> IPython.</li>
+<li><code>%prun statement</code>: Execute a statement with cProfile and report the profiler output.</li>
+<li><code>%time statement</code>: Report the execution time of single statement.</li>
+</ul>
+</section>
+<section id="essential-magic-commands---timing-and-profiling" class="level2">
+<h2 class="anchored" data-anchor-id="essential-magic-commands---timing-and-profiling">Essential Magic Commands 📜 - Timing and Profiling</h2>
+<ul>
+<li><code>%timeit statement</code>: Measures average execution time accurately.</li>
+<li><code>%prun statement</code>: Execute a statement with cProfile and report profiler output.</li>
+</ul>
+</section>
+<section id="essential-magic-commands---namespace-management" class="level2">
+<h2 class="anchored" data-anchor-id="essential-magic-commands---namespace-management">Essential Magic Commands 📜 - Namespace Management</h2>
+<ul>
+<li><p><code>%reset</code>: Delete all variables/names in the interactive namespace.</p></li>
+<li><p><code>%page OBJECT</code>: Pretty-print an object and display it through a pager.</p></li>
+<li><p><code>%who</code>, <code>%who_ls</code>, <code>%whos</code>: Display variables in the namespace, with varying levels of detail.</p></li>
+<li><p><code>%xdel variable</code>: Delete a variable and attempt to clear any of it’s references.</p></li>
+<li><p>Press <code>q</code> to exit the <code>%quickref</code> or <code>%magic</code> pager.</p></li>
+</ul>
+</section>
+<section id="the-run-command---executing-scripts" class="level2">
+<h2 class="anchored" data-anchor-id="the-run-command---executing-scripts">The <code>%run</code> Command 🏃 - Executing Scripts</h2>
 <ul>
 <li>Executes a Python script within your IPython session.</li>
-<li>The script runs in an <em>empty namespace</em> (no prior imports or variables).</li>
+<li>The script runs in an <em>empty namespace</em> (no prior imports or variables initially).</li>
 <li>Variables, functions, and imports from the script become accessible in your IPython shell <em>after</em> execution.</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In a file named 'my_script.py':</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_function(x):</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">*</span> <span class="dv">2</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> my_function(<span class="dv">5</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># In IPython:</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>run my_script.py</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)  <span class="co"># Output: 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="649d91b5" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In a file named 'my_script.py':</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_function(x):</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">*</span> <span class="dv">2</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> my_function(<span class="dv">5</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># In IPython:</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>run my_script.py</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)  <span class="co"># Output: 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="run--i-accessing-existing-variables" class="level2">
 <h2 class="anchored" data-anchor-id="run--i-accessing-existing-variables"><code>%run -i</code>: Accessing Existing Variables</h2>
 <ul>
-<li><code>%run -i</code> lets the script access variables <em>already defined</em> in your IPython session.</li>
+<li><code>%run -i</code> allows the script to access variables <em>already defined</em> in your IPython session.</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In IPython:</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>my_var <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># In 'script_with_access.py':</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_var <span class="op">*</span> <span class="dv">3</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Back in IPython:</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>run <span class="op">-</span>i script_with_access.py  <span class="co"># Output: 30</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="018672aa" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In IPython:</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>my_var <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># In 'script_with_access.py':</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_var <span class="op">*</span> <span class="dv">3</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Back in IPython:</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>run <span class="op">-</span>i script_with_access.py  <span class="co"># Output: 30</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="load-importing-scripts-into-cells-jupyter" class="level2">
 <h2 class="anchored" data-anchor-id="load-importing-scripts-into-cells-jupyter"><code>%load</code>: Importing Scripts into Cells (Jupyter)</h2>
 <ul>
 <li>In Jupyter notebooks, <code>%load</code> imports a script <em>directly into a code cell</em>.</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %load my_script.py  # This will be replaced by the script's content</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="8dffbf13" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %load my_script.py  # This will be replaced by the script's content</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ul>
-<li>Then, the code cell content will be:</li>
+<li>Then, the code cell’s content will be:</li>
+<li></li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_function(x):</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">*</span> <span class="dv">2</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> my_function(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="396b2f8c" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_function(x):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">*</span> <span class="dv">2</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> my_function(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="interrupting-running-code" class="level2">
 <h2 class="anchored" data-anchor-id="interrupting-running-code">Interrupting Running Code ✋</h2>
 <ul>
-<li>Press <code>Ctrl-C</code> to interrupt running code (whether from <code>%run</code> or a long command).</li>
-<li>Raises a <code>KeyboardInterrupt</code>, stopping most Python programs immediately.</li>
-<li>Sometimes, with compiled extensions, <code>Ctrl-C</code> might not work instantly.</li>
+<li><p>Press <code>Ctrl-C</code> to interrupt running code (whether from <code>%run</code> or a long-running command).</p></li>
+<li><p>This raises a <code>KeyboardInterrupt</code>, stopping most Python programs immediately.</p></li>
+<li><p>Note: With compiled extensions, <code>Ctrl-C</code> might not always work instantly.</p></li>
+<li><p>If <code>Ctrl-C</code> doesn’t immediately stop execution (especially when compiled extensions are involved), you may need to use your operating system’s tools (e.g., Task Manager on Windows, <code>kill</code> on Linux) to forcibly terminate the process.</p></li>
 </ul>
-<div class="callout callout-style-simple callout-warning">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>If <code>Ctrl-C</code> doesn’t immediately stop execution (especially when compiled extensions are involved), you may need to forcibly terminate the Python process using your operating system’s tools (e.g., Task Manager on Windows, <code>kill</code> on Linux).</p>
-</div>
-</div>
-</div>
 </section>
 <section id="executing-code-from-the-clipboard" class="level2">
 <h2 class="anchored" data-anchor-id="executing-code-from-the-clipboard">Executing Code from the Clipboard 📋</h2>
 <ul>
-<li><code>%paste</code> and <code>%cpaste</code> are handy for running code copied from elsewhere (but not needed in Jupyter, where direct pasting works).</li>
+<li><code>%paste</code> and <code>%cpaste</code> are useful for running code copied from elsewhere (less relevant in Jupyter, where direct pasting is supported).</li>
 <li><code>%paste</code> executes the clipboard content as a <em>single block</em>.</li>
-<li><code>%cpaste</code> opens a <em>special prompt</em>, letting you paste multiple blocks and edit before execution. Press Ctrl-D in the prompt to execute, and press Ctrl-C to exit the prompt.</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code on clipboard:</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">2</span>:</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"x is greater than 2"</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># In IPython:</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>paste  <span class="co"># Executes the code immediately</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="701e10fd" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code on clipboard:</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">2</span>:</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"x is greater than 2"</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># In IPython:</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>paste  <span class="co"># Executes the code immediately</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="executing-code-from-the-clipboard-cpaste" class="level2">
+<h2 class="anchored" data-anchor-id="executing-code-from-the-clipboard-cpaste">Executing Code from the Clipboard: <code>%cpaste</code></h2>
+<ul>
+<li><code>%cpaste</code> opens a special prompt that allows pasting multiple blocks of code and editing before execution.</li>
+<li>Press Ctrl-D in the prompt to execute.</li>
+<li>Press Ctrl-C to exit the prompt.</li>
+</ul>
 </section>
 <section id="command-history-your-ipython-memory" class="level2">
 <h2 class="anchored" data-anchor-id="command-history-your-ipython-memory">Command History: Your IPython Memory 🧠</h2>
 <ul>
-<li>IPython keeps a small database of your executed commands. This is <em>incredibly</em> useful for:
+<li>IPython maintains a database of executed commands. This is valuable for:
 <ul>
 <li>Searching and reusing past commands.</li>
 <li>Persisting history <em>between sessions</em>.</li>
@@ -517,100 +406,180 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><strong>Up Arrow (<code>Ctrl-P</code>):</strong> Search <em>backward</em> in history, matching typed text.</li>
 <li><strong>Down Arrow (<code>Ctrl-N</code>):</strong> Search <em>forward</em> in history.</li>
-<li><strong><code>Ctrl-R</code>:</strong> <em>Reverse-i-search</em> (like in bash). Type characters, and it finds matching commands. Press Ctrl-R multiple times to cycle.</li>
+<li><strong><code>Ctrl-R</code>:</strong> <em>Reverse-i-search</em> (like in bash). Type characters to find matching commands. Press Ctrl-R repeatedly to cycle through matches.</li>
 </ul>
 </section>
 <section id="input-and-output-variables" class="level2">
 <h2 class="anchored" data-anchor-id="input-and-output-variables">Input and Output Variables ↩︎️</h2>
 <ul>
-<li>IPython stores input and output:
+<li>IPython stores both input and output for easy access:
 <ul>
-<li><code>_</code> (one underscore): <em>Previous</em> output.</li>
-<li><code>__</code> (two underscores): <em>Second-to-last</em> output.</li>
-<li><code>_iX</code>: Input of line <code>X</code> (e.g., <code>_i5</code> for input on line 5) - stored as a <em>string</em>.</li>
-<li><code>_X</code>: Output of line <code>X</code>.</li>
+<li><code>_</code> (one underscore): Refers to the <em>previous</em> output.</li>
+<li><code>__</code> (two underscores): Refers to the <em>second-to-last</em> output.</li>
+<li><code>_iX</code>: Represents the <em>input</em> of line <code>X</code> as a <em>string</em> (e.g., <code>_i5</code> for input on line 5).</li>
+<li><code>_X</code>: Represents the <em>output</em> of line <code>X</code>.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span>      <span class="co"># Output: 4</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> _  <span class="co"># result is now 4</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(_i1)  <span class="co"># Prints the string "2 + 2"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="0d693309" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span>      <span class="co"># Output: 4</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> _  <span class="co"># result is now 4</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(_i1)  <span class="co"># Prints the string "2 + 2"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="working-with-history-hist-reset-xdel" class="level2">
-<h2 class="anchored" data-anchor-id="working-with-history-hist-reset-xdel">Working with History: <code>%hist</code>, <code>%reset</code>, <code>%xdel</code></h2>
+<section id="working-with-history-hist" class="level2">
+<h2 class="anchored" data-anchor-id="working-with-history-hist">Working with History: <code>%hist</code></h2>
 <ul>
-<li><code>%hist</code>: Prints input history (with or without line numbers).</li>
-<li><code>%reset</code>: Clears the interactive namespace (and optionally input/output caches).</li>
-<li><code>%xdel variable</code>: Removes a variable and tries to clear IPython’s internal references. Useful for memory management with large datasets.</li>
+<li><code>%hist</code>: Prints the input history, optionally with line numbers.</li>
 </ul>
-<div class="callout callout-style-simple callout-warning">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>IPython’s input/output history can keep large objects in memory even after you <code>del</code> them. Use <code>%xdel</code> and <code>%reset</code> carefully to avoid memory issues.</p>
-</div>
-</div>
-</div>
+</section>
+<section id="working-with-history-reset" class="level2">
+<h2 class="anchored" data-anchor-id="working-with-history-reset">Working with History: <code>%reset</code></h2>
+<ul>
+<li><code>%reset</code>: Clears the interactive namespace and, optionally, input/output caches.</li>
+</ul>
+</section>
+<section id="working-with-history-xdel" class="level2">
+<h2 class="anchored" data-anchor-id="working-with-history-xdel">Working with History: <code>%xdel</code></h2>
+<ul>
+<li><p><code>%xdel variable</code>: Removes a variable and attempts to clear IPython’s internal references to it. This is useful for memory management, especially with large datasets.</p></li>
+<li><p>IPython’s input/output history can keep large objects in memory even after you use <code>del</code>. Use <code>%xdel</code> and <code>%reset</code> carefully to mitigate memory issues.</p></li>
+</ul>
 </section>
 <section id="interacting-with-the-operating-system" class="level2">
 <h2 class="anchored" data-anchor-id="interacting-with-the-operating-system">Interacting with the Operating System 💻</h2>
 <ul>
-<li>IPython lets you interact with your OS <em>without leaving the shell</em>.</li>
-<li>Run shell commands, change directories, and capture command output.</li>
+<li>IPython enables interaction with your operating system <em>directly from the shell</em>.</li>
+<li>You can run shell commands, change directories, and capture command output.</li>
 </ul>
 </section>
 <section id="shell-commands-with" class="level2">
 <h2 class="anchored" data-anchor-id="shell-commands-with">Shell Commands with <code>!</code> 💥</h2>
 <ul>
-<li>Start a line with <code>!</code> to execute it as a shell command.</li>
+<li>Prefix a line with <code>!</code> to execute it as a shell command.</li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>ls  <span class="co"># Lists files in the current directory (Linux/macOS)</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span><span class="bu">dir</span> <span class="co"># Lists files (Windows)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="e02cbe8f" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>ls  <span class="co"># Lists files in the current directory (Linux/macOS)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span><span class="bu">dir</span> <span class="co"># Lists files (Windows)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>_quarto.yml     pandas3ed11cn.html   pandas3ed5cn.qmd
+array_archive.npz   pandas3ed11cn.qmd    pandas3ed6.html
+csv_mindex.csv      pandas3ed11cn_files  pandas3ed6.qmd
+datasets        pandas3ed12.html     pandas3ed6cn.html
+ex1.csv         pandas3ed12.qmd  pandas3ed6cn.qmd
+ex1.xlsx        pandas3ed12cn.html   pandas3ed7.html
+ex2.csv         pandas3ed12cn.qmd    pandas3ed7.qmd
+ex3.txt         pandas3ed13.html     pandas3ed7cn.html
+ex4.csv         pandas3ed13.qmd  pandas3ed7cn.qmd
+ex5.csv         pandas3ed13cn.html   pandas3ed8.qmd
+ex6.csv         pandas3ed13cn.qmd    pandas3ed8cn.html
+ex7.csv         pandas3ed1cn.html    pandas3ed8cn.qmd
+example.json        pandas3ed1cn.qmd     pandas3ed9.html
+examples        pandas3ed2.html  pandas3ed9.qmd
+figpath.png     pandas3ed2.qmd   pandas3ed9cn.html
+figpath.svg     pandas3ed2cn.html    pandas3ed9cn.qmd
+frame_pickle        pandas3ed2cn.qmd     pandas3ed9cn_files
+my.css          pandas3ed3.qmd   pandas3edA1.html
+mymmap          pandas3ed3cn.html    pandas3edA1.qmd
+out.csv         pandas3ed3cn.qmd     pandas3edA1cn.html
+pandas3ed1.html     pandas3ed4.html  pandas3edA1cn.qmd
+pandas3ed1.qmd      pandas3ed4.qmd   pandas3edA2.qmd
+pandas3ed10.html    pandas3ed4_files     pandas3edA2.quarto_ipynb
+pandas3ed10.qmd     pandas3ed4cn.html    pandas3edA2cn.html
+pandas3ed10cn.html  pandas3ed4cn.qmd     pandas3edA2cn.qmd
+pandas3ed10cn.qmd   pandas3ed4cn_files   some_array.npy
+pandas3ed11.html    pandas3ed5.html
+pandas3ed11.qmd     pandas3ed5.qmd
+_quarto.yml     pandas3ed11cn.html   pandas3ed5cn.qmd
+array_archive.npz   pandas3ed11cn.qmd    pandas3ed6.html
+csv_mindex.csv      pandas3ed11cn_files  pandas3ed6.qmd
+datasets        pandas3ed12.html     pandas3ed6cn.html
+ex1.csv         pandas3ed12.qmd  pandas3ed6cn.qmd
+ex1.xlsx        pandas3ed12cn.html   pandas3ed7.html
+ex2.csv         pandas3ed12cn.qmd    pandas3ed7.qmd
+ex3.txt         pandas3ed13.html     pandas3ed7cn.html
+ex4.csv         pandas3ed13.qmd  pandas3ed7cn.qmd
+ex5.csv         pandas3ed13cn.html   pandas3ed8.qmd
+ex6.csv         pandas3ed13cn.qmd    pandas3ed8cn.html
+ex7.csv         pandas3ed1cn.html    pandas3ed8cn.qmd
+example.json        pandas3ed1cn.qmd     pandas3ed9.html
+examples        pandas3ed2.html  pandas3ed9.qmd
+figpath.png     pandas3ed2.qmd   pandas3ed9cn.html
+figpath.svg     pandas3ed2cn.html    pandas3ed9cn.qmd
+frame_pickle        pandas3ed2cn.qmd     pandas3ed9cn_files
+my.css          pandas3ed3.qmd   pandas3edA1.html
+mymmap          pandas3ed3cn.html    pandas3edA1.qmd
+out.csv         pandas3ed3cn.qmd     pandas3edA1cn.html
+pandas3ed1.html     pandas3ed4.html  pandas3edA1cn.qmd
+pandas3ed1.qmd      pandas3ed4.qmd   pandas3edA2.qmd
+pandas3ed10.html    pandas3ed4_files     pandas3edA2.quarto_ipynb
+pandas3ed10.qmd     pandas3ed4cn.html    pandas3edA2cn.html
+pandas3ed10cn.html  pandas3ed4cn.qmd     pandas3edA2cn.qmd
+pandas3ed10cn.qmd   pandas3ed4cn_files   some_array.npy
+pandas3ed11.html    pandas3ed5.html
+pandas3ed11.qmd     pandas3ed5.qmd</code></pre>
+</div>
+</div>
 </section>
 <section id="capturing-shell-output" class="level2">
 <h2 class="anchored" data-anchor-id="capturing-shell-output">Capturing Shell Output</h2>
 <ul>
-<li>Assign the output of a <code>!</code> command to a variable.</li>
+<li>Assign the output of a <code>!</code> command to a Python variable.</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>file_list <span class="op">=</span> <span class="op">!</span>ls</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(file_list)  <span class="co"># Prints the list of files</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="4b972fdc" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>file_list <span class="op">=</span> <span class="op">!</span>ls</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(file_list)  <span class="co"># Prints the list of files</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['_quarto.yml', 'array_archive.npz', 'csv_mindex.csv', 'datasets', 'ex1.csv', 'ex1.xlsx', 'ex2.csv', 'ex3.txt', 'ex4.csv', 'ex5.csv', 'ex6.csv', 'ex7.csv', 'example.json', 'examples', 'figpath.png', 'figpath.svg', 'frame_pickle', 'my.css', 'mymmap', 'out.csv', 'pandas3ed1.html', 'pandas3ed1.qmd', 'pandas3ed10.html', 'pandas3ed10.qmd', 'pandas3ed10cn.html', 'pandas3ed10cn.qmd', 'pandas3ed11.html', 'pandas3ed11.qmd', 'pandas3ed11cn.html', 'pandas3ed11cn.qmd', 'pandas3ed11cn_files', 'pandas3ed12.html', 'pandas3ed12.qmd', 'pandas3ed12cn.html', 'pandas3ed12cn.qmd', 'pandas3ed13.html', 'pandas3ed13.qmd', 'pandas3ed13cn.html', 'pandas3ed13cn.qmd', 'pandas3ed1cn.html', 'pandas3ed1cn.qmd', 'pandas3ed2.html', 'pandas3ed2.qmd', 'pandas3ed2cn.html', 'pandas3ed2cn.qmd', 'pandas3ed3.qmd', 'pandas3ed3cn.html', 'pandas3ed3cn.qmd', 'pandas3ed4.html', 'pandas3ed4.qmd', 'pandas3ed4_files', 'pandas3ed4cn.html', 'pandas3ed4cn.qmd', 'pandas3ed4cn_files', 'pandas3ed5.html', 'pandas3ed5.qmd', 'pandas3ed5cn.qmd', 'pandas3ed6.html', 'pandas3ed6.qmd', 'pandas3ed6cn.html', 'pandas3ed6cn.qmd', 'pandas3ed7.html', 'pandas3ed7.qmd', 'pandas3ed7cn.html', 'pandas3ed7cn.qmd', 'pandas3ed8.qmd', 'pandas3ed8cn.html', 'pandas3ed8cn.qmd', 'pandas3ed9.html', 'pandas3ed9.qmd', 'pandas3ed9cn.html', 'pandas3ed9cn.qmd', 'pandas3ed9cn_files', 'pandas3edA1.html', 'pandas3edA1.qmd', 'pandas3edA1cn.html', 'pandas3edA1cn.qmd', 'pandas3edA2.qmd', 'pandas3edA2.quarto_ipynb', 'pandas3edA2cn.html', 'pandas3edA2cn.qmd', 'some_array.npy']</code></pre>
+</div>
+</div>
 <ul>
-<li>The returned object is a custom list containing various versions of console output.</li>
+<li>The returned object is a custom list that contains various versions of the console output.</li>
 </ul>
 </section>
 <section id="python-variables-in-shell-commands" class="level2">
 <h2 class="anchored" data-anchor-id="python-variables-in-shell-commands">Python Variables in Shell Commands: <code>$</code></h2>
 <ul>
-<li>Use <code>$</code> to substitute Python variables into shell commands.</li>
+<li>Use <code>$</code> to substitute the values of Python variables into shell commands.</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>my_directory <span class="op">=</span> <span class="st">"data_files"</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>ls $my_directory  <span class="co"># Lists files in the 'data_files' directory</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="03693c7e" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>my_directory <span class="op">=</span> <span class="st">"data_files"</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>ls $my_directory  <span class="co"># Lists files in the 'data_files' directory</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="aliases-and-bookmarks-shortcuts-for-commands-and-directories" class="level2">
-<h2 class="anchored" data-anchor-id="aliases-and-bookmarks-shortcuts-for-commands-and-directories">Aliases and Bookmarks: Shortcuts for Commands and Directories</h2>
+<section id="aliases-shortcuts-for-shell-commands" class="level2">
+<h2 class="anchored" data-anchor-id="aliases-shortcuts-for-shell-commands">Aliases: Shortcuts for Shell Commands</h2>
 <ul>
-<li><code>%alias</code>: Create shortcuts for shell commands.</li>
+<li><code>%alias</code>: Create shortcuts (aliases) for frequently used shell commands.</li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>alias ll ls <span class="op">-</span>l  <span class="co"># Creates an alias 'll' for 'ls -l'</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ll <span class="op">/</span>usr<span class="op">/</span><span class="bu">bin</span>  <span class="co"># Now you can use 'll'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="92bc01cd" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>alias ll ls <span class="op">-</span>l  <span class="co"># Creates an alias 'll' for 'ls -l'</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ll <span class="op">/</span>usr<span class="op">/</span><span class="bu">bin</span>  <span class="co"># Now you can use 'll'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ul>
-<li><code>%bookmark</code>: Create bookmarks for frequently used directories.</li>
+<li>Note: Aliases are <em>not</em> persistent between sessions unless explicitly configured.</li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>bookmark mydata <span class="op">/</span>path<span class="op">/</span>to<span class="op">/</span>my<span class="op">/</span>data</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>cd mydata       <span class="co"># Jumps to the bookmarked directory</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>bookmark <span class="op">-</span>l    <span class="co"># Lists all bookmarks</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="bookmarks-shortcuts-for-directories" class="level2">
+<h2 class="anchored" data-anchor-id="bookmarks-shortcuts-for-directories">Bookmarks: Shortcuts for Directories</h2>
 <ul>
-<li>Aliases are <em>not</em> persistent between sessions (unless configured). Bookmarks <em>are</em> persistent.</li>
+<li><code>%bookmark</code>: Create bookmarks for frequently accessed directories.</li>
+</ul>
+<div id="b50c4d5d" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>bookmark mydata <span class="op">/</span>path<span class="op">/</span>to<span class="op">/</span>my<span class="op">/</span>data</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>cd mydata       <span class="co"># Jumps to the bookmarked directory</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>bookmark <span class="op">-</span>l    <span class="co"># Lists all bookmarks</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Bookmarks <em>are</em> persistent between sessions.</li>
 </ul>
 </section>
 <section id="directory-history" class="level2">
 <h2 class="anchored" data-anchor-id="directory-history">Directory History</h2>
 <ul>
-<li><code>%cd</code>: Change directory.</li>
-<li><code>%pwd</code>: return current directory.</li>
-<li><code>%pushd</code>: place current directory on stack and change to target directory.</li>
-<li><code>%popd</code>: Change to directory popped off the top of the stack.</li>
+<li><code>%cd</code>: Change the current working directory.</li>
+<li><code>%pwd</code>: Return the current working directory.</li>
+<li><code>%pushd</code>: Place the current directory on a stack and change to the target directory.</li>
+<li><code>%popd</code>: Change to the directory popped off the top of the stack.</li>
 <li><code>%dirs</code>: Return a list containing the current directory stack.</li>
 <li><code>%dhist</code>: Print the history of visited directories.</li>
 </ul>
@@ -625,196 +594,227 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="software-development-tools" class="level2">
 <h2 class="anchored" data-anchor-id="software-development-tools">Software Development Tools 🛠️</h2>
 <ul>
-<li>IPython isn’t just for interactive exploration; it’s also great for software development.</li>
-<li>Key tools:
+<li>IPython is valuable not only for interactive exploration but also for software development.</li>
+<li>Key tools include:
 <ul>
-<li><strong>Interactive Debugger:</strong> Enhanced <code>pdb</code>.</li>
+<li><strong>Interactive Debugger:</strong> An enhanced version of <code>pdb</code>.</li>
 <li><strong>Code Timing:</strong> <code>%time</code> and <code>%timeit</code>.</li>
-<li><strong>Profiling:</strong> <code>%prun</code>, <code>%lprun</code>.</li>
+<li><strong>Profiling:</strong> <code>%prun</code> and <code>%lprun</code>.</li>
 </ul></li>
 </ul>
 </section>
 <section id="interactive-debugger-debug" class="level2">
 <h2 class="anchored" data-anchor-id="interactive-debugger-debug">Interactive Debugger: <code>%debug</code> 🐞</h2>
 <ul>
-<li><code>%debug</code>: Enters the debugger <em>after</em> an exception occurs (post-mortem debugging).</li>
-<li>Drops you into the stack frame where the error happened.</li>
-<li>Enhanced with tab completion, syntax highlighting, and traceback context.</li>
+<li><code>%debug</code>: Activates the debugger <em>after</em> an exception occurs (post-mortem debugging).</li>
+<li>It places you within the stack frame where the error originated.</li>
+<li>Enhanced with features like tab completion, syntax highlighting, and traceback context.</li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppose some_script.py has an error:</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>run some_script.py</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>debug  <span class="co"># Enters the debugger at the error point</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="9b626112" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming some_script.py contains an error:</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>run some_script.py</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>debug  <span class="co"># Enters the debugger at the point of the error</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="debugger-commands" class="level2">
-<h2 class="anchored" data-anchor-id="debugger-commands">Debugger Commands 🧭</h2>
+<section id="debugger-commands---navigation" class="level2">
+<h2 class="anchored" data-anchor-id="debugger-commands---navigation">Debugger Commands 🧭 - Navigation</h2>
 <ul>
 <li>Inside the debugger:
 <ul>
 <li><code>u</code> (up): Move <em>up</em> the call stack.</li>
 <li><code>d</code> (down): Move <em>down</em> the call stack.</li>
 <li><code>s</code> (step): Step <em>into</em> a function call.</li>
-<li><code>n</code> (next): Execute current line and move to the <em>next</em> line (at the current level).</li>
-<li><code>c</code> (continue): Continue execution until the next breakpoint or the end.</li>
-<li><code>q</code> (quit): Exit the debugger.</li>
-<li><code>p variable</code>: print value of <code>variable</code></li>
-<li><code>!variable</code> : Examine variable contents, when the variable has the same name of a debugger command.</li>
+<li><code>n</code> (next): Execute the current line and move to the <em>next</em> line (at the same level).</li>
 </ul></li>
+</ul>
+</section>
+<section id="debugger-commands---control-flow" class="level2">
+<h2 class="anchored" data-anchor-id="debugger-commands---control-flow">Debugger Commands 🧭 - Control Flow</h2>
+<ul>
+<li><code>c</code> (continue): Continue execution until the next breakpoint or the end of the program.</li>
+<li><code>q</code> (quit): Exit the debugger.</li>
+</ul>
+</section>
+<section id="debugger-commands---inspection" class="level2">
+<h2 class="anchored" data-anchor-id="debugger-commands---inspection">Debugger Commands 🧭 - Inspection</h2>
+<ul>
+<li><code>p variable</code>: Print the value of <code>variable</code>.</li>
+<li><code>!variable</code>: Examine variable content, useful when the variable has same name with the debugger commands.</li>
 </ul>
 </section>
 <section id="pdb-automatic-debugging" class="level2">
 <h2 class="anchored" data-anchor-id="pdb-automatic-debugging"><code>%pdb</code>: Automatic Debugging</h2>
 <ul>
-<li><code>%pdb</code>: Automatically enters the debugger <em>on any exception</em>. Very useful for debugging!</li>
+<li><code>%pdb</code>: Automatically enters the debugger <em>upon any exception</em>. This is extremely useful for debugging!</li>
 </ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pdb on  <span class="co"># Turns on automatic debugging</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Now, any error will drop you into the debugger</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pdb off <span class="co"># Turns it off</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="15d1e734" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pdb on  <span class="co"># Enables automatic debugging</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Now, any error will automatically launch the debugger</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pdb off <span class="co"># Disables automatic debugging</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="using-the-debugger-for-development" class="level2">
 <h2 class="anchored" data-anchor-id="using-the-debugger-for-development">Using the Debugger for Development</h2>
 <ul>
-<li><code>%run -d script.py</code>: Start the debugger <em>before</em> running the script. Type <code>s</code> to step into the script.</li>
-<li><code>%run -d -b line_number script.py</code>: Set a breakpoint at <code>line_number</code>.</li>
-<li><code>set_trace()</code>: A “poor man’s breakpoint” function you can insert into your code.</li>
-<li><code>debug(function, *args, **kwargs)</code> : Easily step into a specific function call.</li>
+<li><code>%run -d script.py</code>: Starts the debugger <em>before</em> running the script. Type <code>s</code> to step into the script.</li>
+<li><code>%run -d -b line_number script.py</code>: Sets a breakpoint at the specified <code>line_number</code>.</li>
+<li><code>set_trace()</code>: A “poor man’s breakpoint” function; insert it into your code to create temporary breakpoints.</li>
+<li><code>debug(function, *args, **kwargs)</code>: Easily step into a specific function call.</li>
 </ul>
 </section>
 <section id="set_trace-and-debug-functions" class="level2">
 <h2 class="anchored" data-anchor-id="set_trace-and-debug-functions"><code>set_trace()</code> and <code>debug()</code> functions</h2>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.core.debugger <span class="im">import</span> Pdb</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> set_trace():</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    Pdb().set_trace(sys._getframe().f_back)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> debug(f, <span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    pdb <span class="op">=</span> Pdb()</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pdb.runcall(f, <span class="op">*</span>args, <span class="op">**</span>kwargs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="d9456b0d" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.core.debugger <span class="im">import</span> Pdb</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys <span class="co"># Add import sys</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> set_trace():</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    Pdb().set_trace(sys._getframe().f_back)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> debug(f, <span class="op">*</span>args, <span class="op">**</span>kwargs):</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    pdb <span class="op">=</span> Pdb()</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pdb.runcall(f, <span class="op">*</span>args, <span class="op">**</span>kwargs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ul>
-<li><code>set_trace()</code> is called within your code to create a temporary breakpoint.</li>
-<li><code>debug(f, *args, **kwargs)</code> allows stepping into the function <code>f</code> by passing <code>f</code> along with its positional and keyword arguments.</li>
+<li><code>set_trace()</code> is called within code to set a breakpoint.</li>
+<li><code>debug(f, *args, **kwargs)</code> allows stepping into function <code>f</code> by passing <code>f</code> along with its arguments.</li>
 </ul>
 </section>
-<section id="code-timing-time-and-timeit-again" class="level2">
-<h2 class="anchored" data-anchor-id="code-timing-time-and-timeit-again">Code Timing: <code>%time</code> and <code>%timeit</code> (Again)</h2>
+<section id="code-timing-time-and-timeit-review" class="level2">
+<h2 class="anchored" data-anchor-id="code-timing-time-and-timeit-review">Code Timing: <code>%time</code> and <code>%timeit</code> (Review)</h2>
 <ul>
 <li><code>%time</code>: Measures the execution time of a statement <em>once</em>.</li>
-<li><code>%timeit</code>: Measures execution time <em>multiple times</em> for a more accurate average. Best for very short operations.</li>
+<li><code>%timeit</code>: Measures execution time <em>multiple times</em> to provide a more accurate average. It’s ideal for very short operations.</li>
 </ul>
-<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">100000</span>))</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):  <span class="bu">sum</span>(my_list)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit <span class="bu">sum</span>(my_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7f73a2b7" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">100000</span>))</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):  <span class="bu">sum</span>(my_list)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit <span class="bu">sum</span>(my_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 76.1 ms, sys: 0 ns, total: 76.1 ms
+Wall time: 75.8 ms
+753 μs ± 476 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)</code></pre>
+</div>
+</div>
 </section>
 <section id="basic-profiling-prun-and-run--p" class="level2">
 <h2 class="anchored" data-anchor-id="basic-profiling-prun-and-run--p">Basic Profiling: <code>%prun</code> and <code>%run -p</code> 🕵️‍♀️</h2>
 <ul>
-<li><strong>Profiling</strong> tells you <em>where</em> your code spends its time.</li>
+<li><strong>Profiling</strong> reveals <em>where</em> your code spends its time.</li>
 <li><code>%prun statement</code>: Profiles a single Python statement.</li>
 <li><code>%run -p script.py</code>: Profiles an entire script.</li>
-<li>Uses <code>cProfile</code> under the hood.</li>
-<li>Output shows:
+<li>These commands utilize <code>cProfile</code> internally.</li>
+<li>The output includes these key metrics:
 <ul>
 <li><code>ncalls</code>: Number of calls.</li>
-<li><code>tottime</code>: Total time spent in the function (excluding calls to sub-functions).</li>
+<li><code>tottime</code>: Total time spent in function (excluding sub-function calls).</li>
 <li><code>percall</code>: Time per call (tottime / ncalls).</li>
-<li><code>cumtime</code>: <em>Cumulative</em> time spent in the function <em>and</em> its sub-functions.</li>
+<li><code>cumtime</code>: <em>Cumulative</em> time in function <em>and</em> its sub-functions.</li>
 <li><code>percall</code>: Cumulative time per call (cumtime / ncalls).</li>
-<li><code>filename:lineno(function)</code>: Location of the function.</li>
+<li><code>filename:lineno(function)</code>: Function location.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Example</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> slow_function():</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> []</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>        result.append(i <span class="op">*</span> <span class="dv">2</span>)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>prun slow_function()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="9efd66ad" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Example</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> slow_function():</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> []</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1000</span>):</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>        result.append(i <span class="op">*</span> <span class="dv">2</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>prun slow_function()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> </code></pre>
+</div>
+</div>
 </section>
 <section id="line-profiling-lprun" class="level2">
 <h2 class="anchored" data-anchor-id="line-profiling-lprun">Line Profiling: <code>%lprun</code> 📏</h2>
 <ul>
-<li><code>%lprun</code>: Provides <em>line-by-line</em> profiling of specific functions. More detailed than <code>%prun</code>.</li>
+<li><code>%lprun</code>: Provides <em>line-by-line</em> profiling of specific functions, offering more detail than <code>%prun</code>.</li>
 <li>Requires the <code>line_profiler</code> IPython extension.
 <ul>
-<li>Enable: add <code>c.InteractiveShellApp.extensions = ['line_profiler']</code> in <code>ipython_config.py</code>, or use <code>%load_ext line_profiler</code>.</li>
+<li>Enable: Add <code>c.InteractiveShellApp.extensions = ['line_profiler']</code> to <code>ipython_config.py</code> or use <code>%load_ext line_profiler</code>.</li>
 </ul></li>
 <li>Syntax: <code>%lprun -f function1 -f function2 statement_to_profile</code></li>
-<li>Output shows:
+<li>The output includes:
 <ul>
 <li><code>Line #</code>: Line number.</li>
 <li><code>Hits</code>: Number of times the line was executed.</li>
 <li><code>Time</code>: Total time spent on the line (in timer units).</li>
 <li><code>Per Hit</code>: Time per execution of the line.</li>
 <li><code>% Time</code>: Percentage of total time spent on the line.</li>
-<li><code>Line Contents</code>: The actual code.</li>
+<li><code>Line Contents</code>: The source code of the line.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming line_profiler is enabled and prof_mod.py exists:</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prof_mod <span class="im">import</span> add_and_sum, call_function <span class="co">#example file, you need create it.</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>lprun <span class="op">-</span>f add_and_sum call_function()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="42862a6f" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming line_profiler is enabled and prof_mod.py exists:</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prof_mod <span class="im">import</span> add_and_sum, call_function <span class="co">#example file, you need create it.</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>lprun <span class="op">-</span>f add_and_sum call_function()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="tips-for-productive-code-development" class="level2">
-<h2 class="anchored" data-anchor-id="tips-for-productive-code-development">Tips for Productive Code Development 📝</h2>
+<section id="tips-for-productive-code-development---reloading" class="level2">
+<h2 class="anchored" data-anchor-id="tips-for-productive-code-development---reloading">Tips for Productive Code Development 📝 - Reloading</h2>
 <ul>
 <li><strong>Reloading Module Dependencies:</strong>
 <ul>
-<li>Problem: Changes to imported modules aren’t automatically reflected in IPython.</li>
+<li>Problem: Changes to imported modules are not automatically reflected.</li>
 <li>Solutions:
 <ul>
 <li><code>importlib.reload(module)</code>: Reloads a single module.</li>
-<li><code>dreload(module)</code> (IPython-specific): <em>Deep</em> (recursive) reload of a module and its dependencies. More robust.</li>
+<li><code>dreload(module)</code> (IPython-specific): <em>Deep</em> (recursive) reload of a module and its dependencies – a more robust solution.</li>
 </ul></li>
 </ul></li>
-<li><strong>Code Design:</strong>
+</ul>
+</section>
+<section id="tips-for-productive-code-development---code-design" class="level2">
+<h2 class="anchored" data-anchor-id="tips-for-productive-code-development---code-design">Tips for Productive Code Development 📝 - Code Design</h2>
 <ul>
-<li><em>Keep relevant objects and data alive</em>: Avoid putting all your code inside a <code>main()</code> function. Keep variables at the top level for easy inspection in IPython.</li>
-<li><em>Flat is better than nested</em>: Avoid deeply nested code. Makes debugging and testing easier.</li>
-<li><em>Overcome a fear of longer files</em>: Within reason, longer, well-organized modules are often better than many small, interconnected ones (reduces reloading overhead).</li>
-<li><em>Maintain high internal cohesion</em>: Related code should be grouped together.</li>
-</ul></li>
+<li><em>Keep relevant objects and data alive</em>: Avoid putting all your code within a <code>main()</code> function. Keep important variables at the top level for easy inspection within IPython.</li>
+<li><em>Flat is better than nested</em>: Minimize deeply nested code structures. This simplifies debugging and testing.</li>
+<li><em>Overcome a fear of longer files</em>: Within reason, longer, well-organized modules are often preferable to many small, interconnected ones (reducing reloading overhead).</li>
+<li><em>Maintain high internal cohesion</em>: Group related code together logically within modules.</li>
 </ul>
 </section>
 <section id="ipython-profiles-and-configuration" class="level2">
 <h2 class="anchored" data-anchor-id="ipython-profiles-and-configuration">IPython Profiles and Configuration ⚙️</h2>
 <ul>
-<li>Customize IPython’s appearance and behavior through configuration files (<code>ipython_config.py</code>).</li>
-<li>Located in your IPython directory (usually <code>~/.ipython/profile_default/</code>).</li>
-<li>You can have <em>multiple profiles</em> for different projects or settings.</li>
+<li>Customize IPython’s appearance and behavior using configuration files (<code>ipython_config.py</code>).</li>
+<li>These files are typically located in your IPython directory (usually <code>~/.ipython/profile_default/</code>).</li>
+<li>You can create <em>multiple profiles</em> for different projects or settings.</li>
 <li>Create a new profile: <code>ipython profile create my_profile</code></li>
-<li>Launch with a specific profile: <code>ipython --profile=my_profile</code></li>
-<li>Jupyter has its own configuration system.</li>
+<li>Launch IPython with a specific profile: <code>ipython --profile=my_profile</code></li>
+<li>Note: Jupyter has its own separate configuration system.</li>
 </ul>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion 📖</h2>
 <ul>
-<li>IPython and Jupyter are powerful tools for both interactive exploration and software development.</li>
-<li>Mastering their features – shortcuts, magic commands, debugger, profiler, and configuration – will significantly enhance your productivity.</li>
-<li>Experiment and find a workflow that suits your style!</li>
+<li>IPython and Jupyter are potent tools for both interactive exploration and software development.</li>
+<li>Mastering their features – shortcuts, magic commands, the debugger, profiler, and configuration options – will significantly improve your productivity.</li>
+<li>Experiment to discover a workflow that best suits your individual style!</li>
 </ul>
 </section>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
 <ul>
-<li>We explored advanced IPython features, going beyond basic shell usage.</li>
-<li>Learned about keyboard shortcuts, magic commands, and interacting with the OS.</li>
-<li>Covered debugging, code timing, and profiling tools.</li>
-<li>Discussed tips for writing code that’s well-suited for interactive development in IPython.</li>
-<li>Introduced IPython profile.</li>
+<li>We’ve explored advanced IPython features, extending beyond basic shell interaction.</li>
+<li>We covered keyboard shortcuts, magic commands, and interacting with the operating system.</li>
+<li>We examined tools for debugging, code timing, and profiling.</li>
+<li>We discussed tips for writing code that’s optimized for interactive development in IPython.</li>
+<li>We introduced IPython profile.</li>
 </ul>
 </section>
 <section id="thoughts-and-discussion" class="level2">
 <h2 class="anchored" data-anchor-id="thoughts-and-discussion">Thoughts and Discussion 🤔</h2>
 <ul>
-<li>Which IPython features do you find most useful for <em>your</em> workflow?</li>
-<li>How can you incorporate these tools into your data analysis and coding practices?</li>
-<li>Consider setting up a custom IPython profile to streamline your common tasks.</li>
+<li>Which IPython features do you anticipate being most useful in <em>your</em> work?</li>
+<li>How might you integrate these tools into your data analysis and coding routines?</li>
+<li>Consider creating a custom IPython profile to streamline your frequently performed tasks.</li>
 <li>What are the advantages and disadvantages of using IPython compared to a traditional Python IDE?</li>
 <li>How do the principles of “flat is better than nested” and “overcome a fear of longer files” apply to your own coding style?</li>
 <li>How can you use the debugger and profiler to improve the correctness and efficiency of your code?</li>
 <li>How does %run differ from simply executing a Python script from the command line?</li>
-<li>How can you use %paste or %cpaste to quickly execute code from external sources in IPython Shell?</li>
-<li>What is the command history, and how to use it?</li>
 </ul>
 
 

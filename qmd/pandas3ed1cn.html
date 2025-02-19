@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Python 数据分析</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<link href="../https://assets.qiufei.site/personal/profile.jpg" rel="icon" type="image/jpeg">
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-681fbf911679f9b3dbf9743eb275ba49.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7e49aeac8059a213a463aa1a739e8272.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://qiufei.github.io"> 
+<span class="menu-text">首页</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://qiufei.github.io/web-slide"> 
+<span class="menu-text">课件</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Python 数据分析</h1>
+<p class="subtitle lead">第 1 章：导论</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="本书主题" class="level2">
+<h2 class="anchored" data-anchor-id="本书主题">本书主题 🤔</h2>
+<p>本书重点介绍 Python 中<strong>数据操作、处理、清洗和整理</strong>的实践方面。它将为你提供成为高效数据分析师所必需的 Python 编程技能、库和工具。</p>
+</section>
+<section id="本书主题-1" class="level2">
+<h2 class="anchored" data-anchor-id="本书主题-1">本书主题</h2>
+<ul>
+<li><strong>目标：</strong> 提供 Python 及其面向数据的库中对数据分析至关重要的部分的指南。</li>
+<li><strong>重点：</strong> 强调 Python 编程、库和工具，<em>而不是</em>数据分析方法论。</li>
+<li><strong>类比：</strong> 可以将本书看作是学习汽车的机械原理（Python 及其工具），而不是学习如何在不同地形上驾驶（数据分析方法）。</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>虽然本书名为“数据分析”，但它侧重于数据分析所需的 <em>Python 工具</em>，而不是分析技术本身。这就像在建造房屋之前学习如何使用锤子、锯和钻头。🔨🪚🪛</p>
+</div>
+</div>
+</section>
+<section id="数据科学一个广义术语" class="level2">
+<h2 class="anchored" data-anchor-id="数据科学一个广义术语">数据科学：一个广义术语 ☂️</h2>
+<p>自本书于 2012 年首次出版以来，“<strong>数据科学</strong>”一词已被广泛使用。它涵盖了广泛的活动，从基本的描述性统计到复杂的统计分析和机器学习。</p>
+</section>
+<section id="数据科学一个广义术语-续" class="level2">
+<h2 class="anchored" data-anchor-id="数据科学一个广义术语-续">数据科学：一个广义术语 (续)</h2>
+<ul>
+<li><strong>数据科学的演变：</strong> 该领域以及 Python 在其中的作用已显著增长。</li>
+<li><strong>扩展的生态系统：</strong> 出现了许多新的 Python 库和工具，支持更高级的数据科学方法论。</li>
+<li><strong>基础：</strong> 本书提供了探索更专业的数据科学资源所需的基本 Python 技能。</li>
+</ul>
+</section>
+<section id="数据科学一个广义术语-续-1" class="level2">
+<h2 class="anchored" data-anchor-id="数据科学一个广义术语-续-1">数据科学：一个广义术语 (续)</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>可以将“数据科学”视为涵盖统计学、机器学习、数据可视化等各种学科的大伞。本书提供了握住那把伞的柄（Python 技能）！</p>
+</div>
+</div>
+</section>
+<section id="数据整理数据融合" class="level2">
+<h2 class="anchored" data-anchor-id="数据整理数据融合">数据整理/数据融合 🤼</h2>
+<p>数据分析的很大一部分涉及<strong>数据操作</strong>，也称为<strong>数据整理</strong>或<strong>数据融合</strong>。这些术语都描述了转换和准备数据以进行分析的过程。</p>
+</section>
+<section id="数据整理数据融合-续" class="level2">
+<h2 class="anchored" data-anchor-id="数据整理数据融合-续">数据整理/数据融合 (续)</h2>
+<ul>
+<li><strong>数据操作：</strong> 将原始数据转换为可用格式的核心过程。</li>
+<li><strong>同义词：</strong> 整理 (Wrangling) 和融合 (Munging) 是数据操作的可互换术语。</li>
+<li><strong>重要性：</strong> 这是至关重要的一步，因为现实世界的数据通常很混乱，需要在分析之前进行清理。</li>
+</ul>
+</section>
+<section id="数据整理数据融合-续-1" class="level2">
+<h2 class="anchored" data-anchor-id="数据整理数据融合-续-1">数据整理/数据融合 (续)</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>想象一下，你有一盒乐高积木散落在地板上。数据整理就像按颜色、大小和形状对这些积木进行分类和组织，<em>然后</em>才能开始构建有意义的东西。🧱</p>
+</div>
+</div>
+</section>
+<section id="哪些类型的数据" class="level2">
+<h2 class="anchored" data-anchor-id="哪些类型的数据">哪些类型的数据？ 🗂️</h2>
+<p>本书主要关注<strong>结构化数据</strong>，其中包括各种常见的数据形式：</p>
+<ul>
+<li><strong>表格数据：</strong> 类似电子表格的数据，具有不同类型的列（文本、数字、日期等）。这是最常见的类型，包括来自关系数据库（如 SQL）和 CSV 文件的数据。</li>
+</ul>
+</section>
+<section id="哪些类型的数据续" class="level2">
+<h2 class="anchored" data-anchor-id="哪些类型的数据续">哪些类型的数据？(续)</h2>
+<ul>
+<li><strong>多维数组：</strong> 矩阵，通常用于数值计算。</li>
+<li><strong>多个表：</strong> 数据分布在多个相关表中，通过关键列链接（如在关系数据库中）。</li>
+</ul>
+</section>
+<section id="哪些类型的数据续-1" class="level2">
+<h2 class="anchored" data-anchor-id="哪些类型的数据续-1">哪些类型的数据？(续)</h2>
+<ul>
+<li><strong>时间序列：</strong> 随时间收集的数据点，可以是定期或不定期的时间间隔。</li>
+</ul>
+</section>
+<section id="哪些类型的数据续-2" class="level2">
+<h2 class="anchored" data-anchor-id="哪些类型的数据续-2">哪些类型的数据？(续)</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>即使是非结构化数据（如新闻文章的集合）通常也可以转换为结构化形式（如词频表）进行分析。可以把它想象成把一堆食材（非结构化数据）变成一个整齐的食谱（结构化数据）。🍲➡️📝</p>
+</div>
+</div>
+</section>
+<section id="示例结构化数据-表格" class="level2">
+<h2 class="anchored" data-anchor-id="示例结构化数据-表格">示例：结构化数据 (表格)</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">客户ID</th>
+<th style="text-align: left;">姓名</th>
+<th style="text-align: left;">城市</th>
+<th style="text-align: left;">订单日期</th>
+<th style="text-align: center;">总金额</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Alice</td>
+<td style="text-align: left;">纽约</td>
+<td style="text-align: left;">2023-10-26</td>
+<td style="text-align: center;">120.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Bob</td>
+<td style="text-align: left;">伦敦</td>
+<td style="text-align: left;">2023-10-27</td>
+<td style="text-align: center;">250.50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">Charlie</td>
+<td style="text-align: left;">巴黎</td>
+<td style="text-align: left;">2023-10-27</td>
+<td style="text-align: center;">75.25</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">Alice</td>
+<td style="text-align: left;">纽约</td>
+<td style="text-align: left;">2023-10-28</td>
+<td style="text-align: center;">180.00</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="示例结构化数据-表格-续" class="level2">
+<h2 class="anchored" data-anchor-id="示例结构化数据-表格-续">示例：结构化数据 (表格) (续)</h2>
+<ul>
+<li><strong>列：</strong> 表示不同的属性（客户 ID、姓名、城市等）。</li>
+<li><strong>行：</strong> 表示单个记录或观察结果（每个客户的订单）。</li>
+<li><strong>数据类型：</strong> 每列可以保存不同类型的数据（整数、文本、日期、数字）。</li>
+</ul>
+</section>
+<section id="为什么选择-python-进行数据分析" class="level2">
+<h2 class="anchored" data-anchor-id="为什么选择-python-进行数据分析">为什么选择 Python 进行数据分析？ 🐍</h2>
+<p>由于以下几个关键优势，Python 已成为数据分析中非常流行的工具：</p>
+<ul>
+<li><strong>解释型语言：</strong> 更易于学习和使用，促进快速开发和实验。</li>
+<li><strong>庞大而活跃的社区：</strong> 庞大的用户和开发者网络提供支持、库和工具。</li>
+</ul>
+</section>
+<section id="为什么选择-python-进行数据分析续" class="level2">
+<h2 class="anchored" data-anchor-id="为什么选择-python-进行数据分析续">为什么选择 Python 进行数据分析？(续)</h2>
+<ul>
+<li><strong>丰富的库生态系统：</strong> NumPy、pandas 和 scikit-learn 等强大的库简化了复杂的数据分析任务。</li>
+<li><strong>通用语言：</strong> 既适用于数据分析，也适用于构建完整的数据驱动应用程序。</li>
+<li><strong>胶水语言：</strong> 非常适合与现有代码和系统（通常用 C、C++ 或 FORTRAN 编写）集成。</li>
+</ul>
+</section>
+<section id="为什么选择-python-进行数据分析续-1" class="level2">
+<h2 class="anchored" data-anchor-id="为什么选择-python-进行数据分析续-1">为什么选择 Python 进行数据分析？(续)</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Python 就像数据分析的瑞士军刀：用途广泛，具有许多用于不同任务的工具，并且易于使用。🔪🛠️</p>
+</div>
+</div>
+</section>
+<section id="python-作为胶水" class="level2">
+<h2 class="anchored" data-anchor-id="python-作为胶水">Python 作为“胶水”🔗</h2>
+<p>Python 的一个显著优势是它能够充当“<strong>胶水代码</strong>”，连接不同的软件组件和系统，尤其是用 C、C++ 和 FORTRAN 等语言编写的遗留代码。</p>
+</section>
+<section id="python-作为胶水-续" class="level2">
+<h2 class="anchored" data-anchor-id="python-作为胶水-续">Python 作为“胶水” (续)</h2>
+<ul>
+<li><strong>集成：</strong> 轻松与现有代码库集成，特别是那些用于科学计算的代码库。</li>
+<li><strong>遗留系统：</strong> 允许组织利用对旧软件的现有投资，同时受益于 Python 的数据分析功能。</li>
+<li><strong>优化：</strong> Python 中的“胶水代码”可以连接到优化的低级代码（例如 C 库）以进行性能关键型计算。</li>
+</ul>
+</section>
+<section id="python-作为胶水-续-1" class="level2">
+<h2 class="anchored" data-anchor-id="python-作为胶水-续-1">Python 作为“胶水” (续)</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>可以将 Python 视为通用适配器，它允许你将不同类型的插头（软件组件）连接到同一个插座（你的数据分析工作流程）中。🔌</p>
+</div>
+</div>
+</section>
+<section id="双语言问题和-python-的解决方案" class="level2">
+<h2 class="anchored" data-anchor-id="双语言问题和-python-的解决方案">“双语言”问题和 Python 的解决方案 ✌️</h2>
+<p>传统上，数据分析通常涉及“<strong>双语言问题</strong>”：</p>
+<ol type="1">
+<li><strong>研究/原型设计：</strong> 使用 R 或 MATLAB 等专用语言进行初始探索和模型开发。</li>
+<li><strong>生产：</strong> 用不同的语言（例如 Java、C++）重写代码，以便在更大的系统中部署。</li>
+</ol>
+</section>
+<section id="双语言问题python-的解决方案" class="level2">
+<h2 class="anchored" data-anchor-id="双语言问题python-的解决方案">“双语言”问题：Python 的解决方案</h2>
+<p>Python 通过同时适用于<em>研究/原型设计</em>和<em>生产</em>来解决此问题：</p>
+<ul>
+<li><strong>单一环境：</strong> 减少了维护单独开发环境的需要。</li>
+<li><strong>效率：</strong> 通过在整个过程中使用相同的语言来节省时间和资源。</li>
+</ul>
+</section>
+<section id="双语言问题python-的解决方案-续" class="level2">
+<h2 class="anchored" data-anchor-id="双语言问题python-的解决方案-续">“双语言”问题：Python 的解决方案 (续)</h2>
+<ul>
+<li><strong>协作：</strong> 促进研究人员和软件工程师之间的协作，他们现在可以使用相同的工具。</li>
+<li><strong>JIT 编译器：</strong> 像 Numba 这样的库提供了“即时”编译，在不离开 Python 环境的情况下显著提高了性能。</li>
+</ul>
+</section>
+<section id="双语言问题python-的解决方案-续-1" class="level2">
+<h2 class="anchored" data-anchor-id="双语言问题python-的解决方案-续-1">“双语言”问题：Python 的解决方案 (续)</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Python 弥合了研究和生产之间的差距，从而实现了更顺畅、更高效的工作流程。这就像拥有一种团队中的每个人，从数据科学家到软件工程师，都可以理解和使用的单一语言。🌉</p>
+</div>
+</div>
+</section>
+<section id="为什么-不-选择-python" class="level2">
+<h2 class="anchored" data-anchor-id="为什么-不-选择-python">为什么 <em>不</em> 选择 Python？ 🚫</h2>
+<p>虽然 Python 在许多领域都很出色，但在某些情况下它可能不是理想的选择：</p>
+<ul>
+<li><strong>性能关键型应用程序：</strong> 对于需要极低延迟或高资源利用率的应用程序（例如高频交易），C++ 等编译语言可能更合适。</li>
+</ul>
+</section>
+<section id="为什么-不-选择-python-续" class="level2">
+<h2 class="anchored" data-anchor-id="为什么-不-选择-python-续">为什么 <em>不</em> 选择 Python？ (续)</h2>
+<ul>
+<li><strong>并发性和 GIL：</strong> Python 的全局解释器锁 (GIL) 可能会限制 CPU 密集型应用程序中的真正多线程。但是，存在解决方法（例如，使用 C 扩展或多处理）。</li>
+</ul>
+</section>
+<section id="为什么-不-选择-python-续-1" class="level2">
+<h2 class="anchored" data-anchor-id="为什么-不-选择-python-续-1">为什么 <em>不</em> 选择 Python？ (续)</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Python 中的 GIL 就像一条单车道，即使你有多个车道（核心）可用，也只允许一辆车（线程）一次通过。这对于某些 CPU 密集型任务来说可能是一个瓶颈。但是，你可以使用像 C 扩展这样的绕行方式。🛣️🚗</p>
+</div>
+</div>
+</section>
+<section id="重要的-python-库" class="level2">
+<h2 class="anchored" data-anchor-id="重要的-python-库">重要的 Python 库 📚</h2>
+<p>本节介绍一些对数据分析至关重要的核心 Python 库。</p>
+</section>
+<section id="numpy数值-python" class="level2">
+<h2 class="anchored" data-anchor-id="numpy数值-python">NumPy：数值 Python</h2>
+<p>NumPy 是 Python 中数值计算的基础。它提供：</p>
+<ul>
+<li><strong><code>ndarray</code>：</strong> 一种快速高效的多维数组对象，用于存储和操作数值数据。</li>
+<li><strong>数学函数：</strong> 用于在数组上执行逐元素运算和数组之间的数学计算的各种函数。</li>
+</ul>
+</section>
+<section id="numpy数值-python-续" class="level2">
+<h2 class="anchored" data-anchor-id="numpy数值-python-续">NumPy：数值 Python (续)</h2>
+<ul>
+<li><strong>线性代数、傅里叶变换、随机数生成：</strong> 科学计算和数据分析的基本工具。</li>
+<li><strong>数据容器：</strong> 作为在算法和库之间传递数据的有效容器。</li>
+<li><strong>C API:</strong> 允许与 C、C++ 和 FORTRAN 连接。</li>
+</ul>
+</section>
+<section id="numpy数值-python-续-1" class="level2">
+<h2 class="anchored" data-anchor-id="numpy数值-python-续-1">NumPy：数值 Python (续)</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>可以将 NumPy 的 <code>ndarray</code> 视为一个高度优化的数字容器，就像一个专为快速计算而设计的高效电子表格。🔢🚀</p>
+</div>
+</div>
+</section>
+<section id="pandas数据操作和分析" class="level2">
+<h2 class="anchored" data-anchor-id="pandas数据操作和分析">pandas：数据操作和分析</h2>
+<p>pandas 建立在 NumPy 之上，提供用于处理结构化或表格数据的高级数据结构和函数。主要功能包括：</p>
+<ul>
+<li><strong><code>DataFrame</code>：</strong> 一种表格化的、面向列的数据结构，具有行和列标签（类似于电子表格或 SQL 表）。</li>
+<li><strong><code>Series</code>：</strong> 一维标记数组对象。</li>
+</ul>
+</section>
+<section id="pandas数据操作和分析-续" class="level2">
+<h2 class="anchored" data-anchor-id="pandas数据操作和分析-续">pandas：数据操作和分析 (续)</h2>
+<ul>
+<li><strong>数据对齐：</strong> 基于标签的自动或显式数据对齐，防止由未对齐数据引起的常见错误。</li>
+<li><strong>数据操作：</strong> 用于重塑、切片、切块、聚合和选择数据子集的工具。</li>
+<li><strong>缺失数据处理：</strong> 灵活处理缺失数据。</li>
+</ul>
+</section>
+<section id="pandas数据操作和分析-续-1" class="level2">
+<h2 class="anchored" data-anchor-id="pandas数据操作和分析-续-1">pandas：数据操作和分析 (续)</h2>
+<ul>
+<li><strong>时间序列功能：</strong> 用于处理时间序列数据的专用工具。</li>
+<li><strong>与数据库集成：</strong> 支持合并和连接来自不同来源的数据，包括 SQL 数据库。</li>
+<li><strong>源自面板数据</strong>: “pandas” 来自 “panel data”，一个计量经济学术语，以及 “Python data analysis”。</li>
+</ul>
+</section>
+<section id="pandas数据操作和分析-续-2" class="level2">
+<h2 class="anchored" data-anchor-id="pandas数据操作和分析-续-2">pandas：数据操作和分析 (续)</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>pandas 就像 Python 中的一个超级电子表格程序，可以让你轻松地操作、清理和分析数据。📊📈</p>
+</div>
+</div>
+</section>
+<section id="matplotlib数据可视化" class="level2">
+<h2 class="anchored" data-anchor-id="matplotlib数据可视化">matplotlib：数据可视化 📊</h2>
+<p>matplotlib 是最广泛使用的 Python 库，用于创建静态绘图和其他二维数据可视化。</p>
+<ul>
+<li><strong>出版质量的绘图：</strong> 专为生成适合出版物的高质量绘图而设计。</li>
+<li><strong>集成：</strong> 与 Python 数据生态系统中的其他库很好地集成。</li>
+<li><strong>默认选择：</strong> 基本数据可视化的可靠且广泛采用的选择。</li>
+</ul>
+</section>
+<section id="matplotlib数据可视化-续" class="level2">
+<h2 class="anchored" data-anchor-id="matplotlib数据可视化-续">matplotlib：数据可视化 (续)</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>matplotlib 是你创建数据可视化表示的首选工具，就像将数据转换为图表和图形一样。📉📊</p>
+</div>
+</div>
+</section>
+<section id="ipython-和-jupyter交互式计算" class="level2">
+<h2 class="anchored" data-anchor-id="ipython-和-jupyter交互式计算">IPython 和 Jupyter：交互式计算 💻</h2>
+<p>IPython 和 Jupyter 为 Python 开发和数据分析提供了一个交互式环境。</p>
+<ul>
+<li><strong>IPython：</strong> 一种增强的交互式 Python shell，可促进“执行-探索”工作流程。</li>
+</ul>
+</section>
+<section id="ipython-和-jupyter交互式计算-续" class="level2">
+<h2 class="anchored" data-anchor-id="ipython-和-jupyter交互式计算-续">IPython 和 Jupyter：交互式计算 (续)</h2>
+<ul>
+<li><strong>Jupyter Notebook：</strong> 一种基于 Web 的笔记本环境，支持多种编程语言（包括通过 IPython 的 Python），并允许你在单个文档中组合代码、文本和可视化。</li>
+<li><strong>探索和迭代：</strong> 非常适合探索数据、尝试不同的代码片段以及迭代分析。</li>
+</ul>
+</section>
+<section id="ipython-和-jupyter交互式计算-续-1" class="level2">
+<h2 class="anchored" data-anchor-id="ipython-和-jupyter交互式计算-续-1">IPython 和 Jupyter：交互式计算 (续)</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>IPython 和 Jupyter 就像数据科学家的数字实验室笔记本，可以让你进行实验、记录你的工作并分享你的发现。🧪📓</p>
+</div>
+</div>
+</section>
+<section id="scipy科学计算工具" class="level2">
+<h2 class="anchored" data-anchor-id="scipy科学计算工具">SciPy：科学计算工具</h2>
+<p>SciPy 是一个软件包的集合，提供用于各种科学计算任务的工具，包括：</p>
+<ul>
+<li><strong><code>scipy.integrate</code>：</strong> 数值积分和微分方程求解器。</li>
+<li><strong><code>scipy.linalg</code>：</strong> 线性代数例程。</li>
+<li><strong><code>scipy.optimize</code>：</strong> 函数优化和求根算法。</li>
+</ul>
+</section>
+<section id="scipy科学计算工具-续" class="level2">
+<h2 class="anchored" data-anchor-id="scipy科学计算工具-续">SciPy：科学计算工具 (续)</h2>
+<ul>
+<li><strong><code>scipy.signal</code>：</strong> 信号处理工具。</li>
+<li><strong><code>scipy.sparse</code>：</strong> 稀疏矩阵和求解器。</li>
+<li><strong><code>scipy.special</code>：</strong> 特殊数学函数。</li>
+<li><strong><code>scipy.stats</code>：</strong> 统计分布、检验和描述性统计。</li>
+</ul>
+</section>
+<section id="scipy科学计算工具-续-1" class="level2">
+<h2 class="anchored" data-anchor-id="scipy科学计算工具-续-1">SciPy：科学计算工具 (续)</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>SciPy 就像一个装满了用于科学计算的专用仪器的工具箱，扩展了 NumPy 的功能。🧰🔬</p>
+</div>
+</div>
+</section>
+<section id="scikit-learn机器学习" class="level2">
+<h2 class="anchored" data-anchor-id="scikit-learn机器学习">scikit-learn：机器学习 🤖</h2>
+<p>scikit-learn 是 Python 的主要通用机器学习工具包。它包括以下子模块：</p>
+<ul>
+<li><strong>分类：</strong> 用于识别对象属于哪个类别的算法（例如，垃圾邮件检测）。</li>
+<li><strong>回归：</strong> 用于预测连续值属性的算法（例如，预测房价）。</li>
+</ul>
+</section>
+<section id="scikit-learn机器学习-续" class="level2">
+<h2 class="anchored" data-anchor-id="scikit-learn机器学习-续">scikit-learn：机器学习 (续)</h2>
+<ul>
+<li><strong>聚类：</strong> 用于对相似对象进行分组的算法（例如，客户细分）。</li>
+<li><strong>降维：</strong> 减少数据集中变量数量的技术。</li>
+</ul>
+</section>
+<section id="scikit-learn机器学习-续-1" class="level2">
+<h2 class="anchored" data-anchor-id="scikit-learn机器学习-续-1">scikit-learn：机器学习 (续)</h2>
+<ul>
+<li><strong>模型选择：</strong> 用于选择最佳模型和参数的工具。</li>
+<li><strong>预处理：</strong> 特征提取和归一化。</li>
+</ul>
+</section>
+<section id="scikit-learn机器学习-续-2" class="level2">
+<h2 class="anchored" data-anchor-id="scikit-learn机器学习-续-2">scikit-learn：机器学习 (续)</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>scikit-learn 是你的机器学习工作室，提供用于构建和评估预测模型的各种工具。🤖🛠️</p>
+</div>
+</div>
+</section>
+<section id="statsmodels统计建模" class="level2">
+<h2 class="anchored" data-anchor-id="statsmodels统计建模">statsmodels：统计建模</h2>
+<p>statsmodels 是一个统计分析包，专注于统计推断，提供不确定性估计和 p 值。它包括：</p>
+<ul>
+<li><strong>回归模型：</strong> 线性回归、广义线性模型等。</li>
+<li><strong>方差分析 (ANOVA)</strong></li>
+</ul>
+</section>
+<section id="statsmodels统计建模-续" class="level2">
+<h2 class="anchored" data-anchor-id="statsmodels统计建模-续">statsmodels：统计建模 (续)</h2>
+<ul>
+<li><strong>时间序列分析：</strong> AR、ARMA、ARIMA、VAR 模型。</li>
+<li><strong>非参数方法：</strong> 核密度估计等。</li>
+<li><strong>可视化：</strong> 用于可视化统计模型结果的工具。</li>
+</ul>
+</section>
+<section id="statsmodels-统计建模-续" class="level2">
+<h2 class="anchored" data-anchor-id="statsmodels-统计建模-续">statsmodels: 统计建模 (续)</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>statsmodels 是你的统计实验室，提供用于进行严格的统计分析和从数据中得出推论的工具。它补充了 scikit-learn，后者更侧重于预测。🧪📊</p>
+</div>
+</div>
+</section>
+<section id="其他包" class="level2">
+<h2 class="anchored" data-anchor-id="其他包">其他包 📦</h2>
+<ul>
+<li>还有许多其他重要的 Python 库。</li>
+<li>TensorFlow 和 PyTorch：常用于机器学习或人工智能工作。</li>
+</ul>
+</section>
+<section id="安装和设置" class="level2">
+<h2 class="anchored" data-anchor-id="安装和设置">安装和设置 ⚙️</h2>
+<p>本节提供使用 Miniconda 和 conda-forge 设置用于数据分析的 Python 环境的说明。</p>
+</section>
+<section id="miniconda" class="level2">
+<h2 class="anchored" data-anchor-id="miniconda">Miniconda</h2>
+<p>Miniconda 是 conda 的最小安装程序，conda 是一个包、依赖项和环境管理系统。conda-forge 是一个基于 conda 的社区维护的软件发行版。</p>
+<ul>
+<li><strong>为什么选择 Miniconda？</strong> 提供了一种轻量级且灵活的方式来管理 Python 环境和包。</li>
+</ul>
+</section>
+<section id="miniconda-续" class="level2">
+<h2 class="anchored" data-anchor-id="miniconda-续">Miniconda (续)</h2>
+<ul>
+<li><strong>conda-forge：</strong> 提供各种软件包，包括数据科学中常用的软件包。</li>
+<li><strong>Python 3.10：</strong> 本书使用 Python 3.10，但也可以使用更新的版本。</li>
+</ul>
+</section>
+<section id="miniconda-续-1" class="level2">
+<h2 class="anchored" data-anchor-id="miniconda-续-1">Miniconda (续)</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>可以将 conda 视为 Python 项目的虚拟容器。它可以使你的项目保持隔离，并防止不同软件包版本之间的冲突。Miniconda 是 Anaconda 的精简版本。📦</p>
+</div>
+</div>
+</section>
+<section id="安装步骤-windowsmacoslinux" class="level2">
+<h2 class="anchored" data-anchor-id="安装步骤-windowsmacoslinux">安装步骤 (Windows、macOS、Linux) 💻</h2>
+<p>本书提供了在 Windows、macOS 和 Linux 上安装 Miniconda 的详细说明。一般步骤是：</p>
+<ol type="1">
+<li><strong>下载：</strong> 从 <a href="https://conda.io/">https://conda.io</a> 下载适当的 Miniconda 安装程序。</li>
+</ol>
+</section>
+<section id="安装步骤-续" class="level2">
+<h2 class="anchored" data-anchor-id="安装步骤-续">安装步骤 (续)</h2>
+<ol start="2" type="1">
+<li><strong>安装：</strong> 运行安装程序，按照屏幕上的提示进行操作。</li>
+<li><strong>验证：</strong> 打开终端（或 Windows 上的 Anaconda Prompt）并键入 <code>python</code>。你应该会看到 Python 解释器启动。</li>
+</ol>
+</section>
+<section id="安装步骤-续-1" class="level2">
+<h2 class="anchored" data-anchor-id="安装步骤-续-1">安装步骤 (续)</h2>
+<ol start="4" type="1">
+<li><strong>退出：</strong> 键入 <code>exit()</code> 或按 Ctrl-D（在 Windows 上按 Ctrl-Z 然后按 Enter）退出解释器。</li>
+</ol>
+</section>
+<section id="安装步骤-续-2" class="level2">
+<h2 class="anchored" data-anchor-id="安装步骤-续-2">安装步骤 (续)</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>这些步骤就像在开始木工项目之前设置你的工作台。你正在准备好你的工具（Python 及其库）以供使用。🛠️🪚</p>
+</div>
+</div>
+</section>
+<section id="安装必要的包" class="level2">
+<h2 class="anchored" data-anchor-id="安装必要的包">安装必要的包 📦</h2>
+<p>安装 Miniconda 后，你可以创建一个 conda 环境并安装必要的包：</p>
+<ol type="1">
+<li><strong>配置 conda-forge：</strong> <code>bash     conda config --add channels conda-forge     conda config --set channel_priority strict</code></li>
+</ol>
+</section>
+<section id="安装必要的包-续" class="level2">
+<h2 class="anchored" data-anchor-id="安装必要的包-续">安装必要的包 (续)</h2>
+<ol start="2" type="1">
+<li><strong>创建环境：</strong> <code>bash     conda create -y -n pydata-book python=3.10</code></li>
+<li><strong>激活环境：</strong> <code>bash     conda activate pydata-book</code></li>
+</ol>
+</section>
+<section id="安装必要的包-续-1" class="level2">
+<h2 class="anchored" data-anchor-id="安装必要的包-续-1">安装必要的包 (续)</h2>
+<ol start="4" type="1">
+<li><strong>安装包：</strong> <code>bash     conda install -y pandas jupyter matplotlib</code> （或安装书中列出的所有包）。</li>
+</ol>
+</section>
+<section id="安装必要的包-续-2" class="level2">
+<h2 class="anchored" data-anchor-id="安装必要的包-续-2">安装必要的包 (续)</h2>
+<ul>
+<li><strong><code>conda install</code> 与 <code>pip install</code>：</strong> 使用 Miniconda 时首选 <code>conda install</code>。如果某个包无法通过 conda 获得，请使用 <code>pip install</code>。</li>
+<li><strong>更新包：</strong> 使用 <code>conda update package_name</code> 或 <code>pip install --upgrade package_name</code>。</li>
+</ul>
+</section>
+<section id="安装必要的包-续-3" class="level2">
+<h2 class="anchored" data-anchor-id="安装必要的包-续-3">安装必要的包 (续)</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>创建 conda 环境就像为每个项目设置一个单独的工作区。它有助于避免可能需要相同包的不同版本的不同项目之间的冲突。🏢</p>
+</div>
+</div>
+</section>
+<section id="集成开发环境-ide-和文本编辑器" class="level2">
+<h2 class="anchored" data-anchor-id="集成开发环境-ide-和文本编辑器">集成开发环境 (IDE) 和文本编辑器</h2>
+<ul>
+<li>作者建议使用 “IPython 加一个文本编辑器”。</li>
+<li>供你参考的一些 IDE：
+<ul>
+<li>PyDev（免费）</li>
+<li>JetBrains 的 PyCharm</li>
+<li>用于 Visual Studio 的 Python 工具</li>
+<li>Spyder（免费）</li>
+<li>Komodo IDE（商业）</li>
+</ul></li>
+</ul>
+</section>
+<section id="社区和会议" class="level2">
+<h2 class="anchored" data-anchor-id="社区和会议">社区和会议 🤝</h2>
+<p>参与 Python 社区是学习和获得帮助的好方法。有用的资源包括：</p>
+<ul>
+<li><strong>邮件列表：</strong>
+<ul>
+<li>pydata（通用的 Python 数据分析）</li>
+<li>pystatsmodels（statsmodels 和 pandas）</li>
+<li>scikit-learn（机器学习）</li>
+<li>numpy-discussion</li>
+<li>scipy-user</li>
+</ul></li>
+</ul>
+</section>
+<section id="社区和会议-续" class="level2">
+<h2 class="anchored" data-anchor-id="社区和会议-续">社区和会议 (续)</h2>
+<ul>
+<li><strong>会议：</strong>
+<ul>
+<li>PyCon 和 EuroPython（通用的 Python）</li>
+<li>SciPy 和 EuroSciPy（科学计算）</li>
+<li>PyData（数据科学和数据分析）</li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Python 社区以其热情和乐于助人而闻名。不要犹豫，提出问题并与其他用户联系！🤗</p>
+</div>
+</div>
+</section>
+<section id="导航本书" class="level2">
+<h2 class="anchored" data-anchor-id="导航本书">导航本书 🗺️</h2>
+<ul>
+<li><strong>第 2 章和第 3 章：</strong> Python 语言特性、IPython 和 Jupyter Notebook 的简明教程（对初学者至关重要）。</li>
+<li><strong>NumPy 简介：</strong> NumPy 的简要概述，更高级的主题在附录 A 中。</li>
+</ul>
+</section>
+<section id="导航本书-续" class="level2">
+<h2 class="anchored" data-anchor-id="导航本书-续">导航本书 (续)</h2>
+<ul>
+<li><strong>pandas 重点：</strong> 本书的其余部分重点介绍使用 pandas、NumPy 和 matplotlib 进行数据分析。</li>
+<li><strong>递增结构：</strong> 材料以循序渐进的方式呈现。</li>
+</ul>
+</section>
+<section id="导航本书-续-1" class="level2">
+<h2 class="anchored" data-anchor-id="导航本书-续-1">导航本书 (续)</h2>
+<p>本书涵盖以下关键领域：</p>
+<ul>
+<li><strong>与外部世界交互：</strong> 读取和写入数据。</li>
+<li><strong>准备：</strong> 清理、转换和重塑数据。</li>
+</ul>
+</section>
+<section id="导航本书-续-2" class="level2">
+<h2 class="anchored" data-anchor-id="导航本书-续-2">导航本书 (续)</h2>
+<ul>
+<li><strong>转换：</strong> 应用数学和统计运算。</li>
+<li><strong>建模和计算：</strong> 将数据连接到模型和算法。</li>
+<li><strong>展示：</strong> 创建可视化和摘要。</li>
+</ul>
+</section>
+<section id="代码示例" class="level2">
+<h2 class="anchored" data-anchor-id="代码示例">代码示例</h2>
+<ul>
+<li>代码示例基于 IPython shell 或 Jupyter notebook。</li>
+<li>例如：</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>In [<span class="dv">5</span>]: 代码示例</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Out[<span class="dv">5</span>]: 输出</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="代码示例-续" class="level2">
+<h2 class="anchored" data-anchor-id="代码示例-续">代码示例 (续)</h2>
+<ul>
+<li><strong>可重复性：</strong> 本书提供了设置环境以匹配示例中显示的输出的说明。</li>
+<li><strong>数据:</strong> 示例的数据集托管在 GitHub（或码云 Gitee）上。</li>
+</ul>
+</section>
+<section id="导入约定" class="level2">
+<h2 class="anchored" data-anchor-id="导入约定">导入约定</h2>
+<ul>
+<li>常见的导入语句：</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels <span class="im">as</span> sm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="总结" class="level2">
+<h2 class="anchored" data-anchor-id="总结">总结 📝</h2>
+<ul>
+<li>本章介绍了将在整本书中使用的核心概念和工具。</li>
+<li>我们了解了本书的范围（用于数据分析的 Python）、数据科学的含义以及数据整理的重要性。</li>
+</ul>
+</section>
+<section id="总结-续" class="level2">
+<h2 class="anchored" data-anchor-id="总结-续">总结 (续)</h2>
+<ul>
+<li><p>我们探讨了使用 Python 进行数据分析的优势，以及一些潜在的局限性。</p></li>
+<li><p>我们介绍了关键的 Python 库：NumPy、pandas、matplotlib、IPython/Jupyter、SciPy、scikit-learn 和 statsmodels。</p></li>
+<li><p>我们介绍了使用 Miniconda 安装和设置 Python 环境。</p></li>
+</ul>
+</section>
+<section id="思考和讨论" class="level2">
+<h2 class="anchored" data-anchor-id="思考和讨论">思考和讨论 💭</h2>
+<ul>
+<li>你对 Python 作为数据分析工具的最初印象是什么？</li>
+<li>你最想了解本章介绍的哪些库？</li>
+</ul>
+</section>
+<section id="思考和讨论-续" class="level2">
+<h2 class="anchored" data-anchor-id="思考和讨论-续">思考和讨论 (续)</h2>
+<ul>
+<li>你能想到任何数据整理将是分析过程中关键步骤的真实示例吗？</li>
+<li>“双语言问题”的概念与你自己使用数据分析或软件开发的经验（如果有）有何关联？</li>
+</ul>
+</section>
+<section id="思考和讨论-续-1" class="level2">
+<h2 class="anchored" data-anchor-id="思考和讨论-续-1">思考和讨论 (续)</h2>
+<ul>
+<li>为什么为不同的 Python 项目创建单独的环境很重要？</li>
+<li>你更喜欢使用 IDE，还是文本编辑器加 IPython？</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/qiufei\.github\.io\/web-slide-pandas3ed");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>🔋<a href="https://posit.co"><img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" class="img-fluid" alt="Posit" width="65"></a></p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ 邱飞 © 2025
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://beian.miit.gov.cn">
+<p>浙ICP备 2024072710号-1</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33021202002511">
+<p>浙公网安备 33021202002511号</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:hfutqiufei@163.com">
+      <i class="bi bi-envelope-at-fill" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

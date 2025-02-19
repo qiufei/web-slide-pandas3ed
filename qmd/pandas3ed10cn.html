@@ -1,0 +1,4135 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Python 数据分析</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<link href="../https://assets.qiufei.site/personal/profile.jpg" rel="icon" type="image/jpeg">
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-681fbf911679f9b3dbf9743eb275ba49.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7e49aeac8059a213a463aa1a739e8272.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://qiufei.github.io"> 
+<span class="menu-text">首页</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://qiufei.github.io/web-slide"> 
+<span class="menu-text">课件</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Python 数据分析</h1>
+<p class="subtitle lead">第十章</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="本章内容" class="level2">
+<h2 class="anchored" data-anchor-id="本章内容">本章内容 🤔</h2>
+<p>本节重点介绍<strong>数据聚合与分组操作</strong>，这是数据分析的关键部分。我们将学习如何对数据进行分类，并对每个组应用函数——这是许多数据工作流程中的基本步骤。</p>
+</section>
+<section id="核心操作" class="level2">
+<h2 class="anchored" data-anchor-id="核心操作">核心操作 ⚙️</h2>
+<p>我们将学习：</p>
+<ul>
+<li>将 pandas 对象拆分为组。</li>
+<li>计算组摘要统计信息（计数、平均值等）。</li>
+<li>在组内应用转换。</li>
+<li>计算数据透视表和交叉表。</li>
+<li>执行分位数分析。</li>
+<li>使用 <code>transform</code> 和 <code>apply</code>。</li>
+</ul>
+</section>
+<section id="为什么这很重要" class="level2">
+<h2 class="anchored" data-anchor-id="为什么这很重要">为什么这很重要？📈</h2>
+<p>分组和聚合数据有助于我们：</p>
+<ul>
+<li>通过汇总大型数据集<strong>获得见解</strong>。</li>
+<li><strong>比较</strong>不同的组。</li>
+<li><strong>准备数据</strong>以进行分析或可视化。</li>
+<li><strong>发现模式</strong>。</li>
+</ul>
+</section>
+<section id="如何理解分组操作" class="level1">
+<h1>如何理解分组操作</h1>
+<section id="拆分-应用-合并范式" class="level2">
+<h2 class="anchored" data-anchor-id="拆分-应用-合并范式">“拆分-应用-合并”范式 💡</h2>
+<p>Hadley Wickham 的 <strong>“拆分-应用-合并”</strong> (split-apply-combine) 范式是理解数据处理的强大方式。</p>
+<ol type="1">
+<li><strong>拆分 (Split)：</strong> 根据“键”将数据分成组。</li>
+<li><strong>应用 (Apply)：</strong> 对每个组应用一个函数。</li>
+<li><strong>合并 (Combine)：</strong> 将结果合并为最终输出。</li>
+</ol>
+</section>
+<section id="拆分-应用-合并可视化" class="level2">
+<h2 class="anchored" data-anchor-id="拆分-应用-合并可视化">“拆分-应用-合并”可视化 📊</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    A[数据] --&gt; B(按键拆分)
+    B --&gt; C1[组 1]
+    B --&gt; C2[组 2]
+    B --&gt; C3[组 3]
+    C1 --&gt; D1(应用函数)
+    C2 --&gt; D2(应用函数)
+    C3 --&gt; D3(应用函数)
+    D1 --&gt; E[合并结果]
+    D2 --&gt; E
+    D3 --&gt; E
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="分组键" class="level2">
+<h2 class="anchored" data-anchor-id="分组键">分组键 🔑</h2>
+<p>键可以是：</p>
+<ul>
+<li>列表或数组。</li>
+<li>DataFrame 列名。</li>
+<li>将值映射到组名的字典或 Series。</li>
+<li>应用于索引的函数。</li>
+</ul>
+<p>这些本质上都是用于拆分对象的数组值的快捷方式。</p>
+</section>
+<section id="示例简单分组聚合" class="level2">
+<h2 class="anchored" data-anchor-id="示例简单分组聚合">示例：简单分组聚合</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://pandas.pydata.org/docs/_images/06_groupby.svg" class="img-fluid figure-img"></p>
+<figcaption>Split-Apply-Combine</figcaption>
+</figure>
+</div>
+<ul>
+<li><strong>键和数据</strong>：带有“Key”和“Data”列的表格。</li>
+<li><strong>拆分</strong>：数据按“Key”拆分为组（A、B、C）。</li>
+<li><strong>应用</strong>：<code>Sum</code> 函数应用于每个组的“Data”。</li>
+<li><strong>合并</strong>：总和合并到一个新表中。</li>
+</ul>
+</section>
+</section>
+<section id="pandas-实战创建-dataframe" class="level1">
+<h1>Pandas 实战：创建 DataFrame</h1>
+<p>让我们创建一个示例 DataFrame：</p>
+<div id="d4629768" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np  <span class="co"># 导入 NumPy 库，用于数值计算</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd  <span class="co"># 导入 pandas 库，用于数据分析</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个 DataFrame</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"key1"</span>: [<span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"b"</span>, <span class="st">"a"</span>],  <span class="co"># key1 列，包含字符串</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"key2"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>],  <span class="co"># key2 列，包含整数</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data1"</span>: np.random.randn(<span class="dv">5</span>),  <span class="co"># data1 列，包含 5 个随机数</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data2"</span>: np.random.randn(<span class="dv">5</span>)  <span class="co"># data2 列，包含 5 个随机数</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>df  <span class="co"># 显示 DataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">key1</th>
+<th data-quarto-table-cell-role="th">key2</th>
+<th data-quarto-table-cell-role="th">data1</th>
+<th data-quarto-table-cell-role="th">data2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>a</td>
+<td>1</td>
+<td>-0.264624</td>
+<td>-0.779621</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>a</td>
+<td>2</td>
+<td>-0.228255</td>
+<td>-1.242185</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>b</td>
+<td>1</td>
+<td>0.557001</td>
+<td>-1.142986</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>b</td>
+<td>2</td>
+<td>-0.214896</td>
+<td>1.085946</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>a</td>
+<td>1</td>
+<td>-2.910654</td>
+<td>2.450837</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>此 DataFrame 有两个键列（<code>key1</code>、<code>key2</code>）和两个数据列（<code>data1</code>、<code>data2</code>）。</p>
+</section>
+<section id="基本-groupby-操作" class="level1">
+<h1>基本 GroupBy 操作</h1>
+<section id="按单列分组" class="level2">
+<h2 class="anchored" data-anchor-id="按单列分组">按单列分组</h2>
+<p>计算 <code>key1</code> 中每个组的 <code>data1</code> 的平均值：</p>
+<div id="0efc298c" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> df[<span class="st">"data1"</span>].groupby(df[<span class="st">"key1"</span>])  <span class="co"># 按 key1 分组 data1</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>grouped.mean()  <span class="co"># 计算每个组的平均值</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>key1
+a   -1.134511
+b    0.171052
+Name: data1, dtype: float64</code></pre>
+</div>
+</div>
+<ul>
+<li><code>df["data1"]</code>：选择 <code>data1</code> 列。</li>
+<li><code>.groupby(df["key1"])</code>：按 <code>key1</code> 列分组。</li>
+<li><code>grouped</code>：一个 <code>GroupBy</code> 对象，存储分组信息。</li>
+<li><code>.mean()</code>：计算每个组的平均值。</li>
+</ul>
+</section>
+<section id="按多列分组" class="level2">
+<h2 class="anchored" data-anchor-id="按多列分组">按多列分组</h2>
+<p>按多列分组（分层索引）：</p>
+<div id="001cf6f2" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>])  <span class="co"># 按 key1 和 key2 分组</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>grouped.agg({</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data1"</span>: [<span class="st">"mean"</span>, <span class="st">"std"</span>],  <span class="co"># 对 data1 计算平均值和标准差</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data2"</span>: [<span class="st">"mean"</span>, <span class="st">"std"</span>]   <span class="co"># 对 data2 计算平均值和标准差</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th colspan="2" data-quarto-table-cell-role="th" data-halign="left">data1</th>
+<th colspan="2" data-quarto-table-cell-role="th" data-halign="left">data2</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+</tr>
+<tr class="header">
+<th data-quarto-table-cell-role="th">key1</th>
+<th data-quarto-table-cell-role="th">key2</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">a</td>
+<td data-quarto-table-cell-role="th">1</td>
+<td>-1.587639</td>
+<td>1.871025</td>
+<td>0.835608</td>
+<td>2.284279</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>-0.228255</td>
+<td>NaN</td>
+<td>-1.242185</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">b</td>
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.557001</td>
+<td>NaN</td>
+<td>-1.142986</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>-0.214896</td>
+<td>NaN</td>
+<td>1.085946</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>数据按 <code>key1</code> 和 <code>key2</code> 的组合进行分组。</p>
+</section>
+<section id="展开-unstacking" class="level2">
+<h2 class="anchored" data-anchor-id="展开-unstacking">展开 (Unstacking)</h2>
+<p><code>unstack()</code> 重塑结果：</p>
+<div id="4cd540be" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>means <span class="op">=</span> df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>])[<span class="st">"data1"</span>].mean()  <span class="co"># 按 key1 和 key2 分组，计算 data1 的平均值</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>means.unstack()  <span class="co"># 将结果展开，使 key2 成为列</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">key2</th>
+<th data-quarto-table-cell-role="th">1</th>
+<th data-quarto-table-cell-role="th">2</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">key1</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">a</td>
+<td>-1.587639</td>
+<td>-0.228255</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">b</td>
+<td>0.557001</td>
+<td>-0.214896</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="使用-series-和数组分组" class="level2">
+<h2 class="anchored" data-anchor-id="使用-series-和数组分组">使用 Series 和数组分组</h2>
+<p>键可以是外部 Series 或数组：</p>
+<div id="ea66a042" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> np.array([<span class="st">"OH"</span>, <span class="st">"CA"</span>, <span class="st">"CA"</span>, <span class="st">"OH"</span>, <span class="st">"OH"</span>, <span class="st">"CA"</span>, <span class="st">"OH"</span>])  <span class="co"># 外部数组 states</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> np.array([<span class="dv">2005</span>, <span class="dv">2005</span>, <span class="dv">2006</span>, <span class="dv">2005</span>, <span class="dv">2006</span>, <span class="dv">2005</span>, <span class="dv">2006</span>])  <span class="co"># 外部数组 years</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建新的 df 以匹配 states 和 years 的长度</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>df_ext <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"key1"</span>: [<span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"b"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"a"</span>],</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"key2"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>],</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data1"</span>: np.random.randn(<span class="dv">7</span>),</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data2"</span>: np.random.randn(<span class="dv">7</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> df_ext[<span class="st">"data1"</span>].groupby([states, years]).mean()  <span class="co"># 使用外部数组分组</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">分组结果:"</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">展开结果:"</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result.unstack())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+分组结果:
+CA  2005    0.546359
+    2006    0.085992
+OH  2005    0.029573
+    2006   -0.490609
+Name: data1, dtype: float64
+
+展开结果:
+        2005      2006
+CA  0.546359  0.085992
+OH  0.029573 -0.490609</code></pre>
+</div>
+</div>
+<p>这里，我们按外部数组 <code>states</code> 和 <code>years</code> 对 <code>data1</code> 进行分组。</p>
+</section>
+<section id="直接使用列名分组" class="level2">
+<h2 class="anchored" data-anchor-id="直接使用列名分组">直接使用列名分组</h2>
+<p>如果分组信息在 DataFrame 中，直接使用列名：</p>
+<div id="9a65ea91" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"key1"</span>).mean()  <span class="co"># 按 key1 分组，计算所有数值列的平均值</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">key2</th>
+<th data-quarto-table-cell-role="th">data1</th>
+<th data-quarto-table-cell-role="th">data2</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">key1</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">a</td>
+<td>1.333333</td>
+<td>-1.134511</td>
+<td>0.14301</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">b</td>
+<td>1.500000</td>
+<td>0.171052</td>
+<td>-0.02852</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>非数值列 <code>key1</code> 会被自动排除，因为它是一个<strong>干扰列</strong></p>
+<div id="8be7dacf" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>]).mean()  <span class="co"># 按 key1 和 key2 分组，计算所有数值列的平均值</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">data1</th>
+<th data-quarto-table-cell-role="th">data2</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">key1</th>
+<th data-quarto-table-cell-role="th">key2</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">a</td>
+<td data-quarto-table-cell-role="th">1</td>
+<td>-1.587639</td>
+<td>0.835608</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>-0.228255</td>
+<td>-1.242185</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">b</td>
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.557001</td>
+<td>-1.142986</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>-0.214896</td>
+<td>1.085946</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="组大小" class="level2">
+<h2 class="anchored" data-anchor-id="组大小">组大小</h2>
+<p><code>size()</code> 显示每个组中的数据点数量：</p>
+<div id="db90d098" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>]).size()  <span class="co"># 按 key1 和 key2 分组，计算每个组的大小</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>key1  key2
+a     1       2
+      2       1
+b     1       1
+      2       1
+dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="处理分组键中的缺失值" class="level2">
+<h2 class="anchored" data-anchor-id="处理分组键中的缺失值">处理分组键中的缺失值</h2>
+<p>默认情况下，分组键中的缺失值会被排除。使用 <code>dropna=False</code> 包含它们：</p>
+<div id="7461bb57" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"key1"</span>, dropna<span class="op">=</span><span class="va">False</span>).size()  <span class="co"># 按 key1 分组，包括缺失值（如果有）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>key1
+a    3
+b    2
+dtype: int64</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="迭代组" class="level1">
+<h1>迭代组</h1>
+<section id="使用单键迭代" class="level2">
+<h2 class="anchored" data-anchor-id="使用单键迭代">使用单键迭代</h2>
+<p><code>GroupBy</code> 支持迭代，生成组名和数据块：</p>
+<div id="72d82886" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, group <span class="kw">in</span> df.groupby(<span class="st">"key1"</span>):  <span class="co"># 按 key1 迭代组</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"组名: </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># 打印组名</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(group)  <span class="co"># 打印组数据</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>组名: a
+  key1  key2     data1     data2
+0    a     1 -0.264624 -0.779621
+1    a     2 -0.228255 -1.242185
+4    a     1 -2.910654  2.450837
+组名: b
+  key1  key2     data1     data2
+2    b     1  0.557001 -1.142986
+3    b     2 -0.214896  1.085946</code></pre>
+</div>
+</div>
+</section>
+<section id="使用多键迭代" class="level2">
+<h2 class="anchored" data-anchor-id="使用多键迭代">使用多键迭代</h2>
+<p>使用多个键时，组名是一个元组：</p>
+<div id="9cbbe0ab" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k1, k2), group <span class="kw">in</span> df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>]):  <span class="co"># 按 key1 和 key2 迭代组</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"组键: </span><span class="sc">{</span>(k1, k2)<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># 打印组键</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(group)  <span class="co"># 打印组数据</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>组键: ('a', np.int64(1))
+  key1  key2     data1     data2
+0    a     1 -0.264624 -0.779621
+4    a     1 -2.910654  2.450837
+组键: ('a', np.int64(2))
+  key1  key2     data1     data2
+1    a     2 -0.228255 -1.242185
+组键: ('b', np.int64(1))
+  key1  key2     data1     data2
+2    b     1  0.557001 -1.142986
+组键: ('b', np.int64(2))
+  key1  key2     data1     data2
+3    b     2 -0.214896  1.085946</code></pre>
+</div>
+</div>
+</section>
+<section id="创建数据块字典" class="level2">
+<h2 class="anchored" data-anchor-id="创建数据块字典">创建数据块字典</h2>
+<p>创建组数据的字典：</p>
+<div id="82c21761" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pieces <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">list</span>(df.groupby(<span class="st">"key1"</span>)))  <span class="co"># 将按 key1 分组的结果转换为字典</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>pieces[<span class="st">"b"</span>]  <span class="co"># 获取 key1 为 "b" 的组</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">key1</th>
+<th data-quarto-table-cell-role="th">key2</th>
+<th data-quarto-table-cell-role="th">data1</th>
+<th data-quarto-table-cell-role="th">data2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>b</td>
+<td>1</td>
+<td>0.557001</td>
+<td>-1.142986</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>b</td>
+<td>2</td>
+<td>-0.214896</td>
+<td>1.085946</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="按列分组-axis1" class="level1">
+<h1>按列分组 (axis=1)</h1>
+<p>使用 <code>axis="columns"</code> 按列分组：</p>
+<div id="ff9da237" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个映射字典, 将列名映射到新的分组名称</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> df.groupby({</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"key1"</span>: <span class="st">"key"</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"key2"</span>: <span class="st">"key"</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data1"</span>: <span class="st">"data"</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data2"</span>: <span class="st">"data"</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>}, axis<span class="op">=</span><span class="st">"columns"</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> group_key, group_values <span class="kw">in</span> grouped:  <span class="co"># 迭代列组</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(group_key)  <span class="co"># 打印列组键</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(group_values)  <span class="co"># 打印列组数据</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>data
+      data1     data2
+0 -0.264624 -0.779621
+1 -0.228255 -1.242185
+2  0.557001 -1.142986
+3 -0.214896  1.085946
+4 -2.910654  2.450837
+key
+  key1  key2
+0    a     1
+1    a     2
+2    b     1
+3    b     2
+4    a     1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_2857/800099706.py:2: FutureWarning: DataFrame.groupby with axis=1 is deprecated. Do `frame.T.groupby(...)` without axis instead.
+  grouped = df.groupby({</code></pre>
+</div>
+</div>
+</section>
+<section id="选择要聚合的列" class="level1">
+<h1>选择要聚合的列</h1>
+<section id="选择单列-seriesgroupby" class="level2">
+<h2 class="anchored" data-anchor-id="选择单列-seriesgroupby">选择单列 (SeriesGroupBy)</h2>
+<p>对 <code>GroupBy</code> 对象进行索引以聚合特定列：</p>
+<div id="475b9351" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>])[<span class="st">"data2"</span>].mean()  <span class="co"># 按 key1 和 key2 分组，计算 data2 的平均值</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>key1  key2
+a     1       0.835608
+      2      -1.242185
+b     1      -1.142986
+      2       1.085946
+Name: data2, dtype: float64</code></pre>
+</div>
+</div>
+<p>这是 <code>df["data2"].groupby([df["key1"], df["key2"]]).mean()</code> 的简写。</p>
+</section>
+<section id="选择多列-dataframegroupby" class="level2">
+<h2 class="anchored" data-anchor-id="选择多列-dataframegroupby">选择多列 (DataFrameGroupBy)</h2>
+<div id="5b340d41" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>])[[<span class="st">"data2"</span>]].mean()  <span class="co"># 按 key1 和 key2 分组，计算 data2 的平均值</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">data2</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">key1</th>
+<th data-quarto-table-cell-role="th">key2</th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">a</td>
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.835608</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>-1.242185</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">b</td>
+<td data-quarto-table-cell-role="th">1</td>
+<td>-1.142986</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1.085946</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>这等同于 <code>df[["data2"]].groupby([df["key1"], df["key2"]]).mean()</code>。</p>
+</section>
+</section>
+<section id="使用字典和-series-分组" class="level1">
+<h1>使用字典和 Series 分组</h1>
+<p>使用字典或 Series 进行分组：</p>
+<div id="10acfce2" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>people <span class="op">=</span> pd.DataFrame(np.random.standard_normal((<span class="dv">5</span>, <span class="dv">5</span>)),  <span class="co"># 创建一个 5x5 的随机数 DataFrame</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>                   columns<span class="op">=</span>[<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>],  <span class="co"># 列名</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                   index<span class="op">=</span>[<span class="st">"Joe"</span>, <span class="st">"Steve"</span>, <span class="st">"Wanda"</span>, <span class="st">"Jill"</span>, <span class="st">"Trey"</span>])  <span class="co"># 行名</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>people.iloc[<span class="dv">2</span>:<span class="dv">3</span>, [<span class="dv">1</span>, <span class="dv">2</span>]] <span class="op">=</span> np.nan  <span class="co"># 将一些值设置为 NaN</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>mapping <span class="op">=</span> {<span class="st">"a"</span>: <span class="st">"red"</span>, <span class="st">"b"</span>: <span class="st">"red"</span>, <span class="st">"c"</span>: <span class="st">"blue"</span>,  <span class="co"># 创建一个列映射字典</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>           <span class="st">"d"</span>: <span class="st">"blue"</span>, <span class="st">"e"</span>: <span class="st">"red"</span>, <span class="st">"f"</span> : <span class="st">"orange"</span>}</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>by_column <span class="op">=</span> people.groupby(mapping, axis<span class="op">=</span><span class="st">"columns"</span>)  <span class="co"># 使用映射字典按列分组</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>by_column.<span class="bu">sum</span>()  <span class="co"># 计算每个列组的总和</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_2857/544166625.py:9: FutureWarning: DataFrame.groupby with axis=1 is deprecated. Do `frame.T.groupby(...)` without axis instead.
+  by_column = people.groupby(mapping, axis="columns")  # 使用映射字典按列分组</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">blue</th>
+<th data-quarto-table-cell-role="th">red</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Joe</td>
+<td>0.567778</td>
+<td>-1.814848</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Steve</td>
+<td>-1.757511</td>
+<td>-0.211188</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Wanda</td>
+<td>1.124410</td>
+<td>-1.621685</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Jill</td>
+<td>4.103450</td>
+<td>-1.541343</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Trey</td>
+<td>0.588383</td>
+<td>-0.262435</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p><code>mapping</code> 指定列分组。</p>
+</section>
+<section id="使用函数分组" class="level1">
+<h1>使用函数分组</h1>
+<p>使用函数定义组映射（每个索引值调用一次）：</p>
+<div id="ed44a94c" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>people.groupby(<span class="bu">len</span>).<span class="bu">sum</span>()  <span class="co"># 按行名的长度分组，计算总和</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">a</th>
+<th data-quarto-table-cell-role="th">b</th>
+<th data-quarto-table-cell-role="th">c</th>
+<th data-quarto-table-cell-role="th">d</th>
+<th data-quarto-table-cell-role="th">e</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1.116375</td>
+<td>-2.929462</td>
+<td>0.410858</td>
+<td>0.156919</td>
+<td>-0.001761</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4</td>
+<td>-1.319199</td>
+<td>-0.805728</td>
+<td>1.906894</td>
+<td>2.784939</td>
+<td>0.321149</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">5</td>
+<td>0.268322</td>
+<td>1.189923</td>
+<td>-0.389369</td>
+<td>-0.243733</td>
+<td>-3.291118</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="按索引级别分组" class="level1">
+<h1>按索引级别分组</h1>
+<p>按分层索引的级别分组：</p>
+<div id="bfb422ab" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> pd.MultiIndex.from_arrays([[<span class="st">"US"</span>, <span class="st">"US"</span>, <span class="st">"US"</span>, <span class="st">"JP"</span>, <span class="st">"JP"</span>],  <span class="co"># 创建一个多级列索引</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>                                    [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">3</span>]],</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>                                   names<span class="op">=</span>[<span class="st">"cty"</span>, <span class="st">"tenor"</span>])</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>hier_df <span class="op">=</span> pd.DataFrame(np.random.standard_normal((<span class="dv">4</span>, <span class="dv">5</span>)), columns<span class="op">=</span>columns)  <span class="co"># 创建一个具有多级列索引的 DataFrame</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>hier_df.groupby(level<span class="op">=</span><span class="st">"cty"</span>, axis<span class="op">=</span><span class="st">"columns"</span>).count()  <span class="co"># 按列的 "cty" 级别分组，计数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_2857/2307213189.py:5: FutureWarning: DataFrame.groupby with axis=1 is deprecated. Do `frame.T.groupby(...)` without axis instead.
+  hier_df.groupby(level="cty", axis="columns").count()  # 按列的 "cty" 级别分组，计数</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">cty</th>
+<th data-quarto-table-cell-role="th">JP</th>
+<th data-quarto-table-cell-role="th">US</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="数据聚合" class="level1">
+<h1>数据聚合</h1>
+<section id="优化的聚合方法" class="level2">
+<h2 class="anchored" data-anchor-id="优化的聚合方法">优化的聚合方法</h2>
+<p>聚合将数组转换为标量。优化方法：</p>
+<ul>
+<li><code>count</code>、<code>sum</code>、<code>mean</code>、<code>median</code>、<code>std</code>、<code>var</code></li>
+<li><code>min</code>、<code>max</code>、<code>prod</code>、<code>first</code>、<code>last</code></li>
+<li><code>any</code>、<code>all</code>、<code>cummin</code>、<code>cummax</code>、<code>cumsum</code>、<code>cumprod</code></li>
+<li><code>nth</code>、<code>ohlc</code>、<code>quantile</code>、<code>rank</code>、<code>size</code></li>
+</ul>
+</section>
+<section id="使用自定义聚合函数" class="level2">
+<h2 class="anchored" data-anchor-id="使用自定义聚合函数">使用自定义聚合函数</h2>
+<p>使用 <code>agg</code> 定义自定义函数：</p>
+<div id="a863e576" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> peak_to_peak(arr):  <span class="co"># 定义一个函数，计算数组的极差（最大值 - 最小值）</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> arr.<span class="bu">max</span>() <span class="op">-</span> arr.<span class="bu">min</span>()</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> df.groupby(<span class="st">"key1"</span>)  <span class="co"># 按 key1 分组</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>grouped.agg(peak_to_peak)  <span class="co"># 应用自定义函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">key2</th>
+<th data-quarto-table-cell-role="th">data1</th>
+<th data-quarto-table-cell-role="th">data2</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">key1</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">a</td>
+<td>1</td>
+<td>2.682398</td>
+<td>3.693022</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">b</td>
+<td>1</td>
+<td>0.771897</td>
+<td>2.228933</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="describe-方法" class="level2">
+<h2 class="anchored" data-anchor-id="describe-方法"><code>describe</code> 方法</h2>
+<p>使用非聚合方法，如 <code>describe</code>：</p>
+<div id="396c2972" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>grouped.describe()  <span class="co"># 获取每个组的描述性统计信息</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th colspan="8" data-quarto-table-cell-role="th" data-halign="left">key2</th>
+<th colspan="5" data-quarto-table-cell-role="th" data-halign="left">data1</th>
+<th colspan="8" data-quarto-table-cell-role="th" data-halign="left">data2</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">25%</th>
+<th data-quarto-table-cell-role="th">50%</th>
+<th data-quarto-table-cell-role="th">75%</th>
+<th data-quarto-table-cell-role="th">max</th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">75%</th>
+<th data-quarto-table-cell-role="th">max</th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">25%</th>
+<th data-quarto-table-cell-role="th">50%</th>
+<th data-quarto-table-cell-role="th">75%</th>
+<th data-quarto-table-cell-role="th">max</th>
+</tr>
+<tr class="header">
+<th data-quarto-table-cell-role="th">key1</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">a</td>
+<td>3.0</td>
+<td>1.333333</td>
+<td>0.577350</td>
+<td>1.0</td>
+<td>1.00</td>
+<td>1.0</td>
+<td>1.50</td>
+<td>2.0</td>
+<td>3.0</td>
+<td>-1.134511</td>
+<td>...</td>
+<td>-0.246440</td>
+<td>-0.228255</td>
+<td>3.0</td>
+<td>0.14301</td>
+<td>2.011974</td>
+<td>-1.242185</td>
+<td>-1.010903</td>
+<td>-0.779621</td>
+<td>0.835608</td>
+<td>2.450837</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">b</td>
+<td>2.0</td>
+<td>1.500000</td>
+<td>0.707107</td>
+<td>1.0</td>
+<td>1.25</td>
+<td>1.5</td>
+<td>1.75</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>0.171052</td>
+<td>...</td>
+<td>0.364027</td>
+<td>0.557001</td>
+<td>2.0</td>
+<td>-0.02852</td>
+<td>1.576093</td>
+<td>-1.142986</td>
+<td>-0.585753</td>
+<td>-0.028520</td>
+<td>0.528713</td>
+<td>1.085946</td>
+</tr>
+</tbody>
+</table>
+
+<p>2 rows × 24 columns</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="列式和多函数应用" class="level1">
+<h1>列式和多函数应用</h1>
+<section id="单列上的多个函数" class="level2">
+<h2 class="anchored" data-anchor-id="单列上的多个函数">单列上的多个函数</h2>
+<p>加载小费数据集：</p>
+<div id="c49782f6" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> pd.read_csv(<span class="st">"examples/tips.csv"</span>)  <span class="co"># 从 CSV 文件加载数据(需确保 examples 文件夹及 tips.csv 文件存在)</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">"tip_pct"</span>] <span class="op">=</span> tips[<span class="st">"tip"</span>] <span class="op">/</span> tips[<span class="st">"total_bill"</span>]  <span class="co"># 添加一个小费百分比列</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>应用多个函数：</p>
+<div id="13601288" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> tips.groupby([<span class="st">"day"</span>, <span class="st">"smoker"</span>])  <span class="co"># 按 day 和 smoker 分组</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>grouped_pct <span class="op">=</span> grouped[<span class="st">"tip_pct"</span>]  <span class="co"># 选择 tip_pct 列</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>grouped_pct.agg([<span class="st">"mean"</span>, <span class="st">"std"</span>, peak_to_peak])  <span class="co"># 应用多个聚合函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">peak_to_peak</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Fri</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>0.151650</td>
+<td>0.028123</td>
+<td>0.067349</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>0.174783</td>
+<td>0.051293</td>
+<td>0.159925</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Sat</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>0.158048</td>
+<td>0.039767</td>
+<td>0.235193</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>0.147906</td>
+<td>0.061375</td>
+<td>0.290095</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Sun</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>0.160113</td>
+<td>0.042347</td>
+<td>0.193226</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>0.187250</td>
+<td>0.154134</td>
+<td>0.644685</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Thur</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>0.160298</td>
+<td>0.038774</td>
+<td>0.193350</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>0.163863</td>
+<td>0.039389</td>
+<td>0.151240</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="自定义列名" class="level2">
+<h2 class="anchored" data-anchor-id="自定义列名">自定义列名</h2>
+<p>提供自定义名称：</p>
+<div id="59e281df" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>grouped_pct.agg([(<span class="st">"average"</span>, <span class="st">"mean"</span>), (<span class="st">"stdev"</span>, np.std)])  <span class="co"># 使用自定义列名</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_2857/3675398900.py:1: FutureWarning: The provided callable &lt;function std at 0x7fadb4423d80&gt; is currently using SeriesGroupBy.std. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "std" instead.
+  grouped_pct.agg([("average", "mean"), ("stdev", np.std)])  # 使用自定义列名</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">average</th>
+<th data-quarto-table-cell-role="th">stdev</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Fri</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>0.151650</td>
+<td>0.028123</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>0.174783</td>
+<td>0.051293</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Sat</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>0.158048</td>
+<td>0.039767</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>0.147906</td>
+<td>0.061375</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Sun</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>0.160113</td>
+<td>0.042347</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>0.187250</td>
+<td>0.154134</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Thur</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>0.160298</td>
+<td>0.038774</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>0.163863</td>
+<td>0.039389</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="对不同列应用不同函数" class="level2">
+<h2 class="anchored" data-anchor-id="对不同列应用不同函数">对不同列应用不同函数</h2>
+<p>对不同列应用不同的函数：</p>
+<div id="c18d0aae" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>functions <span class="op">=</span> [<span class="st">"count"</span>, <span class="st">"mean"</span>, <span class="st">"max"</span>]  <span class="co"># 定义一个函数列表</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> grouped[[<span class="st">"tip_pct"</span>, <span class="st">"total_bill"</span>]].agg(functions)  <span class="co"># 对 tip_pct 和 total_bill 应用函数列表</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th colspan="3" data-quarto-table-cell-role="th" data-halign="left">tip_pct</th>
+<th colspan="3" data-quarto-table-cell-role="th" data-halign="left">total_bill</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">max</th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">max</th>
+</tr>
+<tr class="header">
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Fri</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>4</td>
+<td>0.151650</td>
+<td>0.187735</td>
+<td>4</td>
+<td>18.420000</td>
+<td>22.75</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>15</td>
+<td>0.174783</td>
+<td>0.263480</td>
+<td>15</td>
+<td>16.813333</td>
+<td>40.17</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Sat</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>45</td>
+<td>0.158048</td>
+<td>0.291990</td>
+<td>45</td>
+<td>19.661778</td>
+<td>48.33</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>42</td>
+<td>0.147906</td>
+<td>0.325733</td>
+<td>42</td>
+<td>21.276667</td>
+<td>50.81</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Sun</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>57</td>
+<td>0.160113</td>
+<td>0.252672</td>
+<td>57</td>
+<td>20.506667</td>
+<td>48.17</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>19</td>
+<td>0.187250</td>
+<td>0.710345</td>
+<td>19</td>
+<td>24.120000</td>
+<td>45.35</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Thur</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>45</td>
+<td>0.160298</td>
+<td>0.266312</td>
+<td>45</td>
+<td>17.113111</td>
+<td>41.19</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>17</td>
+<td>0.163863</td>
+<td>0.241255</td>
+<td>17</td>
+<td>19.190588</td>
+<td>43.11</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="9f66cc0a" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>grouped.agg({<span class="st">"tip"</span> : np.<span class="bu">max</span>, <span class="st">"size"</span> : <span class="st">"sum"</span>})  <span class="co"># 对 tip 列应用 max 函数，对 size 列应用 sum 函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_2857/2920994840.py:1: FutureWarning: The provided callable &lt;function max at 0x7fadb4423240&gt; is currently using SeriesGroupBy.max. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "max" instead.
+  grouped.agg({"tip" : np.max, "size" : "sum"})  # 对 tip 列应用 max 函数，对 size 列应用 sum 函数</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">tip</th>
+<th data-quarto-table-cell-role="th">size</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Fri</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>3.50</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>4.73</td>
+<td>31</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Sat</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>9.00</td>
+<td>115</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>10.00</td>
+<td>104</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Sun</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>6.00</td>
+<td>167</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>6.50</td>
+<td>49</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Thur</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>6.70</td>
+<td>112</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>5.00</td>
+<td>40</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="c7b1c9ce" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>grouped.agg({</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"tip_pct"</span>: [<span class="st">"min"</span>, <span class="st">"max"</span>, <span class="st">"mean"</span>, <span class="st">"std"</span>],  <span class="co"># 对 tip_pct 应用多个函数</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"size"</span>: <span class="st">"sum"</span>  <span class="co"># 对 size 应用 sum 函数</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th colspan="4" data-quarto-table-cell-role="th" data-halign="left">tip_pct</th>
+<th data-quarto-table-cell-role="th">size</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">max</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">sum</th>
+</tr>
+<tr class="header">
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Fri</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>0.120385</td>
+<td>0.187735</td>
+<td>0.151650</td>
+<td>0.028123</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>0.103555</td>
+<td>0.263480</td>
+<td>0.174783</td>
+<td>0.051293</td>
+<td>31</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Sat</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>0.056797</td>
+<td>0.291990</td>
+<td>0.158048</td>
+<td>0.039767</td>
+<td>115</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>0.035638</td>
+<td>0.325733</td>
+<td>0.147906</td>
+<td>0.061375</td>
+<td>104</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Sun</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>0.059447</td>
+<td>0.252672</td>
+<td>0.160113</td>
+<td>0.042347</td>
+<td>167</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>0.065660</td>
+<td>0.710345</td>
+<td>0.187250</td>
+<td>0.154134</td>
+<td>49</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Thur</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>0.072961</td>
+<td>0.266312</td>
+<td>0.160298</td>
+<td>0.038774</td>
+<td>112</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>0.090014</td>
+<td>0.241255</td>
+<td>0.163863</td>
+<td>0.039389</td>
+<td>40</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="返回无行索引的聚合数据" class="level1">
+<h1>返回无行索引的聚合数据</h1>
+<p>使用 <code>as_index=False</code> 阻止组键成为索引：</p>
+<div id="9b95a9da" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>numeric_cols <span class="op">=</span> tips.select_dtypes(include<span class="op">=</span>[np.number]).columns  <span class="co"># 获取所有数值列</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>tips.groupby([<span class="st">"day"</span>, <span class="st">"smoker"</span>], as_index<span class="op">=</span><span class="va">False</span>)[numeric_cols].mean()  <span class="co"># 按 day 和 smoker 分组，计算数值列的平均值，不使用组键作为索引</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th">total_bill</th>
+<th data-quarto-table-cell-role="th">tip</th>
+<th data-quarto-table-cell-role="th">size</th>
+<th data-quarto-table-cell-role="th">tip_pct</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Fri</td>
+<td>No</td>
+<td>18.420000</td>
+<td>2.812500</td>
+<td>2.250000</td>
+<td>0.151650</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Fri</td>
+<td>Yes</td>
+<td>16.813333</td>
+<td>2.714000</td>
+<td>2.066667</td>
+<td>0.174783</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Sat</td>
+<td>No</td>
+<td>19.661778</td>
+<td>3.102889</td>
+<td>2.555556</td>
+<td>0.158048</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Sat</td>
+<td>Yes</td>
+<td>21.276667</td>
+<td>2.875476</td>
+<td>2.476190</td>
+<td>0.147906</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Sun</td>
+<td>No</td>
+<td>20.506667</td>
+<td>3.167895</td>
+<td>2.929825</td>
+<td>0.160113</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>Sun</td>
+<td>Yes</td>
+<td>24.120000</td>
+<td>3.516842</td>
+<td>2.578947</td>
+<td>0.187250</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>Thur</td>
+<td>No</td>
+<td>17.113111</td>
+<td>2.673778</td>
+<td>2.488889</td>
+<td>0.160298</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>Thur</td>
+<td>Yes</td>
+<td>19.190588</td>
+<td>3.030000</td>
+<td>2.352941</td>
+<td>0.163863</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="apply通用拆分-应用-合并" class="level1">
+<h1><code>apply</code>：通用“拆分-应用-合并”</h1>
+<section id="apply-的强大之处" class="level2">
+<h2 class="anchored" data-anchor-id="apply-的强大之处"><code>apply</code> 的强大之处 💪</h2>
+<p><code>apply</code> 是最通用的 <code>GroupBy</code> 方法。拆分、应用函数、连接。</p>
+</section>
+<section id="示例选择前几行" class="level2">
+<h2 class="anchored" data-anchor-id="示例选择前几行">示例：选择前几行</h2>
+<div id="0e10afcf" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> top(df, n<span class="op">=</span><span class="dv">5</span>, column<span class="op">=</span><span class="st">"tip_pct"</span>):  <span class="co"># 定义一个函数，按指定列选择前 n 行</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df.sort_values(column, ascending<span class="op">=</span><span class="va">False</span>)[:n]</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>tips.groupby(<span class="st">"smoker"</span>).<span class="bu">apply</span>(top)  <span class="co"># 按 smoker 分组，应用 top 函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_2857/3081321245.py:4: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+  tips.groupby("smoker").apply(top)  # 按 smoker 分组，应用 top 函数</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">total_bill</th>
+<th data-quarto-table-cell-role="th">tip</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">time</th>
+<th data-quarto-table-cell-role="th">size</th>
+<th data-quarto-table-cell-role="th">tip_pct</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="5" data-quarto-table-cell-role="th" data-valign="top">No</td>
+<td data-quarto-table-cell-role="th">232</td>
+<td>11.61</td>
+<td>3.39</td>
+<td>No</td>
+<td>Sat</td>
+<td>Dinner</td>
+<td>2</td>
+<td>0.291990</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">149</td>
+<td>7.51</td>
+<td>2.00</td>
+<td>No</td>
+<td>Thur</td>
+<td>Lunch</td>
+<td>2</td>
+<td>0.266312</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">51</td>
+<td>10.29</td>
+<td>2.60</td>
+<td>No</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>2</td>
+<td>0.252672</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">185</td>
+<td>20.69</td>
+<td>5.00</td>
+<td>No</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>5</td>
+<td>0.241663</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">88</td>
+<td>24.71</td>
+<td>5.85</td>
+<td>No</td>
+<td>Thur</td>
+<td>Lunch</td>
+<td>2</td>
+<td>0.236746</td>
+</tr>
+<tr class="even">
+<td rowspan="5" data-quarto-table-cell-role="th" data-valign="top">Yes</td>
+<td data-quarto-table-cell-role="th">172</td>
+<td>7.25</td>
+<td>5.15</td>
+<td>Yes</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>2</td>
+<td>0.710345</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">178</td>
+<td>9.60</td>
+<td>4.00</td>
+<td>Yes</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>2</td>
+<td>0.416667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">67</td>
+<td>3.07</td>
+<td>1.00</td>
+<td>Yes</td>
+<td>Sat</td>
+<td>Dinner</td>
+<td>1</td>
+<td>0.325733</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">183</td>
+<td>23.17</td>
+<td>6.50</td>
+<td>Yes</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>4</td>
+<td>0.280535</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">109</td>
+<td>14.31</td>
+<td>4.00</td>
+<td>Yes</td>
+<td>Sat</td>
+<td>Dinner</td>
+<td>2</td>
+<td>0.279525</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="向-apply-传递参数" class="level2">
+<h2 class="anchored" data-anchor-id="向-apply-传递参数">向 <code>apply</code> 传递参数</h2>
+<div id="a08bf9dd" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>tips.groupby([<span class="st">"smoker"</span>, <span class="st">"day"</span>]).<span class="bu">apply</span>(top, n<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="st">"total_bill"</span>)  <span class="co"># 向 apply 传递额外的参数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_2857/1043258707.py:1: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+  tips.groupby(["smoker", "day"]).apply(top, n=1, column="total_bill")  # 向 apply 传递额外的参数</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">total_bill</th>
+<th data-quarto-table-cell-role="th">tip</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">time</th>
+<th data-quarto-table-cell-role="th">size</th>
+<th data-quarto-table-cell-role="th">tip_pct</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="4" data-quarto-table-cell-role="th" data-valign="top">No</td>
+<td data-quarto-table-cell-role="th">Fri</td>
+<td data-quarto-table-cell-role="th">94</td>
+<td>22.75</td>
+<td>3.25</td>
+<td>No</td>
+<td>Fri</td>
+<td>Dinner</td>
+<td>2</td>
+<td>0.142857</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Sat</td>
+<td data-quarto-table-cell-role="th">212</td>
+<td>48.33</td>
+<td>9.00</td>
+<td>No</td>
+<td>Sat</td>
+<td>Dinner</td>
+<td>4</td>
+<td>0.186220</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Sun</td>
+<td data-quarto-table-cell-role="th">156</td>
+<td>48.17</td>
+<td>5.00</td>
+<td>No</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>6</td>
+<td>0.103799</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Thur</td>
+<td data-quarto-table-cell-role="th">142</td>
+<td>41.19</td>
+<td>5.00</td>
+<td>No</td>
+<td>Thur</td>
+<td>Lunch</td>
+<td>5</td>
+<td>0.121389</td>
+</tr>
+<tr class="odd">
+<td rowspan="4" data-quarto-table-cell-role="th" data-valign="top">Yes</td>
+<td data-quarto-table-cell-role="th">Fri</td>
+<td data-quarto-table-cell-role="th">95</td>
+<td>40.17</td>
+<td>4.73</td>
+<td>Yes</td>
+<td>Fri</td>
+<td>Dinner</td>
+<td>4</td>
+<td>0.117750</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Sat</td>
+<td data-quarto-table-cell-role="th">170</td>
+<td>50.81</td>
+<td>10.00</td>
+<td>Yes</td>
+<td>Sat</td>
+<td>Dinner</td>
+<td>3</td>
+<td>0.196812</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Sun</td>
+<td data-quarto-table-cell-role="th">182</td>
+<td>45.35</td>
+<td>3.50</td>
+<td>Yes</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>3</td>
+<td>0.077178</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Thur</td>
+<td data-quarto-table-cell-role="th">197</td>
+<td>43.11</td>
+<td>5.00</td>
+<td>Yes</td>
+<td>Thur</td>
+<td>Lunch</td>
+<td>4</td>
+<td>0.115982</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="在-apply-中抑制组键" class="level2">
+<h2 class="anchored" data-anchor-id="在-apply-中抑制组键">在 <code>apply</code> 中抑制组键</h2>
+<p>使用 <code>group_keys=False</code>：</p>
+<div id="9055b393" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>tips.groupby(<span class="st">"smoker"</span>, group_keys<span class="op">=</span><span class="va">False</span>).<span class="bu">apply</span>(top)  <span class="co"># 抑制组键</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_2857/178130250.py:1: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+  tips.groupby("smoker", group_keys=False).apply(top)  # 抑制组键</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">total_bill</th>
+<th data-quarto-table-cell-role="th">tip</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">time</th>
+<th data-quarto-table-cell-role="th">size</th>
+<th data-quarto-table-cell-role="th">tip_pct</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">232</td>
+<td>11.61</td>
+<td>3.39</td>
+<td>No</td>
+<td>Sat</td>
+<td>Dinner</td>
+<td>2</td>
+<td>0.291990</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">149</td>
+<td>7.51</td>
+<td>2.00</td>
+<td>No</td>
+<td>Thur</td>
+<td>Lunch</td>
+<td>2</td>
+<td>0.266312</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">51</td>
+<td>10.29</td>
+<td>2.60</td>
+<td>No</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>2</td>
+<td>0.252672</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">185</td>
+<td>20.69</td>
+<td>5.00</td>
+<td>No</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>5</td>
+<td>0.241663</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">88</td>
+<td>24.71</td>
+<td>5.85</td>
+<td>No</td>
+<td>Thur</td>
+<td>Lunch</td>
+<td>2</td>
+<td>0.236746</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">172</td>
+<td>7.25</td>
+<td>5.15</td>
+<td>Yes</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>2</td>
+<td>0.710345</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">178</td>
+<td>9.60</td>
+<td>4.00</td>
+<td>Yes</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>2</td>
+<td>0.416667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">67</td>
+<td>3.07</td>
+<td>1.00</td>
+<td>Yes</td>
+<td>Sat</td>
+<td>Dinner</td>
+<td>1</td>
+<td>0.325733</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">183</td>
+<td>23.17</td>
+<td>6.50</td>
+<td>Yes</td>
+<td>Sun</td>
+<td>Dinner</td>
+<td>4</td>
+<td>0.280535</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">109</td>
+<td>14.31</td>
+<td>4.00</td>
+<td>Yes</td>
+<td>Sat</td>
+<td>Dinner</td>
+<td>2</td>
+<td>0.279525</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="分位数和桶分析" class="level1">
+<h1>分位数和桶分析</h1>
+<section id="将-cut-和-qcut-与-groupby-结合使用" class="level2">
+<h2 class="anchored" data-anchor-id="将-cut-和-qcut-与-groupby-结合使用">将 <code>cut</code> 和 <code>qcut</code> 与 <code>groupby</code> 结合使用</h2>
+<p>将 <code>cut</code>/<code>qcut</code> 与 <code>groupby</code> 结合使用进行桶/分位数分析：</p>
+<div id="34a0a025" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data1"</span>: np.random.standard_normal(<span class="dv">1000</span>),  <span class="co"># 创建一个包含 1000 个随机数的 DataFrame</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data2"</span>: np.random.standard_normal(<span class="dv">1000</span>)</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>quartiles <span class="op">=</span> pd.cut(frame[<span class="st">"data1"</span>], <span class="dv">4</span>)  <span class="co"># 将 data1 列分为 4 个桶</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_stats(group):  <span class="co"># 定义一个函数，计算组的统计信息</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.DataFrame(</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"min"</span>: group.<span class="bu">min</span>(), <span class="st">"max"</span>: group.<span class="bu">max</span>(),</span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>        <span class="st">"count"</span>: group.count(), <span class="st">"mean"</span>: group.mean()}</span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> frame.groupby(quartiles)  <span class="co"># 按分位数分组</span></span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>grouped.<span class="bu">apply</span>(get_stats)  <span class="co"># 应用 get_stats 函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_2857/149866670.py:13: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  grouped = frame.groupby(quartiles)  # 按分位数分组</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">max</th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">data1</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">(-3.009, -1.421]</td>
+<td data-quarto-table-cell-role="th">data1</td>
+<td>-3.003116</td>
+<td>-1.424791</td>
+<td>81</td>
+<td>-1.875798</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">data2</td>
+<td>-2.578165</td>
+<td>2.395584</td>
+<td>81</td>
+<td>0.172199</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">(-1.421, 0.162]</td>
+<td data-quarto-table-cell-role="th">data1</td>
+<td>-1.417561</td>
+<td>0.161903</td>
+<td>472</td>
+<td>-0.498746</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">data2</td>
+<td>-3.037592</td>
+<td>3.154288</td>
+<td>472</td>
+<td>-0.136380</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">(0.162, 1.745]</td>
+<td data-quarto-table-cell-role="th">data1</td>
+<td>0.165531</td>
+<td>1.733911</td>
+<td>398</td>
+<td>0.725104</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">data2</td>
+<td>-2.810534</td>
+<td>2.717351</td>
+<td>398</td>
+<td>0.041935</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">(1.745, 3.327]</td>
+<td data-quarto-table-cell-role="th">data1</td>
+<td>1.747000</td>
+<td>3.327062</td>
+<td>49</td>
+<td>2.133618</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">data2</td>
+<td>-2.234510</td>
+<td>2.283052</td>
+<td>49</td>
+<td>0.220454</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>相同的结果可以用更简单的方法计算得到:</p>
+<div id="ee673877" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>grouped.agg([<span class="st">"min"</span>, <span class="st">"max"</span>, <span class="st">"count"</span>, <span class="st">"mean"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th colspan="4" data-quarto-table-cell-role="th" data-halign="left">data1</th>
+<th colspan="4" data-quarto-table-cell-role="th" data-halign="left">data2</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">max</th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">max</th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+</tr>
+<tr class="header">
+<th data-quarto-table-cell-role="th">data1</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">(-3.009, -1.421]</td>
+<td>-3.003116</td>
+<td>-1.424791</td>
+<td>81</td>
+<td>-1.875798</td>
+<td>-2.578165</td>
+<td>2.395584</td>
+<td>81</td>
+<td>0.172199</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">(-1.421, 0.162]</td>
+<td>-1.417561</td>
+<td>0.161903</td>
+<td>472</td>
+<td>-0.498746</td>
+<td>-3.037592</td>
+<td>3.154288</td>
+<td>472</td>
+<td>-0.136380</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">(0.162, 1.745]</td>
+<td>0.165531</td>
+<td>1.733911</td>
+<td>398</td>
+<td>0.725104</td>
+<td>-2.810534</td>
+<td>2.717351</td>
+<td>398</td>
+<td>0.041935</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">(1.745, 3.327]</td>
+<td>1.747000</td>
+<td>3.327062</td>
+<td>49</td>
+<td>2.133618</td>
+<td>-2.234510</td>
+<td>2.283052</td>
+<td>49</td>
+<td>0.220454</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="使用-qcut-获取相等大小的桶" class="level2">
+<h2 class="anchored" data-anchor-id="使用-qcut-获取相等大小的桶">使用 <code>qcut</code> 获取相等大小的桶</h2>
+<div id="702f6218" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>quartiles_samp <span class="op">=</span> pd.qcut(frame[<span class="st">"data1"</span>], <span class="dv">4</span>, labels<span class="op">=</span><span class="va">False</span>)  <span class="co"># 将 data1 列分为 4 个相等大小的桶，返回标签</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> frame.groupby(quartiles_samp)  <span class="co"># 按分位数标签分组</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>grouped.<span class="bu">apply</span>(get_stats)  <span class="co"># 应用 get_stats 函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">max</th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">data1</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">0</td>
+<td data-quarto-table-cell-role="th">data1</td>
+<td>-3.003116</td>
+<td>-0.674468</td>
+<td>250</td>
+<td>-1.278217</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">data2</td>
+<td>-2.578165</td>
+<td>2.395584</td>
+<td>250</td>
+<td>-0.063909</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">1</td>
+<td data-quarto-table-cell-role="th">data1</td>
+<td>-0.668763</td>
+<td>0.045770</td>
+<td>250</td>
+<td>-0.293195</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">data2</td>
+<td>-2.765722</td>
+<td>3.154288</td>
+<td>250</td>
+<td>-0.171462</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">2</td>
+<td data-quarto-table-cell-role="th">data1</td>
+<td>0.046076</td>
+<td>0.635989</td>
+<td>250</td>
+<td>0.334637</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">data2</td>
+<td>-3.037592</td>
+<td>2.637515</td>
+<td>250</td>
+<td>0.079873</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">3</td>
+<td data-quarto-table-cell-role="th">data1</td>
+<td>0.649149</td>
+<td>3.327062</td>
+<td>250</td>
+<td>1.259939</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">data2</td>
+<td>-2.692548</td>
+<td>2.717351</td>
+<td>250</td>
+<td>0.063775</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="示例使用组特定值填充缺失值" class="level1">
+<h1>示例：使用组特定值填充缺失值</h1>
+<section id="使用平均值填充" class="level2">
+<h2 class="anchored" data-anchor-id="使用平均值填充">使用平均值填充</h2>
+<div id="6c288133" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series(np.random.standard_normal(<span class="dv">6</span>))  <span class="co"># 创建一个包含 6 个随机数的 Series</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>s[::<span class="dv">2</span>] <span class="op">=</span> np.nan  <span class="co"># 将一些值设置为 NaN</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>s.fillna(s.mean())  <span class="co"># 使用 Series 的平均值填充 NaN</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<pre><code>0   -1.021316
+1   -1.128386
+2   -1.021316
+3   -0.925963
+4   -1.021316
+5   -1.009600
+dtype: float64</code></pre>
+</div>
+</div>
+</section>
+<section id="使用组特定平均值填充" class="level2">
+<h2 class="anchored" data-anchor-id="使用组特定平均值填充">使用组特定平均值填充</h2>
+<div id="8a5e8d7f" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> [<span class="st">"Ohio"</span>, <span class="st">"New York"</span>, <span class="st">"Vermont"</span>, <span class="st">"Florida"</span>,  <span class="co"># 创建一个州列表</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Oregon"</span>, <span class="st">"Nevada"</span>, <span class="st">"California"</span>, <span class="st">"Idaho"</span>]</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>group_key <span class="op">=</span> [<span class="st">"East"</span>] <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> [<span class="st">"West"</span>] <span class="op">*</span> <span class="dv">4</span>  <span class="co"># 创建一个分组键列表</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.Series(np.random.standard_normal(<span class="dv">8</span>), index<span class="op">=</span>states)  <span class="co"># 创建一个 Series，索引为州</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>data[[<span class="st">"Vermont"</span>, <span class="st">"Nevada"</span>, <span class="st">"Idaho"</span>]] <span class="op">=</span> np.nan  <span class="co"># 将一些值设置为 NaN</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fill_mean(group):  <span class="co"># 定义一个函数，使用组的平均值填充 NaN</span></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group.fillna(group.mean())</span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>data.groupby(group_key).<span class="bu">apply</span>(fill_mean)  <span class="co"># 按组键分组，应用 fill_mean 函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="35">
+<pre><code>East  Ohio         -1.085448
+      New York      1.400527
+      Vermont      -0.462891
+      Florida      -1.703753
+West  Oregon        0.513326
+      Nevada        0.745973
+      California    0.978619
+      Idaho         0.745973
+dtype: float64</code></pre>
+</div>
+</div>
+</section>
+<section id="预定义填充值" class="level2">
+<h2 class="anchored" data-anchor-id="预定义填充值">预定义填充值</h2>
+<div id="9db7a5d2" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>fill_values <span class="op">=</span> {<span class="st">"East"</span>: <span class="fl">0.5</span>, <span class="st">"West"</span>: <span class="op">-</span><span class="dv">1</span>}  <span class="co"># 创建一个填充值字典</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fill_func(group):  <span class="co"># 定义一个函数，使用预定义值填充 NaN</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group.fillna(fill_values[group.name])</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>data.groupby(group_key).<span class="bu">apply</span>(fill_func)  <span class="co"># 按组键分组，应用 fill_func 函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="36">
+<pre><code>East  Ohio         -1.085448
+      New York      1.400527
+      Vermont       0.500000
+      Florida      -1.703753
+West  Oregon        0.513326
+      Nevada       -1.000000
+      California    0.978619
+      Idaho        -1.000000
+dtype: float64</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="示例随机抽样和排列" class="level1">
+<h1>示例：随机抽样和排列</h1>
+<section id="模拟一副牌" class="level2">
+<h2 class="anchored" data-anchor-id="模拟一副牌">模拟一副牌</h2>
+<div id="854a3bcf" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>suits <span class="op">=</span> [<span class="st">"H"</span>, <span class="st">"S"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>]  <span class="co"># 花色</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>card_val <span class="op">=</span> (<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>)) <span class="op">+</span> [<span class="dv">10</span>] <span class="op">*</span> <span class="dv">3</span>) <span class="op">*</span> <span class="dv">4</span>  <span class="co"># 牌值</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>base_names <span class="op">=</span> [<span class="st">"A"</span>] <span class="op">+</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">11</span>)) <span class="op">+</span> [<span class="st">"J"</span>, <span class="st">"K"</span>, <span class="st">"Q"</span>]  <span class="co"># 牌名</span></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>cards <span class="op">=</span> []</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> suit <span class="kw">in</span> suits:</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>    cards.extend(<span class="bu">str</span>(num) <span class="op">+</span> suit <span class="cf">for</span> num <span class="kw">in</span> base_names)</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>deck <span class="op">=</span> pd.Series(card_val, index<span class="op">=</span>cards)  <span class="co"># 创建一副牌</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="抽取随机一手牌" class="level2">
+<h2 class="anchored" data-anchor-id="抽取随机一手牌">抽取随机一手牌</h2>
+<div id="2decdf6f" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> draw(deck, n<span class="op">=</span><span class="dv">5</span>):  <span class="co"># 定义一个函数，从一副牌中抽取 n 张牌</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> deck.sample(n)</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>draw(deck)  <span class="co"># 抽取 5 张牌</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="38">
+<pre><code>5C      5
+4C      4
+6C      6
+7S      7
+10H    10
+dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="从每个花色中抽取两张随机牌" class="level2">
+<h2 class="anchored" data-anchor-id="从每个花色中抽取两张随机牌">从每个花色中抽取两张随机牌</h2>
+<div id="d11b623c" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_suit(card):  <span class="co"># 定义一个函数，获取牌的花色</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> card[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>deck.groupby(get_suit).<span class="bu">apply</span>(draw, n<span class="op">=</span><span class="dv">2</span>)  <span class="co"># 按花色分组，从每个花色中抽取 2 张牌</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="39">
+<pre><code>C  9C     9
+   AC     1
+D  4D     4
+   2D     2
+H  2H     2
+   AH     1
+S  JS    10
+   5S     5
+dtype: int64</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="示例组加权平均和相关性" class="level1">
+<h1>示例：组加权平均和相关性</h1>
+<section id="组加权平均" class="level2">
+<h2 class="anchored" data-anchor-id="组加权平均">组加权平均</h2>
+<div id="b9e209f9" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"category"</span>: [<span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"a"</span>,  <span class="co"># 创建一个 DataFrame</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"b"</span>, <span class="st">"b"</span>, <span class="st">"b"</span>, <span class="st">"b"</span>],</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data"</span>: np.random.standard_normal(<span class="dv">8</span>),</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"weights"</span>: np.random.uniform(size<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> df.groupby(<span class="st">"category"</span>)  <span class="co"># 按 category 分组</span></span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_wavg(group):  <span class="co"># 定义一个函数，计算组的加权平均值</span></span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.average(group[<span class="st">"data"</span>], weights<span class="op">=</span>group[<span class="st">"weights"</span>])</span>
+<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a>grouped.<span class="bu">apply</span>(get_wavg)  <span class="co"># 应用 get_wavg 函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/tmp/ipykernel_2857/888171918.py:13: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+  grouped.apply(get_wavg)  # 应用 get_wavg 函数</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="40">
+<pre><code>category
+a   -0.122190
+b   -0.213808
+dtype: float64</code></pre>
+</div>
+</div>
+</section>
+<section id="与-spx标准普尔-500-指数的相关性" class="level2">
+<h2 class="anchored" data-anchor-id="与-spx标准普尔-500-指数的相关性">与 SPX（标准普尔 500 指数）的相关性</h2>
+<div id="87add1c9" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 假设 examples 文件夹存在且包含 stock_px.csv 文件</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>close_px <span class="op">=</span> pd.read_csv(<span class="st">"examples/stock_px.csv"</span>, parse_dates<span class="op">=</span><span class="va">True</span>, index_col<span class="op">=</span><span class="dv">0</span>)  <span class="co"># 从 CSV 文件加载数据</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>rets <span class="op">=</span> close_px.pct_change().dropna()  <span class="co"># 计算收益率并删除缺失值</span></span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_year(x):  <span class="co"># 定义一个函数，获取年份</span></span>
+<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x.year</span>
+<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a>by_year <span class="op">=</span> rets.groupby(get_year)  <span class="co"># 按年份分组</span></span>
+<span id="cb65-10"><a href="#cb65-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-11"><a href="#cb65-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> spx_corr(group):  <span class="co"># 定义一个函数，计算与 SPX 的相关性</span></span>
+<span id="cb65-12"><a href="#cb65-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group.corrwith(group[<span class="st">"SPX"</span>])</span>
+<span id="cb65-13"><a href="#cb65-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-14"><a href="#cb65-14" aria-hidden="true" tabindex="-1"></a>by_year.<span class="bu">apply</span>(spx_corr)  <span class="co"># 应用 spx_corr 函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="41">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">AAPL</th>
+<th data-quarto-table-cell-role="th">MSFT</th>
+<th data-quarto-table-cell-role="th">XOM</th>
+<th data-quarto-table-cell-role="th">SPX</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2003</td>
+<td>0.541124</td>
+<td>0.745174</td>
+<td>0.661265</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2004</td>
+<td>0.374283</td>
+<td>0.588531</td>
+<td>0.557742</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2005</td>
+<td>0.467540</td>
+<td>0.562374</td>
+<td>0.631010</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2006</td>
+<td>0.428267</td>
+<td>0.406126</td>
+<td>0.518514</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2007</td>
+<td>0.508118</td>
+<td>0.658770</td>
+<td>0.786264</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2008</td>
+<td>0.681434</td>
+<td>0.804626</td>
+<td>0.828303</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2009</td>
+<td>0.707103</td>
+<td>0.654902</td>
+<td>0.797921</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2010</td>
+<td>0.710105</td>
+<td>0.730118</td>
+<td>0.839057</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2011</td>
+<td>0.691931</td>
+<td>0.800996</td>
+<td>0.859975</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="列间相关性apple-和-microsoft" class="level2">
+<h2 class="anchored" data-anchor-id="列间相关性apple-和-microsoft">列间相关性（Apple 和 Microsoft）</h2>
+<div id="52d10393" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> corr_aapl_msft(group):  <span class="co"># 定义一个函数，计算 Apple 和 Microsoft 之间的相关性</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group[<span class="st">"AAPL"</span>].corr(group[<span class="st">"MSFT"</span>])</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>by_year.<span class="bu">apply</span>(corr_aapl_msft)  <span class="co"># 应用 corr_aapl_msft 函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="42">
+<pre><code>2003    0.480868
+2004    0.259024
+2005    0.300093
+2006    0.161735
+2007    0.417738
+2008    0.611901
+2009    0.432738
+2010    0.571946
+2011    0.581987
+dtype: float64</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="示例组线性回归" class="level1">
+<h1>示例：组线性回归</h1>
+<div id="d0dde2eb" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm  <span class="co"># 导入 statsmodels 库</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> regress(data, yvar<span class="op">=</span><span class="va">None</span>, xvars<span class="op">=</span><span class="va">None</span>):  <span class="co"># 定义一个函数，执行线性回归</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>    Y <span class="op">=</span> data[yvar]</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> data[xvars]</span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>    X[<span class="st">"intercept"</span>] <span class="op">=</span> <span class="fl">1.</span></span>
+<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> sm.OLS(Y, X).fit()</span>
+<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result.params</span>
+<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-10"><a href="#cb68-10" aria-hidden="true" tabindex="-1"></a>by_year.<span class="bu">apply</span>(regress, yvar<span class="op">=</span><span class="st">"AAPL"</span>, xvars<span class="op">=</span>[<span class="st">"SPX"</span>])  <span class="co"># 应用 regress 函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">SPX</th>
+<th data-quarto-table-cell-role="th">intercept</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2003</td>
+<td>1.195406</td>
+<td>0.000710</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2004</td>
+<td>1.363463</td>
+<td>0.004201</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2005</td>
+<td>1.766415</td>
+<td>0.003246</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2006</td>
+<td>1.645496</td>
+<td>0.000080</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2007</td>
+<td>1.198761</td>
+<td>0.003438</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2008</td>
+<td>0.968016</td>
+<td>-0.001110</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2009</td>
+<td>0.879103</td>
+<td>0.002954</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2010</td>
+<td>1.052608</td>
+<td>0.001261</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2011</td>
+<td>0.806605</td>
+<td>0.001514</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="transform组转换和展开的-groupby" class="level1">
+<h1><code>transform</code>：组转换和“展开的” GroupBy</h1>
+<section id="transform-方法" class="level2">
+<h2 class="anchored" data-anchor-id="transform-方法"><code>transform</code> 方法</h2>
+<p><code>transform</code> 类似于 <code>apply</code>，但：</p>
+<ul>
+<li>可以生成要广播的标量。</li>
+<li>生成与输入形状相同的对象。</li>
+<li>不得改变其输入。</li>
+</ul>
+<div id="17439406" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'key'</span>: [<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>] <span class="op">*</span> <span class="dv">4</span>,</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'value'</span>: np.arange(<span class="fl">12.</span>)})</span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> df.groupby(<span class="st">'key'</span>)[<span class="st">'value'</span>]</span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_mean(group):  <span class="co">#定义一个函数求平均值</span></span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group.mean()</span>
+<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>g.transform(get_mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="44">
+<pre><code>0     4.5
+1     5.5
+2     6.5
+3     4.5
+4     5.5
+5     6.5
+6     4.5
+7     5.5
+8     6.5
+9     4.5
+10    5.5
+11    6.5
+Name: value, dtype: float64</code></pre>
+</div>
+</div>
+<p>我们可以像使用 GroupBy <code>agg</code> 方法一样传递字符串别名：</p>
+<div id="ad45f3eb" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>g.transform(<span class="st">'mean'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="45">
+<pre><code>0     4.5
+1     5.5
+2     6.5
+3     4.5
+4     5.5
+5     6.5
+6     4.5
+7     5.5
+8     6.5
+9     4.5
+10    5.5
+11    6.5
+Name: value, dtype: float64</code></pre>
+</div>
+</div>
+<p>与 <code>apply</code> 类似，<code>transform</code> 适用于返回 Series 的函数，但结果必须与输入大小相同。 例如，我们可以使用辅助函数将每个组乘以 2：</p>
+<div id="2668f7df" class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> times_two(group):</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> group <span class="op">*</span> <span class="dv">2</span></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>g.transform(times_two)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="46">
+<pre><code>0      0.0
+1      2.0
+2      4.0
+3      6.0
+4      8.0
+5     10.0
+6     12.0
+7     14.0
+8     16.0
+9     18.0
+10    20.0
+11    22.0
+Name: value, dtype: float64</code></pre>
+</div>
+</div>
+<p>作为一个更复杂的示例，我们可以计算每个组的降序排名：</p>
+<div id="367ea00d" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_ranks(group):</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group.rank(ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>g.transform(get_ranks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="47">
+<pre><code>0     4.0
+1     4.0
+2     4.0
+3     3.0
+4     3.0
+5     3.0
+6     2.0
+7     2.0
+8     2.0
+9     1.0
+10    1.0
+11    1.0
+Name: value, dtype: float64</code></pre>
+</div>
+</div>
+</section>
+<section id="展开的分组操作" class="level2">
+<h2 class="anchored" data-anchor-id="展开的分组操作">“展开的”分组操作</h2>
+<p>“展开的”操作通常比 <code>apply</code> 快：</p>
+<div id="ec72e442" class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normalize(x):  <span class="co"># 定义一个函数，进行标准化</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x <span class="op">-</span> x.mean()) <span class="op">/</span> x.std()</span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>g.transform(normalize)  <span class="co"># 使用 transform 进行标准化</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="48">
+<pre><code>0    -1.161895
+1    -1.161895
+2    -1.161895
+3    -0.387298
+4    -0.387298
+5    -0.387298
+6     0.387298
+7     0.387298
+8     0.387298
+9     1.161895
+10    1.161895
+11    1.161895
+Name: value, dtype: float64</code></pre>
+</div>
+</div>
+<div id="8cbb758f" class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>g.<span class="bu">apply</span>(normalize)  <span class="co"># 使用 apply 进行标准化</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="49">
+<pre><code>key    
+a    0    -1.161895
+     3    -0.387298
+     6     0.387298
+     9     1.161895
+b    1    -1.161895
+     4    -0.387298
+     7     0.387298
+     10    1.161895
+c    2    -1.161895
+     5    -0.387298
+     8     0.387298
+     11    1.161895
+Name: value, dtype: float64</code></pre>
+</div>
+</div>
+<div id="d23f5208" class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>normalized <span class="op">=</span> (df[<span class="st">'value'</span>] <span class="op">-</span> g.transform(<span class="st">'mean'</span>)) <span class="op">/</span> g.transform(<span class="st">'std'</span>)  <span class="co"># 展开的分组操作</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>normalized</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="50">
+<pre><code>0    -1.161895
+1    -1.161895
+2    -1.161895
+3    -0.387298
+4    -0.387298
+5    -0.387298
+6     0.387298
+7     0.387298
+8     0.387298
+9     1.161895
+10    1.161895
+11    1.161895
+Name: value, dtype: float64</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="数据透视表和交叉表" class="level1">
+<h1>数据透视表和交叉表</h1>
+<section id="什么是数据透视表" class="level2">
+<h2 class="anchored" data-anchor-id="什么是数据透视表">什么是数据透视表？🤔</h2>
+<p>按键聚合数据，将其排列成矩形。在电子表格中很常见。</p>
+</section>
+<section id="使用-pandas-创建数据透视表" class="level2">
+<h2 class="anchored" data-anchor-id="使用-pandas-创建数据透视表">使用 pandas 创建数据透视表</h2>
+<p><code>pivot_table</code> 利用 <code>groupby</code> 和分层索引：</p>
+<div id="c0a6c22b" class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>tips.pivot_table(</span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>    values<span class="op">=</span>[<span class="st">'total_bill'</span>, <span class="st">'tip'</span>],  <span class="co"># 要聚合的列</span></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">'day'</span>, <span class="st">'smoker'</span>],  <span class="co"># 行索引</span></span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>    aggfunc<span class="op">=</span><span class="st">'mean'</span>  <span class="co"># 聚合函数</span></span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="51">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">tip</th>
+<th data-quarto-table-cell-role="th">total_bill</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Fri</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>2.812500</td>
+<td>18.420000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>2.714000</td>
+<td>16.813333</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Sat</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>3.102889</td>
+<td>19.661778</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>2.875476</td>
+<td>21.276667</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Sun</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>3.167895</td>
+<td>20.506667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>3.516842</td>
+<td>24.120000</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Thur</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>2.673778</td>
+<td>17.113111</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>3.030000</td>
+<td>19.190588</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="按多个变量分组" class="level2">
+<h2 class="anchored" data-anchor-id="按多个变量分组">按多个变量分组</h2>
+<div id="d5ba3767" class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>tips.pivot_table(index<span class="op">=</span>[<span class="st">"time"</span>, <span class="st">"day"</span>], columns<span class="op">=</span><span class="st">"smoker"</span>,  <span class="co"># 行和列</span></span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>                 values<span class="op">=</span>[<span class="st">"tip_pct"</span>, <span class="st">"size"</span>])  <span class="co"># 要聚合的列</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="52">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th colspan="2" data-quarto-table-cell-role="th" data-halign="left">size</th>
+<th colspan="2" data-quarto-table-cell-role="th" data-halign="left">tip_pct</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th">No</th>
+<th data-quarto-table-cell-role="th">Yes</th>
+<th data-quarto-table-cell-role="th">No</th>
+<th data-quarto-table-cell-role="th">Yes</th>
+</tr>
+<tr class="header">
+<th data-quarto-table-cell-role="th">time</th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="4" data-quarto-table-cell-role="th" data-valign="top">Dinner</td>
+<td data-quarto-table-cell-role="th">Fri</td>
+<td>2.000000</td>
+<td>2.222222</td>
+<td>0.139622</td>
+<td>0.165347</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Sat</td>
+<td>2.555556</td>
+<td>2.476190</td>
+<td>0.158048</td>
+<td>0.147906</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Sun</td>
+<td>2.929825</td>
+<td>2.578947</td>
+<td>0.160113</td>
+<td>0.187250</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Thur</td>
+<td>2.000000</td>
+<td>NaN</td>
+<td>0.159744</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Lunch</td>
+<td data-quarto-table-cell-role="th">Fri</td>
+<td>3.000000</td>
+<td>1.833333</td>
+<td>0.187735</td>
+<td>0.188937</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Thur</td>
+<td>2.500000</td>
+<td>2.352941</td>
+<td>0.160311</td>
+<td>0.163863</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="添加边距部分总计" class="level2">
+<h2 class="anchored" data-anchor-id="添加边距部分总计">添加边距（部分总计）</h2>
+<div id="3f01fbad" class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>tips.pivot_table(index<span class="op">=</span>[<span class="st">"time"</span>, <span class="st">"day"</span>], columns<span class="op">=</span><span class="st">"smoker"</span>,</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>                 values<span class="op">=</span>[<span class="st">"tip_pct"</span>, <span class="st">"size"</span>], margins<span class="op">=</span><span class="va">True</span>)  <span class="co"># 添加边距</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="53">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th colspan="3" data-quarto-table-cell-role="th" data-halign="left">size</th>
+<th colspan="3" data-quarto-table-cell-role="th" data-halign="left">tip_pct</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th">No</th>
+<th data-quarto-table-cell-role="th">Yes</th>
+<th data-quarto-table-cell-role="th">All</th>
+<th data-quarto-table-cell-role="th">No</th>
+<th data-quarto-table-cell-role="th">Yes</th>
+<th data-quarto-table-cell-role="th">All</th>
+</tr>
+<tr class="header">
+<th data-quarto-table-cell-role="th">time</th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="4" data-quarto-table-cell-role="th" data-valign="top">Dinner</td>
+<td data-quarto-table-cell-role="th">Fri</td>
+<td>2.000000</td>
+<td>2.222222</td>
+<td>2.166667</td>
+<td>0.139622</td>
+<td>0.165347</td>
+<td>0.158916</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Sat</td>
+<td>2.555556</td>
+<td>2.476190</td>
+<td>2.517241</td>
+<td>0.158048</td>
+<td>0.147906</td>
+<td>0.153152</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Sun</td>
+<td>2.929825</td>
+<td>2.578947</td>
+<td>2.842105</td>
+<td>0.160113</td>
+<td>0.187250</td>
+<td>0.166897</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Thur</td>
+<td>2.000000</td>
+<td>NaN</td>
+<td>2.000000</td>
+<td>0.159744</td>
+<td>NaN</td>
+<td>0.159744</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Lunch</td>
+<td data-quarto-table-cell-role="th">Fri</td>
+<td>3.000000</td>
+<td>1.833333</td>
+<td>2.000000</td>
+<td>0.187735</td>
+<td>0.188937</td>
+<td>0.188765</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Thur</td>
+<td>2.500000</td>
+<td>2.352941</td>
+<td>2.459016</td>
+<td>0.160311</td>
+<td>0.163863</td>
+<td>0.161301</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">All</td>
+<td data-quarto-table-cell-role="th"></td>
+<td>2.668874</td>
+<td>2.408602</td>
+<td>2.569672</td>
+<td>0.159328</td>
+<td>0.163196</td>
+<td>0.160803</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="使用不同的聚合函数" class="level2">
+<h2 class="anchored" data-anchor-id="使用不同的聚合函数">使用不同的聚合函数</h2>
+<div id="435f9408" class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>tips.pivot_table(index<span class="op">=</span>[<span class="st">"time"</span>, <span class="st">"smoker"</span>], columns<span class="op">=</span><span class="st">"day"</span>,</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>                 values<span class="op">=</span><span class="st">"tip_pct"</span>, aggfunc<span class="op">=</span><span class="bu">len</span>, margins<span class="op">=</span><span class="va">True</span>)  <span class="co"># 使用 len 作为聚合函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="54">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th">Fri</th>
+<th data-quarto-table-cell-role="th">Sat</th>
+<th data-quarto-table-cell-role="th">Sun</th>
+<th data-quarto-table-cell-role="th">Thur</th>
+<th data-quarto-table-cell-role="th">All</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">time</th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Dinner</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>3.0</td>
+<td>45.0</td>
+<td>57.0</td>
+<td>1.0</td>
+<td>106</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>9.0</td>
+<td>42.0</td>
+<td>19.0</td>
+<td>NaN</td>
+<td>70</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Lunch</td>
+<td data-quarto-table-cell-role="th">No</td>
+<td>1.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>44.0</td>
+<td>45</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Yes</td>
+<td>6.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>17.0</td>
+<td>23</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">All</td>
+<td data-quarto-table-cell-role="th"></td>
+<td>19.0</td>
+<td>87.0</td>
+<td>76.0</td>
+<td>62.0</td>
+<td>244</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="交叉表-crosstab" class="level2">
+<h2 class="anchored" data-anchor-id="交叉表-crosstab">交叉表 (Crosstab)</h2>
+<p>Crosstab 计算组频率：</p>
+<div id="6abad469" class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> io <span class="im">import</span> StringIO</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_table(StringIO(<span class="st">"""Sample Nationality Handedness</span></span>
+<span id="cb87-4"><a href="#cb87-4" aria-hidden="true" tabindex="-1"></a><span class="st">1 USA Right-handed</span></span>
+<span id="cb87-5"><a href="#cb87-5" aria-hidden="true" tabindex="-1"></a><span class="st">2 Japan Left-handed</span></span>
+<span id="cb87-6"><a href="#cb87-6" aria-hidden="true" tabindex="-1"></a><span class="st">3 USA Right-handed</span></span>
+<span id="cb87-7"><a href="#cb87-7" aria-hidden="true" tabindex="-1"></a><span class="st">4 Japan Right-handed</span></span>
+<span id="cb87-8"><a href="#cb87-8" aria-hidden="true" tabindex="-1"></a><span class="st">5 Japan Left-handed</span></span>
+<span id="cb87-9"><a href="#cb87-9" aria-hidden="true" tabindex="-1"></a><span class="st">6 Japan Right-handed</span></span>
+<span id="cb87-10"><a href="#cb87-10" aria-hidden="true" tabindex="-1"></a><span class="st">7 USA Right-handed</span></span>
+<span id="cb87-11"><a href="#cb87-11" aria-hidden="true" tabindex="-1"></a><span class="st">8 USA Left-handed</span></span>
+<span id="cb87-12"><a href="#cb87-12" aria-hidden="true" tabindex="-1"></a><span class="st">9 Japan Right-handed</span></span>
+<span id="cb87-13"><a href="#cb87-13" aria-hidden="true" tabindex="-1"></a><span class="st">10 USA Right-handed"""</span>), sep<span class="op">=</span><span class="st">"\s+"</span>)</span>
+<span id="cb87-14"><a href="#cb87-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-15"><a href="#cb87-15" aria-hidden="true" tabindex="-1"></a>pd.crosstab(data[<span class="st">"Nationality"</span>], data[<span class="st">"Handedness"</span>], margins<span class="op">=</span><span class="va">True</span>)  <span class="co"># 创建交叉表</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>&lt;&gt;:13: SyntaxWarning: invalid escape sequence '\s'
+&lt;&gt;:13: SyntaxWarning: invalid escape sequence '\s'
+/tmp/ipykernel_2857/2308762248.py:13: SyntaxWarning: invalid escape sequence '\s'
+  10 USA Right-handed"""), sep="\s+")</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="55">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Handedness</th>
+<th data-quarto-table-cell-role="th">Left-handed</th>
+<th data-quarto-table-cell-role="th">Right-handed</th>
+<th data-quarto-table-cell-role="th">All</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Nationality</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Japan</td>
+<td>2</td>
+<td>3</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">USA</td>
+<td>1</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">All</td>
+<td>3</td>
+<td>7</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="17358f01" class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>pd.crosstab([tips[<span class="st">"time"</span>], tips[<span class="st">"day"</span>]], tips[<span class="st">"smoker"</span>], margins<span class="op">=</span><span class="va">True</span>)  <span class="co"># 创建交叉表</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="56">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">smoker</th>
+<th data-quarto-table-cell-role="th">No</th>
+<th data-quarto-table-cell-role="th">Yes</th>
+<th data-quarto-table-cell-role="th">All</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">time</th>
+<th data-quarto-table-cell-role="th">day</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="4" data-quarto-table-cell-role="th" data-valign="top">Dinner</td>
+<td data-quarto-table-cell-role="th">Fri</td>
+<td>3</td>
+<td>9</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Sat</td>
+<td>45</td>
+<td>42</td>
+<td>87</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Sun</td>
+<td>57</td>
+<td>19</td>
+<td>76</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Thur</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">Lunch</td>
+<td data-quarto-table-cell-role="th">Fri</td>
+<td>1</td>
+<td>6</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Thur</td>
+<td>44</td>
+<td>17</td>
+<td>61</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">All</td>
+<td data-quarto-table-cell-role="th"></td>
+<td>151</td>
+<td>93</td>
+<td>244</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="总结" class="level1">
+<h1>总结</h1>
+<ul>
+<li>我们探索了数据聚合、<code>groupby</code>、<code>apply</code>、<code>transform</code>。</li>
+<li>我们创建了数据透视表和交叉表。</li>
+<li>对于总结、比较和准备数据至关重要。</li>
+</ul>
+</section>
+<section id="思考与讨论" class="level1">
+<h1>思考与讨论</h1>
+<ul>
+<li>分组操作的其他实际场景？</li>
+<li>这些技术的创造性组合？</li>
+<li><code>groupby</code> 的局限性？</li>
+<li><code>apply</code>、<code>transform</code> 和直接聚合之间的权衡？</li>
+<li>“展开的”与性能有何关系？</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/qiufei\.github\.io\/web-slide-pandas3ed");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>🔋<a href="https://posit.co"><img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" class="img-fluid" alt="Posit" width="65"></a></p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ 邱飞 © 2025
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://beian.miit.gov.cn">
+<p>浙ICP备 2024072710号-1</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33021202002511">
+<p>浙公网安备 33021202002511号</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:hfutqiufei@163.com">
+      <i class="bi bi-envelope-at-fill" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

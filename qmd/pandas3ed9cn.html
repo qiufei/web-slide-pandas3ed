@@ -1,0 +1,2728 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Python 数据分析</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<link href="../https://assets.qiufei.site/personal/profile.jpg" rel="icon" type="image/jpeg">
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-681fbf911679f9b3dbf9743eb275ba49.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-7e49aeac8059a213a463aa1a739e8272.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://qiufei.github.io"> 
+<span class="menu-text">首页</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://qiufei.github.io/web-slide"> 
+<span class="menu-text">课件</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Python 数据分析</h1>
+<p class="subtitle lead">第 9 章：绘图与可视化</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="引言" class="level2">
+<h2 class="anchored" data-anchor-id="引言">引言 📊</h2>
+<blockquote class="blockquote">
+<p>生成信息丰富的可视化图形（有时称为<em>图表</em>）是数据分析中最重要的任务之一。</p>
+</blockquote>
+<ul>
+<li><strong>探索性过程</strong>：有助于识别异常值或需要的数据转换。</li>
+<li><strong>模型生成</strong>：有助于产生模型想法。</li>
+<li><strong>Web 可视化</strong>：构建交互式可视化可能是最终目标。</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Python 有许多用于可视化的附加库，但我们将重点关注 <strong>matplotlib</strong> 以及构建在其之上的库，例如 <strong>seaborn</strong>。</p>
+</div>
+</div>
+</section>
+<section id="什么是-matplotlib" class="level2">
+<h2 class="anchored" data-anchor-id="什么是-matplotlib">什么是 matplotlib？ 🖼️</h2>
+<ul>
+<li>一个桌面绘图包，用于创建出版质量的图表。</li>
+<li>由 John Hunter 于 2002 年发起，旨在 Python 中提供类似 MATLAB 的绘图界面。
+<ul>
+<li><strong>为什么？</strong> 🤔 为了让科学家和工程师更容易在 Python 中创建图表，就像他们在 MATLAB 中所做的那样！</li>
+</ul></li>
+<li>与 IPython 合作简化交互式绘图。</li>
+<li>支持各种 GUI 后端和导出格式（PDF、SVG、JPG、PNG、BMP、GIF 等）。</li>
+<li>许多书籍和出版物中的大多数图形都是使用 matplotlib 生成的。</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Matplotlib 催生了像 <strong>seaborn</strong> 这样的附加工具包，增强了其功能。</p>
+</div>
+</div>
+</section>
+<section id="在-jupyter-中设置-matplotlib" class="level2">
+<h2 class="anchored" data-anchor-id="在-jupyter-中设置-matplotlib">在 Jupyter 中设置 matplotlib ⚙️</h2>
+<p>要在 Jupyter Notebook 中以内联方式显示图表，请使用魔术命令：</p>
+<div id="60f09eee" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 此命令告诉Jupyter直接在notebook输出中显示matplotlib图表。</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 没有它，您可能看不到您的图表！</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>此命令告诉 Jupyter 直接在笔记本输出中显示 matplotlib 图表。没有它，您可能看不到您的图表！</p>
+</div>
+</div>
+</section>
+<section id="数据可视化库的演变" class="level2">
+<h2 class="anchored" data-anchor-id="数据可视化库的演变">数据可视化库的演变</h2>
+<ul>
+<li>自 2012 年以来，出现了许多新的可视化库。
+<ul>
+<li><strong>Bokeh</strong> 和 <strong>Altair</strong>：利用现代 Web 技术进行交互式可视化。</li>
+</ul></li>
+<li>本课程重点介绍 matplotlib，因为它具有基础性和与 pandas 的集成性。
+<ul>
+<li><strong>为什么选择 matplotlib？</strong> 🤔 这就像在跑步之前学会走路！理解 matplotlib 可以帮助您掌握基础知识，从而更容易学习其他库。</li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>这里学到的原则可以适用于其他可视化库。</p>
+</div>
+</div>
+</section>
+<section id="matplotlib-api-简明入门" class="level2">
+<h2 class="anchored" data-anchor-id="matplotlib-api-简明入门">matplotlib API 简明入门</h2>
+<p>matplotlib 的导入惯例：</p>
+<div id="0e9ac1f6" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 这行代码从matplotlib导入pyplot模块，并给它一个更短的名称plt。</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 这是一种常见的做法，可以使您的代码更简洁易读。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>这行代码从 <code>matplotlib</code> 导入 <code>pyplot</code> 模块，并给它一个更短的名称 <code>plt</code>。这是一种常见的做法，可以使您的代码更简洁易读。</p>
+</div>
+</div>
+</section>
+<section id="创建一个简单的图表" class="level2">
+<h2 class="anchored" data-anchor-id="创建一个简单的图表">创建一个简单的图表</h2>
+<div id="6f0a7f65" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np <span class="co"># 导入numpy库，并将其重命名为np</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.arange(<span class="dv">10</span>) <span class="co"># 创建一个包含0到9的整数的数组</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.plot(data) <span class="co"># 使用plt.plot()函数绘制data数组中的数据</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas3ed9cn_files/figure-html/cell-4-output-1.png" width="558" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><strong><code>np.arange(10)</code></strong>：创建一个从 0 到 9 的数字数组。</li>
+<li><strong><code>plt.plot(data)</code></strong>：将数据绘制为折线图。</li>
+</ul>
+</section>
+<section id="简单折线图结果" class="level2">
+<h2 class="anchored" data-anchor-id="简单折线图结果">简单折线图结果</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>图 9-1. 简单折线图</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="图形和子图" class="level2">
+<h2 class="anchored" data-anchor-id="图形和子图">图形和子图 📐</h2>
+<ul>
+<li><p>matplotlib 中的图表位于 <strong>Figure</strong> 对象中。</p>
+<ul>
+<li><strong>什么是 Figure？</strong> 🤔 可以把它想象成一个空白画布，您可以在上面绘制图表。</li>
+</ul></li>
+<li><p>使用 <code>plt.figure()</code> 创建一个新图形：</p></li>
+</ul>
+<div id="8f8f1149" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure() <span class="co"># 创建一个空白的matplotlib图形对象</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;Figure size 672x480 with 0 Axes&gt;</code></pre>
+</div>
+</div>
+<ul>
+<li><code>plt.figure</code> 选项：
+<ul>
+<li><code>figsize</code>：保证图形大小和纵横比。</li>
+</ul></li>
+</ul>
+</section>
+<section id="添加子图" class="level2">
+<h2 class="anchored" data-anchor-id="添加子图">添加子图 ➕</h2>
+<ul>
+<li>您不能在空白图形上绘图；使用 <code>add_subplot</code> 创建子图：</li>
+</ul>
+<div id="4a1b0b76" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> fig.add_subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>) </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 这行代码在前面创建的figure对象上添加一个子图。</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 参数(2, 2, 1)表示：</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个2x2的子图网格（总共4个子图）。</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 选择第一个子图（编号从1开始）。</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 类比：就像在Excel表格中选择一个单元格区域。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><strong><code>add_subplot(2, 2, 1)</code></strong> 表示：
+<ul>
+<li>一个 2x2 的子图网格（总共 4 个图表）。</li>
+<li>选择第 1 个子图（从 1 开始编号）。</li>
+<li><strong>类比</strong>：就像在 Excel 中选择单元格区域一样。</li>
+</ul></li>
+</ul>
+</section>
+<section id="创建其他子图" class="level2">
+<h2 class="anchored" data-anchor-id="创建其他子图">创建其他子图</h2>
+<ul>
+<li>创建其他子图：</li>
+</ul>
+<div id="f9146bc3" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> fig.add_subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>) <span class="co"># 在2x2网格中选择第2个子图</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ax3 <span class="op">=</span> fig.add_subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>) <span class="co"># 在2x2网格中选择第3个子图</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="一个包含三个子图的空图形" class="level2">
+<h2 class="anchored" data-anchor-id="一个包含三个子图的空图形">一个包含三个子图的空图形</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-2.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-2. 一个包含三个子图的空 matplotlib 图形</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="jupyter-中的绘图命令" class="level2">
+<h2 class="anchored" data-anchor-id="jupyter-中的绘图命令">Jupyter 中的绘图命令 📝</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>在 Jupyter Notebook 中，图表在每个单元格后重置。将所有绘图命令放在一个单元格中。</p>
+<ul>
+<li><strong>为什么？</strong> 🤔 Jupyter 独立运行每个单元格。如果您拆分绘图命令，您可能只会看到最后一个图表！</li>
+</ul>
+</div>
+</div>
+<div id="f84a6769" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure() <span class="co"># 创建一个图形对象</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> fig.add_subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>) <span class="co"># 在图形中添加第一个子图</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> fig.add_subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>) <span class="co"># 在图形中添加第二个子图</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>ax3 <span class="op">=</span> fig.add_subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>) <span class="co"># 在图形中添加第三个子图</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas3ed9cn_files/figure-html/cell-8-output-1.png" width="581" height="416" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="使用-axes-方法" class="level2">
+<h2 class="anchored" data-anchor-id="使用-axes-方法">使用 Axes 方法 🎯</h2>
+<ul>
+<li><strong>AxesSubplot</strong> 对象具有创建不同图表类型的方法。</li>
+<li>优先于 <code>plt.plot</code> 等顶级函数。</li>
+<li>示例：</li>
+</ul>
+<div id="0e8f80f8" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ax3.plot(np.random.standard_normal(<span class="dv">50</span>).cumsum(), color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 在第三个子图(ax3)上绘制一条线。</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># np.random.standard_normal(50)生成50个服从标准正态分布的随机数。</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># .cumsum()计算累积和。</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># color="black"设置线条颜色为黑色。</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># linestyle="dashed"设置线条样式为虚线。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="单个图表后的数据可视化" class="level2">
+<h2 class="anchored" data-anchor-id="单个图表后的数据可视化">单个图表后的数据可视化</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-3.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-3. 单个图表后的数据可视化</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="理解-matplotlib-输出" class="level2">
+<h2 class="anchored" data-anchor-id="理解-matplotlib-输出">理解 matplotlib 输出 💬</h2>
+<ul>
+<li>您可能会看到类似 <code>&lt;matplotlib.lines.Line2D at ...&gt;</code> 的输出。
+<ul>
+<li><strong>这是什么意思？</strong> 🤔 它是对您刚刚添加的图表元素的引用。您通常可以忽略它。</li>
+</ul></li>
+<li>要抑制输出，请在行尾添加分号 (<code>;</code>)。
+<ul>
+<li><strong>为什么要抑制？</strong> 🧹 保持笔记本输出干净，专注于图表。</li>
+</ul></li>
+</ul>
+<div id="a82bdba9" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ax3.plot(np.random.standard_normal(<span class="dv">50</span>).cumsum(), color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>)<span class="op">;</span> <span class="co"># 注意分号，用于抑制输出</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="向子图添加更多图表" class="level2">
+<h2 class="anchored" data-anchor-id="向子图添加更多图表">向子图添加更多图表 ➕</h2>
+<div id="8532997a" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ax1.hist(np.random.standard_normal(<span class="dv">100</span>), bins<span class="op">=</span><span class="dv">20</span>, color<span class="op">=</span><span class="st">"black"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 在第一个子图(ax1)上创建一个直方图。</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># np.random.standard_normal(100)生成100个标准正态分布的随机数。</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># bins=20将数据分成20个柱子。</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># color="black"设置柱子颜色为黑色。</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># alpha=0.3设置透明度为0.3。</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>ax2.scatter(np.arange(<span class="dv">30</span>), np.arange(<span class="dv">30</span>) <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> np.random.standard_normal(<span class="dv">30</span>))</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 在第二个子图(ax2)上创建一个散点图。</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># np.arange(30)创建从0到29的整数数组作为x坐标。</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># np.arange(30) + 3 * np.random.standard_normal(30)创建y坐标，其中加入了一些随机噪声。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><strong><code>ax1.hist(...)</code></strong>：创建直方图。</li>
+<li><strong><code>ax2.scatter(...)</code></strong>：创建散点图。</li>
+<li><code>alpha=0.3</code>：设置图表的透明度。</li>
+</ul>
+</section>
+<section id="其他图表后的数据可视化" class="level2">
+<h2 class="anchored" data-anchor-id="其他图表后的数据可视化">其他图表后的数据可视化</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-4.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-4. 其他图表后的数据可视化</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="使用-plt.subplots-方便地创建子图" class="level2">
+<h2 class="anchored" data-anchor-id="使用-plt.subplots-方便地创建子图">使用 <code>plt.subplots</code> 方便地创建子图</h2>
+<ul>
+<li><code>plt.subplots</code> 创建一个图形和一个包含子图对象的 NumPy 数组：</li>
+</ul>
+<div id="e588afad" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">3</span>) <span class="co"># 创建一个包含2行3列子图的图形，并返回图形对象(fig)和子图对象数组(axes)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>axes <span class="co"># 显示子图对象数组</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>array([[&lt;Axes: &gt;, &lt;Axes: &gt;, &lt;Axes: &gt;],
+       [&lt;Axes: &gt;, &lt;Axes: &gt;, &lt;Axes: &gt;]], dtype=object)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas3ed9cn_files/figure-html/cell-12-output-2.png" width="581" height="416" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>像访问 2D 数组一样访问子图：<code>axes[0, 1]</code>。</li>
+<li><code>sharex</code> 和 <code>sharey</code>：共享相同的 x 轴或 y 轴以比较数据。</li>
+</ul>
+</section>
+<section id="plt.subplots-选项" class="level2">
+<h2 class="anchored" data-anchor-id="plt.subplots-选项"><code>plt.subplots</code> 选项 ⚙️</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 87%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">参数</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>nrows</code></td>
+<td style="text-align: left;">子图的行数</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>ncols</code></td>
+<td style="text-align: left;">子图的列数</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>sharex</code></td>
+<td style="text-align: left;">所有子图使用相同的 x 轴刻度</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>sharey</code></td>
+<td style="text-align: left;">所有子图使用相同的 y 轴刻度</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>subplot_kw</code></td>
+<td style="text-align: left;">传递给 <code>add_subplot</code> 的关键字字典</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>**fig_kw</code></td>
+<td style="text-align: left;">传递给 <code>subplots</code> 的其他关键字（例如，<code>figsize=(8, 6)</code>）</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>表 9-1. <code>matplotlib.pyplot.subplots</code> 选项</p>
+</div>
+</div>
+</div>
+</section>
+<section id="调整子图周围的间距" class="level2">
+<h2 class="anchored" data-anchor-id="调整子图周围的间距">调整子图周围的间距 📏</h2>
+<ul>
+<li>子图之间有默认的填充和间距。</li>
+<li>使用 <code>subplots_adjust</code> 方法更改间距：</li>
+</ul>
+<div id="d272f8dc" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(left<span class="op">=</span><span class="va">None</span>, bottom<span class="op">=</span><span class="va">None</span>, right<span class="op">=</span><span class="va">None</span>, top<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                    wspace<span class="op">=</span><span class="va">None</span>, hspace<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 调整子图之间的间距。</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># left, bottom, right, top: 控制图形边缘与子图之间的距离。</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># wspace: 控制子图之间的水平间距。</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># hspace: 控制子图之间的垂直间距。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><code>wspace</code> 和 <code>hspace</code>：控制用于间距的图形宽度/高度的百分比。</li>
+</ul>
+</section>
+<section id="示例将间距缩小到零" class="level2">
+<h2 class="anchored" data-anchor-id="示例将间距缩小到零">示例：将间距缩小到零 🚫</h2>
+<div id="7c70bb35" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, sharex<span class="op">=</span><span class="va">True</span>, sharey<span class="op">=</span><span class="va">True</span>) <span class="co"># 创建一个2x2的子图网格，共享x轴和y轴</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>): <span class="co"># 遍历行</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>): <span class="co"># 遍历列</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        axes[i, j].hist(np.random.standard_normal(<span class="dv">500</span>), bins<span class="op">=</span><span class="dv">50</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                        color<span class="op">=</span><span class="st">"black"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>) <span class="co"># 在每个子图上绘制直方图</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(wspace<span class="op">=</span><span class="dv">0</span>, hspace<span class="op">=</span><span class="dv">0</span>) <span class="co"># 将子图之间的水平和垂直间距设置为0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas3ed9cn_files/figure-html/cell-14-output-1.png" width="566" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="无子图间距的数据可视化" class="level2">
+<h2 class="anchored" data-anchor-id="无子图间距的数据可视化">无子图间距的数据可视化</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-5.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-5. 无子图间距的数据可视化</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="重叠的轴标签" class="level2">
+<h2 class="anchored" data-anchor-id="重叠的轴标签">重叠的轴标签</h2>
+<ul>
+<li>matplotlib 不检查重叠的标签。</li>
+<li>通过指定刻度位置和标签来修复标签。</li>
+<li>在“刻度、标签和图例”部分中介绍。</li>
+</ul>
+</section>
+<section id="颜色标记和线型" class="level2">
+<h2 class="anchored" data-anchor-id="颜色标记和线型">颜色、标记和线型 🎨</h2>
+<ul>
+<li>使用颜色、标记和线型自定义折线图。</li>
+<li>示例：</li>
+</ul>
+<div id="561035c8" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>axes.plot(x, y, linestyle<span class="op">=</span><span class="st">"--"</span>, color<span class="op">=</span><span class="st">"green"</span>) <span class="co"># 使用绿色虚线绘制(x, y)数据</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>使用颜色名称或十六进制代码（例如，<code>"#CECECE"</code>）。</li>
+<li>线型：检查 <code>plt.plot</code> 文档字符串（使用 <code>plt.plot?</code>）。</li>
+</ul>
+</section>
+<section id="用于突出显示数据点的标记" class="level2">
+<h2 class="anchored" data-anchor-id="用于突出显示数据点的标记">用于突出显示数据点的标记 📍</h2>
+<ul>
+<li>折线图可以有标记来显示实际数据点。</li>
+<li>当插值可能会掩盖点的位置时很有用。</li>
+<li>示例：</li>
+</ul>
+<div id="4eabd987" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>axes.plot(np.random.standard_normal(<span class="dv">30</span>).cumsum(), color<span class="op">=</span><span class="st">"black"</span>,</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>        linestyle<span class="op">=</span><span class="st">"dashed"</span>, marker<span class="op">=</span><span class="st">"o"</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制一条带有圆圈标记的黑色虚线。</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># np.random.standard_normal(30).cumsum()生成30个标准正态分布随机数的累积和。</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># marker="o"设置标记为圆圈。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="带标记的折线图" class="level2">
+<h2 class="anchored" data-anchor-id="带标记的折线图">带标记的折线图</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-6.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-6. 带标记的折线图</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="drawstyle-选项" class="level2">
+<h2 class="anchored" data-anchor-id="drawstyle-选项"><code>drawstyle</code> 选项 🎨</h2>
+<ul>
+<li>线性插值是默认值。</li>
+<li>使用 <code>drawstyle</code> 选项更改：</li>
+</ul>
+<div id="470d7344" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ax.plot(data, color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, label<span class="op">=</span><span class="st">"Default"</span>) </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制一条黑色虚线，标签为"Default"（默认插值方式）。</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>ax.plot(data, color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        drawstyle<span class="op">=</span><span class="st">"steps-post"</span>, label<span class="op">=</span><span class="st">"steps-post"</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制一条黑色虚线，标签为"steps-post"，使用阶梯图的后阶跃方式。</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>ax.legend() <span class="co"># 显示图例</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="具有不同-drawstyle-选项的折线图" class="level2">
+<h2 class="anchored" data-anchor-id="具有不同-drawstyle-选项的折线图">具有不同 <code>drawstyle</code> 选项的折线图</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-7.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-7. 具有不同 drawstyle 选项的折线图</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="刻度标签和图例" class="level2">
+<h2 class="anchored" data-anchor-id="刻度标签和图例">刻度、标签和图例 🏷️</h2>
+<ul>
+<li>图表装饰通过 matplotlib 坐标轴对象方法访问。</li>
+<li><code>xlim</code>、<code>xticks</code>、<code>xticklabels</code>：控制图表范围、刻度位置和标签。</li>
+<li>两种使用方式：
+<ul>
+<li>无参数：返回当前值（例如，<code>ax.xlim()</code>）。</li>
+<li>带参数：设置值（例如，<code>ax.xlim([0, 10])</code>）。</li>
+</ul></li>
+</ul>
+</section>
+<section id="自定义坐标轴" class="level2">
+<h2 class="anchored" data-anchor-id="自定义坐标轴">自定义坐标轴 🛠️</h2>
+<ul>
+<li>示例：随机游走图。</li>
+</ul>
+<div id="8ef1ba52" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots() <span class="co"># 创建一个包含一个子图的图形</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>ax.plot(np.random.standard_normal(<span class="dv">1000</span>).cumsum()) <span class="co"># 绘制1000个标准正态分布随机数的累积和</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas3ed9cn_files/figure-html/cell-18-output-1.png" width="577" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="用于说明-xticks-的简单图表" class="level2">
+<h2 class="anchored" data-anchor-id="用于说明-xticks-的简单图表">用于说明 <code>xticks</code> 的简单图表</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-8.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-8. 用于说明 xticks 的简单图表（带有默认标签）</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="设置刻度和刻度标签" class="level2">
+<h2 class="anchored" data-anchor-id="设置刻度和刻度标签">设置刻度和刻度标签</h2>
+<div id="7e679cda" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ticks <span class="op">=</span> ax.set_xticks([<span class="dv">0</span>, <span class="dv">250</span>, <span class="dv">500</span>, <span class="dv">750</span>, <span class="dv">1000</span>]) <span class="co"># 设置x轴刻度位置</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> ax.set_xticklabels([<span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"three"</span>, <span class="st">"four"</span>, <span class="st">"five"</span>],</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                            rotation<span class="op">=</span><span class="dv">30</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置x轴刻度标签。</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># rotation=30将标签旋转30度。</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># fontsize=8设置标签字体大小为8。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="设置标题和轴标签" class="level2">
+<h2 class="anchored" data-anchor-id="设置标题和轴标签">设置标题和轴标签 📝</h2>
+<div id="0c808aeb" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Stages"</span>) <span class="co"># 设置x轴标签为"Stages"</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"My first matplotlib plot"</span>) <span class="co"># 设置子图标题为"My first matplotlib plot"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>Text(0.5, 1.0, 'My first matplotlib plot')</code></pre>
+</div>
+</div>
+</section>
+<section id="用于说明自定义-xticks-的简单图表" class="level2">
+<h2 class="anchored" data-anchor-id="用于说明自定义-xticks-的简单图表">用于说明自定义 <code>xticks</code> 的简单图表</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-9.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-9. 用于说明自定义 xticks 的简单图表</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><code>rotation</code>：设置刻度标签旋转（例如，30 度）。</li>
+<li><code>set_xlabel</code>：命名 x 轴。</li>
+<li><code>set_title</code>：设置子图标题。</li>
+</ul>
+</section>
+<section id="批量设置图表属性" class="level2">
+<h2 class="anchored" data-anchor-id="批量设置图表属性">批量设置图表属性 ⚙️</h2>
+<ul>
+<li>Axes 类有一个 <code>set</code> 方法：</li>
+</ul>
+<div id="1009a101" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(title<span class="op">=</span><span class="st">"My first matplotlib plot"</span>, xlabel<span class="op">=</span><span class="st">"Stages"</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用set方法一次性设置多个属性。</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 等同于分别调用ax.set_title()和ax.set_xlabel()。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>[Text(0.5, 1.0, 'My first matplotlib plot'),
+ Text(0.5, 8.533333333333337, 'Stages')]</code></pre>
+</div>
+</div>
+</section>
+<section id="添加图例" class="level2">
+<h2 class="anchored" data-anchor-id="添加图例">添加图例 ➕</h2>
+<ul>
+<li>图例标识图表元素。</li>
+<li>添加图表元素时传递 <code>label</code> 参数：</li>
+</ul>
+<div id="ba11336b" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots() <span class="co"># 创建一个包含一个子图的图形</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>ax.plot(np.random.randn(<span class="dv">1000</span>).cumsum(), color<span class="op">=</span><span class="st">"black"</span>, label<span class="op">=</span><span class="st">"one"</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制第一条线，标签为"one"。</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>ax.plot(np.random.randn(<span class="dv">1000</span>).cumsum(), color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, label<span class="op">=</span><span class="st">"two"</span>)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制第二条线，标签为"two"，线型为虚线。</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>ax.plot(np.random.randn(<span class="dv">1000</span>).cumsum(), color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"dotted"</span>, label<span class="op">=</span><span class="st">"three"</span>)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制第三条线，标签为"three"，线型为点线。</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>ax.legend() <span class="co"># 显示图例</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas3ed9cn_files/figure-html/cell-22-output-1.png" width="577" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="带有三条线和图例的简单图表" class="level2">
+<h2 class="anchored" data-anchor-id="带有三条线和图例的简单图表">带有三条线和图例的简单图表</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-10.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-10. 带有三条线和图例的简单图表</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ax.legend-选项" class="level2">
+<h2 class="anchored" data-anchor-id="ax.legend-选项"><code>ax.legend()</code> 选项 ⚙️</h2>
+<ul>
+<li><code>ax.legend()</code>：自动创建图例。</li>
+<li><code>loc</code>：指定图例位置（默认为 <code>"best"</code>）。</li>
+<li>排除元素：不传递标签或传递 <code>label="_nolegend_"</code>。</li>
+</ul>
+</section>
+<section id="注释和在子图上绘图" class="level2">
+<h2 class="anchored" data-anchor-id="注释和在子图上绘图">注释和在子图上绘图 ✍️</h2>
+<ul>
+<li>添加自定义注释：文本、箭头、形状。</li>
+<li><code>text</code>、<code>arrow</code>、<code>annotate</code> 函数。</li>
+<li><code>ax.text(x, y, "Hello world!", family="monospace", fontsize=10)</code>：在 (x, y) 处绘制文本。</li>
+</ul>
+</section>
+<section id="注释标准普尔-500-指数" class="level2">
+<h2 class="anchored" data-anchor-id="注释标准普尔-500-指数">注释标准普尔 500 指数 📈</h2>
+<ul>
+<li>示例：绘制 2007 年以来的标准普尔 500 指数收盘价并添加注释。</li>
+</ul>
+<div id="08502930" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd <span class="co"># 导入pandas库</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime <span class="co"># 导入datetime模块</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots() <span class="co"># 创建一个图形和一个子图</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"examples/spx.csv"</span>, index_col<span class="op">=</span><span class="dv">0</span>, parse_dates<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 从CSV文件读取数据。</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co"># index_col=0将第一列设置为索引。</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co"># parse_dates=True尝试将索引解析为日期。</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>spx <span class="op">=</span> data[<span class="st">"SPX"</span>] <span class="co"># 获取"SPX"列（标准普尔500指数）</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>spx.plot(ax<span class="op">=</span>ax, color<span class="op">=</span><span class="st">"black"</span>) <span class="co"># 绘制标准普尔500指数，颜色为黑色</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas3ed9cn_files/figure-html/cell-23-output-1.png" width="583" height="401" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="注释标准普尔-500-指数续" class="level2">
+<h2 class="anchored" data-anchor-id="注释标准普尔-500-指数续">注释标准普尔 500 指数（续）</h2>
+<div id="d25484a1" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>crisis_data <span class="op">=</span> [</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    (datetime(<span class="dv">2007</span>, <span class="dv">10</span>, <span class="dv">11</span>), <span class="st">"Peak of bull market"</span>), <span class="co"># 牛市高峰</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    (datetime(<span class="dv">2008</span>, <span class="dv">3</span>, <span class="dv">12</span>), <span class="st">"Bear Stearns Fails"</span>),   <span class="co"># 贝尔斯登倒闭</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    (datetime(<span class="dv">2008</span>, <span class="dv">9</span>, <span class="dv">15</span>), <span class="st">"Lehman Bankruptcy"</span>)      <span class="co"># 雷曼兄弟破产</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> date, label <span class="kw">in</span> crisis_data: <span class="co"># 遍历危机数据</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    ax.annotate(label, xy<span class="op">=</span>(date, spx.asof(date) <span class="op">+</span> <span class="dv">75</span>),</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>                xytext<span class="op">=</span>(date, spx.asof(date) <span class="op">+</span> <span class="dv">225</span>),</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>                arrowprops<span class="op">=</span><span class="bu">dict</span>(facecolor<span class="op">=</span><span class="st">"black"</span>, headwidth<span class="op">=</span><span class="dv">4</span>, width<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>                                headlength<span class="op">=</span><span class="dv">4</span>),</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>                horizontalalignment<span class="op">=</span><span class="st">"left"</span>, verticalalignment<span class="op">=</span><span class="st">"top"</span>)</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用ax.annotate()添加注释。</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="co"># label: 注释文本。</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="co"># xy: 箭头指向的坐标(x, y)。</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="co"># xytext: 文本的起始坐标。</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="co"># arrowprops: 箭头属性（颜色、头部宽度、箭头宽度、头部长度）。</span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="co"># horizontalalignment, verticalalignment: 文本对齐方式。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="注释标准普尔-500-指数续-1" class="level2">
+<h2 class="anchored" data-anchor-id="注释标准普尔-500-指数续-1">注释标准普尔 500 指数（续）</h2>
+<div id="2ae54688" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 放大2007-2010年</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="st">"1/1/2007"</span>, <span class="st">"1/1/2011"</span>]) <span class="co"># 设置x轴范围</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">600</span>, <span class="dv">1800</span>]) <span class="co"># 设置y轴范围</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Important dates in the 2008-2009 financial crisis"</span>) <span class="co"># 设置图形标题</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>Text(0.5, 1.0, 'Important dates in the 2008-2009 financial crisis')</code></pre>
+</div>
+</div>
+</section>
+<section id="年金融危机中的重要日期" class="level2">
+<h2 class="anchored" data-anchor-id="年金融危机中的重要日期">2008-2009 年金融危机中的重要日期</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-11.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-11. 2008-2009 年金融危机中的重要日期</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="标准普尔-500-指数图表上的重要点" class="level2">
+<h2 class="anchored" data-anchor-id="标准普尔-500-指数图表上的重要点">标准普尔 500 指数图表上的重要点</h2>
+<ul>
+<li><code>ax.annotate</code>：在指定的 (x, y) 坐标处绘制标签。</li>
+<li><code>set_xlim</code>、<code>set_ylim</code>：手动设置图表边界。</li>
+<li><code>ax.set_title</code>：添加主标题。</li>
+</ul>
+</section>
+<section id="绘制形状补丁" class="level2">
+<h2 class="anchored" data-anchor-id="绘制形状补丁">绘制形状（补丁） 🔵🔺🟥</h2>
+<ul>
+<li>matplotlib 有称为 <strong>patches</strong> 的对象，表示形状。</li>
+<li><code>Rectangle</code>、<code>Circle</code>：在 <code>matplotlib.pyplot</code> 中找到。</li>
+<li>完整集合：<code>matplotlib.patches</code>。</li>
+<li>使用 <code>ax.add_patch</code> 添加到图表。</li>
+</ul>
+<div id="ca04ecc7" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots() <span class="co"># 创建一个图形和一个子图</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>rect <span class="op">=</span> plt.Rectangle((<span class="fl">0.2</span>, <span class="fl">0.75</span>), <span class="fl">0.4</span>, <span class="fl">0.15</span>, color<span class="op">=</span><span class="st">"black"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个矩形对象。</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># (0.2, 0.75): 左下角坐标。</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 0.4: 宽度。</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 0.15: 高度。</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co"># color="black": 颜色为黑色。</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co"># alpha=0.3: 透明度为0.3。</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>circ <span class="op">=</span> plt.Circle((<span class="fl">0.7</span>, <span class="fl">0.2</span>), <span class="fl">0.15</span>, color<span class="op">=</span><span class="st">"blue"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个圆形对象。</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="co"># (0.7, 0.2): 圆心坐标。</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 0.15: 半径。</span></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a><span class="co"># color="blue": 颜色为蓝色。</span></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="co"># alpha=0.3: 透明度为0.3。</span></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>pgon <span class="op">=</span> plt.Polygon([[<span class="fl">0.15</span>, <span class="fl">0.15</span>], [<span class="fl">0.35</span>, <span class="fl">0.4</span>], [<span class="fl">0.2</span>, <span class="fl">0.6</span>]],</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>                    color<span class="op">=</span><span class="st">"green"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个多边形对象。</span></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a><span class="co"># [[0.15, 0.15], [0.35, 0.4], [0.2, 0.6]]: 多边形顶点坐标。</span></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a><span class="co"># color="green": 颜色为绿色。</span></span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a><span class="co"># alpha=0.5: 透明度为0.5。</span></span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>ax.add_patch(rect) <span class="co"># 将矩形添加到子图</span></span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>ax.add_patch(circ) <span class="co"># 将圆形添加到子图</span></span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>ax.add_patch(pgon) <span class="co"># 将多边形添加到子图</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas3ed9cn_files/figure-html/cell-26-output-1.png" width="581" height="416" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="由三个不同补丁组成的数据可视化" class="level2">
+<h2 class="anchored" data-anchor-id="由三个不同补丁组成的数据可视化">由三个不同补丁组成的数据可视化</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-12.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-12. 由三个不同补丁组成的数据可视化</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="将图表保存到文件" class="level2">
+<h2 class="anchored" data-anchor-id="将图表保存到文件">将图表保存到文件 💾</h2>
+<ul>
+<li><code>savefig</code> 实例方法：保存活动图形。</li>
+<li>示例：</li>
+</ul>
+<div id="9c32513b" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">"figpath.svg"</span>) <span class="co"># 将图形保存为SVG文件</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>文件类型从扩展名推断（例如，<code>.pdf</code>、<code>.png</code>）。</li>
+<li><code>dpi</code>：控制每英寸点数分辨率。</li>
+</ul>
+<div id="afd69c8c" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">"figpath.png"</span>, dpi<span class="op">=</span><span class="dv">400</span>) <span class="co"># 将图形保存为PNG文件，分辨率为400 dpi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="savefig-选项" class="level2">
+<h2 class="anchored" data-anchor-id="savefig-选项"><code>savefig</code> 选项 ⚙️</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 88%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">参数</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>fname</code></td>
+<td style="text-align: left;">文件路径或 Python 类文件对象；格式从扩展名推断</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>dpi</code></td>
+<td style="text-align: left;">每英寸点数分辨率</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>facecolor</code></td>
+<td style="text-align: left;">子图外部的图形背景颜色（默认值：<code>"w"</code> - 白色）</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>edgecolor</code></td>
+<td style="text-align: left;">图形边缘的颜色</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>format</code></td>
+<td style="text-align: left;">显式文件格式（例如，<code>"png"</code>、<code>"pdf"</code>、<code>"svg"</code>）</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>表 9-2. 部分 <code>fig.savefig</code> 选项</p>
+</div>
+</div>
+</div>
+</section>
+<section id="matplotlib-配置" class="level2">
+<h2 class="anchored" data-anchor-id="matplotlib-配置">matplotlib 配置 ⚙️</h2>
+<ul>
+<li>matplotlib 具有颜色方案和默认值的配置。</li>
+<li>通过全局参数自定义：图形大小、子图间距、颜色、字体等。</li>
+<li><code>rc</code> 方法：以编程方式修改配置。</li>
+<li>示例：将默认图形大小设置为 10x10。</li>
+</ul>
+<div id="45af4a8e" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>plt.rc(<span class="st">"figure"</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>)) <span class="co"># 设置默认图形大小为10x10英寸</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="恢复默认配置值" class="level2">
+<h2 class="anchored" data-anchor-id="恢复默认配置值">恢复默认配置值 🔄</h2>
+<ul>
+<li>当前设置：<code>plt.rcParams</code> 字典。</li>
+<li>恢复默认值：<code>plt.rcdefaults()</code>。</li>
+</ul>
+</section>
+<section id="自定义特定组件" class="level2">
+<h2 class="anchored" data-anchor-id="自定义特定组件">自定义特定组件 🧩</h2>
+<ul>
+<li>第一个 <code>rc</code> 参数：要自定义的组件（例如，<code>"figure"</code>、<code>"axes"</code>、<code>"xtick"</code>）。</li>
+<li>后跟新参数的关键字参数。</li>
+<li>示例：</li>
+</ul>
+<div id="a3466aed" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>plt.rc(<span class="st">"font"</span>, family<span class="op">=</span><span class="st">"monospace"</span>, weight<span class="op">=</span><span class="st">"bold"</span>, size<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置默认字体。</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># family="monospace": 使用等宽字体。</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># weight="bold": 使用粗体。</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co"># size=8: 字体大小为8。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="matplotlibrc-配置文件" class="level2">
+<h2 class="anchored" data-anchor-id="matplotlibrc-配置文件"><code>matplotlibrc</code> 配置文件 📝</h2>
+<ul>
+<li>广泛自定义：<code>matplotlib/mpl-data</code> 中的 <code>matplotlibrc</code> 文件。</li>
+<li>将自定义的 <code>matplotlibrc</code> 放在您的主目录中，命名为 <code>.matplotlibrc</code>。</li>
+<li>每次使用 matplotlib 时加载。</li>
+</ul>
+</section>
+<section id="seaborn-和-matplotlib-配置" class="level2">
+<h2 class="anchored" data-anchor-id="seaborn-和-matplotlib-配置">seaborn 和 matplotlib 配置 🎨</h2>
+<ul>
+<li>seaborn 在内部使用 matplotlib 的配置系统。</li>
+<li>seaborn 具有内置的图表主题和样式。</li>
+</ul>
+</section>
+<section id="使用-pandas-和-seaborn-绘图" class="level2">
+<h2 class="anchored" data-anchor-id="使用-pandas-和-seaborn-绘图">使用 pandas 和 seaborn 绘图</h2>
+<ul>
+<li>Matplotlib 可能是低级的。</li>
+<li>pandas：用于可视化 <code>DataFrame</code> 和 <code>Series</code> 对象的内置方法。</li>
+<li>seaborn：基于 matplotlib 构建的高级统计图形库。</li>
+<li>seaborn 简化了创建常见可视化类型的过程。</li>
+</ul>
+</section>
+<section id="使用-pandas-的折线图" class="level2">
+<h2 class="anchored" data-anchor-id="使用-pandas-的折线图">使用 pandas 的折线图 📈</h2>
+<ul>
+<li><code>Series</code> 和 <code>DataFrame</code> 有一个 <code>plot</code> 属性。</li>
+<li><code>plot()</code> 默认创建折线图：</li>
+</ul>
+<div id="dcdb0a57" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series(np.random.standard_normal(<span class="dv">10</span>).cumsum(), index<span class="op">=</span>np.arange(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">10</span>))</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个Series对象。</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co"># np.random.standard_normal(10).cumsum(): 生成10个标准正态分布随机数的累积和。</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># index=np.arange(0, 100, 10): 设置索引为0, 10, 20, ..., 90。</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>s.plot() <span class="co"># 绘制Series的折线图</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas3ed9cn_files/figure-html/cell-31-output-1.png" width="785" height="778" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="简单-series-图表" class="level2">
+<h2 class="anchored" data-anchor-id="简单-series-图表">简单 Series 图表</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-13.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-13. 简单 Series 图表</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li>Series 索引：用于 x 轴（使用 <code>use_index=False</code> 禁用）。</li>
+<li><code>xticks</code>、<code>xlim</code>、<code>yticks</code>、<code>ylim</code>：调整轴刻度和限制。</li>
+</ul>
+</section>
+<section id="series.plot-方法参数" class="level2">
+<h2 class="anchored" data-anchor-id="series.plot-方法参数"><code>Series.plot</code> 方法参数 ⚙️</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 86%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">参数</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>label</code></td>
+<td style="text-align: left;">图例标签</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>ax</code></td>
+<td style="text-align: left;">要绘制的 matplotlib 子图对象</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>style</code></td>
+<td style="text-align: left;">样式字符串（例如，<code>"ko--"</code>）</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>alpha</code></td>
+<td style="text-align: left;">图表填充不透明度（0 到 1）</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>kind</code></td>
+<td style="text-align: left;">图表类型：<code>"area"</code>、<code>"bar"</code>、<code>"barh"</code>、<code>"density"</code>、<code>"hist"</code>、<code>"kde"</code>、<code>"line"</code>、<code>"pie"</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>figsize</code></td>
+<td style="text-align: left;">图形对象的大小</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>logx</code></td>
+<td style="text-align: left;">x 轴上的对数缩放</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>logy</code></td>
+<td style="text-align: left;">y 轴上的对数缩放</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>title</code></td>
+<td style="text-align: left;">图表标题</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>use_index</code></td>
+<td style="text-align: left;">使用对象索引作为刻度标签</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>rot</code></td>
+<td style="text-align: left;">刻度标签旋转（0-360）</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>xticks</code></td>
+<td style="text-align: left;">x 轴刻度值</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>yticks</code></td>
+<td style="text-align: left;">y 轴刻度值</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>xlim</code></td>
+<td style="text-align: left;">x 轴限制（例如，<code>[0, 10]</code>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>ylim</code></td>
+<td style="text-align: left;">y 轴限制</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>grid</code></td>
+<td style="text-align: left;">显示轴网格（默认关闭）</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>表 9-3. <code>Series.plot</code> 方法参数</p>
+</div>
+</div>
+</div>
+<ul>
+<li>pandas 绘图方法接受可选的 <code>ax</code> 参数，用于指定 matplotlib 子图对象。</li>
+</ul>
+</section>
+<section id="dataframe-折线图" class="level2">
+<h2 class="anchored" data-anchor-id="dataframe-折线图">DataFrame 折线图 📊</h2>
+<div id="f5ee803d" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(np.random.standard_normal((<span class="dv">10</span>, <span class="dv">4</span>)).cumsum(<span class="dv">0</span>),</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>                  columns<span class="op">=</span>[<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>],</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>                  index<span class="op">=</span>np.arange(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">10</span>))</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个DataFrame对象。</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># np.random.standard_normal((10, 4)).cumsum(0): 生成10x4的标准正态分布随机数，并沿列(axis=0)计算累积和。</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co"># columns=["A", "B", "C", "D"]: 设置列名为A, B, C, D。</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co"># index=np.arange(0, 100, 10): 设置索引为0, 10, 20, ..., 90。</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'grayscale'</span>) <span class="co"># 使用灰度样式，以适应黑白出版物</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>df.plot() <span class="co"># 绘制DataFrame的折线图，每列一条线</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas3ed9cn_files/figure-html/cell-32-output-1.png" width="785" height="778" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="简单-dataframe-图表" class="level2">
+<h2 class="anchored" data-anchor-id="简单-dataframe-图表">简单 DataFrame 图表</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-14.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-14. 简单 DataFrame 图表</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li>将每列绘制为同一子图上的单独线条。</li>
+<li>自动创建图例。</li>
+<li><code>df.plot()</code> 等同于 <code>df.plot.line()</code>.</li>
+</ul>
+</section>
+<section id="dataframe.plot-选项" class="level2">
+<h2 class="anchored" data-anchor-id="dataframe.plot-选项"><code>DataFrame.plot</code> 选项 ⚙️</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 83%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">参数</th>
+<th style="text-align: left;">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>subplots</code></td>
+<td style="text-align: left;">在单独的子图中绘制每个 DataFrame 列</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>layout</code></td>
+<td style="text-align: left;">2 元组（行、列），用于子图布局</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>sharex</code></td>
+<td style="text-align: left;">如果 <code>subplots=True</code>，共享 x 轴刻度和限制</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>sharey</code></td>
+<td style="text-align: left;">如果 <code>subplots=True</code>，共享 y 轴</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>legend</code></td>
+<td style="text-align: left;">添加子图图例（默认为 True）</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>sort_columns</code></td>
+<td style="text-align: left;">按字母顺序绘制列（默认值：使用现有顺序）</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>表 9-4. <code>DataFrame</code> 特定的图表参数</p>
+</div>
+</div>
+</div>
+<ul>
+<li>其他关键字参数将传递给 matplotlib 绘图函数。</li>
+</ul>
+</section>
+<section id="条形图" class="level2">
+<h2 class="anchored" data-anchor-id="条形图">条形图 📊</h2>
+<ul>
+<li><code>plot.bar()</code>: 垂直条形图。</li>
+<li><code>plot.barh()</code>: 水平条形图。</li>
+<li>Series/DataFrame 索引：用于 x (bar) 或 y (barh) 刻度。</li>
+</ul>
+<div id="e0bd1d1d" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>) <span class="co"># 创建一个包含2行1列子图的图形</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.Series(np.random.uniform(size<span class="op">=</span><span class="dv">16</span>), index<span class="op">=</span><span class="bu">list</span>(<span class="st">"abcdefghijklmnop"</span>))</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个Series对象。</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># np.random.uniform(size=16): 生成16个均匀分布的随机数。</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="co"># index=list("abcdefghijklmnop"): 设置索引为字母a到p。</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>data.plot.bar(ax<span class="op">=</span>axes[<span class="dv">0</span>], color<span class="op">=</span><span class="st">"black"</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 在第一个子图(axes[0])上绘制垂直条形图。</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="co"># color="black": 设置条形颜色为黑色。</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="co"># alpha=0.7: 设置透明度为0.7。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas3ed9cn_files/figure-html/cell-33-output-1.png" width="802" height="779" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="条形图续" class="level2">
+<h2 class="anchored" data-anchor-id="条形图续">条形图（续）</h2>
+<div id="f887f9c5" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>data.plot.barh(ax<span class="op">=</span>axes[<span class="dv">1</span>], color<span class="op">=</span><span class="st">"black"</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 在第二个子图(axes[1])上绘制水平条形图。</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># color="black": 设置条形颜色为黑色。</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co"># alpha=0.7: 设置透明度为0.7。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>&lt;Axes: &gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="水平和垂直条形图" class="level2">
+<h2 class="anchored" data-anchor-id="水平和垂直条形图">水平和垂直条形图</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-15.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-15. 水平和垂直条形图</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="dataframe-条形图" class="level2">
+<h2 class="anchored" data-anchor-id="dataframe-条形图">DataFrame 条形图 📊</h2>
+<div id="089938bc" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(np.random.uniform(size<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>)),</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>                  index<span class="op">=</span>[<span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"three"</span>, <span class="st">"four"</span>, <span class="st">"five"</span>, <span class="st">"six"</span>],</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>                  columns<span class="op">=</span>pd.Index([<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>], name<span class="op">=</span><span class="st">"Genus"</span>))</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个DataFrame对象。</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="co"># np.random.uniform(size=(6, 4)): 生成6x4的均匀分布随机数。</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="co"># index=["one", "two", "three", "four", "five", "six"]: 设置行索引。</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="co"># columns=pd.Index(["A", "B", "C", "D"], name="Genus"): 设置列索引，并命名为"Genus"。</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>df.plot.bar() <span class="co"># 绘制DataFrame的条形图，每行的数据并排显示</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas3ed9cn_files/figure-html/cell-35-output-1.png" width="792" height="800" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="dataframe-条形图-1" class="level2">
+<h2 class="anchored" data-anchor-id="dataframe-条形图-1">DataFrame 条形图</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-16.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-16. DataFrame 条形图</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li>将每行中的值分组在条形中，并排显示。</li>
+<li>DataFrame 列名：用作图例标题。</li>
+</ul>
+</section>
+<section id="堆叠条形图" class="level2">
+<h2 class="anchored" data-anchor-id="堆叠条形图">堆叠条形图 📚</h2>
+<ul>
+<li><code>stacked=True</code>: 创建堆叠条形图。</li>
+<li>每行中的值堆叠在一起。</li>
+</ul>
+<div id="dc447d38" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>df.plot.barh(stacked<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制水平堆叠条形图。</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co"># stacked=True: 设置为堆叠条形图。</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co"># alpha=0.5: 设置透明度为0.5。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas3ed9cn_files/figure-html/cell-36-output-1.png" width="805" height="778" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="dataframe-堆叠条形图" class="level2">
+<h2 class="anchored" data-anchor-id="dataframe-堆叠条形图">DataFrame 堆叠条形图</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-17.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-17. DataFrame 堆叠条形图</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="示例餐厅小费数据" class="level2">
+<h2 class="anchored" data-anchor-id="示例餐厅小费数据">示例：餐厅小费数据 🍽️</h2>
+<ul>
+<li>可视化小费数据：每个聚会规模、每天的数据点百分比。</li>
+<li><code>read_csv</code>: 加载数据。</li>
+<li><code>crosstab</code>: 按天和聚会规模进行交叉表计算。</li>
+</ul>
+<div id="ca97d915" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> pd.read_csv(<span class="st">"examples/tips.csv"</span>) <span class="co"># 从CSV文件读取小费数据</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>party_counts <span class="op">=</span> pd.crosstab(tips[<span class="st">"day"</span>], tips[<span class="st">"size"</span>])</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用crosstab计算每天(day)和聚会规模(size)的交叉表。</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 交叉表用于统计每个组合的频数。</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>party_counts <span class="op">=</span> party_counts.reindex(index<span class="op">=</span>[<span class="st">"Thur"</span>, <span class="st">"Fri"</span>, <span class="st">"Sat"</span>, <span class="st">"Sun"</span>])</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 重新索引行，确保顺序为"Thur", "Fri", "Sat", "Sun"。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="餐厅小费数据续" class="level2">
+<h2 class="anchored" data-anchor-id="餐厅小费数据续">餐厅小费数据（续）</h2>
+<ul>
+<li>计算数据框中两列数据的频数。</li>
+</ul>
+<div id="ddbc7616" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 删除1人和6人的聚会</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>party_counts <span class="op">=</span> party_counts.loc[:, <span class="dv">2</span>:<span class="dv">5</span>]</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 通过标签进行选择，此处选择列标签从2到5（包括）的列，即聚会规模为2、3、4和5的数据。</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 归一化，使每行的和为1</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>party_pcts <span class="op">=</span> party_counts.div(party_counts.<span class="bu">sum</span>(axis<span class="op">=</span><span class="st">"columns"</span>), axis<span class="op">=</span><span class="st">"index"</span>)</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算每个聚会规模占当天总聚会数的百分比。</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="co"># party_counts.sum(axis="columns"): 计算每行的总和。</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="co"># .div(): 执行除法，将每行的每个元素除以该行的总和。</span></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="co"># axis="index": 指定除法运算按行进行。</span></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>party_pcts.plot.bar(stacked<span class="op">=</span><span class="va">True</span>) <span class="co"># 绘制堆叠条形图，展示每个聚会规模占当天总聚会数的百分比</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas3ed9cn_files/figure-html/cell-38-output-1.png" width="792" height="809" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="每天各聚会规模的占比" class="level2">
+<h2 class="anchored" data-anchor-id="每天各聚会规模的占比">每天各聚会规模的占比</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-18.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-18. 每天各聚会规模的占比</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="seaborn-用于更简单的聚合和汇总" class="level2">
+<h2 class="anchored" data-anchor-id="seaborn-用于更简单的聚合和汇总">seaborn 用于更简单的聚合和汇总 📊</h2>
+<ul>
+<li>seaborn 简化了使用聚合/汇总数据的绘图。</li>
+<li>示例：每天的小费百分比。</li>
+</ul>
+<div id="b971eabf" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns <span class="co"># 导入seaborn库</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">"tip_pct"</span>] <span class="op">=</span> tips[<span class="st">"tip"</span>] <span class="op">/</span> (tips[<span class="st">"total_bill"</span>] <span class="op">-</span> tips[<span class="st">"tip"</span>])</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 添加一列"tip_pct"，计算小费百分比。</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">"tip_pct"</span>, y<span class="op">=</span><span class="st">"day"</span>, data<span class="op">=</span>tips, orient<span class="op">=</span><span class="st">"h"</span>)</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用seaborn的barplot绘制条形图。</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="co"># x="tip_pct": x轴使用"tip_pct"列的数据。</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="co"># y="day": y轴使用"day"列的数据。</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a><span class="co"># data=tips: 数据来源为tips DataFrame。</span></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a><span class="co"># orient="h": 水平显示条形图。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas3ed9cn_files/figure-html/cell-39-output-1.png" width="814" height="794" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="每天的小费百分比带误差条" class="level2">
+<h2 class="anchored" data-anchor-id="每天的小费百分比带误差条">每天的小费百分比（带误差条）</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-19.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-19. 每天的小费百分比（带误差条）</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><code>data</code>: pandas DataFrame。</li>
+<li>其他参数：列名。</li>
+<li>条形：<code>tip_pct</code> 的平均值。</li>
+<li>黑线：95% 置信区间。</li>
+</ul>
+</section>
+<section id="按其他分类值拆分" class="level2">
+<h2 class="anchored" data-anchor-id="按其他分类值拆分">按其他分类值拆分 🌈</h2>
+<ul>
+<li><code>seaborn.barplot</code> 中的 <code>hue</code> 选项：按另一个分类值拆分。</li>
+</ul>
+<div id="1b3c292f" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">"tip_pct"</span>, y<span class="op">=</span><span class="st">"day"</span>, hue<span class="op">=</span><span class="st">"time"</span>, data<span class="op">=</span>tips, orient<span class="op">=</span><span class="st">"h"</span>)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用seaborn的barplot绘制条形图，并按"time"列进行分组。</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co"># hue="time": 根据"time"列的值对条形图进行着色区分。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas3ed9cn_files/figure-html/cell-40-output-1.png" width="814" height="794" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="每天和每时段的小费百分比" class="level2">
+<h2 class="anchored" data-anchor-id="每天和每时段的小费百分比">每天和每时段的小费百分比</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-20.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-20. 每天和每时段的小费百分比</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="seaborn-图表美学" class="level2">
+<h2 class="anchored" data-anchor-id="seaborn-图表美学">seaborn 图表美学 🎨</h2>
+<ul>
+<li>seaborn 自动调整图表美学：
+<ul>
+<li>调色板。</li>
+<li>图表背景。</li>
+<li>网格线颜色。</li>
+</ul></li>
+<li><code>seaborn.set_style</code>：在图表外观之间切换。</li>
+</ul>
+<div id="7b1b9712" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">"whitegrid"</span>) <span class="co"># 设置图表样式为白色网格背景</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>对于灰度，设置灰度调色板：</li>
+</ul>
+<div id="a6ce7073" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>sns.set_palette(<span class="st">"Greys_r"</span>) <span class="co"># 设置调色板为灰度</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="直方图和密度图" class="level2">
+<h2 class="anchored" data-anchor-id="直方图和密度图">直方图和密度图 📊</h2>
+<ul>
+<li><strong>直方图</strong>：值频率的离散化显示。</li>
+<li>数据点被分箱，并绘制每个箱中的计数。</li>
+<li><code>plot.hist</code>：创建直方图。</li>
+</ul>
+<div id="73cd23c7" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">"tip_pct"</span>].plot.hist(bins<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制"tip_pct"列的直方图。</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="co"># bins=50: 将数据分成50个柱子。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas3ed9cn_files/figure-html/cell-43-output-1.png" width="803" height="778" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="小费百分比的直方图" class="level2">
+<h2 class="anchored" data-anchor-id="小费百分比的直方图">小费百分比的直方图</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-21.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-21. 小费百分比的直方图</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="密度图" class="level2">
+<h2 class="anchored" data-anchor-id="密度图">密度图 📈</h2>
+<ul>
+<li><strong>密度图</strong>：连续概率分布的估计。</li>
+<li>近似为核（例如，正态分布）的混合。</li>
+<li>也称为核密度估计 (KDE) 图。</li>
+<li><code>plot.density</code>：创建密度图。</li>
+</ul>
+<div id="219435df" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">"tip_pct"</span>].plot.density() <span class="co"># 绘制"tip_pct"列的密度图</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas3ed9cn_files/figure-html/cell-44-output-1.png" width="795" height="778" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="小费百分比的密度图" class="level2">
+<h2 class="anchored" data-anchor-id="小费百分比的密度图">小费百分比的密度图</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-22.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-22. 小费百分比的密度图</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>密度图需要 SciPy： <code>conda install scipy</code></p>
+</div>
+</div>
+</section>
+<section id="seaborn-的-histplot" class="level2">
+<h2 class="anchored" data-anchor-id="seaborn-的-histplot">seaborn 的 <code>histplot</code> 📊</h2>
+<ul>
+<li>seaborn 简化了直方图和密度图。</li>
+<li><code>histplot</code>：同时绘制直方图和连续密度估计。</li>
+<li>示例：双峰分布。</li>
+</ul>
+<div id="6d9acfa2" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>comp1 <span class="op">=</span> np.random.standard_normal(<span class="dv">200</span>) <span class="co"># 生成200个标准正态分布的随机数</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>comp2 <span class="op">=</span> <span class="dv">10</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> np.random.standard_normal(<span class="dv">200</span>) <span class="co"># 生成200个均值为10、标准差为2的正态分布随机数</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> pd.Series(np.concatenate([comp1, comp2])) <span class="co"># 将两个数组连接起来，并转换为Series对象</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>sns.histplot(values, bins<span class="op">=</span><span class="dv">100</span>, color<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用seaborn的histplot绘制直方图和密度估计。</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="co"># bins=100: 将数据分成100个柱子。</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="co"># color="black": 设置颜色为黑色。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas3ed9cn_files/figure-html/cell-45-output-1.png" width="814" height="778" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="正态混合的归一化直方图" class="level2">
+<h2 class="anchored" data-anchor-id="正态混合的归一化直方图">正态混合的归一化直方图</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-23.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-23. 正态混合的归一化直方图</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="散点图或点图" class="level2">
+<h2 class="anchored" data-anchor-id="散点图或点图">散点图或点图 🔍</h2>
+<ul>
+<li>检查两个一维数据序列之间的关系。</li>
+<li>示例：加载宏观经济数据，计算对数差。</li>
+</ul>
+<div id="b0a2f1d2" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>macro <span class="op">=</span> pd.read_csv(<span class="st">"examples/macrodata.csv"</span>) <span class="co"># 从CSV文件读取宏观经济数据</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> macro[[<span class="st">"cpi"</span>, <span class="st">"m1"</span>, <span class="st">"tbilrate"</span>, <span class="st">"unemp"</span>]] <span class="co"># 选择"cpi", "m1", "tbilrate", "unemp"四列数据</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>trans_data <span class="op">=</span> np.log(data).diff().dropna()</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算数据的对数差。</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="co"># np.log(data): 对数据取对数。</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="co"># .diff(): 计算差分。</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="co"># .dropna(): 删除包含缺失值的行。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="seaborn-的-regplot" class="level2">
+<h2 class="anchored" data-anchor-id="seaborn-的-regplot">seaborn 的 <code>regplot</code> 📈</h2>
+<ul>
+<li><code>regplot</code>：绘制散点图并拟合线性回归线。</li>
+</ul>
+<div id="e827a5c9" class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.regplot(x<span class="op">=</span><span class="st">"m1"</span>, y<span class="op">=</span><span class="st">"unemp"</span>, data<span class="op">=</span>trans_data)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用seaborn的regplot绘制散点图，并拟合线性回归线。</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co"># x="m1": x轴使用"m1"列的数据。</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="co"># y="unemp": y轴使用"unemp"列的数据。</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="co"># data=trans_data: 数据来源为trans_data。</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Changes in log(m1) versus log(unemp)"</span>) <span class="co"># 添加图表标题</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<pre><code>Text(0.5, 1.0, 'Changes in log(m1) versus log(unemp)')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas3ed9cn_files/figure-html/cell-47-output-2.png" width="823" height="811" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="seaborn-回归散点图" class="level2">
+<h2 class="anchored" data-anchor-id="seaborn-回归散点图">seaborn 回归/散点图</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-24.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-24. seaborn 回归/散点图</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="配对图或散点图矩阵" class="level2">
+<h2 class="anchored" data-anchor-id="配对图或散点图矩阵">配对图或散点图矩阵 🔍</h2>
+<ul>
+<li>探索一组变量之间的散点图。</li>
+<li><code>seaborn.pairplot</code>：创建配对图。</li>
+<li>支持对角线上的直方图/密度估计。</li>
+</ul>
+<div id="32030c1b" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(trans_data, diag_kind<span class="op">=</span><span class="st">"kde"</span>, plot_kws<span class="op">=</span>{<span class="st">"alpha"</span>: <span class="fl">0.2</span>})</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用seaborn的pairplot创建配对图。</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="co"># diag_kind="kde": 对角线上的图表类型为核密度估计。</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot_kws={"alpha": 0.2}: 设置散点图的透明度为0.2。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas3ed9cn_files/figure-html/cell-48-output-1.png" width="950" height="949" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="statsmodels-宏观数据的配对图矩阵" class="level2">
+<h2 class="anchored" data-anchor-id="statsmodels-宏观数据的配对图矩阵">Statsmodels 宏观数据的配对图矩阵</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-25.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-25. Statsmodels 宏观数据的配对图矩阵</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="plot_kws-参数" class="level2">
+<h2 class="anchored" data-anchor-id="plot_kws-参数"><code>plot_kws</code> 参数 ⚙️</h2>
+<ul>
+<li>将配置选项传递给单独的绘图调用。</li>
+<li>查看 <code>seaborn.pairplot</code> 文档字符串了解详细信息。</li>
+</ul>
+</section>
+<section id="分面网格和分类数据" class="level2">
+<h2 class="anchored" data-anchor-id="分面网格和分类数据">分面网格和分类数据 📊</h2>
+<ul>
+<li>可视化具有许多分类变量的数据。</li>
+<li><strong>分面网格</strong>：二维布局，数据根据变量值在图表之间拆分。</li>
+<li><code>seaborn.catplot</code>：简化分面图。</li>
+</ul>
+<div id="a7ef137d" class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(x<span class="op">=</span><span class="st">"day"</span>, y<span class="op">=</span><span class="st">"tip_pct"</span>, hue<span class="op">=</span><span class="st">"time"</span>, col<span class="op">=</span><span class="st">"smoker"</span>,</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>            kind<span class="op">=</span><span class="st">"bar"</span>, data<span class="op">=</span>tips[tips.tip_pct <span class="op">&lt;</span> <span class="dv">1</span>])</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用seaborn的catplot创建分面条形图。</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="co"># x="day": x轴使用"day"列的数据。</span></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="co"># y="tip_pct": y轴使用"tip_pct"列的数据。</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="co"># hue="time": 根据"time"列的值对条形图进行着色区分。</span></span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="co"># col="smoker": 根据"smoker"列的值将图表分成不同的列。</span></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="co"># kind="bar": 图表类型为条形图。</span></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a><span class="co"># data=tips[tips.tip_pct &lt; 1]: 数据来源为tips DataFrame中"tip_pct"小于1的行。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas3ed9cn_files/figure-html/cell-49-output-1.png" width="1035" height="476" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="按天时间吸烟者划分的小费百分比" class="level2">
+<h2 class="anchored" data-anchor-id="按天时间吸烟者划分的小费百分比">按天/时间/吸烟者划分的小费百分比</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-26.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-26. 按天/时间/吸烟者划分的小费百分比</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="扩展分面网格" class="level2">
+<h2 class="anchored" data-anchor-id="扩展分面网格">扩展分面网格 ➕</h2>
+<ul>
+<li>每个时间值添加一行：</li>
+</ul>
+<div id="5b13e71b" class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(x<span class="op">=</span><span class="st">"day"</span>, y<span class="op">=</span><span class="st">"tip_pct"</span>, row<span class="op">=</span><span class="st">"time"</span>,</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>            col<span class="op">=</span><span class="st">"smoker"</span>, kind<span class="op">=</span><span class="st">"bar"</span>, data<span class="op">=</span>tips[tips.tip_pct <span class="op">&lt;</span> <span class="dv">1</span>])</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用seaborn的catplot创建分面条形图。</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="co"># row="time": 根据"time"列的值将图表分成不同的行。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas3ed9cn_files/figure-html/cell-50-output-1.png" width="970" height="956" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="按时间吸烟者拆分的每天小费百分比" class="level2">
+<h2 class="anchored" data-anchor-id="按时间吸烟者拆分的每天小费百分比">按时间/吸烟者拆分的每天小费百分比</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-27.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-27. 按时间/吸烟者拆分的每天小费百分比</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="catplot-的其他图表类型" class="level2">
+<h2 class="anchored" data-anchor-id="catplot-的其他图表类型"><code>catplot</code> 的其他图表类型 📊</h2>
+<ul>
+<li><code>catplot</code> 支持其他图表类型（例如，箱线图）。</li>
+<li>箱线图显示中位数、四分位数和异常值。</li>
+</ul>
+<div id="65c1a4d4" class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(x<span class="op">=</span><span class="st">"tip_pct"</span>, y<span class="op">=</span><span class="st">"day"</span>, kind<span class="op">=</span><span class="st">"box"</span>,</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>            data<span class="op">=</span>tips[tips.tip_pct <span class="op">&lt;</span> <span class="fl">0.5</span>])</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用seaborn的catplot创建箱线图。</span></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="co"># kind="box": 图表类型为箱线图。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pandas3ed9cn_files/figure-html/cell-51-output-1.png" width="490" height="476" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="每天小费百分比的箱线图" class="level2">
+<h2 class="anchored" data-anchor-id="每天小费百分比的箱线图">每天小费百分比的箱线图</h2>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig9-28.png" class="img-fluid figure-img"></p>
+<figcaption>图 9-28. 每天小费百分比的箱线图</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="seaborn.facetgrid" class="level2">
+<h2 class="anchored" data-anchor-id="seaborn.facetgrid"><code>seaborn.FacetGrid</code> 🧩</h2>
+<ul>
+<li>创建自定义分面网格图。</li>
+<li>有关详细信息，请参阅 seaborn 文档。</li>
+</ul>
+</section>
+<section id="其他-python-可视化工具" class="level2">
+<h2 class="anchored" data-anchor-id="其他-python-可视化工具">其他 Python 可视化工具 🛠️</h2>
+<ul>
+<li>在 Python 中创建图形的许多选项。</li>
+</ul>
+<p>```markdown - 专注于 Web 交互式图形：Altair、Bokeh、Plotly。 - 对于静态图形：使用 matplotlib 和基于它构建的库（pandas、seaborn）。</p>
+</section>
+<section id="推荐阅读" class="level2">
+<h2 class="anchored" data-anchor-id="推荐阅读">推荐阅读 📚</h2>
+<ul>
+<li><em>Fundamentals of Data Visualization</em> by Claus O. Wilke.
+<ul>
+<li>可在线阅读或购买：<a href="https://clauswilke.com/dataviz">https://clauswilke.com/dataviz</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="结论" class="level2">
+<h2 class="anchored" data-anchor-id="结论">结论</h2>
+<ul>
+<li>本章介绍了使用 pandas、matplotlib 和 seaborn 进行基本数据可视化的方法。</li>
+<li>有效的数据可视化是一个活跃的研究领域。</li>
+<li>探索更多资源以了解更多信息。</li>
+</ul>
+</section>
+<section id="总结" class="level2">
+<h2 class="anchored" data-anchor-id="总结">总结</h2>
+<ul>
+<li>matplotlib 是一个强大而灵活的库，用于在 Python 中创建静态图表。</li>
+<li>pandas 提供了方便的方法来绘制 <code>Series</code> 和 <code>DataFrame</code> 对象。</li>
+<li>seaborn 简化了创建许多常见统计可视化的过程，并与 pandas 良好集成。</li>
+<li>有效的数据可视化对于数据分析和沟通至关重要。</li>
+</ul>
+</section>
+<section id="思考与讨论" class="level2">
+<h2 class="anchored" data-anchor-id="思考与讨论">思考与讨论 🤔</h2>
+<ul>
+<li>您如何将本章学到的可视化技术应用到您自己的数据分析项目中？</li>
+<li>对于不同的可视化任务，使用 matplotlib、pandas 和 seaborn 的优缺点是什么？</li>
+<li>您如何通过可视化有效地传达您的发现？</li>
+</ul>
+</section>
+<section id="思考与讨论续" class="level2">
+<h2 class="anchored" data-anchor-id="思考与讨论续">思考与讨论（续）🤔</h2>
+<ul>
+<li>您还探索过哪些其他 Python 可视化工具，它们与 matplotlib、pandas 和 seaborn 相比如何？</li>
+<li>创建清晰、信息丰富且具有视觉吸引力的图表有哪些最佳实践？</li>
+</ul>
+</section>
+<section id="思考与讨论续-1" class="level2">
+<h2 class="anchored" data-anchor-id="思考与讨论续-1">思考与讨论（续）🤔</h2>
+<ul>
+<li>您能想到在哪些情况下，特定类型的图表（例如，直方图、散点图、箱线图）最适合传达数据中的特定见解吗？</li>
+<li>您如何自定义 matplotlib 图表以增强其清晰度和视觉效果（例如，调整颜色、标签、图例）？</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/qiufei\.github\.io\/web-slide-pandas3ed");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>🔋<a href="https://posit.co"><img src="https://posit.co/wp-content/themes/Posit/assets/images/posit-logo-2024.svg" class="img-fluid" alt="Posit" width="65"></a></p>
+</div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+ 邱飞 © 2025
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://beian.miit.gov.cn">
+<p>浙ICP备 2024072710号-1</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33021202002511">
+<p>浙公网安备 33021202002511号</p>
+</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:hfutqiufei@163.com">
+      <i class="bi bi-envelope-at-fill" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
