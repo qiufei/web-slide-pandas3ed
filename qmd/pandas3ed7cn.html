@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../about.html"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">简介</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -190,7 +190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="处理缺失数据nan-标记" class="level2">
 <h2 class="anchored" data-anchor-id="处理缺失数据nan-标记">7.1 处理缺失数据：<code>NaN</code> 标记</h2>
-<div id="2501324e" class="cell" data-execution_count="1">
+<div id="d9f0dc44" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np  <span class="co"># 导入 NumPy 库，用于数值计算</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd  <span class="co"># 导入 Pandas 库，用于数据分析</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -211,7 +211,7 @@ dtype: float64</code></pre>
 </section>
 <section id="处理缺失数据使用-.isna-检测" class="level2">
 <h2 class="anchored" data-anchor-id="处理缺失数据使用-.isna-检测">7.1 处理缺失数据：使用 <code>.isna()</code> 检测</h2>
-<div id="b7f15fa7" class="cell" data-execution_count="2">
+<div id="7702f059" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>float_data.isna()  <span class="co"># 使用 .isna() 方法检查 Series 中的缺失值</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>0    False
@@ -240,7 +240,7 @@ dtype: bool</code></pre>
 </section>
 <section id="处理缺失数据none-也是-na" class="level2">
 <h2 class="anchored" data-anchor-id="处理缺失数据none-也是-na">7.1 处理缺失数据：<code>None</code> 也是 NA</h2>
-<div id="b75c66c4" class="cell" data-execution_count="3">
+<div id="b80afe86" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>string_data <span class="op">=</span> pd.Series([<span class="st">"aardvark"</span>, np.nan, <span class="va">None</span>, <span class="st">"avocado"</span>])  <span class="co"># 创建一个包含字符串、NaN 和 None 的 Series</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>string_data  <span class="co"># 显示 Series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -251,7 +251,7 @@ dtype: bool</code></pre>
 dtype: object</code></pre>
 </div>
 </div>
-<div id="2fd2f5df" class="cell" data-execution_count="4">
+<div id="a41df37e" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>string_data.isna()  <span class="co"># 使用 .isna() 方法检查缺失值，None 也会被识别为缺失值</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>0    False
@@ -268,7 +268,7 @@ dtype: bool</code></pre>
 </section>
 <section id="处理缺失数据一致的处理方式" class="level2">
 <h2 class="anchored" data-anchor-id="处理缺失数据一致的处理方式">7.1 处理缺失数据：一致的处理方式</h2>
-<div id="e5467264" class="cell" data-execution_count="5">
+<div id="3cbba950" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>float_data <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="va">None</span>], dtype<span class="op">=</span><span class="st">'float64'</span>) <span class="co">#即便序列中给定的是None，在指定类型为float64后，会被转换为NaN</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>float_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
@@ -278,7 +278,7 @@ dtype: bool</code></pre>
 dtype: float64</code></pre>
 </div>
 </div>
-<div id="aba27e8d" class="cell" data-execution_count="6">
+<div id="b7fdbda9" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>float_data.isna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>0    False
@@ -331,7 +331,7 @@ dtype: bool</code></pre>
 </section>
 <section id="处理缺失数据series-上的-dropna" class="level2">
 <h2 class="anchored" data-anchor-id="处理缺失数据series-上的-dropna">7.1 处理缺失数据：Series 上的 <code>dropna</code></h2>
-<div id="eeab5bcb" class="cell" data-execution_count="7">
+<div id="c627c258" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.Series([<span class="dv">1</span>, np.nan, <span class="fl">3.5</span>, np.nan, <span class="dv">7</span>])  <span class="co"># 创建一个包含数值和 NaN 的 Series</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>data.dropna()  <span class="co"># 使用 .dropna() 方法删除包含 NaN 的元素</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
@@ -348,7 +348,7 @@ dtype: float64</code></pre>
 </section>
 <section id="处理缺失数据dataframes-上的-dropna-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="处理缺失数据dataframes-上的-dropna-第-1-部分">7.1 处理缺失数据：DataFrames 上的 <code>dropna</code> (第 1 部分)</h2>
-<div id="edcac901" class="cell" data-execution_count="8">
+<div id="a4336374" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame([[<span class="fl">1.</span>, <span class="fl">6.5</span>, <span class="fl">3.</span>], [<span class="fl">1.</span>, np.nan, np.nan],</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                     [np.nan, np.nan, np.nan], [np.nan, <span class="fl">6.5</span>, <span class="fl">3.</span>]])  <span class="co"># 创建一个包含数值和 NaN 的 DataFrame</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>data  <span class="co"># 显示 DataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -399,7 +399,7 @@ dtype: float64</code></pre>
 </section>
 <section id="处理缺失数据dataframes-上的-dropna-第-2-部分" class="level2">
 <h2 class="anchored" data-anchor-id="处理缺失数据dataframes-上的-dropna-第-2-部分">7.1 处理缺失数据：DataFrames 上的 <code>dropna</code> (第 2 部分)</h2>
-<div id="378d5a9e" class="cell" data-execution_count="9">
+<div id="9ef397f7" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>data.dropna()  <span class="co"># 默认情况下，.dropna() 会删除包含任何 NaN 值的行</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div>
@@ -434,7 +434,7 @@ dtype: float64</code></pre>
 </section>
 <section id="处理缺失数据带有-howall-的-dropna" class="level2">
 <h2 class="anchored" data-anchor-id="处理缺失数据带有-howall-的-dropna">7.1 处理缺失数据：带有 <code>how='all'</code> 的 <code>dropna</code></h2>
-<div id="b5f16ad3" class="cell" data-execution_count="10">
+<div id="becdbe34" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>data.dropna(how<span class="op">=</span><span class="st">"all"</span>)  <span class="co"># 使用 how="all" 参数，只删除所有值都为 NaN 的行</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
@@ -481,7 +481,7 @@ dtype: float64</code></pre>
 </section>
 <section id="处理缺失数据删除列-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="处理缺失数据删除列-第-1-部分">7.1 处理缺失数据：删除列 (第 1 部分)</h2>
-<div id="032cb386" class="cell" data-execution_count="11">
+<div id="59a9a2fd" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">4</span>] <span class="op">=</span> np.nan  <span class="co"># 添加一个新列，所有值都为 NaN</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>data  <span class="co"># 显示 DataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
@@ -536,7 +536,7 @@ dtype: float64</code></pre>
 </section>
 <section id="处理缺失数据删除列-第-2-部分" class="level2">
 <h2 class="anchored" data-anchor-id="处理缺失数据删除列-第-2-部分">7.1 处理缺失数据：删除列 (第 2 部分)</h2>
-<div id="2a874325" class="cell" data-execution_count="12">
+<div id="cb26dfc7" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>data.dropna(axis<span class="op">=</span><span class="st">"columns"</span>, how<span class="op">=</span><span class="st">"all"</span>)  <span class="co"># 使用 axis="columns" 和 how="all" 删除所有值都为 NaN 的列</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <div>
@@ -589,7 +589,7 @@ dtype: float64</code></pre>
 </section>
 <section id="处理缺失数据带有-thresh-参数的-dropna-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="处理缺失数据带有-thresh-参数的-dropna-第-1-部分">7.1 处理缺失数据：带有 <code>thresh</code> 参数的 <code>dropna</code> (第 1 部分)</h2>
-<div id="0c92c2b2" class="cell" data-execution_count="13">
+<div id="833bf8d6" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(np.random.standard_normal((<span class="dv">7</span>, <span class="dv">3</span>)))  <span class="co"># 创建一个包含随机数的 DataFrame</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>df.iloc[:<span class="dv">4</span>, <span class="dv">1</span>] <span class="op">=</span> np.nan  <span class="co"># 将第 1 列的前 4 个值设置为 NaN</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>df.iloc[:<span class="dv">2</span>, <span class="dv">2</span>] <span class="op">=</span> np.nan  <span class="co"># 将第 2 列的前 2 个值设置为 NaN</span></span>
@@ -610,45 +610,45 @@ dtype: float64</code></pre>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>-0.485460</td>
+<td>-0.810021</td>
 <td>NaN</td>
 <td>NaN</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>-0.472667</td>
+<td>0.983984</td>
 <td>NaN</td>
 <td>NaN</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>-0.170381</td>
+<td>-0.349602</td>
 <td>NaN</td>
-<td>-0.113712</td>
+<td>-0.158735</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
-<td>0.496733</td>
+<td>0.370169</td>
 <td>NaN</td>
-<td>0.237053</td>
+<td>0.452984</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
-<td>1.015819</td>
-<td>-0.643827</td>
-<td>0.608393</td>
+<td>-0.158903</td>
+<td>1.282882</td>
+<td>-0.791342</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
-<td>-1.230985</td>
-<td>-1.506618</td>
-<td>0.445807</td>
+<td>-0.944319</td>
+<td>2.361550</td>
+<td>0.771137</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">6</td>
-<td>1.301931</td>
-<td>0.843474</td>
-<td>-1.461630</td>
+<td>-0.638274</td>
+<td>-0.548948</td>
+<td>-0.415156</td>
 </tr>
 </tbody>
 </table>
@@ -659,7 +659,7 @@ dtype: float64</code></pre>
 </section>
 <section id="处理缺失数据带有-thresh-参数的-dropna-第-2-部分" class="level2">
 <h2 class="anchored" data-anchor-id="处理缺失数据带有-thresh-参数的-dropna-第-2-部分">7.1 处理缺失数据：带有 <code>thresh</code> 参数的 <code>dropna</code> (第 2 部分)</h2>
-<div id="350c5cba" class="cell" data-execution_count="14">
+<div id="d6d141e9" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df.dropna()  <span class="co"># 默认情况下，删除包含任何 NaN 值的行</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <div>
@@ -677,21 +677,21 @@ dtype: float64</code></pre>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
-<td>1.015819</td>
-<td>-0.643827</td>
-<td>0.608393</td>
+<td>-0.158903</td>
+<td>1.282882</td>
+<td>-0.791342</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
-<td>-1.230985</td>
-<td>-1.506618</td>
-<td>0.445807</td>
+<td>-0.944319</td>
+<td>2.361550</td>
+<td>0.771137</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">6</td>
-<td>1.301931</td>
-<td>0.843474</td>
-<td>-1.461630</td>
+<td>-0.638274</td>
+<td>-0.548948</td>
+<td>-0.415156</td>
 </tr>
 </tbody>
 </table>
@@ -699,7 +699,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="e121174a" class="cell" data-execution_count="15">
+<div id="0e96fb40" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df.dropna(thresh<span class="op">=</span><span class="dv">2</span>)  <span class="co"># 使用 thresh=2 参数，保留至少有 2 个非 NaN 值的行</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <div>
@@ -717,33 +717,33 @@ dtype: float64</code></pre>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>-0.170381</td>
+<td>-0.349602</td>
 <td>NaN</td>
-<td>-0.113712</td>
+<td>-0.158735</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
-<td>0.496733</td>
+<td>0.370169</td>
 <td>NaN</td>
-<td>0.237053</td>
+<td>0.452984</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
-<td>1.015819</td>
-<td>-0.643827</td>
-<td>0.608393</td>
+<td>-0.158903</td>
+<td>1.282882</td>
+<td>-0.791342</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
-<td>-1.230985</td>
-<td>-1.506618</td>
-<td>0.445807</td>
+<td>-0.944319</td>
+<td>2.361550</td>
+<td>0.771137</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">6</td>
-<td>1.301931</td>
-<td>0.843474</td>
-<td>-1.461630</td>
+<td>-0.638274</td>
+<td>-0.548948</td>
+<td>-0.415156</td>
 </tr>
 </tbody>
 </table>
@@ -758,7 +758,7 @@ dtype: float64</code></pre>
 </section>
 <section id="处理缺失数据使用-fillna-填充" class="level2">
 <h2 class="anchored" data-anchor-id="处理缺失数据使用-fillna-填充">7.1 处理缺失数据：使用 <code>fillna</code> 填充</h2>
-<div id="9dcb182b" class="cell" data-execution_count="16">
+<div id="86a1a09d" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df.fillna(<span class="dv">0</span>)  <span class="co"># 使用 .fillna(0) 将所有 NaN 值替换为 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <div>
@@ -776,45 +776,45 @@ dtype: float64</code></pre>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>-0.485460</td>
+<td>-0.810021</td>
 <td>0.000000</td>
 <td>0.000000</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>-0.472667</td>
+<td>0.983984</td>
 <td>0.000000</td>
 <td>0.000000</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>-0.170381</td>
+<td>-0.349602</td>
 <td>0.000000</td>
-<td>-0.113712</td>
+<td>-0.158735</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
-<td>0.496733</td>
+<td>0.370169</td>
 <td>0.000000</td>
-<td>0.237053</td>
+<td>0.452984</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
-<td>1.015819</td>
-<td>-0.643827</td>
-<td>0.608393</td>
+<td>-0.158903</td>
+<td>1.282882</td>
+<td>-0.791342</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
-<td>-1.230985</td>
-<td>-1.506618</td>
-<td>0.445807</td>
+<td>-0.944319</td>
+<td>2.361550</td>
+<td>0.771137</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">6</td>
-<td>1.301931</td>
-<td>0.843474</td>
-<td>-1.461630</td>
+<td>-0.638274</td>
+<td>-0.548948</td>
+<td>-0.415156</td>
 </tr>
 </tbody>
 </table>
@@ -829,7 +829,7 @@ dtype: float64</code></pre>
 </section>
 <section id="处理缺失数据使用字典进行-fillna" class="level2">
 <h2 class="anchored" data-anchor-id="处理缺失数据使用字典进行-fillna">7.1 处理缺失数据：使用字典进行 <code>fillna</code></h2>
-<div id="fc2f4044" class="cell" data-execution_count="17">
+<div id="c3c2ac50" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df.fillna({<span class="dv">1</span>: <span class="fl">0.5</span>, <span class="dv">2</span>: <span class="dv">0</span>})  <span class="co"># 使用字典为不同的列指定不同的填充值，这里将第1列的NaN值填充为0.5，第2列的NaN值填充为0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <div>
@@ -847,45 +847,45 @@ dtype: float64</code></pre>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>-0.485460</td>
+<td>-0.810021</td>
 <td>0.500000</td>
 <td>0.000000</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>-0.472667</td>
+<td>0.983984</td>
 <td>0.500000</td>
 <td>0.000000</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>-0.170381</td>
+<td>-0.349602</td>
 <td>0.500000</td>
-<td>-0.113712</td>
+<td>-0.158735</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
-<td>0.496733</td>
+<td>0.370169</td>
 <td>0.500000</td>
-<td>0.237053</td>
+<td>0.452984</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
-<td>1.015819</td>
-<td>-0.643827</td>
-<td>0.608393</td>
+<td>-0.158903</td>
+<td>1.282882</td>
+<td>-0.791342</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
-<td>-1.230985</td>
-<td>-1.506618</td>
-<td>0.445807</td>
+<td>-0.944319</td>
+<td>2.361550</td>
+<td>0.771137</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">6</td>
-<td>1.301931</td>
-<td>0.843474</td>
-<td>-1.461630</td>
+<td>-0.638274</td>
+<td>-0.548948</td>
+<td>-0.415156</td>
 </tr>
 </tbody>
 </table>
@@ -900,7 +900,7 @@ dtype: float64</code></pre>
 </section>
 <section id="处理缺失数据使用-fillna-进行插值-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="处理缺失数据使用-fillna-进行插值-第-1-部分">7.1 处理缺失数据：使用 <code>fillna</code> 进行插值 (第 1 部分)</h2>
-<div id="2cb00d64" class="cell" data-execution_count="18">
+<div id="575de693" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(np.random.standard_normal((<span class="dv">6</span>, <span class="dv">3</span>)))  <span class="co"># 创建一个包含随机数的 DataFrame</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>df.iloc[<span class="dv">2</span>:, <span class="dv">1</span>] <span class="op">=</span> np.nan  <span class="co"># 将第 1 列的第 2 行之后的值设置为 NaN</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>df.iloc[<span class="dv">4</span>:, <span class="dv">2</span>] <span class="op">=</span> np.nan  <span class="co"># 将第 2 列的第 4 行之后的值设置为 NaN</span></span>
@@ -921,37 +921,37 @@ dtype: float64</code></pre>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>0.120337</td>
-<td>0.212620</td>
-<td>-0.453200</td>
+<td>-1.076501</td>
+<td>-0.043810</td>
+<td>-0.873353</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>-0.939084</td>
-<td>-0.567898</td>
-<td>0.416533</td>
+<td>0.097624</td>
+<td>-0.188281</td>
+<td>-0.670185</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>0.950324</td>
+<td>-1.851071</td>
 <td>NaN</td>
-<td>-0.223836</td>
+<td>0.007798</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
-<td>1.924832</td>
+<td>0.155360</td>
 <td>NaN</td>
-<td>-2.199733</td>
+<td>-1.448745</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
-<td>0.554325</td>
+<td>-0.348293</td>
 <td>NaN</td>
 <td>NaN</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
-<td>0.155190</td>
+<td>0.060654</td>
 <td>NaN</td>
 <td>NaN</td>
 </tr>
@@ -964,10 +964,10 @@ dtype: float64</code></pre>
 </section>
 <section id="处理缺失数据使用-fillna-进行插值-第-2-部分" class="level2">
 <h2 class="anchored" data-anchor-id="处理缺失数据使用-fillna-进行插值-第-2-部分">7.1 处理缺失数据：使用 <code>fillna</code> 进行插值 (第 2 部分)</h2>
-<div id="22a0f569" class="cell" data-execution_count="19">
+<div id="27ac8193" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df.fillna(method<span class="op">=</span><span class="st">"ffill"</span>)  <span class="co"># 使用 method="ffill" 进行前向填充，将上一个有效值传播到后续的 NaN 值</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_2726/1544708321.py:1: FutureWarning: DataFrame.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+<pre><code>/tmp/ipykernel_2685/1544708321.py:1: FutureWarning: DataFrame.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
   df.fillna(method="ffill")  # 使用 method="ffill" 进行前向填充，将上一个有效值传播到后续的 NaN 值</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="19">
@@ -986,39 +986,39 @@ dtype: float64</code></pre>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>0.120337</td>
-<td>0.212620</td>
-<td>-0.453200</td>
+<td>-1.076501</td>
+<td>-0.043810</td>
+<td>-0.873353</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>-0.939084</td>
-<td>-0.567898</td>
-<td>0.416533</td>
+<td>0.097624</td>
+<td>-0.188281</td>
+<td>-0.670185</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>0.950324</td>
-<td>-0.567898</td>
-<td>-0.223836</td>
+<td>-1.851071</td>
+<td>-0.188281</td>
+<td>0.007798</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
-<td>1.924832</td>
-<td>-0.567898</td>
-<td>-2.199733</td>
+<td>0.155360</td>
+<td>-0.188281</td>
+<td>-1.448745</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
-<td>0.554325</td>
-<td>-0.567898</td>
-<td>-2.199733</td>
+<td>-0.348293</td>
+<td>-0.188281</td>
+<td>-1.448745</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
-<td>0.155190</td>
-<td>-0.567898</td>
-<td>-2.199733</td>
+<td>0.060654</td>
+<td>-0.188281</td>
+<td>-1.448745</td>
 </tr>
 </tbody>
 </table>
@@ -1033,10 +1033,10 @@ dtype: float64</code></pre>
 </section>
 <section id="处理缺失数据带有-limit-参数的-fillna" class="level2">
 <h2 class="anchored" data-anchor-id="处理缺失数据带有-limit-参数的-fillna">7.1 处理缺失数据：带有 <code>limit</code> 参数的 <code>fillna</code></h2>
-<div id="8207b09b" class="cell" data-execution_count="20">
+<div id="8118046b" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df.fillna(method<span class="op">=</span><span class="st">"ffill"</span>, limit<span class="op">=</span><span class="dv">2</span>)  <span class="co"># 使用 limit=2 参数限制前向填充连续 NaN 值的数量</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_2726/2269924182.py:1: FutureWarning: DataFrame.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+<pre><code>/tmp/ipykernel_2685/2269924182.py:1: FutureWarning: DataFrame.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
   df.fillna(method="ffill", limit=2)  # 使用 limit=2 参数限制前向填充连续 NaN 值的数量</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="20">
@@ -1055,39 +1055,39 @@ dtype: float64</code></pre>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>0.120337</td>
-<td>0.212620</td>
-<td>-0.453200</td>
+<td>-1.076501</td>
+<td>-0.043810</td>
+<td>-0.873353</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>-0.939084</td>
-<td>-0.567898</td>
-<td>0.416533</td>
+<td>0.097624</td>
+<td>-0.188281</td>
+<td>-0.670185</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>0.950324</td>
-<td>-0.567898</td>
-<td>-0.223836</td>
+<td>-1.851071</td>
+<td>-0.188281</td>
+<td>0.007798</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
-<td>1.924832</td>
-<td>-0.567898</td>
-<td>-2.199733</td>
+<td>0.155360</td>
+<td>-0.188281</td>
+<td>-1.448745</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
-<td>0.554325</td>
+<td>-0.348293</td>
 <td>NaN</td>
-<td>-2.199733</td>
+<td>-1.448745</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">5</td>
-<td>0.155190</td>
+<td>0.060654</td>
 <td>NaN</td>
-<td>-2.199733</td>
+<td>-1.448745</td>
 </tr>
 </tbody>
 </table>
@@ -1101,7 +1101,7 @@ dtype: float64</code></pre>
 </section>
 <section id="处理缺失数据使用-fillna-进行插补" class="level2">
 <h2 class="anchored" data-anchor-id="处理缺失数据使用-fillna-进行插补">7.1 处理缺失数据：使用 <code>fillna</code> 进行插补</h2>
-<div id="c27dc882" class="cell" data-execution_count="21">
+<div id="5fc14cbd" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.Series([<span class="fl">1.</span>, np.nan, <span class="fl">3.5</span>, np.nan, <span class="dv">7</span>])  <span class="co"># 创建一个包含数值和 NaN 的 Series</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>data.fillna(data.mean())  <span class="co"># 使用 .fillna(data.mean()) 将 NaN 值替换为 Series 的平均值</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
@@ -1137,7 +1137,7 @@ dtype: float64</code></pre>
 </section>
 <section id="数据转换删除重复项" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换删除重复项">7.2 数据转换：删除重复项</h2>
-<div id="57b4c6bd" class="cell" data-execution_count="22">
+<div id="2aa1cb48" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({<span class="st">"k1"</span>: [<span class="st">"one"</span>, <span class="st">"two"</span>] <span class="op">*</span> <span class="dv">3</span> <span class="op">+</span> [<span class="st">"two"</span>],</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"k2"</span>: [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">4</span>]})  <span class="co"># 创建一个包含重复行的 DataFrame</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>data  <span class="co"># 显示 DataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1201,7 +1201,7 @@ dtype: float64</code></pre>
 </section>
 <section id="数据转换使用-duplicated-识别重复项" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换使用-duplicated-识别重复项">7.2 数据转换：使用 <code>duplicated()</code> 识别重复项</h2>
-<div id="e5594462" class="cell" data-execution_count="23">
+<div id="67e33a30" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>data.duplicated()  <span class="co"># 使用 .duplicated() 方法检查 DataFrame 中的重复行</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
 <pre><code>0    False
@@ -1220,7 +1220,7 @@ dtype: bool</code></pre>
 </section>
 <section id="数据转换使用-drop_duplicates-删除重复项" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换使用-drop_duplicates-删除重复项">7.2 数据转换：使用 <code>drop_duplicates()</code> 删除重复项</h2>
-<div id="31bb08ec" class="cell" data-execution_count="24">
+<div id="f5335149" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>data.drop_duplicates()  <span class="co"># 使用 .drop_duplicates() 方法删除重复行，默认保留第一个出现的行</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
 <div>
@@ -1278,7 +1278,7 @@ dtype: bool</code></pre>
 </section>
 <section id="数据转换在列的子集上使用-drop_duplicates-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换在列的子集上使用-drop_duplicates-第-1-部分">7.2 数据转换：在列的子集上使用 <code>drop_duplicates()</code> (第 1 部分)</h2>
-<div id="6947f61b" class="cell" data-execution_count="25">
+<div id="4d25cbb2" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"v1"</span>] <span class="op">=</span> <span class="bu">range</span>(<span class="dv">7</span>)  <span class="co"># 添加一个新列</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>data  <span class="co"># 显示 DataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
@@ -1346,7 +1346,7 @@ dtype: bool</code></pre>
 </section>
 <section id="数据转换在列的子集上使用-drop_duplicates-第-2-部分" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换在列的子集上使用-drop_duplicates-第-2-部分">7.2 数据转换：在列的子集上使用 <code>drop_duplicates()</code> (第 2 部分)</h2>
-<div id="7661a72e" class="cell" data-execution_count="26">
+<div id="7b350ba1" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>data.drop_duplicates(subset<span class="op">=</span>[<span class="st">"k1"</span>])  <span class="co"># 使用 subset 参数指定要检查重复项的列的子集，这里只考虑 "k1" 列</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
 <div>
@@ -1387,7 +1387,7 @@ dtype: bool</code></pre>
 </section>
 <section id="数据转换带有-keeplast-的-drop_duplicates" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换带有-keeplast-的-drop_duplicates">7.2 数据转换：带有 <code>keep='last'</code> 的 <code>drop_duplicates()</code></h2>
-<div id="33fc5518" class="cell" data-execution_count="27">
+<div id="742c9d2c" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>data.drop_duplicates([<span class="st">"k1"</span>, <span class="st">"k2"</span>], keep<span class="op">=</span><span class="st">"last"</span>)  <span class="co"># 使用 keep="last" 参数保留每个唯一行 (或列组合) 的最后一个出现</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 <div>
@@ -1452,7 +1452,7 @@ dtype: bool</code></pre>
 </section>
 <section id="数据转换使用函数或映射转换数据-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换使用函数或映射转换数据-第-1-部分">7.2 数据转换：使用函数或映射转换数据 (第 1 部分)</h2>
-<div id="6bae3eb5" class="cell" data-execution_count="28">
+<div id="b19e0be0" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({<span class="st">"food"</span>: [<span class="st">"bacon"</span>, <span class="st">"pulled pork"</span>, <span class="st">"bacon"</span>,</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"pastrami"</span>, <span class="st">"corned beef"</span>, <span class="st">"bacon"</span>,</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>                              <span class="st">"pastrami"</span>, <span class="st">"honey ham"</span>, <span class="st">"nova lox"</span>],</span>
@@ -1528,7 +1528,7 @@ dtype: bool</code></pre>
 </section>
 <section id="数据转换使用映射字典" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换使用映射字典">7.2 数据转换：使用映射字典</h2>
-<div id="a09d96a9" class="cell" data-execution_count="29">
+<div id="1cb0c323" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>meat_to_animal <span class="op">=</span> {</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"bacon"</span>: <span class="st">"pig"</span>,</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"pulled pork"</span>: <span class="st">"pig"</span>,</span>
@@ -1544,7 +1544,7 @@ dtype: bool</code></pre>
 </section>
 <section id="数据转换使用-.map" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换使用-.map">7.2 数据转换：使用 <code>.map()</code></h2>
-<div id="be23634f" class="cell" data-execution_count="30">
+<div id="daa02029" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"animal"</span>] <span class="op">=</span> data[<span class="st">"food"</span>].<span class="bu">map</span>(meat_to_animal)  <span class="co"># 使用 .map() 方法和映射字典将 "food" 列映射到 "animal" 列</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>data  <span class="co"># 显示 DataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
@@ -1628,7 +1628,7 @@ dtype: bool</code></pre>
 </section>
 <section id="数据转换将函数与-.map-一起使用" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换将函数与-.map-一起使用">7.2 数据转换：将函数与 <code>.map()</code> 一起使用</h2>
-<div id="c94b2d37" class="cell" data-execution_count="31">
+<div id="a44617f3" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_animal(x):  <span class="co"># 定义一个函数，根据食物名称返回对应的动物</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> meat_to_animal[x]</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1653,7 +1653,7 @@ Name: food, dtype: object</code></pre>
 </section>
 <section id="数据转换替换值" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换替换值">7.2 数据转换：替换值</h2>
-<div id="b7629973" class="cell" data-execution_count="32">
+<div id="c3af2fe0" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.Series([<span class="fl">1.</span>, <span class="op">-</span><span class="fl">999.</span>, <span class="fl">2.</span>, <span class="op">-</span><span class="fl">999.</span>, <span class="op">-</span><span class="fl">1000.</span>, <span class="fl">3.</span>])  <span class="co"># 创建一个包含数值和一些表示缺失值的特殊值的 Series</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>data  <span class="co"># 显示 Series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="32">
@@ -1672,7 +1672,7 @@ dtype: float64</code></pre>
 </section>
 <section id="数据转换使用-replace-替换单个值" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换使用-replace-替换单个值">7.2 数据转换：使用 <code>replace()</code> 替换单个值</h2>
-<div id="1b555b4d" class="cell" data-execution_count="33">
+<div id="8cf1f7b1" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>data.replace(<span class="op">-</span><span class="dv">999</span>, np.nan)  <span class="co"># 使用 .replace() 方法将 -999 替换为 NaN</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="33">
 <pre><code>0       1.0
@@ -1690,7 +1690,7 @@ dtype: float64</code></pre>
 </section>
 <section id="数据转换使用-replace-替换多个值" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换使用-replace-替换多个值">7.2 数据转换：使用 <code>replace()</code> 替换多个值</h2>
-<div id="74543136" class="cell" data-execution_count="34">
+<div id="356bef06" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>data.replace([<span class="op">-</span><span class="dv">999</span>, <span class="op">-</span><span class="dv">1000</span>], np.nan)  <span class="co"># 使用 .replace() 方法一次性替换多个值，将 -999 和 -1000 都替换为 NaN</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
 <pre><code>0    1.0
@@ -1708,7 +1708,7 @@ dtype: float64</code></pre>
 </section>
 <section id="数据转换为每个值使用不同的替换" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换为每个值使用不同的替换">7.2 数据转换：为每个值使用不同的替换</h2>
-<div id="4d0ae893" class="cell" data-execution_count="35">
+<div id="163eab9e" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>data.replace([<span class="op">-</span><span class="dv">999</span>, <span class="op">-</span><span class="dv">1000</span>], [np.nan, <span class="dv">0</span>])  <span class="co"># 使用 .replace() 方法为不同的旧值指定不同的替换值，将 -999 替换为 NaN，将 -1000 替换为 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="35">
 <pre><code>0    1.0
@@ -1726,7 +1726,7 @@ dtype: float64</code></pre>
 </section>
 <section id="数据转换将字典与-replace-一起使用" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换将字典与-replace-一起使用">7.2 数据转换：将字典与 <code>replace()</code> 一起使用</h2>
-<div id="54577a65" class="cell" data-execution_count="36">
+<div id="571d81fa" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>data.replace({<span class="op">-</span><span class="dv">999</span>: np.nan, <span class="op">-</span><span class="dv">1000</span>: <span class="dv">0</span>})  <span class="co"># 使用字典进行替换，将 -999 替换为 NaN，将 -1000 替换为 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="36">
 <pre><code>0    1.0
@@ -1745,7 +1745,7 @@ dtype: float64</code></pre>
 </section>
 <section id="数据转换重命名轴索引-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换重命名轴索引-第-1-部分">7.2 数据转换：重命名轴索引 (第 1 部分)</h2>
-<div id="5e8832ac" class="cell" data-execution_count="37">
+<div id="d51ecd7d" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame(np.arange(<span class="dv">12</span>).reshape((<span class="dv">3</span>, <span class="dv">4</span>)),</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>                    index<span class="op">=</span>[<span class="st">"Ohio"</span>, <span class="st">"Colorado"</span>, <span class="st">"New York"</span>],</span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>                    columns<span class="op">=</span>[<span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"three"</span>, <span class="st">"four"</span>])  <span class="co"># 创建一个 DataFrame，并指定行索引和列索引</span></span>
@@ -1798,7 +1798,7 @@ dtype: float64</code></pre>
 </section>
 <section id="数据转换使用-.map-修改索引-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换使用-.map-修改索引-第-1-部分">7.2 数据转换：使用 <code>.map()</code> 修改索引 (第 1 部分)</h2>
-<div id="4347a122" class="cell" data-execution_count="38">
+<div id="60f46cae" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> transform(x):  <span class="co"># 定义一个函数，将字符串的前四个字符转换为大写</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x[:<span class="dv">4</span>].upper()</span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1810,7 +1810,7 @@ dtype: float64</code></pre>
 </section>
 <section id="数据转换使用-.map-修改索引-第-2-部分" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换使用-.map-修改索引-第-2-部分">7.2 数据转换：使用 <code>.map()</code> 修改索引 (第 2 部分)</h2>
-<div id="dc4feaf5" class="cell" data-execution_count="39">
+<div id="ab280773" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>data.index <span class="op">=</span> data.index.<span class="bu">map</span>(transform)  <span class="co"># 将转换后的索引赋值给 data.index，以修改 DataFrame 的行索引</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="39">
@@ -1863,7 +1863,7 @@ dtype: float64</code></pre>
 </section>
 <section id="数据转换使用-rename-创建转换后的副本" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换使用-rename-创建转换后的副本">7.2 数据转换：使用 <code>rename()</code> 创建转换后的副本</h2>
-<div id="d763b071" class="cell" data-execution_count="40">
+<div id="1583e4a1" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>data.rename(index<span class="op">=</span><span class="bu">str</span>.title, columns<span class="op">=</span><span class="bu">str</span>.upper)  <span class="co"># 使用 .rename() 方法创建转换后的副本，而不修改原始 DataFrame，将行索引首字母大写，列索引全部大写</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="40">
 <div>
@@ -1914,7 +1914,7 @@ dtype: float64</code></pre>
 </section>
 <section id="数据转换使用字典进行-rename" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换使用字典进行-rename">7.2 数据转换：使用字典进行 <code>rename()</code></h2>
-<div id="2d8da8e9" class="cell" data-execution_count="41">
+<div id="7fafb660" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>data.rename(index<span class="op">=</span>{<span class="st">"OHIO"</span>: <span class="st">"INDIANA"</span>},</span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>            columns<span class="op">=</span>{<span class="st">"three"</span>: <span class="st">"peekaboo"</span>})  <span class="co"># 使用字典对部分轴标签进行重命名，将行索引 "OHIO" 重命名为 "INDIANA"，将列索引 "three" 重命名为 "peekaboo"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="41">
@@ -1969,7 +1969,7 @@ dtype: float64</code></pre>
 <li><p>连续数据通常会被离散化或分箱以进行分析。</p></li>
 <li><p>示例：将年龄分组到年龄范围。</p></li>
 </ul>
-<div id="4b8f92a7" class="cell" data-execution_count="42">
+<div id="1ecdf80b" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>ages <span class="op">=</span> [<span class="dv">20</span>, <span class="dv">22</span>, <span class="dv">25</span>, <span class="dv">27</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">37</span>, <span class="dv">31</span>, <span class="dv">61</span>, <span class="dv">45</span>, <span class="dv">41</span>, <span class="dv">32</span>]  <span class="co"># 创建一个年龄列表</span></span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> [<span class="dv">18</span>, <span class="dv">25</span>, <span class="dv">35</span>, <span class="dv">60</span>, <span class="dv">100</span>]  <span class="co"># 定义分箱边界</span></span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>age_categories <span class="op">=</span> pd.cut(ages, bins)  <span class="co"># 使用 pd.cut() 函数将年龄数据分箱</span></span>
@@ -1987,13 +1987,13 @@ Categories (4, interval[int64, right]): [(18, 25] &lt; (25, 35] &lt; (35, 60] &l
 </section>
 <section id="数据转换理解-categorical-对象-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换理解-categorical-对象-第-1-部分">7.2 数据转换：理解 <code>Categorical</code> 对象 (第 1 部分)</h2>
-<div id="47493fe6" class="cell" data-execution_count="43">
+<div id="c786183d" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>age_categories.codes  <span class="co"># 查看每个年龄对应的箱的编码</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="43">
 <pre><code>array([0, 0, 0, 1, 0, 0, 2, 1, 3, 2, 2, 1], dtype=int8)</code></pre>
 </div>
 </div>
-<div id="f9bfc8a8" class="cell" data-execution_count="44">
+<div id="992acfa6" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>age_categories.categories  <span class="co"># 查看箱的类别 (区间)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="44">
 <pre><code>IntervalIndex([(18, 25], (25, 35], (35, 60], (60, 100]], dtype='interval[int64, right]')</code></pre>
@@ -2002,7 +2002,7 @@ Categories (4, interval[int64, right]): [(18, 25] &lt; (25, 35] &lt; (35, 60] &l
 </section>
 <section id="数据转换理解-categorical-对象-第-2-部分" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换理解-categorical-对象-第-2-部分">7.2 数据转换：理解 <code>Categorical</code> 对象 (第 2 部分)</h2>
-<div id="ed4c2e02" class="cell" data-execution_count="45">
+<div id="ba1e893a" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>age_categories.categories[<span class="dv">0</span>]  <span class="co"># 查看第一个箱的区间</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="45">
 <pre><code>Interval(18, 25, closed='right')</code></pre>
@@ -2015,10 +2015,10 @@ Categories (4, interval[int64, right]): [(18, 25] &lt; (25, 35] &lt; (35, 60] &l
 </section>
 <section id="数据转换categorical-上的-value_counts" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换categorical-上的-value_counts">7.2 数据转换：<code>Categorical</code> 上的 <code>value_counts()</code></h2>
-<div id="96d28477" class="cell" data-execution_count="46">
+<div id="318bbaa0" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>pd.value_counts(age_categories)  <span class="co"># 使用 pd.value_counts() 统计每个箱中的元素数量</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_2726/3311518851.py:1: FutureWarning: pandas.value_counts is deprecated and will be removed in a future version. Use pd.Series(obj).value_counts() instead.
+<pre><code>/tmp/ipykernel_2685/3311518851.py:1: FutureWarning: pandas.value_counts is deprecated and will be removed in a future version. Use pd.Series(obj).value_counts() instead.
   pd.value_counts(age_categories)  # 使用 pd.value_counts() 统计每个箱中的元素数量</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="46">
@@ -2040,7 +2040,7 @@ Name: count, dtype: int64</code></pre>
 <li><p>方括号 <code>[]</code> 表示该侧是<em>闭</em>的 (包含)。</p></li>
 <li><p><code>(18, 25]</code> 表示 “大于 18，小于等于 25”。</p></li>
 </ul>
-<div id="4ff42d18" class="cell" data-execution_count="47">
+<div id="36a339c9" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>pd.cut(ages, bins, right<span class="op">=</span><span class="va">False</span>)  <span class="co"># 使用 right=False 参数更改区间的闭合侧，变为左闭右开</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="47">
 <pre><code>[[18, 25), [18, 25), [25, 35), [25, 35), [18, 25), ..., [25, 35), [60, 100), [35, 60), [35, 60), [25, 35)]
@@ -2054,7 +2054,7 @@ Categories (4, interval[int64, left]): [[18, 25) &lt; [25, 35) &lt; [35, 60) &lt
 </section>
 <section id="数据转换为箱添加标签" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换为箱添加标签">7.2 数据转换：为箱添加标签</h2>
-<div id="a50e58b4" class="cell" data-execution_count="48">
+<div id="6e293134" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>group_names <span class="op">=</span> [<span class="st">"Youth"</span>, <span class="st">"YoungAdult"</span>, <span class="st">"MiddleAged"</span>, <span class="st">"Senior"</span>]  <span class="co"># 定义箱的标签</span></span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>pd.cut(ages, bins, labels<span class="op">=</span>group_names)  <span class="co"># 使用 labels 参数为箱指定自定义名称</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="48">
@@ -2070,13 +2070,13 @@ Categories (4, object): ['Youth' &lt; 'YoungAdult' &lt; 'MiddleAged' &lt; 'Senio
 </section>
 <section id="数据转换带有箱数量的-pd.cut" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换带有箱数量的-pd.cut">7.2 数据转换：带有箱数量的 <code>pd.cut()</code></h2>
-<div id="4dcf3e07" class="cell" data-execution_count="49">
+<div id="3bcd1782" class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.random.uniform(size<span class="op">=</span><span class="dv">20</span>)  <span class="co"># 生成 20 个均匀分布的随机数</span></span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>pd.cut(data, <span class="dv">4</span>, precision<span class="op">=</span><span class="dv">2</span>)  <span class="co"># 将数据分成 4 个等长的箱，并设置精度为 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="49">
-<pre><code>[(0.74, 0.99], (0.25, 0.49], (-0.00033, 0.25], (0.49, 0.74], (0.25, 0.49], ..., (0.49, 0.74], (0.49, 0.74], (0.49, 0.74], (0.25, 0.49], (0.49, 0.74]]
+<pre><code>[(0.51, 0.75], (0.51, 0.75], (0.28, 0.51], (0.75, 0.99], (0.042, 0.28], ..., (0.51, 0.75], (0.28, 0.51], (0.28, 0.51], (0.51, 0.75], (0.28, 0.51]]
 Length: 20
-Categories (4, interval[float64, right]): [(-0.00033, 0.25] &lt; (0.25, 0.49] &lt; (0.49, 0.74] &lt; (0.74, 0.99]]</code></pre>
+Categories (4, interval[float64, right]): [(0.042, 0.28] &lt; (0.28, 0.51] &lt; (0.51, 0.75] &lt; (0.75, 0.99]]</code></pre>
 </div>
 </div>
 <ul>
@@ -2086,14 +2086,14 @@ Categories (4, interval[float64, right]): [(-0.00033, 0.25] &lt; (0.25, 0.49] &l
 </section>
 <section id="数据转换用于分位数分箱的-pd.qcut" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换用于分位数分箱的-pd.qcut">7.2 数据转换：用于分位数分箱的 <code>pd.qcut()</code></h2>
-<div id="6200b33a" class="cell" data-execution_count="50">
+<div id="f4218748" class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.random.standard_normal(<span class="dv">1000</span>)  <span class="co"># 生成 1000 个标准正态分布的随机数</span></span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>quartiles <span class="op">=</span> pd.qcut(data, <span class="dv">4</span>, precision<span class="op">=</span><span class="dv">2</span>)  <span class="co"># 将数据分成四分位数，并设置精度为 2</span></span>
 <span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>quartiles  <span class="co"># 显示分箱结果</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="50">
-<pre><code>[(-0.064, 0.57], (-3.4299999999999997, -0.71], (0.57, 2.81], (-3.4299999999999997, -0.71], (-3.4299999999999997, -0.71], ..., (-0.71, -0.064], (-0.71, -0.064], (0.57, 2.81], (-0.064, 0.57], (-0.064, 0.57]]
+<pre><code>[(0.77, 3.22], (-0.62, 0.13], (-0.62, 0.13], (0.13, 0.77], (0.77, 3.22], ..., (-3.36, -0.62], (-0.62, 0.13], (-3.36, -0.62], (-3.36, -0.62], (-3.36, -0.62]]
 Length: 1000
-Categories (4, interval[float64, right]): [(-3.4299999999999997, -0.71] &lt; (-0.71, -0.064] &lt; (-0.064, 0.57] &lt; (0.57, 2.81]]</code></pre>
+Categories (4, interval[float64, right]): [(-3.36, -0.62] &lt; (-0.62, 0.13] &lt; (0.13, 0.77] &lt; (0.77, 3.22]]</code></pre>
 </div>
 </div>
 <ul>
@@ -2104,13 +2104,13 @@ Categories (4, interval[float64, right]): [(-3.4299999999999997, -0.71] &lt; (-0
 </section>
 <section id="数据转换带有自定义分位数的-pd.qcut" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换带有自定义分位数的-pd.qcut">7.2 数据转换：带有自定义分位数的 <code>pd.qcut()</code></h2>
-<div id="684b47ef" class="cell" data-execution_count="51">
+<div id="032a57f6" class="cell" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>pd.qcut(data, [<span class="dv">0</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">0.9</span>, <span class="fl">1.</span>]).value_counts()  <span class="co"># 使用自定义分位数进行分箱，并统计每个箱中的元素数量</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="51">
-<pre><code>(-3.42, -1.333]     100
-(-1.333, -0.064]    400
-(-0.064, 1.172]     400
-(1.172, 2.81]       100
+<pre><code>(-3.3489999999999998, -1.279]    100
+(-1.279, 0.13]                   400
+(0.13, 1.319]                    400
+(1.319, 3.218]                   100
 Name: count, dtype: int64</code></pre>
 </div>
 </div>
@@ -2124,7 +2124,7 @@ Name: count, dtype: int64</code></pre>
 <ul>
 <li>异常值过滤/转换通常是一个数组操作。</li>
 </ul>
-<div id="e5627f62" class="cell" data-execution_count="52">
+<div id="0fe78e32" class="cell" data-execution_count="52">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame(np.random.standard_normal((<span class="dv">1000</span>, <span class="dv">4</span>)))  <span class="co"># 创建一个包含 1000 行 4 列标准正态分布随机数的 DataFrame</span></span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>data.describe()  <span class="co"># 查看 DataFrame 的描述性统计信息</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="52">
@@ -2151,52 +2151,52 @@ Name: count, dtype: int64</code></pre>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">mean</td>
-<td>0.004101</td>
-<td>0.011899</td>
-<td>-0.010022</td>
-<td>-0.003855</td>
+<td>-0.037062</td>
+<td>-0.000079</td>
+<td>-0.032836</td>
+<td>-0.037922</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">std</td>
-<td>1.021584</td>
-<td>0.998126</td>
-<td>0.979960</td>
-<td>1.021583</td>
+<td>1.001038</td>
+<td>1.022796</td>
+<td>1.038841</td>
+<td>1.002437</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">min</td>
-<td>-3.621722</td>
-<td>-3.086838</td>
-<td>-2.872637</td>
-<td>-3.109993</td>
+<td>-3.176085</td>
+<td>-3.122538</td>
+<td>-3.181457</td>
+<td>-3.194002</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">25%</td>
-<td>-0.640209</td>
-<td>-0.658761</td>
-<td>-0.668936</td>
-<td>-0.685839</td>
+<td>-0.721764</td>
+<td>-0.724654</td>
+<td>-0.737238</td>
+<td>-0.775252</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">50%</td>
-<td>0.038356</td>
-<td>0.028000</td>
-<td>-0.039804</td>
-<td>-0.029524</td>
+<td>-0.037651</td>
+<td>0.019699</td>
+<td>-0.033039</td>
+<td>-0.002841</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">75%</td>
-<td>0.657005</td>
-<td>0.665436</td>
-<td>0.664095</td>
-<td>0.695357</td>
+<td>0.687972</td>
+<td>0.724020</td>
+<td>0.653331</td>
+<td>0.649518</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">max</td>
-<td>3.347043</td>
-<td>2.791320</td>
-<td>2.818117</td>
-<td>3.453388</td>
+<td>2.735168</td>
+<td>3.511238</td>
+<td>3.123780</td>
+<td>2.821907</td>
 </tr>
 </tbody>
 </table>
@@ -2210,11 +2210,15 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="数据转换查找超过阈值的值" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换查找超过阈值的值">7.2 数据转换：查找超过阈值的值</h2>
-<div id="f95e2564" class="cell" data-execution_count="53">
+<div id="46997212" class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>col <span class="op">=</span> data[<span class="dv">2</span>]  <span class="co"># 选择第 2 列</span></span>
 <span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>col[col.<span class="bu">abs</span>() <span class="op">&gt;</span> <span class="dv">3</span>]  <span class="co"># 找出第 2 列中绝对值大于 3 的值</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="53">
-<pre><code>Series([], Name: 2, dtype: float64)</code></pre>
+<pre><code>167   -3.063842
+520   -3.155882
+901   -3.181457
+936    3.123780
+Name: 2, dtype: float64</code></pre>
 </div>
 </div>
 <ul>
@@ -2223,7 +2227,7 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="数据转换根据异常值选择行" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换根据异常值选择行">7.2 数据转换：根据异常值选择行</h2>
-<div id="741b09b9" class="cell" data-execution_count="54">
+<div id="3385e4f0" class="cell" data-execution_count="54">
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>data[(data.<span class="bu">abs</span>() <span class="op">&gt;</span> <span class="dv">3</span>).<span class="bu">any</span>(axis<span class="op">=</span><span class="st">"columns"</span>)]  <span class="co"># 选择包含至少一个绝对值大于 3 的值的行</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="54">
 <div>
@@ -2241,67 +2245,67 @@ Name: count, dtype: int64</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">92</td>
-<td>0.125083</td>
-<td>2.107962</td>
-<td>0.078039</td>
-<td>3.132429</td>
+<td data-quarto-table-cell-role="th">167</td>
+<td>-0.578852</td>
+<td>2.307289</td>
+<td>-3.063842</td>
+<td>0.832845</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">187</td>
-<td>-0.110465</td>
-<td>-1.838710</td>
-<td>0.804772</td>
-<td>-3.109993</td>
+<td data-quarto-table-cell-role="th">407</td>
+<td>0.098307</td>
+<td>3.256038</td>
+<td>0.954942</td>
+<td>0.143938</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">430</td>
-<td>0.023432</td>
-<td>-1.353272</td>
-<td>-2.250499</td>
-<td>3.453388</td>
+<td data-quarto-table-cell-role="th">520</td>
+<td>0.473135</td>
+<td>1.855117</td>
+<td>-3.155882</td>
+<td>-1.317343</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">452</td>
-<td>-3.415056</td>
-<td>-3.086838</td>
-<td>-0.460434</td>
-<td>-0.364187</td>
+<td data-quarto-table-cell-role="th">552</td>
+<td>-3.176085</td>
+<td>0.565186</td>
+<td>0.235448</td>
+<td>1.329528</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">563</td>
-<td>0.236299</td>
-<td>0.082481</td>
-<td>-0.377453</td>
-<td>3.119567</td>
+<td data-quarto-table-cell-role="th">598</td>
+<td>1.926831</td>
+<td>-0.535413</td>
+<td>-0.889060</td>
+<td>-3.194002</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">585</td>
-<td>-0.843439</td>
-<td>0.653798</td>
-<td>0.659781</td>
-<td>-3.051358</td>
+<td data-quarto-table-cell-role="th">772</td>
+<td>-1.228212</td>
+<td>3.511238</td>
+<td>0.284792</td>
+<td>1.810576</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">686</td>
-<td>-3.621722</td>
-<td>-1.212066</td>
-<td>-1.778663</td>
-<td>1.155345</td>
+<td data-quarto-table-cell-role="th">861</td>
+<td>-0.388324</td>
+<td>-3.122538</td>
+<td>-1.294862</td>
+<td>2.128237</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">866</td>
-<td>1.090567</td>
-<td>0.166772</td>
-<td>-1.662481</td>
-<td>3.360603</td>
+<td data-quarto-table-cell-role="th">901</td>
+<td>-0.987738</td>
+<td>2.406936</td>
+<td>-3.181457</td>
+<td>-1.075476</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">875</td>
-<td>3.347043</td>
-<td>0.027858</td>
-<td>-0.472430</td>
-<td>-1.033787</td>
+<td data-quarto-table-cell-role="th">936</td>
+<td>-0.353764</td>
+<td>0.246134</td>
+<td>3.123780</td>
+<td>-0.872922</td>
 </tr>
 </tbody>
 </table>
@@ -2317,7 +2321,7 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="数据转换限制值的范围" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换限制值的范围">7.2 数据转换：限制值的范围</h2>
-<div id="7882723d" class="cell" data-execution_count="55">
+<div id="fcf1db8b" class="cell" data-execution_count="55">
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>data[data.<span class="bu">abs</span>() <span class="op">&gt;</span> <span class="dv">3</span>] <span class="op">=</span> np.sign(data) <span class="op">*</span> <span class="dv">3</span>  <span class="co"># 将绝对值大于 3 的值限制为 -3 或 3</span></span>
 <span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>data.describe()  <span class="co"># 查看 DataFrame 的描述性统计信息</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="55">
@@ -2344,52 +2348,52 @@ Name: count, dtype: int64</code></pre>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">mean</td>
-<td>0.004791</td>
-<td>0.011986</td>
-<td>-0.010022</td>
-<td>-0.004759</td>
+<td>-0.036886</td>
+<td>-0.000724</td>
+<td>-0.032559</td>
+<td>-0.037728</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">std</td>
-<td>1.017171</td>
-<td>0.997860</td>
-<td>0.979960</td>
-<td>1.017777</td>
+<td>1.000500</td>
+<td>1.020012</td>
+<td>1.037294</td>
+<td>1.001844</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">min</td>
 <td>-3.000000</td>
 <td>-3.000000</td>
-<td>-2.872637</td>
+<td>-3.000000</td>
 <td>-3.000000</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">25%</td>
-<td>-0.640209</td>
-<td>-0.658761</td>
-<td>-0.668936</td>
-<td>-0.685839</td>
+<td>-0.721764</td>
+<td>-0.724654</td>
+<td>-0.737238</td>
+<td>-0.775252</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">50%</td>
-<td>0.038356</td>
-<td>0.028000</td>
-<td>-0.039804</td>
-<td>-0.029524</td>
+<td>-0.037651</td>
+<td>0.019699</td>
+<td>-0.033039</td>
+<td>-0.002841</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">75%</td>
-<td>0.657005</td>
-<td>0.665436</td>
-<td>0.664095</td>
-<td>0.695357</td>
+<td>0.687972</td>
+<td>0.724020</td>
+<td>0.653331</td>
+<td>0.649518</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">max</td>
+<td>2.735168</td>
 <td>3.000000</td>
-<td>2.791320</td>
-<td>2.818117</td>
 <td>3.000000</td>
+<td>2.821907</td>
 </tr>
 </tbody>
 </table>
@@ -2408,7 +2412,7 @@ Name: count, dtype: int64</code></pre>
 <li><p>排列 (随机重新排序) 行或列。</p></li>
 <li><p>选择数据的随机子集。</p></li>
 </ul>
-<div id="e83dbd90" class="cell" data-execution_count="56">
+<div id="7ad546b5" class="cell" data-execution_count="56">
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(np.arange(<span class="dv">5</span> <span class="op">*</span> <span class="dv">7</span>).reshape((<span class="dv">5</span>, <span class="dv">7</span>)))  <span class="co"># 创建一个示例 DataFrame</span></span>
 <span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>df  <span class="co"># 显示 DataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="56">
@@ -2491,17 +2495,17 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="数据转换使用-permutation-排列行-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换使用-permutation-排列行-第-1-部分">7.2 数据转换：使用 <code>permutation()</code> 排列行 (第 1 部分)</h2>
-<div id="9fbaf901" class="cell" data-execution_count="57">
+<div id="e3aa5472" class="cell" data-execution_count="57">
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>sampler <span class="op">=</span> np.random.permutation(<span class="dv">5</span>)  <span class="co"># 生成一个包含 0-4 的随机排列的数组</span></span>
 <span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>sampler  <span class="co"># 显示排列</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="57">
-<pre><code>array([4, 2, 1, 0, 3])</code></pre>
+<pre><code>array([4, 0, 3, 2, 1])</code></pre>
 </div>
 </div>
 </section>
 <section id="数据转换使用-permutation-排列行-第-2-部分" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换使用-permutation-排列行-第-2-部分">7.2 数据转换：使用 <code>permutation()</code> 排列行 (第 2 部分)</h2>
-<div id="2fdecdf9" class="cell" data-execution_count="58">
+<div id="d25b47cc" class="cell" data-execution_count="58">
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>df.take(sampler)  <span class="co"># 使用 .take() 方法和排列对 DataFrame 的行进行重新排序，也可以使用 df.iloc[sampler]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="58">
 <div>
@@ -2532,26 +2536,6 @@ Name: count, dtype: int64</code></pre>
 <td>34</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">2</td>
-<td>14</td>
-<td>15</td>
-<td>16</td>
-<td>17</td>
-<td>18</td>
-<td>19</td>
-<td>20</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">1</td>
-<td>7</td>
-<td>8</td>
-<td>9</td>
-<td>10</td>
-<td>11</td>
-<td>12</td>
-<td>13</td>
-</tr>
-<tr class="even">
 <td data-quarto-table-cell-role="th">0</td>
 <td>0</td>
 <td>1</td>
@@ -2570,6 +2554,26 @@ Name: count, dtype: int64</code></pre>
 <td>25</td>
 <td>26</td>
 <td>27</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>14</td>
+<td>15</td>
+<td>16</td>
+<td>17</td>
+<td>18</td>
+<td>19</td>
+<td>20</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>7</td>
+<td>8</td>
+<td>9</td>
+<td>10</td>
+<td>11</td>
+<td>12</td>
+<td>13</td>
 </tr>
 </tbody>
 </table>
@@ -2584,17 +2588,17 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="数据转换排列列-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换排列列-第-1-部分">7.2 数据转换：排列列 (第 1 部分)</h2>
-<div id="2f167c8d" class="cell" data-execution_count="59">
+<div id="06cff8cb" class="cell" data-execution_count="59">
 <div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>column_sampler <span class="op">=</span> np.random.permutation(<span class="dv">7</span>)  <span class="co"># 生成一个包含 0-6 的随机排列的数组</span></span>
 <span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>column_sampler  <span class="co"># 显示排列</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="59">
-<pre><code>array([5, 3, 2, 4, 1, 6, 0])</code></pre>
+<pre><code>array([3, 4, 6, 1, 5, 0, 2])</code></pre>
 </div>
 </div>
 </section>
 <section id="数据转换排列列-第-2-部分" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换排列列-第-2-部分">7.2 数据转换：排列列 (第 2 部分)</h2>
-<div id="c4befdf0" class="cell" data-execution_count="60">
+<div id="630ea810" class="cell" data-execution_count="60">
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>df.take(column_sampler, axis<span class="op">=</span><span class="st">"columns"</span>)  <span class="co"># 使用 .take() 方法、排列和 axis="columns" 对 DataFrame 的列进行重新排序</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="60">
 <div>
@@ -2604,65 +2608,65 @@ Name: count, dtype: int64</code></pre>
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">5</th>
 <th data-quarto-table-cell-role="th">3</th>
-<th data-quarto-table-cell-role="th">2</th>
 <th data-quarto-table-cell-role="th">4</th>
-<th data-quarto-table-cell-role="th">1</th>
 <th data-quarto-table-cell-role="th">6</th>
+<th data-quarto-table-cell-role="th">1</th>
+<th data-quarto-table-cell-role="th">5</th>
 <th data-quarto-table-cell-role="th">0</th>
+<th data-quarto-table-cell-role="th">2</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>5</td>
 <td>3</td>
-<td>2</td>
 <td>4</td>
-<td>1</td>
 <td>6</td>
+<td>1</td>
+<td>5</td>
 <td>0</td>
+<td>2</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>12</td>
 <td>10</td>
-<td>9</td>
 <td>11</td>
-<td>8</td>
 <td>13</td>
+<td>8</td>
+<td>12</td>
 <td>7</td>
+<td>9</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>19</td>
 <td>17</td>
-<td>16</td>
 <td>18</td>
-<td>15</td>
 <td>20</td>
+<td>15</td>
+<td>19</td>
 <td>14</td>
+<td>16</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
-<td>26</td>
 <td>24</td>
-<td>23</td>
 <td>25</td>
-<td>22</td>
 <td>27</td>
+<td>22</td>
+<td>26</td>
 <td>21</td>
+<td>23</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
-<td>33</td>
 <td>31</td>
-<td>30</td>
 <td>32</td>
-<td>29</td>
 <td>34</td>
+<td>29</td>
+<td>33</td>
 <td>28</td>
+<td>30</td>
 </tr>
 </tbody>
 </table>
@@ -2676,7 +2680,7 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="数据转换不放回随机采样" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换不放回随机采样">7.2 数据转换：不放回随机采样</h2>
-<div id="13d03374" class="cell" data-execution_count="61">
+<div id="e496639c" class="cell" data-execution_count="61">
 <div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>df.sample(n<span class="op">=</span><span class="dv">3</span>)  <span class="co"># 使用 .sample(n=3) 随机选择 3 行 (不放回)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="61">
 <div>
@@ -2697,24 +2701,24 @@ Name: count, dtype: int64</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>14</td>
-<td>15</td>
-<td>16</td>
-<td>17</td>
-<td>18</td>
-<td>19</td>
-<td>20</td>
+<td data-quarto-table-cell-role="th">0</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">4</td>
-<td>28</td>
-<td>29</td>
-<td>30</td>
-<td>31</td>
-<td>32</td>
-<td>33</td>
-<td>34</td>
+<td data-quarto-table-cell-role="th">1</td>
+<td>7</td>
+<td>8</td>
+<td>9</td>
+<td>10</td>
+<td>11</td>
+<td>12</td>
+<td>13</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">3</td>
@@ -2738,15 +2742,15 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="数据转换有放回随机采样" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换有放回随机采样">7.2 数据转换：有放回随机采样</h2>
-<div id="684e38b2" class="cell" data-execution_count="62">
+<div id="70cbee04" class="cell" data-execution_count="62">
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>choices <span class="op">=</span> pd.Series([<span class="dv">5</span>, <span class="dv">7</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">4</span>])  <span class="co"># 创建一个 Series</span></span>
 <span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>choices.sample(n<span class="op">=</span><span class="dv">10</span>, replace<span class="op">=</span><span class="va">True</span>)  <span class="co"># 使用 .sample(n=10, replace=True) 随机选择 10 个元素 (有放回)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="62">
-<pre><code>0    5
-3    6
+<pre><code>1    7
 2   -1
-2   -1
-3    6
+4    4
+4    4
+1    7
 0    5
 2   -1
 4    4
@@ -2765,7 +2769,7 @@ dtype: int64</code></pre>
 <li><p>将分类变量转换为 “虚拟” 或 “指标” 矩阵。</p></li>
 <li><p>用于统计建模和机器学习。</p></li>
 </ul>
-<div id="6448cc24" class="cell" data-execution_count="63">
+<div id="eee91f3a" class="cell" data-execution_count="63">
 <div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">"key"</span>: [<span class="st">"b"</span>, <span class="st">"b"</span>, <span class="st">"a"</span>, <span class="st">"c"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>],</span>
 <span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"data1"</span>: <span class="bu">range</span>(<span class="dv">6</span>)})  <span class="co"># 创建一个包含分类变量 "key" 的 DataFrame</span></span>
 <span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a>df  <span class="co"># 显示 DataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2824,7 +2828,7 @@ dtype: int64</code></pre>
 </section>
 <section id="数据转换get_dummies" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换get_dummies">7.2 数据转换：<code>get_dummies()</code></h2>
-<div id="98c3a8ea" class="cell" data-execution_count="64">
+<div id="752fc708" class="cell" data-execution_count="64">
 <div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>pd.get_dummies(df[<span class="st">"key"</span>])  <span class="co"># 使用 pd.get_dummies() 函数将分类变量转换为虚拟变量</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="64">
 <div>
@@ -2892,7 +2896,7 @@ dtype: int64</code></pre>
 </section>
 <section id="数据转换为虚拟变量添加前缀" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换为虚拟变量添加前缀">7.2 数据转换：为虚拟变量添加前缀</h2>
-<div id="552a2db8" class="cell" data-execution_count="65">
+<div id="0e7e48e6" class="cell" data-execution_count="65">
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>dummies <span class="op">=</span> pd.get_dummies(df[<span class="st">"key"</span>], prefix<span class="op">=</span><span class="st">"key"</span>)  <span class="co"># 使用 prefix 参数为虚拟变量的列名添加前缀</span></span>
 <span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>df_with_dummy <span class="op">=</span> df[[<span class="st">"data1"</span>]].join(dummies)  <span class="co"># 将虚拟变量与原始 DataFrame 连接</span></span>
 <span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>df_with_dummy  <span class="co"># 显示结果 DataFrame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2966,7 +2970,7 @@ dtype: int64</code></pre>
 </section>
 <section id="数据转换处理多个类别-movielens-示例-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换处理多个类别-movielens-示例-第-1-部分">7.2 数据转换：处理多个类别 (MovieLens 示例) (第 1 部分)</h2>
-<div id="c1e92098" class="cell" data-execution_count="66">
+<div id="3ac17909" class="cell" data-execution_count="66">
 <div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>mnames <span class="op">=</span> [<span class="st">"movie_id"</span>, <span class="st">"title"</span>, <span class="st">"genres"</span>]  <span class="co"># 定义列名</span></span>
 <span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>movies <span class="op">=</span> pd.read_table(<span class="st">"datasets/movielens/movies.dat"</span>, sep<span class="op">=</span><span class="st">"::"</span>,</span>
 <span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>                       header<span class="op">=</span><span class="va">None</span>, names<span class="op">=</span>mnames, engine<span class="op">=</span><span class="st">"python"</span>)  <span class="co"># 读取 MovieLens 数据集，分隔符为 "::"</span></span>
@@ -3058,7 +3062,7 @@ dtype: int64</code></pre>
 </section>
 <section id="数据转换str.get_dummies-用于多个类别" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换str.get_dummies-用于多个类别">7.2 数据转换：<code>str.get_dummies()</code> 用于多个类别</h2>
-<div id="b325cb3d" class="cell" data-execution_count="67">
+<div id="db6f4e55" class="cell" data-execution_count="67">
 <div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>dummies <span class="op">=</span> movies[<span class="st">"genres"</span>].<span class="bu">str</span>.get_dummies(<span class="st">"|"</span>)  <span class="co"># 使用 str.get_dummies("|") 处理多个类别，分隔符为 "|"</span></span>
 <span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>dummies.iloc[:<span class="dv">10</span>, :<span class="dv">6</span>]  <span class="co"># 显示前 10 行和前 6 列</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="67">
@@ -3180,7 +3184,7 @@ dtype: int64</code></pre>
 </section>
 <section id="数据转换与原始-dataframe-组合" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换与原始-dataframe-组合">7.2 数据转换：与原始 DataFrame 组合</h2>
-<div id="775f6bfd" class="cell" data-execution_count="68">
+<div id="cfff0d3d" class="cell" data-execution_count="68">
 <div class="sourceCode cell-code" id="cb101"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>movies_windic <span class="op">=</span> movies.join(dummies.add_prefix(<span class="st">"Genre_"</span>))  <span class="co"># 将虚拟变量与原始 DataFrame 连接，并为虚拟变量列名添加前缀</span></span>
 <span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -3217,7 +3221,7 @@ Name: 0, dtype: object</code></pre>
 </section>
 <section id="数据转换结合-get_dummies-和-cut-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换结合-get_dummies-和-cut-第-1-部分">7.2 数据转换：结合 <code>get_dummies()</code> 和 <code>cut()</code> (第 1 部分)</h2>
-<div id="0e6ac18d" class="cell" data-execution_count="69">
+<div id="dc195b8d" class="cell" data-execution_count="69">
 <div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">12345</span>) <span class="co"># 设置随机数种子以确保结果可重复</span></span>
 <span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> np.random.uniform(size<span class="op">=</span><span class="dv">10</span>) <span class="co"># 生成 10 个均匀分布的随机数</span></span>
 <span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>values <span class="co"># 显示随机数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3229,7 +3233,7 @@ Name: 0, dtype: object</code></pre>
 </section>
 <section id="数据转换结合-get_dummies-和-cut-第-2-部分" class="level2">
 <h2 class="anchored" data-anchor-id="数据转换结合-get_dummies-和-cut-第-2-部分">7.2 数据转换：结合 <code>get_dummies()</code> 和 <code>cut()</code> (第 2 部分)</h2>
-<div id="3039f396" class="cell" data-execution_count="70">
+<div id="0ff18f25" class="cell" data-execution_count="70">
 <div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> [<span class="dv">0</span>, <span class="fl">0.2</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>, <span class="dv">1</span>] <span class="co"># 定义分箱边界</span></span>
 <span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>pd.get_dummies(pd.cut(values, bins)) <span class="co"># 将数据分箱，然后转换为虚拟变量</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="70">
@@ -3357,7 +3361,7 @@ Name: 0, dtype: object</code></pre>
 </section>
 <section id="扩展数据类型整数示例-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="扩展数据类型整数示例-第-1-部分">7.3 扩展数据类型：整数示例 (第 1 部分)</h2>
-<div id="d7cdd6b9" class="cell" data-execution_count="71">
+<div id="3d117f6a" class="cell" data-execution_count="71">
 <div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="va">None</span>]) <span class="co"># 创建一个包含整数和 None 的 Series</span></span>
 <span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>s <span class="co"># 显示 Series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="71">
@@ -3368,7 +3372,7 @@ Name: 0, dtype: object</code></pre>
 dtype: float64</code></pre>
 </div>
 </div>
-<div id="133fedf8" class="cell" data-execution_count="72">
+<div id="4a1cf56a" class="cell" data-execution_count="72">
 <div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>s.dtype <span class="co"># 查看 Series 的数据类型</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="72">
 <pre><code>dtype('float64')</code></pre>
@@ -3380,7 +3384,7 @@ dtype: float64</code></pre>
 </section>
 <section id="扩展数据类型int64dtype-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="扩展数据类型int64dtype-第-1-部分">7.3 扩展数据类型：<code>Int64Dtype</code> (第 1 部分)</h2>
-<div id="acb4b56a" class="cell" data-execution_count="73">
+<div id="fe596647" class="cell" data-execution_count="73">
 <div class="sourceCode cell-code" id="cb110"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="va">None</span>], dtype<span class="op">=</span>pd.Int64Dtype()) <span class="co"># 使用 pd.Int64Dtype() 创建一个可空整数 Series</span></span>
 <span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a>s <span class="co"># 显示 Series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="73">
@@ -3394,7 +3398,7 @@ dtype: Int64</code></pre>
 </section>
 <section id="扩展数据类型int64dtype-第-2-部分" class="level2">
 <h2 class="anchored" data-anchor-id="扩展数据类型int64dtype-第-2-部分">7.3 扩展数据类型：<code>Int64Dtype</code> (第 2 部分)</h2>
-<div id="16a8f992" class="cell" data-execution_count="74">
+<div id="68411a79" class="cell" data-execution_count="74">
 <div class="sourceCode cell-code" id="cb112"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a>s.isna() <span class="co"># 检查缺失值，None 会被正确识别为缺失值</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="74">
 <pre><code>0    False
@@ -3404,7 +3408,7 @@ dtype: Int64</code></pre>
 dtype: bool</code></pre>
 </div>
 </div>
-<div id="576939b1" class="cell" data-execution_count="75">
+<div id="c1e77ffb" class="cell" data-execution_count="75">
 <div class="sourceCode cell-code" id="cb114"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a>s.dtype <span class="co"># 查看 Series 的数据类型</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="75">
 <pre><code>Int64Dtype()</code></pre>
@@ -3417,7 +3421,7 @@ dtype: bool</code></pre>
 </section>
 <section id="扩展数据类型字符串示例" class="level2">
 <h2 class="anchored" data-anchor-id="扩展数据类型字符串示例">7.3 扩展数据类型：字符串示例</h2>
-<div id="bac89005" class="cell" data-execution_count="76">
+<div id="7898dc30" class="cell" data-execution_count="76">
 <div class="sourceCode cell-code" id="cb116"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series([<span class="st">'one'</span>, <span class="st">'two'</span>, <span class="va">None</span>, <span class="st">'three'</span>], dtype<span class="op">=</span>pd.StringDtype()) <span class="co"># 使用 pd.StringDtype() 创建一个专门的字符串 Series</span></span>
 <span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a>s <span class="co"># 显示 Series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="76">
@@ -3428,7 +3432,7 @@ dtype: bool</code></pre>
 dtype: string</code></pre>
 </div>
 </div>
-<div id="184e8c6e" class="cell" data-execution_count="77">
+<div id="b9df872c" class="cell" data-execution_count="77">
 <div class="sourceCode cell-code" id="cb118"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>s.dtype <span class="co">#查看 Series 的数据类型</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="77">
 <pre><code>string[python]</code></pre>
@@ -3442,7 +3446,7 @@ dtype: string</code></pre>
 </section>
 <section id="扩展数据类型-astype-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="扩展数据类型-astype-第-1-部分">7.3 扩展数据类型： <code>astype()</code> (第 1 部分)</h2>
-<div id="3d411285" class="cell" data-execution_count="78">
+<div id="df52b2a1" class="cell" data-execution_count="78">
 <div class="sourceCode cell-code" id="cb120"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">"A"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="va">None</span>, <span class="dv">4</span>],</span>
 <span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"B"</span>: [<span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"three"</span>, <span class="va">None</span>],</span>
 <span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"C"</span>: [<span class="va">False</span>, <span class="va">None</span>, <span class="va">False</span>, <span class="va">True</span>]}) <span class="co"># 创建一个包含不同数据类型和缺失值的 DataFrame</span></span>
@@ -3494,7 +3498,7 @@ dtype: string</code></pre>
 </section>
 <section id="扩展数据类型-astype-第-2-部分" class="level2">
 <h2 class="anchored" data-anchor-id="扩展数据类型-astype-第-2-部分">7.3 扩展数据类型： <code>astype()</code> (第 2 部分)</h2>
-<div id="6ad81ac0" class="cell" data-execution_count="79">
+<div id="cd988003" class="cell" data-execution_count="79">
 <div class="sourceCode cell-code" id="cb121"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"A"</span>] <span class="op">=</span> df[<span class="st">"A"</span>].astype(<span class="st">"Int64"</span>) <span class="co"># 将 "A" 列转换为可空整数类型</span></span>
 <span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"B"</span>] <span class="op">=</span> df[<span class="st">"B"</span>].astype(<span class="st">"string"</span>) <span class="co"># 将 "B" 列转换为专门的字符串类型</span></span>
 <span id="cb121-3"><a href="#cb121-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"C"</span>] <span class="op">=</span> df[<span class="st">"C"</span>].astype(<span class="st">"boolean"</span>) <span class="co"># 将 "C" 列转换为可空布尔类型</span></span>
@@ -3630,7 +3634,7 @@ dtype: string</code></pre>
 </section>
 <section id="字符串操作python-内置字符串方法-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="字符串操作python-内置字符串方法-第-1-部分">7.4 字符串操作：Python 内置字符串方法 (第 1 部分)</h2>
-<div id="4b0713f0" class="cell" data-execution_count="80">
+<div id="4b86cfc5" class="cell" data-execution_count="80">
 <div class="sourceCode cell-code" id="cb122"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a>val <span class="op">=</span> <span class="st">"a,b,  guido"</span> <span class="co"># 定义一个包含逗号分隔符和空格的字符串</span></span>
 <span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a>val.split(<span class="st">","</span>) <span class="co"># 使用 .split(",") 方法将字符串拆分为列表</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="80">
@@ -3643,7 +3647,7 @@ dtype: string</code></pre>
 </section>
 <section id="字符串操作python-内置字符串方法-第-2-部分" class="level2">
 <h2 class="anchored" data-anchor-id="字符串操作python-内置字符串方法-第-2-部分">7.4 字符串操作：Python 内置字符串方法 (第 2 部分)</h2>
-<div id="740023d0" class="cell" data-execution_count="81">
+<div id="a36662d3" class="cell" data-execution_count="81">
 <div class="sourceCode cell-code" id="cb124"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a>pieces <span class="op">=</span> [x.strip() <span class="cf">for</span> x <span class="kw">in</span> val.split(<span class="st">","</span>)] <span class="co"># 使用列表推导式和 .strip() 方法去除每个子字符串两侧的空格</span></span>
 <span id="cb124-2"><a href="#cb124-2" aria-hidden="true" tabindex="-1"></a>pieces <span class="co"># 显示结果列表</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="81">
@@ -3656,7 +3660,7 @@ dtype: string</code></pre>
 </section>
 <section id="字符串操作字符串连接-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="字符串操作字符串连接-第-1-部分">7.4 字符串操作：字符串连接 (第 1 部分)</h2>
-<div id="3b8d5b6d" class="cell" data-execution_count="82">
+<div id="1e1a7cd7" class="cell" data-execution_count="82">
 <div class="sourceCode cell-code" id="cb126"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a>first, second, third <span class="op">=</span> pieces <span class="co"># 将列表中的元素解包到变量中</span></span>
 <span id="cb126-2"><a href="#cb126-2" aria-hidden="true" tabindex="-1"></a>first <span class="op">+</span> <span class="st">"::"</span> <span class="op">+</span> second <span class="op">+</span> <span class="st">"::"</span> <span class="op">+</span> third  <span class="co"># 使用 + 运算符连接字符串</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="82">
@@ -3666,7 +3670,7 @@ dtype: string</code></pre>
 </section>
 <section id="字符串操作字符串连接-第-2-部分" class="level2">
 <h2 class="anchored" data-anchor-id="字符串操作字符串连接-第-2-部分">7.4 字符串操作：字符串连接 (第 2 部分)</h2>
-<div id="a21b2299" class="cell" data-execution_count="83">
+<div id="053d864b" class="cell" data-execution_count="83">
 <div class="sourceCode cell-code" id="cb128"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="co">"::"</span>.join(pieces) <span class="co"># 使用 .join() 方法连接字符串，更 Pythonic 的方式</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="83">
 <pre><code>'a::b::guido'</code></pre>
@@ -3678,13 +3682,13 @@ dtype: string</code></pre>
 </section>
 <section id="字符串操作子字符串检测-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="字符串操作子字符串检测-第-1-部分">7.4 字符串操作：子字符串检测 (第 1 部分)</h2>
-<div id="9994d2b3" class="cell" data-execution_count="84">
+<div id="c489391f" class="cell" data-execution_count="84">
 <div class="sourceCode cell-code" id="cb130"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co">"guido"</span> <span class="kw">in</span> val <span class="co"># 使用 in 运算符检查字符串中是否包含子字符串</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="84">
 <pre><code>True</code></pre>
 </div>
 </div>
-<div id="b25e5ecc" class="cell" data-execution_count="85">
+<div id="baef359a" class="cell" data-execution_count="85">
 <div class="sourceCode cell-code" id="cb132"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a>val.index(<span class="st">","</span>)  <span class="co"># 使用 .index() 方法查找子字符串的索引，如果未找到则引发 ValueError 异常</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="85">
 <pre><code>1</code></pre>
@@ -3693,7 +3697,7 @@ dtype: string</code></pre>
 </section>
 <section id="字符串操作子字符串检测-第-2-部分" class="level2">
 <h2 class="anchored" data-anchor-id="字符串操作子字符串检测-第-2-部分">7.4 字符串操作：子字符串检测 (第 2 部分)</h2>
-<div id="ba8a4d55" class="cell" data-execution_count="86">
+<div id="69ba9092" class="cell" data-execution_count="86">
 <div class="sourceCode cell-code" id="cb134"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a>val.find(<span class="st">":"</span>)   <span class="co"># 使用 .find() 方法查找子字符串的索引，如果未找到则返回 -1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="86">
 <pre><code>-1</code></pre>
@@ -3707,13 +3711,13 @@ dtype: string</code></pre>
 </section>
 <section id="字符串操作count-和-replace-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="字符串操作count-和-replace-第-1-部分">7.4 字符串操作：<code>count()</code> 和 <code>replace()</code> (第 1 部分)</h2>
-<div id="995ac260" class="cell" data-execution_count="87">
+<div id="f3686a24" class="cell" data-execution_count="87">
 <div class="sourceCode cell-code" id="cb136"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a>val.count(<span class="st">","</span>) <span class="co"># 使用 .count() 方法计算子字符串出现的次数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="87">
 <pre><code>2</code></pre>
 </div>
 </div>
-<div id="7f1bc8d2" class="cell" data-execution_count="88">
+<div id="f2c0397a" class="cell" data-execution_count="88">
 <div class="sourceCode cell-code" id="cb138"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a>val.replace(<span class="st">","</span>, <span class="st">"::"</span>) <span class="co"># 使用 .replace() 方法将子字符串替换为另一个字符串</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="88">
 <pre><code>'a::b::  guido'</code></pre>
@@ -3722,7 +3726,7 @@ dtype: string</code></pre>
 </section>
 <section id="字符串操作count-和-replace-第-2-部分" class="level2">
 <h2 class="anchored" data-anchor-id="字符串操作count-和-replace-第-2-部分">7.4 字符串操作：<code>count()</code> 和 <code>replace()</code> (第 2 部分)</h2>
-<div id="e5810cab" class="cell" data-execution_count="89">
+<div id="84a912af" class="cell" data-execution_count="89">
 <div class="sourceCode cell-code" id="cb140"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a>val.replace(<span class="st">","</span>, <span class="st">""</span>)  <span class="co"># 通过替换为空字符串来删除子字符串</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="89">
 <pre><code>'ab  guido'</code></pre>
@@ -3855,7 +3859,7 @@ dtype: string</code></pre>
 </section>
 <section id="字符串操作正则表达式示例---拆分" class="level2">
 <h2 class="anchored" data-anchor-id="字符串操作正则表达式示例---拆分">7.4 字符串操作：正则表达式示例 - 拆分</h2>
-<div id="6e3b9f47" class="cell" data-execution_count="90">
+<div id="6e4d76b2" class="cell" data-execution_count="90">
 <div class="sourceCode cell-code" id="cb143"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re <span class="co"># 导入 re 模块</span></span>
 <span id="cb143-2"><a href="#cb143-2" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"foo    bar</span><span class="ch">\t</span><span class="st"> baz  </span><span class="ch">\t</span><span class="st">qux"</span> <span class="co"># 定义一个包含不同空白字符分隔的字符串</span></span>
 <span id="cb143-3"><a href="#cb143-3" aria-hidden="true" tabindex="-1"></a>re.split(<span class="vs">r"\s+"</span>, text)  <span class="co"># 使用 re.split() 和正则表达式 "\s+" 将字符串拆分为列表，"\s+" 匹配一个或多个空白字符</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3870,7 +3874,7 @@ dtype: string</code></pre>
 </section>
 <section id="字符串操作编译正则表达式对象" class="level2">
 <h2 class="anchored" data-anchor-id="字符串操作编译正则表达式对象">7.4 字符串操作：编译正则表达式对象</h2>
-<div id="541b7b48" class="cell" data-execution_count="91">
+<div id="42ee6060" class="cell" data-execution_count="91">
 <div class="sourceCode cell-code" id="cb145"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a>regex <span class="op">=</span> re.<span class="bu">compile</span>(<span class="vs">r"\s+"</span>)  <span class="co"># 使用 re.compile() 编译正则表达式，创建一个可重用的正则表达式对象</span></span>
 <span id="cb145-2"><a href="#cb145-2" aria-hidden="true" tabindex="-1"></a>regex.split(text) <span class="co"># 使用编译后的正则表达式对象拆分文本</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="91">
@@ -3884,7 +3888,7 @@ dtype: string</code></pre>
 </section>
 <section id="字符串操作findall" class="level2">
 <h2 class="anchored" data-anchor-id="字符串操作findall">7.4 字符串操作：<code>findall()</code></h2>
-<div id="b8d277a7" class="cell" data-execution_count="92">
+<div id="c8f437f6" class="cell" data-execution_count="92">
 <div class="sourceCode cell-code" id="cb147"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a>regex.findall(text) <span class="co"># 使用 .findall() 方法查找字符串中所有匹配正则表达式的子字符串</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="92">
 <pre><code>['    ', '\t ', '  \t']</code></pre>
@@ -3896,7 +3900,7 @@ dtype: string</code></pre>
 </section>
 <section id="字符串操作正则表达式示例---电子邮件匹配" class="level2">
 <h2 class="anchored" data-anchor-id="字符串操作正则表达式示例---电子邮件匹配">7.4 字符串操作：正则表达式示例 - 电子邮件匹配</h2>
-<div id="0150409e" class="cell" data-execution_count="93">
+<div id="aedc7948" class="cell" data-execution_count="93">
 <div class="sourceCode cell-code" id="cb149"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">"""Dave dave@google.com</span></span>
 <span id="cb149-2"><a href="#cb149-2" aria-hidden="true" tabindex="-1"></a><span class="st">Steve steve@gmail.com</span></span>
 <span id="cb149-3"><a href="#cb149-3" aria-hidden="true" tabindex="-1"></a><span class="st">Rob rob@gmail.com</span></span>
@@ -3914,7 +3918,7 @@ dtype: string</code></pre>
 </section>
 <section id="字符串操作带有电子邮件正则表达式的-findall" class="level2">
 <h2 class="anchored" data-anchor-id="字符串操作带有电子邮件正则表达式的-findall">7.4 字符串操作：带有电子邮件正则表达式的 <code>findall()</code></h2>
-<div id="fed60620" class="cell" data-execution_count="94">
+<div id="cd8e041b" class="cell" data-execution_count="94">
 <div class="sourceCode cell-code" id="cb150"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a>regex.findall(text) <span class="co"># 使用 .findall() 方法查找字符串中所有匹配正则表达式的电子邮件地址</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="94">
 <pre><code>['dave@google.com', 'steve@gmail.com', 'rob@gmail.com', 'ryan@yahoo.com']</code></pre>
@@ -3926,7 +3930,7 @@ dtype: string</code></pre>
 </section>
 <section id="字符串操作search-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="字符串操作search-第-1-部分">7.4 字符串操作：<code>search()</code> (第 1 部分)</h2>
-<div id="7baef2a9" class="cell" data-execution_count="95">
+<div id="a86e8c1a" class="cell" data-execution_count="95">
 <div class="sourceCode cell-code" id="cb152"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> regex.search(text) <span class="co"># 使用 .search() 方法查找字符串中第一个匹配正则表达式的子字符串</span></span>
 <span id="cb152-2"><a href="#cb152-2" aria-hidden="true" tabindex="-1"></a>m <span class="co"># 显示匹配对象</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="95">
@@ -3936,7 +3940,7 @@ dtype: string</code></pre>
 </section>
 <section id="字符串操作search-第-2-部分" class="level2">
 <h2 class="anchored" data-anchor-id="字符串操作search-第-2-部分">7.4 字符串操作：<code>search()</code> (第 2 部分)</h2>
-<div id="bf495128" class="cell" data-execution_count="96">
+<div id="0f622c17" class="cell" data-execution_count="96">
 <div class="sourceCode cell-code" id="cb154"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb154-1"><a href="#cb154-1" aria-hidden="true" tabindex="-1"></a>text[m.start():m.end()] <span class="co"># 使用匹配对象的 .start() 和 .end() 方法获取匹配子字符串在原始字符串中的位置</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="96">
 <pre><code>'dave@google.com'</code></pre>
@@ -3950,7 +3954,7 @@ dtype: string</code></pre>
 </section>
 <section id="字符串操作sub" class="level2">
 <h2 class="anchored" data-anchor-id="字符串操作sub">7.4 字符串操作：<code>sub()</code></h2>
-<div id="9408c16c" class="cell" data-execution_count="97">
+<div id="956bee42" class="cell" data-execution_count="97">
 <div class="sourceCode cell-code" id="cb156"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(regex.sub(<span class="st">"REDACTED"</span>, text)) <span class="co"># 使用 .sub() 方法将匹配正则表达式的子字符串替换为另一个字符串</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Dave REDACTED
@@ -3965,7 +3969,7 @@ Ryan REDACTED</code></pre>
 </section>
 <section id="字符串操作正则表达式组-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="字符串操作正则表达式组-第-1-部分">7.4 字符串操作：正则表达式组 (第 1 部分)</h2>
-<div id="c3df68ec" class="cell" data-execution_count="98">
+<div id="29209c52" class="cell" data-execution_count="98">
 <div class="sourceCode cell-code" id="cb158"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb158-1"><a href="#cb158-1" aria-hidden="true" tabindex="-1"></a>pattern <span class="op">=</span> <span class="vs">r"([A-Z0-9._%+-]+)@([A-Z0-9.-]+)\.([A-Z]{2,4})"</span>  <span class="co"># 带有捕获组的正则表达式</span></span>
 <span id="cb158-2"><a href="#cb158-2" aria-hidden="true" tabindex="-1"></a>regex <span class="op">=</span> re.<span class="bu">compile</span>(pattern, flags<span class="op">=</span>re.IGNORECASE) <span class="co"># 编译正则表达式，并设置 re.IGNORECASE 标志</span></span>
 <span id="cb158-3"><a href="#cb158-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -3987,7 +3991,7 @@ Ryan REDACTED</code></pre>
 </section>
 <section id="字符串操作带有组的-findall" class="level2">
 <h2 class="anchored" data-anchor-id="字符串操作带有组的-findall">7.4 字符串操作：带有组的 <code>findall()</code></h2>
-<div id="88e3004d" class="cell" data-execution_count="99">
+<div id="81724157" class="cell" data-execution_count="99">
 <div class="sourceCode cell-code" id="cb160"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a>regex.findall(text) <span class="co"># 当正则表达式包含捕获组时，.findall() 方法返回一个元组列表，每个元组包含捕获组的内容</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="99">
 <pre><code>[('dave', 'google', 'com'),
@@ -4002,7 +4006,7 @@ Ryan REDACTED</code></pre>
 </section>
 <section id="字符串操作带有组引用的-sub" class="level2">
 <h2 class="anchored" data-anchor-id="字符串操作带有组引用的-sub">7.4 字符串操作：带有组引用的 <code>sub()</code></h2>
-<div id="dbb820cb" class="cell" data-execution_count="100">
+<div id="d6b62d0c" class="cell" data-execution_count="100">
 <div class="sourceCode cell-code" id="cb162"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb162-1"><a href="#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(regex.sub(<span class="vs">r"Username: \1, Domain: \2, Suffix: \3"</span>, text)) <span class="co"># 在 .sub() 方法中，可以使用 \1、\2 等引用捕获组</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Dave Username: dave, Domain: google, Suffix: com
@@ -4062,7 +4066,7 @@ Ryan Username: ryan, Domain: yahoo, Suffix: com</code></pre>
 <li><p>Pandas 将字符串操作扩展到 Series 和 DataFrame。</p></li>
 <li><p>优雅地处理缺失数据。</p></li>
 </ul>
-<div id="2ae84817" class="cell" data-execution_count="101">
+<div id="37ff4563" class="cell" data-execution_count="101">
 <div class="sourceCode cell-code" id="cb164"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb164-1"><a href="#cb164-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {<span class="st">"Dave"</span>: <span class="st">"dave@google.com"</span>, <span class="st">"Steve"</span>: <span class="st">"steve@gmail.com"</span>,</span>
 <span id="cb164-2"><a href="#cb164-2" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Rob"</span>: <span class="st">"rob@gmail.com"</span>, <span class="st">"Wes"</span>: np.nan} <span class="co"># 创建一个包含电子邮件地址和缺失值的字典</span></span>
 <span id="cb164-3"><a href="#cb164-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.Series(data) <span class="co"># 将字典转换为 Series</span></span>
@@ -4075,7 +4079,7 @@ Wes                  NaN
 dtype: object</code></pre>
 </div>
 </div>
-<div id="de72b285" class="cell" data-execution_count="102">
+<div id="f6db9d1b" class="cell" data-execution_count="102">
 <div class="sourceCode cell-code" id="cb166"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb166-1"><a href="#cb166-1" aria-hidden="true" tabindex="-1"></a>data.isna() <span class="co"># 检查缺失值</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="102">
 <pre><code>Dave     False
@@ -4091,7 +4095,7 @@ dtype: bool</code></pre>
 </section>
 <section id="字符串操作str-访问器" class="level2">
 <h2 class="anchored" data-anchor-id="字符串操作str-访问器">7.4 字符串操作：<code>str</code> 访问器</h2>
-<div id="c6925745" class="cell" data-execution_count="103">
+<div id="0a5b9fb8" class="cell" data-execution_count="103">
 <div class="sourceCode cell-code" id="cb168"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb168-1"><a href="#cb168-1" aria-hidden="true" tabindex="-1"></a>data.<span class="bu">str</span>.contains(<span class="st">"gmail"</span>) <span class="co"># 使用 .str.contains() 方法检查每个字符串是否包含 "gmail"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="103">
 <pre><code>Dave     False
@@ -4115,7 +4119,7 @@ dtype: object</code></pre>
 </section>
 <section id="字符串操作将正则表达式与-str-方法一起使用" class="level2">
 <h2 class="anchored" data-anchor-id="字符串操作将正则表达式与-str-方法一起使用">7.4 字符串操作：将正则表达式与 <code>str</code> 方法一起使用</h2>
-<div id="ee9d682f" class="cell" data-execution_count="104">
+<div id="8cca14de" class="cell" data-execution_count="104">
 <div class="sourceCode cell-code" id="cb170"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb170-1"><a href="#cb170-1" aria-hidden="true" tabindex="-1"></a>pattern <span class="op">=</span> <span class="vs">r"([A-Z0-9._%+-]+)@([A-Z0-9.-]+)\.([A-Z]{2,4})"</span> <span class="co"># 定义用于匹配电子邮件地址的正则表达式</span></span>
 <span id="cb170-2"><a href="#cb170-2" aria-hidden="true" tabindex="-1"></a>data.<span class="bu">str</span>.findall(pattern, flags<span class="op">=</span>re.IGNORECASE) <span class="co"># 将正则表达式与 .str.findall() 方法一起使用，并设置 re.IGNORECASE 标志</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="104">
@@ -4133,7 +4137,7 @@ dtype: object</code></pre>
 </section>
 <section id="字符串操作向量化元素检索-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="字符串操作向量化元素检索-第-1-部分">7.4 字符串操作：向量化元素检索 (第 1 部分)</h2>
-<div id="322fe7ee" class="cell" data-execution_count="105">
+<div id="1db84f23" class="cell" data-execution_count="105">
 <div class="sourceCode cell-code" id="cb172"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb172-1"><a href="#cb172-1" aria-hidden="true" tabindex="-1"></a>matches <span class="op">=</span> data.<span class="bu">str</span>.findall(pattern, flags<span class="op">=</span>re.IGNORECASE).<span class="bu">str</span>[<span class="dv">0</span>] <span class="co"># 使用 .str.findall() 查找匹配项，然后使用 .str[0] 获取第一个匹配项</span></span>
 <span id="cb172-2"><a href="#cb172-2" aria-hidden="true" tabindex="-1"></a>matches <span class="co"># 显示匹配项</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="105">
@@ -4144,7 +4148,7 @@ Wes                      NaN
 dtype: object</code></pre>
 </div>
 </div>
-<div id="4564b0da" class="cell" data-execution_count="106">
+<div id="61d3c724" class="cell" data-execution_count="106">
 <div class="sourceCode cell-code" id="cb174"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb174-1"><a href="#cb174-1" aria-hidden="true" tabindex="-1"></a>matches.<span class="bu">str</span>.get(<span class="dv">1</span>) <span class="co"># 使用 .str.get(1) 访问匹配项的第二个元素</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="106">
 <pre><code>Dave     google
@@ -4157,7 +4161,7 @@ dtype: object</code></pre>
 </section>
 <section id="字符串操作向量化元素检索-第-2-部分" class="level2">
 <h2 class="anchored" data-anchor-id="字符串操作向量化元素检索-第-2-部分">7.4 字符串操作：向量化元素检索 (第 2 部分)</h2>
-<div id="446e8a64" class="cell" data-execution_count="107">
+<div id="7b8623bb" class="cell" data-execution_count="107">
 <div class="sourceCode cell-code" id="cb176"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb176-1"><a href="#cb176-1" aria-hidden="true" tabindex="-1"></a>data.<span class="bu">str</span>[:<span class="dv">5</span>]  <span class="co"># 字符串切片</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="107">
 <pre><code>Dave     dave@
@@ -4173,7 +4177,7 @@ dtype: object</code></pre>
 </section>
 <section id="字符串操作str.extract" class="level2">
 <h2 class="anchored" data-anchor-id="字符串操作str.extract">7.4 字符串操作：<code>str.extract()</code></h2>
-<div id="ec183006" class="cell" data-execution_count="108">
+<div id="0682ab39" class="cell" data-execution_count="108">
 <div class="sourceCode cell-code" id="cb178"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb178-1"><a href="#cb178-1" aria-hidden="true" tabindex="-1"></a>data.<span class="bu">str</span>.extract(pattern, flags<span class="op">=</span>re.IGNORECASE) <span class="co"># 使用 .str.extract() 方法提取捕获组，每个捕获组成为 DataFrame 中的一列</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="108">
 <div>
@@ -4374,7 +4378,7 @@ dtype: object</code></pre>
 </section>
 <section id="分类数据背景和动机-第-2-部分" class="level2">
 <h2 class="anchored" data-anchor-id="分类数据背景和动机-第-2-部分">7.5 分类数据：背景和动机 (第 2 部分)</h2>
-<div id="3c141c2c" class="cell" data-execution_count="109">
+<div id="b55aa646" class="cell" data-execution_count="109">
 <div class="sourceCode cell-code" id="cb179"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb179-1"><a href="#cb179-1" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> pd.Series([<span class="st">'apple'</span>, <span class="st">'orange'</span>, <span class="st">'apple'</span>,</span>
 <span id="cb179-2"><a href="#cb179-2" aria-hidden="true" tabindex="-1"></a>                    <span class="st">'apple'</span>] <span class="op">*</span> <span class="dv">2</span>) <span class="co"># 创建一个包含重复字符串的 Series</span></span>
 <span id="cb179-3"><a href="#cb179-3" aria-hidden="true" tabindex="-1"></a>values <span class="co"># 显示 Series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -4390,16 +4394,16 @@ dtype: object</code></pre>
 dtype: object</code></pre>
 </div>
 </div>
-<div id="e97363e9" class="cell" data-execution_count="110">
+<div id="6183faa8" class="cell" data-execution_count="110">
 <div class="sourceCode cell-code" id="cb181"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb181-1"><a href="#cb181-1" aria-hidden="true" tabindex="-1"></a>pd.unique(values) <span class="co"># 使用 pd.unique() 获取 Series 中的唯一值</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="110">
 <pre><code>array(['apple', 'orange'], dtype=object)</code></pre>
 </div>
 </div>
-<div id="c07ee24a" class="cell" data-execution_count="111">
+<div id="84571a54" class="cell" data-execution_count="111">
 <div class="sourceCode cell-code" id="cb183"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb183-1"><a href="#cb183-1" aria-hidden="true" tabindex="-1"></a>pd.value_counts(values) <span class="co"># 使用 pd.value_counts() 统计每个唯一值的出现次数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_2726/2641125703.py:1: FutureWarning: pandas.value_counts is deprecated and will be removed in a future version. Use pd.Series(obj).value_counts() instead.
+<pre><code>/tmp/ipykernel_2685/2641125703.py:1: FutureWarning: pandas.value_counts is deprecated and will be removed in a future version. Use pd.Series(obj).value_counts() instead.
   pd.value_counts(values) # 使用 pd.value_counts() 统计每个唯一值的出现次数</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="111">
@@ -4411,7 +4415,7 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="分类数据维度表表示-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="分类数据维度表表示-第-1-部分">7.5 分类数据：维度表表示 (第 1 部分)</h2>
-<div id="b416acb6" class="cell" data-execution_count="112">
+<div id="6bb42c2d" class="cell" data-execution_count="112">
 <div class="sourceCode cell-code" id="cb186"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb186-1"><a href="#cb186-1" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> pd.Series([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>] <span class="op">*</span> <span class="dv">2</span>) <span class="co"># 创建一个包含整数键的 Series</span></span>
 <span id="cb186-2"><a href="#cb186-2" aria-hidden="true" tabindex="-1"></a>dim <span class="op">=</span> pd.Series([<span class="st">'apple'</span>, <span class="st">'orange'</span>]) <span class="co"># 创建一个维度表 Series</span></span>
 <span id="cb186-3"><a href="#cb186-3" aria-hidden="true" tabindex="-1"></a>values <span class="co"># 显示整数键 Series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -4430,7 +4434,7 @@ dtype: int64</code></pre>
 </section>
 <section id="分类数据维度表表示-第-2-部分" class="level2">
 <h2 class="anchored" data-anchor-id="分类数据维度表表示-第-2-部分">7.5 分类数据：维度表表示 (第 2 部分)</h2>
-<div id="9455df1e" class="cell" data-execution_count="113">
+<div id="c31b0838" class="cell" data-execution_count="113">
 <div class="sourceCode cell-code" id="cb188"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb188-1"><a href="#cb188-1" aria-hidden="true" tabindex="-1"></a>dim <span class="co"># 显示维度表</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="113">
 <pre><code>0     apple
@@ -4445,7 +4449,7 @@ dtype: object</code></pre>
 </section>
 <section id="分类数据使用-take-恢复原始数据" class="level2">
 <h2 class="anchored" data-anchor-id="分类数据使用-take-恢复原始数据">7.5 分类数据：使用 <code>take()</code> 恢复原始数据</h2>
-<div id="85d149cd" class="cell" data-execution_count="114">
+<div id="7a82c7b2" class="cell" data-execution_count="114">
 <div class="sourceCode cell-code" id="cb190"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb190-1"><a href="#cb190-1" aria-hidden="true" tabindex="-1"></a>dim.take(values) <span class="co"># 使用 .take() 方法和整数键从维度表中恢复原始字符串 Series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="114">
 <pre><code>0     apple
@@ -4484,7 +4488,7 @@ dtype: object</code></pre>
 </section>
 <section id="分类数据pandas-中的-categorical-扩展类型-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="分类数据pandas-中的-categorical-扩展类型-第-1-部分">7.5 分类数据：pandas 中的 <code>Categorical</code> 扩展类型 (第 1 部分)</h2>
-<div id="a76afaf5" class="cell" data-execution_count="115">
+<div id="8b6c8dab" class="cell" data-execution_count="115">
 <div class="sourceCode cell-code" id="cb192"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb192-1"><a href="#cb192-1" aria-hidden="true" tabindex="-1"></a>fruits <span class="op">=</span> [<span class="st">'apple'</span>, <span class="st">'orange'</span>, <span class="st">'apple'</span>, <span class="st">'apple'</span>] <span class="op">*</span> <span class="dv">2</span> <span class="co"># 创建一个水果列表</span></span>
 <span id="cb192-2"><a href="#cb192-2" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="bu">len</span>(fruits) <span class="co"># 计算列表长度</span></span>
 <span id="cb192-3"><a href="#cb192-3" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">12345</span>) <span class="co"># 创建一个随机数生成器，并设置种子以确保结果可重复</span></span>
@@ -4577,7 +4581,7 @@ dtype: object</code></pre>
 </section>
 <section id="分类数据转换为-categorical" class="level2">
 <h2 class="anchored" data-anchor-id="分类数据转换为-categorical">7.5 分类数据：转换为 Categorical</h2>
-<div id="ab1896b1" class="cell" data-execution_count="116">
+<div id="64397b8c" class="cell" data-execution_count="116">
 <div class="sourceCode cell-code" id="cb193"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb193-1"><a href="#cb193-1" aria-hidden="true" tabindex="-1"></a>fruit_cat <span class="op">=</span> df[<span class="st">'fruit'</span>].astype(<span class="st">'category'</span>) <span class="co"># 使用 .astype('category') 将 "fruit" 列转换为 Categorical 类型</span></span>
 <span id="cb193-2"><a href="#cb193-2" aria-hidden="true" tabindex="-1"></a>fruit_cat <span class="co"># 显示转换后的 Series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="116">
@@ -4599,7 +4603,7 @@ Categories (2, object): ['apple', 'orange']</code></pre>
 </section>
 <section id="分类数据访问-categorical-对象" class="level2">
 <h2 class="anchored" data-anchor-id="分类数据访问-categorical-对象">7.5 分类数据：访问 <code>Categorical</code> 对象</h2>
-<div id="c86b9f76" class="cell" data-execution_count="117">
+<div id="a73bc47a" class="cell" data-execution_count="117">
 <div class="sourceCode cell-code" id="cb195"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb195-1"><a href="#cb195-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> fruit_cat.array <span class="co"># 使用 .array 属性访问底层的 Categorical 对象</span></span>
 <span id="cb195-2"><a href="#cb195-2" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(c) <span class="co"># 查看对象的类型</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="117">
@@ -4612,13 +4616,13 @@ Categories (2, object): ['apple', 'orange']</code></pre>
 </section>
 <section id="分类数据categories-和-codes-属性-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="分类数据categories-和-codes-属性-第-1-部分">7.5 分类数据：<code>categories</code> 和 <code>codes</code> 属性 (第 1 部分)</h2>
-<div id="a47f8756" class="cell" data-execution_count="118">
+<div id="ed20dc3c" class="cell" data-execution_count="118">
 <div class="sourceCode cell-code" id="cb197"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb197-1"><a href="#cb197-1" aria-hidden="true" tabindex="-1"></a>c.categories <span class="co"># 查看 Categorical 对象的类别</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="118">
 <pre><code>Index(['apple', 'orange'], dtype='object')</code></pre>
 </div>
 </div>
-<div id="a11be075" class="cell" data-execution_count="119">
+<div id="546cf50a" class="cell" data-execution_count="119">
 <div class="sourceCode cell-code" id="cb199"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb199-1"><a href="#cb199-1" aria-hidden="true" tabindex="-1"></a>c.codes <span class="co"># 查看 Categorical 对象的代码</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="119">
 <pre><code>array([0, 1, 0, 0, 0, 1, 0, 0], dtype=int8)</code></pre>
@@ -4636,7 +4640,7 @@ Categories (2, object): ['apple', 'orange']</code></pre>
 </section>
 <section id="分类数据转换-dataframe-列" class="level2">
 <h2 class="anchored" data-anchor-id="分类数据转换-dataframe-列">7.5 分类数据：转换 DataFrame 列</h2>
-<div id="071296ab" class="cell" data-execution_count="120">
+<div id="164676b4" class="cell" data-execution_count="120">
 <div class="sourceCode cell-code" id="cb201"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb201-1"><a href="#cb201-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'fruit'</span>] <span class="op">=</span> df[<span class="st">'fruit'</span>].astype(<span class="st">'category'</span>) <span class="co"># 将 DataFrame 的 "fruit" 列转换为 Categorical 类型</span></span>
 <span id="cb201-2"><a href="#cb201-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"fruit"</span>] <span class="co"># 显示转换后的列</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="120">
@@ -4658,7 +4662,7 @@ Categories (2, object): ['apple', 'orange']</code></pre>
 </section>
 <section id="分类数据直接创建-categorical" class="level2">
 <h2 class="anchored" data-anchor-id="分类数据直接创建-categorical">7.5 分类数据：直接创建 <code>Categorical</code></h2>
-<div id="a7267b09" class="cell" data-execution_count="121">
+<div id="56010b54" class="cell" data-execution_count="121">
 <div class="sourceCode cell-code" id="cb203"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb203-1"><a href="#cb203-1" aria-hidden="true" tabindex="-1"></a>my_categories <span class="op">=</span> pd.Categorical([<span class="st">'foo'</span>, <span class="st">'bar'</span>, <span class="st">'baz'</span>, <span class="st">'foo'</span>, <span class="st">'bar'</span>]) <span class="co"># 直接从 Python 序列创建 Categorical 对象</span></span>
 <span id="cb203-2"><a href="#cb203-2" aria-hidden="true" tabindex="-1"></a>my_categories <span class="co"># 显示 Categorical 对象</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="121">
@@ -4672,7 +4676,7 @@ Categories (3, object): ['bar', 'baz', 'foo']</code></pre>
 </section>
 <section id="分类数据from_codes-构造函数" class="level2">
 <h2 class="anchored" data-anchor-id="分类数据from_codes-构造函数">7.5 分类数据：<code>from_codes()</code> 构造函数</h2>
-<div id="b8bb3db8" class="cell" data-execution_count="122">
+<div id="95610ce6" class="cell" data-execution_count="122">
 <div class="sourceCode cell-code" id="cb205"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb205-1"><a href="#cb205-1" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> [<span class="st">'foo'</span>, <span class="st">'bar'</span>, <span class="st">'baz'</span>] <span class="co"># 定义类别</span></span>
 <span id="cb205-2"><a href="#cb205-2" aria-hidden="true" tabindex="-1"></a>codes <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>] <span class="co"># 定义代码</span></span>
 <span id="cb205-3"><a href="#cb205-3" aria-hidden="true" tabindex="-1"></a>my_cats_2 <span class="op">=</span> pd.Categorical.from_codes(codes, categories) <span class="co"># 使用 .from_codes() 构造函数从代码和类别创建 Categorical 对象</span></span>
@@ -4688,7 +4692,7 @@ Categories (3, object): ['foo', 'bar', 'baz']</code></pre>
 </section>
 <section id="分类数据有序类别-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="分类数据有序类别-第-1-部分">7.5 分类数据：有序类别 (第 1 部分)</h2>
-<div id="379c049b" class="cell" data-execution_count="123">
+<div id="9e163160" class="cell" data-execution_count="123">
 <div class="sourceCode cell-code" id="cb207"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb207-1"><a href="#cb207-1" aria-hidden="true" tabindex="-1"></a>ordered_cat <span class="op">=</span> pd.Categorical.from_codes(codes, categories,</span>
 <span id="cb207-2"><a href="#cb207-2" aria-hidden="true" tabindex="-1"></a>                                        ordered<span class="op">=</span><span class="va">True</span>) <span class="co"># 使用 ordered=True 参数创建有序 Categorical 对象</span></span>
 <span id="cb207-3"><a href="#cb207-3" aria-hidden="true" tabindex="-1"></a>ordered_cat <span class="co"># 显示有序 Categorical 对象</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -4700,7 +4704,7 @@ Categories (3, object): ['foo' &lt; 'bar' &lt; 'baz']</code></pre>
 </section>
 <section id="分类数据有序类别-第-2-部分" class="level2">
 <h2 class="anchored" data-anchor-id="分类数据有序类别-第-2-部分">7.5 分类数据：有序类别 (第 2 部分)</h2>
-<div id="babc0944" class="cell" data-execution_count="124">
+<div id="9d663ab3" class="cell" data-execution_count="124">
 <div class="sourceCode cell-code" id="cb209"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb209-1"><a href="#cb209-1" aria-hidden="true" tabindex="-1"></a>my_cats_2.as_ordered() <span class="co"># 使用 .as_ordered() 方法将无序 Categorical 对象转换为有序</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="124">
 <pre><code>['foo', 'bar', 'baz', 'foo', 'foo', 'bar']
@@ -4718,7 +4722,7 @@ Categories (3, object): ['foo' &lt; 'bar' &lt; 'baz']</code></pre>
 <li><p>使用 <code>Categorical</code> 的行为通常与非编码版本 (例如，字符串数组) 相同。</p></li>
 <li><p>某些 pandas 函数 (如 <code>groupby</code>) 在使用分类时性能更好。</p></li>
 </ul>
-<div id="24e46304" class="cell" data-execution_count="125">
+<div id="b361713a" class="cell" data-execution_count="125">
 <div class="sourceCode cell-code" id="cb211"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb211-1"><a href="#cb211-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">12345</span>) <span class="co"># 创建一个随机数生成器</span></span>
 <span id="cb211-2"><a href="#cb211-2" aria-hidden="true" tabindex="-1"></a>draws <span class="op">=</span> rng.standard_normal(<span class="dv">1000</span>) <span class="co"># 生成 1000 个标准正态分布的随机数</span></span>
 <span id="cb211-3"><a href="#cb211-3" aria-hidden="true" tabindex="-1"></a>draws[:<span class="dv">5</span>] <span class="co"># 显示前 5 个随机数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -4729,7 +4733,7 @@ Categories (3, object): ['foo' &lt; 'bar' &lt; 'baz']</code></pre>
 </section>
 <section id="分类数据qcut-和-categorical-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="分类数据qcut-和-categorical-第-1-部分">7.5 分类数据：<code>qcut()</code> 和 Categorical (第 1 部分)</h2>
-<div id="672841d3" class="cell" data-execution_count="126">
+<div id="8b34f875" class="cell" data-execution_count="126">
 <div class="sourceCode cell-code" id="cb213"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb213-1"><a href="#cb213-1" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> pd.qcut(draws, <span class="dv">4</span>) <span class="co"># 使用 pd.qcut() 将数据分成四分位数</span></span>
 <span id="cb213-2"><a href="#cb213-2" aria-hidden="true" tabindex="-1"></a>bins <span class="co"># 显示分箱结果，返回一个 Categorical 对象</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="126">
@@ -4741,7 +4745,7 @@ Categories (4, interval[float64, right]): [(-3.121, -0.675] &lt; (-0.675, 0.0134
 </section>
 <section id="分类数据qcut-和-categorical-第-2-部分" class="level2">
 <h2 class="anchored" data-anchor-id="分类数据qcut-和-categorical-第-2-部分">7.5 分类数据：<code>qcut()</code> 和 Categorical (第 2 部分)</h2>
-<div id="27bc0f6d" class="cell" data-execution_count="127">
+<div id="d83be248" class="cell" data-execution_count="127">
 <div class="sourceCode cell-code" id="cb215"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb215-1"><a href="#cb215-1" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> pd.qcut(draws, <span class="dv">4</span>, labels<span class="op">=</span>[<span class="st">'Q1'</span>, <span class="st">'Q2'</span>, <span class="st">'Q3'</span>, <span class="st">'Q4'</span>]) <span class="co"># 使用 labels 参数为四分位数添加标签</span></span>
 <span id="cb215-2"><a href="#cb215-2" aria-hidden="true" tabindex="-1"></a>bins <span class="co"># 显示带有标签的分箱结果</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="127">
@@ -4750,7 +4754,7 @@ Length: 1000
 Categories (4, object): ['Q1' &lt; 'Q2' &lt; 'Q3' &lt; 'Q4']</code></pre>
 </div>
 </div>
-<div id="f39c7a5b" class="cell" data-execution_count="128">
+<div id="30870e9f" class="cell" data-execution_count="128">
 <div class="sourceCode cell-code" id="cb217"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb217-1"><a href="#cb217-1" aria-hidden="true" tabindex="-1"></a>bins.codes[:<span class="dv">10</span>] <span class="co"># 查看前 10 个数据对应的分位数代码</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="128">
 <pre><code>array([0, 3, 0, 1, 1, 0, 0, 2, 2, 0], dtype=int8)</code></pre>
@@ -4763,7 +4767,7 @@ Categories (4, object): ['Q1' &lt; 'Q2' &lt; 'Q3' &lt; 'Q4']</code></pre>
 </section>
 <section id="分类数据带有-categorical-的-groupby-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="分类数据带有-categorical-的-groupby-第-1-部分">7.5 分类数据：带有 Categorical 的 <code>groupby()</code> (第 1 部分)</h2>
-<div id="f637e0c3" class="cell" data-execution_count="129">
+<div id="8604913a" class="cell" data-execution_count="129">
 <div class="sourceCode cell-code" id="cb219"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb219-1"><a href="#cb219-1" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> pd.Series(bins, name<span class="op">=</span><span class="st">'quartile'</span>) <span class="co"># 将分箱结果转换为 Series，并命名为 "quartile"</span></span>
 <span id="cb219-2"><a href="#cb219-2" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> (pd.Series(draws) <span class="co"># 将原始数据转换为 Series</span></span>
 <span id="cb219-3"><a href="#cb219-3" aria-hidden="true" tabindex="-1"></a>           .groupby(bins) <span class="co"># 使用分箱结果进行分组</span></span>
@@ -4771,7 +4775,7 @@ Categories (4, object): ['Q1' &lt; 'Q2' &lt; 'Q3' &lt; 'Q4']</code></pre>
 <span id="cb219-5"><a href="#cb219-5" aria-hidden="true" tabindex="-1"></a>           .reset_index()) <span class="co"># 重置索引</span></span>
 <span id="cb219-6"><a href="#cb219-6" aria-hidden="true" tabindex="-1"></a>results <span class="co"># 显示结果</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_2726/1809551870.py:3: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+<pre><code>/tmp/ipykernel_2685/1809551870.py:3: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
   .groupby(bins) # 使用分箱结果进行分组</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="129">
@@ -4826,7 +4830,7 @@ Categories (4, object): ['Q1' &lt; 'Q2' &lt; 'Q3' &lt; 'Q4']</code></pre>
 </section>
 <section id="分类数据带有-categorical-的-groupby-第-2-部分" class="level2">
 <h2 class="anchored" data-anchor-id="分类数据带有-categorical-的-groupby-第-2-部分">7.5 分类数据：带有 Categorical 的 <code>groupby()</code> (第 2 部分)</h2>
-<div id="935c2252" class="cell" data-execution_count="130">
+<div id="90e41a9a" class="cell" data-execution_count="130">
 <div class="sourceCode cell-code" id="cb221"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb221-1"><a href="#cb221-1" aria-hidden="true" tabindex="-1"></a>results[<span class="st">'quartile'</span>] <span class="co"># 查看结果中的 "quartile" 列，保留了原始的 Categorical 信息</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="130">
 <pre><code>0    Q1
@@ -4843,7 +4847,7 @@ Categories (4, object): ['Q1' &lt; 'Q2' &lt; 'Q3' &lt; 'Q4']</code></pre>
 </section>
 <section id="分类数据性能优势-第-1-部分" class="level2">
 <h2 class="anchored" data-anchor-id="分类数据性能优势-第-1-部分">7.5 分类数据：性能优势 (第 1 部分)</h2>
-<div id="f96917e8" class="cell" data-execution_count="131">
+<div id="46277074" class="cell" data-execution_count="131">
 <div class="sourceCode cell-code" id="cb223"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb223-1"><a href="#cb223-1" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">10_000_000</span> <span class="co"># 定义数据量</span></span>
 <span id="cb223-2"><a href="#cb223-2" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> pd.Series([<span class="st">'foo'</span>, <span class="st">'bar'</span>, <span class="st">'baz'</span>, <span class="st">'qux'</span>] <span class="op">*</span> (N <span class="op">//</span> <span class="dv">4</span>)) <span class="co"># 创建一个包含重复字符串的 Series</span></span>
 <span id="cb223-3"><a href="#cb223-3" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> labels.astype(<span class="st">'category'</span>) <span class="co"># 将 Series 转换为 Categorical 类型</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -4851,13 +4855,13 @@ Categories (4, object): ['Q1' &lt; 'Q2' &lt; 'Q3' &lt; 'Q4']</code></pre>
 </section>
 <section id="分类数据性能优势-第-2-部分" class="level2">
 <h2 class="anchored" data-anchor-id="分类数据性能优势-第-2-部分">7.5 分类数据：性能优势 (第 2 部分)</h2>
-<div id="680a9f63" class="cell" data-execution_count="132">
+<div id="a05b6166" class="cell" data-execution_count="132">
 <div class="sourceCode cell-code" id="cb224"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb224-1"><a href="#cb224-1" aria-hidden="true" tabindex="-1"></a>labels.memory_usage(deep<span class="op">=</span><span class="va">True</span>) <span class="co"># 查看原始 Series 的内存使用情况</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="132">
 <pre><code>520000132</code></pre>
 </div>
 </div>
-<div id="f8c22d59" class="cell" data-execution_count="133">
+<div id="c6191a82" class="cell" data-execution_count="133">
 <div class="sourceCode cell-code" id="cb226"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb226-1"><a href="#cb226-1" aria-hidden="true" tabindex="-1"></a>categories.memory_usage(deep<span class="op">=</span><span class="va">True</span>) <span class="co"># 查看 Categorical 类型的 Series 的内存使用情况</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="133">
 <pre><code>10000512</code></pre>
@@ -4873,7 +4877,7 @@ Categories (4, object): ['Q1' &lt; 'Q2' &lt; 'Q3' &lt; 'Q4']</code></pre>
 <li><p>包含分类数据的 Series 具有特殊方法 (类似于 <code>Series.str</code>)。</p></li>
 <li><p>通过 <code>cat</code> 访问器访问。</p></li>
 </ul>
-<div id="0f743fc6" class="cell" data-execution_count="134">
+<div id="4b00e904" class="cell" data-execution_count="134">
 <div class="sourceCode cell-code" id="cb228"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb228-1"><a href="#cb228-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series([<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>] <span class="op">*</span> <span class="dv">2</span>) <span class="co"># 创建一个包含重复字符串的 Series</span></span>
 <span id="cb228-2"><a href="#cb228-2" aria-hidden="true" tabindex="-1"></a>cat_s <span class="op">=</span> s.astype(<span class="st">'category'</span>) <span class="co"># 将 Series 转换为 Categorical 类型</span></span>
 <span id="cb228-3"><a href="#cb228-3" aria-hidden="true" tabindex="-1"></a>cat_s <span class="co"># 显示 Categorical Series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -4893,7 +4897,7 @@ Categories (4, object): ['a', 'b', 'c', 'd']</code></pre>
 </section>
 <section id="分类数据cat-访问器" class="level2">
 <h2 class="anchored" data-anchor-id="分类数据cat-访问器">7.5 分类数据：<code>cat</code> 访问器</h2>
-<div id="fac071dc" class="cell" data-execution_count="135">
+<div id="19e42cf1" class="cell" data-execution_count="135">
 <div class="sourceCode cell-code" id="cb230"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb230-1"><a href="#cb230-1" aria-hidden="true" tabindex="-1"></a>cat_s.cat.codes <span class="co"># 使用 .cat.codes 访问 Categorical 对象的代码</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="135">
 <pre><code>0    0
@@ -4907,7 +4911,7 @@ Categories (4, object): ['a', 'b', 'c', 'd']</code></pre>
 dtype: int8</code></pre>
 </div>
 </div>
-<div id="80e2e8b2" class="cell" data-execution_count="136">
+<div id="fa99d1f3" class="cell" data-execution_count="136">
 <div class="sourceCode cell-code" id="cb232"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb232-1"><a href="#cb232-1" aria-hidden="true" tabindex="-1"></a>cat_s.cat.categories <span class="co"># 使用 .cat.categories 访问 Categorical 对象的类别</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="136">
 <pre><code>Index(['a', 'b', 'c', 'd'], dtype='object')</code></pre>
@@ -4919,7 +4923,7 @@ dtype: int8</code></pre>
 </section>
 <section id="分类数据set_categories" class="level2">
 <h2 class="anchored" data-anchor-id="分类数据set_categories">7.5 分类数据：<code>set_categories()</code></h2>
-<div id="43cb0215" class="cell" data-execution_count="137">
+<div id="4c4dcd58" class="cell" data-execution_count="137">
 <div class="sourceCode cell-code" id="cb234"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb234-1"><a href="#cb234-1" aria-hidden="true" tabindex="-1"></a>actual_categories <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>, <span class="st">'e'</span>] <span class="co"># 定义新的类别</span></span>
 <span id="cb234-2"><a href="#cb234-2" aria-hidden="true" tabindex="-1"></a>cat_s2 <span class="op">=</span> cat_s.cat.set_categories(actual_categories) <span class="co"># 使用 .cat.set_categories() 方法设置新的类别</span></span>
 <span id="cb234-3"><a href="#cb234-3" aria-hidden="true" tabindex="-1"></a>cat_s2 <span class="co"># 显示新的 Categorical Series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -4943,7 +4947,7 @@ Categories (5, object): ['a', 'b', 'c', 'd', 'e']</code></pre>
 </section>
 <section id="分类数据带有-set_categories-的-value_counts" class="level2">
 <h2 class="anchored" data-anchor-id="分类数据带有-set_categories-的-value_counts">7.5 分类数据：带有 <code>set_categories()</code> 的 <code>value_counts()</code></h2>
-<div id="4476ad1f" class="cell" data-execution_count="138">
+<div id="386d0ed8" class="cell" data-execution_count="138">
 <div class="sourceCode cell-code" id="cb236"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb236-1"><a href="#cb236-1" aria-hidden="true" tabindex="-1"></a>cat_s.value_counts() <span class="co"># 统计原始 Categorical Series 中每个类别的出现次数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="138">
 <pre><code>a    2
@@ -4953,7 +4957,7 @@ d    2
 Name: count, dtype: int64</code></pre>
 </div>
 </div>
-<div id="643b0f25" class="cell" data-execution_count="139">
+<div id="a23b6f36" class="cell" data-execution_count="139">
 <div class="sourceCode cell-code" id="cb238"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb238-1"><a href="#cb238-1" aria-hidden="true" tabindex="-1"></a>cat_s2.value_counts() <span class="co"># 统计新的 Categorical Series 中每个类别的出现次数，即使某些类别在数据中不存在也会显示</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="139">
 <pre><code>a    2
@@ -4970,7 +4974,7 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="分类数据remove_unused_categories" class="level2">
 <h2 class="anchored" data-anchor-id="分类数据remove_unused_categories">7.5 分类数据：<code>remove_unused_categories()</code></h2>
-<div id="fc0ee11f" class="cell" data-execution_count="140">
+<div id="8e0ea14c" class="cell" data-execution_count="140">
 <div class="sourceCode cell-code" id="cb240"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb240-1"><a href="#cb240-1" aria-hidden="true" tabindex="-1"></a>cat_s3 <span class="op">=</span> cat_s[cat_s.isin([<span class="st">'a'</span>, <span class="st">'b'</span>])] <span class="co"># 筛选出只包含类别 "a" 和 "b" 的数据</span></span>
 <span id="cb240-2"><a href="#cb240-2" aria-hidden="true" tabindex="-1"></a>cat_s3 <span class="co"># 显示筛选后的 Categorical Series</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="140">
@@ -4982,7 +4986,7 @@ dtype: category
 Categories (4, object): ['a', 'b', 'c', 'd']</code></pre>
 </div>
 </div>
-<div id="2ee96f3b" class="cell" data-execution_count="141">
+<div id="55015c3f" class="cell" data-execution_count="141">
 <div class="sourceCode cell-code" id="cb242"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb242-1"><a href="#cb242-1" aria-hidden="true" tabindex="-1"></a>cat_s3.cat.remove_unused_categories() <span class="co"># 使用 .cat.remove_unused_categories() 方法删除未使用的类别</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="141">
 <pre><code>0    a
@@ -5053,7 +5057,7 @@ Categories (2, object): ['a', 'b']</code></pre>
 <li>将分类数据转换为虚拟变量 (one-hot 编码)。</li>
 <li>用于统计和机器学习。</li>
 </ul>
-<div id="8b156dc3" class="cell" data-execution_count="142">
+<div id="2a1f6f9f" class="cell" data-execution_count="142">
 <div class="sourceCode cell-code" id="cb244"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb244-1"><a href="#cb244-1" aria-hidden="true" tabindex="-1"></a>cat_s <span class="op">=</span> pd.Series([<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>] <span class="op">*</span> <span class="dv">2</span>, dtype<span class="op">=</span><span class="st">'category'</span>) <span class="co"># 创建一个 Categorical Series</span></span>
 <span id="cb244-2"><a href="#cb244-2" aria-hidden="true" tabindex="-1"></a>pd.get_dummies(cat_s) <span class="co"># 使用 pd.get_dummies() 函数将 Categorical Series 转换为虚拟变量</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="142">

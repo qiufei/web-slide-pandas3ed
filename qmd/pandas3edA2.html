@@ -115,7 +115,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../about.html"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">简介</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -205,12 +205,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><code>%timeit</code> measures the execution time of a Python statement. This is very useful for performance analysis!</li>
 </ul>
-<div id="00920ce1" class="cell" data-execution_count="1">
+<div id="734ea6fe" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.random.standard_normal((<span class="dv">100</span>, <span class="dv">100</span>))</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit np.dot(a, a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>48 μs ± 463 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)</code></pre>
+<pre><code>47.6 μs ± 78.6 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)</code></pre>
 </div>
 </div>
 <ul>
@@ -223,7 +223,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Use <code>?</code> after a magic command to view its “command-line” options (like a help manual).</li>
 </ul>
-<div id="b20025c1" class="cell" data-execution_count="2">
+<div id="b95acc5b" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>debug?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
@@ -236,7 +236,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>automagic</code> allows you to use magic commands <em>without</em> the <code>%</code> prefix, as long as no variable shares the same name.</li>
 <li>You can toggle it on/off using <code>%automagic</code>.</li>
 </ul>
-<div id="64cb0e9b" class="cell" data-execution_count="3">
+<div id="965d01ad" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>automagic  <span class="co"># Turns automagic on or off</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pwd         <span class="co"># Equivalent to %pwd (if automagic is on and 'pwd' isn't a variable)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -246,7 +246,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Some magic commands behave like functions, allowing you to assign their output to variables.</li>
 </ul>
-<div id="a9f37b76" class="cell" data-execution_count="4">
+<div id="6b0f4eca" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>directory <span class="op">=</span> <span class="op">%</span>pwd  <span class="co"># Stores the current working directory in 'directory'</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(directory)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -310,7 +310,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The script runs in an <em>empty namespace</em> (no prior imports or variables initially).</li>
 <li>Variables, functions, and imports from the script become accessible in your IPython shell <em>after</em> execution.</li>
 </ul>
-<div id="f2d050f3" class="cell" data-execution_count="5">
+<div id="cc81cd9c" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In a file named 'my_script.py':</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_function(x):</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">*</span> <span class="dv">2</span></span>
@@ -327,7 +327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><code>%run -i</code> allows the script to access variables <em>already defined</em> in your IPython session.</li>
 </ul>
-<div id="766bb221" class="cell" data-execution_count="6">
+<div id="99b141d7" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># In IPython:</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>my_var <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -343,14 +343,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>In Jupyter notebooks, <code>%load</code> imports a script <em>directly into a code cell</em>.</li>
 </ul>
-<div id="5c123b42" class="cell" data-execution_count="7">
+<div id="364421dc" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %load my_script.py  # This will be replaced by the script's content</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Then, the code cell’s content will be:</li>
 <li></li>
 </ul>
-<div id="e649265f" class="cell" data-execution_count="8">
+<div id="dd37f296" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_function(x):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">*</span> <span class="dv">2</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -372,7 +372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>%paste</code> and <code>%cpaste</code> are useful for running code copied from elsewhere (less relevant in Jupyter, where direct pasting is supported).</li>
 <li><code>%paste</code> executes the clipboard content as a <em>single block</em>.</li>
 </ul>
-<div id="8422c8e2" class="cell" data-execution_count="9">
+<div id="4954b2d8" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code on clipboard:</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">2</span>:</span>
@@ -420,7 +420,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>_X</code>: Represents the <em>output</em> of line <code>X</code>.</li>
 </ul></li>
 </ul>
-<div id="eb334e4f" class="cell" data-execution_count="10">
+<div id="ea7062c8" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span>      <span class="co"># Output: 4</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> _  <span class="co"># result is now 4</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(_i1)  <span class="co"># Prints the string "2 + 2"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -457,7 +457,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Prefix a line with <code>!</code> to execute it as a shell command.</li>
 </ul>
-<div id="c3332103" class="cell" data-execution_count="11">
+<div id="6b2e16ef" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>ls  <span class="co"># Lists files in the current directory (Linux/macOS)</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span><span class="bu">dir</span> <span class="co"># Lists files (Windows)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -525,7 +525,7 @@ pandas3ed11.qmd     pandas3ed5.qmd</code></pre>
 <ul>
 <li>Assign the output of a <code>!</code> command to a Python variable.</li>
 </ul>
-<div id="f25fc777" class="cell" data-execution_count="12">
+<div id="0927f8a8" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>file_list <span class="op">=</span> <span class="op">!</span>ls</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(file_list)  <span class="co"># Prints the list of files</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -541,7 +541,7 @@ pandas3ed11.qmd     pandas3ed5.qmd</code></pre>
 <ul>
 <li>Use <code>$</code> to substitute the values of Python variables into shell commands.</li>
 </ul>
-<div id="23038712" class="cell" data-execution_count="13">
+<div id="1a1c4828" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>my_directory <span class="op">=</span> <span class="st">"data_files"</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>ls $my_directory  <span class="co"># Lists files in the 'data_files' directory</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -551,7 +551,7 @@ pandas3ed11.qmd     pandas3ed5.qmd</code></pre>
 <ul>
 <li><code>%alias</code>: Create shortcuts (aliases) for frequently used shell commands.</li>
 </ul>
-<div id="1af4b2a7" class="cell" data-execution_count="14">
+<div id="110e8b3d" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>alias ll ls <span class="op">-</span>l  <span class="co"># Creates an alias 'll' for 'ls -l'</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ll <span class="op">/</span>usr<span class="op">/</span><span class="bu">bin</span>  <span class="co"># Now you can use 'll'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -564,7 +564,7 @@ pandas3ed11.qmd     pandas3ed5.qmd</code></pre>
 <ul>
 <li><code>%bookmark</code>: Create bookmarks for frequently accessed directories.</li>
 </ul>
-<div id="82b456d2" class="cell" data-execution_count="15">
+<div id="01da032b" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>bookmark mydata <span class="op">/</span>path<span class="op">/</span>to<span class="op">/</span>my<span class="op">/</span>data</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>cd mydata       <span class="co"># Jumps to the bookmarked directory</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>bookmark <span class="op">-</span>l    <span class="co"># Lists all bookmarks</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -610,7 +610,7 @@ pandas3ed11.qmd     pandas3ed5.qmd</code></pre>
 <li>It places you within the stack frame where the error originated.</li>
 <li>Enhanced with features like tab completion, syntax highlighting, and traceback context.</li>
 </ul>
-<div id="504826c9" class="cell" data-execution_count="16">
+<div id="044c713c" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming some_script.py contains an error:</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>run some_script.py</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>debug  <span class="co"># Enters the debugger at the point of the error</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -647,7 +647,7 @@ pandas3ed11.qmd     pandas3ed5.qmd</code></pre>
 <ul>
 <li><code>%pdb</code>: Automatically enters the debugger <em>upon any exception</em>. This is extremely useful for debugging!</li>
 </ul>
-<div id="46989aa0" class="cell" data-execution_count="17">
+<div id="3bafbd74" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pdb on  <span class="co"># Enables automatic debugging</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Now, any error will automatically launch the debugger</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pdb off <span class="co"># Disables automatic debugging</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -664,7 +664,7 @@ pandas3ed11.qmd     pandas3ed5.qmd</code></pre>
 </section>
 <section id="set_trace-and-debug-functions" class="level2">
 <h2 class="anchored" data-anchor-id="set_trace-and-debug-functions"><code>set_trace()</code> and <code>debug()</code> functions</h2>
-<div id="bac25225" class="cell" data-execution_count="18">
+<div id="7929a459" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.core.debugger <span class="im">import</span> Pdb</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys <span class="co"># Add import sys</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -686,14 +686,14 @@ pandas3ed11.qmd     pandas3ed5.qmd</code></pre>
 <li><code>%time</code>: Measures the execution time of a statement <em>once</em>.</li>
 <li><code>%timeit</code>: Measures execution time <em>multiple times</em> to provide a more accurate average. It’s ideal for very short operations.</li>
 </ul>
-<div id="ef932774" class="cell" data-execution_count="19">
+<div id="be491dc6" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">100000</span>))</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):  <span class="bu">sum</span>(my_list)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit <span class="bu">sum</span>(my_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CPU times: user 75.4 ms, sys: 1.01 ms, total: 76.4 ms
-Wall time: 76.1 ms
-753 μs ± 231 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)</code></pre>
+<pre><code>CPU times: user 75 ms, sys: 989 μs, total: 76 ms
+Wall time: 75.8 ms
+755 μs ± 3.11 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)</code></pre>
 </div>
 </div>
 </section>
@@ -714,7 +714,7 @@ Wall time: 76.1 ms
 <li><code>filename:lineno(function)</code>: Function location.</li>
 </ul></li>
 </ul>
-<div id="0597eef2" class="cell" data-execution_count="20">
+<div id="aa9eedc0" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Example</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> slow_function():</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> []</span>
@@ -747,7 +747,7 @@ Wall time: 76.1 ms
 <li><code>Line Contents</code>: The source code of the line.</li>
 </ul></li>
 </ul>
-<div id="b2297158" class="cell" data-execution_count="21">
+<div id="23420168" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming line_profiler is enabled and prof_mod.py exists:</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prof_mod <span class="im">import</span> add_and_sum, call_function <span class="co">#example file, you need create it.</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>lprun <span class="op">-</span>f add_and_sum call_function()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
