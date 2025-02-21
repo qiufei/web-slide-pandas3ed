@@ -200,7 +200,7 @@ Immutability
 <section id="tuple-creation" class="level2">
 <h2 class="anchored" data-anchor-id="tuple-creation">Tuple: Creation</h2>
 <p>Create tuples with comma-separated values, often in parentheses:</p>
-<div id="f70c84e1" class="cell" data-execution_count="1">
+<div id="91b25f7f" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>tup <span class="op">=</span> (<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tup)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -208,7 +208,7 @@ Immutability
 </div>
 </div>
 <p>Parentheses are often optional:</p>
-<div id="fc07bcff" class="cell" data-execution_count="2">
+<div id="659d208b" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tup <span class="op">=</span> <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tup)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -219,7 +219,7 @@ Immutability
 <section id="tuple-conversion-and-accessing" class="level2">
 <h2 class="anchored" data-anchor-id="tuple-conversion-and-accessing">Tuple: Conversion and Accessing</h2>
 <p>Convert sequences/iterators to tuples with <code>tuple()</code>:</p>
-<div id="9d9cc733" class="cell" data-execution_count="3">
+<div id="31210905" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> [<span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">2</span>]</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>my_tuple <span class="op">=</span> <span class="bu">tuple</span>(my_list)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_tuple)</span>
@@ -232,7 +232,7 @@ Immutability
 </div>
 </div>
 <p>Access elements with <code>[]</code> (zero-based indexing):</p>
-<div id="5b04bb46" class="cell" data-execution_count="4">
+<div id="8dd7030e" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(string_tuple[<span class="dv">0</span>])  <span class="co"># First element</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>s</code></pre>
@@ -242,7 +242,7 @@ Immutability
 <section id="tuple-nested-tuples" class="level2">
 <h2 class="anchored" data-anchor-id="tuple-nested-tuples">Tuple: Nested Tuples</h2>
 <p>Tuples can contain other tuples:</p>
-<div id="8cfda2d8" class="cell" data-execution_count="5">
+<div id="920f469a" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>nested_tup <span class="op">=</span> (<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>), (<span class="dv">7</span>, <span class="dv">8</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nested_tup)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nested_tup[<span class="dv">0</span>])      <span class="co"># First tuple</span></span>
@@ -257,7 +257,7 @@ Immutability
 <section id="tuple-immutability-detailed-example" class="level2">
 <h2 class="anchored" data-anchor-id="tuple-immutability-detailed-example">Tuple: Immutability (Detailed Example)</h2>
 <p>While objects <em>within</em> a tuple might be mutable, the tuple itself is immutable:</p>
-<div id="84bc7adf" class="cell" data-execution_count="6">
+<div id="867502dc" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>tup <span class="op">=</span> <span class="bu">tuple</span>([<span class="st">'foo'</span>, [<span class="dv">1</span>, <span class="dv">2</span>], <span class="va">True</span>])</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># tup[2] = False  # TypeError!</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -285,7 +285,7 @@ Caution
 <section id="tuple-concatenation-and-multiplication" class="level2">
 <h2 class="anchored" data-anchor-id="tuple-concatenation-and-multiplication">Tuple: Concatenation and Multiplication</h2>
 <p>Concatenate with <code>+</code>:</p>
-<div id="6740bd7e" class="cell" data-execution_count="7">
+<div id="a09f9088" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tuple1 <span class="op">=</span> (<span class="dv">4</span>, <span class="va">None</span>, <span class="st">'foo'</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>tuple2 <span class="op">=</span> (<span class="dv">6</span>, <span class="dv">0</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>tuple3 <span class="op">=</span> (<span class="st">'bar'</span>,)  <span class="co"># Comma for single-element tuple</span></span>
@@ -296,7 +296,7 @@ Caution
 </div>
 </div>
 <p>Multiply to repeat:</p>
-<div id="b47ebcb1" class="cell" data-execution_count="8">
+<div id="f6f96c2c" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>repeated_tuple <span class="op">=</span> (<span class="st">'foo'</span>, <span class="st">'bar'</span>) <span class="op">*</span> <span class="dv">4</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(repeated_tuple)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -320,7 +320,7 @@ Note
 <section id="tuple-unpacking" class="level2">
 <h2 class="anchored" data-anchor-id="tuple-unpacking">Tuple: Unpacking</h2>
 <p>Unpack tuples into variables:</p>
-<div id="94daee54" class="cell" data-execution_count="9">
+<div id="6af535fd" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>tup <span class="op">=</span> (<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>a, b, c <span class="op">=</span> tup</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -329,7 +329,7 @@ Note
 </div>
 </div>
 <p>Nested tuples too:</p>
-<div id="df5c4fbc" class="cell" data-execution_count="10">
+<div id="0d461b9a" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>tup <span class="op">=</span> <span class="dv">4</span>, <span class="dv">5</span>, (<span class="dv">6</span>, <span class="dv">7</span>)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>a, b, (c, d) <span class="op">=</span> tup</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -341,7 +341,7 @@ Note
 <section id="tuple-swapping-variables" class="level2">
 <h2 class="anchored" data-anchor-id="tuple-swapping-variables">Tuple: Swapping Variables</h2>
 <p>Elegant variable swapping:</p>
-<div id="3b344a21" class="cell" data-execution_count="11">
+<div id="14a87097" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>a, b <span class="op">=</span> <span class="dv">1</span>, <span class="dv">2</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"a: </span><span class="sc">{</span>a<span class="sc">}</span><span class="ss">, b: </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>b, a <span class="op">=</span> a, b  <span class="co"># Swap!</span></span>
@@ -355,7 +355,7 @@ a: 2, b: 1</code></pre>
 <section id="tuple-rest-and-_" class="level2">
 <h2 class="anchored" data-anchor-id="tuple-rest-and-_">Tuple: *rest (and _)</h2>
 <p><code>*rest</code> captures remaining elements:</p>
-<div id="f3d0ea4d" class="cell" data-execution_count="12">
+<div id="923be557" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>a, b, <span class="op">*</span>rest <span class="op">=</span> values</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span>
@@ -368,14 +368,14 @@ a: 2, b: 1</code></pre>
 </div>
 </div>
 <p><code>_</code> for unwanted variables:</p>
-<div id="1b5678bf" class="cell" data-execution_count="13">
+<div id="7f06648f" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>a, b, <span class="op">*</span>_ <span class="op">=</span> values  <span class="co"># Ignore the rest</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="tuple-methods-count" class="level2">
 <h2 class="anchored" data-anchor-id="tuple-methods-count">Tuple: Methods (count)</h2>
 <p>Tuples have few methods due to immutability. <code>count()</code> is useful:</p>
-<div id="9bc0c7f1" class="cell" data-execution_count="14">
+<div id="aee79d8d" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">2</span>)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>count_of_2 <span class="op">=</span> a.count(<span class="dv">2</span>)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(count_of_2)  <span class="co"># Output: 4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -405,7 +405,7 @@ Mutability
 <section id="list-creation" class="level2">
 <h2 class="anchored" data-anchor-id="list-creation">List: Creation</h2>
 <p>Create lists with <code>[]</code> or <code>list()</code>:</p>
-<div id="c4d7b751" class="cell" data-execution_count="15">
+<div id="793eeadc" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>a_list <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="va">None</span>]</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>tup <span class="op">=</span> (<span class="st">'foo'</span>, <span class="st">'bar'</span>, <span class="st">'baz'</span>)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>b_list <span class="op">=</span> <span class="bu">list</span>(tup)  <span class="co"># Tuple to list</span></span>
@@ -415,7 +415,7 @@ Mutability
 </div>
 </div>
 <p>Modify elements:</p>
-<div id="4f68ef7b" class="cell" data-execution_count="16">
+<div id="ff802fd9" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>b_list[<span class="dv">1</span>] <span class="op">=</span> <span class="st">'peekaboo'</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -426,7 +426,7 @@ Mutability
 <section id="list-materializing-iterators" class="level2">
 <h2 class="anchored" data-anchor-id="list-materializing-iterators">List: Materializing Iterators</h2>
 <p><code>list()</code> materializes iterators/generators:</p>
-<div id="04ad4acd" class="cell" data-execution_count="17">
+<div id="dcd26a80" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>gen <span class="op">=</span> <span class="bu">range</span>(<span class="dv">10</span>)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gen)  <span class="co"># range object (iterator)</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> <span class="bu">list</span>(gen)  <span class="co"># To list</span></span>
@@ -442,7 +442,7 @@ Mutability
 <ul>
 <li><code>append()</code>: Adds to the <em>end</em>.</li>
 </ul>
-<div id="fd671724" class="cell" data-execution_count="18">
+<div id="5d444435" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>b_list.append(<span class="st">'dwarf'</span>)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -452,7 +452,7 @@ Mutability
 <ul>
 <li><code>insert()</code>: Inserts at a <em>specific position</em>.</li>
 </ul>
-<div id="863e5a62" class="cell" data-execution_count="19">
+<div id="5094ce63" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>b_list.insert(<span class="dv">1</span>, <span class="st">'red'</span>) <span class="co"># Insert 'red' at index 1</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -478,7 +478,7 @@ Caution
 <ul>
 <li><code>pop()</code>: Removes and <em>returns</em> at an index.</li>
 </ul>
-<div id="b2261649" class="cell" data-execution_count="20">
+<div id="50eaac41" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>removed_element <span class="op">=</span> b_list.pop(<span class="dv">2</span>)</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(removed_element)</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -490,7 +490,7 @@ Caution
 <ul>
 <li><code>remove()</code>: Removes the <em>first</em> occurrence of a value.</li>
 </ul>
-<div id="6bfb80f9" class="cell" data-execution_count="21">
+<div id="abb9510e" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>b_list.append(<span class="st">'foo'</span>)</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>b_list.remove(<span class="st">'foo'</span>)  <span class="co"># Removes the *first* 'foo'</span></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -501,7 +501,7 @@ Caution
 </section>
 <section id="list-checking-for-membership-in-and-not-in" class="level2">
 <h2 class="anchored" data-anchor-id="list-checking-for-membership-in-and-not-in">List: Checking for Membership (in and not in)</h2>
-<div id="a7c93d88" class="cell" data-execution_count="22">
+<div id="8c1d9054" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'dwarf'</span> <span class="kw">in</span> b_list)</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'dwarf'</span> <span class="kw">not</span> <span class="kw">in</span> b_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -526,7 +526,7 @@ Note
 <section id="list-concatenation-and-combining" class="level2">
 <h2 class="anchored" data-anchor-id="list-concatenation-and-combining">List: Concatenation and Combining</h2>
 <p>Concatenate with <code>+</code>:</p>
-<div id="cffb9bf0" class="cell" data-execution_count="23">
+<div id="59d57090" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>list1 <span class="op">=</span> [<span class="dv">4</span>, <span class="va">None</span>, <span class="st">'foo'</span>]</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>list2 <span class="op">=</span> [<span class="dv">7</span>, <span class="dv">8</span>, (<span class="dv">2</span>, <span class="dv">3</span>)]</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>combined_list <span class="op">=</span> list1 <span class="op">+</span> list2</span>
@@ -536,7 +536,7 @@ Note
 </div>
 </div>
 <p><code>extend()</code> appends multiple elements:</p>
-<div id="26102801" class="cell" data-execution_count="24">
+<div id="07d463ee" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">4</span>, <span class="va">None</span>, <span class="st">'foo'</span>]</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>x.extend([<span class="dv">7</span>, <span class="dv">8</span>, (<span class="dv">2</span>, <span class="dv">3</span>)])</span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -563,7 +563,7 @@ Tip
 <ul>
 <li><code>sort()</code>: Sorts <em>in place</em>.</li>
 </ul>
-<div id="927b527b" class="cell" data-execution_count="25">
+<div id="e2ebddcc" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">3</span>]</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>a.sort()</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -574,7 +574,7 @@ Tip
 <ul>
 <li><code>key</code> argument: provide customized sorting method.</li>
 </ul>
-<div id="a304d123" class="cell" data-execution_count="26">
+<div id="fd202b79" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> [<span class="st">'saw'</span>, <span class="st">'small'</span>, <span class="st">'He'</span>, <span class="st">'foxes'</span>, <span class="st">'six'</span>]</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>b.sort(key<span class="op">=</span><span class="bu">len</span>)  <span class="co"># Sort by length</span></span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -586,7 +586,7 @@ Tip
 <section id="list-slicing" class="level2">
 <h2 class="anchored" data-anchor-id="list-slicing">List: Slicing</h2>
 <p>Select sections with <code>start:stop</code>:</p>
-<div id="fb422c41" class="cell" data-execution_count="27">
+<div id="4ee054e8" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>seq <span class="op">=</span> [<span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">0</span>, <span class="dv">1</span>]</span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>sub_list <span class="op">=</span> seq[<span class="dv">1</span>:<span class="dv">5</span>]  <span class="co"># Index 1 (inclusive) to 5 (exclusive)</span></span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sub_list)</span>
@@ -606,7 +606,7 @@ Tip
 <li>Omit <code>stop</code>: Defaults to the end.</li>
 <li>Negative indices: Count from the end.</li>
 </ul>
-<div id="6793a47a" class="cell" data-execution_count="28">
+<div id="58fd1876" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(seq[:<span class="dv">5</span>])  <span class="co"># First 5</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(seq[<span class="dv">3</span>:])  <span class="co"># From index 3</span></span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(seq[<span class="op">-</span><span class="dv">4</span>:]) <span class="co"># Last 4</span></span>
@@ -622,7 +622,7 @@ Tip
 <section id="list-slicing-step" class="level2">
 <h2 class="anchored" data-anchor-id="list-slicing-step">List: Slicing (Step)</h2>
 <p>Use a <em>step</em> to select every nth element:</p>
-<div id="6cf7591b" class="cell" data-execution_count="29">
+<div id="37071eb4" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(seq[::<span class="dv">2</span>])   <span class="co"># Every other</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(seq[::<span class="op">-</span><span class="dv">1</span>])  <span class="co"># Reverse!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -673,7 +673,7 @@ Tip
 </tbody>
 </table>
 </center>
-<div id="9d37b7a8" class="cell" data-execution_count="30">
+<div id="5b0f4a9a" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>string <span class="op">=</span> <span class="st">"HELLO!"</span></span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(string[<span class="dv">2</span>:<span class="dv">4</span>]) <span class="co"># slicing with positive indices</span></span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(string[<span class="op">-</span><span class="dv">5</span>:<span class="op">-</span><span class="dv">2</span>]) <span class="co"># slicing with negative indices</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -704,7 +704,7 @@ Key-Value Pairs
 <section id="dictionary-creation" class="level2">
 <h2 class="anchored" data-anchor-id="dictionary-creation">Dictionary: Creation</h2>
 <p>Use <code>{}</code> and <code>:</code>:</p>
-<div id="5f227eae" class="cell" data-execution_count="31">
+<div id="d831152b" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>empty_dict <span class="op">=</span> {}</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>d1 <span class="op">=</span> {<span class="st">'a'</span>: <span class="st">'some value'</span>, <span class="st">'b'</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]}</span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -715,7 +715,7 @@ Key-Value Pairs
 </section>
 <section id="dictionary-accessing-inserting-setting" class="level2">
 <h2 class="anchored" data-anchor-id="dictionary-accessing-inserting-setting">Dictionary: Accessing, Inserting, Setting</h2>
-<div id="5334b611" class="cell" data-execution_count="32">
+<div id="6d7b9498" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>d1[<span class="dv">7</span>] <span class="op">=</span> <span class="st">'an integer'</span>  <span class="co"># Add</span></span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1)</span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1[<span class="st">'b'</span>])       <span class="co"># Access</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -727,7 +727,7 @@ Key-Value Pairs
 </section>
 <section id="dictionary-checking-for-keys-in" class="level2">
 <h2 class="anchored" data-anchor-id="dictionary-checking-for-keys-in">Dictionary: Checking for Keys (in)</h2>
-<div id="1ef612c5" class="cell" data-execution_count="33">
+<div id="482a7ba7" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'b'</span> <span class="kw">in</span> d1)  <span class="co"># Checks keys</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>True</code></pre>
@@ -739,7 +739,7 @@ Key-Value Pairs
 <ul>
 <li><code>del</code>:</li>
 </ul>
-<div id="c13ff9bc" class="cell" data-execution_count="34">
+<div id="198222b5" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>d1[<span class="dv">5</span>] <span class="op">=</span> <span class="st">'some value'</span></span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>d1[<span class="st">'dummy'</span>] <span class="op">=</span> <span class="st">'another value'</span></span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1)</span>
@@ -753,7 +753,7 @@ Key-Value Pairs
 <ul>
 <li><code>pop()</code>: Removes and <em>returns</em>.</li>
 </ul>
-<div id="cc6df07d" class="cell" data-execution_count="35">
+<div id="0414f560" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>ret <span class="op">=</span> d1.pop(<span class="st">'dummy'</span>)</span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ret)</span>
 <span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -770,7 +770,7 @@ Key-Value Pairs
 <li><code>values()</code>: Iterator of values.</li>
 <li><code>items()</code>: Iterator of key-value pairs.</li>
 </ul>
-<div id="96a04b3a" class="cell" data-execution_count="36">
+<div id="4441f09b" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(d1.keys()))</span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(d1.values()))</span>
 <span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(d1.items()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -797,7 +797,7 @@ Note
 <section id="dictionary-merging-with-update" class="level2">
 <h2 class="anchored" data-anchor-id="dictionary-merging-with-update">Dictionary: Merging with update()</h2>
 <p><code>update()</code> merges dictionaries:</p>
-<div id="7e5e6478" class="cell" data-execution_count="37">
+<div id="5e80aaea" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>d1.update({<span class="st">'b'</span>: <span class="st">'foo'</span>, <span class="st">'c'</span>: <span class="dv">12</span>})  <span class="co"># Updates 'b', adds 'c'</span></span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -820,7 +820,7 @@ Caution
 </section>
 <section id="dictionary-creating-from-sequences" class="level2">
 <h2 class="anchored" data-anchor-id="dictionary-creating-from-sequences">Dictionary: Creating from Sequences</h2>
-<div id="0f8a0221" class="cell" data-execution_count="38">
+<div id="5a624042" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>key_list <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>]</span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>value_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>mapping <span class="op">=</span> {}</span>
@@ -840,7 +840,7 @@ Caution
 </section>
 <section id="dictionary-default-values-get-and-setdefault" class="level2">
 <h2 class="anchored" data-anchor-id="dictionary-default-values-get-and-setdefault">Dictionary: Default Values (get and setdefault)</h2>
-<div id="45489181" class="cell" data-execution_count="39">
+<div id="431d2d91" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verbose:</span></span>
 <span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'some_key'</span> <span class="kw">in</span> some_dict:</span>
 <span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>    value <span class="op">=</span> some_dict[<span class="st">'some_key'</span>]</span>
@@ -851,7 +851,7 @@ Caution
 <span id="cb76-8"><a href="#cb76-8" aria-hidden="true" tabindex="-1"></a>value <span class="op">=</span> some_dict.get(<span class="st">'some_key'</span>, default_value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>get</code> returns <code>None</code> if the key is not present (or a specified default value), <code>pop</code> will raise an exception.</p>
-<div id="d6268085" class="cell" data-execution_count="40">
+<div id="b3401795" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>words <span class="op">=</span> [<span class="st">'apple'</span>, <span class="st">'bat'</span>, <span class="st">'bar'</span>, <span class="st">'atom'</span>, <span class="st">'book'</span>]</span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>by_letter <span class="op">=</span> {}</span>
 <span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> word <span class="kw">in</span> words:</span>
@@ -867,7 +867,7 @@ Caution
 <section id="dictionary-defaultdict" class="level2">
 <h2 class="anchored" data-anchor-id="dictionary-defaultdict">Dictionary: defaultdict</h2>
 <p><code>collections.defaultdict</code> simplifies initialization:</p>
-<div id="bd76b7da" class="cell" data-execution_count="41">
+<div id="0afaf75a" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>by_letter <span class="op">=</span> defaultdict(<span class="bu">list</span>)</span>
@@ -885,7 +885,7 @@ Caution
 <li>Keys must be <em>immutable</em>.</li>
 <li>Check with <code>hash()</code>:</li>
 </ul>
-<div id="380ca0f7" class="cell" data-execution_count="42">
+<div id="250ab6fa" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">hash</span>(<span class="st">'string'</span>))</span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">hash</span>((<span class="dv">1</span>, <span class="dv">2</span>, (<span class="dv">2</span>, <span class="dv">3</span>))))</span>
 <span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="co"># print(hash((1, 2, [2, 3])))  # TypeError: unhashable type: 'list'</span></span>
@@ -895,7 +895,7 @@ Caution
 <span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a>d[<span class="bu">tuple</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])] <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>-4902848582242973083
+<pre><code>7960055033222887230
 -9209053662355515447
 {(1, 2, 3): 5}</code></pre>
 </div>
@@ -907,7 +907,7 @@ Caution
 </section>
 <section id="set-creation" class="level2">
 <h2 class="anchored" data-anchor-id="set-creation">Set: Creation</h2>
-<div id="47e00b05" class="cell" data-execution_count="43">
+<div id="b87b3546" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>set1 <span class="op">=</span> {<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>}  <span class="co"># {}</span></span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(set1)  <span class="co"># {1, 2, 3}</span></span>
 <span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>set2 <span class="op">=</span> <span class="bu">set</span>([<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>])  <span class="co"># set()</span></span>
@@ -920,7 +920,7 @@ Caution
 </section>
 <section id="set-operations-union-intersection-etc." class="level2">
 <h2 class="anchored" data-anchor-id="set-operations-union-intersection-etc.">Set: Operations (Union, Intersection, etc.)</h2>
-<div id="6cf545d0" class="cell" data-execution_count="44">
+<div id="ebbdca5a" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> {<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>}</span>
 <span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> {<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>}</span>
 <span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1042,7 +1042,7 @@ Caution
 <section id="set-in-place-operations" class="level2">
 <h2 class="anchored" data-anchor-id="set-in-place-operations">Set: In-Place Operations</h2>
 <p>In-place versions exist (e.g., <code>a |= b</code>):</p>
-<div id="895c2766" class="cell" data-execution_count="45">
+<div id="96a9743b" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> a.copy()</span>
 <span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>c <span class="op">|=</span> b  <span class="co"># In-place union</span></span>
 <span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c)</span>
@@ -1072,7 +1072,7 @@ Tip
 <section id="set-element-hashability" class="level2">
 <h2 class="anchored" data-anchor-id="set-element-hashability">Set: Element Hashability</h2>
 <p>Like dict keys, set elements must be <em>immutable</em> and <em>hashable</em>.</p>
-<div id="68393229" class="cell" data-execution_count="46">
+<div id="256bdfbd" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>my_data <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]</span>
 <span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="co"># my_set = {my_data}  # TypeError</span></span>
 <span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>my_set <span class="op">=</span> {<span class="bu">tuple</span>(my_data)}  <span class="co"># Convert to tuple</span></span>
@@ -1084,7 +1084,7 @@ Tip
 </section>
 <section id="set-subset-and-superset" class="level2">
 <h2 class="anchored" data-anchor-id="set-subset-and-superset">Set: Subset and Superset</h2>
-<div id="653f4ade" class="cell" data-execution_count="47">
+<div id="07b3aade" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>a_set <span class="op">=</span> {<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>}</span>
 <span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>({<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>}.issubset(a_set))</span>
 <span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a_set.issuperset({<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>}))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1097,7 +1097,7 @@ True</code></pre>
 <section id="set-equality" class="level2">
 <h2 class="anchored" data-anchor-id="set-equality">Set: Equality</h2>
 <p>Sets are equal if contents are equal:</p>
-<div id="527089b0" class="cell" data-execution_count="48">
+<div id="dfb986bb" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>({<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>} <span class="op">==</span> {<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>True</code></pre>
@@ -1107,7 +1107,7 @@ True</code></pre>
 <section id="built-in-sequence-functions-enumerate" class="level2">
 <h2 class="anchored" data-anchor-id="built-in-sequence-functions-enumerate">Built-In Sequence Functions: enumerate</h2>
 <p><code>enumerate</code> tracks the index during iteration:</p>
-<div id="4b9f61d6" class="cell" data-execution_count="49">
+<div id="b2faa8ea" class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>collection <span class="op">=</span> [<span class="st">'foo'</span>, <span class="st">'bar'</span>, <span class="st">'baz'</span>]</span>
 <span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Instead of:</span></span>
@@ -1133,7 +1133,7 @@ Index: 2, Value: baz</code></pre>
 <section id="built-in-sequence-functions-sorted" class="level2">
 <h2 class="anchored" data-anchor-id="built-in-sequence-functions-sorted">Built-In Sequence Functions: sorted</h2>
 <p><code>sorted</code> returns a <em>new</em> sorted list:</p>
-<div id="bda443cc" class="cell" data-execution_count="50">
+<div id="d377a993" class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sorted</span>([<span class="dv">7</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">2</span>]))</span>
 <span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sorted</span>(<span class="st">'horse race'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1158,7 +1158,7 @@ Note
 <section id="built-in-sequence-functions-zip" class="level2">
 <h2 class="anchored" data-anchor-id="built-in-sequence-functions-zip">Built-In Sequence Functions: zip</h2>
 <p><code>zip</code> “pairs up” elements:</p>
-<div id="10d11aa7" class="cell" data-execution_count="51">
+<div id="b8d24f7d" class="cell" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>seq1 <span class="op">=</span> [<span class="st">'foo'</span>, <span class="st">'bar'</span>, <span class="st">'baz'</span>]</span>
 <span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>seq2 <span class="op">=</span> [<span class="st">'one'</span>, <span class="st">'two'</span>, <span class="st">'three'</span>]</span>
 <span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>zipped <span class="op">=</span> <span class="bu">zip</span>(seq1, seq2)</span>
@@ -1168,7 +1168,7 @@ Note
 </div>
 </div>
 <p><code>zip</code> takes any number of sequences. Output length is determined by the <em>shortest</em> sequence:</p>
-<div id="baa4bc9a" class="cell" data-execution_count="52">
+<div id="327486fa" class="cell" data-execution_count="52">
 <div class="sourceCode cell-code" id="cb101"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>seq3 <span class="op">=</span> [<span class="va">False</span>, <span class="va">True</span>]</span>
 <span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(<span class="bu">zip</span>(seq1, seq2, seq3)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1179,7 +1179,7 @@ Note
 <section id="built-in-sequence-functions-zip-with-enumerate" class="level2">
 <h2 class="anchored" data-anchor-id="built-in-sequence-functions-zip-with-enumerate">Built-In Sequence Functions: zip (with enumerate)</h2>
 <p>Iterate over multiple sequences with <code>enumerate</code>:</p>
-<div id="af98e114" class="cell" data-execution_count="53">
+<div id="46e45beb" class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (a, b) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(seq1, seq2)):</span>
 <span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>a<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1192,7 +1192,7 @@ Note
 <section id="built-in-sequence-functions-reversed" class="level2">
 <h2 class="anchored" data-anchor-id="built-in-sequence-functions-reversed">Built-In Sequence Functions: reversed</h2>
 <p><code>reversed</code> iterates in <em>reverse</em> order:</p>
-<div id="696ec019" class="cell" data-execution_count="54">
+<div id="d2ba9e6e" class="cell" data-execution_count="54">
 <div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(<span class="bu">reversed</span>(<span class="bu">range</span>(<span class="dv">10</span>))))  <span class="co"># reversed() is a generator</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]</code></pre>
@@ -1218,7 +1218,7 @@ Note
 </section>
 <section id="list-comprehension-basic-form" class="level2">
 <h2 class="anchored" data-anchor-id="list-comprehension-basic-form">List Comprehension: Basic Form</h2>
-<div id="1217fdc6" class="cell" data-execution_count="55">
+<div id="3e2a7567" class="cell" data-execution_count="55">
 <div class="sourceCode cell-code" id="cb107"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="co"># General form: [expr for val in collection if condition]</span></span>
 <span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb107-3"><a href="#cb107-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Equivalent for loop:</span></span>
@@ -1228,7 +1228,7 @@ Note
 <span id="cb107-7"><a href="#cb107-7" aria-hidden="true" tabindex="-1"></a>        result.append(expr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Example:</p>
-<div id="570cddd0" class="cell" data-execution_count="56">
+<div id="14603e3e" class="cell" data-execution_count="56">
 <div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>strings <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'as'</span>, <span class="st">'bat'</span>, <span class="st">'car'</span>, <span class="st">'dove'</span>, <span class="st">'python'</span>]</span>
 <span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a>upper_case_long_strings <span class="op">=</span> [x.upper() <span class="cf">for</span> x <span class="kw">in</span> strings <span class="cf">if</span> <span class="bu">len</span>(x) <span class="op">&gt;</span> <span class="dv">2</span>]</span>
 <span id="cb108-3"><a href="#cb108-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(upper_case_long_strings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1239,7 +1239,7 @@ Note
 </section>
 <section id="set-comprehension" class="level2">
 <h2 class="anchored" data-anchor-id="set-comprehension">Set Comprehension</h2>
-<div id="69b89f65" class="cell" data-execution_count="57">
+<div id="d4cdacb1" class="cell" data-execution_count="57">
 <div class="sourceCode cell-code" id="cb110"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co"># {expr for val in collection if condition}</span></span>
 <span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a>strings <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'as'</span>, <span class="st">'bat'</span>, <span class="st">'car'</span>, <span class="st">'dove'</span>, <span class="st">'python'</span>]</span>
 <span id="cb110-3"><a href="#cb110-3" aria-hidden="true" tabindex="-1"></a>unique_lengths <span class="op">=</span> {<span class="bu">len</span>(x) <span class="cf">for</span> x <span class="kw">in</span> strings}</span>
@@ -1256,7 +1256,7 @@ Note
 </section>
 <section id="dictionary-comprehension" class="level2">
 <h2 class="anchored" data-anchor-id="dictionary-comprehension">Dictionary Comprehension</h2>
-<div id="4e5ba182" class="cell" data-execution_count="58">
+<div id="71251ffb" class="cell" data-execution_count="58">
 <div class="sourceCode cell-code" id="cb112"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co"># {key_expr: value_expr for val in collection if condition}</span></span>
 <span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a>strings <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'as'</span>, <span class="st">'bat'</span>, <span class="st">'car'</span>, <span class="st">'dove'</span>, <span class="st">'python'</span>]</span>
@@ -1269,7 +1269,7 @@ Note
 </section>
 <section id="nested-list-comprehensions" class="level2">
 <h2 class="anchored" data-anchor-id="nested-list-comprehensions">Nested List Comprehensions</h2>
-<div id="aa9edfe8" class="cell" data-execution_count="59">
+<div id="3100e6ff" class="cell" data-execution_count="59">
 <div class="sourceCode cell-code" id="cb114"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a>all_data <span class="op">=</span> [[<span class="st">'John'</span>, <span class="st">'Emily'</span>, <span class="st">'Michael'</span>, <span class="st">'Mary'</span>, <span class="st">'Steven'</span>],</span>
 <span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a>            [<span class="st">'Maria'</span>, <span class="st">'Juan'</span>, <span class="st">'Javier'</span>, <span class="st">'Natalia'</span>, <span class="st">'Pilar'</span>]]</span>
 <span id="cb114-3"><a href="#cb114-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1311,7 +1311,7 @@ Note
 </section>
 <section id="function-declaration-def" class="level2">
 <h2 class="anchored" data-anchor-id="function-declaration-def">Function Declaration (def)</h2>
-<div id="155d232f" class="cell" data-execution_count="60">
+<div id="6a0f0120" class="cell" data-execution_count="60">
 <div class="sourceCode cell-code" id="cb116"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_function(x, y):</span>
 <span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Docstring: Explains the function."""</span></span>
 <span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y</span>
@@ -1331,7 +1331,7 @@ Docstring: Explains the function.</code></pre>
 </section>
 <section id="function-arguments-positional-and-keyword" class="level2">
 <h2 class="anchored" data-anchor-id="function-arguments-positional-and-keyword">Function Arguments (Positional and Keyword)</h2>
-<div id="9da33ebf" class="cell" data-execution_count="61">
+<div id="2fa1cb50" class="cell" data-execution_count="61">
 <div class="sourceCode cell-code" id="cb118"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_function2(x, y, z<span class="op">=</span><span class="fl">1.5</span>):  <span class="co"># z: keyword, default value</span></span>
 <span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> z <span class="op">&gt;</span> <span class="dv">1</span>:</span>
 <span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> z <span class="op">*</span> (x <span class="op">+</span> y)</span>
@@ -1359,7 +1359,7 @@ Docstring: Explains the function.</code></pre>
 <li>Variables within a function are in the <em>local namespace</em> (default).</li>
 <li>Local namespace: Created on call, destroyed on finish.</li>
 </ul>
-<div id="3fc69afc" class="cell" data-execution_count="62">
+<div id="22a2483d" class="cell" data-execution_count="62">
 <div class="sourceCode cell-code" id="cb120"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> func():</span>
 <span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> []  <span class="co"># 'a' is local</span></span>
 <span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>):</span>
@@ -1371,7 +1371,7 @@ Docstring: Explains the function.</code></pre>
 <ul>
 <li>Access enclosing scopes, but use <code>global</code> or <code>nonlocal</code> to <em>modify</em>.</li>
 </ul>
-<div id="5a9f4d93" class="cell" data-execution_count="63">
+<div id="1dbca8d2" class="cell" data-execution_count="63">
 <div class="sourceCode cell-code" id="cb121"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> []  <span class="co"># Global</span></span>
 <span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb121-3"><a href="#cb121-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> func2():</span>
@@ -1408,7 +1408,7 @@ Caution
 </section>
 <section id="returning-multiple-values" class="level2">
 <h2 class="anchored" data-anchor-id="returning-multiple-values">Returning Multiple Values</h2>
-<div id="4fe1b773" class="cell" data-execution_count="64">
+<div id="cf4b8e18" class="cell" data-execution_count="64">
 <div class="sourceCode cell-code" id="cb123"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f():</span>
 <span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb123-3"><a href="#cb123-3" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> <span class="dv">6</span></span>
@@ -1441,7 +1441,7 @@ Caution
 <li>Assign to variables.</li>
 <li>Return from other functions.</li>
 </ul>
-<div id="084e073b" class="cell" data-execution_count="65">
+<div id="511f17a1" class="cell" data-execution_count="65">
 <div class="sourceCode cell-code" id="cb125"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb125-3"><a href="#cb125-3" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> [<span class="st">'   Alabama '</span>, <span class="st">'Georgia!'</span>, <span class="st">'Georgia'</span>, <span class="st">'georgia'</span>, <span class="st">'FlOrIda'</span>,</span>
@@ -1494,7 +1494,7 @@ West virginia</code></pre>
 <section id="anonymous-lambda-functions" class="level2">
 <h2 class="anchored" data-anchor-id="anonymous-lambda-functions">Anonymous (Lambda) Functions</h2>
 <p>Small, anonymous functions with <code>lambda</code>:</p>
-<div id="d0a985c1" class="cell" data-execution_count="66">
+<div id="9b9b6fa0" class="cell" data-execution_count="66">
 <div class="sourceCode cell-code" id="cb127"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Equivalent to:</span></span>
 <span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a><span class="co"># def short_function(x):</span></span>
 <span id="cb127-3"><a href="#cb127-3" aria-hidden="true" tabindex="-1"></a><span class="co">#     return x * 2</span></span>
@@ -1506,7 +1506,7 @@ West virginia</code></pre>
 </div>
 </div>
 <p>Useful for passing short functions:</p>
-<div id="caef8043" class="cell" data-execution_count="67">
+<div id="8a819f87" class="cell" data-execution_count="67">
 <div class="sourceCode cell-code" id="cb129"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> apply_to_list(some_list, f):</span>
 <span id="cb129-2"><a href="#cb129-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [f(x) <span class="cf">for</span> x <span class="kw">in</span> some_list]</span>
 <span id="cb129-3"><a href="#cb129-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1526,7 +1526,7 @@ West virginia</code></pre>
 <section id="generators" class="level2">
 <h2 class="anchored" data-anchor-id="generators">Generators</h2>
 <p>Generators produce values <em>on demand</em> (memory-efficient).</p>
-<div id="9f227a79" class="cell" data-execution_count="68">
+<div id="4b634e5c" class="cell" data-execution_count="68">
 <div class="sourceCode cell-code" id="cb131"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> squares(n<span class="op">=</span><span class="dv">10</span>):</span>
 <span id="cb131-2"><a href="#cb131-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Generating squares from 1 to </span><span class="sc">%d</span><span class="st">'</span> <span class="op">%</span> n <span class="op">**</span> <span class="dv">2</span>)</span>
 <span id="cb131-3"><a href="#cb131-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n <span class="op">+</span> <span class="dv">1</span>):</span>
@@ -1537,7 +1537,7 @@ West virginia</code></pre>
 <span id="cb131-8"><a href="#cb131-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> gen:  <span class="co"># Request values</span></span>
 <span id="cb131-9"><a href="#cb131-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(x, end<span class="op">=</span><span class="st">' '</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;generator object squares at 0x7f7e083c0d60&gt;
+<pre><code>&lt;generator object squares at 0x7f1e3cd8cba0&gt;
 Generating squares from 1 to 100
 1 4 9 16 25 36 49 64 81 100 </code></pre>
 </div>
@@ -1550,7 +1550,7 @@ Generating squares from 1 to 100
 <section id="generator-expressions" class="level2">
 <h2 class="anchored" data-anchor-id="generator-expressions">Generator Expressions</h2>
 <p>Concise generators (like comprehensions):</p>
-<div id="37751ce1" class="cell" data-execution_count="69">
+<div id="f506d4be" class="cell" data-execution_count="69">
 <div class="sourceCode cell-code" id="cb133"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List comprehension: [x ** 2 for x in range(100)]</span></span>
 <span id="cb133-2"><a href="#cb133-2" aria-hidden="true" tabindex="-1"></a>gen <span class="op">=</span> (x <span class="op">**</span> <span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>)) <span class="co"># Parentheses</span></span>
 <span id="cb133-3"><a href="#cb133-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gen) <span class="co"># generator object</span></span>
@@ -1560,7 +1560,7 @@ Generating squares from 1 to 100
 <span id="cb133-7"><a href="#cb133-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sum</span>(x <span class="op">**</span> <span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>)))</span>
 <span id="cb133-8"><a href="#cb133-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">dict</span>((i, i <span class="op">**</span><span class="dv">2</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;generator object &lt;genexpr&gt; at 0x7f7e36983e00&gt;
+<pre><code>&lt;generator object &lt;genexpr&gt; at 0x7f1e691d39f0&gt;
 328350
 328350
 {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}</code></pre>
@@ -1570,7 +1570,7 @@ Generating squares from 1 to 100
 <section id="itertools-module" class="level2">
 <h2 class="anchored" data-anchor-id="itertools-module">itertools Module</h2>
 <p><code>itertools</code> provides useful generators:</p>
-<div id="8e22d7bc" class="cell" data-execution_count="70">
+<div id="776b27b0" class="cell" data-execution_count="70">
 <div class="sourceCode cell-code" id="cb135"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
 <span id="cb135-2"><a href="#cb135-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb135-3"><a href="#cb135-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> first_letter(x):</span>
@@ -1645,7 +1645,7 @@ Note
 </section>
 <section id="try-except-blocks" class="level2">
 <h2 class="anchored" data-anchor-id="try-except-blocks">try-except Blocks</h2>
-<div id="15d7885b" class="cell" data-execution_count="71">
+<div id="e929ade4" class="cell" data-execution_count="71">
 <div class="sourceCode cell-code" id="cb137"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> attempt_float(x):</span>
 <span id="cb137-2"><a href="#cb137-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
 <span id="cb137-3"><a href="#cb137-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">float</span>(x)</span>
@@ -1666,7 +1666,7 @@ something</code></pre>
 </section>
 <section id="catching-specific-exceptions" class="level2">
 <h2 class="anchored" data-anchor-id="catching-specific-exceptions">Catching Specific Exceptions</h2>
-<div id="8ab2f3d3" class="cell" data-execution_count="72">
+<div id="21c8eb50" class="cell" data-execution_count="72">
 <div class="sourceCode cell-code" id="cb139"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> attempt_float2(x):</span>
 <span id="cb139-2"><a href="#cb139-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
 <span id="cb139-3"><a href="#cb139-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">float</span>(x)</span>
@@ -1679,7 +1679,7 @@ something</code></pre>
 </section>
 <section id="catching-multiple-exception-types" class="level2">
 <h2 class="anchored" data-anchor-id="catching-multiple-exception-types">Catching Multiple Exception Types</h2>
-<div id="77e5ccea" class="cell" data-execution_count="73">
+<div id="750ecb20" class="cell" data-execution_count="73">
 <div class="sourceCode cell-code" id="cb140"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> attempt_float3(x):</span>
 <span id="cb140-2"><a href="#cb140-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
 <span id="cb140-3"><a href="#cb140-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">float</span>(x)</span>
@@ -1694,7 +1694,7 @@ something</code></pre>
 <li><code>finally</code>: <em>Always</em> executes (cleanup).</li>
 <li><code>else</code>: Executes if <code>try</code> completes <em>without</em> exception.</li>
 </ul>
-<div id="a46d94cb" class="cell" data-execution_count="74">
+<div id="f0e5a386" class="cell" data-execution_count="74">
 <div class="sourceCode cell-code" id="cb141"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="bu">open</span>(<span class="st">"tempfile.txt"</span>, mode <span class="op">=</span> <span class="st">"w"</span>) <span class="co"># create a temp file</span></span>
 <span id="cb141-2"><a href="#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
 <span id="cb141-3"><a href="#cb141-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># write_to_file(f)</span></span>
@@ -1704,7 +1704,7 @@ something</code></pre>
 <span id="cb141-7"><a href="#cb141-7" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> os</span>
 <span id="cb141-8"><a href="#cb141-8" aria-hidden="true" tabindex="-1"></a>    os.remove(<span class="st">"tempfile.txt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="53e1a093" class="cell" data-execution_count="75">
+<div id="78b4f043" class="cell" data-execution_count="75">
 <div class="sourceCode cell-code" id="cb142"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="bu">open</span>(<span class="st">"tempfile.txt"</span>, mode <span class="op">=</span> <span class="st">"w"</span>) <span class="co"># create a temp file</span></span>
 <span id="cb142-2"><a href="#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
 <span id="cb142-3"><a href="#cb142-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#write_to_file(f)</span></span>
@@ -1731,7 +1731,7 @@ something</code></pre>
 </section>
 <section id="opening-files-open" class="level2">
 <h2 class="anchored" data-anchor-id="opening-files-open">Opening Files (open)</h2>
-<div id="c315c897" class="cell" data-execution_count="76">
+<div id="9ba48ffe" class="cell" data-execution_count="76">
 <div class="sourceCode cell-code" id="cb144"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> <span class="st">'examples/segismundo.txt'</span></span>
 <span id="cb144-2"><a href="#cb144-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb144-3"><a href="#cb144-3" aria-hidden="true" tabindex="-1"></a><span class="co"># default encoding varies from platform to platform, better to specify explicitly.</span></span>
@@ -1769,7 +1769,7 @@ aunque ninguno lo entiende.
 </section>
 <section id="reading-from-files" class="level2">
 <h2 class="anchored" data-anchor-id="reading-from-files">Reading from Files</h2>
-<div id="a730227f" class="cell" data-execution_count="77">
+<div id="60f0544d" class="cell" data-execution_count="77">
 <div class="sourceCode cell-code" id="cb146"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb146-1"><a href="#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reading all the lines</span></span>
 <span id="cb146-2"><a href="#cb146-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="bu">open</span>(path, encoding<span class="op">=</span><span class="st">"utf-8"</span>)</span>
 <span id="cb146-3"><a href="#cb146-3" aria-hidden="true" tabindex="-1"></a>lines <span class="op">=</span> [x.rstrip() <span class="cf">for</span> x <span class="kw">in</span> f]  <span class="co"># Read, remove whitespace</span></span>
@@ -1783,7 +1783,7 @@ aunque ninguno lo entiende.
 <section id="using-with-for-automatic-file-closing" class="level2">
 <h2 class="anchored" data-anchor-id="using-with-for-automatic-file-closing">Using with for Automatic File Closing</h2>
 <p><code>with</code> automatically closes files:</p>
-<div id="c6ab054c" class="cell" data-execution_count="78">
+<div id="9df8d54f" class="cell" data-execution_count="78">
 <div class="sourceCode cell-code" id="cb148"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb148-1"><a href="#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(path, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
 <span id="cb148-2"><a href="#cb148-2" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> [x.rstrip() <span class="cf">for</span> x <span class="kw">in</span> f]</span>
 <span id="cb148-3"><a href="#cb148-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lines)</span>
@@ -1853,7 +1853,7 @@ Tip
 </section>
 <section id="read-seek-and-tell" class="level2">
 <h2 class="anchored" data-anchor-id="read-seek-and-tell">read, seek, and tell</h2>
-<div id="1ba9b369" class="cell" data-execution_count="79">
+<div id="3df08a97" class="cell" data-execution_count="79">
 <div class="sourceCode cell-code" id="cb150"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a>f1 <span class="op">=</span> <span class="bu">open</span>(path, encoding <span class="op">=</span> <span class="st">"utf-8"</span>)</span>
 <span id="cb150-2"><a href="#cb150-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f1.read(<span class="dv">10</span>))  <span class="co"># 10 *characters*</span></span>
 <span id="cb150-3"><a href="#cb150-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1889,7 +1889,7 @@ utf-8
 </section>
 <section id="writing-to-files" class="level2">
 <h2 class="anchored" data-anchor-id="writing-to-files">Writing to Files</h2>
-<div id="7b2837f2" class="cell" data-execution_count="80">
+<div id="4e8aed62" class="cell" data-execution_count="80">
 <div class="sourceCode cell-code" id="cb152"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'tmp.txt'</span>, <span class="st">'w'</span>, encoding <span class="op">=</span> <span class="st">"utf-8"</span>) <span class="im">as</span> handle:</span>
 <span id="cb152-2"><a href="#cb152-2" aria-hidden="true" tabindex="-1"></a>    handle.writelines(x <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">open</span>(path, encoding <span class="op">=</span> <span class="st">"utf-8"</span>) <span class="cf">if</span> <span class="bu">len</span>(x) <span class="op">&gt;</span> <span class="dv">1</span>)</span>
 <span id="cb152-3"><a href="#cb152-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1983,7 +1983,7 @@ utf-8
 <li>Default: <em>text mode</em> (strings/Unicode).</li>
 <li><code>mode='rb'</code>/<code>'wb'</code>: <em>binary mode</em> (bytes).</li>
 </ul>
-<div id="b0268645" class="cell" data-execution_count="81">
+<div id="e3ddc255" class="cell" data-execution_count="81">
 <div class="sourceCode cell-code" id="cb154"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb154-1"><a href="#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(path, encoding <span class="op">=</span> <span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
 <span id="cb154-2"><a href="#cb154-2" aria-hidden="true" tabindex="-1"></a>    chars <span class="op">=</span> f.read(<span class="dv">10</span>)</span>
 <span id="cb154-3"><a href="#cb154-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(chars))</span>
@@ -2006,7 +2006,7 @@ Sueña el </code></pre>
 <li>Binary: <code>read</code> returns exact bytes.</li>
 <li>Decode complete characters.</li>
 </ul>
-<div id="f95f3e83" class="cell" data-execution_count="82">
+<div id="f103d46b" class="cell" data-execution_count="82">
 <div class="sourceCode cell-code" id="cb156"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a>sink_path <span class="op">=</span> <span class="st">'sink.txt'</span></span>
 <span id="cb156-2"><a href="#cb156-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(path, encoding <span class="op">=</span> <span class="st">"utf-8"</span>) <span class="im">as</span> source:</span>
 <span id="cb156-3"><a href="#cb156-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(sink_path, <span class="st">'x'</span>, encoding<span class="op">=</span><span class="st">'iso-8859-1'</span>) <span class="im">as</span> sink:</span>
