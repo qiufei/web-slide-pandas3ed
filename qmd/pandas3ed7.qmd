@@ -1,0 +1,1690 @@
+---
+title: Python for Data Analysis
+subtitle: Chapter 7 Data Cleaning and Preparation
+---
+
+## Introduction: Why Data Cleaning Matters
+
+- Data analysis and modeling require significant data preparation.
+
+- **Loading, cleaning, transforming, and rearranging** data consumes a large portion of an analyst's time (often 80% or more! 😮).
+
+- Data isn't always in the right format. Real-world data is messy!
+
+- Pandas, combined with Python's built-in features, offers powerful tools for data manipulation.
+
+## Introduction: Pandas for Data Manipulation
+
+- Pandas provides high-level, flexible, and fast tools for data manipulation.
+
+- It's designed to handle real-world data challenges effectively.
+
+- This chapter covers tools for:
+    - Handling missing data.
+    - Dealing with duplicate data.
+    - String manipulation.
+    - Other analytical data transformations.
+
+## 7.1 Handling Missing Data
+
+- Missing data is common in data analysis.
+
+- Pandas aims to make working with missing data as easy as possible.
+
+- Descriptive statistics in pandas exclude missing data by default.
+
+- Pandas uses `NaN` (Not a Number), a floating-point value, to represent missing data, especially for `float64` type.
+
+## 7.1 Handling Missing Data: The `NaN` Sentinel
+
+```{python}
+#| echo: true
+import numpy as np
+import pandas as pd
+
+float_data = pd.Series([1.2, -3.5, np.nan, 0])
+float_data
+```
+
+- `np.nan` is a special floating-point value indicating missing data.
+
+- It's a *sentinel value* – its presence signals a missing or null value.
+
+## 7.1 Handling Missing Data: Detecting with `.isna()`
+
+```{python}
+#| echo: true
+float_data.isna()
+```
+
+- The `.isna()` method returns a Boolean Series.
+
+- `True` indicates a missing value (NaN), and `False` indicates a non-missing value.
+
+## 7.1 Handling Missing Data: NA Convention
+
+- Pandas adopts the R convention: missing data is referred to as **NA** (not available).
+
+- NA can mean:
+    - Data doesn't exist.
+    - Data exists but wasn't observed (e.g., data collection issues).
+
+- Analyzing missing data itself can reveal data collection problems or potential biases. 🤔
+
+## 7.1 Handling Missing Data: `None` is also NA
+
+```{python}
+#| echo: true
+string_data = pd.Series(["aardvark", np.nan, None, "avocado"])
+string_data
+```
+
+```{python}
+#| echo: true
+string_data.isna()
+```
+
+- Python's built-in `None` value is also treated as NA in pandas.
+
+- Both string and numeric Series can hold `None` and `NaN` as NA.
+
+## 7.1 Handling Missing Data: Consistent Handling
+
+```{python}
+#| echo: true
+float_data = pd.Series([1, 2, None], dtype='float64')
+float_data
+```
+
+```{python}
+#| echo: true
+float_data.isna()
+```
+
+- Pandas strives for consistent missing data handling across data types.
+- `float_data` use `NaN` to represent the missing value.
+
+## 7.1 Handling Missing Data: NA Handling Methods
+
+- Key methods for managing missing values.
+
+| Method     | Description                                                                                                                     |
+| :--------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| `dropna`   | Filters out axis labels (rows/columns) based on missing values, with options for thresholds.                                   |
+| `fillna`   | Fills in missing data with a specified value or using interpolation methods (e.g., "ffill", "bfill").                             |
+| `isna`     | Returns a Boolean array/Series indicating which values are missing/NA.                                                          |
+| `notna`    | The negation of `isna`: returns `True` for non-NA values, `False` for NA values.                                                 |
+
+These methods provide the foundation for handling missing data in pandas.
+
+## 7.1 Handling Missing Data: `dropna` on Series
+
+```{python}
+#| echo: true
+data = pd.Series([1, np.nan, 3.5, np.nan, 7])
+data.dropna()
+```
+
+- `dropna()` on a Series returns a new Series with only non-null data and index labels.
+
+- Equivalent to Boolean indexing: `data[data.notna()]`.
+
+## 7.1 Handling Missing Data: `dropna` on DataFrames (Part 1)
+
+```{python}
+#| echo: true
+data = pd.DataFrame([[1., 6.5, 3.], [1., np.nan, np.nan],
+                     [np.nan, np.nan, np.nan], [np.nan, 6.5, 3.]])
+data
+```
+
+## 7.1 Handling Missing Data: `dropna` on DataFrames (Part 2)
+
+```{python}
+#| echo: true
+data.dropna()
+```
+
+- By default, `dropna()` drops any *row* containing *any* NA value.
+
+- This can be very strict.
+
+## 7.1 Handling Missing Data: `dropna` with `how='all'`
+
+```{python}
+#| echo: true
+data.dropna(how="all")
+```
+
+- `how="all"` drops only rows that are *all* NA.
+
+- More lenient than the default behavior.
+
+## 7.1 Handling Missing Data: Dropping Columns (Part 1)
+
+```{python}
+#| echo: true
+data[4] = np.nan
+data
+```
+
+## 7.1 Handling Missing Data: Dropping Columns (Part 2)
+
+```{python}
+#| echo: true
+data.dropna(axis="columns", how="all")
+```
+
+- To drop columns, use `axis="columns"` (or `axis=1`).
+
+- `how="all"` with `axis="columns"` drops columns that are *all* NA.
+
+## 7.1 Handling Missing Data: `dropna` with `thresh` (Part 1)
+
+```{python}
+#| echo: true
+df = pd.DataFrame(np.random.standard_normal((7, 3)))
+df.iloc[:4, 1] = np.nan
+df.iloc[:2, 2] = np.nan
+df
+```
+
+## 7.1 Handling Missing Data: `dropna` with `thresh` (Part 2)
+
+```{python}
+#| echo: true
+df.dropna()
+```
+
+```{python}
+#| echo: true
+df.dropna(thresh=2)
+```
+
+- The `thresh` argument keeps rows with at least `thresh` non-NA values.
+
+- Fine-grained control over which rows to keep.
+
+## 7.1 Handling Missing Data: Filling with `fillna`
+
+```{python}
+#| echo: true
+df.fillna(0)
+```
+
+- `fillna(value)` replaces all NA values with the specified `value`.
+
+- A common choice is 0, but this depends on the context.
+
+## 7.1 Handling Missing Data: `fillna` with a Dictionary
+
+```{python}
+#| echo: true
+df.fillna({1: 0.5, 2: 0})
+```
+
+- Use a dictionary to specify different fill values for each column.
+
+- The dictionary keys are column labels; values are the fill values.
+
+## 7.1 Handling Missing Data: Interpolation with `fillna` (Part 1)
+
+```{python}
+#| echo: true
+df = pd.DataFrame(np.random.standard_normal((6, 3)))
+df.iloc[2:, 1] = np.nan
+df.iloc[4:, 2] = np.nan
+df
+```
+
+## 7.1 Handling Missing Data: Interpolation with `fillna` (Part 2)
+
+```{python}
+#| echo: true
+df.fillna(method="ffill") # Forward fill
+```
+
+- `method="ffill"` (forward fill) propagates the last valid observation forward.
+
+- `method="bfill"` (backward fill) uses the next valid observation to fill the gap.
+- Suitable for time series or ordered data.
+
+## 7.1 Handling Missing Data: `fillna` with `limit`
+
+```{python}
+#| echo: true
+df.fillna(method="ffill", limit=2)
+```
+
+- `limit` restricts the number of consecutive NA values filled by `ffill` or `bfill`.
+
+## 7.1 Handling Missing Data: Imputation with `fillna`
+
+```{python}
+#| echo: true
+data = pd.Series([1., np.nan, 3.5, np.nan, 7])
+data.fillna(data.mean())
+```
+
+- Replace missing values with the mean, median, or other statistics.
+
+- This is a simple form of *imputation*.
+
+## 7.2 Data Transformation
+
+- Filtering and cleaning are essential, but data often needs further transformation.
+
+- This section covers:
+    - Removing duplicates.
+    - Transforming data using functions or mappings.
+    - Replacing values.
+    - Renaming axis indexes.
+    - Discretization and binning.
+    - Detecting and filtering outliers.
+    - Permutation and random sampling.
+    - Computing indicator/dummy variables.
+
+## 7.2 Data Transformation: Removing Duplicates
+
+```{python}
+#| echo: true
+data = pd.DataFrame({"k1": ["one", "two"] * 3 + ["two"],
+                     "k2": [1, 1, 2, 3, 3, 4, 4]})
+data
+```
+
+- Duplicate rows can occur for various reasons.
+
+## 7.2 Data Transformation: Identifying Duplicates with `duplicated()`
+
+```{python}
+#| echo: true
+data.duplicated()
+```
+
+- `duplicated()` returns a Boolean Series indicating whether each row is a duplicate (has appeared earlier).
+
+## 7.2 Data Transformation: Removing Duplicates with `drop_duplicates()`
+
+```{python}
+#| echo: true
+data.drop_duplicates()
+```
+
+- `drop_duplicates()` returns a DataFrame with duplicate rows removed.
+
+- Keeps the *first* occurrence of each unique row.
+
+## 7.2 Data Transformation: `drop_duplicates()` on a Subset of Columns (Part 1)
+
+```{python}
+#| echo: true
+data["v1"] = range(7)
+data
+```
+
+## 7.2 Data Transformation: `drop_duplicates()` on a Subset of Columns (Part 2)
+
+```{python}
+#| echo: true
+data.drop_duplicates(subset=["k1"])
+```
+
+- Specify a subset of columns to check for duplicates using the `subset` argument.
+
+- Here, only the `"k1"` column is considered.
+
+## 7.2 Data Transformation: `drop_duplicates()` with `keep='last'`
+
+```{python}
+#| echo: true
+data.drop_duplicates(["k1", "k2"], keep="last")
+```
+
+- `keep="last"` keeps the *last* occurrence of each unique row (or combination of columns).
+
+- The default is `keep="first"`.
+
+## 7.2 Data Transformation: Transforming Data Using a Function or Mapping (Part 1)
+
+```{python}
+#| echo: true
+data = pd.DataFrame({"food": ["bacon", "pulled pork", "bacon",
+                              "pastrami", "corned beef", "bacon",
+                              "pastrami", "honey ham", "nova lox"],
+                     "ounces": [4, 3, 12, 6, 7.5, 8, 3, 5, 6]})
+data
+```
+
+- Suppose we want to add a column indicating the animal type for each food.
+
+## 7.2 Data Transformation: Using a Mapping Dictionary
+
+```{python}
+#| echo: true
+meat_to_animal = {
+  "bacon": "pig",
+  "pulled pork": "pig",
+  "pastrami": "cow",
+  "corned beef": "cow",
+  "honey ham": "pig",
+  "nova lox": "salmon"
+}
+```
+
+- Create a dictionary mapping each food to its corresponding animal.
+
+## 7.2 Data Transformation: Using `.map()`
+
+```{python}
+#| echo: true
+data["animal"] = data["food"].map(meat_to_animal)
+data
+```
+
+- The `.map()` method of a Series accepts a function or a dictionary-like object (like our mapping).
+
+- It applies the mapping to each element of the Series.
+
+## 7.2 Data Transformation: Using a Function with `.map()`
+
+```{python}
+#| echo: true
+def get_animal(x):
+    return meat_to_animal[x]
+
+data["food"].map(get_animal)
+```
+
+- We could also use a function with `.map()`.
+
+- The function takes a single element from the Series as input and returns the transformed value.
+
+## 7.2 Data Transformation: Replacing Values
+
+```{python}
+#| echo: true
+data = pd.Series([1., -999., 2., -999., -1000., 3.])
+data
+```
+
+- Suppose -999 and -1000 are sentinel values for missing data.
+
+## 7.2 Data Transformation: `replace()` for Single Value
+
+```{python}
+#| echo: true
+data.replace(-999, np.nan)
+```
+
+- `replace(old_value, new_value)` replaces occurrences of `old_value` with `new_value`.
+
+## 7.2 Data Transformation: `replace()` for Multiple Values
+
+```{python}
+#| echo: true
+data.replace([-999, -1000], np.nan)
+```
+
+- Pass a list of old values to replace multiple values at once.
+
+## 7.2 Data Transformation: Different Replacements for Each Value
+
+```{python}
+#| echo: true
+data.replace([-999, -1000], [np.nan, 0])
+```
+
+- Provide a list of replacement values corresponding to the list of old values.
+
+## 7.2 Data Transformation: Using a Dictionary with `replace()`
+
+```{python}
+#| echo: true
+data.replace({-999: np.nan, -1000: 0})
+```
+
+- A dictionary can also be used with `replace()`.
+
+- Keys are old values; values are new values.
+
+## 7.2 Data Transformation: Renaming Axis Indexes (Part 1)
+
+```{python}
+#| echo: true
+data = pd.DataFrame(np.arange(12).reshape((3, 4)),
+                    index=["Ohio", "Colorado", "New York"],
+                    columns=["one", "two", "three", "four"])
+data
+```
+
+- Axis labels (row and column indexes) can also be transformed.
+
+## 7.2 Data Transformation: Modifying Indexes with `.map()` (Part 1)
+
+```{python}
+#| echo: true
+def transform(x):
+    return x[:4].upper()
+
+data.index.map(transform)
+```
+
+## 7.2 Data Transformation: Modifying Indexes with `.map()` (Part 2)
+```{python}
+#| echo: true
+data.index = data.index.map(transform)
+data
+```
+
+- Like Series, axis indexes have a `.map()` method.
+
+- We apply a function to transform each index label.
+
+- Assigning to `data.index` modifies the DataFrame in place.
+
+## 7.2 Data Transformation: `rename()` for Creating a Transformed Copy
+
+```{python}
+#| echo: true
+data.rename(index=str.title, columns=str.upper)
+```
+
+- `rename()` creates a *transformed copy* without modifying the original DataFrame.
+
+- `index` and `columns` arguments can take functions, dictionaries, or Series.
+
+## 7.2 Data Transformation: `rename()` with a Dictionary
+
+```{python}
+#| echo: true
+data.rename(index={"OHIO": "INDIANA"},
+            columns={"three": "peekaboo"})
+```
+
+- Use dictionaries with `rename()` to modify a subset of axis labels.
+
+## 7.2 Data Transformation: Discretization and Binning (Part 1)
+
+- Continuous data is often discretized or binned for analysis.
+
+- Example: Grouping ages into age ranges.
+
+```{python}
+#| echo: true
+ages = [20, 22, 25, 27, 21, 23, 37, 31, 61, 45, 41, 32]
+bins = [18, 25, 35, 60, 100]  # Define bin edges
+age_categories = pd.cut(ages, bins)
+age_categories
+```
+
+- `pd.cut(data, bins)` divides the data into bins based on the specified `bins` edges.
+
+- Returns a special `Categorical` object.
+
+## 7.2 Data Transformation: Understanding the `Categorical` Object (Part 1)
+
+```{python}
+#| echo: true
+age_categories.codes
+```
+
+```{python}
+#| echo: true
+age_categories.categories
+```
+## 7.2 Data Transformation: Understanding the `Categorical` Object (Part 2)
+
+```{python}
+#| echo: true
+age_categories.categories[0]
+```
+
+- `codes`: An array of integers representing the bin each value belongs to (starting from 0).
+- `categories`: An `IntervalIndex` object holding the bin intervals.
+
+## 7.2 Data Transformation: `value_counts()` on `Categorical`
+
+```{python}
+#| echo: true
+pd.value_counts(age_categories)
+```
+
+- `pd.value_counts(categorical)` gives the bin counts for the result of `pd.cut()`.
+
+## 7.2 Data Transformation: Open vs. Closed Intervals
+
+- Parentheses `()` mean the side is *open* (exclusive).
+- Square brackets `[]` mean the side is *closed* (inclusive).
+
+- `(18, 25]` means "greater than 18, up to and including 25."
+
+```{python}
+#| echo: true
+pd.cut(ages, bins, right=False) # Change which side is closed
+```
+- `right=False` changes the closed side of the interval.
+
+## 7.2 Data Transformation: Labeling Bins
+
+```{python}
+#| echo: true
+group_names = ["Youth", "YoungAdult", "MiddleAged", "Senior"]
+pd.cut(ages, bins, labels=group_names)
+```
+
+- `labels` argument assigns custom names to the bins.
+
+- More informative than the default interval labels.
+
+## 7.2 Data Transformation: `pd.cut()` with Number of Bins
+
+```{python}
+#| echo: true
+data = np.random.uniform(size=20)
+pd.cut(data, 4, precision=2) # Cut into 4 equal-length bins
+```
+- Pass an integer number of bins to `pd.cut()` to compute equal-length bins based on min/max values.
+
+- `precision` limits the decimal precision of the bin labels.
+
+## 7.2 Data Transformation: `pd.qcut()` for Quantile Binning
+
+```{python}
+#| echo: true
+data = np.random.standard_normal(1000)
+quartiles = pd.qcut(data, 4, precision=2)  # Cut into quartiles
+quartiles
+```
+
+- `pd.qcut()` bins data based on *sample quantiles*.
+
+- Aims for (roughly) equal-sized bins.
+
+- Useful for dividing data into percentiles.
+
+## 7.2 Data Transformation: `pd.qcut()` with Custom Quantiles
+
+```{python}
+#| echo: true
+pd.qcut(data, [0, 0.1, 0.5, 0.9, 1.]).value_counts()
+```
+- Pass custom quantiles (values between 0 and 1) to `pd.qcut()`.
+
+- Example: Dividing into deciles (0.1, 0.2, ..., 0.9).
+
+## 7.2 Data Transformation: Detecting and Filtering Outliers (Part 1)
+
+- Outlier filtering/transformation is often an array operation.
+
+```{python}
+#| echo: true
+data = pd.DataFrame(np.random.standard_normal((1000, 4)))
+data.describe()
+```
+- Example DataFrame with normally distributed data.
+
+## 7.2 Data Transformation: Finding Values Exceeding a Threshold
+
+```{python}
+#| echo: true
+col = data[2]
+col[col.abs() > 3]
+```
+- Find values in column 2 with an absolute value greater than 3.
+
+## 7.2 Data Transformation: Selecting Rows Based on Outliers
+
+```{python}
+#| echo: true
+data[(data.abs() > 3).any(axis="columns")]
+```
+
+- `data.abs() > 3`: Boolean DataFrame indicating values exceeding 3 or -3.
+
+- `any(axis="columns")`: Checks if *any* value in a row is `True`.
+
+- Selects all rows containing at least one outlier value.
+
+## 7.2 Data Transformation: Capping Values
+
+```{python}
+#| echo: true
+data[data.abs() > 3] = np.sign(data) * 3
+data.describe()
+```
+
+- `np.sign(data)`: Returns -1 for negative values, 1 for positive values.
+
+- Cap values outside the interval [-3, 3] to -3 and 3.
+
+## 7.2 Data Transformation: Permutation and Random Sampling (Part 1)
+
+- Permuting (randomly reordering) rows or columns.
+
+- Selecting a random subset of data.
+
+```{python}
+#| echo: true
+df = pd.DataFrame(np.arange(5 * 7).reshape((5, 7)))
+df
+```
+- Create a sample DataFrame.
+
+## 7.2 Data Transformation: Permuting Rows with `permutation()` (Part 1)
+
+```{python}
+#| echo: true
+sampler = np.random.permutation(5) # Random permutation of integers 0-4
+sampler
+```
+
+## 7.2 Data Transformation: Permuting Rows with `permutation()` (Part 2)
+
+```{python}
+#| echo: true
+df.take(sampler)  # or df.iloc[sampler]
+```
+
+- `np.random.permutation(n)` generates a random permutation of integers 0 to n-1.
+
+- `take()` or `iloc[]` can be used with the permutation to reorder rows.
+
+## 7.2 Data Transformation: Permuting Columns (Part 1)
+
+```{python}
+#| echo: true
+column_sampler = np.random.permutation(7)
+column_sampler
+```
+
+## 7.2 Data Transformation: Permuting Columns (Part 2)
+
+```{python}
+#| echo: true
+df.take(column_sampler, axis="columns")
+```
+
+- Permute columns similarly, using `axis="columns"` with `take()`.
+
+## 7.2 Data Transformation: Random Sampling without Replacement
+
+```{python}
+#| echo: true
+df.sample(n=3)  # Select 3 random rows
+```
+
+- `sample(n=k)` selects `k` random rows *without* replacement.
+
+## 7.2 Data Transformation: Random Sampling with Replacement
+
+```{python}
+#| echo: true
+choices = pd.Series([5, 7, -1, 6, 4])
+choices.sample(n=10, replace=True) # Sample with replacement
+```
+
+- `replace=True` allows sampling *with* replacement (the same row can be chosen multiple times).
+
+## 7.2 Data Transformation: Computing Indicator/Dummy Variables (Part 1)
+
+- Converting a categorical variable into a "dummy" or "indicator" matrix.
+
+- Used in statistical modeling and machine learning.
+
+```{python}
+#| echo: true
+df = pd.DataFrame({"key": ["b", "b", "a", "c", "a", "b"],
+                   "data1": range(6)})
+df
+```
+
+- Example DataFrame with a categorical column "key".
+
+## 7.2 Data Transformation: `get_dummies()`
+
+```{python}
+#| echo: true
+pd.get_dummies(df["key"])
+```
+
+- `pd.get_dummies(categorical_column)` creates a DataFrame where:
+    - Each unique value in the original column becomes a new column.
+    - Values are 1 if the original row had that category, 0 otherwise.
+
+## 7.2 Data Transformation: Adding a Prefix to Dummy Variables
+
+```{python}
+#| echo: true
+dummies = pd.get_dummies(df["key"], prefix="key")
+df_with_dummy = df[["data1"]].join(dummies)
+df_with_dummy
+```
+
+- `prefix` argument adds a prefix to the dummy variable column names.
+
+- Useful when joining with the original DataFrame.
+
+## 7.2 Data Transformation: Handling Multiple Categories (MovieLens Example) (Part 1)
+
+```{python}
+#| echo: true
+mnames = ["movie_id", "title", "genres"]
+movies = pd.read_table("datasets/movielens/movies.dat", sep="::",
+                       header=None, names=mnames, engine="python")
+movies[:10]
+```
+- MovieLens dataset: "genres" column contains pipe-separated (|) genre strings.
+- A movie can belong to multiple genres.
+
+## 7.2 Data Transformation: `str.get_dummies()` for Multiple Categories
+
+```{python}
+#| echo: true
+dummies = movies["genres"].str.get_dummies("|")
+dummies.iloc[:10, :6]  # Show first 10 rows and 6 columns
+```
+
+- `str.get_dummies(separator)` handles multiple categories separated by a delimiter.
+
+## 7.2 Data Transformation: Combining with the Original DataFrame
+
+```{python}
+#| echo: true
+movies_windic = movies.join(dummies.add_prefix("Genre_"))
+movies_windic.iloc[0]
+```
+
+- `add_prefix()` adds a prefix to the dummy variable columns.
+- `join()` combines the dummy variables with the original DataFrame.
+
+## 7.2 Data Transformation: Combining `get_dummies()` and `cut()` (Part 1)
+
+```{python}
+#| echo: true
+np.random.seed(12345)
+values = np.random.uniform(size=10)
+values
+```
+
+## 7.2 Data Transformation: Combining `get_dummies()` and `cut()` (Part 2)
+
+```{python}
+#| echo: true
+bins = [0, 0.2, 0.4, 0.6, 0.8, 1]
+pd.get_dummies(pd.cut(values, bins))
+```
+
+- A recipe for statistical applications: Combine `get_dummies()` with discretization functions like `cut()`.
+
+- Creates indicator variables for each bin.
+
+## 7.3 Extension Data Types
+
+- Pandas' original reliance on NumPy had limitations:
+    - Incomplete missing data handling for integers and Booleans.
+    - String data was computationally expensive.
+    - Some data types (time intervals, timedeltas) weren't efficiently supported.
+
+- Pandas now has an *extension type* system.
+    - Allows adding new data types not natively supported by NumPy.
+    - Treats these types as first-class citizens.
+
+## 7.3 Extension Data Types: Integer Example (Part 1)
+
+```{python}
+#| echo: true
+s = pd.Series([1, 2, 3, None])
+s
+```
+
+```{python}
+#| echo: true
+s.dtype
+```
+
+- Traditional behavior: Integer Series with missing values becomes `float64`.
+
+## 7.3 Extension Data Types: `Int64Dtype` (Part 1)
+
+```{python}
+#| echo: true
+s = pd.Series([1, 2, 3, None], dtype=pd.Int64Dtype())
+s
+```
+
+## 7.3 Extension Data Types: `Int64Dtype` (Part 2)
+
+```{python}
+#| echo: true
+s.isna()
+```
+
+```{python}
+#| echo: true
+s.dtype
+```
+- `pd.Int64Dtype()` (or `"Int64"`) creates an integer Series with proper NA handling.
+
+- Uses `<NA>` to indicate missing values (pandas.NA sentinel value).
+
+## 7.3 Extension Data Types: String Example
+
+```{python}
+#| echo: true
+s = pd.Series(['one', 'two', None, 'three'], dtype=pd.StringDtype())
+s
+```
+
+```{python}
+#| echo: true
+s.dtype
+```
+
+- `pd.StringDtype()` creates a specialized string data type.
+- More memory-efficient and computationally efficient for large datasets.
+- Requires the `pyarrow` library.
+
+## 7.3 Extension Data Types:  `astype()` (Part 1)
+```{python}
+df = pd.DataFrame({"A": [1, 2, None, 4],
+                    "B": ["one", "two", "three", None],
+                   "C": [False, None, False, True]})
+df
+```
+
+## 7.3 Extension Data Types:  `astype()` (Part 2)
+```{python}
+df["A"] = df["A"].astype("Int64")
+df["B"] = df["B"].astype("string")
+df["C"] = df["C"].astype("boolean")
+df
+```
+- Extension types are well-integrated with existing tools. You can use astype() method to convert different types.
+
+## 7.3 Extension Data Types: Summary
+
+- A reasonably complete list of extension types available.
+
+| Extension type      | Description                                                              |
+| :------------------ | :----------------------------------------------------------------------- |
+| `BooleanDtype`     | Nullable Boolean data, use `"boolean"` when passing as string          |
+| `CategoricalDtype` | Categorical data type, use `"category"` when passing as string           |
+| `DatetimeTZDtype`  | Datetime with time zone                                                  |
+| `Float32Dtype`     | 32-bit nullable floating point, use `"Float32"` when passing as string    |
+| `Float64Dtype`     | 64-bit nullable floating point, use `"Float64"` when passing as string    |
+| `Int8Dtype`        | 8-bit nullable signed integer, use `"Int8"` when passing as string       |
+| `Int16Dtype`       | 16-bit nullable signed integer, use `"Int16"` when passing as string      |
+| `Int32Dtype`       | 32-bit nullable signed integer, use `"Int32"` when passing as string      |
+| `Int64Dtype`       | 64-bit nullable signed integer, use `"Int64"` when passing as string      |
+| `UInt8Dtype`       | 8-bit nullable unsigned integer, use `"UInt8"` when passing as string     |
+| `UInt16Dtype`      | 16-bit nullable unsigned integer, use `"UInt16"` when passing as string    |
+| `UInt32Dtype`      | 32-bit nullable unsigned integer, use `"UInt32"` when passing as string    |
+| `UInt64Dtype`      | 64-bit nullable unsigned integer, use `"UInt64"` when passing as string    |
+
+## 7.4 String Manipulation
+
+- Python is popular for string/text processing.
+
+- String object methods are often sufficient.
+
+- Regular expressions (regex) provide more power.
+
+- Pandas combines these, handling missing data gracefully.
+
+## 7.4 String Manipulation: Python Built-In String Methods (Part 1)
+
+```{python}
+#| echo: true
+val = "a,b,  guido"
+val.split(",")
+```
+
+- `split()`: Breaks a string into a list of substrings based on a delimiter.
+
+## 7.4 String Manipulation: Python Built-In String Methods (Part 2)
+
+```{python}
+#| echo: true
+pieces = [x.strip() for x in val.split(",")]
+pieces
+```
+
+- `strip()`: Removes leading/trailing whitespace.  Often used with `split()`.
+
+## 7.4 String Manipulation: String Concatenation (Part 1)
+
+```{python}
+#| echo: true
+first, second, third = pieces
+first + "::" + second + "::" + third  # Using + operator
+```
+
+## 7.4 String Manipulation: String Concatenation (Part 2)
+
+```{python}
+#| echo: true
+"::".join(pieces) # More Pythonic way,using join()
+```
+
+- `join()`:  A more Pythonic way to concatenate strings with a delimiter.
+
+## 7.4 String Manipulation: Substring Detection (Part 1)
+
+```{python}
+#| echo: true
+"guido" in val
+```
+
+```{python}
+#| echo: true
+val.index(",")  # Raises ValueError if not found
+```
+## 7.4 String Manipulation: Substring Detection (Part 2)
+
+```{python}
+#| echo: true
+val.find(":")   # Returns -1 if not found
+```
+
+- `in`: The best way to check if a substring exists.
+
+- `index()`: Finds the first occurrence of a substring; raises an error if not found.
+
+- `find()`: Similar to `index()`, but returns -1 if not found.
+
+## 7.4 String Manipulation: `count()` and `replace()` (Part 1)
+
+```{python}
+#| echo: true
+val.count(",") # Counts occurrences of a substring
+```
+```{python}
+#| echo: true
+val.replace(",", "::")
+```
+
+## 7.4 String Manipulation: `count()` and `replace()` (Part 2)
+
+```{python}
+#| echo: true
+val.replace(",", "")  # Delete occurrences by replacing with empty string
+```
+- `count()`: Counts the number of occurrences of a substring.
+- `replace()`: Substitutes occurrences of one pattern with another.
+
+## 7.4 String Manipulation: Python Built-in string methods - Summary
+
+- Overview of common string operations.
+
+| Method       | Description                                                                                                                 |
+| :----------- | :-------------------------------------------------------------------------------------------------------------------------- |
+| `count`      | Return the number of nonoverlapping occurrences of substring in the string                                                    |
+| `endswith`   | Return `True` if string ends with suffix                                                                                      |
+| `startswith` | Return `True` if string starts with prefix                                                                                    |
+| `join`       | Use string as delimiter for concatenating a sequence of other strings                                                         |
+| `index`      | Return starting index of the first occurrence of passed substring if found in the string; otherwise, raises `ValueError` if not found |
+| `find`       | Return position of first character of first occurrence of substring in the string; like index, but returns -1 if not found     |
+| `rfind`      | Return position of first character of *last* occurrence of substring in the string; returns -1 if not found                   |
+| `replace`    | Replace occurrences of string with another string                                                                           |
+| `strip`      | Trim whitespace, including newlines on *both* sides                                                                          |
+| `rstrip`     | Trim whitespace on *right* side                                                                                             
+
+```python
+#| echo: false
+import re
+```
+
+## 7.4 String Manipulation: Python Built-in string methods - Summary (Continued)
+
+| Method       | Description                                                                                                                 |
+| :----------- | :-------------------------------------------------------------------------------------------------------------------------- |
+| `lstrip`     | Trim whitespace on *left* side                                                                                               |
+| `split`      | Break string into list of substrings using passed delimiter                                                                    |
+| `lower`      | Convert alphabet characters to lowercase                                                                                       |
+| `upper`      | Convert alphabet characters to uppercase                                                                                       |
+| `casefold`   | Convert characters to lowercase, handling region-specific variations                                                           |
+| `ljust`      | Left justify; pad right side with spaces (or other fill character)                                                           |
+| `rjust`      | Right justify; pad left side with spaces (or other fill character)                                                          |
+
+## 7.4 String Manipulation: Regular Expressions
+
+- Regular expressions (regex) provide a powerful way to search, match, and manipulate text patterns.
+
+- Python's built-in `re` module handles regular expressions.
+
+- Regex functions fall into three categories:
+    - Pattern matching.
+    - Substitution.
+    - Splitting.
+
+## 7.4 String Manipulation: Regex Example - Splitting
+
+```{python}
+#| echo: true
+import re
+text = "foo    bar\t baz  \tqux"
+re.split(r"\s+", text)  # Split on one or more whitespace characters
+```
+
+- `\s+`: Regex for one or more whitespace characters.
+
+- `re.split(pattern, text)`: Splits the text based on the regex pattern.
+
+## 7.4 String Manipulation: Compiling Regex Objects
+
+```{python}
+#| echo: true
+regex = re.compile(r"\s+")  # Compile the regex
+regex.split(text)
+```
+
+- `re.compile(pattern)`: Compiles a regex into a reusable regex object.
+
+- Recommended if you'll apply the same regex to multiple strings (saves CPU cycles).
+
+## 7.4 String Manipulation: `findall()`
+
+```{python}
+#| echo: true
+regex.findall(text)
+```
+
+- `findall()`: Returns a list of all non-overlapping matches of the pattern in the string.
+
+## 7.4 String Manipulation: Regex Example - Email Matching
+
+```{python}
+#| echo: true
+text = """Dave dave@google.com
+Steve steve@gmail.com
+Rob rob@gmail.com
+Ryan ryan@yahoo.com"""
+
+pattern = r"[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}"  # Basic email regex
+
+# re.IGNORECASE makes the regex case-insensitive
+regex = re.compile(pattern, flags=re.IGNORECASE)
+```
+
+- A more complex regex to match email addresses.
+
+- `re.IGNORECASE` flag makes the match case-insensitive.
+
+## 7.4 String Manipulation: `findall()` with Email Regex
+
+```{python}
+#| echo: true
+regex.findall(text)
+```
+
+- `findall()` returns a list of all matched email addresses.
+
+## 7.4 String Manipulation: `search()` (Part 1)
+
+```{python}
+#| echo: true
+m = regex.search(text)
+m
+```
+
+## 7.4 String Manipulation: `search()` (Part 2)
+
+```{python}
+#| echo: true
+text[m.start():m.end()]
+```
+
+- `search()`: Returns a *match object* for the *first* match in the string.
+
+- The match object gives the start and end positions of the match.
+- `regex.match()` Returns `None`.
+
+## 7.4 String Manipulation: `sub()`
+
+```{python}
+#| echo: true
+print(regex.sub("REDACTED", text))
+```
+
+- `sub(replacement, text)`: Returns a new string with occurrences of the pattern replaced by the `replacement` string.
+
+## 7.4 String Manipulation: Regex Groups (Part 1)
+
+```{python}
+#| echo: true
+pattern = r"([A-Z0-9._%+-]+)@([A-Z0-9.-]+)\.([A-Z]{2,4})"  # Regex with groups
+regex = re.compile(pattern, flags=re.IGNORECASE)
+
+m = regex.match("wesm@bright.net")
+m.groups()
+```
+- Parentheses `()` in a regex define *capture groups*.
+
+## 7.4 String Manipulation: Regex Groups (Part 2)
+
+- `groups()` method of a match object returns a tuple of the captured group contents.
+
+## 7.4 String Manipulation: `findall()` with Groups
+
+```{python}
+#| echo: true
+regex.findall(text)
+```
+- When a regex has groups, `findall()` returns a list of *tuples*, where each tuple contains the captured groups.
+
+## 7.4 String Manipulation: `sub()` with Group References
+
+```{python}
+#| echo: true
+print(regex.sub(r"Username: \1, Domain: \2, Suffix: \3", text))
+```
+
+- In `sub()`, `\1`, `\2`, etc., refer to the captured groups (backreferences).
+
+## 7.4 String Manipulation: Regular expression methods - Summary
+
+| Method        | Description                                                                                                                                         |
+| :------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `findall`     | Return all nonoverlapping matching patterns in a string as a list                                                                                   |
+| `finditer`    | Like `findall`, but returns an iterator                                                                                                            |
+| `match`       | Match pattern at *start* of string and optionally segment pattern components into groups; if the pattern matches, return a match object, and otherwise `None` |
+| `search`      | Scan string for match to pattern, returning a match object if so; unlike `match`, the match can be *anywhere* in the string                       |
+| `split`       | Break string into pieces at each occurrence of pattern                                                                                              |
+| `sub`, `subn` | Replace all (`sub`) or first *n* occurrences (`subn`) of pattern in string with replacement expression; use symbols `\1`, `\2`, ...                |
+
+## 7.4 String Manipulation: String Functions in pandas
+
+- Pandas extends string manipulation to Series and DataFrames.
+
+- Handles missing data gracefully.
+
+```{python}
+#| echo: true
+data = {"Dave": "dave@google.com", "Steve": "steve@gmail.com",
+        "Rob": "rob@gmail.com", "Wes": np.nan}
+data = pd.Series(data)
+data
+```
+
+```{python}
+#| echo: true
+data.isna()
+```
+- Example Series with string data and a missing value.
+
+## 7.4 String Manipulation: `str` Accessor
+
+```{python}
+#| echo: true
+data.str.contains("gmail")
+```
+
+- Series has a `str` attribute that provides access to string methods.
+
+- These methods skip over and propagate NA values.
+
+## 7.4 String Manipulation: `str.contains()`
+
+- `str.contains(substring)`: Checks if each string contains the given substring.
+
+- Returns a Boolean Series.
+
+## 7.4 String Manipulation: Using Regex with `str` Methods
+
+```{python}
+#| echo: true
+pattern = r"([A-Z0-9._%+-]+)@([A-Z0-9.-]+)\.([A-Z]{2,4})"
+data.str.findall(pattern, flags=re.IGNORECASE)
+```
+
+- Regular expressions can be used with `str` methods.
+- `flags` (like `re.IGNORECASE`) can be passed.
+
+## 7.4 String Manipulation: Vectorized Element Retrieval (Part 1)
+
+```{python}
+#| echo: true
+matches = data.str.findall(pattern, flags=re.IGNORECASE).str[0]
+matches
+```
+
+```{python}
+#| echo: true
+matches.str.get(1) # Accessing the group
+```
+
+## 7.4 String Manipulation: Vectorized Element Retrieval (Part 2)
+
+```{python}
+#| echo: true
+data.str[:5]  # String slicing
+```
+- Vectorized element retrieval: Use `str.get(i)` or index into the `str` attribute (`str[i]`).
+
+## 7.4 String Manipulation: `str.extract()`
+
+```{python}
+#| echo: true
+data.str.extract(pattern, flags=re.IGNORECASE)
+```
+
+- `str.extract(pattern)`: Returns a *DataFrame* where each captured group in the regex becomes a column.
+
+## 7.4 String Manipulation: Partial listing of `Series` string methods - Summary
+
+| Method        | Description                                                                                                                               |
+| :------------ | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| `cat`         | Concatenate strings element-wise with optional delimiter                                                                                   |
+| `contains`    | Return Boolean array if each string contains pattern/regex                                                                                 |
+| `count`       | Count occurrences of pattern                                                                                                               |
+| `extract`     | Use a regular expression with groups to extract one or more strings from a Series of strings; the result will be a DataFrame with one column per group |
+| `endswith`    | Equivalent to `x.endswith(pattern)` for each element                                                                                      |
+| `startswith`  | Equivalent to `x.startswith(pattern)` for each element                                                                                    |
+| `findall`     | Compute list of all occurrences of pattern/regex for each string                                                                          |
+| `get`         | Index into each element (retrieve *i*-th element)                                                                                        |
+| `isalnum`     | Equivalent to built-in `str.isalnum`                                                                                                       |
+| `isalpha`     | Equivalent to built-in `str.isalpha`                                                                                                       |
+| `isdecimal`   | Equivalent to built-in `str.isdecimal`                                                                                                     |
+| `isdigit`     | Equivalent to built-in `str.isdigit`                                                                                                       |
+| `islower`     | Equivalent to built-in `str.islower`                                                                                                       |
+| `isnumeric`   | Equivalent to built-in `str.isnumeric`                                                                                                     |
+| `isupper`     | Equivalent to built-in `str.isupper`                                                                                                       |
+| `join`        | Join strings in each element of the Series with passed separator                                                                          |
+| `len`         | Compute length of each string                                                                                                             |
+| `lower, upper`| Convert cases; equivalent to `x.lower()` or `x.upper()` for each element                                                                 |
+| `match`       | Use `re.match` with the passed regular expression on each element, returning `True` or `False` whether it matches                       |
+| `pad`         | Add whitespace to left, right, or both sides of strings                                                                                  |
+| `center`      | Equivalent to `pad(side="both")`                                                                                                          |
+| `repeat`      | Duplicate values (e.g., `s.str.repeat(3)` is equivalent to `x * 3` for each string)                                                       |
+| `replace`     | Replace occurrences of pattern/regex with some other string                                                                              |
+| `slice`       | Slice each string in the Series                                                                                                            |
+| `split`       | Split strings on delimiter or regular expression                                                                                           |
+| `strip`       | Trim whitespace from both sides, including newlines                                                                                        |
+| `rstrip`      | Trim whitespace on right side                                                                                                             |
+| `lstrip`      | Trim whitespace on left side                                                                                                              |
+
+## 7.5 Categorical Data
+
+- Introduces the pandas `Categorical` type.
+
+- Improves performance and memory use in some pandas operations.
+
+- Useful for statistical and machine learning applications.
+
+## 7.5 Categorical Data: Background and Motivation (Part 1)
+
+- Columns often contain repeated instances of a smaller set of distinct values.
+
+- *Dimension tables* are a common technique in data warehousing.
+    - Distinct values are stored in the dimension table.
+    - Primary observations are stored as integer keys referencing the dimension table.
+- More efficient storage and computation.
+
+## 7.5 Categorical Data: Background and Motivation (Part 2)
+
+```{python}
+#| echo: true
+values = pd.Series(['apple', 'orange', 'apple',
+                    'apple'] * 2)
+values
+```
+
+```{python}
+#| echo: true
+pd.unique(values)
+```
+
+```{python}
+#| echo: true
+pd.value_counts(values)
+```
+
+## 7.5 Categorical Data: Dimension Table Representation (Part 1)
+
+```{python}
+#| echo: true
+values = pd.Series([0, 1, 0, 0] * 2)
+dim = pd.Series(['apple', 'orange'])
+values
+```
+
+## 7.5 Categorical Data: Dimension Table Representation (Part 2)
+
+```{python}
+#| echo: true
+dim
+```
+- `values`: Integer keys referencing the dimension table.
+
+- `dim`: Dimension table containing the distinct values.
+
+## 7.5 Categorical Data: Restoring Original Data with `take()`
+
+```{python}
+#| echo: true
+dim.take(values)
+```
+- `take()` method can be used to restore the original Series of strings.
+
+## 7.5 Categorical Data: Terminology
+
+- *Categorical* or *dictionary-encoded* representation: Representing data with repeated values as integers.
+
+- *Categories*, *dictionary*, or *levels*: The array of distinct values.
+
+- *Category codes* or *codes*: The integer values referencing the categories.
+
+## 7.5 Categorical Data: Benefits
+
+- Significant performance improvements in analytics.
+
+- Transformations on categories while leaving codes unmodified.
+    - Renaming categories.
+    - Appending new categories.
+
+## 7.5 Categorical Data: `Categorical` Extension Type in pandas (Part 1)
+
+```{python}
+#| echo: true
+fruits = ['apple', 'orange', 'apple', 'apple'] * 2
+N = len(fruits)
+rng = np.random.default_rng(seed=12345)
+df = pd.DataFrame({'fruit': fruits,
+                   'basket_id': np.arange(N),
+                   'count': rng.integers(3, 15, size=N),
+                   'weight': rng.uniform(0, 4, size=N)},
+                  columns=['basket_id', 'fruit', 'count', 'weight'])
+df
+```
+
+- Example DataFrame with a "fruit" column (string objects).
+
+## 7.5 Categorical Data: Converting to Categorical
+
+```{python}
+#| echo: true
+fruit_cat = df['fruit'].astype('category')
+fruit_cat
+```
+
+- `astype('category')`: Converts a column to the `Categorical` type.
+
+## 7.5 Categorical Data: Accessing the `Categorical` Object
+
+```{python}
+#| echo: true
+c = fruit_cat.array
+type(c)
+```
+- The `.array` attribute accesses the underlying `Categorical` object.
+
+## 7.5 Categorical Data: `categories` and `codes` Attributes (Part 1)
+
+```{python}
+#| echo: true
+c.categories
+```
+
+```{python}
+#| echo: true
+c.codes
+```
+- `categories`: The distinct values.
+
+## 7.5 Categorical Data: `categories` and `codes` Attributes (Part 2)
+
+- `codes`: Integer codes representing each value's category.
+
+## 7.5 Categorical Data: Converting a DataFrame Column
+
+```{python}
+#| echo: true
+df['fruit'] = df['fruit'].astype('category')
+df["fruit"]
+```
+
+- Convert a DataFrame column to categorical by assigning the result of `astype('category')`.
+
+## 7.5 Categorical Data: Creating `Categorical` Directly
+
+```{python}
+#| echo: true
+my_categories = pd.Categorical(['foo', 'bar', 'baz', 'foo', 'bar'])
+my_categories
+```
+
+- Create `Categorical` objects directly from Python sequences.
+
+## 7.5 Categorical Data: `from_codes()` Constructor
+
+```{python}
+#| echo: true
+categories = ['foo', 'bar', 'baz']
+codes = [0, 1, 2, 0, 0, 1]
+my_cats_2 = pd.Categorical.from_codes(codes, categories)
+my_cats_2
+```
+
+- `from_codes(codes, categories)`: Creates a `Categorical` from existing codes and categories.
+
+## 7.5 Categorical Data: Ordered Categories (Part 1)
+
+```{python}
+#| echo: true
+ordered_cat = pd.Categorical.from_codes(codes, categories,
+                                        ordered=True)
+ordered_cat
+```
+
+## 7.5 Categorical Data: Ordered Categories (Part 2)
+
+```{python}
+#| echo: true
+my_cats_2.as_ordered() # unordered categorical instance can be made ordered
+```
+
+- `ordered=True`: Indicates that the categories have a meaningful order.
+
+- By default, categories are unordered.
+
+## 7.5 Categorical Data: Computations with Categoricals (Part 1)
+
+- Using `Categorical` generally behaves the same as the non-encoded version (e.g., string array).
+
+- Some pandas functions (like `groupby`) perform better with categoricals.
+
+```{python}
+#| echo: true
+rng = np.random.default_rng(seed=12345)
+draws = rng.standard_normal(1000)
+draws[:5]
+```
+
+## 7.5 Categorical Data: `qcut()` and Categoricals (Part 1)
+
+```{python}
+#| echo: true
+bins = pd.qcut(draws, 4) # quartile binning
+bins
+```
+## 7.5 Categorical Data: `qcut()` and Categoricals (Part 2)
+
+```{python}
+#| echo: true
+bins = pd.qcut(draws, 4, labels=['Q1', 'Q2', 'Q3', 'Q4'])
+bins
+```
+```{python}
+#| echo: true
+bins.codes[:10]
+```
+
+- `pd.qcut()` returns a `Categorical` object.
+
+- `labels` argument to give names.
+
+## 7.5 Categorical Data: `groupby()` with Categoricals (Part 1)
+
+```{python}
+#| echo: true
+bins = pd.Series(bins, name='quartile')
+results = (pd.Series(draws)
+           .groupby(bins)
+           .agg(['count', 'min', 'max'])
+           .reset_index())
+results
+```
+## 7.5 Categorical Data: `groupby()` with Categoricals (Part 2)
+
+```{python}
+#| echo: true
+results['quartile']
+```
+
+- The 'quartile' column in the result retains the original categorical information.
+
+## 7.5 Categorical Data: Performance Benefits (Part 1)
+
+```{python}
+#| echo: true
+N = 10_000_000
+labels = pd.Series(['foo', 'bar', 'baz', 'qux'] * (N // 4))
+categories = labels.astype('category')
+```
+
+## 7.5 Categorical Data: Performance Benefits (Part 2)
+
+```{python}
+#| echo: true
+labels.memory_usage(deep=True)
+```
+
+```{python}
+#| echo: true
+categories.memory_usage(deep=True)
+```
+- Categoricals use significantly less memory than strings.
+
+## 7.5 Categorical Data: Categorical Methods
+
+- Series containing categorical data have special methods (similar to `Series.str`).
+
+- Accessed via the `cat` accessor.
+
+```{python}
+#| echo: true
+s = pd.Series(['a', 'b', 'c', 'd'] * 2)
+cat_s = s.astype('category')
+cat_s
+```
+
+## 7.5 Categorical Data: `cat` Accessor
+
+```{python}
+#| echo: true
+cat_s.cat.codes
+```
+
+```{python}
+#| echo: true
+cat_s.cat.categories
+```
+
+- The `cat` accessor provides access to categorical methods and attributes.
+
+## 7.5 Categorical Data: `set_categories()`
+
+```{python}
+#| echo: true
+actual_categories = ['a', 'b', 'c', 'd', 'e']
+cat_s2 = cat_s.cat.set_categories(actual_categories)
+cat_s2
+```
+
+- `set_categories()`: Changes the set of categories.
+
+- Useful when the data doesn't include all possible categories.
+
+## 7.5 Categorical Data: `value_counts()` with `set_categories()`
+
+```{python}
+#| echo: true
+cat_s.value_counts()
+```
+
+```{python}
+#| echo: true
+cat_s2.value_counts()
+```
+
+- `value_counts()` respects the categories defined, even if some aren't present in the data.
+
+## 7.5 Categorical Data: `remove_unused_categories()`
+
+```{python}
+#| echo: true
+cat_s3 = cat_s[cat_s.isin(['a', 'b'])]
+cat_s3
+```
+
+```{python}
+#| echo: true
+cat_s3.cat.remove_unused_categories()
+```
+
+- `remove_unused_categories()`: Removes categories that don't appear in the data.
+- Useful for memory savings after filtering.
+
+## 7.5 Categorical Data: Categorical methods - Summary
+
+| Method                    | Description                                                                                                               |
+| :------------------------ | :------------------------------------------------------------------------------------------------------------------------ |
+| `add_categories`          | Append new (unused) categories at end of existing categories                                                                |
+| `as_ordered`              | Make categories ordered                                                                                                     |
+| `as_unordered`            | Make categories unordered                                                                                                   |
+| `remove_categories`       | Remove categories, setting any removed values to null                                                                      |
+| `remove_unused_categories`| Remove any category values that do not appear in the data                                                                 |
+| `rename_categories`       | Replace categories with indicated set of new category names; cannot change the *number* of categories                       |
+| `reorder_categories`      | Behaves like `rename_categories`, but can also change the result to have ordered categories                               |
+| `set_categories`          | Replace the categories with the indicated set of new categories; can *add* or *remove* categories                          |
+
+## 7.5 Categorical Data: Creating Dummy Variables
+
+- Converting categorical data into dummy variables (one-hot encoding).
+- Used in statistics and machine learning.
+
+```{python}
+#| echo: true
+cat_s = pd.Series(['a', 'b', 'c', 'd'] * 2, dtype='category')
+pd.get_dummies(cat_s)
+```
+
+- `pd.get_dummies(categorical_series)` creates a DataFrame with dummy variables.
+
+## 7.6 Conclusion
+
+- Effective data preparation is crucial for efficient data analysis.
+- This chapter covered many data cleaning and transformation techniques.
+- The next chapter explores joining and grouping functionality in pandas.
+
+## Summary
+
+- Data cleaning is a significant part of data analysis, often taking up 80% or more of an analyst's time.
+- Pandas provides powerful tools for handling missing data (`NaN`, `None`), including `dropna`, `fillna`, `isna`, and `notna`.
+- Data transformation operations include removing duplicates (`duplicated`, `drop_duplicates`), mapping values (`map`), replacing values (`replace`), renaming indexes (`rename`), binning (`cut`, `qcut`), outlier detection, permutation, sampling (`sample`), and creating dummy variables (`get_dummies`).
+- Extension data types (`Int64Dtype`, `StringDtype`, `CategoricalDtype`, etc.) offer improved handling of specific data types and missing values.
+- String manipulation can be done efficiently with Python's built-in string methods, regular expressions (`re` module), and pandas' `str` accessor.
+- The `Categorical` type provides memory and performance benefits for data with repeated values, offering methods like `cat.codes`, `cat.categories`, `set_categories`, and `remove_unused_categories`.
+
+## Thoughts and Discussion 🤔
+
+- Reflect on a time you encountered messy data. Which of the techniques discussed in this chapter would have been most helpful?
+- Why is it important to handle missing data appropriately? What are the potential consequences of ignoring or mishandling it?
+- How does the `Categorical` type improve efficiency compared to storing data as strings? When would you choose to use `Categorical` data?
+- Can you think of situations where you might *not* want to drop duplicate data?
+- Explore the documentation for the `re` module and pandas' `str` accessor. What other useful functions can you find?
+- Consider the tradeoffs between `cut()` and `qcut()`. When would you use one versus the other?
+- Discuss scenarios for using ordered vs. unordered categorical data.
+- Why might you want to cap outlier to a certain range instead of simply remove all outliers?
+

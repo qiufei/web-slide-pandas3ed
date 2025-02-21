@@ -1,0 +1,956 @@
+---
+title: "Python for Data Analysis"
+subtitle: "Chapter 9: Plotting and Visualization"
+---
+
+## Introduction 📊
+
+> Making informative visualizations (sometimes called *plots*) is one of the most important tasks in data analysis.
+
+-   **Exploratory Process**: Helps identify outliers or needed data transformations.
+-   **Model Generation**: Aids in generating ideas for models.
+-   **Web Visualization**: Building interactive visualizations can be the end goal.
+
+::: {.callout-note}
+Python has many add-on libraries for visualizations, but we'll focus on **matplotlib** and libraries built on top of it, such as **seaborn**.
+:::
+
+## What is matplotlib? 🖼️
+
+- A desktop plotting package for creating publication-quality plots and figures.
+- Started by John Hunter in 2002 to provide a MATLAB-like plotting interface in Python.
+    -   **Why?** 🤔 To make it easier for scientists and engineers to create plots in Python, just like they did in MATLAB!
+- Collaborated with IPython to simplify interactive plotting.
+- Supports various GUI backends and export formats (PDF, SVG, JPG, PNG, BMP, GIF, etc.).
+- Most graphics in many books and publications are produced using matplotlib.
+
+::: {.callout-tip}
+Matplotlib has spawned add-on toolkits like **seaborn**, enhancing its capabilities.
+:::
+
+## Setting Up matplotlib in Jupyter ⚙️
+
+To display plots inline in Jupyter Notebook, use the magic command:
+
+```python
+%matplotlib inline
+```
+
+::: {.callout-note}
+This command tells Jupyter to display matplotlib plots directly in the notebook output. Without it, you might not see your plots!
+:::
+
+## Data Visualization Libraries Evolution
+
+- Many new visualization libraries have emerged since 2012.
+    -   **Bokeh** and **Altair**: Leverage modern web tech for interactive visualizations.
+- This course focuses on matplotlib due to its fundamental nature and integration with pandas.
+    -   **Why matplotlib?** 🤔 It's like learning to walk before you run! Understanding matplotlib helps you grasp the basics, making it easier to learn other libraries later.
+
+::: {.callout-tip}
+Principles learned here are adaptable to other visualization libraries.
+:::
+
+## A Brief matplotlib API Primer
+
+Import convention for matplotlib:
+
+```python
+import matplotlib.pyplot as plt
+```
+
+::: {.callout-note}
+This line imports the `pyplot` module from `matplotlib` and gives it a shorter name, `plt`. This is a common practice to make your code cleaner and easier to read.
+:::
+
+## Creating a Simple Plot
+
+```python
+import numpy as np
+data = np.arange(10)
+plt.plot(data)
+```
+
+-   **`np.arange(10)`**: Creates an array of numbers from 0 to 9.
+-   **`plt.plot(data)`**: Plots the data as a line chart.
+
+## Simple Line Plot Result
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-1. Simple line plot](fig9-1.png){width="80%"}
+:::
+
+## Figures and Subplots 📐
+
+- Plots in matplotlib reside within a **Figure** object.
+
+    -   **What's a Figure?** 🤔 Think of it as a blank canvas where you can draw your plots.
+
+- Create a new figure using `plt.figure()`:
+
+```python
+fig = plt.figure()
+```
+
+-   `plt.figure` options:
+    -   `figsize`: Guarantees figure size and aspect ratio.
+
+## Adding Subplots ➕
+
+- You can't plot on a blank figure; create subplots using `add_subplot`:
+
+```python
+ax1 = fig.add_subplot(2, 2, 1)
+```
+
+-   **`add_subplot(2, 2, 1)`** means:
+    -   A 2x2 grid of subplots (4 plots total).
+    -   Select the 1st subplot (numbered from 1).
+    -   **Analogy**: It is just like the form in Excel to select a range of cells.
+
+## Create Additional Subplots
+
+- Create additional subplots:
+
+```python
+ax2 = fig.add_subplot(2, 2, 2)
+ax3 = fig.add_subplot(2, 2, 3)
+```
+
+## An Empty Figure with Three Subplots
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-2. An empty matplotlib figure with three subplots](fig9-2.png)
+:::
+
+## Plotting Commands in Jupyter 📝
+
+::: {.callout-note}
+In Jupyter Notebook, plots are reset after each cell. Put all plotting commands in a single cell.
+
+- **Why?** 🤔 Jupyter runs each cell independently. If you split your plotting commands, you might only see the last plot!
+:::
+
+```python
+fig = plt.figure()
+ax1 = fig.add_subplot(2, 2, 1)
+ax2 = fig.add_subplot(2, 2, 2)
+ax3 = fig.add_subplot(2, 2, 3)
+```
+
+## Using Axes Methods 🎯
+
+- **AxesSubplot** objects have methods to create different plot types.
+- Preferred over top-level functions like `plt.plot`.
+- Example:
+
+```python
+ax3.plot(np.random.standard_normal(50).cumsum(), color="black", linestyle="dashed")
+```
+
+## Data Visualization After a Single Plot
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-3. Data visualization after a single plot](fig9-3.png)
+:::
+
+## Understanding Matplotlib Output 💬
+
+- You might see output like `<matplotlib.lines.Line2D at ...>`.
+    -   **What does this mean?** 🤔 It's a reference to the plot element you just added. You can usually ignore it.
+- To suppress the output, add a semicolon (`;`) at the end of the line.
+    -   **Why suppress?** 🧹 Keeps your notebook output clean and focused on the plots.
+
+```python
+ax3.plot(np.random.standard_normal(50).cumsum(), color="black", linestyle="dashed"); # Note the semicolon
+```
+
+## Adding More Plots to Subplots ➕
+
+```python
+ax1.hist(np.random.standard_normal(100), bins=20, color="black", alpha=0.3)
+ax2.scatter(np.arange(30), np.arange(30) + 3 * np.random.standard_normal(30))
+```
+
+-   **`ax1.hist(...)`**: Creates a histogram.
+-   **`ax2.scatter(...)`**: Creates a scatter plot.
+-   `alpha=0.3`: Sets the transparency of the plot.
+
+## Data Visualization After Additional Plots
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-4. Data visualization after additional plots](fig9-4.png)
+:::
+
+## Convenient Subplot Creation with `plt.subplots`
+
+-   `plt.subplots` creates a figure and a NumPy array of subplot objects:
+
+```python
+fig, axes = plt.subplots(2, 3)
+axes
+```
+
+```
+array([[<AxesSubplot:>, <AxesSubplot:>, <AxesSubplot:>],
+       [<AxesSubplot:>, <AxesSubplot:>, <AxesSubplot:>]], dtype=object)
+```
+
+-   Access subplots like a 2D array: `axes[0, 1]`.
+-   `sharex` and `sharey`: Share the same x or y-axis for comparing data.
+
+## `plt.subplots` Options ⚙️
+
+| Argument     | Description                                                                              |
+| :----------- | :--------------------------------------------------------------------------------------- |
+| `nrows`      | Number of rows of subplots                                                               |
+| `ncols`      | Number of columns of subplots                                                            |
+| `sharex`     | All subplots use the same x-axis ticks                                                   |
+| `sharey`     | All subplots use the same y-axis ticks                                                   |
+| `subplot_kw` | Dictionary of keywords passed to `add_subplot`                                            |
+| `**fig_kw`   | Additional keywords passed to `subplots` (e.g., `figsize=(8, 6)`)                          |
+
+::: {.callout-tip appearance="simple"}
+Table 9-1. `matplotlib.pyplot.subplots` options
+:::
+
+## Adjusting Spacing Around Subplots 📏
+
+-   Default padding and spacing between subplots.
+-   Change spacing using the `subplots_adjust` method:
+
+```python
+fig.subplots_adjust(left=None, bottom=None, right=None, top=None,
+                    wspace=None, hspace=None)
+```
+
+-   `wspace` and `hspace`: Control the percentage of figure width/height for spacing.
+
+## Example: Shrinking Spacing to Zero 🚫
+
+```python
+fig, axes = plt.subplots(2, 2, sharex=True, sharey=True)
+for i in range(2):
+    for j in range(2):
+        axes[i, j].hist(np.random.standard_normal(500), bins=50,
+                        color="black", alpha=0.5)
+fig.subplots_adjust(wspace=0, hspace=0)
+```
+
+## Data Visualization with No Inter-Subplot Spacing
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-5. Data visualization with no inter-subplot spacing](fig9-5.png)
+:::
+
+## Overlapping Axis Labels
+
+-   matplotlib doesn't check for overlapping labels.
+-   Fix labels by specifying tick locations and labels.
+-   Covered in the "Ticks, Labels, and Legends" section.
+
+## Colors, Markers, and Line Styles 🎨
+
+-   Customize line plots with color, markers, and line styles.
+-   Example:
+
+```python
+ax.plot(x, y, linestyle="--", color="green")
+```
+
+-   Use color names or hex codes (e.g., `"#CECECE"`).
+-   Line styles: Check `plt.plot` docstring (use `plt.plot?`).
+
+## Markers for Highlighting Data Points 📍
+
+-   Line plots can have markers to show actual data points.
+-   Useful when interpolation might obscure point locations.
+-   Example:
+
+```python
+ax.plot(np.random.standard_normal(30).cumsum(), color="black",
+        linestyle="dashed", marker="o")
+```
+
+## Line Plot with Markers
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-6. Line plot with markers](fig9-6.png)
+:::
+
+## `drawstyle` Option 🎨
+
+-   Linear interpolation is the default.
+-   Change with the `drawstyle` option:
+
+```python
+ax.plot(data, color="black", linestyle="dashed", label="Default")
+ax.plot(data, color="black", linestyle="dashed",
+        drawstyle="steps-post", label="steps-post")
+ax.legend()
+```
+
+## Line Plot with Different `drawstyle` Options
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-7. Line plot with different drawstyle options](fig9-7.png)
+:::
+
+## Ticks, Labels, and Legends 🏷️
+
+-   Plot decorations are accessed through matplotlib axes object methods.
+-   `xlim`, `xticks`, `xticklabels`: Control plot range, tick locations, and labels.
+-   Two ways to use:
+    -   No arguments: Returns the current value (e.g., `ax.xlim()`).
+    -   With parameters: Sets the value (e.g., `ax.xlim([0, 10])`).
+
+## Customizing Axes 🛠️
+
+-   Example: Random walk plot.
+
+```python
+fig, ax = plt.subplots()
+ax.plot(np.random.standard_normal(1000).cumsum())
+```
+
+## Simple Plot for Illustrating `xticks`
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-8. Simple plot for illustrating xticks (with default labels)](fig9-8.png)
+:::
+
+## Set Ticks and Tick Labels
+
+```python
+ticks = ax.set_xticks([0, 250, 500, 750, 1000])
+labels = ax.set_xticklabels(["one", "two", "three", "four", "five"],
+                            rotation=30, fontsize=8)
+```
+
+## Setting Title and Axis Labels 📝
+
+```python
+ax.set_xlabel("Stages")
+ax.set_title("My first matplotlib plot")
+```
+
+## Simple Plot for Illustrating Custom `xticks`
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-9. Simple plot for illustrating custom xticks](fig9-9.png)
+:::
+
+-   `rotation`: Sets tick label rotation (e.g., 30 degrees).
+-   `set_xlabel`: Names the x-axis.
+-   `set_title`: Sets the subplot title.
+
+## Batch Setting of Plot Properties ⚙️
+
+-   Axes class has a `set` method:
+
+```python
+ax.set(title="My first matplotlib plot", xlabel="Stages")
+```
+## Adding Legends ➕
+
+-   Legends identify plot elements.
+-   Pass the `label` argument when adding plot elements:
+
+```python
+fig, ax = plt.subplots()
+ax.plot(np.random.randn(1000).cumsum(), color="black", label="one")
+ax.plot(np.random.randn(1000).cumsum(), color="black", linestyle="dashed", label="two")
+ax.plot(np.random.randn(1000).cumsum(), color="black", linestyle="dotted", label="three")
+ax.legend()
+```
+
+## Simple Plot with Three Lines and Legend
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-10. Simple plot with three lines and legend](fig9-10.png)
+:::
+
+## `ax.legend()` Options ⚙️
+
+-   `ax.legend()`: Automatically creates a legend.
+-   `loc`: Specifies legend location (default is `"best"`).
+-   Exclude elements: Pass no label or `label="_nolegend_"`.
+
+## Annotations and Drawing on a Subplot ✍️
+
+-   Add custom annotations: text, arrows, shapes.
+-   `text`, `arrow`, `annotate` functions.
+-   `ax.text(x, y, "Hello world!", family="monospace", fontsize=10)`: Draws text at (x, y).
+
+## Annotating the S\&P 500 Index 📈
+
+-   Example: Plotting S\&P 500 closing price since 2007 with annotations.
+
+```python
+from datetime import datetime
+
+fig, ax = plt.subplots()
+
+data = pd.read_csv("examples/spx.csv", index_col=0, parse_dates=True)
+spx = data["SPX"]
+
+spx.plot(ax=ax, color="black")
+```
+## Annotating the S\&P 500 Index (Continued)
+
+```python
+crisis_data = [
+    (datetime(2007, 10, 11), "Peak of bull market"),
+    (datetime(2008, 3, 12), "Bear Stearns Fails"),
+    (datetime(2008, 9, 15), "Lehman Bankruptcy")
+]
+
+for date, label in crisis_data:
+    ax.annotate(label, xy=(date, spx.asof(date) + 75),
+                xytext=(date, spx.asof(date) + 225),
+                arrowprops=dict(facecolor="black", headwidth=4, width=2,
+                                headlength=4),
+                horizontalalignment="left", verticalalignment="top")
+```
+## Annotating the S\&P 500 Index (Continued)
+
+```python
+# Zoom in on 2007-2010
+ax.set_xlim(["1/1/2007", "1/1/2011"])
+ax.set_ylim([600, 1800])
+
+ax.set_title("Important dates in the 2008-2009 financial crisis")
+```
+
+## Important Dates in the 2008–2009 Financial Crisis
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-11. Important dates in the 2008–2009 financial crisis](fig9-11.png)
+:::
+
+## Important Points on the S\&P 500 Plot
+
+-   `ax.annotate`: Draws labels at specified (x, y) coordinates.
+-   `set_xlim`, `set_ylim`: Manually set plot boundaries.
+-   `ax.set_title`: Adds a main title.
+
+## Drawing Shapes (Patches) 🔵🔺🟥
+
+-   matplotlib has objects called **patches** representing shapes.
+-   `Rectangle`, `Circle`: Found in `matplotlib.pyplot`.
+-   Full set: `matplotlib.patches`.
+-   Add to plot using `ax.add_patch`:
+
+```python
+fig, ax = plt.subplots()
+
+rect = plt.Rectangle((0.2, 0.75), 0.4, 0.15, color="black", alpha=0.3)
+circ = plt.Circle((0.7, 0.2), 0.15, color="blue", alpha=0.3)
+pgon = plt.Polygon([[0.15, 0.15], [0.35, 0.4], [0.2, 0.6]],
+                    color="green", alpha=0.5)
+
+ax.add_patch(rect)
+ax.add_patch(circ)
+ax.add_patch(pgon)
+```
+
+## Data Visualization Composed from Three Different Patches
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-12. Data visualization composed from three different patches](fig9-12.png)
+:::
+
+## Saving Plots to File 💾
+
+-   `savefig` instance method: Saves the active figure.
+-   Example:
+
+```python
+fig.savefig("figpath.svg")
+```
+
+-   File type inferred from extension (e.g., `.pdf`, `.png`).
+-   `dpi`: Controls dots-per-inch resolution.
+
+```python
+fig.savefig("figpath.png", dpi=400)
+```
+
+## `savefig` Options ⚙️
+
+| Argument    | Description                                                                              |
+| :---------- | :--------------------------------------------------------------------------------------- |
+| `fname`     | Filepath or Python file-like object; format inferred from extension                      |
+| `dpi`       | Resolution in dots per inch                                                              |
+| `facecolor` | Figure background color outside subplots (default: `"w"` - white)                         |
+| `edgecolor` | Color of the figure edge                                                             |
+| `format`    | Explicit file format (e.g., `"png"`, `"pdf"`, `"svg"`)                                   |
+
+::: {.callout-tip appearance="simple"}
+Table 9-2. Some `fig.savefig` options
+:::
+
+## matplotlib Configuration ⚙️
+
+-   matplotlib has configurations for color schemes and defaults.
+-   Customize via global parameters: figure size, subplot spacing, colors, fonts, etc.
+-   `rc` method: Modifies configuration programmatically.
+-   Example: Set default figure size to 10x10.
+
+```python
+plt.rc("figure", figsize=(10, 10))
+```
+
+## Restoring Default Configuration Values 🔄
+
+-   Current settings: `plt.rcParams` dictionary.
+-   Restore defaults: `plt.rcdefaults()`.
+
+## Customizing Specific Components 🧩
+
+-   First `rc` argument: Component to customize (e.g., `"figure"`, `"axes"`, `"xtick"`).
+-   Followed by keyword arguments for new parameters.
+-   Example:
+
+```python
+plt.rc("font", family="monospace", weight="bold", size=8)
+```
+
+## `matplotlibrc` Configuration File 📝
+
+-   Extensive customization: `matplotlibrc` file in `matplotlib/mpl-data`.
+-   Place a customized `matplotlibrc` in your home directory as `.matplotlibrc`.
+-   Loaded each time you use matplotlib.
+
+## seaborn and matplotlib Configuration 🎨
+
+-   seaborn uses matplotlib's configuration system internally.
+-   seaborn has built-in plot themes and styles.
+
+## Plotting with pandas and seaborn
+
+- Matplotlib can be low-level.
+- pandas: Built-in methods for visualizing `DataFrame` and `Series` objects.
+- seaborn: High-level statistical graphics library built on matplotlib.
+- seaborn simplifies creating common visualization types.
+
+## Line Plots with pandas 📈
+
+- `Series` and `DataFrame` have a `plot` attribute.
+- `plot()` makes line plots by default:
+
+```python
+s = pd.Series(np.random.standard_normal(10).cumsum(), index=np.arange(0, 100, 10))
+s.plot()
+```
+## Simple Series Plot
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-13. Simple Series plot](fig9-13.png)
+:::
+
+- Series index: Used for x-axis (disable with `use_index=False`).
+- `xticks`, `xlim`, `yticks`, `ylim`: Adjust axis ticks and limits.
+
+## `Series.plot` Method Arguments ⚙️
+
+| Argument     | Description                                                                  |
+| :----------- | :--------------------------------------------------------------------------- |
+| `label`      | Label for plot legend                                                        |
+| `ax`         | matplotlib subplot object to plot on                                           |
+| `style`      | Style string (e.g., `"ko--"`)                                                 |
+| `alpha`      | Plot fill opacity (0 to 1)                                                   |
+| `kind`       | Plot type: `"area"`, `"bar"`, `"barh"`, `"density"`, `"hist"`, `"kde"`, `"line"`, `"pie"` |
+| `figsize`    | Size of the figure object                                                    |
+| `logx`       | Logarithmic scaling on x-axis                                                |
+| `logy`       | Logarithmic scaling on y-axis                                                |
+| `title`      | Title for the plot                                                           |
+| `use_index`  | Use object index for tick labels                                             |
+| `rot`        | Rotation of tick labels (0-360)                                              |
+| `xticks`     | Values for x-axis ticks                                                      |
+| `yticks`     | Values for y-axis ticks                                                      |
+| `xlim`       | x-axis limits (e.g., `[0, 10]`)                                               |
+| `ylim`       | y-axis limits                                                                |
+| `grid`       | Display axis grid (off by default)                                           |
+
+::: {.callout-tip appearance="simple"}
+Table 9-3. `Series.plot` method arguments
+:::
+
+-   pandas plotting methods accept an optional `ax` parameter for a matplotlib subplot object.
+
+## DataFrame Line Plots 📊
+
+```python
+df = pd.DataFrame(np.random.standard_normal((10, 4)).cumsum(0),
+                  columns=["A", "B", "C", "D"],
+                  index=np.arange(0, 100, 10))
+plt.style.use('grayscale') #use grayscale style to adapt to black and white publication
+df.plot()
+```
+
+## Simple DataFrame Plot
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-14. Simple DataFrame plot](fig9-14.png)
+:::
+
+-   Plots each column as a separate line on the same subplot.
+-   Creates a legend automatically.
+-   `df.plot()` is equivalent to `df.plot.line()`.
+
+## `DataFrame.plot` Options ⚙️
+
+| Argument       | Description                                                           |
+| :------------- | :-------------------------------------------------------------------- |
+| `subplots`     | Plot each DataFrame column in a separate subplot                     |
+| `layout`       | 2-tuple (rows, columns) for subplot layout                           |
+| `sharex`       | If `subplots=True`, share x-axis ticks and limits                    |
+| `sharey`       | If `subplots=True`, share y-axis                                      |
+| `legend`       | Add a subplot legend (True by default)                                |
+| `sort_columns` | Plot columns in alphabetical order (default: use existing order)     |
+
+::: {.callout-tip appearance="simple"}
+Table 9-4. `DataFrame`-specific plot arguments
+:::
+
+-   Additional keyword arguments are passed to matplotlib plotting functions.
+
+## Bar Plots 📊
+
+-   `plot.bar()`: Vertical bar plots.
+-   `plot.barh()`: Horizontal bar plots.
+-   Series/DataFrame index: Used for x (bar) or y (barh) ticks.
+
+```python
+fig, axes = plt.subplots(2, 1)
+data = pd.Series(np.random.uniform(size=16), index=list("abcdefghijklmnop"))
+data.plot.bar(ax=axes[0], color="black", alpha=0.7)
+```
+## Bar Plots (Continued)
+```python
+data.plot.barh(ax=axes[1], color="black", alpha=0.7)
+```
+## Horizontal and Vertical Bar Plot
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-15. Horizonal and vertical bar plot](fig9-15.png)
+:::
+
+## DataFrame Bar Plots 📊
+
+```python
+df = pd.DataFrame(np.random.uniform(size=(6, 4)),
+                  index=["one", "two", "three", "four", "five", "six"],
+                  columns=pd.Index(["A", "B", "C", "D"], name="Genus"))
+df.plot.bar()
+```
+
+## DataFrame Bar Plot
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-16. DataFrame bar plot](fig9-16.png)
+:::
+
+- Groups values in each row in bars, side by side.
+- DataFrame column name: Used for legend title.
+
+## Stacked Bar Plots 📚
+
+-   `stacked=True`: Creates stacked bar plots.
+-   Values in each row are stacked together.
+
+```python
+df.plot.barh(stacked=True, alpha=0.5)
+```
+
+## DataFrame Stacked Bar Plot
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-17. DataFrame stacked bar plot](fig9-17.png)
+:::
+
+## Example: Restaurant Tipping Data 🍽️
+
+-   Visualize tipping data: Percentage of data points for each party size, per day.
+-   `read_csv`: Load data.
+-   `crosstab`: Cross-tabulation by day and party size.
+
+```python
+tips = pd.read_csv("examples/tips.csv")
+party_counts = pd.crosstab(tips["day"], tips["size"])
+party_counts = party_counts.reindex(index=["Thur", "Fri", "Sat", "Sun"])
+```
+
+## Restaurant Tipping Data (Continued)
+
+- Calculate the frequency of two columns in the dataframe.
+
+```python
+# Remove 1- and 6-person parties
+party_counts = party_counts.loc[:, 2:5]
+
+# Normalize to sum to 1
+party_pcts = party_counts.div(party_counts.sum(axis="columns"), axis="index")
+party_pcts.plot.bar(stacked=True)
+```
+
+## Fraction of Parties by Size within Each Day
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-18. Fraction of parties by size within each day](fig9-18.png)
+:::
+
+## seaborn for Simpler Aggregation and Summarization 📊
+
+- seaborn simplifies plotting with aggregated/summarized data.
+- Example: Tipping percentage by day.
+
+```python
+import seaborn as sns
+
+tips["tip_pct"] = tips["tip"] / (tips["total_bill"] - tips["tip"])
+sns.barplot(x="tip_pct", y="day", data=tips, orient="h")
+```
+
+## Tipping Percentage by Day with Error Bars
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-19. Tipping percentage by day with error bars](fig9-19.png)
+:::
+
+-   `data`: pandas DataFrame.
+-   Other arguments: Column names.
+-   Bars: Average value of `tip_pct`.
+-   Black lines: 95% confidence interval.
+
+## Splitting by Additional Categorical Values 🌈
+
+-   `hue` option in `seaborn.barplot`: Split by another categorical value.
+
+```python
+sns.barplot(x="tip_pct", y="day", hue="time", data=tips, orient="h")
+```
+
+## Tipping Percentage by Day and Time
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-20. Tipping percentage by day and time](fig9-20.png)
+:::
+
+## seaborn Plot Aesthetics 🎨
+
+-   seaborn automatically adjusts plot aesthetics:
+    -   Color palette.
+    -   Plot background.
+    -   Grid line colors.
+-   `seaborn.set_style`: Switch between plot appearances.
+
+```python
+sns.set_style("whitegrid")
+```
+
+-   For grayscale, set a greyscale color palette:
+
+```python
+sns.set_palette("Greys_r")
+```
+
+## Histograms and Density Plots 📊
+
+-   **Histogram**: Discretized display of value frequency.
+-   Data points are binned, and the count in each bin is plotted.
+-   `plot.hist`: Create a histogram.
+
+```python
+tips["tip_pct"].plot.hist(bins=50)
+```
+
+## Histogram of Tip Percentages
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-21. Histogram of tip percentages](fig9-21.png)
+:::
+
+## Density Plots 📈
+
+-   **Density plot**: Estimate of a continuous probability distribution.
+-   Approximated as a mixture of kernels (e.g., normal distribution).
+-   Also known as kernel density estimate (KDE) plots.
+-   `plot.density`: Create a density plot.
+
+```python
+tips["tip_pct"].plot.density()
+```
+
+## Density Plot of Tip Percentages
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-22. Density plot of tip percentages](fig9-22.png)
+:::
+
+::: {.callout-note}
+Density plot require SciPy: `conda install scipy`
+:::
+
+## seaborn's `histplot` 📊
+
+-   seaborn simplifies histograms and density plots.
+-   `histplot`: Plots both histogram and continuous density estimate.
+-   Example: Bimodal distribution.
+
+```python
+comp1 = np.random.standard_normal(200)
+comp2 = 10 + 2 * np.random.standard_normal(200)
+values = pd.Series(np.concatenate([comp1, comp2]))
+sns.histplot(values, bins=100, color="black")
+```
+
+## Normalized Histogram of Normal Mixture
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-23. Normalized histogram of normal mixture](fig9-23.png)
+:::
+
+## Scatter or Point Plots 🔍
+
+-   Examine the relationship between two 1D data series.
+-   Example: Load macrodata, compute log differences.
+
+```python
+macro = pd.read_csv("examples/macrodata.csv")
+data = macro[["cpi", "m1", "tbilrate", "unemp"]]
+trans_data = np.log(data).diff().dropna()
+```
+
+## seaborn's `regplot` 📈
+
+-   `regplot`: Makes a scatter plot and fits a linear regression line.
+
+```python
+ax = sns.regplot(x="m1", y="unemp", data=trans_data)
+ax.title("Changes in log(m1) versus log(unemp)")
+```
+
+## A seaborn Regression/Scatter Plot
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-24. A seaborn regression/scatter plot](fig9-24.png)
+:::
+
+## Pairs Plot or Scatter Plot Matrix 🔍
+
+-   Explore scatter plots among a group of variables.
+-   `seaborn.pairplot`: Creates a pairs plot.
+-   Supports histograms/density estimates on the diagonal.
+
+```python
+sns.pairplot(trans_data, diag_kind="kde", plot_kws={"alpha": 0.2})
+```
+
+## Pair Plot Matrix of Statsmodels Macro Data
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-25. Pair plot matrix of statsmodels macro data](fig9-25.png)
+:::
+
+## `plot_kws` Argument ⚙️
+
+-   Pass down configuration options to individual plotting calls.
+-   Check `seaborn.pairplot` docstring for details.
+
+## Facet Grids and Categorical Data 📊
+
+-   Visualize data with many categorical variables.
+-   **Facet grid**: 2D layout, data split across plots based on variable values.
+-   `seaborn.catplot`: Simplifies faceted plots.
+
+```python
+sns.catplot(x="day", y="tip_pct", hue="time", col="smoker",
+            kind="bar", data=tips[tips.tip_pct < 1])
+```
+
+## Tipping Percentage by Day/Time/Smoker
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-26. Tipping percentage by day/time/smoker](fig9-26.png)
+:::
+
+## Expanding Facet Grids ➕
+
+-   Add one row per time value:
+
+```python
+sns.catplot(x="day", y="tip_pct", row="time",
+            col="smoker", kind="bar", data=tips[tips.tip_pct < 1])
+```
+
+## Tipping Percentage by Day Split by Time/Smoker
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-27. Tipping percentage by day split by time/smoker](fig9-27.png)
+:::
+
+## Other Plot Types with `catplot` 📊
+
+-   `catplot` supports other plot types (e.g., box plots).
+-   Box plots show median, quartiles, and outliers.
+
+```python
+sns.catplot(x="tip_pct", y="day", kind="box",
+            data=tips[tips.tip_pct < 0.5])
+```
+
+## Box Plot of Tipping Percentage by Day
+
+::: {.callout-tip appearance="simple"}
+![Figure 9-28. Box plot of tipping percentage by day](fig9-28.png)
+:::
+
+## `seaborn.FacetGrid` 🧩
+
+-   Create custom facet grid plots.
+-   See seaborn documentation for details.
+
+## Other Python Visualization Tools 🛠️
+
+-   Many options for creating graphics in Python.
+
+```markdown
+-   Focus on interactive graphics for the web: Altair, Bokeh, Plotly.
+-   For static graphics: Use matplotlib and libraries built on it (pandas, seaborn).
+
+## Recommended Reading 📚
+
+-   *Fundamentals of Data Visualization* by Claus O. Wilke.
+    -   Available in print or online: [https://clauswilke.com/dataviz](https://clauswilke.com/dataviz)
+
+## Conclusion
+
+-   This chapter introduced basic data visualization with pandas, matplotlib, and seaborn.
+-   Effective data visualization is an active research field.
+-   Explore resources to learn more.
+
+## Summary
+
+- matplotlib is a powerful and flexible library for creating static plots in Python.
+- pandas provides convenient methods for plotting `Series` and `DataFrame` objects.
+- seaborn simplifies creating many common statistical visualizations and integrates well with pandas.
+- Effective data visualization is crucial for data analysis and communication.
+
+## Thoughts and Discussion 🤔
+
+- How can you apply the visualization techniques learned in this chapter to your own data analysis projects?
+- What are the advantages and disadvantages of using matplotlib, pandas, and seaborn for different visualization tasks?
+- How can you effectively communicate your findings through visualizations?
+
+## Thoughts and Discussion (Continued) 🤔
+
+- What other Python visualization tools have you explored, and how do they compare to matplotlib, pandas, and seaborn?
+- What are some best practices for creating clear, informative, and visually appealing plots?
+
+## Thoughts and Discussion (Continued) 🤔
+
+-  Can you think of situations where a particular type of plot (e.g., histogram, scatter plot, box plot) would be most appropriate for conveying specific insights from your data?
+- How can you customize matplotlib plots to enhance their clarity and visual impact (e.g., adjusting colors, labels, legends)?
+

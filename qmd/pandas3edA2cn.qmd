@@ -1,0 +1,526 @@
+---
+title: Python 数据分析
+subtitle: IPython 系统详解
+---
+
+## 简介：超越基础 🚀
+
+-   我们之前已经介绍了 IPython shell 和 Jupyter notebooks 的基础知识。
+-   现在，我们将深入探讨 IPython 的高级功能，无论是在控制台还是 Jupyter 环境中都非常有用。
+-   可以将 IPython 视为您的*增强型* Python 解释器 – 一个用于交互式计算和数据分析的强大工具。
+-   本节内容可作为补充资源，像电子游戏中的道具一样增强您的学习体验！🎮
+
+## 终端键盘快捷键 ⌨️
+
+-   IPython 提供了许多键盘快捷键，用于高效导航和命令历史记录。
+-   这些快捷键类似于 Emacs 或 Unix bash shell 中的快捷键。
+-   掌握这些快捷键将显著提高您的工作效率！⚡
+
+## 终端键盘快捷键：导航
+
+-   `Ctrl-A`: 将光标移动到行*首*。
+-   `Ctrl-E`: 将光标移动到行*尾*。
+-   `Ctrl-F`: 将光标向*前*移动一个字符。
+-   `Ctrl-B`: 将光标向*后*移动一个字符。
+
+## 终端键盘快捷键：命令历史记录
+
+-   `Ctrl-P` 或向上箭头：在命令历史记录中向*后*搜索（匹配当前文本）。
+-   `Ctrl-N` 或向下箭头：在命令历史记录中向*前*搜索（匹配当前文本）。
+-   `Ctrl-R`: Readline 风格的反向历史搜索（部分匹配）。
+
+## 终端键盘快捷键：编辑和控制
+
+-   `Ctrl-Shift-V`: 从剪贴板粘贴文本。
+-   `Ctrl-C`: **中断**当前正在执行的代码。 🛑
+-   `Ctrl-K`: 删除从光标到行尾的文本。
+-   `Ctrl-U`: 删除当前行上的所有文本。
+-   `Ctrl-L`: 清除屏幕。 💨
+
+## 快捷键可视化 🖼️
+
+-   以下是 IPython shell 中一些键盘快捷键的图示。
+
+-   **C-b, C-f:**  对应于 Ctrl-B 和 Ctrl-F，用于光标移动。
+-   **C-a, C-e:** 对应于 Ctrl-A 和 Ctrl-E，用于移动到行的开头/结尾。
+-   **C-k:** 对应于 Ctrl-K，用于删除到行尾的文本。
+-    **C-u:** 对应于 Ctrl-U，用于删除整行。
+-  对 `a_variable` 的操作显示了文本操作。
+
+-   注意：Jupyter notebooks 有*自己的一套*快捷键。 请探索 Jupyter 的集成帮助！
+
+## 魔法命令：IPython 的超能力 🧙‍♂️
+
+-   **魔法命令**是 IPython *特有*的特殊命令，*不是*内置的 Python 函数。
+-   它们以百分号 (`%`) 作为前缀。
+-   这些命令简化了常见任务，并允许您控制 IPython 的行为。 可以将它们视为 IPython 本身的“快捷方式”！
+
+## 示例：`%timeit` ⏱️ - 测量执行时间
+
+-   `%timeit` 测量 Python 语句的执行时间。 这对于性能分析非常有用！
+
+```{python}
+import numpy as np  # 导入 numpy 库，并将其命名为 np
+a = np.random.standard_normal((100, 100))  # 创建一个 100x100 的标准正态分布随机数数组
+%timeit np.dot(a, a)  # 使用 %timeit 魔法命令测量 a 与 a 的点积运算的执行时间
+```
+
+-   输出显示多次运行的*平均*执行时间和标准差。
+- 结果中，如 `92.5 µs ± 3.43 µs per loop`， `µs` 代表微秒。
+
+## 探索魔法命令 ❓ - 获取帮助
+
+-   在魔法命令后使用 `?` 可以查看其“命令行”选项（类似于帮助手册）。
+
+```{python}
+%debug?
+# 使用 ? 查看 %debug 魔法命令的详细用法
+# 包括调试器激活、断点设置和事后调试等
+```
+
+## `automagic`:  无需 `%` 的魔法 ✨
+
+-   `automagic` 允许您在*不使用* `%` 前缀的情况下使用魔法命令，只要没有变量共享相同的名称。
+-   您可以使用 `%automagic` 打开或关闭它。
+
+```{python}
+#| eval: false
+
+%automagic  # 打开或关闭 automagic 功能
+pwd         # 如果 automagic 开启且 'pwd' 不是变量名，则等同于 %pwd
+```
+
+## 分配魔法命令的输出
+
+-   某些魔法命令的行为类似于函数，允许您将其输出分配给变量。
+
+```{python}
+#| eval: false
+
+directory = %pwd  # 将当前工作目录存储在 'directory' 变量中
+print(directory) #打印当前工作目录
+```
+
+## 常用魔法命令 📜 - 快速参考
+
+-   `%quickref`: 显示 IPython 快速参考卡。
+
+## 常用魔法命令 📜 - 文档
+
+-   `%magic`: 显示*所有*可用魔法命令的详细文档。
+
+## 常用魔法命令 📜 - 调试
+
+-   `%debug`: 在*最后一个异常回溯*处进入交互式调试器。
+-   `%pdb`: 在*任何*异常发生后*自动*进入调试器。
+
+## 常用魔法命令 📜 - 历史记录
+
+-  `%hist`: 打印命令输入历史记录（可选择包含输出）。
+
+## 常用魔法命令 📜 - 代码执行
+
+-   `%paste`: 执行剪贴板中预格式化的 Python 代码。
+-   `%cpaste`: 打开一个特殊提示符，用于手动粘贴代码。
+-   `%run script.py`: 在 IPython *内部*运行 Python 脚本。
+- `%prun statement`: 使用 cProfile 执行语句并报告性能分析结果。
+- `%time statement`: 报告单条语句的执行时间。
+
+## 常用魔法命令 📜 - 计时和性能分析
+
+- `%timeit statement`: 精确测量平均执行时间。
+-  `%prun statement`: 使用 cProfile 执行语句并报告性能分析器输出。
+
+## 常用魔法命令 📜 - 命名空间管理
+
+-   `%reset`: 删除交互式命名空间中的所有变量/名称。
+-   `%page OBJECT`: 以分页方式漂亮地打印一个对象并显示它。
+-   `%who`, `%who_ls`, `%whos`: 显示命名空间中的变量，具有不同的详细程度。
+-   `%xdel variable`: 删除一个变量并尝试清除其所有引用。
+
+- 按 `q` 退出 `%quickref` 或 `%magic` 分页器。
+
+## `%run` 命令 🏃 - 执行脚本
+
+-   在您的 IPython 会话中执行 Python 脚本。
+-   脚本在*空命名空间*中运行（最初没有先前的导入或变量）。
+-   脚本中的变量、函数和导入在执行*后*可在您的 IPython shell 中访问。
+
+```{python}
+#| eval: false
+
+# 在名为 'my_script.py' 的文件中：
+def my_function(x):  # 定义一个名为 my_function 的函数，它接受一个参数 x
+    return x * 2      # 返回 x 乘以 2 的结果
+
+result = my_function(5)  # 调用 my_function 函数，传入参数 5，并将结果赋值给 result
+
+# 在 IPython 中：
+%run my_script.py  # 使用 %run 魔法命令运行 my_script.py 脚本
+print(result)      # 打印 result 变量的值，输出：10
+```
+
+## `%run -i`: 访问现有变量
+
+-   `%run -i` 允许脚本访问 IPython 会话中*已定义*的变量。
+
+```{python}
+#| eval: false
+
+# 在 IPython 中：
+my_var = 10  # 定义一个名为 my_var 的变量，并赋值为 10
+
+# 在 'script_with_access.py' 文件中：
+print(my_var * 3)  # 打印 my_var 变量乘以 3 的结果
+
+# 回到 IPython：
+%run -i script_with_access.py  # 使用 %run -i 魔法命令运行 script_with_access.py 脚本，输出：30
+```
+
+## `%load`: 将脚本导入单元格 (Jupyter)
+
+-   在 Jupyter notebooks 中，`%load` 将脚本*直接导入*代码单元格。
+
+```{python}
+# %load my_script.py  # 这将被脚本的内容替换
+```
+
+- 然后，代码单元格的内容将是：
+- 
+```{python}
+def my_function(x):  # 定义一个名为 my_function 的函数，它接受一个参数 x
+    return x * 2      # 返回 x 乘以 2 的结果
+
+result = my_function(5)  # 调用 my_function 函数，传入参数 5，并将结果赋值给 result
+```
+
+## 中断正在运行的代码 ✋
+
+-   按 `Ctrl-C` 中断正在运行的代码（无论是来自 `%run` 还是长时间运行的命令）。
+-   这将引发 `KeyboardInterrupt` 异常，立即停止大多数 Python 程序。
+-   注意：对于编译的扩展，`Ctrl-C` 可能不会立即生效。
+
+- 如果 `Ctrl-C` 没有立即停止执行（特别是当涉及编译的扩展时），您可能需要使用操作系统的工具（例如，Windows 上的任务管理器，Linux 上的 `kill`）来强制终止进程。
+
+## 从剪贴板执行代码 📋
+
+-   `%paste` 和 `%cpaste` 对于运行从其他地方复制的代码非常有用（在 Jupyter 中相关性较低，因为 Jupyter 支持直接粘贴）。
+-   `%paste` 将剪贴板内容作为*单个块*执行。
+
+```{python}
+#| eval: false
+
+# 剪贴板上的示例代码：
+x = 5               # 定义变量 x 并赋值为 5
+if x > 2:          # 如果 x 大于 2
+    print("x is greater than 2")  # 打印 "x is greater than 2"
+
+# 在 IPython 中：
+%paste  # 立即执行代码
+```
+
+## 从剪贴板执行代码：`%cpaste`
+
+-   `%cpaste` 打开一个特殊提示符，允许粘贴多个代码块并在执行前进行编辑。
+-   按 Ctrl-D 执行。
+-   按 Ctrl-C 退出提示。
+
+## 命令历史记录：您的 IPython 记忆 🧠
+
+-   IPython 维护已执行命令的数据库。 这对于以下方面很有价值：
+    -   搜索和重用过去的命令。
+    -   在*会话之间*持久保存历史记录。
+    -   将输入/输出记录到文件。
+
+## 搜索和重用命令 🔎
+
+-   **向上箭头 (`Ctrl-P`):** 在历史记录中向*后*搜索，匹配已键入的文本。
+-   **向下箭头 (`Ctrl-N`):** 在历史记录中向*前*搜索。
+-   **`Ctrl-R`:**  *反向搜索*（类似于 bash）。 键入字符以查找匹配的命令。 重复按 Ctrl-R 可循环浏览匹配项。
+
+## 输入和输出变量 ↩️
+
+-   IPython 存储输入和输出以便于访问：
+    -   `_` (一个下划线):  引用*上一个*输出。
+    -   `__` (两个下划线): 引用*倒数第二个*输出。
+    -   `_iX`: 将第 `X` 行的*输入*表示为*字符串*（例如，`_i5` 表示第 5 行的输入）。
+    -   `_X`: 表示第 `X` 行的*输出*。
+
+```{python}
+#| eval: false
+
+2 + 2      # 输出：4
+result = _  # result 现在是 4
+print(_i1)  # 打印字符串 "2 + 2"
+```
+
+## 使用历史记录：`%hist`
+
+-   `%hist`: 打印输入历史记录，可选择带有行号。
+
+## 使用历史记录：`%reset`
+
+- `%reset`:  清除交互式命名空间，以及可选的输入/输出缓存。
+
+## 使用历史记录：`%xdel`
+
+-   `%xdel variable`: 删除变量并尝试清除 IPython 对它的内部引用。 这对于内存管理非常有用，尤其是在处理大型数据集时。
+
+- 即使在使用 `del` 之后，IPython 的输入/输出历史记录也可能会将大型对象保留在内存中。 请谨慎使用 `%xdel` 和 `%reset` 来缓解内存问题。
+
+## 与操作系统交互 💻
+
+-   IPython 允许*直接从 shell* 与您的操作系统进行交互。
+-   您可以运行 shell 命令、更改目录并捕获命令输出。
+
+## 使用 `!` 执行 Shell 命令 💥
+
+-   在行首添加 `!` 前缀以将其作为 shell 命令执行。
+
+```{python}
+!ls  # 列出当前目录中的文件（Linux/macOS）
+!dir # 列出文件（Windows）
+```
+
+## 捕获 Shell 输出
+
+-   将 `!` 命令的输出分配给 Python 变量。
+
+```{python}
+file_list = !ls  # 将 !ls 命令（列出当前目录文件）的输出赋值给 file_list 变量
+print(file_list)  # 打印 file_list 变量的内容，即文件列表
+```
+- 返回的对象是一个自定义列表，其中包含控制台输出的各种版本。
+
+## Shell 命令中的 Python 变量：`$`
+
+-   使用 `$` 将 Python 变量的值替换到 shell 命令中。
+
+```{python}
+#| eval: false
+
+my_directory = "data_files"  # 定义一个名为 my_directory 的变量，并赋值为 "data_files"
+!ls $my_directory  # 使用 !ls 命令列出 'data_files' 目录中的文件，其中 $my_directory 会被替换为 "data_files"
+```
+
+## 别名：Shell 命令的快捷方式
+
+-   `%alias`:  为常用 shell 命令创建快捷方式（别名）。
+
+```{python}
+#| eval: false
+
+%alias ll ls -l  # 创建一个别名 'll'，用于执行 'ls -l' 命令
+ll /usr/bin  # 现在可以使用 'll' 命令
+```
+
+-   注意：别名在会话之间*不*持久，除非显式配置。
+
+## 书签：目录的快捷方式
+
+-   `%bookmark`: 为经常访问的目录创建书签。
+
+```{python}
+#| eval: false
+
+%bookmark mydata /path/to/my/data  # 创建一个名为 'mydata' 的书签，指向 '/path/to/my/data' 目录
+cd mydata       # 使用 cd 命令跳转到书签 'mydata' 所指向的目录
+%bookmark -l    # 列出所有书签
+```
+-   书签在会话之间*是*持久的。
+
+## 目录历史记录
+
+-   `%cd`: 更改当前工作目录。
+-   `%pwd`: 返回当前工作目录。
+-   `%pushd`: 将当前目录放置在堆栈上并更改为目标目录。
+-   `%popd`: 更改为从堆栈顶部弹出的目录。
+-   `%dirs`: 返回包含当前目录堆栈的列表。
+-   `%dhist`: 打印访问过的目录的历史记录。
+
+## 环境变量
+
+- `%env`: 以字典形式返回系统环境变量。
+- `%matplotlib`: 配置`matplotlib` 集成选项
+
+## 软件开发工具 🛠️
+
+-   IPython 不仅对交互式探索有价值，而且对软件开发也有价值。
+-   关键工具包括：
+    -   **交互式调试器：** `pdb` 的增强版本。
+    -   **代码计时：**  `%time` 和 `%timeit`。
+    -   **性能分析：** `%prun` 和 `%lprun`。
+
+## 交互式调试器：`%debug` 🐞
+
+-   `%debug`: 在异常发生*后*激活调试器（事后调试）。
+-   它将您置于错误发生的堆栈帧中。
+-   通过选项卡补全、语法高亮和回溯上下文等功能进行了增强。
+
+```{python}
+#| eval: false
+
+# 假设 some_script.py 包含错误：
+%run some_script.py  # 运行 some_script.py 脚本
+%debug  # 在错误发生处进入调试器
+```
+
+## 调试器命令 🧭 - 导航
+
+-   在调试器中：
+    -   `u` (up): 在调用堆栈中向*上*移动。
+    -   `d` (down): 在调用堆栈中向*下*移动。
+    -   `s` (step): *进入*函数调用。
+    -   `n` (next): 执行当前行并移动到*下一行*（在同一级别）。
+
+## 调试器命令 🧭 - 控制流
+
+-   `c` (continue): 继续执行，直到下一个断点或程序结束。
+-   `q` (quit): 退出调试器。
+
+## 调试器命令 🧭 - 检查
+
+-   `p variable`: 打印 `variable` 的值。
+-   `!variable`: 检查变量内容，当变量名与调试器命令相同时很有用。
+
+## `%pdb`: 自动调试
+
+-   `%pdb`: 在*任何异常*发生时自动进入调试器。 这对于调试非常有用！
+
+```{python}
+#| eval: false
+
+%pdb on  # 启用自动调试
+# 现在，任何错误都将自动启动调试器
+%pdb off # 禁用自动调试
+```
+
+## 使用调试器进行开发
+
+-   `%run -d script.py`: 在运行脚本*之前*启动调试器。 键入 `s` 以进入脚本。
+-   `%run -d -b line_number script.py`: 在指定的 `line_number` 处设置断点。
+-   `set_trace()`: 一个“穷人的断点”函数； 将其插入到您的代码中以创建临时断点。
+-  `debug(function, *args, **kwargs)`: 轻松进入特定函数调用。
+
+## `set_trace()` 和 `debug()` 函数
+
+```{python}
+from IPython.core.debugger import Pdb  # 从 IPython.core.debugger 模块导入 Pdb 类
+import sys # 导入 sys 模块
+
+def set_trace():  # 定义一个名为 set_trace 的函数
+    Pdb().set_trace(sys._getframe().f_back)  # 创建一个 Pdb 对象，并在调用 set_trace 的位置设置一个跟踪点
+
+def debug(f, *args, **kwargs):  # 定义一个名为 debug 的函数，它接受一个函数 f 以及任意数量的位置参数和关键字参数
+    pdb = Pdb()  # 创建一个 Pdb 对象
+    return pdb.runcall(f, *args, **kwargs)  # 使用 pdb.runcall 调用函数 f，并传入参数，这将允许您单步调试函数 f
+```
+
+-  在代码中调用 `set_trace()` 来设置断点。
+-   `debug(f, *args, **kwargs)` 允许通过传入函数 `f` 及其参数来单步调试函数 `f`。
+
+## 代码计时：`%time` 和 `%timeit` (回顾)
+
+-   `%time`: 测量语句的执行时间*一次*。
+-   `%timeit`: *多次*测量执行时间，以提供更准确的平均值。 它非常适合非常短的操作。
+
+```{python}
+my_list = list(range(100000))  # 创建一个包含 0 到 99999 的整数列表
+%time for _ in range(100):  sum(my_list)  # 使用 %time 测量循环 100 次计算 my_list 总和的时间
+%timeit sum(my_list)  # 使用 %timeit 测量计算 my_list 总和的平均时间
+```
+
+## 基本性能分析：`%prun` 和 `%run -p` 🕵️‍♀️
+
+-   **性能分析**揭示了您的代码将时间花在*哪里*。
+-   `%prun statement`: 分析单个 Python 语句。
+-   `%run -p script.py`: 分析整个脚本。
+-   这些命令在内部使用 `cProfile`。
+- 输出结果包括以下关键指标：
+  - `ncalls`: 调用次数。
+  - `tottime`: 函数中花费的总时间（不包括子函数调用）。
+  - `percall`: 每次调用的时间 (tottime / ncalls)。
+  - `cumtime`: 函数*及其*子函数中的*累积*时间。
+  - `percall`: 每次调用的累积时间 (cumtime / ncalls)。
+  -  `filename:lineno(function)`: 函数位置。
+
+```{python}
+#示例
+def slow_function():   # 定义一个名为 slow_function 的函数
+    result = []        # 初始化一个空列表 result
+    for i in range(1000): # 循环 1000 次
+        result.append(i * 2)  # 将 i 乘以 2 的结果添加到 result 列表中
+    return result   # 返回 result 列表
+
+%prun slow_function()   # 使用 %prun 分析 slow_function 函数的性能
+```
+
+## 行级性能分析：`%lprun` 📏
+
+-   `%lprun`: 提供特定函数的*逐行*性能分析，提供比 `%prun` 更详细的信息。
+-   需要 `line_profiler` IPython 扩展。
+    - 启用：将 `c.InteractiveShellApp.extensions = ['line_profiler']` 添加到 `ipython_config.py` 或使用 `%load_ext line_profiler`。
+-   语法：`%lprun -f function1 -f function2 statement_to_profile`
+-   输出包括：
+    -   `Line #`: 行号。
+    -   `Hits`: 该行被执行的次数。
+    -   `Time`: 在该行上花费的总时间（以计时器单位）。
+    -   `Per Hit`: 每次执行该行的时间。
+    -   `% Time`: 在该行上花费的时间百分比。
+    -   `Line Contents`: 该行的源代码。
+
+```{python}
+#| eval: false
+
+# 假设 line_profiler 已启用且 prof_mod.py 存在：
+from prof_mod import add_and_sum, call_function # 从 prof_mod 模块导入 add_and_sum 和 call_function 函数（示例文件，您需要创建它）
+%lprun -f add_and_sum call_function()  # 使用 %lprun 对 add_and_sum 函数进行逐行性能分析，分析语句为 call_function()
+```
+
+## 高效代码开发技巧 📝 - 重新加载
+
+-   **重新加载模块依赖项：**
+    -   问题：对导入模块的更改不会自动反映。
+    -   解决方案：
+        -   `importlib.reload(module)`: 重新加载单个模块。
+        -   `dreload(module)` (IPython 特有): *深度*（递归）重新加载模块及其依赖项 – 一个更强大的解决方案。
+
+## 高效代码开发技巧 📝 - 代码设计
+
+-   *保持相关对象和数据存活*: 避免将所有代码都放在 `main()` 函数中。 将重要变量保留在顶层，以便在 IPython 中轻松检查。
+-   *扁平化优于嵌套*: 尽量减少深度嵌套的代码结构。 这简化了调试和测试。
+-   *克服对较长文件的恐惧*: 在合理范围内，较长、组织良好的模块通常优于许多小型、相互连接的模块（减少重新加载开销）。
+-   *保持高内聚*:  在模块内将相关代码逻辑地分组在一起。
+
+## IPython 配置文件和配置 ⚙️
+
+-   使用配置文件 (`ipython_config.py`) 自定义 IPython 的外观和行为。
+-   这些文件通常位于您的 IPython 目录中（通常是 `~/.ipython/profile_default/`）。
+-   您可以为不同的项目或设置创建*多个配置文件*。
+-   创建新配置文件：`ipython profile create my_profile`
+-   使用特定配置文件启动 IPython：`ipython --profile=my_profile`
+-   注意：Jupyter 有自己独立的配置系统。
+
+## 结论 📖
+
+-   IPython 和 Jupyter 是用于交互式探索和软件开发的强大工具。
+-   掌握它们的功能 – 快捷键、魔法命令、调试器、性能分析器和配置选项 – 将显著提高您的工作效率。
+-   进行实验以找到最适合您个人风格的工作流程！
+
+## 总结
+
+-   我们探索了高级 IPython 功能，扩展了基本的 shell 交互。
+-   我们介绍了键盘快捷键、魔法命令以及与操作系统的交互。
+-   我们研究了用于调试、代码计时和性能分析的工具。
+-   我们讨论了编写针对 IPython 中的交互式开发进行优化的代码的技巧。
+-   我们介绍了 IPython 配置文件。
+
+## 思考与讨论 🤔
+
+-   您预计哪些 IPython 功能在*您的*工作中会最有用？
+-   您如何将这些工具集成到您的数据分析和编码例程中？
+-   考虑创建一个自定义 IPython 配置文件来简化您经常执行的任务。
+- 与传统的 Python IDE 相比，使用 IPython 有哪些优点和缺点？
+- “扁平化优于嵌套”和“克服对较长文件的恐惧”的原则如何应用于您自己的编码风格？
+- 您如何使用调试器和性能分析器来提高代码的正确性和效率？
+- `%run` 与简单地从命令行执行 Python 脚本有何不同？

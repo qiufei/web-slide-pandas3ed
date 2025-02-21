@@ -1,0 +1,1692 @@
+---
+title: 数据分析中的 Python 应用
+subtitle: 第 7 章 数据清洗与准备
+---
+
+## 引言：为什么数据清洗很重要
+
+- 数据分析和建模需要大量的数据准备工作。
+
+- **加载、清洗、转换和重新排列**数据会占用分析师的大量时间 (通常占 80% 甚至更多！😮)。
+
+- 数据并不总是以正确的格式存在。现实世界的数据是混乱的！
+
+- Pandas 结合 Python 的内置功能，为数据操作提供了强大的工具。
+
+## 引言：Pandas 用于数据处理
+
+- Pandas 提供了用于数据处理的高级、灵活且快速的工具。
+
+- 它的设计目标是有效地处理现实世界中的数据挑战。
+
+- 本章涵盖以下工具：
+    - 处理缺失数据。
+    - 处理重复数据。
+    - 字符串操作。
+    - 其他分析数据转换。
+
+## 7.1 处理缺失数据
+
+- 缺失数据在数据分析中很常见。
+
+- Pandas 的目标是使处理缺失数据尽可能容易。
+
+- 默认情况下，pandas 中的描述性统计会排除缺失数据。
+
+- Pandas 使用 `NaN`（Not a Number，非数字），一个浮点值，来表示缺失的数据，尤其是在处理`float64`数据类型时。
+
+## 7.1 处理缺失数据：`NaN` 标记
+
+```{python}
+#| echo: true
+import numpy as np  # 导入 NumPy 库，用于数值计算
+import pandas as pd  # 导入 Pandas 库，用于数据分析
+
+float_data = pd.Series([1.2, -3.5, np.nan, 0])  # 创建一个包含浮点数和 NaN 的 Series
+float_data  # 显示 Series
+```
+
+- `np.nan` 是一个特殊的浮点值，表示缺失数据。
+
+- 它是一个*标记值* – 它的存在表示一个缺失值或空值。
+
+## 7.1 处理缺失数据：使用 `.isna()` 检测
+
+```{python}
+#| echo: true
+float_data.isna()  # 使用 .isna() 方法检查 Series 中的缺失值
+```
+
+- `.isna()` 方法返回一个布尔类型的 Series。
+
+- `True` 表示缺失值 (NaN)，`False` 表示非缺失值。
+
+## 7.1 处理缺失数据：NA 约定
+
+- Pandas 采用 R 语言的约定：缺失数据被称为 **NA** (not available，不可用)。
+
+- NA 可能意味着：
+    - 数据不存在。
+    - 数据存在但未被观察到 (例如，数据收集问题)。
+
+- 分析缺失数据本身可以揭示数据收集问题或潜在的偏差。🤔
+
+## 7.1 处理缺失数据：`None` 也是 NA
+
+```{python}
+#| echo: true
+string_data = pd.Series(["aardvark", np.nan, None, "avocado"])  # 创建一个包含字符串、NaN 和 None 的 Series
+string_data  # 显示 Series
+```
+
+```{python}
+#| echo: true
+string_data.isna()  # 使用 .isna() 方法检查缺失值，None 也会被识别为缺失值
+```
+
+- Python 内置的 `None` 值在 pandas 中也被视为 NA。
+
+- 字符串和数值类型的 Series 都可以将 `None` 和 `NaN` 作为 NA。
+
+## 7.1 处理缺失数据：一致的处理方式
+
+```{python}
+#| echo: true
+float_data = pd.Series([1, 2, None], dtype='float64') #即便序列中给定的是None，在指定类型为float64后，会被转换为NaN
+float_data
+```
+
+```{python}
+#| echo: true
+float_data.isna()
+```
+
+- Pandas 致力于在不同数据类型中保持一致的缺失数据处理方式。
+- `float_data`使用`NaN`来表示缺失值。
+
+## 7.1 处理缺失数据：NA 处理方法
+
+- 用于管理缺失值的关键方法。
+
+| 方法        | 描述                                                                                                                         |
+| :---------- | :---------------------------------------------------------------------------------------------------------------------------- |
+| `dropna`    | 根据缺失值筛选轴标签 (行/列)，并提供阈值选项。                                                                                   |
+| `fillna`    | 使用指定值或插值方法 (例如 "ffill"、"bfill") 填充缺失数据。                                                                    |
+| `isna`      | 返回一个布尔数组/Series，指示哪些值是缺失的/NA。                                                                                 |
+| `notna`     | `isna` 的反操作：对于非 NA 值返回 `True`，对于 NA 值返回 `False`。                                                               |
+
+这些方法为在 pandas 中处理缺失数据提供了基础。
+
+## 7.1 处理缺失数据：Series 上的 `dropna`
+
+```{python}
+#| echo: true
+data = pd.Series([1, np.nan, 3.5, np.nan, 7])  # 创建一个包含数值和 NaN 的 Series
+data.dropna()  # 使用 .dropna() 方法删除包含 NaN 的元素
+```
+
+-  Series 上的 `dropna()` 返回一个仅包含非空数据和索引标签的新 Series。
+
+- 等同于布尔索引：`data[data.notna()]`。
+
+## 7.1 处理缺失数据：DataFrames 上的 `dropna` (第 1 部分)
+
+```{python}
+#| echo: true
+data = pd.DataFrame([[1., 6.5, 3.], [1., np.nan, np.nan],
+                     [np.nan, np.nan, np.nan], [np.nan, 6.5, 3.]])  # 创建一个包含数值和 NaN 的 DataFrame
+data  # 显示 DataFrame
+```
+
+## 7.1 处理缺失数据：DataFrames 上的 `dropna` (第 2 部分)
+
+```{python}
+#| echo: true
+data.dropna()  # 默认情况下，.dropna() 会删除包含任何 NaN 值的行
+```
+
+- 默认情况下，`dropna()` 会删除包含*任何* NA 值的*行*。
+
+- 这种方式可能非常严格。
+
+## 7.1 处理缺失数据：带有 `how='all'` 的 `dropna`
+
+```{python}
+#| echo: true
+data.dropna(how="all")  # 使用 how="all" 参数，只删除所有值都为 NaN 的行
+```
+
+- `how="all"` 仅删除*所有值*都为 NA 的行。
+
+- 比默认行为更宽松。
+
+## 7.1 处理缺失数据：删除列 (第 1 部分)
+
+```{python}
+#| echo: true
+data[4] = np.nan  # 添加一个新列，所有值都为 NaN
+data  # 显示 DataFrame
+```
+
+## 7.1 处理缺失数据：删除列 (第 2 部分)
+
+```{python}
+#| echo: true
+data.dropna(axis="columns", how="all")  # 使用 axis="columns" 和 how="all" 删除所有值都为 NaN 的列
+```
+
+- 要删除列，请使用 `axis="columns"` (或 `axis=1`)。
+
+- `how="all"` 与 `axis="columns"` 一起使用会删除*所有值*都为 NA 的列。
+
+## 7.1 处理缺失数据：带有 `thresh` 参数的 `dropna` (第 1 部分)
+
+```{python}
+#| echo: true
+df = pd.DataFrame(np.random.standard_normal((7, 3)))  # 创建一个包含随机数的 DataFrame
+df.iloc[:4, 1] = np.nan  # 将第 1 列的前 4 个值设置为 NaN
+df.iloc[:2, 2] = np.nan  # 将第 2 列的前 2 个值设置为 NaN
+df  # 显示 DataFrame
+```
+
+## 7.1 处理缺失数据：带有 `thresh` 参数的 `dropna` (第 2 部分)
+
+```{python}
+#| echo: true
+df.dropna()  # 默认情况下，删除包含任何 NaN 值的行
+```
+
+```{python}
+#| echo: true
+df.dropna(thresh=2)  # 使用 thresh=2 参数，保留至少有 2 个非 NaN 值的行
+```
+
+- `thresh` 参数保留至少具有 `thresh` 个非 NA 值的行。
+
+- 可以更精细地控制要保留哪些行。
+
+## 7.1 处理缺失数据：使用 `fillna` 填充
+
+```{python}
+#| echo: true
+df.fillna(0)  # 使用 .fillna(0) 将所有 NaN 值替换为 0
+```
+
+- `fillna(value)` 将所有 NA 值替换为指定的 `value`。
+
+- 一个常见的选择是 0，但这取决于具体情况。
+
+## 7.1 处理缺失数据：使用字典进行 `fillna`
+
+```{python}
+#| echo: true
+df.fillna({1: 0.5, 2: 0})  # 使用字典为不同的列指定不同的填充值，这里将第1列的NaN值填充为0.5，第2列的NaN值填充为0
+```
+
+- 使用字典为每列指定不同的填充值。
+
+- 字典的键是列标签；值是填充值。
+
+## 7.1 处理缺失数据：使用 `fillna` 进行插值 (第 1 部分)
+
+```{python}
+#| echo: true
+df = pd.DataFrame(np.random.standard_normal((6, 3)))  # 创建一个包含随机数的 DataFrame
+df.iloc[2:, 1] = np.nan  # 将第 1 列的第 2 行之后的值设置为 NaN
+df.iloc[4:, 2] = np.nan  # 将第 2 列的第 4 行之后的值设置为 NaN
+df  # 显示 DataFrame
+```
+
+## 7.1 处理缺失数据：使用 `fillna` 进行插值 (第 2 部分)
+
+```{python}
+#| echo: true
+df.fillna(method="ffill")  # 使用 method="ffill" 进行前向填充，将上一个有效值传播到后续的 NaN 值
+```
+
+- `method="ffill"` (前向填充) 将上一个有效观测值向前传播。
+
+-`method="bfill"`（后向填充）使用下一个有效观测值来填充空缺。
+- 适用于时间序列或有序数据。
+
+## 7.1 处理缺失数据：带有 `limit` 参数的 `fillna`
+
+```{python}
+#| echo: true
+df.fillna(method="ffill", limit=2)  # 使用 limit=2 参数限制前向填充连续 NaN 值的数量
+```
+
+- `limit` 参数限制 `ffill` 或 `bfill` 填充的连续 NA 值的数量。
+
+## 7.1 处理缺失数据：使用 `fillna` 进行插补
+
+```{python}
+#| echo: true
+data = pd.Series([1., np.nan, 3.5, np.nan, 7])  # 创建一个包含数值和 NaN 的 Series
+data.fillna(data.mean())  # 使用 .fillna(data.mean()) 将 NaN 值替换为 Series 的平均值
+```
+
+- 用平均值、中位数或其他统计量替换缺失值。
+
+- 这是一种简单的*插补*形式。
+
+## 7.2 数据转换
+
+- 筛选和清洗是必不可少的，但数据通常需要进一步转换。
+
+- 本节涵盖：
+    - 删除重复项。
+    - 使用函数或映射转换数据。
+    - 替换值。
+    - 重命名轴索引。
+    - 离散化和分箱。
+    - 检测和过滤异常值。
+    - 排列和随机采样。
+    - 计算指标/虚拟变量。
+
+## 7.2 数据转换：删除重复项
+
+```{python}
+#| echo: true
+data = pd.DataFrame({"k1": ["one", "two"] * 3 + ["two"],
+                     "k2": [1, 1, 2, 3, 3, 4, 4]})  # 创建一个包含重复行的 DataFrame
+data  # 显示 DataFrame
+```
+
+- 由于各种原因，可能会出现重复的行。
+
+## 7.2 数据转换：使用 `duplicated()` 识别重复项
+
+```{python}
+#| echo: true
+data.duplicated()  # 使用 .duplicated() 方法检查 DataFrame 中的重复行
+```
+
+- `duplicated()` 返回一个布尔 Series，指示每行是否为重复项 (是否在之前出现过)。
+
+## 7.2 数据转换：使用 `drop_duplicates()` 删除重复项
+
+```{python}
+#| echo: true
+data.drop_duplicates()  # 使用 .drop_duplicates() 方法删除重复行，默认保留第一个出现的行
+```
+
+- `drop_duplicates()` 返回一个删除了重复行的新 DataFrame。
+
+- 保留每个唯一行的*第一个*出现。
+
+## 7.2 数据转换：在列的子集上使用 `drop_duplicates()` (第 1 部分)
+
+```{python}
+#| echo: true
+data["v1"] = range(7)  # 添加一个新列
+data  # 显示 DataFrame
+```
+
+## 7.2 数据转换：在列的子集上使用 `drop_duplicates()` (第 2 部分)
+
+```{python}
+#| echo: true
+data.drop_duplicates(subset=["k1"])  # 使用 subset 参数指定要检查重复项的列的子集，这里只考虑 "k1" 列
+```
+
+- 使用 `subset` 参数指定要检查重复项的列的子集。
+
+- 这里，只考虑 `"k1"` 列。
+
+## 7.2 数据转换：带有 `keep='last'` 的 `drop_duplicates()`
+
+```{python}
+#| echo: true
+data.drop_duplicates(["k1", "k2"], keep="last")  # 使用 keep="last" 参数保留每个唯一行 (或列组合) 的最后一个出现
+```
+
+- `keep="last"` 保留每个唯一行 (或列组合) 的*最后一个*出现。
+
+- 默认为 `keep="first"`。
+
+## 7.2 数据转换：使用函数或映射转换数据 (第 1 部分)
+
+```{python}
+#| echo: true
+data = pd.DataFrame({"food": ["bacon", "pulled pork", "bacon",
+                              "pastrami", "corned beef", "bacon",
+                              "pastrami", "honey ham", "nova lox"],
+                     "ounces": [4, 3, 12, 6, 7.5, 8, 3, 5, 6]})  # 创建一个包含食品和重量信息的 DataFrame
+data  # 显示 DataFrame
+```
+
+- 假设我们想添加一列，指示每种食物的动物类型。
+
+## 7.2 数据转换：使用映射字典
+
+```{python}
+#| echo: true
+meat_to_animal = {
+  "bacon": "pig",
+  "pulled pork": "pig",
+  "pastrami": "cow",
+  "corned beef": "cow",
+  "honey ham": "pig",
+  "nova lox": "salmon"
+}  # 创建一个字典，将每种食物映射到对应的动物
+```
+
+- 创建一个字典，将每种食物映射到其对应的动物。
+
+## 7.2 数据转换：使用 `.map()`
+
+```{python}
+#| echo: true
+data["animal"] = data["food"].map(meat_to_animal)  # 使用 .map() 方法和映射字典将 "food" 列映射到 "animal" 列
+data  # 显示 DataFrame
+```
+
+- Series 的 `.map()` 方法接受一个函数或一个类似字典的对象 (如我们的映射)。
+
+- 它将映射应用于 Series 的每个元素。
+
+## 7.2 数据转换：将函数与 `.map()` 一起使用
+
+```{python}
+#| echo: true
+def get_animal(x):  # 定义一个函数，根据食物名称返回对应的动物
+    return meat_to_animal[x]
+
+data["food"].map(get_animal)  # 使用 .map() 方法和自定义函数将 "food" 列映射到动物类型
+```
+
+- 我们也可以将函数与 `.map()` 一起使用。
+
+- 该函数将 Series 中的单个元素作为输入，并返回转换后的值。
+
+## 7.2 数据转换：替换值
+
+```{python}
+#| echo: true
+data = pd.Series([1., -999., 2., -999., -1000., 3.])  # 创建一个包含数值和一些表示缺失值的特殊值的 Series
+data  # 显示 Series
+```
+
+- 假设 -999 和 -1000 是表示缺失数据的标记值。
+
+## 7.2 数据转换：使用 `replace()` 替换单个值
+
+```{python}
+#| echo: true
+data.replace(-999, np.nan)  # 使用 .replace() 方法将 -999 替换为 NaN
+```
+
+- `replace(old_value, new_value)` 将 `old_value` 的所有出现替换为 `new_value`。
+
+## 7.2 数据转换：使用 `replace()` 替换多个值
+
+```{python}
+#| echo: true
+data.replace([-999, -1000], np.nan)  # 使用 .replace() 方法一次性替换多个值，将 -999 和 -1000 都替换为 NaN
+```
+
+- 传递一个旧值列表以一次替换多个值。
+
+## 7.2 数据转换：为每个值使用不同的替换
+
+```{python}
+#| echo: true
+data.replace([-999, -1000], [np.nan, 0])  # 使用 .replace() 方法为不同的旧值指定不同的替换值，将 -999 替换为 NaN，将 -1000 替换为 0
+```
+
+- 提供一个替换值列表，对应于旧值列表。
+
+## 7.2 数据转换：将字典与 `replace()` 一起使用
+
+```{python}
+#| echo: true
+data.replace({-999: np.nan, -1000: 0})  # 使用字典进行替换，将 -999 替换为 NaN，将 -1000 替换为 0
+```
+
+- 字典也可以与 `replace()` 一起使用。
+
+- 键是旧值；值是新值。
+
+## 7.2 数据转换：重命名轴索引 (第 1 部分)
+
+```{python}
+#| echo: true
+data = pd.DataFrame(np.arange(12).reshape((3, 4)),
+                    index=["Ohio", "Colorado", "New York"],
+                    columns=["one", "two", "three", "four"])  # 创建一个 DataFrame，并指定行索引和列索引
+data  # 显示 DataFrame
+```
+
+- 轴标签 (行和列索引) 也可以进行转换。
+
+## 7.2 数据转换：使用 `.map()` 修改索引 (第 1 部分)
+
+```{python}
+#| echo: true
+def transform(x):  # 定义一个函数，将字符串的前四个字符转换为大写
+    return x[:4].upper()
+
+data.index.map(transform)  # 使用 .map() 方法和自定义函数转换行索引
+```
+
+## 7.2 数据转换：使用 `.map()` 修改索引 (第 2 部分)
+```{python}
+#| echo: true
+data.index = data.index.map(transform)  # 将转换后的索引赋值给 data.index，以修改 DataFrame 的行索引
+data
+```
+
+- 与 Series 类似，轴索引也有一个 `.map()` 方法。
+
+- 我们应用一个函数来转换每个索引标签。
+
+- 赋值给 `data.index` 会就地修改 DataFrame。
+
+## 7.2 数据转换：使用 `rename()` 创建转换后的副本
+
+```{python}
+#| echo: true
+data.rename(index=str.title, columns=str.upper)  # 使用 .rename() 方法创建转换后的副本，而不修改原始 DataFrame，将行索引首字母大写，列索引全部大写
+```
+
+- `rename()` 创建一个*转换后的副本*，而不修改原始 DataFrame。
+
+- `index` 和 `columns` 参数可以接受函数、字典或 Series。
+
+## 7.2 数据转换：使用字典进行 `rename()`
+
+```{python}
+#| echo: true
+data.rename(index={"OHIO": "INDIANA"},
+            columns={"three": "peekaboo"})  # 使用字典对部分轴标签进行重命名，将行索引 "OHIO" 重命名为 "INDIANA"，将列索引 "three" 重命名为 "peekaboo"
+```
+
+- 使用字典与 `rename()` 一起使用可以修改轴标签的子集。
+
+## 7.2 数据转换：离散化和分箱 (第 1 部分)
+
+- 连续数据通常会被离散化或分箱以进行分析。
+
+- 示例：将年龄分组到年龄范围。
+
+```{python}
+#| echo: true
+ages = [20, 22, 25, 27, 21, 23, 37, 31, 61, 45, 41, 32]  # 创建一个年龄列表
+bins = [18, 25, 35, 60, 100]  # 定义分箱边界
+age_categories = pd.cut(ages, bins)  # 使用 pd.cut() 函数将年龄数据分箱
+age_categories  # 显示分箱结果
+```
+
+- `pd.cut(data, bins)` 根据指定的 `bins` 边界将数据划分为多个箱。
+
+- 返回一个特殊的 `Categorical` 对象。
+
+## 7.2 数据转换：理解 `Categorical` 对象 (第 1 部分)
+
+```{python}
+#| echo: true
+age_categories.codes  # 查看每个年龄对应的箱的编码
+```
+
+```{python}
+#| echo: true
+age_categories.categories  # 查看箱的类别 (区间)
+```
+## 7.2 数据转换：理解 `Categorical` 对象 (第 2 部分)
+
+```{python}
+#| echo: true
+age_categories.categories[0]  # 查看第一个箱的区间
+```
+
+- `codes`: 一个整数数组，表示每个值所属的箱 (从 0 开始)。
+- `categories`: 一个 `IntervalIndex` 对象，包含箱的区间。
+
+## 7.2 数据转换：`Categorical` 上的 `value_counts()`
+
+```{python}
+#| echo: true
+pd.value_counts(age_categories)  # 使用 pd.value_counts() 统计每个箱中的元素数量
+```
+
+- `pd.value_counts(categorical)` 提供 `pd.cut()` 结果的箱计数。
+
+## 7.2 数据转换：开区间与闭区间
+
+- 圆括号 `()` 表示该侧是*开*的 (不包含)。
+- 方括号 `[]` 表示该侧是*闭*的 (包含)。
+
+- `(18, 25]` 表示 "大于 18，小于等于 25"。
+
+```{python}
+#| echo: true
+pd.cut(ages, bins, right=False)  # 使用 right=False 参数更改区间的闭合侧，变为左闭右开
+```
+- `right=False` 更改区间的闭合侧。
+
+## 7.2 数据转换：为箱添加标签
+
+```{python}
+#| echo: true
+group_names = ["Youth", "YoungAdult", "MiddleAged", "Senior"]  # 定义箱的标签
+pd.cut(ages, bins, labels=group_names)  # 使用 labels 参数为箱指定自定义名称
+```
+
+- `labels` 参数为箱分配自定义名称。
+
+- 比默认的区间标签更具信息量。
+
+## 7.2 数据转换：带有箱数量的 `pd.cut()`
+
+```{python}
+#| echo: true
+data = np.random.uniform(size=20)  # 生成 20 个均匀分布的随机数
+pd.cut(data, 4, precision=2)  # 将数据分成 4 个等长的箱，并设置精度为 2
+```
+- 将整数个箱传递给 `pd.cut()` 以根据最小值/最大值计算等长的箱。
+
+- `precision` 限制箱标签的小数精度。
+
+## 7.2 数据转换：用于分位数分箱的 `pd.qcut()`
+
+```{python}
+#| echo: true
+data = np.random.standard_normal(1000)  # 生成 1000 个标准正态分布的随机数
+quartiles = pd.qcut(data, 4, precision=2)  # 将数据分成四分位数，并设置精度为 2
+quartiles  # 显示分箱结果
+```
+
+- `pd.qcut()` 根据*样本分位数*对数据进行分箱。
+
+- 旨在实现 (大致) 等大小的箱。
+
+- 对于将数据划分为百分位数很有用。
+
+## 7.2 数据转换：带有自定义分位数的 `pd.qcut()`
+
+```{python}
+#| echo: true
+pd.qcut(data, [0, 0.1, 0.5, 0.9, 1.]).value_counts()  # 使用自定义分位数进行分箱，并统计每个箱中的元素数量
+```
+- 将自定义分位数 (0 到 1 之间的值) 传递给 `pd.qcut()`。
+
+- 示例：划分为十分位数 (0.1, 0.2, ..., 0.9)。
+
+## 7.2 数据转换：检测和过滤异常值 (第 1 部分)
+
+- 异常值过滤/转换通常是一个数组操作。
+
+```{python}
+#| echo: true
+data = pd.DataFrame(np.random.standard_normal((1000, 4)))  # 创建一个包含 1000 行 4 列标准正态分布随机数的 DataFrame
+data.describe()  # 查看 DataFrame 的描述性统计信息
+```
+- 包含正态分布数据的示例 DataFrame。
+
+## 7.2 数据转换：查找超过阈值的值
+
+```{python}
+#| echo: true
+col = data[2]  # 选择第 2 列
+col[col.abs() > 3]  # 找出第 2 列中绝对值大于 3 的值
+```
+- 查找第 2 列中绝对值大于 3 的值。
+
+## 7.2 数据转换：根据异常值选择行
+
+```{python}
+#| echo: true
+data[(data.abs() > 3).any(axis="columns")]  # 选择包含至少一个绝对值大于 3 的值的行
+```
+
+- `data.abs() > 3`: 布尔 DataFrame，指示超过 3 或 -3 的值。
+
+- `any(axis="columns")`: 检查一行中是否*任何*值为 `True`。
+
+- 选择包含至少一个异常值的行。
+
+## 7.2 数据转换：限制值的范围
+
+```{python}
+#| echo: true
+data[data.abs() > 3] = np.sign(data) * 3  # 将绝对值大于 3 的值限制为 -3 或 3
+data.describe()  # 查看 DataFrame 的描述性统计信息
+```
+
+- `np.sign(data)`: 对于负值返回 -1，对于正值返回 1。
+
+- 将超出 [-3, 3] 区间的值限制为 -3 和 3。
+
+## 7.2 数据转换：排列和随机采样 (第 1 部分)
+
+- 排列 (随机重新排序) 行或列。
+
+- 选择数据的随机子集。
+
+```{python}
+#| echo: true
+df = pd.DataFrame(np.arange(5 * 7).reshape((5, 7)))  # 创建一个示例 DataFrame
+df  # 显示 DataFrame
+```
+- 创建一个示例 DataFrame。
+
+## 7.2 数据转换：使用 `permutation()` 排列行 (第 1 部分)
+
+```{python}
+#| echo: true
+sampler = np.random.permutation(5)  # 生成一个包含 0-4 的随机排列的数组
+sampler  # 显示排列
+```
+
+## 7.2 数据转换：使用 `permutation()` 排列行 (第 2 部分)
+
+```{python}
+#| echo: true
+df.take(sampler)  # 使用 .take() 方法和排列对 DataFrame 的行进行重新排序，也可以使用 df.iloc[sampler]
+```
+
+- `np.random.permutation(n)` 生成一个从 0 到 n-1 的整数的随机排列。
+
+- `take()` 或 `iloc[]` 可以与排列一起使用以对行进行重新排序。
+
+## 7.2 数据转换：排列列 (第 1 部分)
+
+```{python}
+#| echo: true
+column_sampler = np.random.permutation(7)  # 生成一个包含 0-6 的随机排列的数组
+column_sampler  # 显示排列
+```
+
+## 7.2 数据转换：排列列 (第 2 部分)
+
+```{python}
+#| echo: true
+df.take(column_sampler, axis="columns")  # 使用 .take() 方法、排列和 axis="columns" 对 DataFrame 的列进行重新排序
+```
+
+- 类似地排列列，使用 `axis="columns"` 与 `take()` 一起使用。
+
+## 7.2 数据转换：不放回随机采样
+
+```{python}
+#| echo: true
+df.sample(n=3)  # 使用 .sample(n=3) 随机选择 3 行 (不放回)
+```
+
+- `sample(n=k)` 选择 `k` 个随机行，*不*放回。
+
+## 7.2 数据转换：有放回随机采样
+
+```{python}
+#| echo: true
+choices = pd.Series([5, 7, -1, 6, 4])  # 创建一个 Series
+choices.sample(n=10, replace=True)  # 使用 .sample(n=10, replace=True) 随机选择 10 个元素 (有放回)
+```
+
+- `replace=True` 允许*有*放回采样 (同一行可以被多次选择)。
+
+## 7.2 数据转换：计算指标/虚拟变量 (第 1 部分)
+
+- 将分类变量转换为 "虚拟" 或 "指标" 矩阵。
+
+- 用于统计建模和机器学习。
+
+```{python}
+#| echo: true
+df = pd.DataFrame({"key": ["b", "b", "a", "c", "a", "b"],
+                   "data1": range(6)})  # 创建一个包含分类变量 "key" 的 DataFrame
+df  # 显示 DataFrame
+```
+
+- 包含分类列 "key" 的示例 DataFrame。
+
+## 7.2 数据转换：`get_dummies()`
+
+```{python}
+#| echo: true
+pd.get_dummies(df["key"])  # 使用 pd.get_dummies() 函数将分类变量转换为虚拟变量
+```
+
+- `pd.get_dummies(categorical_column)` 创建一个 DataFrame，其中：
+    - 原始列中的每个唯一值都成为一个新列。
+    - 如果原始行具有该类别，则值为 1，否则为 0。
+
+## 7.2 数据转换：为虚拟变量添加前缀
+
+```{python}
+#| echo: true
+dummies = pd.get_dummies(df["key"], prefix="key")  # 使用 prefix 参数为虚拟变量的列名添加前缀
+df_with_dummy = df[["data1"]].join(dummies)  # 将虚拟变量与原始 DataFrame 连接
+df_with_dummy  # 显示结果 DataFrame
+```
+
+- `prefix` 参数为虚拟变量列名添加前缀。
+
+- 与原始 DataFrame 连接时很有用。
+
+## 7.2 数据转换：处理多个类别 (MovieLens 示例) (第 1 部分)
+
+```{python}
+#| echo: true
+mnames = ["movie_id", "title", "genres"]  # 定义列名
+movies = pd.read_table("datasets/movielens/movies.dat", sep="::",
+                       header=None, names=mnames, engine="python")  # 读取 MovieLens 数据集，分隔符为 "::"
+movies[:10]  # 显示前 10 行数据
+```
+- MovieLens 数据集："genres" 列包含用竖线 (|) 分隔的类型字符串。
+- 一部电影可以属于多个类型。
+
+## 7.2 数据转换：`str.get_dummies()` 用于多个类别
+
+```{python}
+#| echo: true
+dummies = movies["genres"].str.get_dummies("|")  # 使用 str.get_dummies("|") 处理多个类别，分隔符为 "|"
+dummies.iloc[:10, :6]  # 显示前 10 行和前 6 列
+```
+
+- `str.get_dummies(separator)` 处理由分隔符分隔的多个类别。
+
+## 7.2 数据转换：与原始 DataFrame 组合
+
+```{python}
+#| echo: true
+movies_windic = movies.join(dummies.add_prefix("Genre_"))  # 将虚拟变量与原始 DataFrame 连接，并为虚拟变量列名添加前缀
+
+
+movies_windic.iloc[0] # 显示结果 DataFrame 的第一行
+```
+
+- `add_prefix()` 为虚拟变量列添加前缀。
+- `join()` 将虚拟变量与原始 DataFrame 组合。
+
+## 7.2 数据转换：结合 `get_dummies()` 和 `cut()` (第 1 部分)
+
+```{python}
+#| echo: true
+np.random.seed(12345) # 设置随机数种子以确保结果可重复
+values = np.random.uniform(size=10) # 生成 10 个均匀分布的随机数
+values # 显示随机数
+```
+
+## 7.2 数据转换：结合 `get_dummies()` 和 `cut()` (第 2 部分)
+
+```{python}
+#| echo: true
+bins = [0, 0.2, 0.4, 0.6, 0.8, 1] # 定义分箱边界
+pd.get_dummies(pd.cut(values, bins)) # 将数据分箱，然后转换为虚拟变量
+```
+
+- 统计应用的一个技巧：将 `get_dummies()` 与离散化函数 (如 `cut()`) 结合使用。
+
+- 为每个箱创建指标变量。
+
+## 7.3 扩展数据类型
+
+- Pandas 最初对 NumPy 的依赖存在局限性：
+    - 对整数和布尔值的缺失数据处理不完整。
+    - 字符串数据在计算上开销较大。
+    - 某些数据类型 (时间间隔、时间增量) 未得到有效支持。
+
+- Pandas 现在有一个*扩展类型*系统。
+    - 允许添加 NumPy 本身不支持的新数据类型。
+    - 将这些类型视为一等公民。
+
+## 7.3 扩展数据类型：整数示例 (第 1 部分)
+
+```{python}
+#| echo: true
+s = pd.Series([1, 2, 3, None]) # 创建一个包含整数和 None 的 Series
+s # 显示 Series
+```
+
+```{python}
+#| echo: true
+s.dtype # 查看 Series 的数据类型
+```
+
+- 传统行为：包含缺失值的整数 Series 变为 `float64`。
+
+## 7.3 扩展数据类型：`Int64Dtype` (第 1 部分)
+
+```{python}
+#| echo: true
+s = pd.Series([1, 2, 3, None], dtype=pd.Int64Dtype()) # 使用 pd.Int64Dtype() 创建一个可空整数 Series
+s # 显示 Series
+```
+
+## 7.3 扩展数据类型：`Int64Dtype` (第 2 部分)
+
+```{python}
+#| echo: true
+s.isna() # 检查缺失值，None 会被正确识别为缺失值
+```
+
+```{python}
+#| echo: true
+s.dtype # 查看 Series 的数据类型
+```
+- `pd.Int64Dtype()` (或 `"Int64"`) 创建一个具有正确 NA 处理的整数 Series。
+
+- 使用 `<NA>` 表示缺失值 (pandas.NA 标记值)。
+
+## 7.3 扩展数据类型：字符串示例
+
+```{python}
+#| echo: true
+s = pd.Series(['one', 'two', None, 'three'], dtype=pd.StringDtype()) # 使用 pd.StringDtype() 创建一个专门的字符串 Series
+s # 显示 Series
+```
+
+```{python}
+#| echo: true
+s.dtype #查看 Series 的数据类型
+```
+
+- `pd.StringDtype()` 创建一个专门的字符串数据类型。
+- 对于大型数据集，内存效率和计算效率更高。
+- 需要 `pyarrow` 库。
+
+## 7.3 扩展数据类型： `astype()` (第 1 部分)
+```{python}
+df = pd.DataFrame({"A": [1, 2, None, 4],
+                    "B": ["one", "two", "three", None],
+                   "C": [False, None, False, True]}) # 创建一个包含不同数据类型和缺失值的 DataFrame
+df # 显示 DataFrame
+```
+
+## 7.3 扩展数据类型：  `astype()` (第 2 部分)
+```{python}
+df["A"] = df["A"].astype("Int64") # 将 "A" 列转换为可空整数类型
+df["B"] = df["B"].astype("string") # 将 "B" 列转换为专门的字符串类型
+df["C"] = df["C"].astype("boolean") # 将 "C" 列转换为可空布尔类型
+df # 显示 DataFrame
+```
+- 扩展类型与现有工具很好地集成。可以使用astype()方法转换不同的类型。
+
+## 7.3 扩展数据类型：总结
+
+- 可用的扩展类型的完整列表。
+
+| 扩展类型      | 描述                                                              |
+| :------------------ | :----------------------------------------------------------------------- |
+| `BooleanDtype`     | 可空布尔数据，作为字符串传递时使用 `"boolean"`          |
+| `CategoricalDtype` | 分类数据类型，作为字符串传递时使用 `"category"`           |
+| `DatetimeTZDtype`  | 带时区的日期时间                                                  |
+| `Float32Dtype`     | 32 位可空浮点数，作为字符串传递时使用 `"Float32"`    |
+| `Float64Dtype`     | 64 位可空浮点数，作为字符串传递时使用 `"Float64"`    |
+| `Int8Dtype`        | 8 位可空有符号整数，作为字符串传递时使用 `"Int8"`       |
+| `Int16Dtype`       | 16 位可空有符号整数，作为字符串传递时使用 `"Int16"`      |
+| `Int32Dtype`       | 32 位可空有符号整数，作为字符串传递时使用 `"Int32"`      |
+| `Int64Dtype`       | 64 位可空有符号整数，作为字符串传递时使用 `"Int64"`      |
+| `UInt8Dtype`       | 8 位可空无符号整数，作为字符串传递时使用 `"UInt8"`     |
+| `UInt16Dtype`      | 16 位可空无符号整数，作为字符串传递时使用 `"UInt16"`    |
+| `UInt32Dtype`      | 32 位可空无符号整数，作为字符串传递时使用 `"UInt32"`    |
+| `UInt64Dtype`      | 64 位可空无符号整数，作为字符串传递时使用 `"UInt64"`    |
+
+## 7.4 字符串操作
+
+- Python 因其字符串/文本处理能力而广受欢迎。
+
+- 字符串对象方法通常就足够了。
+
+- 正则表达式 (regex) 提供了更强大的功能。
+
+- Pandas 将这些功能结合起来，并优雅地处理缺失数据。
+
+## 7.4 字符串操作：Python 内置字符串方法 (第 1 部分)
+
+```{python}
+#| echo: true
+val = "a,b,  guido" # 定义一个包含逗号分隔符和空格的字符串
+val.split(",") # 使用 .split(",") 方法将字符串拆分为列表
+```
+
+- `split()`: 根据分隔符将字符串拆分为子字符串列表。
+
+## 7.4 字符串操作：Python 内置字符串方法 (第 2 部分)
+
+```{python}
+#| echo: true
+pieces = [x.strip() for x in val.split(",")] # 使用列表推导式和 .strip() 方法去除每个子字符串两侧的空格
+pieces # 显示结果列表
+```
+
+- `strip()`: 删除前导/尾随空格。通常与 `split()` 一起使用。
+
+## 7.4 字符串操作：字符串连接 (第 1 部分)
+
+```{python}
+#| echo: true
+first, second, third = pieces # 将列表中的元素解包到变量中
+first + "::" + second + "::" + third  # 使用 + 运算符连接字符串
+```
+
+## 7.4 字符串操作：字符串连接 (第 2 部分)
+
+```{python}
+#| echo: true
+"::".join(pieces) # 使用 .join() 方法连接字符串，更 Pythonic 的方式
+```
+
+- `join()`: 使用分隔符连接字符串的一种更 Pythonic 的方式。
+
+## 7.4 字符串操作：子字符串检测 (第 1 部分)
+
+```{python}
+#| echo: true
+"guido" in val # 使用 in 运算符检查字符串中是否包含子字符串
+```
+
+```{python}
+#| echo: true
+val.index(",")  # 使用 .index() 方法查找子字符串的索引，如果未找到则引发 ValueError 异常
+```
+## 7.4 字符串操作：子字符串检测 (第 2 部分)
+
+```{python}
+#| echo: true
+val.find(":")   # 使用 .find() 方法查找子字符串的索引，如果未找到则返回 -1
+```
+
+- `in`: 检查子字符串是否存在的最佳方法。
+
+- `index()`: 查找子字符串的第一次出现的索引；如果未找到则引发错误。
+
+- `find()`: 类似于 `index()`，但如果未找到则返回 -1。
+
+## 7.4 字符串操作：`count()` 和 `replace()` (第 1 部分)
+
+```{python}
+#| echo: true
+val.count(",") # 使用 .count() 方法计算子字符串出现的次数
+```
+```{python}
+#| echo: true
+val.replace(",", "::") # 使用 .replace() 方法将子字符串替换为另一个字符串
+```
+
+## 7.4 字符串操作：`count()` 和 `replace()` (第 2 部分)
+
+```{python}
+#| echo: true
+val.replace(",", "")  # 通过替换为空字符串来删除子字符串
+```
+- `count()`: 计算子字符串出现的次数。
+- `replace()`: 将一个模式的出现替换为另一个模式。
+
+## 7.4 字符串操作：Python 内置字符串方法 - 总结
+
+- 常见字符串操作概述。
+
+| 方法       | 描述                                                                                                                 |
+| :----------- | :-------------------------------------------------------------------------------------------------------------------------- |
+| `count`      | 返回字符串中子字符串的不重叠出现次数                                                    |
+| `endswith`   | 如果字符串以指定后缀结尾，则返回 `True`                                                                                      |
+| `startswith` | 如果字符串以指定前缀开头，则返回 `True`                                                                                    |
+| `join`       | 使用字符串作为分隔符连接其他字符串序列                                                         |
+| `index`      | 返回传递的子字符串在字符串中第一次出现的起始索引；如果未找到，则引发 `ValueError` 异常 |
+| `find`       | 返回字符串中子字符串第一次出现的第一个字符的位置；类似于 index，但如果未找到则返回 -1     |
+| `rfind`      | 返回字符串中子字符串*最后*一次出现的第一个字符的位置；如果未找到则返回 -1                   |
+| `replace`    | 将字符串的出现替换为另一个字符串                                                                           |
+| `strip`      | 修剪*两侧*的空白字符，包括换行符                                                                          |
+| `rstrip`     | 修剪*右侧*的空白字符                                                                                             
+
+```python
+#| echo: false
+import re # 导入正则表达式模块
+```
+
+## 7.4 字符串操作：Python 内置字符串方法 - 总结 (续)
+
+| 方法       | 描述                                                                                                                 |
+| :----------- | :-------------------------------------------------------------------------------------------------------------------------- |
+| `lstrip`     | 修剪*左侧*的空白字符                                                                                               |
+| `split`      | 使用传递的分隔符将字符串拆分为子字符串列表                                                                    |
+| `lower`      | 将字母字符转换为小写                                                                                       |
+| `upper`      | 将字母字符转换为大写                                                                                       |
+| `casefold`   | 将字符转换为小写，处理特定于区域的变体                                                           |
+| `ljust`      | 左对齐；使用空格 (或其他填充字符) 填充右侧                                                           |
+| `rjust`      | 右对齐；使用空格 (或其他填充字符) 填充左侧                                                          |
+
+## 7.4 字符串操作：正则表达式
+
+- 正则表达式 (regex) 提供了一种强大的方法来搜索、匹配和操作文本模式。
+
+- Python 的内置 `re` 模块处理正则表达式。
+
+- 正则表达式函数分为三类：
+    - 模式匹配。
+    - 替换。
+    - 拆分。
+
+## 7.4 字符串操作：正则表达式示例 - 拆分
+
+```{python}
+#| echo: true
+import re # 导入 re 模块
+text = "foo    bar\t baz  \tqux" # 定义一个包含不同空白字符分隔的字符串
+re.split(r"\s+", text)  # 使用 re.split() 和正则表达式 "\s+" 将字符串拆分为列表，"\s+" 匹配一个或多个空白字符
+```
+
+- `\s+`: 一个或多个空白字符的正则表达式。
+
+- `re.split(pattern, text)`: 根据正则表达式模式拆分文本。
+
+## 7.4 字符串操作：编译正则表达式对象
+
+```{python}
+#| echo: true
+regex = re.compile(r"\s+")  # 使用 re.compile() 编译正则表达式，创建一个可重用的正则表达式对象
+regex.split(text) # 使用编译后的正则表达式对象拆分文本
+```
+
+- `re.compile(pattern)`: 将正则表达式编译为可重用的正则表达式对象。
+
+- 如果您将对多个字符串应用相同的正则表达式，则建议使用 (节省 CPU 周期)。
+
+## 7.4 字符串操作：`findall()`
+
+```{python}
+#| echo: true
+regex.findall(text) # 使用 .findall() 方法查找字符串中所有匹配正则表达式的子字符串
+```
+
+- `findall()`: 返回字符串中所有不重叠的模式匹配项的列表。
+
+## 7.4 字符串操作：正则表达式示例 - 电子邮件匹配
+
+```{python}
+#| echo: true
+text = """Dave dave@google.com
+Steve steve@gmail.com
+Rob rob@gmail.com
+Ryan ryan@yahoo.com""" # 定义一个包含多个电子邮件地址的字符串
+
+pattern = r"[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}"  # 用于匹配电子邮件地址的基本正则表达式
+
+# re.IGNORECASE 使正则表达式不区分大小写
+regex = re.compile(pattern, flags=re.IGNORECASE) # 编译正则表达式，并设置 re.IGNORECASE 标志以忽略大小写
+```
+
+- 一个更复杂的正则表达式来匹配电子邮件地址。
+
+- `re.IGNORECASE` 标志使匹配不区分大小写。
+
+## 7.4 字符串操作：带有电子邮件正则表达式的 `findall()`
+
+```{python}
+#| echo: true
+regex.findall(text) # 使用 .findall() 方法查找字符串中所有匹配正则表达式的电子邮件地址
+```
+
+- `findall()` 返回所有匹配的电子邮件地址的列表。
+
+## 7.4 字符串操作：`search()` (第 1 部分)
+
+```{python}
+#| echo: true
+m = regex.search(text) # 使用 .search() 方法查找字符串中第一个匹配正则表达式的子字符串
+m # 显示匹配对象
+```
+
+## 7.4 字符串操作：`search()` (第 2 部分)
+
+```{python}
+#| echo: true
+text[m.start():m.end()] # 使用匹配对象的 .start() 和 .end() 方法获取匹配子字符串在原始字符串中的位置
+```
+
+- `search()`: 返回字符串中*第一个*匹配项的*匹配对象*。
+
+- 匹配对象提供匹配的开始和结束位置。
+- `regex.match()` 返回 `None`。
+
+## 7.4 字符串操作：`sub()`
+
+```{python}
+#| echo: true
+print(regex.sub("REDACTED", text)) # 使用 .sub() 方法将匹配正则表达式的子字符串替换为另一个字符串
+```
+
+- `sub(replacement, text)`: 返回一个新字符串，其中模式的出现被 `replacement` 字符串替换。
+
+## 7.4 字符串操作：正则表达式组 (第 1 部分)
+
+```{python}
+#| echo: true
+pattern = r"([A-Z0-9._%+-]+)@([A-Z0-9.-]+)\.([A-Z]{2,4})"  # 带有捕获组的正则表达式
+regex = re.compile(pattern, flags=re.IGNORECASE) # 编译正则表达式，并设置 re.IGNORECASE 标志
+
+m = regex.match("wesm@bright.net") # 使用 .match() 方法匹配字符串的开头
+m.groups() # 使用 .groups() 方法获取捕获组的内容
+```
+- 正则表达式中的括号 `()` 定义*捕获组*。
+
+## 7.4 字符串操作：正则表达式组 (第 2 部分)
+
+- 匹配对象的 `groups()` 方法返回一个包含捕获组内容的元组。
+
+## 7.4 字符串操作：带有组的 `findall()`
+
+```{python}
+#| echo: true
+regex.findall(text) # 当正则表达式包含捕获组时，.findall() 方法返回一个元组列表，每个元组包含捕获组的内容
+```
+- 当正则表达式有组时，`findall()` 返回一个*元组*列表，其中每个元组包含捕获组。
+
+## 7.4 字符串操作：带有组引用的 `sub()`
+
+```{python}
+#| echo: true
+print(regex.sub(r"Username: \1, Domain: \2, Suffix: \3", text)) # 在 .sub() 方法中，可以使用 \1、\2 等引用捕获组
+```
+
+- 在 `sub()` 中，`\1`、`\2` 等引用捕获组 (反向引用)。
+
+## 7.4 字符串操作：正则表达式方法 - 总结
+
+| 方法        | 描述                                                                                                                                         |
+| :------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `findall`     | 以列表形式返回字符串中所有不重叠的匹配模式                                                                                   |
+| `finditer`    | 类似于 `findall`，但返回一个迭代器                                                                                                            |
+| `match`       | 匹配字符串*开头*的模式，并可选择将模式组件分段到组中；如果模式匹配，则返回一个匹配对象，否则返回 `None` |
+| `search`      | 扫描字符串以查找与模式匹配的子字符串，如果找到则返回一个匹配对象；与 `match` 不同，匹配可以在字符串中的*任何位置*                       |
+| `split`       | 在模式的每次出现处将字符串拆分为多个片段                                                                                              |
+| `sub`, `subn` | 将字符串中模式的所有出现 (`sub`) 或前 *n* 次出现 (`subn`) 替换为替换表达式；使用符号 `\1`、`\2` 等                |
+
+## 7.4 字符串操作：pandas 中的字符串函数
+
+- Pandas 将字符串操作扩展到 Series 和 DataFrame。
+
+- 优雅地处理缺失数据。
+
+```{python}
+#| echo: true
+data = {"Dave": "dave@google.com", "Steve": "steve@gmail.com",
+        "Rob": "rob@gmail.com", "Wes": np.nan} # 创建一个包含电子邮件地址和缺失值的字典
+data = pd.Series(data) # 将字典转换为 Series
+data # 显示 Series
+```
+
+```{python}
+#| echo: true
+data.isna() # 检查缺失值
+```
+- 包含字符串数据和缺失值的示例 Series。
+
+## 7.4 字符串操作：`str` 访问器
+
+```{python}
+#| echo: true
+data.str.contains("gmail") # 使用 .str.contains() 方法检查每个字符串是否包含 "gmail"
+```
+
+- Series 有一个 `str` 属性，提供对字符串方法的访问。
+
+- 这些方法会跳过并传播 NA 值。
+
+## 7.4 字符串操作：`str.contains()`
+
+- `str.contains(substring)`: 检查每个字符串是否包含给定的子字符串。
+
+- 返回一个布尔 Series。
+
+## 7.4 字符串操作：将正则表达式与 `str` 方法一起使用
+
+```{python}
+#| echo: true
+pattern = r"([A-Z0-9._%+-]+)@([A-Z0-9.-]+)\.([A-Z]{2,4})" # 定义用于匹配电子邮件地址的正则表达式
+data.str.findall(pattern, flags=re.IGNORECASE) # 将正则表达式与 .str.findall() 方法一起使用，并设置 re.IGNORECASE 标志
+```
+
+- 正则表达式可以与 `str` 方法一起使用。
+- 可以传递 `flags` (如 `re.IGNORECASE`)。
+
+## 7.4 字符串操作：向量化元素检索 (第 1 部分)
+
+```{python}
+#| echo: true
+matches = data.str.findall(pattern, flags=re.IGNORECASE).str[0] # 使用 .str.findall() 查找匹配项，然后使用 .str[0] 获取第一个匹配项
+matches # 显示匹配项
+```
+
+```{python}
+#| echo: true
+matches.str.get(1) # 使用 .str.get(1) 访问匹配项的第二个元素
+```
+
+## 7.4 字符串操作：向量化元素检索 (第 2 部分)
+
+```{python}
+#| echo: true
+data.str[:5]  # 字符串切片
+```
+- 向量化元素检索：使用 `str.get(i)` 或索引到 `str` 属性 (`str[i]`)。
+
+## 7.4 字符串操作：`str.extract()`
+
+```{python}
+#| echo: true
+data.str.extract(pattern, flags=re.IGNORECASE) # 使用 .str.extract() 方法提取捕获组，每个捕获组成为 DataFrame 中的一列
+```
+
+- `str.extract(pattern)`: 返回一个 *DataFrame*，其中正则表达式中的每个捕获组都成为一列。
+
+## 7.4 字符串操作：`Series` 字符串方法部分列表 - 总结
+
+| 方法        | 描述                                                                                                                               |
+| :------------ | :---------------------------------------------------------------------------------------------------------------------------------------- |
+| `cat`         | 使用可选的分隔符逐元素连接字符串                                                                                   |
+| `contains`    | 如果每个字符串都包含模式/正则表达式，则返回布尔数组                                                                                 |
+| `count`       | 计算模式|
+| `extract`     | 使用带有组的正则表达式从字符串 Series 中提取一个或多个字符串；结果将是一个 DataFrame，每个组一列 |
+| `endswith`    | 等效于对每个元素执行 `x.endswith(pattern)`                                                                                      |
+| `startswith`  | 等效于对每个元素执行 `x.startswith(pattern)`                                                                                    |
+| `findall`     | 计算每个字符串的所有模式/正则表达式匹配项的列表                                                                          |
+| `get`         | 索引到每个元素 (检索第 *i* 个元素)                                                                                        |
+| `isalnum`     | 等效于内置的 `str.isalnum`                                                                                                       |
+| `isalpha`     | 等效于内置的 `str.isalpha`                                                                                                       |
+| `isdecimal`   | 等效于内置的 `str.isdecimal`                                                                                                     |
+| `isdigit`     | 等效于内置的 `str.isdigit`                                                                                                       |
+| `islower`     | 等效于内置的 `str.islower`                                                                                                       |
+| `isnumeric`   | 等效于内置的 `str.isnumeric`                                                                                                     |
+| `isupper`     | 等效于内置的 `str.isupper`                                                                                                       |
+| `join`        | 使用传递的分隔符连接 Series 中每个元素中的字符串                                                                          |
+| `len`         | 计算每个字符串的长度                                                                                                             |
+| `lower, upper`| 转换大小写；等效于对每个元素执行 `x.lower()` 或 `x.upper()`                                                                 |
+| `match`       | 对每个元素使用 `re.match` 和传递的正则表达式，返回 `True` 或 `False` 表示是否匹配                       |
+| `pad`         | 在字符串的左侧、右侧或两侧添加空白字符                                                                                  |
+| `center`      | 等效于 `pad(side="both")`                                                                                                          |
+| `repeat`      | 复制值 (例如，`s.str.repeat(3)` 等效于对每个字符串执行 `x * 3`)                                                       |
+| `replace`     | 将模式/正则表达式的出现替换为其他字符串                                                                              |
+| `slice`       | 对 Series 中的每个字符串进行切片                                                                                                            |
+| `split`       | 使用分隔符或正则表达式拆分字符串                                                                                           |
+| `strip`       | 修剪两侧的空白字符，包括换行符                                                                                        |
+| `rstrip`      | 修剪右侧的空白字符                                                                                                             |
+| `lstrip`      | 修剪左侧的空白字符                                                                                                              |
+
+## 7.5 分类数据
+
+- 介绍 pandas `Categorical` 类型。
+
+- 提高某些 pandas 操作的性能和内存使用。
+
+- 对统计和机器学习应用有用。
+
+## 7.5 分类数据：背景和动机 (第 1 部分)
+
+- 列通常包含一组较小的不同值的重复实例。
+
+- *维度表*是数据仓库中的一种常用技术。
+    - 不同值存储在维度表中。
+    - 主要观测值存储为引用维度表的整数键。
+- 更高效的存储和计算。
+
+## 7.5 分类数据：背景和动机 (第 2 部分)
+
+```{python}
+#| echo: true
+values = pd.Series(['apple', 'orange', 'apple',
+                    'apple'] * 2) # 创建一个包含重复字符串的 Series
+values # 显示 Series
+```
+
+```{python}
+#| echo: true
+pd.unique(values) # 使用 pd.unique() 获取 Series 中的唯一值
+```
+
+```{python}
+#| echo: true
+pd.value_counts(values) # 使用 pd.value_counts() 统计每个唯一值的出现次数
+```
+
+## 7.5 分类数据：维度表表示 (第 1 部分)
+
+```{python}
+#| echo: true
+values = pd.Series([0, 1, 0, 0] * 2) # 创建一个包含整数键的 Series
+dim = pd.Series(['apple', 'orange']) # 创建一个维度表 Series
+values # 显示整数键 Series
+```
+
+## 7.5 分类数据：维度表表示 (第 2 部分)
+
+```{python}
+#| echo: true
+dim # 显示维度表
+```
+- `values`: 引用维度表的整数键。
+
+- `dim`: 包含不同值的维度表。
+
+## 7.5 分类数据：使用 `take()` 恢复原始数据
+
+```{python}
+#| echo: true
+dim.take(values) # 使用 .take() 方法和整数键从维度表中恢复原始字符串 Series
+```
+- `take()` 方法可用于恢复原始字符串 Series。
+
+## 7.5 分类数据：术语
+
+- *分类*或*字典编码*表示：使用整数表示具有重复值的数据。
+
+- *类别*、*字典*或*级别*：不同值的数组。
+
+- *类别代码*或*代码*：引用类别的整数值。
+
+## 7.5 分类数据：优点
+
+- 显著提高分析性能。
+
+- 在保持代码不变的情况下对类别进行转换。
+    - 重命名类别。
+    - 追加新类别。
+
+## 7.5 分类数据：pandas 中的 `Categorical` 扩展类型 (第 1 部分)
+
+```{python}
+#| echo: true
+fruits = ['apple', 'orange', 'apple', 'apple'] * 2 # 创建一个水果列表
+N = len(fruits) # 计算列表长度
+rng = np.random.default_rng(seed=12345) # 创建一个随机数生成器，并设置种子以确保结果可重复
+df = pd.DataFrame({'fruit': fruits,
+                   'basket_id': np.arange(N),
+                   'count': rng.integers(3, 15, size=N),
+                   'weight': rng.uniform(0, 4, size=N)},
+                  columns=['basket_id', 'fruit', 'count', 'weight']) # 创建一个 DataFrame
+df # 显示 DataFrame
+```
+
+- 包含 "fruit" 列 (字符串对象) 的示例 DataFrame。
+
+## 7.5 分类数据：转换为 Categorical
+
+```{python}
+#| echo: true
+fruit_cat = df['fruit'].astype('category') # 使用 .astype('category') 将 "fruit" 列转换为 Categorical 类型
+fruit_cat # 显示转换后的 Series
+```
+
+- `astype('category')`: 将列转换为 `Categorical` 类型。
+
+## 7.5 分类数据：访问 `Categorical` 对象
+
+```{python}
+#| echo: true
+c = fruit_cat.array # 使用 .array 属性访问底层的 Categorical 对象
+type(c) # 查看对象的类型
+```
+- `.array` 属性访问底层的 `Categorical` 对象。
+
+## 7.5 分类数据：`categories` 和 `codes` 属性 (第 1 部分)
+
+```{python}
+#| echo: true
+c.categories # 查看 Categorical 对象的类别
+```
+
+```{python}
+#| echo: true
+c.codes # 查看 Categorical 对象的代码
+```
+- `categories`: 不同值。
+
+## 7.5 分类数据：`categories` 和 `codes` 属性 (第 2 部分)
+
+- `codes`: 表示每个值类别的整数代码。
+
+## 7.5 分类数据：转换 DataFrame 列
+
+```{python}
+#| echo: true
+df['fruit'] = df['fruit'].astype('category') # 将 DataFrame 的 "fruit" 列转换为 Categorical 类型
+df["fruit"] # 显示转换后的列
+```
+
+- 通过分配 `astype('category')` 的结果，将 DataFrame 列转换为分类。
+
+## 7.5 分类数据：直接创建 `Categorical`
+
+```{python}
+#| echo: true
+my_categories = pd.Categorical(['foo', 'bar', 'baz', 'foo', 'bar']) # 直接从 Python 序列创建 Categorical 对象
+my_categories # 显示 Categorical 对象
+```
+
+- 直接从 Python 序列创建 `Categorical` 对象。
+
+## 7.5 分类数据：`from_codes()` 构造函数
+
+```{python}
+#| echo: true
+categories = ['foo', 'bar', 'baz'] # 定义类别
+codes = [0, 1, 2, 0, 0, 1] # 定义代码
+my_cats_2 = pd.Categorical.from_codes(codes, categories) # 使用 .from_codes() 构造函数从代码和类别创建 Categorical 对象
+my_cats_2 # 显示 Categorical 对象
+```
+
+- `from_codes(codes, categories)`: 从现有代码和类别创建 `Categorical`。
+
+## 7.5 分类数据：有序类别 (第 1 部分)
+
+```{python}
+#| echo: true
+ordered_cat = pd.Categorical.from_codes(codes, categories,
+                                        ordered=True) # 使用 ordered=True 参数创建有序 Categorical 对象
+ordered_cat # 显示有序 Categorical 对象
+```
+
+## 7.5 分类数据：有序类别 (第 2 部分)
+
+```{python}
+#| echo: true
+my_cats_2.as_ordered() # 使用 .as_ordered() 方法将无序 Categorical 对象转换为有序
+```
+
+- `ordered=True`: 指示类别具有有意义的顺序。
+
+- 默认情况下，类别是无序的。
+
+## 7.5 分类数据：使用 Categorical 进行计算 (第 1 部分)
+
+- 使用 `Categorical` 的行为通常与非编码版本 (例如，字符串数组) 相同。
+
+- 某些 pandas 函数 (如 `groupby`) 在使用分类时性能更好。
+
+```{python}
+#| echo: true
+rng = np.random.default_rng(seed=12345) # 创建一个随机数生成器
+draws = rng.standard_normal(1000) # 生成 1000 个标准正态分布的随机数
+draws[:5] # 显示前 5 个随机数
+```
+
+## 7.5 分类数据：`qcut()` 和 Categorical (第 1 部分)
+
+```{python}
+#| echo: true
+bins = pd.qcut(draws, 4) # 使用 pd.qcut() 将数据分成四分位数
+bins # 显示分箱结果，返回一个 Categorical 对象
+```
+## 7.5 分类数据：`qcut()` 和 Categorical (第 2 部分)
+
+```{python}
+#| echo: true
+bins = pd.qcut(draws, 4, labels=['Q1', 'Q2', 'Q3', 'Q4']) # 使用 labels 参数为四分位数添加标签
+bins # 显示带有标签的分箱结果
+```
+```{python}
+#| echo: true
+bins.codes[:10] # 查看前 10 个数据对应的分位数代码
+```
+
+- `pd.qcut()` 返回一个 `Categorical` 对象。
+
+- `labels` 参数用于提供名称。
+
+## 7.5 分类数据：带有 Categorical 的 `groupby()` (第 1 部分)
+
+```{python}
+#| echo: true
+bins = pd.Series(bins, name='quartile') # 将分箱结果转换为 Series，并命名为 "quartile"
+results = (pd.Series(draws) # 将原始数据转换为 Series
+           .groupby(bins) # 使用分箱结果进行分组
+           .agg(['count', 'min', 'max']) # 对每个分组计算数量、最小值和最大值
+           .reset_index()) # 重置索引
+results # 显示结果
+```
+## 7.5 分类数据：带有 Categorical 的 `groupby()` (第 2 部分)
+
+```{python}
+#| echo: true
+results['quartile'] # 查看结果中的 "quartile" 列，保留了原始的 Categorical 信息
+```
+
+- 结果中的 'quartile' 列保留原始分类信息。
+
+## 7.5 分类数据：性能优势 (第 1 部分)
+
+```{python}
+#| echo: true
+N = 10_000_000 # 定义数据量
+labels = pd.Series(['foo', 'bar', 'baz', 'qux'] * (N // 4)) # 创建一个包含重复字符串的 Series
+categories = labels.astype('category') # 将 Series 转换为 Categorical 类型
+```
+
+## 7.5 分类数据：性能优势 (第 2 部分)
+
+```{python}
+#| echo: true
+labels.memory_usage(deep=True) # 查看原始 Series 的内存使用情况
+```
+
+```{python}
+#| echo: true
+categories.memory_usage(deep=True) # 查看 Categorical 类型的 Series 的内存使用情况
+```
+- Categorical 使用的内存明显少于字符串。
+
+## 7.5 分类数据：分类方法
+
+- 包含分类数据的 Series 具有特殊方法 (类似于 `Series.str`)。
+
+- 通过 `cat` 访问器访问。
+
+```{python}
+#| echo: true
+s = pd.Series(['a', 'b', 'c', 'd'] * 2) # 创建一个包含重复字符串的 Series
+cat_s = s.astype('category') # 将 Series 转换为 Categorical 类型
+cat_s # 显示 Categorical Series
+```
+
+## 7.5 分类数据：`cat` 访问器
+
+```{python}
+#| echo: true
+cat_s.cat.codes # 使用 .cat.codes 访问 Categorical 对象的代码
+```
+
+```{python}
+#| echo: true
+cat_s.cat.categories # 使用 .cat.categories 访问 Categorical 对象的类别
+```
+
+- `cat` 访问器提供对分类方法和属性的访问。
+
+## 7.5 分类数据：`set_categories()`
+
+```{python}
+#| echo: true
+actual_categories = ['a', 'b', 'c', 'd', 'e'] # 定义新的类别
+cat_s2 = cat_s.cat.set_categories(actual_categories) # 使用 .cat.set_categories() 方法设置新的类别
+cat_s2 # 显示新的 Categorical Series
+```
+
+- `set_categories()`: 更改类别集。
+
+- 当数据不包含所有可能的类别时很有用。
+
+## 7.5 分类数据：带有 `set_categories()` 的 `value_counts()`
+
+```{python}
+#| echo: true
+cat_s.value_counts() # 统计原始 Categorical Series 中每个类别的出现次数
+```
+
+```{python}
+#| echo: true
+cat_s2.value_counts() # 统计新的 Categorical Series 中每个类别的出现次数，即使某些类别在数据中不存在也会显示
+```
+
+- `value_counts()` 尊重定义的类别，即使某些类别在数据中不存在。
+
+## 7.5 分类数据：`remove_unused_categories()`
+
+```{python}
+#| echo: true
+cat_s3 = cat_s[cat_s.isin(['a', 'b'])] # 筛选出只包含类别 "a" 和 "b" 的数据
+cat_s3 # 显示筛选后的 Categorical Series
+```
+
+```{python}
+#| echo: true
+cat_s3.cat.remove_unused_categories() # 使用 .cat.remove_unused_categories() 方法删除未使用的类别
+```
+
+- `remove_unused_categories()`: 删除数据中未出现的类别。
+- 筛选后节省内存很有用。
+
+## 7.5 分类数据：分类方法 - 总结
+
+| 方法                    | 描述                                                                                                               |
+| :------------------------ | :------------------------------------------------------------------------------------------------------------------------ |
+| `add_categories`          | 在现有类别末尾追加新的 (未使用的) 类别                                                                |
+| `as_ordered`              | 将类别设置为有序                                                                                                     |
+| `as_unordered`            | 将类别设置为无序                                                                                                   |
+| `remove_categories`       | 删除类别，将所有已删除的值设置为 null                                                                      |
+| `remove_unused_categories`| 删除数据中未出现的任何类别值                                                                 |
+| `rename_categories`       | 使用指定的新类别名称集替换类别；不能更改类别的*数量*                       |
+| `reorder_categories`      | 类似于 `rename_categories`，但也可以更改结果以使类别有序                               |
+| `set_categories`          | 使用指定的新类别集替换类别；可以*添加*或*删除*类别                          |
+
+## 7.5 分类数据：创建虚拟变量
+
+- 将分类数据转换为虚拟变量 (one-hot 编码)。
+- 用于统计和机器学习。
+
+```{python}
+#| echo: true
+cat_s = pd.Series(['a', 'b', 'c', 'd'] * 2, dtype='category') # 创建一个 Categorical Series
+pd.get_dummies(cat_s) # 使用 pd.get_dummies() 函数将 Categorical Series 转换为虚拟变量
+```
+
+- `pd.get_dummies(categorical_series)` 创建一个包含虚拟变量的 DataFrame。
+
+## 7.6 结论
+
+- 有效的数据准备对于高效的数据分析至关重要。
+- 本章涵盖了许多数据清洗和转换技术。
+- 下一章将探讨 pandas 中的连接和分组功能。
+
+## 总结
+
+- 数据清洗是数据分析的重要组成部分，通常占分析师时间的 80% 或更多。
+- Pandas 提供了强大的工具来处理缺失数据 (`NaN`、`None`)，包括 `dropna`、`fillna`、`isna` 和 `notna`。
+- 数据转换操作包括删除重复项 (`duplicated`、`drop_duplicates`)、映射值 (`map`)、替换值 (`replace`)、重命名索引 (`rename`)、分箱 (`cut`、`qcut`)、异常值检测、排列、采样 (`sample`) 和创建虚拟变量 (`get_dummies`)。
+- 扩展数据类型 (`Int64Dtype`、`StringDtype`、`CategoricalDtype` 等) 提供了对特定数据类型和缺失值的改进处理。
+- 可以使用 Python 的内置字符串方法、正则表达式 (`re` 模块) 和 pandas 的 `str` 访问器高效地进行字符串操作。
+- `Categorical` 类型为具有重复值的数据提供了内存和性能优势，提供了诸如 `cat.codes`、`cat.categories`、`set_categories` 和 `remove_unused_categories` 之类的方法。
+
+## 思考与讨论 🤔
+
+- 回想一下您遇到脏数据的经历。本章讨论的哪些技术最有用？
+- 为什么正确处理缺失数据很重要？忽略或错误处理缺失数据可能有什么后果？
+- 与将数据存储为字符串相比，`Categorical` 类型如何提高效率？您会在什么情况下选择使用 `Categorical` 数据？
+- 您能想到哪些情况下您可能*不*想删除重复数据？
+- 浏览 `re` 模块和 pandas 的 `str` 访问器的文档。您还能找到哪些其他有用的函数？
+- 考虑 `cut()` 和 `qcut()` 之间的权衡。您会在什么情况下使用其中一个而不是另一个？
+- 讨论使用有序与无序分类数据的场景。
+- 为什么您可能希望将异常值限制在一定范围内，而不是简单地删除所有异常值？
+

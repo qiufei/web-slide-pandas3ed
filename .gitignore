@@ -1,0 +1,16 @@
+/.quarto/
+/_site/
+
+html/figures
+
+qmd/datasets/fec/P00000001-ALL.csv
+
+# 忽略 qmd 文件夹下所有非 .qmd 后缀的文件，通过以下两行代码实现
+# 忽略 qmd 目录下所有文件
+qmd/*
+# 不忽略 qmd 目录下的 .qmd 文件
+!qmd/*.qmd
+# 不忽略 qmd 目录下的 .css 文件
+!qmd/*.css
+# 不忽略 qmd 目录下的 .gitignore
+!qmd/.gitignore

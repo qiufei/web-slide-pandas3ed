@@ -1,0 +1,67 @@
+---
+title: "python语言与数据分析"
+# image: https://assets.qiufei.site/personal/profile.jpg
+# about:
+#   template: broadside
+#   links:
+#     - icon: envelope
+#       text: Email
+#       href: mailto:hfutqiufei@163.com
+#     - icon: fab fa-weibo
+#       text: 微博
+#       href: https://weibo.com/u/1651226607
+#     - icon: origin:知
+#       text: 知乎
+#       href: https://www.zhihu.com/people/cionysus
+#     - icon: fab fa-weixin
+#       text: 微信
+#       href: weixin:cionysus
+#     - icon: github
+#       text: Github
+#       href: https://github.com/qiufei
+# email-obfuscation: javascript
+---
+
+
+## 教材
+
+教材采用《Python for Data Analysis: Data Wrangling with pandas, NumPy, and Jupyter 3rd Edition》
+
+![Python for Data Analysis: Data Wrangling with pandas, NumPy, and Jupyter 3rd Edition](https://m.media-amazon.com/images/I/91QBEYSpnLL._SL1500_.jpg)
+
+教材官网：[Python for Data Analysis](https://wesmckinney.com/book/)
+
+
+
+
+
+## ppt
+
+
+
+<a href="./html/pandas3ed1cn.html"> 第一章 </a>
+
+<a href="./html/pandas3ed2cn.html"> 第二章 </a>
+
+<a href="./html/pandas3ed3cn.html"> 第三章 </a>
+
+<a href="./html/pandas3ed4cn.html"> 第四章 </a>
+
+<a href="./html/pandas3ed5cn.html"> 第五章 </a>
+
+<a href="./html/pandas3ed6cn.html"> 第六章 </a>
+
+<a href="./html/pandas3ed7cn.html"> 第七章 </a>
+
+<a href="./html/pandas3ed8cn.html"> 第八章 </a>
+
+<a href="./html/pandas3ed9cn.html"> 第九章 </a>
+
+<a href="./html/pandas3ed10cn.html"> 第十章 </a>
+
+<a href="./html/pandas3ed11cn.html"> 第十一章 </a>
+
+<a href="./html/pandas3ed12cn.html"> 第十二章 </a>
+
+<a href="./html/pandas3ed13cn.html"> 第十三章 </a>
+

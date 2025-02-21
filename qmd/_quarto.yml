@@ -1,0 +1,34 @@
+project:
+  output-dir: ../html
+
+lang: en
+#subtitle: "教材补充解释与说明"
+title-slide-attributes:
+    data-background-image: https://assets.qiufei.site/zwu/nice_to_meet_you.png
+    data-background-size: contain
+    data-background-opacity: "0.5"
+author: "邱飞"
+
+
+format:
+  revealjs:
+    width: 1280
+    height: 720
+    slide-level: 3
+    slide-number: true
+    show-slide-number: all
+    fig-align: center
+    #smaller: true
+    theme: serif
+    logo: https://assets.qiufei.site/zwu/zwu_logo.png
+    embed-resources: true
+    footer: "邱飞 💌 qiufei@zwu.edu.cn"
+    scrollable: true
+    css: my.css
+
+jupyter: python3
+
+execute: 
+  eval: true
+  echo: true
+  warning: false 

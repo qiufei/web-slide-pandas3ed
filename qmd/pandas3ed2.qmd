@@ -1,0 +1,1067 @@
+---
+title: "Python for Data Analysis"
+subtitle:  Chapter 2 Python Language Basics
+---
+
+# Chapter 2: Python Language Basics, IPython, and Jupyter Notebooks 🚀
+
+## Introduction
+
+This chapter introduces the fundamental concepts of Python, IPython, and Jupyter Notebooks, essential tools for data analysis. We'll cover:
+
+-   **Python Language Basics**: Core syntax and semantics.
+-   **IPython**: An enhanced interactive Python shell.
+-   **Jupyter Notebooks**: Web-based interactive computing environments.
+
+
+
+## Introduction (Continued)
+
+The evolution of Python's data analysis capabilities is like a "chicken-and-egg" scenario. Initially, libraries like pandas, scikit-learn, and statsmodels were less developed.  
+
+Today, these libraries are mature, forming a robust ecosystem for data science, machine learning, and statistical computing. This makes Python an excellent tool for anyone working with data. 🎉
+
+
+
+## Why Python for Data Analysis?
+
+-   **Ideal for Data Wrangling**: Python excels at transforming messy, unstructured data into a clean, tabular format. This is crucial for preparing datasets for analysis.
+
+
+
+## Why Python for Data Analysis? (Continued)
+
+-   **Rich Ecosystem of Libraries**: Libraries like pandas, NumPy, scikit-learn, and Matplotlib provide powerful tools for data manipulation, analysis, and visualization.
+-   **Expressive and Readable Syntax**: Readability makes Python easy to learn and use, especially for beginners.
+
+
+
+## Why Python for Data Analysis? (Visual)
+
+![](./images/data-science-python.png)
+
+
+
+## Getting Started: Live Coding 💻
+
+The best way to learn is by doing! We'll explore these concepts through live IPython or Jupyter sessions. Follow along with the examples to maximize your learning.
+
+Familiarity with keyboard-driven, console-like development is also part of the learning process.
+
+
+
+## 2.1 The Python Interpreter
+
+- Python is an **interpreted** language. The interpreter executes code line by line.
+
+- Launch the standard interpreter with the `python` command.
+
+```{bash}
+$ python
+Python 3.10.4 | packaged by conda-forge | (main, Mar 24 2022, 17:38:57)
+[GCC 10.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> a = 5
+>>> print(a)
+5
+```
+
+
+
+## The Python Interpreter (Continued)
+
+- `>>>` is the prompt where you type your code.
+- Exit with `exit()` or `Ctrl-D` (Linux/macOS).
+
+
+
+## Running Python Programs
+
+-   Create a `.py` file (e.g., `hello_world.py`).
+
+-   Run it from the terminal: `python hello_world.py`.  Make sure the file is in your current working directory.
+
+```{python}
+# hello_world.py
+print("Hello world")
+```
+
+
+
+## Running Python Programs (Continued)
+
+```{bash}
+$ python hello_world.py
+Hello world
+```
+
+
+
+## 2.2 IPython Basics
+
+-   **IPython** is an *enhanced* Python interpreter. It's designed for interactive data analysis.
+
+-   **Jupyter Notebooks** are web-based environments built on top of IPython. They provide a rich, interactive experience.
+
+
+
+## 2.2 IPython Basics (Continued)
+
+-   Launch IPython with the `ipython` command.
+
+```{bash}
+$ ipython
+Python 3.10.4 | packaged by conda-forge | (main, Mar 24 2022, 17:38:57)
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.31.1 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]:
+```
+
+-   Notice the `In [1]:` prompt, which is different from the standard `>>>`.
+
+
+
+## IPython: Running Code
+
+-   Execute code by typing it and pressing Enter.
+-   IPython displays a string representation of objects when you type their name.
+
+```{python}
+#| eval: false
+In [1]: a = 5
+
+In [2]: a
+Out[2]: 5
+
+In [3]: import numpy as np
+
+In [4]: data = [np.random.standard_normal() for i in range(7)]
+```
+
+
+## IPython: Running Code (Continued)
+
+```{python}
+#| eval: false
+In [5]: data
+Out[5]:
+[-0.20470765948471295,
+ 0.47894333805754824,
+ -0.5194387150567381,
+ -0.55573030434749,
+ 1.9657805725027142,
+ 1.3934058329729904,
+ 0.09290787674371767]
+```
+
+-   IPython's output is often more readable than standard Python's `print()`.
+
+
+
+## Running the Jupyter Notebook
+
+-   Jupyter Notebook is a powerful interactive document for code, text (with Markdown), visualizations, and more.
+
+-   Launch with:  `jupyter notebook`
+
+```{bash}
+$ jupyter notebook
+[I 15:20:52.739 NotebookApp] Serving notebooks from local directory:
+/home/wesm/code/pydata-book
+...
+[I 15:20:52.740 NotebookApp] Use Control-C to stop this server and shut down
+all kernels...
+```
+
+
+
+## Running the Jupyter Notebook (Continued)
+
+-   Jupyter usually opens automatically in your web browser. If not, navigate to the address provided (e.g., `http://localhost:8888`).
+
+
+
+## Jupyter Notebook: Interface
+
+![](./images/jupyter_landing_page.png)
+
+-   **Landing Page**: Shows files in the directory where you started Jupyter.
+
+
+
+## Jupyter Notebook: Interface (Continued)
+
+-   **New Notebook**: Click "New" -> "Python 3" to create a new notebook.
+
+
+
+## Jupyter Notebook: Cells
+
+![](./images/jupyter_new_notebook.png)
+
+
+
+## Jupyter Notebook: Cells (Continued)
+
+- **Code Cells**: Where you write and execute Python code. Press `Shift-Enter` to run a cell.
+
+- **Markdown Cells**: For text, explanations, and documentation (using Markdown syntax).
+
+- Save the notebook. It will create a file with the extension .ipynb, a self-contained format containing all content.
+
+
+
+## Jupyter Notebook: Example View
+
+![](./images/jupyter_example_notebook.png)
+
+
+
+## Jupyter Notebook: Example View Description
+
+This image shows a Jupyter notebook with code for data analysis and text:
+
+-   **Title:** "Introductory examples".
+-   **Section Heading:** "1.usa.gov data from bit.ly".
+-   **Code Cells:**
+    -   `%pwd`: Displays the current working directory.
+    -   Reading and processing data from a file.
+    -   Using the `json` library.
+    -   Accessing specific data elements.
+-   **Text Cell:** "Counting time zones in pure Python".
+
+
+
+## IPython and Jupyter: Tab Completion ⌨️
+
+-   **Tab Completion**: A *huge* time-saver! Press `Tab` while typing to:
+    -   Complete variable names.
+    -   Show object methods and attributes.
+    -   Complete file paths.
+    -   See function keyword arguments.
+
+```{python}
+#| eval: false
+In [1]: an_apple = 27
+
+In [2]: an_example = 42
+
+In [3]: an<Tab>  # Press Tab here
+an_apple  an_example  any
+```
+
+
+
+## Tab Completion: Methods and Modules
+
+```{python}
+#| eval: false
+In [3]: b = [1, 2, 3]
+
+In [4]: b.<Tab> # Press Tab after the dot
+append()  count()   insert()  reverse()
+clear()   extend()  pop()     sort()
+copy()    index()   remove()
+```
+
+
+
+## Tab Completion: Methods and Modules (Continued)
+
+```{python}
+#| eval: false
+In [1]: import datetime
+
+In [2]: datetime.<Tab> # Press Tab after the dot
+date       MAXYEAR    timedelta
+datetime   MINYEAR    timezone
+datetime_CAPI time      tzinfo
+```
+
+- IPython hides methods and attributes starting with underscores by default.
+
+
+
+## Tab Completion: Function Arguments
+
+![](./images/autocomplete_function_keywords.png)
+
+-   Tab completion also works for function keyword arguments, including the `=` sign!
+
+
+
+## IPython and Jupyter: Introspection 🔍
+
+-   **Introspection**: Get information about an object using `?`.
+
+```{python}
+#| eval: false
+In [1]: b = [1, 2, 3]
+
+In [2]: b?
+Type:        list
+String form: [1, 2, 3]
+Length:      3
+Docstring:
+Built-in mutable sequence.
+
+If no argument is given, the constructor creates a new empty list.
+The argument must be an iterable if specified.
+```
+
+
+
+## Introspection: Example with a Function
+
+```{python}
+#| eval: false
+def add_numbers(a, b):
+    """
+    Add two numbers together
+
+    Returns
+    -
+    the_sum : type of arguments
+    """
+    return a + b
+
+In [6]: add_numbers?
+Signature: add_numbers(a, b)
+Docstring:
+Add two numbers together
+
+Returns
+-
+the_sum : type of arguments
+File:      <ipython-input-9-6a548a216e27>
+Type:      function
+```
+
+-   The `?` operator displays the docstring, providing information about function.
+- Introspection also shows function or instance method and docstrings.
+
+
+## Introspection: Wildcard Searching
+
+-   Use `*` with `?` to search the IPython namespace.
+
+```{python}
+#| eval: false
+In [9]: import numpy as np
+
+In [10]: np.*load*?
+np.__loader__
+np.load
+np.loads
+np.loadtxt
+```
+
+-   This shows all names in the NumPy namespace containing "load".
+
+
+
+## 2.3 Python Language Basics
+
+Now, let's dive into the core syntax and semantics of the Python language itself.
+
+
+
+### Language Semantics
+
+-   Python emphasizes **readability**, **simplicity**, and **explicitness**. It's often described as "executable pseudocode."
+
+
+
+### Indentation, not braces 📏
+
+-   Python uses **indentation** (spaces or tabs) to structure code, *not* curly braces `{}`.
+
+```{python}
+#| eval: false
+for x in array:
+    if x < pivot:
+        less.append(x)
+    else:
+        greater.append(x)
+```
+
+-   A colon `:` indicates the start of an indented block.
+-   **Consistent indentation is crucial!** Use four spaces.
+
+::: {.callout-note}
+It is highly recommended to use four spaces as the default indent and to replace tabs with four spaces. Many text editors have settings that will automatically replace tab stops with spaces.
+:::
+
+
+
+## Semicolons
+
+-   Python statements generally *do not* need semicolons.
+-   Semicolons can separate multiple statements on a single line, but this is generally *discouraged* for readability.
+
+```{python}
+a = 5; b = 6; c = 7  # Generally avoid this style
+```
+
+
+
+## Everything is an object 🍎
+
+-   In Python, *everything* is an object: numbers, strings, lists, functions, classes, modules, etc.
+-   Each object has a **type** (e.g., `int`, `str`, `list`, `function`) and internal data.
+-   This makes Python very flexible.
+
+
+
+## Comments 💬
+
+-   Use the hash mark `#` to create comments. Anything after `#` on a line is ignored.
+
+```{python}
+#| eval: false
+results = []
+for line in file_handle:
+    # keep the empty lines for now
+    # if len(line) == 0:
+    #     continue
+    results.append(line.replace("foo", "bar"))
+
+print("Reached this line")  # Simple status report
+```
+
+
+
+## Function and object method calls 📞
+
+-   Call functions with parentheses `()` and pass arguments (if any).
+-   Objects often have **methods** (functions attached to the object) that you call using the dot `.` syntax.
+
+```{python}
+#| eval: false
+result = f(x, y, z)
+g()
+
+obj.some_method(x, y, z)
+
+result = f(a, b, c, d=5, e="foo")  # Positional and keyword arguments
+```
+
+
+
+## Variables and argument passing 🔗
+
+-   Assigning a variable creates a *reference* to the object on the right-hand side of the `=`.
+
+```{python}
+a = [1, 2, 3]
+b = a  # b now refers to the *same* list as a
+a.append(4)
+print(b)  # Output: [1, 2, 3, 4]
+```
+
+- **Important**: In Python, `a` and `b` point to the *same* object in memory, not copies.
+
+
+
+## Variable References (Diagram)
+
+![](./images/variable_references.png)
+
+-   This diagram illustrates that `a` and `b` are simply names that *refer* to the same list object in memory.
+
+::: {.callout-note}
+Assignment is also known as **binding** because we are binding a name to an object. Assigned variable names are sometimes referred to as *bound variables*.
+:::
+
+
+
+## Dynamic references, strong types 💪
+
+-   Variables in Python don't have an inherent type. The type is associated with the *object* the variable refers to.
+
+```{python}
+a = 5
+print(type(a))  # Output: <class 'int'>
+
+a = "foo"
+print(type(a))  # Output: <class 'str'>
+```
+
+
+## Dynamic references, strong types 💪 (Continued)
+
+-   Python is **strongly typed**: Objects have specific types, and implicit conversions are limited.
+
+```{python}
+# "5" + 5  # This would cause a TypeError
+```
+
+
+
+## Strong Typing: Example
+
+```{python}
+a = 4.5
+b = 2
+print(f"a is {type(a)}, b is {type(b)}")  # String formatting
+print(a / b)
+```
+
+-   Even though `b` is an integer, it's implicitly converted to a float for the division.
+
+
+
+## Checking Types with `isinstance`
+
+-   Use `isinstance()` to check if an object is an instance of a particular type (or one of several types).
+
+```{python}
+a = 5
+print(isinstance(a, int))  # Output: True
+
+b = 4.5
+print(isinstance(a, (int, float)))  # Output: True
+print(isinstance(b, (int, float)))  # Output: True
+```
+
+
+
+## Attributes and methods
+
+-   Objects have **attributes** (data stored "inside" the object) and **methods** (functions associated with the object).
+-   Access them using `obj.attribute_name`.
+- We use `getattr` function can get object's attributes and methods by name.
+
+```{python}
+a = "foo"
+# a.<Press Tab>  # See available attributes and methods
+
+print(getattr(a, "split"))
+```
+
+
+
+## Duck typing 🦆
+
+- "If it walks like a duck and quacks like a duck, then it's a duck."
+- Check for specific behavior (e.g., iterability) rather than strict type.
+
+```{python}
+def isiterable(obj):
+    try:
+        iter(obj)
+        return True
+    except TypeError:  # not iterable
+        return False
+
+print(isiterable("a string"))  # Output: True
+print(isiterable([1, 2, 3]))  # Output: True
+print(isiterable(5))  # Output: False
+```
+
+
+
+## Imports 📦
+
+-   A **module** is a `.py` file containing Python code.
+-   Use `import` to access variables and functions from other modules.
+
+```{python}
+# some_module.py
+PI = 3.14159
+
+def f(x):
+    return x + 2
+
+def g(a, b):
+    return a + b
+```
+
+
+
+## Imports (Continued)
+
+```{python}
+#| eval: false
+# In another file:
+import some_module
+result = some_module.f(5)
+pi = some_module.PI
+
+# Or:
+from some_module import g, PI
+result = g(5, PI)
+
+# Or with different names:
+import some_module as sm
+from some_module import PI as pi, g as gf
+```
+
+
+
+## Binary operators and comparisons ⚙️
+
+-   Python uses standard mathematical syntax for binary operations and comparisons.
+
+```{python}
+print(5 - 7)
+print(12 + 21.5)
+print(5 <= 2)
+```
+
+
+
+## Binary Operators (Table)
+
+| Operation      | Description                                                                                      |
+| -- |  |
+| `a + b`        | Add `a` and `b`                                                                                  |
+| `a - b`        | Subtract `b` from `a`                                                                           |
+| `a * b`        | Multiply `a` by `b`                                                                              |
+| `a / b`        | Divide `a` by `b`                                                                               |
+| `a // b`       | Floor-divide `a` by `b`, dropping any fractional remainder                                      |
+| `a ** b`       | Raise `a` to the `b` power                                                                        |
+
+## Binary Operators (Table) - Continued
+
+| Operation      | Description                                                                                      |
+| -- |  |
+| `a & b`        | True if both `a` and `b` are True; for integers, take the bitwise AND                            |
+| `a \| b`       | True if either `a` or `b` is True; for integers, take the bitwise OR                             |
+| `a ^ b`        | For Booleans, True if `a` or `b` is True, but not both; for integers, take the bitwise EXCLUSIVE-OR |
+| `a == b`       | True if `a` equals `b`                                                                            |
+| `a != b`       | True if `a` is not equal to `b`                                                                   |
+
+## Binary Operators (Table) - Continued
+| Operation      | Description                                                                                      |
+| -- |  |
+| `a < b, a <= b` | True if `a` is less than (less than or equal to) `b`                                            |
+| `a > b, a >= b` | True if `a` is greater than (greater than or equal to) `b`                                        |
+| `a is b`       | True if `a` and `b` reference the same Python object                                              |
+| `a is not b`   | True if `a` and `b` reference different Python objects                                           |
+
+
+
+## `is` and `is not`
+
+-   `is` checks if two variables refer to the *same* object.
+- `is not` check if two objects are not the same
+-   `==` checks for equality of *value*.
+
+```{python}
+a = [1, 2, 3]
+b = a
+c = list(a)  # Creates a *new* list (a copy)
+
+print(a is b)      # Output: True
+print(a is not c)  # Output: True
+print(a == c)      # Output: True
+```
+
+
+
+## Mutable and immutable objects 🔄
+
+-   **Mutable** objects (lists, dicts, NumPy arrays, etc.) can be modified in place.
+-   **Immutable** objects (strings, tuples) cannot be changed after creation.
+
+```{python}
+a_list = ["foo", 2, [4, 5]]
+a_list[2] = (3, 4)
+print(a_list)  # Output: ['foo', 2, (3, 4)]
+
+# a_tuple = (3, 5, (4, 5))
+# a_tuple[1] = "four"  # This would cause a TypeError
+```
+
+
+## Scalar Types
+
+-   Python has built-in types for handling numerical data, strings, Booleans, and dates/times. These are called *scalar types*.
+
+| Type   | Description                                                |
+| :-- | : |
+| `None` | The Python "null" value                                    |
+| `str`  | String type; holds Unicode strings                         |
+| `bytes`| Raw binary data                                           |
+| `float`| Double-precision floating-point number                     |
+
+
+
+## Scalar Types (Continued)
+
+| Type   | Description                                                |
+| :-- | : |
+| `bool` | A Boolean `True` or `False` value                          |
+| `int`  | Arbitrary precision integer                                |
+
+
+
+## Numeric types: `int` and `float`
+
+-   `int`: Can store arbitrarily large integers.
+-   `float`: Represents double-precision floating-point numbers (like `double` in C/C++).
+
+```{python}
+ival = 17239871
+print(ival ** 6)
+
+fval = 7.243
+fval2 = 6.78e-5  # Scientific notation
+```
+
+
+## Numberic types: `int` and `float` (Continued)
+-   Integer division resulting in a non-whole number always yields a float. Use `//` for floor division.
+
+
+
+## Strings 📝
+
+-   Use single quotes `'...'` or double quotes `"..."` to create string literals.
+-   Triple quotes `'''...'''` or `"""..."""` for multiline strings.
+
+```{python}
+a = 'one way of writing a string'
+b = "another way"
+c = """
+This is a longer string that
+spans multiple lines
+"""
+```
+
+-   Python strings are *immutable*.
+
+
+
+## String Operations
+
+-   Many built-in string methods are available (e.g., `count()`, `replace()`, `split()`).
+
+```{python}
+a = "this is a string"
+# a[10] = 'f'  # TypeError: 'str' object does not support item assignment
+
+b = a.replace("string", "longer string")
+print(b)
+print(a)
+```
+
+-   Convert other objects to strings using `str()`.
+
+
+
+## String Slicing and Raw Strings
+
+-   Strings are sequences of Unicode characters and can be treated like lists/tuples.
+
+```{python}
+s = "python"
+print(list(s))
+print(s[:3])
+```
+
+
+
+## String Slicing and Raw Strings (Continued)
+
+-   Backslash `\` is an escape character. Use raw strings (prefix with `r`) to avoid escaping.
+
+```{python}
+s = "12\\\\34"  # String with two backslashes
+print(s)
+
+raw_string = r"this\has\no\special\characters"
+print(raw_string)
+```
+
+
+
+## String Concatenation and Formatting
+
+-   Adding strings together concatenates them.
+
+```{python}
+a = "this is the first half "
+b = "and this is the second half"
+print(a + b)
+```
+
+-   Use string formatting (the `format()` method or f-strings) for more complex string construction.
+
+
+
+## String Formatting (f-strings)
+
+```{python}
+amount = 10
+rate = 88.46
+currency = "Pesos"
+result = f"{amount} {currency} is worth US${amount / rate:.2f}"
+print(result)
+```
+
+-   f-strings (formatted string literals) are a concise way to embed expressions inside strings.
+
+
+
+## Bytes and Unicode
+
+-   In Python 3, Unicode is the first-class string type.
+-   `encode()` converts a Unicode string to bytes (e.g., UTF-8).
+-   `decode()` converts bytes back to a Unicode string.
+
+```{python}
+val = "español"
+val_utf8 = val.encode("utf-8")
+print(val_utf8)
+print(type(val_utf8))
+
+print(val_utf8.decode("utf-8"))
+```
+
+
+
+## Booleans
+
+-   `True` and `False` are the Boolean values.
+-   Comparisons and conditional expressions evaluate to `True` or `False`.
+-   Combine with `and`, `or`, and `not`.
+
+```{python}
+print(True and True)
+print(False or True)
+
+print(int(False))  # Output: 0
+print(int(True))   # Output: 1
+```
+
+
+
+## Type casting 🧱
+
+-   `str()`, `bool()`, `int()`, and `float()` can be used to cast values to different types.
+
+```{python}
+s = "3.14159"
+fval = float(s)
+print(type(fval))
+print(int(fval))
+print(bool(fval))
+print(bool(0))  # 0 casts to False, other numbers to True
+```
+
+
+
+## `None`
+
+-   `None` is the Python null value type. It represents the absence of a value.
+- It is also the default return value of a function if there isn't return statement in the function.
+
+```{python}
+a = None
+print(a is None)  # Output: True
+
+b = 5
+print(b is not None)  # Output: True
+```
+
+- `None` is often used as a default value for function arguments.
+
+
+
+## Dates and times 📅
+
+-   The `datetime` module provides `datetime`, `date`, and `time` types.
+
+```{python}
+from datetime import datetime, date, time
+
+dt = datetime(2011, 10, 29, 20, 30, 21)
+print(dt.day)
+print(dt.minute)
+print(dt.date())
+print(dt.time())
+```
+
+
+
+## Formatting Dates and Times
+
+-   `strftime()` formats a `datetime` object as a string.
+-   `strptime()` parses a string into a `datetime` object.
+
+```{python}
+print(dt.strftime("%Y-%m-%d %H:%M"))
+
+dt2 = datetime.strptime("20091031", "%Y%m%d")
+print(dt2)
+```
+- Refer to Python's documentation for a complete list of format codes.
+- Since datetime.datetime is an immutable type, methods like strftime and strptime will always produce new objects.
+
+
+
+## Date/Time Arithmetic
+
+-   Subtracting two `datetime` objects produces a `timedelta` object.
+-   Adding a `timedelta` to a `datetime` produces a new, shifted `datetime`.
+
+```{python}
+dt2 = datetime(2011, 11, 15, 22, 30)
+delta = dt2 - dt
+print(delta)
+print(type(delta))
+print(dt + delta)
+```
+
+
+
+## Control Flow: `if`, `elif`, `else` 🚦
+
+-   `if` statements execute a block of code if a condition is true.
+-   `elif` (else if) provides additional conditions.
+-   `else` is a catchall block.
+
+```{python}
+x = -5
+if x < 0:
+    print("It's negative")
+elif x == 0:
+    print("Equal to zero")
+elif 0 < x < 5:
+    print("Positive but smaller than 5")
+else:
+    print("Positive and larger than or equal to 5")
+```
+
+-   Conditions with `and` and `or` are evaluated left to right and short-circuit.
+
+
+
+## `for` loops ➿
+
+-   Iterate over a collection (list, tuple, etc.) or an iterator.
+
+```{python}
+#| eval: false
+for value in collection:
+    # do something with value
+```
+
+-   `continue` skips the rest of the current iteration.
+-   `break` exits the loop entirely.
+
+
+
+## `for` Loop Examples
+
+```{python}
+sequence = [1, 2, None, 4, None, 5]
+total = 0
+for value in sequence:
+    if value is None:
+        continue  # Skip None values
+    total += value
+```
+
+## `for` Loop Examples (Continued)
+```{python}
+sequence = [1, 2, 0, 4, 6, 5, 2, 1]
+total_until_5 = 0
+for value in sequence:
+    if value == 5:
+        break  # Exit loop when we reach 5
+    total_until_5 += value
+```
+
+
+
+## Nested `for` Loops
+
+```{python}
+for i in range(4):
+    for j in range(4):
+        if j > i:
+            break  # Only breaks out of the inner loop
+        print((i, j))
+```
+
+
+
+## `while` loops
+
+-   Execute a block of code repeatedly as long as a condition is true.
+
+```{python}
+x = 256
+total = 0
+while x > 0:
+    if total > 500:
+        break  # Exit loop if total exceeds 500
+    total += x
+    x = x // 2
+```
+
+
+
+## `pass` 🛑
+
+-   `pass` is a "no-op" statement. It does nothing. It's used where a statement is syntactically required, but you don't want to execute any code.
+
+```{python}
+if x < 0:
+    print("negative!")
+elif x == 0:
+    # TODO: put something smart here
+    pass
+else:
+    print("positive!")
+```
+
+
+
+## `range` 🔢
+
+-   `range()` generates a sequence of evenly spaced integers.
+-   `range(stop)`: Generates integers from 0 up to (but not including) `stop`.
+-   `range(start, stop)`: Generates integers from `start` up to (but not including) `stop`.
+-   `range(start, stop, step)`: Generates integers with a specified `step`.
+
+```{python}
+print(list(range(10)))
+print(list(range(0, 20, 2)))
+print(list(range(5, 0, -1)))
+```
+
+
+
+## `range` Example
+
+```{python}
+seq = [1, 2, 3, 4]
+for i in range(len(seq)):
+    print(f"element {i}: {seq[i]}")
+```
+
+-   A common use of `range` is for iterating through sequences by index.
+
+
+
+## Summary
+
+-   We've covered the core building blocks of Python: data types, operators, control flow, and basic usage of IPython and Jupyter Notebooks.
+-   These concepts form the foundation for data analysis with Python.
+-   Remember to practice and experiment! 🧪
+
+
+
+## Thoughts and Discussion 🤔
+
+-   How does Python's "everything is an object" philosophy compare to other languages?
+-   What are the advantages of using Jupyter Notebooks for data analysis compared to writing scripts?
+-   Can you think of situations where duck typing would be particularly useful?
+-   How might you use the `datetime` module in a real-world data analysis project?
+- What are the differences between mutable and immutable objects? What are their pros and cons respectively?
+

@@ -1,0 +1,1226 @@
+---
+title: "Python for Data Analysis 🐍"
+subtitle: "Data Analysis Examples"
+---
+
+## Chapter 13 - Data Analysis Examples
+
+-   We've reached the final chapter! 🥳
+-   Focus: Applying data analysis techniques to real-world datasets.
+-   Goal: Extract meaningful insights from raw data.
+-   The techniques demonstrated are widely applicable.
+-   Datasets are available in the book's GitHub/Gitee repository.
+
+![](chapter13_introduction.png)
+
+## Data Mining, Machine Learning, and Statistical Learning
+
+- Data mining, machine learning, and statistical learning share a common goal: to extract valuable insights and make predictions from data.
+- The core difference lies in *how* they achieve this goal.
+
+```{mermaid}
+graph LR
+    A[Data Mining] --> C(Common Ground: Insights & Predictions)
+    B[Machine Learning] --> C
+    D[Statistical Learning] --> C
+```
+
+## Data Mining ⛏️
+
+-   **Definition:** Discovering patterns, anomalies, and relationships in large datasets to predict outcomes.
+-   **Focus:** Finding previously *unknown* patterns.  Exploration and discovery!
+-   **Techniques:**  Combines methods from machine learning, statistics, and database systems.
+-   **Example:** A supermarket finds that customers who buy diapers 🧷 often also buy beer 🍺.  An unexpected association!
+
+![](datamining.png)
+
+## Machine Learning 🤖
+
+- **Definition**:  Algorithms that improve automatically through experience (data).  Focuses on prediction and decision-making.
+- **Focus**: Systems that *learn from and make decisions* based on data, without explicit rules.
+- **Types**:
+    -   **Supervised Learning**: Training on labeled data (e.g., spam/not spam email classification 📧).
+    -   **Unsupervised Learning**:  Finding hidden structures in unlabeled data (e.g., customer segmentation 👥).
+    -   **Reinforcement Learning**:  Agents making decisions by interacting with an environment (e.g., a robot learning to walk 🚶).
+-   **Example**:  Predicting house prices 🏠 based on features like size, location, and bedrooms.  The algorithm learns the relationship.
+
+![](machinelearning.png)
+
+## Statistical Learning 📊
+
+- **Definition**: Tools for modeling and understanding complex datasets. A framework for applying statistical methods to learn from data.
+-   **Focus**:  Emphasis on *models and their interpretability*, precision, and uncertainty. Bridges statistics and machine learning.
+-   **Key Concepts**:
+    -   **Bias-Variance Tradeoff**:  Balancing approximation error (bias) and sensitivity to training data (variance).
+    -   **Model Selection**:  Choosing the best model.
+    -   **Regularization**:  Preventing overfitting by penalizing complexity.
+-   **Example**:  Using linear regression to understand the relationship between advertising spend 📈 and sales, with confidence intervals.
+
+![](statisticallearning.png)
+
+## 13.1 Bitly Data from 1.USA.gov
+
+- **Background:**
+    -   Bitly (URL shortening service) and USA.gov partnered in 2011.
+    -   Anonymized data from users shortening .gov or .mil links.
+    -   Hourly snapshots (text files).
+    -   Service discontinued, but data preserved.
+- **Data Format:**
+    -   Each line is a JSON (JavaScript Object Notation) object.
+    -   JSON is human-readable.
+
+![](bitly_data_intro.png)
+
+## JSON Data Example
+
+```json
+{ "a": "Mozilla\/5.0 (Windows NT 6.1; WOW64) AppleWebKit\/535.11 (KHTML, like Gecko) Chrome\/17.0.963.78 Safari\/535.11", "c": "US", "nk": 1, "tz": "America\/New_York", "gr": "MA", "g": "A6q0VH", "h": "wfLQtf", "l": "orofrog", "al": "en-US,en;q=0.8", "hh": "1.usa.gov", "r": "http:\/\/www.facebook.com\/l\/7AQEFzjSi\/1.usa.gov\/wfLQtf", "u": "http:\/\/www.ncbi.nlm.nih.gov\/pubmed\/22415991", "t": 1331923247, "hc": 1331822918, "cy": "Danvers", "ll": [ 42.576698, -70.954903 ] }
+```
+
+-   **Structure:** JSON objects are in curly braces `{}`.
+-   **Key-Value Pairs:** Data in key-value pairs (e.g., `"a": "Mozilla/..."`).
+-   **Data Types:** Values can be strings, numbers, arrays (like `"ll"`), or other JSON objects.
+- **Python and JSON**: Python's `json` library easily converts JSON strings to Python dictionaries.
+
+## Reading JSON Data in Python
+
+```python
+import json
+
+path = "datasets/bitly_usagov/example.txt"
+
+with open(path) as f:
+    records = [json.loads(line) for line in f]  # List comprehension
+
+print(records[0]) # Print the first record
+```
+
+- **`import json`**: Imports the JSON library.
+- **`open(path)`**: Opens the file.
+- **`json.loads(line)`**: Parses a JSON line into a Python dictionary.
+- **List Comprehension**: `[... for line in f]` creates a list of dictionaries.
+-   **`records`**: Now a list of Python dictionaries.
+
+## Accessing Data in the Dictionary
+
+```python
+print(records[0]['tz'])  # Accessing the 'tz' (time zone) field
+```
+
+-   Use dictionary key access (square brackets) to get values.
+-   `records[0]` gets the first dictionary.
+-   `['tz']` accesses the value for the key "tz".
+
+## Counting Time Zones (Pure Python)
+
+-   **Objective:** Find the most frequent time zones (`tz` field).
+- **Approach 1: Dictionary and Loop** (Basic, but less efficient)
+
+```python
+# Not shown in original slides, but a good comparison
+def get_counts(sequence):
+    counts = {}
+    for x in sequence:
+        if x in counts:
+            counts[x] += 1
+        else:
+            counts[x] = 1
+    return counts
+```
+
+- **Approach 2:  `defaultdict`** (More efficient and Pythonic)
+
+```python
+from collections import defaultdict
+
+def get_counts2(sequence):
+    counts = defaultdict(int)  # Values initialize to 0
+    for x in sequence:
+        counts[x] += 1
+    return counts
+```
+
+- **`defaultdict(int)`**: If a key is not found, it's added with a default value of 0.  Avoids the `if x in counts` check.
+
+## Counting Time Zones (Pure Python) - Handling Missing Keys
+
+```python
+#Original Code (causes KeyError)
+# time_zones = [rec["tz"] for rec in records]
+
+#Corrected with if condition
+time_zones = [rec["tz"] for rec in records if "tz" in rec]
+print(time_zones[:10])
+```
+
+- **`KeyError` Explanation**: If a record *doesn't* have a 'tz' key, accessing `rec["tz"]` raises a `KeyError`.
+- **Solution**:  `if "tz" in rec` checks if the key exists *before* accessing it.  This prevents the error.
+
+## Counting Time Zones (Pure Python) - Getting Top Counts
+
+```python
+def top_counts(count_dict, n=10):
+    value_key_pairs = [(count, tz) for tz, count in count_dict.items()]
+    value_key_pairs.sort()
+    return value_key_pairs[-n:]
+
+# Using the Counter Class (Most efficient and Pythonic)
+from collections import Counter
+counts = Counter(time_zones)
+print(counts.most_common(10))
+```
+
+- **`top_counts` function:**  Gets the top *n* most frequent items (custom function).
+- **`Counter` class:**  The *best* way to count items. `most_common(10)` directly returns the top 10.
+
+## Counting Time Zones (pandas) 🐼
+
+-   **pandas DataFrame:** A more powerful and convenient way to work with tabular data.
+
+```python
+import pandas as pd
+
+frame = pd.DataFrame(records)  # Create DataFrame from dictionaries
+print(frame.info()) # Summary information
+```
+
+-   **`pd.DataFrame(records)`**:  Converts the list of dictionaries to a DataFrame. pandas infers column names and types.
+-   **`frame.info()`**:  Provides:
+    -   Number of rows and columns.
+    -   Column names and data types.
+    -   Non-null value counts (shows missing data).
+    -   Memory usage.
+
+## `frame.info()` Output Explained
+
+```
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 3560 entries, 0 to 3559
+Data columns (total 18 columns):
+ #   Column       Non-Null Count  Dtype
+---  ------       --------------  -----
+ 0   a            3440 non-null   object
+ 1   c            2919 non-null   object
+ ...
+ 16  _heartbeat_  120 non-null    float64
+ 17  kw           93 non-null     object
+dtypes: float64(4), object(14)
+memory usage: 500.8+ KB
+```
+
+-   **`RangeIndex`**:  Total rows (3560) and index range (0 to 3559).
+-   **`Data columns`**:  Each column, non-null count, and data type.
+    -   `object`: Usually text (strings).
+    -   `float64`: Floating-point numbers.
+    -   `int64`: Integer numbers.
+-   **`Non-Null Count`**:  Highlights missing values (e.g., `c` has 641 missing).
+- `dtypes` and `memory usage`: Summary info.
+
+## Working with Time Zones in pandas
+
+```python
+print(frame['tz'].head())  # First few time zones
+
+tz_counts = frame['tz'].value_counts()  # Count occurrences
+print(tz_counts.head())
+```
+
+-   **`frame['tz']`**: Selects the 'tz' column (a pandas Series).
+-   **`.head()`**:  Shows the first 5 rows.
+-   **`.value_counts()`**:  Counts occurrences of each unique value. *Much* easier than pure Python!
+
+## Handling Missing Data in pandas
+
+```python
+clean_tz = frame['tz'].fillna('Missing')  # Replace NaN with "Missing"
+clean_tz[clean_tz == ''] = 'Unknown'      # Replace empty strings
+tz_counts = clean_tz.value_counts()
+print(tz_counts.head())
+```
+
+-   **`.fillna('Missing')`**: Replaces missing values (`NaN` in pandas) with "Missing".
+-   **`clean_tz[clean_tz == ''] = 'Unknown'`**:  Replaces empty strings with "Unknown" (boolean indexing).
+
+## Visualization with seaborn 📊
+
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+subset = tz_counts.head()
+sns.barplot(y=subset.index, x=subset.to_numpy())
+plt.show() # Display the plot
+```
+
+- **`import seaborn as sns`**: Imports seaborn (built on matplotlib).
+- **`subset = tz_counts.head()`**: Use the top few time zones for clearer visualization.
+- **`sns.barplot(...)`**:  Creates a horizontal bar plot.
+    -   `y=subset.index`: Time zone names on the y-axis.
+    -   `x=subset.to_numpy()`: Counts on the x-axis. Convert Series to numpy array.
+- **`plt.show()`**:  Displays the plot.
+
+!['Top time zones in the 1.usa.gov sample data'](time_zone_barplot.png)
+
+## Analyzing Browser/Agent Information 🌐
+
+```python
+print(frame['a'][1])
+print(frame['a'][50])
+print(frame['a'][51][:50])  # First 50 characters
+
+results = pd.Series([x.split()[0] for x in frame['a'].dropna()])
+print(results.head())
+print(results.value_counts().head(8))
+```
+
+-   The `a` field contains browser/device/application info.
+- **`frame['a'][1]` ,etc.**: Access specific agent strings.
+- **`.dropna()`**: Removes rows with missing 'a' values *before* splitting.
+- **`x.split()[0]`**: Splits by spaces, takes the *first* element (main browser ID).
+- **`pd.Series(...)`**: Creates a Series from the split strings.
+-   **`results.value_counts().head(8)`**:  Counts and shows the top 8.
+
+## Windows vs. Non-Windows Users 💻
+
+```python
+import numpy as np
+
+cframe = frame[frame['a'].notna()].copy()  # Create a copy
+cframe['os'] = np.where(cframe['a'].str.contains('Windows'),
+                       'Windows', 'Not Windows')
+print(cframe['os'].head())
+```
+
+- **Goal:** Analyze time zones for Windows/non-Windows users separately.
+-   **`cframe = frame[frame['a'].notna()].copy()`**:  Creates a *copy*, filtering out missing 'a' values. `.copy()` avoids warnings.
+-   **`cframe['a'].str.contains('Windows')`**:  Checks if the agent string contains "Windows".
+-   **`np.where(...)`**: Creates a new 'os' column: "Windows" if the string contains "Windows", else "Not Windows".
+
+## Grouping by Time Zone and OS
+
+```python
+by_tz_os = cframe.groupby(['tz', 'os'])
+agg_counts = by_tz_os.size().unstack().fillna(0) # Group, count, reshape
+print(agg_counts.head())
+```
+
+-   **`cframe.groupby(['tz', 'os'])`**:  Groups by time zone *and* OS.
+-   **`.size()`**:  Counts records in each group (like `value_counts()`, but for groups).
+- **`.unstack()`**: Reshapes. Pivots 'os' to become columns (easier comparison).
+-   **`.fillna(0)`**: Replaces missing values (time zones with only one OS) with 0.
+
+## Finding the Most Popular Time Zones
+
+```python
+# Method 1: Using argsort
+indexer = agg_counts.sum(axis="columns").argsort()
+print(indexer.values[:10]) # Use .values to get a clean array
+count_subset = agg_counts.take(indexer[-10:])
+print(count_subset)
+
+# Method 2: Using nlargest (more convenient)
+print(agg_counts.sum(axis="columns").nlargest(10))
+```
+
+- **Goal**: Find time zones with the highest *overall* counts.
+
+-   **`agg_counts.sum(axis="columns")`**: Total count for each time zone.
+
+-   **`argsort()`**:  Returns *indices* that would sort the array (least to most frequent).
+
+-   **`.take(indexer[-10:])`**:  Selects rows for the top 10 time zones.
+
+-   **`nlargest(10)`**:  A *more direct* way to get the top 10.
+
+## Visualizing Windows and Non-Windows Users (Grouped Bar Plot)
+
+```python
+# Prepare data
+count_subset = count_subset.stack()
+count_subset.name = 'total'
+count_subset = count_subset.reset_index()
+print(count_subset.head())
+sns.barplot(x='total', y='tz', hue='os', data=count_subset)
+plt.show()
+```
+
+- **`count_subset.stack()`**:  Pivots 'os' back into the index (opposite of `unstack()`). Common for seaborn.
+-   **`count_subset.name = 'total'`**: Names the Series values "total".
+-   **`count_subset.reset_index()`**:  Converts the index to regular columns (for seaborn).
+-   **`sns.barplot(...)`**: Grouped bar plot.
+    -   `x='total'`: Counts on the x-axis.
+    -   `y='tz'`: Time zones on the y-axis.
+    -   `hue='os'`: Separate bars for Windows/Not Windows.
+
+!['Top time zones by Windows and non-Windows users'](windows_vs_notwindows.png)
+
+## Normalizing Counts (Proportions)
+
+```python
+def norm_total(group):
+    group['normed_total'] = group['total'] / group['total'].sum()
+    return group
+
+results = count_subset.groupby('tz').apply(norm_total)
+sns.barplot(x='normed_total', y='tz', hue='os', data=results)
+plt.show()
+```
+
+- **Goal:** Compare *proportions* of Windows/non-Windows users within each time zone.
+- **`norm_total(group)` function:**
+    -   Calculates `normed_total`: count for each OS divided by the *total* count for that time zone (proportion).
+    -   Returns the modified group.
+-   **`count_subset.groupby('tz').apply(norm_total)`**:  Applies the function to each time zone group.
+-   **`sns.barplot(...)`**: Bar plot using 'normed_total' (proportions) - easier comparison.
+
+!['Percentage Windows and non-Windows users in top occurring time zones'](normalized_plot.png)
+
+## 13.2 MovieLens 1M Dataset 🎬
+
+- **Dataset:** MovieLens 1M (GroupLens Research).
+- **Contents:**
+    -   1 million ratings.
+    -   ~6,000 users.
+    -   ~4,000 movies.
+- **Data Format:** Three tables:
+    -   `users`: Demographics (age, gender, occupation, zip).
+    -   `ratings`: User ID, movie ID, rating, timestamp.
+    -   `movies`: Title, genres.
+-   **Goal:** Explore relationships between ratings, demographics, and genres.
+
+![](movielens_data_intro.png)
+
+## Loading the MovieLens Data
+
+```python
+import pandas as pd
+
+unames = ['user_id', 'gender', 'age', 'occupation', 'zip']
+users = pd.read_table('datasets/movielens/users.dat', sep='::',
+                      header=None, names=unames, engine='python')
+
+rnames = ['user_id', 'movie_id', 'rating', 'timestamp']
+ratings = pd.read_table('datasets/movielens/ratings.dat', sep='::',
+                        header=None, names=rnames, engine='python')
+
+mnames = ['movie_id', 'title', 'genres']
+movies = pd.read_table('datasets/movielens/movies.dat', sep='::',
+                       header=None, names=mnames, engine='python')
+```
+
+- **Key Arguments of `pd.read_table`:**
+    -   `sep='::'`: Separator is two colons.
+    -   `header=None`: No header rows.
+    -   `names=unames` (etc.):  Provide column names.
+    -   `engine='python'`:  Use Python engine (supports multi-character separators).
+
+## Merging the MovieLens Data
+
+```python
+data = pd.merge(pd.merge(ratings, users), movies)
+print(data.head())
+print(data.iloc[0])  # Access the first row
+```
+
+-   **`pd.merge()`**:  Combines DataFrames based on common columns. pandas finds them automatically.
+-   **Two Merges:**
+    1.  `pd.merge(ratings, users)`: Merges on `user_id`.
+    2.  `pd.merge(..., movies)`: Merges the result with `movies` on `movie_id`.
+-   **`data`**: Contains all info in one DataFrame.
+
+## Analyzing Ratings by Gender
+
+```python
+mean_ratings = data.pivot_table('rating', index='title',
+                                columns='gender', aggfunc='mean')
+print(mean_ratings.head())
+```
+
+-   **`data.pivot_table(...)`**: Reshapes and aggregates.
+    -   `'rating'`: Values to aggregate (average rating).
+    -   `index='title'`: Movie title is the row index.
+    -   `columns='gender'`: Gender ('M', 'F') becomes columns.
+    -   `aggfunc='mean'` (default): Calculates the mean.
+
+## Filtering by Number of Ratings
+
+```python
+ratings_by_title = data.groupby('title').size() # Count ratings per movie
+print(ratings_by_title.head())
+active_titles = ratings_by_title.index[ratings_by_title >= 250] # Filter
+print(active_titles)
+
+mean_ratings = mean_ratings.loc[active_titles] # Apply filter
+print(mean_ratings)
+```
+
+- **Goal**: Focus on movies with enough ratings.
+-   **`data.groupby('title').size()`**:  Counts ratings per movie.
+-   **`active_titles = ...`**:  Titles with at least 250 ratings.
+-   **`mean_ratings.loc[active_titles]`**:  Filters `mean_ratings` to include only those movies.
+
+## Sorting and Finding Top Films
+
+```python
+top_female_ratings = mean_ratings.sort_values("F", ascending=False)
+print(top_female_ratings.head())
+```
+
+- **`mean_ratings.sort_values("F", ascending=False)`**: Sorts by 'F' (female) column, descending (highest ratings first).
+
+## Measuring Rating Disagreement
+
+```python
+mean_ratings['diff'] = mean_ratings['M'] - mean_ratings['F']
+sorted_by_diff = mean_ratings.sort_values('diff')
+print(sorted_by_diff.head())  # Preferred by women
+print(sorted_by_diff[::-1].head())  # Preferred by men
+
+# Standard deviation (another measure of disagreement)
+rating_std_by_title = data.groupby('title')['rating'].std()
+rating_std_by_title = rating_std_by_title.loc[active_titles] #Filter
+print(rating_std_by_title.sort_values(ascending=False)[:10])
+```
+
+-   **`mean_ratings['diff'] = ...`**:  New column: difference between male and female average ratings.
+-   **`sorted_by_diff = ...`**: Sorts by 'diff'.
+    -   `.head()`: Women rated higher.
+    -   `[::-1].head()`: Men rated higher (reverses order).
+- Standard deviation shows disagreement.
+
+## Handling Movie Genres (The Right Way!)
+
+```python
+# Original: "Animation|Children's|Comedy"
+movies['genre'] = movies.pop('genres').str.split('|') # Split into lists
+print(movies.head())
+movies_exploded = movies.explode('genre') # Explode!  Key step.
+print(movies_exploded[:10])
+```
+
+- **Problem**: Genres are pipe-separated strings. Hard to analyze.
+-   **`movies['genres'].str.split('|')`**:  Splits into *lists* of genres.
+- **`.pop('genres')`**:  Removes and returns the original column.
+-   **`movies.explode('genre')`**:  *Each* movie-genre combination gets its own row.  Essential for genre analysis!
+
+## Combining All Data and Grouping by Genre
+
+```python
+ratings_with_genre = pd.merge(pd.merge(movies_exploded, ratings), users)
+print(ratings_with_genre.iloc[0])
+
+genre_ratings = (ratings_with_genre.groupby(['genre', 'age'])
+                 ['rating'].mean()
+                 .unstack('age'))
+print(genre_ratings[:10])
+```
+
+-   **`ratings_with_genre = ...`**: Merges `movies_exploded`, `ratings`, and `users`.  Each row: rating + user info + *single* genre.
+-   **`ratings_with_genre.iloc[0]`**: Shows the first row.
+-   **`genre_ratings = ...`**: Average rating for each genre/age group.
+    -   `groupby(['genre', 'age'])`: Groups by genre and age.
+    -   `['rating'].mean()`: Mean rating.
+    -   `.unstack('age')`: Age becomes columns.
+
+## 13.3 US Baby Names 1880–2010 👶
+
+- **Dataset:** US Social Security Administration (SSA) baby names.
+- **Time Period:** 1880-2010.
+- **Data Format:** One file per year:
+    -   Name
+    -   Sex
+    -   Number of births
+- **Example (yob1880.txt):**
+    ```
+    Mary,F,7065
+    Anna,F,2604
+    ...
+    ```
+- **Potential Analyses:**
+    -   Name popularity trends.
+    -   Relative rank.
+    -   Naming diversity.
+    -   Letter/vowel/consonant analysis.
+
+![](usbabynames_intro.png)
+
+## Loading and Combining the Baby Names Data
+
+```python
+import pandas as pd
+
+# Load a single year (for demonstration)
+names1880 = pd.read_csv('datasets/babynames/yob1880.txt',
+                        names=['name', 'sex', 'births'])
+print(names1880)
+print(names1880.groupby('sex')['births'].sum())
+
+# Load all years and combine
+years = range(1880, 2011)
+pieces = []
+for year in years:
+    path = f'datasets/babynames/yob{year}.txt'
+    frame = pd.read_csv(path, names=['name', 'sex', 'births'])
+    frame['year'] = year  # Add 'year' column
+    pieces.append(frame)
+
+names = pd.concat(pieces, ignore_index=True)
+print(names)
+```
+
+- **`names1880 = pd.read_csv(...)`**: Loads one year. `names` assigns columns.
+-   **`names1880.groupby('sex')['births'].sum()`**:  Total births per sex in 1880.
+-   **Looping through years:**
+    -   `range(1880, 2011)`: Iterates.
+    -   `f'datasets/babynames/yob{year}.txt'`:  File path (f-string).
+    -   `frame['year'] = year`:  Adds 'year' column.
+    -   `pieces.append(frame)`:  Adds to the list.
+-   **`names = pd.concat(pieces, ignore_index=True)`**:  Combines all DataFrames. `ignore_index=True` prevents duplicate indices.
+
+## Aggregating by Year and Sex
+
+```python
+total_births = names.pivot_table('births', index='year',
+                                 columns='sex', aggfunc=sum)
+print(total_births.tail())
+total_births.plot(title='Total births by sex and year')
+plt.show()
+```
+
+- **`names.pivot_table(...)`**:  Total births per year/sex.
+    -   `'births'`: Values to aggregate.
+    -   `index='year'`: Year is the row index.
+    -   `columns='sex'`: Sex becomes columns.
+    -   `aggfunc=sum`: Sum of births.
+-   **`total_births.tail()`**: Last few rows.
+-   **`total_births.plot(...)`**: Line plot of trends.
+
+!['Total births by sex and year'](birth_by_sex_year.png)
+
+## Calculating Proportion of Each Name
+
+```python
+def add_prop(group):
+    group['prop'] = group['births'] / group['births'].sum()
+    return group
+
+names = names.groupby(['year', 'sex']).apply(add_prop)
+print(names)
+```
+
+- **Goal:** Proportion of babies with each name *within each year and sex*. Normalizes for total births.
+-   **`add_prop(group)` function:**
+    -   Takes a group (year/sex).
+    -   `group['births'] / group['births'].sum()`: Proportion (births divided by total for that year/sex).
+    -   Returns the modified group.
+-   **`names.groupby(['year', 'sex']).apply(add_prop)`**:  Applies to each group. Adds 'prop' column.
+
+## Verifying the Proportions (Sanity Check!)
+
+```python
+print(names.groupby(['year', 'sex'])['prop'].sum())
+```
+
+- **Important**:  Always check your calculations!
+-   Groups by year/sex, sums 'prop'.  Should be 1.0 for each group (proportions add up to 100%).
+
+## Extracting the Top 1000 Names
+
+```python
+def get_top1000(group):
+    return group.sort_values('births', ascending=False)[:1000]
+
+grouped = names.groupby(['year', 'sex'])
+top1000 = grouped.apply(get_top1000)
+top1000 = top1000.reset_index(drop=True) # Drop hierarchical index
+print(top1000)
+```
+
+-   **Goal:** Top 1000 names for each year/sex (for further analysis).
+-   **`get_top1000(group)` function:**
+    -   Takes a group (year/sex).
+    -   `group.sort_values('births', ascending=False)`: Sorts by births (descending).
+    -   `[:1000]`: Top 1000 rows.
+-   **`names.groupby(['year', 'sex']).apply(get_top1000)`**: Applies to each group.
+- **`top1000.reset_index(drop=True)`:** remove the multi-level index.
+
+## Analyzing Naming Trends
+
+```python
+boys = top1000[top1000['sex'] == 'M']
+girls = top1000[top1000['sex'] == 'F']
+
+total_births = top1000.pivot_table('births', index='year',
+                                    columns='name', aggfunc=sum)
+print(total_births.info())
+
+subset = total_births[['John', 'Harry', 'Mary', 'Marilyn']]
+subset.plot(subplots=True, figsize=(12, 10),
+            title="Number of births per year")
+plt.show()
+```
+
+-   **`boys = ...`** and **`girls = ...`**: Separate DataFrames for boys/girls.
+-   **`total_births = top1000.pivot_table(...)`**: Trends of specific names.
+    -   `'births'`: Values to aggregate.
+    -   `index='year'`: Year is the row index.
+    -   `columns='name'`: Each name is a column.
+    -   `aggfunc=sum`: Sum.
+- **`subset.plot(...)`**:  Plots trends.
+    -   `subplots=True`: Separate plot for each name.
+
+!['A few boy and girl names over time'](boyandgirlnames.png)
+
+## Measuring the Increase in Naming Diversity
+
+```python
+table = top1000.pivot_table('prop', index='year',
+                            columns='sex', aggfunc=sum)
+table.plot(title='Sum of table1000.prop by year and sex',
+           yticks=np.linspace(0, 1.2, 13))
+plt.show()
+
+df = boys[boys['year'] == 2010]
+prop_cumsum = df['prop'].sort_values(ascending=False).cumsum()
+print(prop_cumsum[:10])
+print(prop_cumsum.searchsorted(0.5)) # result 116, plus 1 result = 117
+
+df = boys[boys.year == 1900]
+in1900 = df.sort_values('prop', ascending=False).prop.cumsum()
+print(in1900.searchsorted(0.5) + 1) # result 25
+```
+
+- **Goal:** Has naming become more diverse? (Are parents choosing from more names?)
+-   **`table = top1000.pivot_table(...)`**: *Sum* of 'prop' for each year/sex.  Decreasing proportion = increasing diversity.
+- **`prop_cumsum = ... .cumsum()`**: *Cumulative sum* of 'prop' for boys in 2010 (sorted).  Finds how many names reach 50% of births.
+- **`prop_cumsum.searchsorted(0.5)`**:  Index where cumulative sum reaches 0.5 (50%).  Because array indices start from 0, plus 1.
+- Similar steps for 1900.
+
+!['Proportion of births represented in top one thousand names by sex'](prop_top1000.png)
+
+## Measuring the Increase in Naming Diversity (Cont.) - Generalizing
+
+```python
+def get_quantile_count(group, q=0.5):
+    group = group.sort_values('prop', ascending=False)
+    return group.prop.cumsum().searchsorted(q) + 1
+
+diversity = top1000.groupby(['year', 'sex']).apply(get_quantile_count)
+diversity = diversity.unstack()
+
+fig = plt.figure()
+diversity.plot(title="Number of popular names in top 50%")
+plt.show()
+```
+
+- **`get_quantile_count(group, q=0.5)` function:**
+    -   Takes a group (year/sex) and quantile (default 0.5).
+    -   Sorts by 'prop' (descending).
+    -   Cumulative sum of 'prop'.
+    -   `searchsorted(q)`: Index where sum reaches quantile. Plus 1.
+-   **`top1000.groupby(['year', 'sex']).apply(get_quantile_count)`**: Applies to each group.
+-   **`diversity.unstack()`**:  Reshapes for plotting.
+- Plot shows how many names are needed for 50% of births, over time, by sex.
+
+
+!['Plot of diversity metric by year'](diversity.png)
+
+## The "Last Letter" Revolution 🔤
+
+```python
+def get_last_letter(x):
+    return x[-1]
+
+last_letters = names['name'].map(get_last_letter)
+last_letters.name = 'last_letter'
+
+table = names.pivot_table('births', index=last_letters,
+                          columns=['sex', 'year'], aggfunc=sum)
+subtable = table.reindex(columns=[1910, 1960, 2010], level='year')
+print(subtable.head())
+print(subtable.sum())
+
+letter_prop = subtable / subtable.sum()
+print(letter_prop.head())
+```
+
+- **Idea:** Analyze the distribution of last letters over time.
+-   **`get_last_letter(x)` function:**  Returns the last character.
+-   **`names['name'].map(get_last_letter)`**: Applies to 'name', creating `last_letters` Series.
+-   **`table = names.pivot_table(...)`**: Counts births by last letter, sex, and year.
+-   **`subtable = ...`**: Selects specific years (1910, 1960, 2010).
+-   **`letter_prop = subtable / subtable.sum()`**:  *Proportion* of names ending in each letter (normalized).
+
+```python
+import matplotlib.pyplot as plt
+
+fig, axes = plt.subplots(2, 1, figsize=(10, 8))
+letter_prop['M'].plot(kind='bar', rot=0, ax=axes[0], title='Male')
+letter_prop['F'].plot(kind='bar', rot=0, ax=axes[1], title='Female',
+                      legend=False)
+plt.show()
+```
+
+-   **`plt.subplots(2, 1, ...)`**: Two subplots (male/female).
+-   **`letter_prop['M'].plot(...)`** and **`letter_prop['F'].plot(...)`**:  Bar plots of last letter distribution.
+
+!['Proportion of boy and girl names ending in each letter'](letter_prop.png)
+
+## The "Last Letter" Revolution (Cont.) - Focusing on Specific Letters
+
+```python
+letter_prop = table / table.sum()  # Proportions from the *full* table
+dny_ts = letter_prop.loc[['d', 'n', 'y'], 'M'].T  # Select and transpose
+print(dny_ts.head())
+dny_ts.plot()
+plt.show()
+```
+
+-   **`letter_prop = table / table.sum()`**: Proportions (all years).
+-   **`dny_ts = letter_prop.loc[['d', 'n', 'y'], 'M'].T`**:  Selects 'd', 'n', 'y' for males, transposes (.T) for time series.
+-   **`dny_ts.plot()`**: Plots trends of those letters.
+
+!['Proportion of boys born with names ending in d/n/y over time'](boy_dny.png)
+
+## Boy Names That Became Girl Names (and Vice Versa) 🔄
+
+```python
+all_names = pd.Series(top1000['name'].unique()) # All unique names
+lesley_like = all_names[all_names.str.contains('Lesl')] # Filter
+print(lesley_like)
+
+filtered = top1000[top1000['name'].isin(lesley_like)]
+print(filtered.groupby('name')['births'].sum())
+
+table = filtered.pivot_table('births', index='year',
+                            columns='sex', aggfunc='sum')
+table = table.div(table.sum(axis="columns"), axis="index") # Normalize
+print(table.tail())
+table.plot(style={'M': 'k-', 'F': 'k--'})
+plt.show()
+```
+
+- **Goal:** Find names that switched gender preference.
+-   **`all_names = ...`**:  All *unique* names in `top1000`.
+-   **`lesley_like = ...`**: Names containing "Lesl".
+-   **`filtered = ...`**: Rows from `top1000` with those names.
+-   **`filtered.groupby('name')['births'].sum()`**:  Total births per name.
+-   **`table = filtered.pivot_table(...)`**: Births per sex, per year.
+-   **`table = table.div(..., axis="index")`**:  *Proportion* of each sex per year (normalized).
+-   **`table.plot(...)`**:  Trend of male/female proportions.
+
+!['Proportion of male/female Lesley-like names over time'](lesleylike_names.png)
+
+## 13.4 USDA Food Database 🍎
+
+- **Dataset:** USDA food nutrient database.
+- **Data Format:** JSON.
+- **Example Record:**
+
+```json
+{
+  "id": 21441,
+  "description": "KENTUCKY FRIED CHICKEN, Fried Chicken, EXTRA CRISPY, Wing, meat and skin with breading",
+  "tags": ["KFC"],
+  "manufacturer": "Kentucky Fried Chicken",
+  "group": "Fast Foods",
+  "portions": [
+    {
+      "amount": 1,
+      "unit": "wing, with skin",
+      "grams": 68.0
+    }
+  ],
+  "nutrients": [
+    {
+      "value": 20.8,
+      "units": "g",
+      "description": "Protein",
+      "group": "Composition"
+    }
+  ]
+}
+```
+
+- **Goal:** Analyze nutrient information.
+
+![](usda_food_intro.png)
+
+## Loading and Exploring the USDA Data
+
+```python
+import json
+import pandas as pd
+
+db = json.load(open('datasets/usda_food/database.json'))
+print(len(db))
+print(db[0].keys())
+print(db[0]['nutrients'][0])
+
+nutrients = pd.DataFrame(db[0]['nutrients']) # Nutrients for *first* food
+print(nutrients.head(7))
+```
+
+-   **`import json`**: Imports the `json` library.
+-   **`db = json.load(...)`**:  Loads JSON into a Python object (`db` - list of dicts).
+-   **`len(db)`**:  Number of food records.
+-   **`db[0].keys()`**: Keys in the first record.
+-   **`db[0]['nutrients'][0]`**:  First nutrient for the first food.
+-   **`nutrients = pd.DataFrame(...)`**: DataFrame for *first* food's nutrients.
+
+## Extracting Food Information
+
+```python
+info_keys = ['description', 'group', 'id', 'manufacturer']
+info = pd.DataFrame(db, columns=info_keys)
+print(info.head())
+print(info.info())
+print(pd.value_counts(info['group'])[:10])
+```
+
+- **Goal:** DataFrame (`info`) with basic food info.
+-   **`info_keys = [...]`**:  Keys to extract.
+-   **`info = pd.DataFrame(db, columns=info_keys)`**: Creates DataFrame.
+-   **`info.head()`**: First few rows.
+-   **`info.info()`**: Summary.
+-   **`pd.value_counts(info['group'])[:10]`**: Top 10 food groups.
+
+## Processing Nutrient Data (All Foods)
+
+```python
+nutrients = []
+
+for rec in db:
+    fnuts = pd.DataFrame(rec['nutrients'])
+    fnuts['id'] = rec['id']  # Add food ID!
+    nutrients.append(fnuts)
+
+nutrients = pd.concat(nutrients, ignore_index=True)
+print(nutrients)
+```
+
+- **Goal**: Single DataFrame (`nutrients`) with *all* nutrient info.
+-   **Loop:**
+    -   `for rec in db:`: Iterates through food records.
+    -   `fnuts = pd.DataFrame(rec['nutrients'])`: DataFrame for current food's nutrients.
+    -   `fnuts['id'] = rec['id']`: Adds food ID (for linking).
+    -   `nutrients.append(fnuts)`: Appends to the list.
+-   **`nutrients = pd.concat(nutrients, ignore_index=True)`**:  Combines all nutrient DataFrames.
+
+## Handling Duplicates and Renaming
+
+```python
+nutrients.duplicated().sum()  # Check for duplicates
+nutrients = nutrients.drop_duplicates()  # Remove duplicates
+
+col_mapping = {'description' : 'food',
+               'group'       : 'fgroup'}
+info = info.rename(columns=col_mapping, copy=False)
+print(info.info())
+
+col_mapping = {'description' : 'nutrient',
+               'group' : 'nutgroup'}
+nutrients = nutrients.rename(columns=col_mapping, copy=False)
+print(nutrients)
+```
+- **Duplicate Check and Removal**:
+ - Some nutrient rows are duplicated. Remove before continuing.
+ -`nutrients.duplicated().sum()`: Count duplicate rows.
+ - `nutrients = nutrients.drop_duplicates()`: Remove duplicates.
+
+-   **Renaming columns:**
+    -   `col_mapping = ...`:  Maps old names to new (clearer) names.
+    -   `info = info.rename(..., copy=False)`: Renames `info` columns (in place).
+    -   `nutrients = nutrients.rename(...)`: Renames `nutrients` columns.
+
+## Merging Food and Nutrient Data
+
+```python
+ndata = pd.merge(nutrients, info, on='id')
+print(ndata.info())
+print(ndata.iloc[30000])
+```
+
+-   **`ndata = pd.merge(nutrients, info, on='id')`**:  Combines on 'id'.  One DataFrame with all info.
+-   **`ndata.info()`**:  Summary.
+-   **`ndata.iloc[30000]`**:  Sample row.
+
+## Plotting Median Nutrient Values
+
+```python
+result = ndata.groupby(['nutrient', 'fgroup'])['value'].quantile(0.5)
+result['Zinc, Zn'].sort_values().plot(kind='barh')
+plt.show()
+```
+
+- **Goal**: Visualize median nutrient values per food group.
+-   **`result = ndata.groupby(['nutrient', 'fgroup'])['value'].quantile(0.5)`**:
+    -   Groups by nutrient and food group.
+    -   Calculates median (0.5 quantile) of 'value'.
+-   **`result['Zinc, Zn']...plot(kind='barh')`**:
+    -   Selects Zinc.
+    -   Sorts values.
+    -   Horizontal bar plot.
+
+!['Median zinc values by food group'](zinc_values_foodgroup.png)
+
+## Finding Foods with Maximum Nutrient Values
+
+```python
+by_nutrient = ndata.groupby(['nutgroup', 'nutrient'])
+
+def get_maximum(x):
+    return x.loc[x.value.idxmax()]
+
+max_foods = by_nutrient.apply(get_maximum)[['value', 'food']]
+max_foods['food'] = max_foods['food'].str[:50] # Shorten food names
+print(max_foods.loc['Amino Acids']['food'])
+```
+
+-   **Goal**: Food with the *highest* value for each nutrient.
+-   **`by_nutrient = ndata.groupby(['nutgroup', 'nutrient'])`**: Groups by nutrient group and name.
+-   **`get_maximum(x)` function:**
+    -   Takes a group.
+    -   `x.value.idxmax()`:  *Index* of the row with max 'value'.
+    -   `x.loc[...]`:  Selects that row.
+-   **`max_foods = ...`**: Applies `get_maximum`, selects 'value' and 'food'.
+-   **`max_foods['food'] = ...str[:50]`**: Shortens food names.
+
+## 13.5 2012 Federal Election Commission Database 🗳️
+
+-   **Dataset:** 2012 US FEC campaign contribution data.
+-   **Contents:**
+    -   Contributor names.
+    -   Occupation/employer.
+    -   Address.
+    -   Contribution amount.
+-   **Data Format:** CSV.
+-   **File:**  `P00000001-ALL.csv`.
+-   **Goal:** Analyze contribution patterns.
+
+```python
+import pandas as pd
+fec = pd.read_csv('datasets/fec/P00000001-ALL.csv', low_memory=False)
+print(fec.info())
+print(fec.iloc[123456])
+```
+
+- **`fec = pd.read_csv(...)`**:  Loads CSV.
+-   **`low_memory=False`**:  *Important*.  Large file; use `False` for accurate type inference.
+-   **`fec.info()`**:  Summary.
+-   **`fec.iloc[123456]`**:  Sample record.
+
+![](fec_intro.png)
+
+## Adding Party Affiliation
+
+```python
+unique_cands = fec['cand_nm'].unique()
+print(unique_cands)
+
+parties = {'Bachmann, Michelle': 'Republican',
+           'Cain, Herman': 'Republican',
+           'Gingrich, Newt': 'Republican',
+           'Huntsman, Jon': 'Republican',
+           'Johnson, Gary Earl': 'Republican',
+           'McCotter, Thaddeus G': 'Republican',
+           'Obama, Barack': 'Democrat',
+           'Paul, Ron': 'Republican',
+           'Pawlenty, Timothy': 'Republican',
+           'Perry, Rick': 'Republican',
+           "Roemer, Charles E. 'Buddy' III": 'Republican',
+           'Romney, Mitt': 'Republican',
+           'Santorum, Rick': 'Republican'}
+
+print(fec['cand_nm'][123456:123461])
+print(fec['cand_nm'][123456:123461].map(parties))
+
+fec['party'] = fec['cand_nm'].map(parties)
+print(fec['party'].value_counts())
+```
+
+-   **`unique_cands = fec['cand_nm'].unique()`**: Unique candidate names.
+-   **`parties = {...}`**:  Dictionary: candidate name -> party.
+-   **`fec['cand_nm'][...].map(parties)`**:  Shows how `map` works.
+-   **`fec['party'] = fec['cand_nm'].map(parties)`**: Creates 'party' column.
+-   **`fec['party'].value_counts()`**:  Counts per party.
+
+## Filtering Contributions (Positive Amounts Only)
+
+```python
+print((fec['contb_receipt_amt'] > 0).value_counts())
+
+fec = fec[fec['contb_receipt_amt'] > 0] # Keep only positive
+```
+
+- **Problem**: Includes contributions (positive) and refunds (negative).
+-   **`(... > 0).value_counts()`**:  Checks positive/negative counts.
+-   **`fec = fec[... > 0]`**:  Filters to keep only positive contributions.
+
+## Filtering by Candidate (Obama and Romney)
+
+```python
+fec_mrbo = fec[fec['cand_nm'].isin(['Obama, Barack', 'Romney, Mitt'])]
+```
+
+- **Goal:** Focus on the two main candidates.
+-   **`fec_mrbo = fec[fec['cand_nm'].isin([...])]`**: Filters for Obama/Romney.
+
+## Donation Statistics by Occupation and Employer
+
+```python
+print(fec['contbr_occupation'].value_counts()[:10])
+
+occ_mapping = {
+    'INFORMATION REQUESTED PER BEST EFFORTS' : 'NOT PROVIDED',
+    'INFORMATION REQUESTED' : 'NOT PROVIDED',
+    'INFORMATION REQUESTED (BEST EFFORTS)' : 'NOT PROVIDED',
+    'C.E.O.': 'CEO'
+}
+
+def get_occ(x):
+    # If no mapping provided, return x
+    return occ_mapping.get(x, x)
+
+fec['contbr_occupation'] = fec['contbr_occupation'].map(get_occ)
+```
+
+- **`fec['contbr_occupation'].value_counts()[:10]`**: Top 10 occupations.
+-   **Problem:** Variations of similar occupations ("INFORMATION REQUESTED").
+-   **`occ_mapping = {...}`**: Maps variations to a standard form.
+-   **`get_occ(x)` function:**
+    -   Uses `occ_mapping.get(x, x)`.  If `x` is in the dictionary, returns the mapped value; otherwise, returns `x`.
+-   **`fec['contbr_occupation'] = ...map(get_occ)`**: Standardizes occupations.
+
+## Donation Statistics by Occupation and Employer (Cont.) - Employer + Pivot Table
+
+```python
+emp_mapping = { # Same process as occupation, but for employer
+    'INFORMATION REQUESTED PER BEST EFFORTS' : 'NOT PROVIDED',
+    'INFORMATION REQUESTED' : 'NOT PROVIDED',
+    'SELF' : 'SELF-EMPLOYED',
+    'SELF EMPLOYED' : 'SELF-EMPLOYED',
+}
+
+def get_emp(x):
+    # If no mapping provided, return x
+    return emp_mapping.get(x, x)
+
+fec['contbr_employer'] = fec['contbr_employer'].map(get_emp)
+
+by_occupation = fec.pivot_table('contb_receipt_amt',
+                                index='contbr_occupation',
+                                columns='party', aggfunc='sum')
+
+over_2mm = by_occupation[by_occupation.sum(axis="columns") > 2000000]
+print(over_2mm)
+```
+- Employer: Same process as for occupation.
+
+- **`by_occupation = fec.pivot_table(...)`**: Contributions by occupation/party.
+    -   `'contb_receipt_amt'`: Values to aggregate.
+    -   `index='contbr_occupation'`: Occupation is the row index.
+    -   `columns='party'`: Party becomes columns.
+    -   `aggfunc='sum'`: Total contributions.
+-   **`over_2mm = ...`**: Occupations with > $2 million total.
+
+```python
+over_2mm.plot(kind='barh')
+plt.show()
+```
+
+!['Total donations by party for top occupations'](donations_by_occupation.png)
+
+## Top Donor Occupations and Employers (for Obama and Romney)
+
+```python
+def get_top_amounts(group, key, n=5):
+    totals = group.groupby(key)['contb_receipt_amt'].sum()
+    return totals.nlargest(n)
+
+grouped = fec_mrbo.groupby('cand_nm') # Group by candidate
+print(grouped.apply(get_top_amounts, 'contbr_occupation', n=7))
+print(grouped.apply(get_top_amounts, 'contbr_employer', n=10))
+```
+
+-   **`get_top_amounts(group, key, n=5)` function:**
+    -   `group`: DataFrame group (e.g., contributions for one candidate).
+    -   `key`: Column to group by (occupation/employer).
+    -   `n`: Number of top items.
+    -   Calculates total contributions per occupation/employer, returns top `n`.
+-   **`grouped = fec_mrbo.groupby('cand_nm')`**: Groups by candidate.
+-   **`grouped.apply(...)`**:  Finds top occupations/employers *for each candidate*.
+
+## Bucketing Donation Amounts
+
+```python
+import numpy as np
+
+bins = np.array([0, 1, 10, 100, 1000, 10000, 100_000, 1_000_000, 10_000_000])
+labels = pd.cut(fec_mrbo['contb_receipt_amt'], bins)
+print(labels)
+
+grouped = fec_mrbo.groupby(['cand_nm', labels])
+print(grouped.size().unstack(level=0))
+
+bucket_sums = grouped['contb_receipt_amt'].sum().unstack(level=0)
+normed_sums = bucket_sums.div(bucket_sums.sum(axis="columns"),
+                              axis="index")
+print(normed_sums)
+normed_sums[:-2].plot(kind='barh')  # Exclude largest buckets
+plt.show()
+```
+
+- **Goal:** Analyze by donation size brackets.
+-   **`bins = np.array([...])`**: Defines bucket boundaries.
+-   **`labels = pd.cut(..., bins)`**:  Assigns each contribution to a bucket.
+-   **`grouped = ...groupby(['cand_nm', labels])`**: Groups by candidate *and* bucket.
+-   **`grouped.size().unstack(...)`**: Counts per bucket/candidate.
+-   **`bucket_sums = ...`**: *Total* amount per bucket/candidate.
+-   **`normed_sums = ...`**:  *Percentage* per bucket/candidate (normalized).
+-   **`normed_sums[:-2].plot(kind='barh')`**:  Bar plot (excludes largest buckets).
+
+!['Percentage of total donations received by candidates for each donation size'](donation_size.png)
+
+## Donation Statistics by State
+
+```python
+grouped = fec_mrbo.groupby(['cand_nm', 'contbr_st'])
+totals = grouped['contb_receipt_amt'].sum().unstack(level=0).fillna(0)
+totals = totals[totals.sum(axis="columns") > 100000] # Filter states
+print(totals.head(10))
+
+percent = totals.div(totals.sum(axis="columns"), axis="index")
+print(percent.head(10))
+```
+
+- **Goal:** Analyze by contributor state.
+-   **`grouped = ...groupby(['cand_nm', 'contbr_st'])`**: Groups by candidate/state.
+-   **`totals = ...sum().unstack(...).fillna(0)`**: Total per state/candidate.  `unstack` puts candidates as columns, `fillna(0)` handles missing data.
+-   **`totals = totals[...]`**:  Filters states with > $100,000 total.
+-   **`percent = totals.div(...)`**:  *Percentage* per state/candidate.
+
+## Summary
+
+-   Demonstrated real-world data analysis with Python.
+-   Datasets: Bitly/USA.gov, MovieLens, baby names, USDA food, FEC.
+-   Key Techniques:
+    -   Loading (text, JSON, CSV).
+    -   Cleaning/transformation (missing data, strings, types).
+    -   Aggregation/grouping (`groupby`, `pivot_table`, `apply`).
+    -   Merging/reshaping (`merge`, `concat`, `unstack`, `stack`, `explode`).
+    -   Visualization (matplotlib, seaborn).
+    -   Time series.
+-   Iterative exploration: start with raw data, clean, and build analyses.
+
+## Thoughts and Discussion
+
+-   How to extend/refine these analyses? Other questions?
+-   Limitations and assumptions? Biases?
+-   Apply techniques to other datasets?
+-   Ethical considerations with real-world data (especially about people)?
+-   Trade-offs: pure Python, `collections`, pandas. When is each best?
+-   How visualization choice affects insights?
+- Explore official documents to deepen your understanding.
+- Business majors: How are these skills useful for a career? Provides a competitive edge.
+

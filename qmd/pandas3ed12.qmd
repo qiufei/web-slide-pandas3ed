@@ -1,0 +1,519 @@
+---
+title: "Python for Data Analysis"
+subtitle: "Introduction to Modeling Libraries in Python"
+---
+
+## Introduction 📊
+
+This chapter bridges the gap between data wrangling with pandas and model building using specialized Python libraries. We'll focus on how to connect pandas with libraries like `statsmodels` and `scikit-learn`. This is a crucial step in the data analysis workflow.
+
+## Key Concepts 🔑
+
+Let's define some important terms:
+
+- **Data Mining:** Discovering patterns, anomalies, and insights from large datasets. It often involves various techniques, including machine learning.
+- **Machine Learning (ML):** A subset of AI that enables systems to learn from data without explicit programming.  ML algorithms build models from "training data" to make predictions.
+- **Statistical Learning:**  A framework for understanding data using statistical methods. It overlaps with ML but often emphasizes inference and interpretability.
+- **Feature Engineering:** Using domain knowledge to select, transform, and create relevant features (variables) from raw data. This improves model performance and is *critical*.
+
+## Relationships: DM, ML, and SL 🤝
+
+Data Mining, Machine Learning, and Statistical Learning are related:
+
+```{mermaid}
+graph LR
+    A[Data Mining] --> C(Common Ground)
+    B[Machine Learning] --> C
+    D[Statistical Learning] --> C
+    C --> E[Insights & Predictions]
+```
+
+They all aim to extract insights and make predictions. ML and Statistical Learning provide tools used within the broader context of Data Mining.
+
+## Python's Role in Data Analysis 🐍
+
+Python is dominant in data analysis due to:
+
+- **Rich Ecosystem:** Libraries like pandas (data), NumPy (numbers), statsmodels (statistics), scikit-learn (ML), and Matplotlib/Seaborn (visualization) provide a complete toolkit.
+- **Ease of Use:** Python's clear syntax and interactive nature (e.g., Jupyter) make it easy to learn, even without a programming background.
+- **Community Support:** A large, active community develops libraries, provides support, and creates documentation.
+
+## Common Workflow 🔄
+
+A typical model development workflow:
+
+```{mermaid}
+graph LR
+    A[Data Loading (pandas)] --> B[Data Cleaning (pandas)]
+    B --> C[Feature Engineering (pandas, other tools)]
+    C --> D[Model Building (statsmodels, scikit-learn)]
+    D --> E[Model Evaluation (statsmodels, scikit-learn)]
+    E --> F[Prediction/Inference]
+```
+
+1.  **Data Loading:** pandas reads data (CSV, Excel, databases, etc.).
+2.  **Data Cleaning:** pandas handles missing values, errors, and transforms data.
+3.  **Feature Engineering:** Create/transform features for better models.
+4.  **Model Building:** statsmodels/scikit-learn train models.
+5.  **Model Evaluation:** Assess performance.
+6.  **Prediction/Inference:** Make predictions or draw inferences.
+
+## Interfacing pandas and Models ↔️
+
+The main interface is often NumPy arrays. pandas DataFrames are built on NumPy, so conversion is easy.
+
+## DataFrame to NumPy Array ➡️
+
+Convert a DataFrame to a NumPy array with `.to_numpy()`:
+
+::: {style="color: blue;"}
+**Important:** `.to_numpy()` is preferred over `.values`.
+:::
+Example:
+
+```{python}
+import pandas as pd
+import numpy as np
+
+data = pd.DataFrame({
+    'x0': [1, 2, 3, 4, 5],
+    'x1': [0.01, -0.01, 0.25, -4.1, 0.],
+    'y': [-1.5, 0., 3.6, 1.3, -2.]
+})
+
+print(data)
+```
+
+```{python}
+#| echo: true
+data_array = data.to_numpy()
+print("\nNumPy Array:")
+print(data_array)
+```
+
+## NumPy Array to DataFrame ⬅️
+
+Create a DataFrame from a NumPy array:
+
+```{python}
+#| echo: true
+df2 = pd.DataFrame(data_array, columns=['one', 'two', 'three'])
+print(df2)
+```
+
+::: {style="color: green;"}
+We provided column names when creating the DataFrame.
+:::
+
+## Homogeneous vs. Heterogeneous Data 🤔
+
+- **Homogeneous Data:** Same type (e.g., all numbers) -> NumPy array with that type.
+- **Heterogeneous Data:** Mixed types (numbers and strings) -> `dtype=object` array (less efficient for number crunching).
+Example:
+
+```{python}
+#| echo: true
+df3 = data.copy()
+df3['strings'] = ['a', 'b', 'c', 'd', 'e']
+print(df3)
+
+print("\nHeterogeneous array:")
+print(df3.to_numpy())
+```
+
+## Selecting Column Subsets 🤏
+
+For modeling, select columns with `.loc` before converting:
+
+```{python}
+#| echo: true
+model_cols = ['x0', 'x1']
+print(data.loc[:, model_cols].to_numpy())
+```
+
+## Categorical Data & Dummy Variables 🏷️
+
+Categorical variables (e.g., 'male', 'female') need numerical representation.  Use *dummy variables* (or *one-hot encoding*).
+
+## pandas `get_dummies()` 🐼
+
+`pd.get_dummies()` simplifies this:
+
+```{python}
+#| echo: true
+data['category'] = pd.Categorical(['a', 'b', 'a', 'a', 'b'], categories=['a', 'b'])
+print(data)
+
+dummies = pd.get_dummies(data.category, prefix='category')
+print("\nDummy Variables:")
+print(dummies)
+```
+```{python}
+#| echo: true
+
+data_with_dummies = data.drop('category', axis=1).join(dummies)
+print("\nDataFrame with Dummy Variables:")
+print(data_with_dummies)
+```
+
+::: {style="color: blue;"}
+`prefix` adds a prefix (e.g., `category_a`).
+:::
+
+## Patsy: Model Descriptions 📝
+
+Patsy uses a formula syntax (like R) to specify models, especially linear ones.  It's installed with statsmodels:
+`conda install statsmodels`
+
+## Patsy Formulas ➕
+
+Example formula:
+
+```
+y ~ x0 + x1
+```
+
+-   `y`: dependent variable (response).
+-   `x0`, `x1`: independent variables (predictors).
+-   `~`: separates left (response) from right (predictors).
+-   `+`: includes terms (not mathematical addition!).
+
+## `patsy.dmatrices()` 🧮
+
+`dmatrices()` takes a formula and data, returning design matrices:
+
+```{python}
+#| echo: true
+import patsy
+
+y, X = patsy.dmatrices('y ~ x0 + x1', data)
+
+print("y (Design Matrix for Response):")
+print(y)
+print("\nX (Design Matrix for Predictors):")
+print(X)
+
+```
+
+::: {style="color: DarkRed;"}
+Patsy includes an intercept (a column of 1s) by default – the baseline response when predictors are zero.
+:::
+
+## Suppressing the Intercept ➖
+
+Remove the intercept with `+ 0`:
+
+```{python}
+#| echo: true
+X_no_intercept = patsy.dmatrices('y ~ x0 + x1 + 0', data)[1]  # [1] gets only X
+print(X_no_intercept)
+```
+
+## Patsy, NumPy, and statsmodels 🤝
+
+Design matrices from Patsy work with NumPy (e.g., `np.linalg.lstsq`) or statsmodels:
+
+```{python}
+#| echo: true
+import numpy as np
+coef, resid, _, _ = np.linalg.lstsq(X, y, rcond=None) # Added rcond=None for compatibility
+print(coef)
+
+# Convert to a pandas Series:
+coef = pd.Series(coef.squeeze(), index=X.design_info.column_names)
+print(coef)
+```
+
+## Patsy: Data Transformations ✨
+
+Include Python code in formulas for transformations:
+
+```{python}
+#| echo: true
+y, X = patsy.dmatrices('y ~ x0 + np.log(np.abs(x1) + 1)', data)
+print(X)
+```
+
+Patsy finds functions like `np.log` in the scope.
+
+## Built-in: `standardize`, `center` 🛠️
+
+Patsy has built-in functions:
+
+-   `standardize(x)`: Scales `x` (mean 0, std 1).
+-   `center(x)`: Subtracts the mean.
+
+```{python}
+#| echo: true
+y, X = patsy.dmatrices('y ~ standardize(x0) + center(x1)', data)
+print(X)
+```
+
+## Stateful Transformations and `build_design_matrices` 💾
+When applying transformations like `center` and `standardize`, use the original dataset's statistics when transforming new data.  `patsy.build_design_matrices` helps:
+
+```{python}
+#| echo: true
+new_data = pd.DataFrame({
+    'x0': [6, 7, 8, 9],
+    'x1': [3.1, -0.5, 0, 2.3],
+    'y' : [1, 2, 3, 4]
+})
+
+new_X = patsy.build_design_matrices([X.design_info], new_data) # Use original X's design_info
+print(new_X)
+```
+
+## Adding Columns by Name ➕
+
+To add columns, wrap them in `I()`:
+
+```{python}
+#| echo: true
+y, X = patsy.dmatrices('y ~ I(x0 + x1)', data)
+print(X)
+```
+
+## Categorical Data and Patsy 🏷️
+
+Patsy handles categorical variables automatically:
+
+```{python}
+#| echo: true
+data = pd.DataFrame({
+    'key1': ['a', 'a', 'b', 'b', 'a', 'b', 'a', 'b'],
+    'key2': [0, 1, 0, 1, 0, 1, 0, 0],
+    'v1': [1, 2, 3, 4, 5, 6, 7, 8],
+    'v2': [-1, 0, 2.5, -0.5, 4.0, -1.2, 0.2, -1.7]
+    })
+
+y, X = patsy.dmatrices('v2 ~ key1', data)
+print(X)
+```
+
+::: {style="color: blue;"}
+Patsy omits one level to avoid collinearity (with an intercept).
+:::
+
+## No Intercept, Categorical ➖🏷️
+
+Without an intercept, all category columns are included:
+
+```{python}
+#| echo: true
+y, X = patsy.dmatrices('v2 ~ key1 + 0', data)
+print(X)
+```
+
+## Numerical as Categorical 🔢➡️🏷️
+
+Use `C()` to treat numbers as categorical:
+
+```{python}
+#| echo: true
+y, X = patsy.dmatrices('v2 ~ C(key2)', data)
+print(X)
+```
+
+## Interaction Terms 🤝
+
+Interaction terms model combined effects. Use `:`:
+
+```{python}
+#| echo: true
+data['key2'] = data['key2'].map({0: 'zero', 1: 'one'})
+print(data)
+y, X = patsy.dmatrices('v2 ~ key1 + key2 + key1:key2', data)
+print(X)
+```
+
+## Introduction to statsmodels 📈
+
+`statsmodels` is for statistical modeling, hypothesis testing, and data exploration.  It focuses on *statistical inference*, complementing scikit-learn.
+
+## Models in statsmodels 🧮
+
+`statsmodels` includes:
+
+-   **Linear Models:** OLS, GLS, etc.
+-   **Generalized Linear Models (GLMs):** For various response types (binary, count).
+-   **Time Series Analysis:** ARIMA, VAR, etc.
+-   **And more...**
+
+## Linear Models with statsmodels 📏
+
+Fit a linear model, using array and formula APIs.
+
+Create sample data:
+
+```{python}
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+
+# Reproducible example
+rng = np.random.default_rng(seed=12345)
+
+def dnorm(mean, variance, size=1):
+    if isinstance(size, int):
+        size = size,
+    return mean + np.sqrt(variance) * rng.standard_normal(*size)
+N = 100
+X = np.c_[dnorm(0, 0.4, size=N),
+          dnorm(0, 0.6, size=N),
+          dnorm(0, 0.2, size=N)]
+eps = dnorm(0, 0.1, size=N)
+beta = [0.1, 0.3, 0.5]
+y = np.dot(X, beta) + eps
+```
+
+## Array-Based API ➕
+
+```{python}
+#| echo: true
+X_model = sm.add_constant(X) # Add intercept
+model = sm.OLS(y, X_model)  # Ordinary Least Squares
+results = model.fit()
+print(results.params)      # Parameters
+print(results.summary())    # Detailed summary
+```
+
+::: {style="color: blue;"}
+`sm.add_constant(X)` adds a column of 1s for the intercept.
+:::
+
+## Formula-Based API  ফর্মুলা
+
+```{python}
+#| echo: true
+data = pd.DataFrame(X, columns=['col0', 'col1', 'col2'])
+data['y'] = y
+results = smf.ols('y ~ col0 + col1 + col2', data=data).fit() # Formula API
+print(results.params)
+print(results.tvalues) # t-statistics
+print(results.predict(data[:5]))
+```
+
+::: {style="color: green;"}
+The formula API handles the intercept and works with DataFrames.
+:::
+
+## Time Series with statsmodels ⌚
+
+`statsmodels` has time series tools. Example: Autoregressive (AR) model:
+
+```{python}
+#| echo: true
+from statsmodels.tsa.ar_model import AutoReg
+
+init_x = 4
+values = [init_x, init_x]
+N = 1000
+b0 = 0.8
+b1 = -0.4
+noise = dnorm(0, 0.1, N)
+for i in range(N):
+    new_x = values[-1] * b0 + values[-2] * b1 + noise[i]
+    values.append(new_x)
+
+MAXLAGS = 5
+model = AutoReg(values, MAXLAGS)
+results = model.fit()
+print(results.params)
+```
+
+## Introduction to scikit-learn 🤖
+
+`scikit-learn` is a powerful, widely-used library for machine learning.  It has algorithms for classification, regression, clustering, and more.
+
+## scikit-learn Features ✨
+
+-   **Simple, Consistent API:** User-friendly and consistent.
+-   **Many Algorithms:** Covers common ML tasks.
+-   **Model Selection/Evaluation:** Cross-validation, hyperparameter tuning, performance metrics.
+-   **Data Preprocessing:** Scaling, feature selection, etc.
+
+## Titanic Example 🚢
+
+Use the Titanic dataset to show a `scikit-learn` workflow.
+
+```{python}
+#| echo: true
+train = pd.read_csv('datasets/titanic/train.csv')
+test = pd.read_csv('datasets/titanic/test.csv')
+```
+
+```{python}
+#| echo: true
+train.head(4)
+```
+
+## Data Preprocessing 🧹
+
+```{python}
+#| echo: true
+print(train.isna().sum())
+print(test.isna().sum())
+```
+
+We have missing data:
+
+```{python}
+#| echo: true
+impute_value = train['Age'].median()
+train['Age'] = train['Age'].fillna(impute_value)
+test['Age'] = test['Age'].fillna(impute_value)
+
+train['IsFemale'] = (train['Sex'] == 'female').astype(int)
+test['IsFemale'] = (test['Sex'] == 'female').astype(int)
+
+predictors = ['Pclass', 'IsFemale', 'Age']
+X_train = train[predictors].to_numpy()
+X_test = test[predictors].to_numpy()
+y_train = train['Survived'].to_numpy()
+print(X_train[:5])
+print(y_train[:5])
+```
+
+## Model Training and Prediction 🏋️‍♀️
+
+```{python}
+#| echo: true
+from sklearn.linear_model import LogisticRegression
+model = LogisticRegression()
+model.fit(X_train, y_train) # Train
+y_predict = model.predict(X_test) # Predict
+print(y_predict[:10])
+```
+
+## Cross-Validation 🔄
+
+```{python}
+#| echo: true
+from sklearn.linear_model import LogisticRegressionCV
+from sklearn.model_selection import cross_val_score
+
+model_cv = LogisticRegressionCV(Cs=10) # Logistic Regression with CV
+model_cv.fit(X_train, y_train)
+model = LogisticRegression(C=10)
+scores = cross_val_score(model, X_train, y_train, cv=4) # 4-fold CV
+print(scores)
+```
+
+Cross-validation helps avoid overfitting and gives a more robust model.
+
+## Summary 📝
+
+-   We bridged pandas data wrangling and model building with `statsmodels` and `scikit-learn`.
+-   Convert DataFrames to NumPy arrays with `.to_numpy()`.
+-   Patsy provides a formula syntax for models.
+-   `statsmodels` excels at statistical inference.
+-   `scikit-learn` is versatile for many ML tasks.
+
+## Thoughts and Discussion 🗣️
+
+-   How to choose between `statsmodels` and `scikit-learn`? Consider inference vs. prediction.
+-   How to improve features in the Titanic example?
+-   Other Python modeling libraries (TensorFlow, PyTorch, XGBoost)?
+-   How does this relate to your projects?
+-   How will data analysis evolve?
+

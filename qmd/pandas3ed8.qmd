@@ -1,0 +1,822 @@
+---
+title: "Python for Data Analysis"
+subtitle: "Chapter 8"
+---
+
+## Introduction: Data Wrangling - Join, Combine, and Reshape 🗂️
+
+*   In many applications, data is spread across multiple files or databases.
+*   It may also be arranged in a format not suitable for easy analysis.
+*   This chapter focuses on tools to combine, join, and rearrange data effectively.
+*   Key concept: **Hierarchical Indexing** in pandas.
+
+## Introduction: Visualizing Data Wrangling
+
+![](./images/data_wrangling.png)
+
+## Data Wrangling, Data Mining, and Machine Learning
+
+**What is Data Wrangling?**
+
+*   **Data Wrangling** (or Data Munging) is the process of transforming and mapping data from one "raw" data form into another format.
+*   The intent is to make it more appropriate and valuable for a variety of downstream purposes, such as analytics.
+
+## Data Mining and Machine Learning
+
+**What is Data Mining?**
+
+*   **Data mining** is the process of discovering patterns, anomalies, and correlations within large datasets to predict outcomes.
+
+**What is Machine Learning?**
+
+*   **Machine Learning** is a subfield of artificial intelligence.
+*   It focuses on developing systems that can learn from and make decisions/predictions based on data.
+*   **Supervised Learning**: Uses labeled datasets to train algorithms.
+*   **Unsupervised Learning**: Discovers hidden patterns in unlabeled data.
+*   **Reinforcement Learning**: Agents learn by interacting with an environment.
+
+## Hierarchical Indexing in Pandas
+
+*   A fundamental feature of pandas.
+*   Enables having *multiple* (two or more) index levels on an axis.
+*   Allows working with higher dimensional data in a lower dimensional form.
+*   **Analogy:** Think of it like having subcategories within categories in a file cabinet. 🗄️
+*   **Benefit:** Provides a structured way to represent and manipulate complex datasets.
+
+## Hierarchical Indexing: Example
+
+```{python}
+import pandas as pd
+import numpy as np
+
+#| echo: true
+data = pd.Series(np.random.uniform(size=9),
+                 index=[["a", "a", "a", "b", "b", "c", "c", "d", "d"],
+                        [1, 2, 3, 1, 3, 1, 2, 2, 3]])
+data
+```
+
+*   We create a `Series` with a *list of lists* as the index.
+*   This creates a *MultiIndex* object.
+*   The "gaps" in the index display indicate "use the label directly above".
+
+## Understanding the MultiIndex
+
+```{python}
+#| echo: true
+data.index
+```
+
+*   The `MultiIndex` object represents the hierarchical index.
+*   It contains tuples of (outer level, inner level).
+*   Here: ('a', 1), ('a', 2), ('a', 3), ('b', 1) ... represent the index pairs.
+
+## Partial Indexing
+
+With hierarchical indexing, *partial indexing* becomes possible. This allows concisely selecting subsets of data.
+
+```{python}
+#| echo: true
+data["b"] #Select group "b"
+```
+
+## Partial Indexing (Continued)
+
+```{python}
+#| echo: true
+data["b":"c"] # Select from "b" to "c"
+```
+
+## Partial Indexing (Continued)
+
+```{python}
+#| echo: true
+data.loc[["b", "d"]] #Select "b" and "d"
+```
+
+## Selection from Inner Level
+
+```{python}
+#| echo: true
+data.loc[:, 2] #Select all value from inner index level 2
+```
+
+*   We use `.loc` for label-based indexing.
+*   `:` selects all outer levels.
+*   `2` selects the inner level index equal to 2.
+
+## `unstack()` and `stack()`
+
+*   `unstack()`: Reshapes the data into a DataFrame.  It "pivots" a level of the (row) index to become column labels.
+*   `stack()`: The inverse operation of `unstack()`. It pivots the column labels to become a level in the (row) MultiIndex.
+
+## `unstack()` Example
+
+```{python}
+#| echo: true
+data.unstack()
+```
+
+## `stack()` Example
+
+```{python}
+#| echo: true
+data.unstack().stack()
+```
+
+## Hierarchical Indexing with DataFrames
+
+*   Both rows *and* columns can have hierarchical indexes.
+
+```{python}
+#| echo: true
+frame = pd.DataFrame(np.arange(12).reshape((4, 3)),
+                     index=[["a", "a", "b", "b"], [1, 2, 1, 2]],
+                     columns=[["Ohio", "Ohio", "Colorado"],
+                              ["Green", "Red", "Green"]])
+frame
+```
+
+*   Here, we have two levels for both rows and columns.
+
+## Naming Index Levels
+
+```{python}
+#| echo: true
+frame.index.names = ["key1", "key2"]
+frame.columns.names = ["state", "color"]
+frame
+```
+
+*   Giving names to index levels improves readability.
+*   `frame.index.names` and `frame.columns.names` set the names.
+
+::: callout-note
+Be careful to note that the index names "state" and "color" are not part of the row labels (the `frame.index` values).
+:::
+
+## Accessing `nlevels` Attribute
+
+```{python}
+#| echo: true
+frame.index.nlevels
+```
+* You can see how many levels an index has by accessing its nlevels attribute.
+
+## Partial Column Indexing
+
+Similar to row indexing, we can also select groups of columns:
+
+```{python}
+#| echo: true
+frame["Ohio"]
+```
+
+## Reordering and Sorting Levels
+
+*   `swaplevel()`: Interchanges two levels.
+*   `sort_index()`: Sorts data using index levels.  Can sort by a specific level.
+
+## `swaplevel()` Example
+
+```{python}
+#| echo: true
+frame.swaplevel("key1", "key2")
+```
+
+## `sort_index()` Example
+
+```{python}
+#| echo: true
+frame.sort_index(level=1) # sort by level 1 (key2)
+```
+
+## `swaplevel()` and `sort_index()` Combined
+
+```{python}
+#| echo: true
+frame.swaplevel(0, 1).sort_index(level=0)
+```
+
+::: callout-note
+Data selection performance is much better on hierarchically indexed objects if the index is lexicographically sorted starting with the outermost level.
+:::
+
+## Summary Statistics by Level
+
+Many descriptive and summary statistics have a `level` option:
+
+```{python}
+#| echo: true
+frame.groupby(level="key2").sum()
+```
+
+## Summary Statistics by Level (Column Example)
+
+```{python}
+#| echo: true
+frame.groupby(level="color", axis="columns").sum()
+```
+
+## Indexing with a DataFrame's Columns
+
+*   `set_index()`: Creates a new DataFrame using one or more columns as the index.
+*   `reset_index()`: Moves hierarchical index levels into the columns (opposite of `set_index()`).
+
+## Example DataFrame
+
+```{python}
+#| echo: true
+frame = pd.DataFrame({"a": range(7), "b": range(7, 0, -1),
+                      "c": ["one", "one", "one", "two", "two",
+                            "two", "two"],
+                      "d": [0, 1, 2, 0, 1, 2, 3]})
+frame
+```
+
+## `set_index()` Example
+
+```{python}
+#| echo: true
+frame2 = frame.set_index(["c", "d"])
+frame2
+```
+
+*   We use columns "c" and "d" to create a MultiIndex.
+*   By default, columns used for the index are removed. Use `drop=False` to keep them.
+
+## `set_index()` with `drop=False`
+
+```{python}
+#| echo: true
+frame.set_index(["c", "d"], drop=False)
+```
+
+## `reset_index()` Example
+
+```{python}
+#| echo: true
+frame2.reset_index()
+```
+
+*   `reset_index()` moves the hierarchical index to columns.
+*   It creates a default integer index.
+
+## Combining and Merging Datasets
+
+Three main ways to combine data in pandas:
+
+1.  `pandas.merge`: Connects rows in DataFrames based on *keys* (like SQL joins).
+2.  `pandas.concat`: Concatenates or "stacks" objects along an axis.
+3.  `combine_first`: Splices together overlapping data (fills missing values).
+
+## Database-Style DataFrame Joins
+
+*   `pandas.merge` is the main function for join operations.
+*   It's similar to SQL joins.
+*   Key concept: *keys* (columns used to link rows).
+
+## `pandas.merge`: Many-to-One Join (Setup)
+
+```{python}
+#| echo: true
+df1 = pd.DataFrame({"key": ["b", "b", "a", "c", "a", "a", "b"],
+                    "data1": pd.Series(range(7), dtype="Int64")})
+df2 = pd.DataFrame({"key": ["a", "b", "d"],
+                    "data2": pd.Series(range(3), dtype="Int64")})
+```
+
+```{python}
+#| echo: true
+df1
+```
+
+```{python}
+#| echo: true
+df2
+```
+
+## `pandas.merge`: Many-to-One Join (Example)
+
+```{python}
+#| echo: true
+pd.merge(df1, df2) # or pd.merge(df1, df2, on="key")
+```
+
+*   `df1` has multiple rows labeled 'a' and 'b'.
+*   `df2` has only one row for each value in the 'key' column.
+*   If the join column isn't specified, `merge` uses overlapping column names. Best practice is to specify explicitly.
+
+## `pandas.merge`: Different Column Names
+
+If column names are different, specify them separately:
+
+```{python}
+#| echo: true
+df3 = pd.DataFrame({"lkey": ["b", "b", "a", "c", "a", "a", "b"],
+                    "data1": pd.Series(range(7), dtype="Int64")})
+df4 = pd.DataFrame({"rkey": ["a", "b", "d"],
+                    "data2": pd.Series(range(3), dtype="Int64")})
+pd.merge(df3, df4, left_on="lkey", right_on="rkey")
+```
+
+*   `left_on`: Column(s) in the left DataFrame.
+*   `right_on`: Column(s) in the right DataFrame.
+
+## `pandas.merge`: Join Types
+
+*   By default, `merge` does an "inner" join (intersection of keys).
+*   Other join types:  "left", "right", "outer".
+
+## `pandas.merge`: Outer Join Example
+
+```{python}
+#| echo: true
+pd.merge(df1, df2, how="outer")
+```
+*   **Outer join:** Union of keys.
+*   **Left join:** All keys from the left DataFrame.
+*   **Right join:** All keys from the right DataFrame.
+
+## Join Types with `how` Argument
+
+| Option        | Behavior                                                       |
+| :------------ | :------------------------------------------------------------- |
+| `how="inner"` | Use only the key combinations observed in both tables          |
+| `how="left"`  | Use all key combinations found in the left table               |
+| `how="right"` | Use all key combinations found in the right table              |
+| `how="outer"` | Use all key combinations observed in both tables *together*    |
+
+## `pandas.merge`: Many-to-Many Joins
+
+*   Many-to-many joins form the *Cartesian product* of the matching keys.
+
+```{python}
+#| echo: true
+df1 = pd.DataFrame({"key": ["b", "b", "a", "c", "a", "b"],
+                    "data1": pd.Series(range(6), dtype="Int64")})
+df2 = pd.DataFrame({"key": ["a", "b", "a", "b", "d"],
+                    "data2": pd.Series(range(5), dtype="Int64")})
+
+pd.merge(df1, df2, on="key", how="left")
+```
+
+*   There are three "b" rows in `df1` and two in `df2`, resulting in six "b" rows.
+
+## Merging with Multiple Keys
+
+Pass a list of column names:
+
+```{python}
+#| echo: true
+left = pd.DataFrame({"key1": ["foo", "foo", "bar"],
+                     "key2": ["one", "two", "one"],
+                     "lval": pd.Series([1, 2, 3], dtype='Int64')})
+right = pd.DataFrame({"key1": ["foo", "foo", "bar", "bar"],
+                      "key2": ["one", "one", "one", "two"],
+                      "rval": pd.Series([4, 5, 6, 7], dtype='Int64')})
+pd.merge(left, right, on=["key1", "key2"], how="outer")
+```
+
+*   Think of multiple keys as forming tuples used as a single join key.
+
+## Overlapping Column Names
+
+*   `merge` has a `suffixes` option to handle overlapping column names.
+
+```{python}
+#| echo: true
+pd.merge(left, right, on="key1")
+```
+## Overlapping Column Names: `suffixes`
+
+```{python}
+#| echo: true
+pd.merge(left, right, on="key1", suffixes=("_left", "_right"))
+```
+
+## `pandas.merge` Function Arguments
+
+| Argument     | Description                                                                                                                   |
+| :----------- | :---------------------------------------------------------------------------------------------------------------------------- |
+| `left`       | DataFrame to be merged on the left side.                                                                                      |
+| `right`      | DataFrame to be merged on the right side.                                                                                     |
+| `how`        | Type of join: "inner", "outer", "left", or "right" (defaults to "inner").                                                   |
+| `on`         | Column names to join on (must be in both DataFrames).                                                                           |
+| `left_on`    | Columns in left DataFrame to use as join keys.                                                                               |
+| `right_on`   | Analogous to `left_on` for the right DataFrame.                                                                             |
+| `left_index` | Use row index in left as its join key(s).                                                                                     |
+| `right_index`| Analogous to `left_index`.                                                                                                    |
+| `sort`       | Sort merged data lexicographically by join keys (False by default).                                                             |
+| `suffixes`   | Tuple of strings to append to overlapping column names (defaults to ("\_x", "\_y")).                                         |
+| `copy`       | If False, avoid copying data in some cases (defaults to copying).                                                                |
+| `validate`   | Verifies merge type (one-to-one, one-to-many, many-to-many).                                         |
+| `indicator`  | Adds column `_merge` indicating source of each row ("left_only", "right_only", "both").                |
+
+## Merging on Index
+
+*   Use `left_index=True` or `right_index=True` (or both) to merge on the index.
+
+```{python}
+#| echo: true
+left1 = pd.DataFrame({"key": ["a", "b", "a", "a", "b", "c"],
+                      "value": pd.Series(range(6), dtype="Int64")})
+right1 = pd.DataFrame({"group_val": [3.5, 7]}, index=["a", "b"])
+
+pd.merge(left1, right1, left_on="key", right_index=True)
+```
+
+*   We merge `left1`'s "key" column with `right1`'s index.
+*  The index for `left1` is preserved.
+
+## Hierarchical Index: Multiple-Key Merge
+
+With hierarchical indexing, joining on index is like a multiple-key merge:
+
+```{python}
+#| echo: true
+lefth = pd.DataFrame({"key1": ["Ohio", "Ohio", "Ohio",
+                            "Nevada", "Nevada"],
+                    "key2": [2000, 2001, 2002, 2001, 2002],
+                    "data": pd.Series(range(5), dtype="Int64")})
+righth_index = pd.MultiIndex.from_arrays([
+    ["Nevada", "Nevada", "Ohio", "Ohio", "Ohio", "Ohio"],
+    [2001, 2000, 2000, 2000, 2001, 2002]
+    ])
+righth = pd.DataFrame({"event1": pd.Series([0, 2, 4, 6, 8, 10], dtype="Int64",
+                                        index=righth_index),
+                    "event2": pd.Series([1, 3, 5, 7, 9, 11], dtype="Int64",
+                                        index=righth_index)})
+
+pd.merge(lefth, righth, left_on=["key1", "key2"], right_index=True, how="outer")
+```
+
+## DataFrame's `join` Method
+
+*   Simplifies merging by index.
+*   Performs a *left join* by default.
+
+```{python}
+#| echo: true
+left2 = pd.DataFrame([[1., 2.], [3., 4.], [5., 6.]],
+                     index=["a", "c", "e"],
+                     columns=["Ohio", "Nevada"]).astype("Int64")
+right2 = pd.DataFrame([[7., 8.], [9., 10.], [11., 12.], [13, 14]],
+                      index=["b", "c", "d", "e"],
+                      columns=["Missouri", "Alabama"]).astype("Int64")
+left2.join(right2, how="outer")
+```
+
+*  Can join on one of the calling DataFrame's columns.
+*  Supports joining multiple DataFrames with the similar indexes but non-overlapping columns.
+
+## `join` on a Column
+
+```{python}
+#| echo: true
+left1.join(right1, on="key")
+```
+
+## Concatenating Along an Axis
+
+*   `numpy.concatenate`: Works with NumPy arrays.
+
+```{python}
+#| echo: true
+arr = np.arange(12).reshape((3, 4))
+np.concatenate([arr, arr], axis=1)
+```
+
+*   `pandas.concat`:  Addresses concerns like:
+    *   Handling different indexes.
+    *   Identifying concatenated chunks.
+    *   Preserving data.
+
+## `pandas.concat` with Series
+
+```{python}
+#| echo: true
+s1 = pd.Series([0, 1], index=["a", "b"], dtype="Int64")
+s2 = pd.Series([2, 3, 4], index=["c", "d", "e"], dtype="Int64")
+s3 = pd.Series([5, 6], index=["f", "g"], dtype="Int64")
+pd.concat([s1, s2, s3])
+```
+
+*   By default, `concat` works along `axis="index"` (rows), producing another Series.
+*   Glues together values and indexes.
+
+## `pandas.concat`: `axis="columns"`
+
+```{python}
+#| echo: true
+pd.concat([s1, s2, s3], axis="columns")
+```
+
+*   `axis="columns"` produces a DataFrame.
+*   The result is the *union* (outer join) of the indexes.
+
+## `pandas.concat`: `join="inner"`
+
+```{python}
+#| echo: true
+s4 = pd.concat([s1, s3])
+pd.concat([s1, s4], axis="columns", join="inner")
+```
+
+*   `join="inner"` performs an intersection on the indexes.
+
+## `pandas.concat`: `keys` Argument
+
+```{python}
+#| echo: true
+result = pd.concat([s1, s1, s3], keys=["one", "two", "three"])
+result
+```
+
+## `unstack()` the Result
+
+```{python}
+#| echo: true
+result.unstack()
+```
+* `keys` creates a hierarchical index. Identifies the concatenated pieces.
+* When combining along `axis="columns"`, `keys` become DataFrame column headers.
+
+## `pandas.concat` with DataFrames
+
+The logic is the same as with Series:
+
+```{python}
+#| echo: true
+df1 = pd.DataFrame(np.arange(6).reshape(3, 2), index=["a", "b", "c"],
+                   columns=["one", "two"])
+df2 = pd.DataFrame(5 + np.arange(4).reshape(2, 2), index=["a", "c"],
+                   columns=["three", "four"])
+pd.concat([df1, df2], axis="columns", keys=["level1", "level2"])
+
+```
+
+*   You can name the created axis levels using the `names` argument.
+*   If the row index contains no relevant data, use `ignore_index=True`.
+
+## `pandas.concat` Function Arguments
+
+| Argument          | Description                                                                                                                                                                                                                |
+| :---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `objs`            | List or dictionary of pandas objects to be concatenated (required).                                                                                                                                                          |
+| `axis`            | Axis to concatenate along (defaults to "index").                                                                                                                                                                             |
+| `join`           | "inner" or "outer" (defaults to "outer").                                                                                                                                                                                   |
+| `keys`           | Values to associate with objects, forming a hierarchical index.                                                                                                                                                            |
+| `levels`          | Specific indexes to use as hierarchical index levels.                                                                                                                                                                   |
+| `names`           | Names for created hierarchical levels.                                                                                                                                                                                      |
+| `verify_integrity`| Check new axis for duplicates and raise exception if so (defaults to False).                                                                                                                                                 |
+| `ignore_index`    | Don't preserve indexes; produce a new `range(total_length)` index.                                                                                                                             |
+
+## Combining Data with Overlap
+
+*   `numpy.where`: Performs an array-oriented if-else operation.
+
+```{python}
+#| echo: true
+a = pd.Series([np.nan, 2.5, 0.0, 3.5, 4.5, np.nan],
+              index=["f", "e", "d", "c", "b", "a"])
+b = pd.Series([0., np.nan, 2., np.nan, np.nan, 5.],
+              index=["a", "b", "c", "d", "e", "f"])
+np.where(pd.isna(a), b, a)
+```
+
+## `Series.combine_first`
+
+* `Series.combine_first`: Lines up values by index and "patches" missing data.
+
+```{python}
+#| echo: true
+a.combine_first(b)
+```
+* `combine_first` aligns by index (unlike `np.where`).
+
+## `combine_first` with DataFrames
+
+*   `combine_first` works column by column.
+*   It "patches" missing data in the calling object with data from the passed object.
+
+```{python}
+#| echo: true
+df1 = pd.DataFrame({"a": [1., np.nan, 5., np.nan],
+                    "b": [np.nan, 2., np.nan, 6.],
+                    "c": range(2, 18, 4)})
+df2 = pd.DataFrame({"a": [5., 4., np.nan, 3., 7.],
+                    "b": [np.nan, 3., 4., 6., 8.]})
+df1.combine_first(df2)
+
+```
+
+## Reshaping and Pivoting
+
+*   **Reshape/Pivot operations:** Rearrange tabular data.
+*   **Hierarchical indexing** provides a consistent way to reshape.
+*   **Two primary actions:**
+    *   `stack`: "Rotates" or pivots columns to rows.
+    *   `unstack`: Pivots rows to columns.
+
+## `stack` and `unstack`: Example DataFrame
+
+```{python}
+#| echo: true
+data = pd.DataFrame(np.arange(6).reshape((2, 3)),
+                    index=pd.Index(["Ohio", "Colorado"], name="state"),
+                    columns=pd.Index(["one", "two", "three"],
+                    name="number"))
+data
+```
+
+## `stack` Example
+
+```{python}
+#| echo: true
+result = data.stack()
+result
+```
+
+## `unstack` Example
+
+```{python}
+#| echo: true
+result.unstack()
+```
+
+## `unstack` with Different Levels
+
+*   By default, the innermost level is unstacked.
+*   Specify a different level by number or name.
+
+```{python}
+#| echo: true
+result.unstack(level=0) # or result.unstack("state")
+```
+
+*   Unstacking might introduce missing data.
+*   Stacking filters out missing data by default.
+
+## Stacking with `dropna=False`
+
+```{python}
+#| echo: true
+s1 = pd.Series([0, 1, 2, 3], index=["a", "b", "c", "d"], dtype="Int64")
+s2 = pd.Series([4, 5, 6], index=["c", "d", "e"], dtype="Int64")
+data2 = pd.concat([s1, s2], keys=["one", "two"])
+data2.unstack().stack(dropna=False)
+```
+
+## `unstack` in a DataFrame
+
+When unstacking in a DataFrame, the unstacked level becomes the *lowest* level.
+
+```{python}
+#| echo: true
+df = pd.DataFrame({"left": result, "right": result + 5},
+                  columns=pd.Index(["left", "right"], name="side"))
+df
+```
+
+## `unstack` and `stack` Example
+
+```{python}
+#| echo: true
+df.unstack(level="state").stack(level="side")
+```
+
+## Pivoting "Long" to "Wide" Format
+
+*   **Long/Stacked Format:** Common for storing multiple time series. Each row is an observation.
+*   **Wide Format:** Each variable has its own column.
+
+## Example: Long Format Data
+
+```{python}
+#| echo: true
+data = pd.read_csv("examples/macrodata.csv")
+data = data.loc[:, ["year", "quarter", "realgdp", "infl", "unemp"]]
+periods = pd.PeriodIndex(year=data.pop("year"),
+                        quarter=data.pop("quarter"),
+                        name="date")
+data.index = periods.to_timestamp("D")
+data = data.reindex(columns=["realgdp", "infl", "unemp"])
+data.columns.name = "item"
+long_data = (data.stack()
+                .reset_index()
+                .rename(columns={0: "value"}))
+long_data[:10]
+
+```
+
+## `pivot` Method
+
+The `pivot` method transforms long format to wide format.
+
+```{python}
+#| echo: true
+pivoted = long_data.pivot(index="date", columns="item",
+                          values="value")
+pivoted.head()
+```
+
+*   `index`: Column to use as row index.
+*   `columns`: Column to use for creating new columns.
+*   `values`: Column to fill the DataFrame.
+
+## Pivoting with Multiple Value Columns
+
+```{python}
+#| echo: true
+long_data["value2"] = np.random.standard_normal(len(long_data))
+pivoted = long_data.pivot(index="date", columns="item")
+pivoted.head()
+```
+
+*   If you omit the `values` argument, you get hierarchical columns.
+
+## `pivot` is Equivalent to...
+
+`pivot` is equivalent to using `set_index` followed by `unstack`:
+
+```{python}
+#| echo: true
+unstacked = long_data.set_index(["date", "item"]).unstack(level="item")
+unstacked.head()
+```
+
+## Pivoting "Wide" to "Long" Format
+
+*   `pandas.melt`: Inverse of `pivot`.  Merges multiple columns into one (longer DataFrame).
+
+```{python}
+#| echo: true
+df = pd.DataFrame({"key": ["foo", "bar", "baz"],
+                   "A": [1, 2, 3],
+                   "B": [4, 5, 6],
+                   "C": [7, 8, 9]})
+melted = pd.melt(df, id_vars="key")
+melted
+```
+
+*   `id_vars`: Group indicator columns.
+*   `value_vars`: Columns to "unpivot". If not specified, all others are used.
+
+## `pandas.melt` Examples
+
+```{python}
+#| echo: true
+pd.melt(df, id_vars="key", value_vars=["A", "B"])
+```
+
+```{python}
+#| echo: true
+pd.melt(df, value_vars=["A", "B", "C"]) # no group id
+```
+
+```{python}
+#| echo: true
+pd.melt(df, value_vars=["key", "A", "B"])
+```
+
+*   Can be used without any group identifiers.
+
+## Reshaping with `melt` and `pivot`
+
+```{python}
+#| echo: true
+reshaped = melted.pivot(index="key", columns="variable",
+                        values="value")
+reshaped
+```
+
+```{python}
+#| echo: true
+reshaped.reset_index() # move index back
+```
+
+*   `pivot` can reshape back to the original layout.
+*   Since pivot creates an index, `reset_index()` may be useful.
+
+## Summary 📝
+
+*   We covered key techniques for data wrangling in pandas:
+    *   Hierarchical Indexing (MultiIndex).
+    *   `merge` (database-style joins).
+    *   `concat` (concatenating along an axis).
+    *   `combine_first` (patching missing data).
+    *   `stack` and `unstack` (reshaping).
+    *   `pivot` (long to wide format).
+    *   `melt` (wide to long format).
+*   These tools are essential for preparing data for analysis.
+
+## Thoughts and Discussion 🤔
+
+*   How might these techniques be used in your *own* data analysis projects?
+*   Can you think of real-world examples?
+*   What are some challenges or limitations?
+*   Which method are you most interested in applying, and why?
+*   When would you prefer `merge` over `concat`, or vice-versa?
+*   How can understanding hierarchical indexing improve structuring complex datasets?
+

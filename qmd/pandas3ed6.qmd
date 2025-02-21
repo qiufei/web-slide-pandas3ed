@@ -1,0 +1,1048 @@
+---
+title: "Chapter 6: Data Loading, Storage, and File Formats"
+---
+
+## Introduction: Why Data Loading Matters 
+
+Welcome to the world of data analysis! 🌍 Before we can unlock insights from data, we need to get it into our Python environment. This chapter focuses on that crucial first step: **data loading**.
+
+Think of it like this: before you can cook a delicious meal 🍳, you first need to gather your ingredients 🍅🥕🥦. Data loading is like gathering the ingredients for your data analysis recipe.
+
+## Introduction: What We'll Cover
+
+We'll cover various ways to load data, including:
+
+-   Text files (like CSV)
+-   Binary formats
+-   Databases
+-   Web APIs
+
+## Core Concepts: Data Analysis 📊
+
+Data analysis is the process of inspecting, cleaning, transforming, and modeling data to discover useful information, draw conclusions, and support decision-making. It's like being a detective 🕵️‍♀️, but instead of solving crimes, you're solving puzzles hidden within data.
+
+## Core Concepts: Machine Learning 🤖
+
+Machine learning is a subfield of artificial intelligence (AI) that focuses on enabling computers to learn from data without being explicitly programmed. Think of it as teaching a computer to learn like a child 👶, by showing it examples instead of giving it strict rules.
+
+## Core Concepts: Python 🐍
+
+Python is a versatile, high-level programming language popular for data analysis and machine learning. It's known for its readability and extensive libraries, which makes it easier to perform complex tasks. It's like having a Swiss Army knife 🛠️ for data analysis.
+
+## Core Concepts: Data Science Venn Diagram
+
+![Data Science Venn Diagram. Source: [Drew Conway](http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram)](data_science_venn.png){width=80%}
+
+## Pandas for Data Input/Output
+
+The `pandas` library is your best friend in Python for handling tabular data.  It provides the `DataFrame` object, a powerful structure for storing and manipulating data in rows and columns (like a spreadsheet!).  `pandas` offers several functions for reading and writing data in various formats.
+
+## Data Parsing
+
+::: {.callout-note appearance="minimal"}
+**Data parsing**, often called *data loading*, involves reading data from a file or other source and converting it into a usable format (like a DataFrame). It also often includes the initial interpretation of data types within the data.
+:::
+
+## Common `pandas` Data Loading Functions (1/2)
+
+The following table lists some of the most commonly used data loading functions in `pandas`. We'll focus on `read_csv` in this section.
+
+| Function         | Description                                                                                                                  |
+| :--------------- | :--------------------------------------------------------------------------------------------------------------------------- |
+| `read_csv`       | Load delimited data from a file, URL, or file-like object; uses comma as the default delimiter.                         |
+| `read_fwf`       | Read data in fixed-width column format (i.e., no delimiters).                                                             |
+| `read_clipboard` | Variation of `read_csv` that reads data from clipboard; useful for converting tables from web pages.                |
+| `read_excel`     | Read tabular data from an Excel XLS or XLSX file.                                                                            |
+| `read_hdf`       | Read HDF5 files written by pandas.                                                                                          |
+| `read_html`      | Read all tables found in the given HTML document.                                                                         |
+| `read_json`      | Read data from a JSON (JavaScript Object Notation) string representation, file, URL, or file-like object.                |
+
+## Common `pandas` Data Loading Functions (2/2)
+
+| Function          | Description                                                       |
+| :---------------- | :---------------------------------------------------------------- |
+| `read_feather`    | Read the Feather binary file format.                              |
+| `read_orc`        | Read the Apache ORC binary file format.                            |
+| `read_parquet`    | Read the Apache Parquet binary file format.                        |
+| `read_pickle`     | Read an object stored by pandas using the Python pickle format.     |
+| `read_sas`        | Read a SAS dataset stored in one of the SAS system's custom formats.|
+| `read_spss`       | Read a data file created by SPSS.                                 |
+| `read_sql`        | Read the results of a SQL query (using SQLAlchemy).              |
+| `read_sql_table` | Read a whole SQL table (using SQLAlchemy).                         |
+| `read_stata`      | Read a dataset from Stata file format.                             |
+| `read_xml`        | Read a table of data from an XML file.                              |
+
+## Focus: `read_csv`
+
+`read_csv` is a cornerstone for handling comma-separated value files, and it's one of the most frequently used functions.
+
+## Optional Arguments: Overview
+
+Data loading functions have many optional arguments to customize the process.  They generally fall into these categories:
+
+-   **Indexing:** Choosing index columns and handling column names.
+-   **Type inference and data conversion:** Customizing data type detection and missing value representation.
+-   **Date and time parsing:** Combining and converting date/time information.
+-   **Iterating:** Handling large files in chunks.
+-   **Unclean data issues:** Skipping rows, handling comments, etc.
+
+## `pandas` Documentation
+
+::: {.callout-note appearance="minimal"}
+Don't be overwhelmed! The `pandas` online documentation has great examples. A Google search like "pandas read_csv skip header" often helps.
+:::
+
+## Reading CSV Files with `read_csv` - Basic Example
+
+Let's start with reading a comma-separated values (CSV) file.
+
+```{python}
+#| echo: false
+#| output: false
+# Create a dummy CSV file.
+import pandas as pd
+data = {'a': [1, 5, 9], 'b': [2, 6, 10], 'c': [3, 7, 11], 'd': [4, 8, 12], 'message': ['hello', 'world', 'foo']}
+df = pd.DataFrame(data)
+df.to_csv('ex1.csv', index=False)
+```
+
+```{python}
+# Import pandas
+import pandas as pd
+
+# Read the CSV file
+df = pd.read_csv("examples/ex1.csv")
+
+# Display the DataFrame
+df
+```
+
+::: {.callout-note appearance="minimal"}
+`pd.read_csv()` detects the header row and uses commas as the delimiter. The index is auto-generated.
+:::
+
+## Specifying the Header Row: No Header
+
+Sometimes, your CSV file might not have a header row.
+
+```{python}
+#| echo: false
+#| output: false
+# Create a CSV file without a header.
+data = {'col1': [1, 5, 9], 'col2': [2, 6, 10], 'col3': [3, 7, 11], 'col4': [4, 8, 12], 'col5': ['hello', 'world', 'foo']}
+df = pd.DataFrame(data)
+df.to_csv('ex2.csv', index=False, header=False)
+
+```
+
+## Specifying the Header Row: Default Column Names
+
+Tell `pandas` to use default column names:
+
+```{python}
+# Let pandas assign default column names
+pd.read_csv("examples/ex2.csv", header=None)
+```
+
+## Specifying the Header Row: Custom Column Names
+
+Or, provide your own column names:
+
+```{python}
+# Provide your own column names
+column_names = ["a", "b", "c", "d", "message"]
+pd.read_csv("examples/ex2.csv", names=column_names)
+```
+
+## Setting the Index Column
+
+Use the `index_col` argument to use a column as the index:
+
+```{python}
+# Use 'message' column as index
+column_names = ["a", "b", "c", "d", "message"]
+pd.read_csv("examples/ex2.csv", names=column_names, index_col="message")
+```
+
+::: {.callout-note appearance="minimal"}
+Now the row labels are 'hello', 'world', and 'foo'.
+:::
+
+## Hierarchical Indexing
+
+Create a *hierarchical index* by specifying multiple columns:
+
+```{python}
+#| echo: false
+#| output: false
+data = {'key1': ['one', 'one', 'one', 'one', 'two', 'two', 'two', 'two'],
+        'key2': ['a', 'b', 'c', 'd', 'a', 'b', 'c', 'd'],
+        'value1': [1, 3, 5, 7, 9, 11, 13, 15],
+        'value2': [2, 4, 6, 8, 10, 12, 14, 16]}
+df = pd.DataFrame(data)
+df.to_csv("csv_mindex.csv", index=False)
+```
+
+```{python}
+# Create a hierarchical index
+parsed = pd.read_csv("examples/csv_mindex.csv", index_col=["key1", "key2"])
+parsed
+```
+
+::: {.callout-note appearance="minimal"}
+Hierarchical indexing is useful for higher-dimensional data.
+:::
+
+## Handling Non-Standard Delimiters
+
+Files sometimes use delimiters other than commas.  Whitespace example:
+
+```{python}
+#| echo: false
+#| output: false
+# Create a file with whitespace delimiter
+data = """
+A         B         C
+aaa -0.264438 -1.026059 -0.619500
+bbb  0.927272  0.302904 -0.032399
+ccc -0.264273 -0.386314 -0.217601
+ddd -0.871858 -0.348382  1.100491
+"""
+with open('ex3.txt', 'w') as f:
+    f.write(data)
+
+```
+
+## Handling Non-Standard Delimiters: Regular Expressions
+
+Use the `sep` argument with a regular expression:
+
+```{python}
+# Use a regex for whitespace
+result = pd.read_csv("examples/ex3.txt", sep=r"\s+")
+result
+```
+
+::: {.callout-note appearance="minimal"}
+`\s+` matches one or more whitespace characters. `pandas` infers the index.
+:::
+
+## Skipping Rows
+
+Use `skiprows` to ignore specific rows:
+
+```{python}
+#| echo: false
+#| output: false
+data = """# hey!
+a,b,c,d,message
+# just wanted to make things more difficult for you
+# who reads CSV files with computers, anyway?
+1,2,3,4,hello
+5,6,7,8,world
+9,10,11,12,foo
+"""
+with open('ex4.csv', 'w') as f:
+    f.write(data)
+```
+
+```{python}
+# Skip rows
+pd.read_csv("examples/ex4.csv", skiprows=[0, 2, 3])
+```
+
+## Handling Missing Values: Default Sentinels
+
+Missing data is common. `pandas` recognizes sentinels like "NA":
+
+```{python}
+#| echo: false
+#| output: false
+data = """something,a,b,c,d,message
+one,1,2,3,4,NA
+two,5,6,,8,world
+three,9,10,11,12,foo
+"""
+with open('ex5.csv', 'w') as f:
+    f.write(data)
+```
+
+```{python}
+# Read, detecting 'NA'
+result = pd.read_csv("examples/ex5.csv")
+result
+```
+
+## Handling Missing Values: Checking for Missingness
+
+Check for missing values:
+
+```{python}
+# Check for missing values
+pd.isna(result)
+```
+
+## Handling Missing Values: Custom Sentinels
+
+Specify additional missing value strings with `na_values`:
+
+```{python}
+# Treat 'NULL' as missing
+result = pd.read_csv("examples/ex5.csv", na_values=["NULL"])
+result
+```
+
+## Disabling Default NA Values
+
+Disable default NA handling with `keep_default_na=False`:
+
+```{python}
+# Disable default NA handling
+result2 = pd.read_csv("examples/ex5.csv", keep_default_na=False)
+result2
+```
+
+```{python}
+result2.isna()
+```
+
+## Disabling Default NA Values: Per-Column Sentinels
+Specify different NA values for each column:
+
+```{python}
+# Different NA values per column
+sentinels = {"message": ["foo", "NA"], "something": ["two"]}
+pd.read_csv("examples/ex5.csv", na_values=sentinels, keep_default_na=False)
+```
+
+##  `read_csv`/`read_table` Function Arguments: A Summary (1/3)
+
+Here's a summary of key arguments:
+
+| Argument         | Description                                                                                                            |
+| :--------------- | :--------------------------------------------------------------------------------------------------------------------- |
+| `path`           | String: file path, URL, or file-like object.                                                              |
+| `sep` or `delimiter` | Character sequence or regular expression to split fields.                                                            |
+| `header`         | Row number for column names (default 0). `None` if no header.                                               |
+| `index_col`      | Column(s) for row index.                                                                  |
+| `names`          | List of column names if no header.                                                                           |
+| `skiprows`       | List of row numbers to skip.                                                                                           |
+
+##  `read_csv`/`read_table` Function Arguments: A Summary (2/3)
+
+| Argument         | Description                                                                                                            |
+| :--------------- | :--------------------------------------------------------------------------------------------------------------------- |
+| `na_values`      | Values to replace with `NaN`.                                                                           |
+| `keep_default_na` | Use default `NaN` values (default `True`).                                                         |
+|`comment`|	Character(s) to split comments off the end of lines.|
+|`parse_dates`|	Attempt to parse data to `datetime`.|
+|`keep_date_col`|	If joining columns to parse date, keep the joined columns.|
+|`converters`|	Dictionary mapping column number/name to functions.|
+
+##  `read_csv`/`read_table` Function Arguments: A Summary (3/3)
+| Argument         | Description                                                                                                            |
+| :--------------- | :--------------------------------------------------------------------------------------------------------------------- |
+|`dayfirst`|	When parsing ambiguous dates, treat as international format.|
+|`date_parser`|	Function to parse dates.|
+|`nrows`|	Number of rows to read from the beginning.|
+|`iterator`|	Return a `TextFileReader` for piecemeal reading.|
+|`chunksize`|	For iteration, size of file chunks.|
+|`skip_footer`|	Number of lines to ignore at the end.|
+|`verbose`|	Print parsing information.|
+|`encoding`|	Text encoding.|
+|`squeeze`|	If only one column, return a Series.|
+|`thousands`|	Separator for thousands.|
+|`decimal`|	Decimal separator.|
+|`engine`|	Parsing engine: `c`, `python`, or `pyarrow`.|
+
+## Reading Large Files in Chunks: `nrows`
+
+For large files, read a small portion or process in chunks.
+
+```{python}
+#| echo: false
+#| output: false
+import numpy as np
+# create a large csv file
+data = {'one': np.random.rand(10000),
+        'two': np.random.rand(10000),
+        'three': np.random.rand(10000),
+        'four': np.random.rand(10000),
+        'key': [chr(ord('A') + np.random.randint(0, 26)) for _ in range(10000)]}  # Random letters
+df = pd.DataFrame(data)
+
+df.to_csv("ex6.csv", index=False)
+```
+
+```{python}
+# Read only first 5 rows
+pd.read_csv("examples/ex6.csv", nrows=5)
+```
+
+## Reading Large Files in Chunks: `chunksize`
+
+Read a file in chunks with `chunksize`:
+
+```{python}
+# Read in chunks of 1000 rows
+chunker = pd.read_csv("examples/ex6.csv", chunksize=1000)
+type(chunker)
+```
+
+## Reading Large Files in Chunks: Iterating
+
+`chunker` is a `TextFileReader`.  Iterate through it:
+
+```{python}
+# Process chunk by chunk
+chunker = pd.read_csv("examples/ex6.csv", chunksize=1000)
+
+tot = pd.Series([], dtype='int64')
+for piece in chunker:
+    tot = tot.add(piece["key"].value_counts(), fill_value=0)
+
+tot = tot.sort_values(ascending=False)
+tot[:10]
+```
+
+## Writing Data to Text Format: `to_csv`
+
+Write data to various formats.  `to_csv` is the counterpart to `read_csv`.
+
+```{python}
+data = pd.read_csv("examples/ex5.csv")
+data
+```
+
+```{python}
+# Write to CSV
+data.to_csv("out.csv")
+
+#To prove that the data was successfully written.
+pd.read_csv("out.csv")
+```
+
+::: {.callout-note appearance="minimal"}
+Row and column labels are written by default.
+:::
+
+## Writing Data: Different Delimiter
+
+Specify a different delimiter:
+
+```{python}
+# Import sys to write to console
+import sys
+# Write to console with '|' delimiter
+data.to_csv(sys.stdout, sep="|")
+```
+
+## Writing Data: Representing Missing Values
+
+Represent missing values differently:
+
+```{python}
+# Represent missing values as 'NULL'
+data.to_csv(sys.stdout, na_rep="NULL")
+```
+
+## Writing Data: Disabling Labels
+
+Disable row and column labels:
+
+```{python}
+# Don't write labels
+data.to_csv(sys.stdout, index=False, header=False)
+```
+
+## Writing Data: Subsetting Columns
+
+Write a subset of columns, in a specific order:
+
+```{python}
+# Write only columns 'a', 'b', 'c'
+data.to_csv(sys.stdout, index=False, columns=["a", "b", "c"])
+```
+
+## Working with Other Delimited Formats: `csv` Module
+
+For single-character delimiters, use Python's `csv` module:
+
+```{python}
+#| echo: false
+#| output: false
+data = '''"a","b","c"
+"1","2","3"
+"1","2","3"
+'''
+with open('ex7.csv', "w") as f:
+	f.write(data)
+```
+
+```{python}
+import csv
+
+f = open("examples/ex7.csv")
+reader = csv.reader(f)
+
+for line in reader:
+    print(line)
+f.close()
+```
+
+## Working with Other Delimited Formats: Processing Data
+
+Process the data into a usable form:
+
+```{python}
+with open("examples/ex7.csv") as f:
+    lines = list(csv.reader(f))
+
+header, values = lines[0], lines[1:]
+
+# Create a dictionary of data columns
+data_dict = {h: v for h, v in zip(header, zip(*values))}
+data_dict
+```
+
+For complex files, use string manipulation or regular expressions. `pandas.read_csv` often suffices.
+
+## CSV Dialect Options
+
+The `csv` module has dialect options to customize parsing:
+
+| Argument         | Description                                                                                                                    |
+| :--------------- | :----------------------------------------------------------------------------------------------------------------------------- |
+| `delimiter`      | One-character string to separate fields (default ',').                                                                   |
+| `lineterminator` | Line terminator for writing (default '\r\n'). Reader ignores and recognizes cross-platform.          |
+| `quotechar`      | Quote character for fields with special characters (default '"').                                                         |
+| `quoting`        | Quoting convention.                     |
+| `skipinitialspace` | Ignore whitespace after delimiter (default `False`).                                                               |
+| `doublequote`    | Handle quoting character inside a field.                                                    |
+| `escapechar`     | String to escape delimiter if `quoting` is `csv.QUOTE_NONE`.                                 |
+
+## CSV Dialect: Custom Subclass
+
+Define a custom dialect subclass:
+
+```{python}
+#| eval: false
+class MyDialect(csv.Dialect):
+    lineterminator = "\n"
+    delimiter = ";"
+    quotechar = '"'
+    quoting = csv.QUOTE_MINIMAL
+
+#reader = csv.reader(f, dialect=my_dialect)
+```
+
+## CSV Dialect: Direct Options
+
+Or pass dialect options directly:
+
+```{python}
+#| eval: false
+#reader = csv.reader(f, delimiter="|")
+```
+
+## JSON Data
+
+JSON is a flexible format for data exchange on the web.
+
+```{python}
+# Example JSON string
+obj = """
+{"name": "Wes",
+ "cities_lived": ["Akron", "Nashville", "New York", "San Francisco"],
+ "pet": null,
+ "siblings": [{"name": "Scott", "age": 34, "hobbies": ["guitars", "soccer"]},
+              {"name": "Katie", "age": 42, "hobbies": ["diving", "art"]}]
+}
+"""
+```
+
+::: {.callout-note appearance="minimal"}
+JSON is close to valid Python code (e.g., `null` instead of `None`).
+:::
+
+## JSON: `json.loads` and `json.dumps`
+
+```{python}
+import json
+
+# JSON string to Python object
+result = json.loads(obj)
+result
+```
+
+```{python}
+# Python object to JSON
+asjson = json.dumps(result)
+asjson
+```
+
+## Reading JSON with Pandas: From List of Dicts
+
+Create a DataFrame from a list of dictionaries:
+
+```{python}
+# Extract 'siblings' data
+siblings = pd.DataFrame(result["siblings"], columns=["name", "age"])
+siblings
+```
+
+## Reading JSON with Pandas: `read_json`
+
+`pandas.read_json` converts JSON to Series/DataFrame:
+
+```{python}
+#| echo: false
+#| output: false
+data = """[{"a": 1, "b": 2, "c": 3},
+{"a": 4, "b": 5, "c": 6},
+{"a": 7, "b": 8, "c": 9}]
+"""
+with open("example.json", "w") as f:
+    f.write(data)
+
+```
+
+```{python}
+# Read JSON file
+data = pd.read_json("examples/example.json")
+data
+```
+
+## Exporting to JSON: `to_json`
+
+Export from pandas to JSON with `to_json`:
+
+```{python}
+# Export to JSON (column-oriented)
+print(data.to_json())
+```
+
+```{python}
+# Export to JSON (row-oriented)
+print(data.to_json(orient="records"))
+```
+
+## XML and HTML: Web Scraping
+
+Libraries like `lxml`, `Beautiful Soup`, `html5lib` handle HTML/XML. `pandas` uses `read_html` for HTML tables.
+
+Install:
+
+```{python}
+#| eval: false
+conda install lxml beautifulsoup4 html5lib
+# or
+pip install lxml beautifulsoup4 html5lib
+```
+
+## Web Scraping Example
+
+```{python}
+#| eval: false
+# Parse tables from HTML
+tables = pd.read_html("examples/fdic_failed_bank_list.html")
+len(tables)
+failures = tables[0]
+failures.head()
+
+```
+Because the notebook file cannot directly access local files, the above code will report an error when executed, but in a practical scenario, it can run normally.
+
+Here, we fetched the content from the website, so we can still use this network address for demonstration.
+
+```{python}
+tables = pd.read_html("https://www.fdic.gov/resources/resolutions/bank-failures/failed-bank-list/")
+len(tables)  # Check how many tables were found
+failures = tables[0]
+failures.head()  # Display the first few rows of the first table
+```
+
+## Data Cleaning and Analysis after Web Scraping
+
+Clean and analyze the loaded data:
+
+```{python}
+# Convert to datetime
+close_timestamps = pd.to_datetime(failures["Closing Date"])
+
+# Count failures per year
+close_timestamps.dt.year.value_counts()
+```
+
+## Parsing XML with `lxml.objectify`
+
+XML is more general than HTML. Example with MTA data:
+
+```{python}
+#| eval: false
+from lxml import objectify
+
+path = "datasets/mta_perf/Performance_MNR.xml"
+with open(path) as f:
+    parsed = objectify.parse(f)
+root = parsed.getroot()
+
+data = []
+skip_fields = ["PARENT_SEQ", "INDICATOR_SEQ", "DESIRED_CHANGE", "DECIMAL_PLACES"]
+
+for elt in root.INDICATOR:
+    el_data = {}
+    for child in elt.getchildren():
+        if child.tag in skip_fields:
+            continue
+        el_data[child.tag] = child.pyval
+    data.append(el_data)
+
+perf = pd.DataFrame(data)
+perf.head()
+```
+Because the notebook file cannot directly access local files, the above code will report an error when executed, but in a practical scenario, it can run normally.
+
+## Parsing XML: `pandas.read_xml`
+
+`pandas` also has `read_xml`:
+
+```{python}
+#| eval: false
+perf2 = pd.read_xml(path)
+perf2.head()
+
+```
+
+## Binary Data Formats
+
+Binary formats can be more efficient than text.
+
+### Pickle
+
+Python's `pickle` serializes/deserializes objects.  `to_pickle`:
+
+```{python}
+frame = pd.read_csv("examples/ex1.csv")
+frame
+```
+
+```{python}
+frame.to_pickle("frame_pickle")
+```
+
+## Pickle: `read_pickle`
+
+Read pickled objects with `pandas.read_pickle`:
+
+```{python}
+
+pd.read_pickle("frame_pickle")
+```
+
+::: {.callout-note appearance="minimal"}
+`pickle` is for *short-term* storage only.
+:::
+
+### HDF5
+
+HDF5 stores large arrays, supports compression, efficient subsets.
+
+Install PyTables:
+
+```{python}
+#| eval: false
+conda install pytables
+# or
+pip install tables
+```
+
+## Using HDF5 Format
+
+HDF5 stores multiple datasets with metadata. `HDFStore` is like a dict:
+
+```{python}
+#| eval: false
+
+import numpy as np
+frame = pd.DataFrame({"a": np.random.standard_normal(100)})
+store = pd.HDFStore("mydata.h5")
+store["obj1"] = frame
+store["obj1_col"] = frame["a"]
+store
+```
+
+## Using HDF5: Accessing Data
+
+```{python}
+#| eval: false
+store["obj1"]
+```
+
+## HDF5: Storage Schemas
+
+"fixed" (default) and "table." "table" is slower, supports queries:
+
+```{python}
+#| eval: false
+store.put("obj2", frame, format="table")
+store.select("obj2", where=["index >= 10 and index <= 15"])
+
+```
+
+## HDF5: `pandas.read_hdf`
+
+`pandas.read_hdf` is a shortcut:
+
+```{python}
+#| eval: false
+
+frame.to_hdf("mydata.h5", "obj3", format="table")
+pd.read_hdf("mydata.h5", "obj3", where=["index < 5"])
+```
+
+::: {.callout-note appearance="minimal"}
+HDF5 is *not* a database.  Write-once, read-many. Concurrent writes corrupt.
+:::
+
+## Reading Microsoft Excel Files
+
+`pandas` uses `ExcelFile` or `read_excel`. Needs `xlrd`, `openpyxl`:
+
+```{python}
+#| eval: false
+conda install openpyxl xlrd
+# or
+pip install openpyxl xlrd
+```
+
+## Excel: `ExcelFile`
+
+```{python}
+#| eval: false
+# Create ExcelFile
+xlsx = pd.ExcelFile("examples/ex1.xlsx")
+
+```
+Because the notebook file cannot directly access local files, the above code will report an error when executed, but in a practical scenario, it can run normally.
+
+## Excel Example preparation
+
+```{python}
+#| echo: false
+#| output: false
+import openpyxl
+data = {'a': [1, 5, 9], 'b': [2, 6, 10], 'c': [3, 7, 11], 'd': [4, 8, 12], 'message': ['hello', 'world', 'foo']}
+df = pd.DataFrame(data)
+
+# Create an Excel writer object
+excel_writer = pd.ExcelWriter('ex1.xlsx')
+
+# Write the DataFrame to a specific sheet
+df.to_excel(excel_writer, sheet_name='Sheet1', index=False)
+
+# Save the Excel file
+excel_writer.close()
+```
+
+## Excel: Sheet Names
+
+```{python}
+# Show sheet names
+xlsx = pd.ExcelFile("ex1.xlsx") # read local excel file
+xlsx.sheet_names
+```
+
+## Excel: Reading a Sheet
+
+```{python}
+# Read a sheet
+xlsx.parse(sheet_name="Sheet1")
+```
+
+## Excel: Specifying Index
+
+```{python}
+# Specify index column
+xlsx.parse(sheet_name="Sheet1", index_col=0)
+```
+
+## Excel: `read_excel`
+
+For multiple sheets, `ExcelFile` is faster.  Or use `read_excel`:
+
+```{python}
+frame = pd.read_excel("ex1.xlsx", sheet_name="Sheet1")
+frame
+```
+
+## Writing to Excel: `ExcelWriter`
+
+Create `ExcelWriter`, then write:
+
+```{python}
+#| eval: false
+writer = pd.ExcelWriter("ex2.xlsx")
+frame.to_excel(writer, "Sheet1")
+writer.close()
+
+```
+
+## Writing to Excel: `to_excel`
+
+Or, more concisely:
+
+```{python}
+#| eval: false
+frame.to_excel("ex2.xlsx")
+```
+
+## Interacting with Web APIs
+
+Websites provide data via APIs, often JSON. `requests` is convenient.
+
+Install:
+
+```{python}
+#| eval: false
+conda install requests
+# or
+pip install requests
+```
+
+## Web APIs: `requests` Example
+
+```{python}
+import requests
+
+url = "https://api.github.com/repos/pandas-dev/pandas/issues"
+resp = requests.get(url)
+resp.raise_for_status() # Check for HTTP errors.
+resp
+```
+
+## Web APIs: Parsing JSON Response
+
+```{python}
+data = resp.json()
+data[0]["title"]
+```
+
+## Web APIs: Creating DataFrame
+
+```{python}
+# Create DataFrame from issue data
+issues = pd.DataFrame(data, columns=["number", "title", "labels", "state"])
+issues.head()
+```
+
+Build higher-level interfaces to return DataFrames.
+
+## Interacting with Databases
+
+SQL databases are common. `pandas` simplifies loading from queries.
+
+SQLite3 example (built-in):
+
+```{python}
+#| eval: false
+import sqlite3
+
+# Create a table
+query = """
+CREATE TABLE test
+(a VARCHAR(20), b VARCHAR(20),
+ c REAL,        d INTEGER
+);"""
+
+con = sqlite3.connect("mydata.sqlite")
+con.execute(query)
+con.commit()
+
+```
+
+## Databases: Inserting Data
+
+```{python}
+#| eval: false
+# Insert data
+data = [("Atlanta", "Georgia", 1.25, 6),
+        ("Tallahassee", "Florida", 2.6, 3),
+        ("Sacramento", "California", 1.7, 5)]
+stmt = "INSERT INTO test VALUES(?, ?, ?, ?)"
+con.executemany(stmt, data)
+con.commit()
+```
+
+## Databases: Retrieving Data
+
+```{python}
+#| eval: false
+
+# Retrieve data
+cursor = con.execute("SELECT * FROM test")
+rows = cursor.fetchall()
+rows
+```
+
+## Databases: Column Names
+
+```{python}
+#| eval: false
+# Get column names
+cursor.description
+```
+
+## Databases: Creating DataFrame
+
+```{python}
+#| eval: false
+# Create DataFrame
+pd.DataFrame(rows, columns=[x[0] for x in cursor.description])
+```
+
+## Using SQLAlchemy
+
+SQLAlchemy provides higher-level abstraction.  `pandas` `read_sql`.
+
+Install:
+
+```{python}
+#| eval: false
+conda install sqlalchemy
+```
+
+## SQLAlchemy Example
+
+```{python}
+#| eval: false
+import sqlalchemy as sqla
+
+db = sqla.create_engine("sqlite:///mydata.sqlite")
+pd.read_sql("SELECT * FROM test", db)
+```
+
+## Conclusion
+
+Accessing data is the first step.  This chapter covered tools for loading/storing data: text, binary, databases, APIs.  Next: cleaning, transforming, analyzing.
+
+## Summary
+
+*   **Data loading is essential:** Load data into Python.
+*   **`pandas` is your friend:**  For reading/writing data.
+*   **`read_csv` is key:** For comma-separated value files.
+*   **Handle messy data:** Missing values, skipping rows, delimiters.
+*   **Binary formats are efficient:** Pickle, HDF5.
+*   **Web APIs are a source:**  `requests` library.
+*   **Databases are common:** `pandas`, SQLAlchemy.
+*   **Practice is key:**  Practice loading different data sources. 🥳
+
+## Thoughts and Discussion 🤔
+
+*   Data types you encounter? Formats?
+*   Messy/incomplete data experiences?
+*   Trade-offs between storage formats?
+*   Explore `pandas` documentation.
+*   Try SQL database connection.
+*   Find a public API, access with Python.
+

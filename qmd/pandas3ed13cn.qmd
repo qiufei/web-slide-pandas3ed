@@ -1,0 +1,1231 @@
+---
+title: "python数据分析 🐍"
+subtitle: "数据分析示例"
+---
+
+## 第 13 章 - 数据分析示例
+
+-   我们已经到达最后一章了！🥳
+-   重点：将数据分析技术应用于真实世界的数据集。
+-   目标：从原始数据中提取有意义的见解。
+-   演示的技术具有广泛的适用性。
+-   数据集可在本书的 GitHub/Gitee 存储库中找到。
+
+![](chapter13_introduction.png)
+
+## 数据挖掘、机器学习和统计学习
+
+- 数据挖掘、机器学习和统计学习有一个共同的目标：从数据中提取有价值的见解并做出预测。
+- 核心区别在于它们实现这一目标的*方式*。
+
+```{mermaid}
+graph LR
+    A[数据挖掘] --> C(共同点: 洞察与预测)
+    B[机器学习] --> C
+    D[统计学习] --> C
+```
+
+## 数据挖掘 ⛏️
+
+-   **定义：** 在大型数据集中发现模式、异常和关系，以预测结果。
+-   **重点：** 发现以前*未知*的模式。探索和发现！
+-   **技术：** 结合了机器学习、统计学和数据库系统的方法。
+-   **示例：** 一家超市发现购买尿布 🧷 的顾客通常也会购买啤酒 🍺。一个意想不到的关联！
+
+![](datamining.png)
+
+## 机器学习 🤖
+
+- **定义**：算法通过经验（数据）自动改进。侧重于预测和决策。
+- **重点**：系统根据数据*学习和做出决策*，无需明确的规则。
+- **类型**：
+    -   **监督学习**：在标记数据上进行训练（例如，垃圾邮件/非垃圾邮件分类 📧）。
+    -   **无监督学习**：在未标记数据中发现隐藏结构（例如，客户细分 👥）。
+    -   **强化学习**：智能体通过与环境交互来做出决策（例如，机器人学习行走 🚶）。
+-   **示例**：根据大小、位置和卧室等特征预测房价 🏠。算法学习这种关系。
+
+![](machinelearning.png)
+
+## 统计学习 📊
+
+- **定义**：用于建模和理解复杂数据集的工具。一个将统计方法应用于从数据中学习的框架。
+-   **重点**：强调*模型及其可解释性*、精确性和不确定性。连接统计学和机器学习。
+-   **关键概念**：
+    -   **偏差-方差权衡**：平衡近似误差（偏差）和对训练数据的敏感性（方差）。
+    -   **模型选择**：选择最佳模型。
+    -   **正则化**：通过惩罚复杂性来防止过拟合。
+-   **示例**：使用线性回归来理解广告支出 📈 和销售额之间的关系，并带有置信区间。
+
+![](statisticallearning.png)
+
+## 13.1 来自 1.USA.gov 的 Bitly 数据
+
+- **背景：**
+    -   Bitly（URL 缩短服务）和 USA.gov 于 2011 年合作。
+    -   来自缩短 .gov 或 .mil 链接的用户的匿名数据。
+    -   每小时快照（文本文件）。
+    -   服务已停止，但数据已保留。
+- **数据格式：**
+    -   每行都是一个 JSON（JavaScript 对象表示法）对象。
+    -   JSON 是人类可读的。
+
+![](bitly_data_intro.png)
+
+## JSON 数据示例
+
+```json
+{ "a": "Mozilla\/5.0 (Windows NT 6.1; WOW64) AppleWebKit\/535.11 (KHTML, like Gecko) Chrome\/17.0.963.78 Safari\/535.11", "c": "US", "nk": 1, "tz": "America\/New_York", "gr": "MA", "g": "A6q0VH", "h": "wfLQtf", "l": "orofrog", "al": "en-US,en;q=0.8", "hh": "1.usa.gov", "r": "http:\/\/www.facebook.com\/l\/7AQEFzjSi\/1.usa.gov\/wfLQtf", "u": "http:\/\/www.ncbi.nlm.nih.gov\/pubmed\/22415991", "t": 1331923247, "hc": 1331822918, "cy": "Danvers", "ll": [ 42.576698, -70.954903 ] }
+```
+
+-   **结构：** JSON 对象位于大括号 `{}` 中。
+-   **键值对：** 数据以键值对形式存在（例如，`"a": "Mozilla/..."`）。
+-   **数据类型：** 值可以是字符串、数字、数组（如 `"ll"`）或其他 JSON 对象。
+- **```{python} 和 JSON**: ```{python} 的 `json` 库可以轻松地将 JSON 字符串转换为 ```{python} 字典。
+
+## 在 ```{python} 中读取 JSON 数据
+
+``````{python}
+import json  # 导入 json 库
+
+path = "datasets/bitly_usagov/example.txt"  # 文件路径
+
+with open(path) as f:  # 打开文件
+    records = [json.loads(line) for line in f]  # 列表推导式：逐行读取并解析 JSON
+
+print(records[0])  # 打印第一条记录（一个字典）
+```
+
+-   **`import json`**: 导入 JSON 库。
+-   **`open(path)`**: 打开文件。
+-   **`json.loads(line)`**: 将 JSON 行解析为 ```{python} 字典。
+-   **列表推导式**: `[... for line in f]` 创建一个字典列表。
+-   **`records`**: 现在是一个 ```{python} 字典的列表。
+
+## 访问字典中的数据
+
+``````{python}
+print(records[0]['tz'])  # 访问 'tz'（时区）字段
+```
+
+-   使用字典键访问（方括号）来获取值。
+-   `records[0]` 获取第一个字典。
+-   `['tz']` 访问键 "tz" 对应的值。
+
+## 统计时区（纯 ```{python}）
+
+-   **目标：** 找到最常见的时区（`tz` 字段）。
+- **方法 1：字典和循环**（基本，但效率较低）
+
+``````{python}
+# 原始幻灯片中未显示，但这是一个很好的比较
+def get_counts(sequence):
+    counts = {}  # 初始化一个空字典来存储计数
+    for x in sequence:  # 遍历序列中的每个元素
+        if x in counts:  # 如果元素已存在于字典中
+            counts[x] += 1  # 计数加 1
+        else:  # 如果元素不存在于字典中
+            counts[x] = 1  # 将元素添加到字典，并将计数设置为 1
+    return counts  # 返回计数结果
+```
+
+- **方法 2：`defaultdict`**（更高效且更 ```{python}ic）
+
+``````{python}
+from collections import defaultdict  # 导入 defaultdict
+
+def get_counts2(sequence):
+    counts = defaultdict(int)  # 使用 defaultdict，默认值为 0
+    for x in sequence:  # 遍历序列中的每个元素
+        counts[x] += 1  # 自动处理键不存在的情况，直接加 1
+    return counts  #返回计数结果
+```
+
+-   **`defaultdict(int)`**: 如果找不到键，则使用默认值 0 添加它。避免了 `if x in counts` 检查。
+
+## 统计时区（纯 ```{python}）- 处理缺失的键
+
+``````{python}
+#原始代码 (会导致 KeyError)
+# time_zones = [rec["tz"] for rec in records]
+
+#使用 if 条件进行更正
+time_zones = [rec["tz"] for rec in records if "tz" in rec] # 列表推导式,如果字典中有'tz'键，则添加到列表中
+print(time_zones[:10]) #打印前10个时区
+```
+
+-   **`KeyError` 解释**: 如果记录*没有* 'tz' 键，则访问 `rec["tz"]` 会引发 `KeyError`。
+-   **解决方案**:  `if "tz" in rec` 在访问之前检查键是否*存在*。这可以防止错误。
+
+## 统计时区（纯 ```{python}）- 获取 Top 计数
+
+``````{python}
+def top_counts(count_dict, n=10):
+    #将字典转换为(值，键)对的列表
+    value_key_pairs = [(count, tz) for tz, count in count_dict.items()]
+    value_key_pairs.sort() #对列表进行排序
+    return value_key_pairs[-n:]  # 返回最后 n 个元素（即最大的 n 个）
+
+# 使用 Counter 类（最高效且最 ```{python}ic）
+from collections import Counter  # 导入 Counter 类
+counts = Counter(time_zones)  # 使用 Counter 统计时区
+print(counts.most_common(10))  # 直接获取出现次数最多的前 10 个时区
+```
+
+-   **`top_counts` 函数:**  获取出现次数最多的 *n* 个项目（自定义函数）。
+-   **`Counter` 类:**  统计项目出现次数的*最佳*方式。`most_common(10)` 直接返回前 10 个。
+
+## 统计时区 (pandas) 🐼
+
+-   **pandas DataFrame:** 一种更强大、更方便的处理表格数据的方式。
+
+``````{python}
+import pandas as pd  # 导入 pandas
+
+frame = pd.DataFrame(records)  # 从字典列表创建 DataFrame
+print(frame.info())  # 显示 DataFrame 的摘要信息
+```
+
+-   **`pd.DataFrame(records)`**:  将字典列表转换为 DataFrame。pandas 会自动推断列名和类型。
+-   **`frame.info()`**:  提供：
+    -   行数和列数。
+    -   列名和数据类型。
+    -   非空值计数（显示缺失数据）。
+    -   内存使用情况。
+
+## `frame.info()` 输出解释
+
+```
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 3560 entries, 0 to 3559
+Data columns (total 18 columns):
+ #   Column       Non-Null Count  Dtype
+---  ------       --------------  -----
+ 0   a            3440 non-null   object
+ 1   c            2919 non-null   object
+ ...
+ 16  _heartbeat_  120 non-null    float64
+ 17  kw           93 non-null     object
+dtypes: float64(4), object(14)
+memory usage: 500.8+ KB
+```
+
+-   **`RangeIndex`**:  总行数 (3560) 和索引范围 (0 to 3559)。
+-   **`Data columns`**:  每列、非空计数和数据类型。
+    -   `object`: 通常是文本（字符串）。
+    -   `float64`: 浮点数。
+    -   `int64`: 整数。
+-   **`Non-Null Count`**:  突出显示缺失值（例如，`c` 有 641 个缺失值）。
+- `dtypes` and `memory usage`: 汇总信息.
+
+## 使用 pandas 处理时区
+
+``````{python}
+print(frame['tz'].head())  # 显示前几个时区
+
+tz_counts = frame['tz'].value_counts()  # 统计每个时区出现的次数
+print(tz_counts.head())  # 显示出现次数最多的前几个时区
+```
+
+-   **`frame['tz']`**: 选择 'tz' 列（一个 pandas Series）。
+-   **`.head()`**:  显示前 5 行。
+-   **`.value_counts()`**:  统计每个唯一值出现的次数。比纯 ```{python} *简单得多*！
+
+## 在 pandas 中处理缺失数据
+
+``````{python}
+clean_tz = frame['tz'].fillna('Missing')  # 将 NaN 替换为 "Missing"
+clean_tz[clean_tz == ''] = 'Unknown'      # 将空字符串替换为 "Unknown"
+tz_counts = clean_tz.value_counts()  # 重新统计时区
+print(tz_counts.head())  # 显示处理后的结果
+```
+
+-   **`.fillna('Missing')`**: 将缺失值（pandas 中的 `NaN`）替换为 "Missing"。
+-   **`clean_tz[clean_tz == ''] = 'Unknown'`**:  将空字符串替换为 "Unknown"（布尔索引）。
+
+## 使用 seaborn 进行可视化 📊
+
+``````{python}
+import seaborn as sns  # 导入 seaborn
+import matplotlib.pyplot as plt #导入matplotlib
+
+subset = tz_counts.head()  # 获取出现次数最多的前几个时区
+sns.barplot(y=subset.index, x=subset.to_numpy())  # 创建水平条形图
+plt.show()  # 显示图形
+```
+
+-   **`import seaborn as sns`**: 导入 seaborn（基于 matplotlib 构建）。
+-   **`subset = tz_counts.head()`**: 使用前几个时区以获得更清晰的可视化效果.
+-   **`sns.barplot(...)`**:  创建水平条形图。
+    -   `y=subset.index`: y 轴上是时区名称。
+    -   `x=subset.to_numpy()`: x 轴上是计数。将 Series 转换为 numpy 数组。
+- **`plt.show()`**: 显示绘图。
+
+!['1.usa.gov 样本数据中出现次数最多的时区'](time_zone_barplot.png)
+
+## 分析浏览器/代理信息 🌐
+
+``````{python}
+print(frame['a'][1])  # 打印第 2 条记录的 'a' 字段
+print(frame['a'][50])  # 打印第 51 条记录的 'a' 字段
+print(frame['a'][51][:50])  # 打印第 52 条记录的 'a' 字段的前 50 个字符
+
+results = pd.Series([x.split()[0] for x in frame['a'].dropna()])  # 获取主要浏览器信息
+print(results.head())  # 显示前几条结果
+print(results.value_counts().head(8))  # 统计并显示出现次数最多的前 8 个浏览器
+```
+
+-   `a` 字段包含浏览器/设备/应用程序信息。
+-   **`frame['a'][1]` ,etc.**: 访问特定的代理字符串。
+-   **`.dropna()`**: 在拆分之前删除缺少 'a' 值的行。
+-   **`x.split()[0]`**: 按空格拆分，取*第一个*元素（主要浏览器 ID）。
+-   **`pd.Series(...)`**: 从拆分后的字符串创建一个 Series。
+-   **`results.value_counts().head(8)`**:  统计并显示前 8 个。
+
+## Windows 与非 Windows 用户 💻
+
+``````{python}
+import numpy as np  # 导入 numpy
+
+cframe = frame[frame['a'].notna()].copy()  # 创建一个副本，并排除'a'列为空的行
+cframe['os'] = np.where(cframe['a'].str.contains('Windows'),  # 创建新列 'os'
+                       'Windows', 'Not Windows')  # 如果 'a' 包含 'Windows'，则为 'Windows'，否则为 'Not Windows'
+print(cframe['os'].head())  # 显示前几行 'os' 列
+```
+
+-   **目标：** 分别分析 Windows/非 Windows 用户的时区。
+-   **`cframe = frame[frame['a'].notna()].copy()`**:  创建一个*副本*，过滤掉缺失的 'a' 值。`.copy()` 可避免警告。
+-   **`cframe['a'].str.contains('Windows')`**:  检查代理字符串是否包含 "Windows"。
+-   **`np.where(...)`**: 创建一个新的 'os' 列：如果字符串包含 "Windows"，则为 "Windows"，否则为 "Not Windows"。
+
+## 按时区和操作系统分组
+
+``````{python}
+by_tz_os = cframe.groupby(['tz', 'os'])  # 按时区和操作系统分组
+agg_counts = by_tz_os.size().unstack().fillna(0)  # 分组计数，重塑，并填充缺失值为 0
+print(agg_counts.head())  # 显示分组计数结果
+```
+
+-   **`cframe.groupby(['tz', 'os'])`**:  按时区*和*操作系统分组。
+-   **`.size()`**:  计算每个组中的记录数（类似于 `value_counts()`，但用于分组）。
+-   **`.unstack()`**: 重塑。将 'os' 透视为列（更易于比较）。
+-   **`.fillna(0)`**: 将缺失值（只有一种操作系统的时区）替换为 0。
+
+## 找到最受欢迎的时区
+
+``````{python}
+# 方法 1: 使用 argsort
+indexer = agg_counts.sum(axis="columns").argsort()  # 获取按总数排序的索引
+print(indexer.values[:10])  # 显示排序后的前 10 个索引
+count_subset = agg_counts.take(indexer[-10:])  # 获取计数最多的最后 10 行
+print(count_subset) #打印
+
+# 方法 2: 使用 nlargest (更方便)
+print(agg_counts.sum(axis="columns").nlargest(10))  # 直接获取总数最大的前 10 行
+```
+
+-   **目标**：找到总数*最多*的时区。
+
+-   **`agg_counts.sum(axis="columns")`**: 计算每个时区的总计数。
+
+-   **`argsort()`**:  返回将对数组进行排序的*索引*（从最少到最频繁）。
+
+-   **`.take(indexer[-10:])`**:  选择前 10 个时区的行。
+
+-   **`nlargest(10)`**:  获取前 10 名的*更直接*的方式。
+
+## 可视化 Windows 和非 Windows 用户（分组条形图）
+
+``````{python}
+# 准备数据
+count_subset = count_subset.stack()  # 将 'os' 列堆叠回索引
+count_subset.name = 'total'  # 将 Series 命名为 'total'
+count_subset = count_subset.reset_index()  # 将索引重置为普通列
+print(count_subset.head())  # 显示准备好的数据
+sns.barplot(x='total', y='tz', hue='os', data=count_subset)  # 创建分组条形图
+plt.show()  #显示绘图
+```
+
+-   **`count_subset.stack()`**:  将 'os' 重新透视回索引（与 `unstack()` 相反）。通常用于 seaborn。
+-   **`count_subset.name = 'total'`**: 将 Series 值命名为 "total"。
+-   **`count_subset.reset_index()`**:  将索引转换为常规列（用于 seaborn）。
+-   **`sns.barplot(...)`**: 分组条形图。
+    -   `x='total'`: x 轴上是计数。
+    -   `y='tz'`: y 轴上是时区。
+    -   `hue='os'`: 为 Windows/非 Windows 用户分别绘制条形。
+
+!['按 Windows 和非 Windows 用户划分的热门时区'](windows_vs_notwindows.png)
+
+## 标准化计数（比例）
+
+``````{python}
+def norm_total(group):
+    group['normed_total'] = group['total'] / group['total'].sum()  # 计算每个分组内的比例
+    return group
+
+results = count_subset.groupby('tz').apply(norm_total)  # 按时区应用函数
+sns.barplot(x='normed_total', y='tz', hue='os', data=results)  # 使用比例创建条形图
+plt.show()  #显示绘图
+```
+
+-   **目标：** 比较每个时区内 Windows/非 Windows 用户的*比例*。
+-   **`norm_total(group)` 函数：**
+    -   计算 `normed_total`：每个操作系统的计数除以该时区的*总*计数（比例）。
+    -   返回修改后的分组。
+-   **`count_subset.groupby('tz').apply(norm_total)`**:  将函数应用于每个时区分组。
+-   **`sns.barplot(...)`**: 使用 'normed_total'（比例）的条形图 - 更容易比较。
+
+!['热门时区中 Windows 和非 Windows 用户的百分比'](normalized_plot.png)
+
+## 13.2 MovieLens 1M 数据集 🎬
+
+-   **数据集：** MovieLens 1M (GroupLens Research)。
+-   **内容：**
+    -   100 万条评分。
+    -   约 6,000 名用户。
+    -   约 4,000 部电影。
+-   **数据格式：** 三个表格：
+    -   `users`: 人口统计信息（年龄、性别、职业、邮政编码）。
+    -   `ratings`: 用户 ID、电影 ID、评分、时间戳。
+    -   `movies`: 电影名称、类型。
+-   **目标：** 探索评分、人口统计信息和类型之间的关系。
+
+![](movielens_data_intro.png)
+
+## 加载 MovieLens 数据
+
+``````{python}
+import pandas as pd
+
+# 定义列名
+unames = ['user_id', 'gender', 'age', 'occupation', 'zip']
+# 读取 users.dat 文件
+users = pd.read_table('datasets/movielens/users.dat', sep='::',
+                      header=None, names=unames, engine='```{python}')
+
+# 定义列名
+rnames = ['user_id', 'movie_id', 'rating', 'timestamp']
+# 读取 ratings.dat 文件
+ratings = pd.read_table('datasets/movielens/ratings.dat', sep='::',
+                        header=None, names=rnames, engine='```{python}')
+
+# 定义列名
+mnames = ['movie_id', 'title', 'genres']
+# 读取 movies.dat 文件
+movies = pd.read_table('datasets/movielens/movies.dat', sep='::',
+                       header=None, names=mnames, engine='```{python}')
+```
+
+-   **`pd.read_table` 的关键参数：**
+    -   `sep='::'`: 分隔符是两个冒号。
+    -   `header=None`: 没有标题行。
+    -   `names=unames` (etc.):  提供列名。
+    -   `engine='```{python}'`:  使用 ```{python} 引擎（支持多字符分隔符）。
+
+## 合并 MovieLens 数据
+
+``````{python}
+data = pd.merge(pd.merge(ratings, users), movies)  # 合并三个 DataFrame
+print(data.head())  # 显示合并后的数据的前几行
+print(data.iloc[0])  # 访问第一行数据
+```
+
+-   **`pd.merge()`**:  基于公共列合并 DataFrame。pandas 会自动找到它们。
+-   **两次合并：**
+    1.  `pd.merge(ratings, users)`: 基于 `user_id` 合并。
+    2.  `pd.merge(..., movies)`: 将结果与 `movies` 基于 `movie_id` 合并。
+-   **`data`**: 将所有信息包含在一个 DataFrame 中。
+
+## 按性别分析评分
+
+``````{python}
+mean_ratings = data.pivot_table('rating', index='title',  # 以 'title' 为索引
+                                columns='gender', aggfunc='mean')  # 以 'gender' 为列，计算平均 'rating'
+print(mean_ratings.head())  # 显示结果
+```
+
+-   **`data.pivot_table(...)`**: 重塑和聚合。
+    -   `'rating'`: 要聚合的值（平均评分）。
+    -   `index='title'`: 电影名称是行索引。
+    -   `columns='gender'`: 性别 ('M', 'F') 成为列。
+    -   `aggfunc='mean'` (默认): 计算平均值。
+
+## 按评分数量过滤
+
+``````{python}
+ratings_by_title = data.groupby('title').size()  # 统计每部电影的评分数量
+print(ratings_by_title.head())  # 显示前几行
+active_titles = ratings_by_title.index[ratings_by_title >= 250]  # 筛选出评分数量大于等于 250 的电影
+print(active_titles)  # 显示筛选结果
+
+mean_ratings = mean_ratings.loc[active_titles]  # 根据筛选结果过滤 mean_ratings
+print(mean_ratings)  # 显示过滤后的 mean_ratings
+```
+
+-   **目标**：关注评分足够的电影。
+-   **`data.groupby('title').size()`**:  统计每部电影的评分数。
+-   **`active_titles = ...`**:  至少有 250 条评分的电影名称。
+-   **`mean_ratings.loc[active_titles]`**:  过滤 `mean_ratings` 以仅包含这些电影。
+
+## 排序和查找热门电影
+
+``````{python}
+top_female_ratings = mean_ratings.sort_values("F", ascending=False)  # 按女性评分降序排列
+print(top_female_ratings.head())  # 显示女性评分最高的几部电影
+```
+
+-   **`mean_ratings.sort_values("F", ascending=False)`**: 按 'F'（女性）列排序，降序（最高评分优先）。
+
+## 衡量评分差异
+
+``````{python}
+mean_ratings['diff'] = mean_ratings['M'] - mean_ratings['F']  # 计算男性和女性评分的差异
+sorted_by_diff = mean_ratings.sort_values('diff')  # 按差异排序
+print(sorted_by_diff.head())  # 显示女性评分较高的电影（差异为负）
+print(sorted_by_diff[::-1].head())  # 显示男性评分较高的电影（差异为正）
+
+# 标准差（另一种衡量差异的方法）
+rating_std_by_title = data.groupby('title')['rating'].std()  # 计算每部电影评分的标准差
+rating_std_by_title = rating_std_by_title.loc[active_titles]  # 过滤
+print(rating_std_by_title.sort_values(ascending=False)[:10])  # 显示标准差最高的 10 部电影
+```
+
+-   **`mean_ratings['diff'] = ...`**:  新列：男性和女性平均评分之间的差异。
+-   **`sorted_by_diff = ...`**: 按 'diff' 排序。
+    -   `.head()`: 女性评分较高。
+    -   `[::-1].head()`: 男性评分较高（反转顺序）。
+-   标准差显示了分歧。
+
+## 处理电影类型（正确的方法！）
+
+``````{python}
+# 原始: "Animation|Children's|Comedy"
+movies['genre'] = movies.pop('genres').str.split('|')  # 将 'genres' 列拆分为列表，并赋值给新的'genre'列
+print(movies.head())  # 显示结果
+movies_exploded = movies.explode('genre')  # 展开 'genre' 列，每个类型占一行
+print(movies_exploded[:10])  # 显示展开后的结果
+```
+
+-   **问题**：类型是管道分隔的字符串。难以分析。
+-   **`movies['genres'].str.split('|')`**:  拆分为类型的*列表*。
+-   **`.pop('genres')`**:  删除并返回原始列。
+-   **`movies.explode('genre')`**:  *每个*电影-类型组合都有自己的行。对于类型分析至关重要！
+
+## 合并所有数据并按类型分组
+
+``````{python}
+ratings_with_genre = pd.merge(pd.merge(movies_exploded, ratings), users)  # 合并所有数据
+print(ratings_with_genre.iloc[0])  # 显示合并后第一行
+
+genre_ratings = (ratings_with_genre.groupby(['genre', 'age'])  # 按 'genre' 和 'age' 分组
+                 ['rating'].mean()  # 计算平均 'rating'
+                 .unstack('age'))  # 将 'age' 透视为列
+print(genre_ratings[:10])  # 显示结果
+```
+
+-   **`ratings_with_genre = ...`**: 合并 `movies_exploded`、`ratings` 和 `users`。每一行：评分 + 用户信息 + *单个*类型。
+-   **`ratings_with_genre.iloc[0]`**: 显示第一行。
+-   **`genre_ratings = ...`**: 每个类型/年龄组的平均评分。
+    -   `groupby(['genre', 'age'])`: 按类型和年龄分组。
+    -   `['rating'].mean()`: 平均评分。
+    -   `.unstack('age')`: 年龄变成列。
+
+## 13.3 1880-2010 年美国婴儿姓名 👶
+
+-   **数据集：** 美国社会保障管理局 (SSA) 婴儿姓名。
+-   **时间段：** 1880-2010。
+-   **数据格式：** 每年一个文件：
+    -   姓名
+    -   性别
+    -   出生人数
+-   **示例 (yob1880.txt):**
+    ```
+    Mary,F,7065
+    Anna,F,2604
+    ...
+    ```
+-   **潜在分析：**
+    -   姓名流行趋势。
+    -   相对排名。
+    -   命名多样性。
+    -   字母/元音/辅音分析。
+
+![](usbabynames_intro.png)
+
+## 加载和组合婴儿姓名数据
+
+``````{python}
+import pandas as pd
+
+# 加载单年数据（用于演示）
+names1880 = pd.read_csv('datasets/babynames/yob1880.txt',
+                        names=['name', 'sex', 'births'])  # 指定列名
+print(names1880)  # 显示 1880 年的数据
+print(names1880.groupby('sex')['births'].sum())  # 按性别统计 1880 年的总出生人数
+
+# 加载所有年份的数据并合并
+years = range(1880, 2011)  # 年份范围
+pieces = []  # 用于存储每个年份的数据
+for year in years:  # 遍历年份
+    path = f'datasets/babynames/yob{year}.txt'  # 构建文件路径
+    frame = pd.read_csv(path, names=['name', 'sex', 'births'])  # 读取数据
+    frame['year'] = year  # 添加 'year' 列
+    pieces.append(frame)  # 将当前年份的数据添加到列表
+
+names = pd.concat(pieces, ignore_index=True)  # 合并所有年份的数据
+print(names)  # 显示合并后的数据
+```
+
+-   **`names1880 = pd.read_csv(...)`**: 加载一年。`names` 指定列。
+-   **`names1880.groupby('sex')['births'].sum()`**:  1880 年每个性别的总出生人数。
+-   **循环遍历年份：**
+    -   `range(1880, 2011)`: 迭代。
+    -   `f'datasets/babynames/yob{year}.txt'`:  文件路径（f-string）。
+    -   `frame['year'] = year`:  添加 'year' 列。
+    -   `pieces.append(frame)`:  添加到列表。
+-   **`names = pd.concat(pieces, ignore_index=True)`**:  合并所有 DataFrame。`ignore_index=True` 避免重复索引。
+
+## 按年份和性别聚合
+
+``````{python}
+total_births = names.pivot_table('births', index='year',  # 以 'year' 为索引
+                                 columns='sex', aggfunc=sum)  # 以 'sex' 为列，计算 'births' 的总和
+print(total_births.tail())  # 显示最后几行
+total_births.plot(title='Total births by sex and year')  # 绘制按性别和年份划分的总出生人数
+plt.show() #显示绘图
+```
+
+-   **`names.pivot_table(...)`**:  每年/每性别的总出生人数。
+    -   `'births'`: 要聚合的值。
+    -   `index='year'`: 年份是行索引。
+    -   `columns='sex'`: 性别成为列。
+    -   `aggfunc=sum`: 出生人数总和。
+-   **`total_births.tail()`**: 最后几行。
+-   **`total_births.plot(...)`**: 趋势折线图。
+
+!['按性别和年份划分的总出生人数'](birth_by_sex_year.png)
+
+## 计算每个名字的比例
+
+``````{python}
+def add_prop(group):
+    group['prop'] = group['births'] / group['births'].sum()  # 计算每个分组内的比例
+    return group
+
+names = names.groupby(['year', 'sex']).apply(add_prop)  # 按年份和性别分组，并应用函数
+print(names)  # 显示添加了 'prop' 列的数据
+```
+
+-   **目标：** 每个名字在*每个年份和性别*中占婴儿的比例。根据总出生人数进行标准化。
+-   **`add_prop(group)` 函数：**
+    -   接收一个分组（年份/性别）。
+    -   `group['births'] / group['births'].sum()`: 比例（出生人数除以该年份/性别的总数）。
+    -   返回修改后的分组。
+-   **`names.groupby(['year', 'sex']).apply(add_prop)`**:  应用于每个分组。添加 'prop' 列。
+
+## 验证比例（健全性检查！）
+
+``````{python}
+print(names.groupby(['year', 'sex'])['prop'].sum())  # 验证每个年份和性别分组的 'prop' 总和是否为 1
+```
+
+-   **重要**：始终检查您的计算！
+-   按年份/性别分组，对 'prop' 求和。对于每个分组，结果应为 1.0（比例加起来为 100%）。
+
+## 提取前 1000 个名字
+
+``````{python}
+def get_top1000(group):
+    return group.sort_values('births', ascending=False)[:1000]  # 按 'births' 降序排列，并取前 1000 行
+
+grouped = names.groupby(['year', 'sex'])  # 按年份和性别分组
+top1000 = grouped.apply(get_top1000)  # 应用函数
+top1000 = top1000.reset_index(drop=True)  # 删除多级索引
+print(top1000)  # 显示前 1000 个名字的数据
+```
+
+-   **目标：** 每个年份/性别的前 1000 个名字（用于进一步分析）。
+-   **`get_top1000(group)` 函数：**
+    -   接收一个分组（年份/性别）。
+    -   `group.sort_values('births', ascending=False)`: 按出生人数排序（降序）。
+    -   `[:1000]`: 前 1000 行。
+-   **`names.groupby(['year', 'sex']).apply(get_top1000)`**: 应用于每个分组。
+-   **`top1000.reset_index(drop=True)`:** 删除多级索引.
+
+## 分析命名趋势
+
+``````{python}
+boys = top1000[top1000['sex'] == 'M']  # 筛选出男孩的数据
+girls = top1000[top1000['sex'] == 'F']  # 筛选出女孩的数据
+
+total_births = top1000.pivot_table('births', index='year',  # 以 'year' 为索引
+                                    columns='name', aggfunc=sum)  # 以 'name' 为列，计算 'births' 的总和
+print(total_births.info())  # 显示信息
+
+subset = total_births[['John', 'Harry', 'Mary', 'Marilyn']]  # 选取几个名字
+subset.plot(subplots=True, figsize=(12, 10),  # 绘制子图
+            title="Number of births per year")  # 设置标题
+plt.show()  #显示绘图
+```
+
+-   **`boys = ...`** 和 **`girls = ...`**: 男孩/女孩的单独 DataFrame。
+-   **`total_births = top1000.pivot_table(...)`**: 特定名字的趋势。
+    -   `'births'`: 要聚合的值。
+    -   `index='year'`: 年份是行索引。
+    -   `columns='name'`: 每个名字是一列。
+    -   `aggfunc=sum`: 求和。
+-   **`subset.plot(...)`**:  绘制趋势图。
+    -   `subplots=True`: 每个名字一个单独的图。
+
+!['几个男孩和女孩名字随时间的变化'](boyandgirlnames.png)
+
+## 衡量命名多样性的增加
+
+``````{python}
+table = top1000.pivot_table('prop', index='year',  # 以 'year' 为索引
+                            columns='sex', aggfunc=sum)  # 以 'sex' 为列，计算 'prop' 的总和
+table.plot(title='Sum of table1000.prop by year and sex',  # 绘制按年份和性别划分的 'prop' 总和
+           yticks=np.linspace(0, 1.2, 13))  # 设置 y 轴刻度
+plt.show()  #显示绘图
+
+df = boys[boys['year'] == 2010]  # 筛选出 2010 年的男孩数据
+prop_cumsum = df['prop'].sort_values(ascending=False).cumsum()  # 计算 2010 年男孩名字 'prop' 的累积和
+print(prop_cumsum[:10])  # 显示前 10 个累积和
+print(prop_cumsum.searchsorted(0.5))  # 找到累积和达到 0.5 的索引, 结果为116, 加上1, 结果为117.
+
+df = boys[boys.year == 1900]  # 筛选出 1900 年的男孩数据
+in1900 = df.sort_values('prop', ascending=False).prop.cumsum()  # 计算 1900 年男孩名字 'prop' 的累积和
+print(in1900.searchsorted(0.5) + 1)  # 找到累积和达到 0.5 的索引+1, 结果为25
+```
+
+-   **目标：** 命名是否变得更加多样化？（父母是否从更多名字中选择？）
+-   **`table = top1000.pivot_table(...)`**: 每个年份/性别的 'prop' *总和*。比例下降 = 多样性增加。
+-   **`prop_cumsum = ... .cumsum()`**: 2010 年男孩 'prop' 的*累积和*（已排序）。找出多少个名字达到 50% 的出生人数。
+-   **`prop_cumsum.searchsorted(0.5)`**:  累积和达到 0.5 (50%) 的索引。因为数组的下标是从0开始的，所以结果需要加1.
+-   对 1900 年执行类似步骤。
+
+!['按性别划分，前 1000 个名字所代表的出生比例'](prop_top1000.png)
+
+## 衡量命名多样性的增加（续）- 泛化
+
+``````{python}
+def get_quantile_count(group, q=0.5):
+    group = group.sort_values('prop', ascending=False)  # 按 'prop' 降序排列
+    return group.prop.cumsum().searchsorted(q) + 1  # 计算累积和，找到达到分位数 q 的索引+1
+
+diversity = top1000.groupby(['year', 'sex']).apply(get_quantile_count)  # 按年份和性别分组，并应用函数
+diversity = diversity.unstack()  # 将结果重塑
+
+fig = plt.figure()  # 创建图形
+diversity.plot(title="Number of popular names in top 50%")  # 绘制多样性指标
+plt.show()  #显示绘图
+```
+
+-   **`get_quantile_count(group, q=0.5)` 函数：**
+    -   接收一个分组（年份/性别）和分位数（默认为 0.5）。
+    -   按 'prop' 排序（降序）。
+    -   'prop' 的累积和。
+    -   `searchsorted(q)`: 总和达到分位数的索引。加 1。
+-   **`top1000.groupby(['year', 'sex']).apply(get_quantile_count)`**: 应用于每个分组。
+-   **`diversity.unstack()`**:  重塑以进行绘图。
+-   图表显示了达到 50% 出生人数所需的姓名数量，随时间变化，按性别划分。
+
+!['按年份划分的多样性指标图'](diversity.png)
+
+## “最后一个字母”革命 🔤
+
+``````{python}
+def get_last_letter(x):
+    return x[-1]  # 获取字符串的最后一个字母
+
+last_letters = names['name'].map(get_last_letter)  # 将函数应用于 'name' 列，获取最后一个字母
+last_letters.name = 'last_letter'  # 将 Series 命名为 'last_letter'
+
+table = names.pivot_table('births', index=last_letters,  # 以 'last_letter' 为索引
+                          columns=['sex', 'year'], aggfunc=sum)  # 以 'sex' 和 'year' 为列，计算 'births' 的总和
+subtable = table.reindex(columns=[1910, 1960, 2010], level='year')  # 选取特定年份
+print(subtable.head())  # 显示前几行
+print(subtable.sum())  # 计算每个年份和性别的总和
+
+letter_prop = subtable / subtable.sum()  # 计算每个年份和性别中，每个字母的比例
+print(letter_prop.head())  # 显示前几行
+```
+
+-   **想法：** 分析最后一个字母随时间的分布。
+-   **`get_last_letter(x)` 函数：**  返回最后一个字符。
+-   **`names['name'].map(get_last_letter)`**: 应用于 'name'，创建 `last_letters` Series。
+-   **`table = names.pivot_table(...)`**: 按最后一个字母、性别和年份统计出生人数。
+-   **`subtable = ...`**: 选择特定年份 (1910, 1960, 2010)。
+-   **`letter_prop = subtable / subtable.sum()`**:  每个字母结尾的名字的*比例*（标准化）。
+
+``````{python}
+import matplotlib.pyplot as plt
+
+fig, axes = plt.subplots(2, 1, figsize=(10, 8))  # 创建 2x1 的子图
+letter_prop['M'].plot(kind='bar', rot=0, ax=axes[0], title='Male')  # 绘制男性最后一个字母的条形图
+letter_prop['F'].plot(kind='bar', rot=0, ax=axes[1], title='Female',  # 绘制女性最后一个字母的条形图
+                      legend=False)  # 不显示图例
+plt.show()  #显示绘图
+```
+
+-   **`plt.subplots(2, 1, ...)`**: 两个子图（男性/女性）。
+-   **`letter_prop['M'].plot(...)`** 和 **`letter_prop['F'].plot(...)`**:  最后一个字母分布的条形图。
+
+!['男孩和女孩名字以每个字母结尾的比例'](letter_prop.png)
+
+## “最后一个字母”革命（续）- 关注特定字母
+
+``````{python}
+letter_prop = table / table.sum()  # 计算所有年份的比例
+dny_ts = letter_prop.loc[['d', 'n', 'y'], 'M'].T  # 选取男性名字中以 'd', 'n', 'y' 结尾的比例，并转置
+print(dny_ts.head())  # 显示前几行
+dny_ts.plot()  # 绘制趋势图
+plt.show()  #显示绘图
+```
+
+-   **`letter_prop = table / table.sum()`**: 比例（所有年份）。
+-   **`dny_ts = letter_prop.loc[['d', 'n', 'y'], 'M'].T`**:  选择男性的 'd'、'n'、'y'，转置 (.T) 以获得时间序列。
+-   **`dny_ts.plot()`**: 绘制这些字母的趋势。
+
+!['随着时间的推移，以 d/n/y 结尾的男孩名字的比例'](boy_dny.png)
+
+## 变成女孩名字的男孩名字（反之亦然）🔄
+
+``````{python}
+all_names = pd.Series(top1000['name'].unique())  # 获取所有唯一的名字
+lesley_like = all_names[all_names.str.contains('Lesl')]  # 筛选出包含 'Lesl' 的名字
+print(lesley_like)  # 显示筛选结果
+
+filtered = top1000[top1000['name'].isin(lesley_like)]  # 筛选出 top1000 中包含这些名字的数据
+print(filtered.groupby('name')['births'].sum())  # 按名字统计出生人数
+
+table = filtered.pivot_table('births', index='year',  # 以 'year' 为索引
+                            columns='sex', aggfunc=sum)  # 以 'sex' 为列，计算 'births' 的总和
+table = table.div(table.sum(axis="columns"), axis="index")  # 计算每个年份中，每个性别的比例
+print(table.tail())  # 显示最后几行
+table.plot(style={'M': 'k-', 'F': 'k--'})  # 绘制趋势图
+plt.show()  #显示绘图
+```
+
+-   **目标：** 找到改变了性别偏好的名字。
+-   **`all_names = ...`**:  `top1000` 中所有*唯一*的名字。
+-   **`lesley_like = ...`**: 包含 "Lesl" 的名字。
+-   **`filtered = ...`**: `top1000` 中包含这些名字的行。
+-   **`filtered.groupby('name')['births'].sum()`**:  每个名字的总出生人数。
+-   **`table = filtered.pivot_table(...)`**: 每年、每性别的出生人数。
+-   **`table = table.div(..., axis="index")`**:  每年每性别的*比例*（标准化）。
+-   **`table.plot(...)`**:  男性/女性比例的趋势。
+
+!['随着时间的推移，类似 Lesley 的名字的男性/女性比例'](lesleylike_names.png)
+
+## 13.4 USDA 食品数据库 🍎
+
+-   **数据集：** USDA 食品营养数据库。
+-   **数据格式：** JSON。
+-   **示例记录：**
+
+```json
+{
+  "id": 21441,
+  "description": "KENTUCKY FRIED CHICKEN, Fried Chicken, EXTRA CRISPY, Wing, meat and skin with breading",
+  "tags": ["KFC"],
+  "manufacturer": "Kentucky Fried Chicken",
+  "group": "Fast Foods",
+  "portions": [
+    {
+      "amount": 1,
+      "unit": "wing, with skin",
+      "grams": 68.0
+    }
+  ],
+  "nutrients": [
+    {
+      "value": 20.8,
+      "units": "g",
+      "description": "Protein",
+      "group": "Composition"
+    }
+  ]
+}
+```
+
+-   **目标：** 分析营养信息。
+
+![](usda_food_intro.png)
+
+## 加载和探索 USDA 数据
+
+``````{python}
+import json  # 导入 json 库
+import pandas as pd
+
+db = json.load(open('datasets/usda_food/database.json'))  # 加载 JSON 数据
+print(len(db))  # 显示记录数量
+print(db[0].keys())  # 显示第一条记录的键
+print(db[0]['nutrients'][0])  # 显示第一条记录的第一个营养素
+
+nutrients = pd.DataFrame(db[0]['nutrients'])  # 创建第一个食物的营养素 DataFrame
+print(nutrients.head(7))  # 显示前 7 行
+```
+
+-   **`import json`**: 导入 `json` 库。
+-   **`db = json.load(...)`**:  将 JSON 加载到 ```{python} 对象（`db` - 字典列表）中。
+-   **`len(db)`**:  食物记录的数量。
+-   **`db[0].keys()`**: 第一条记录中的键。
+-   **`db[0]['nutrients'][0]`**:  第一个食物的第一个营养素。
+-   **`nutrients = pd.DataFrame(...)`**: *第一个*食物的营养素的 DataFrame。
+
+## 提取食物信息
+
+``````{python}
+info_keys = ['description', 'group', 'id', 'manufacturer']  # 要提取的键
+info = pd.DataFrame(db, columns=info_keys)  # 创建包含食物信息的 DataFrame
+print(info.head())  # 显示前几行
+print(info.info())  # 显示 DataFrame 的信息
+print(pd.value_counts(info['group'])[:10])  # 统计并显示出现次数最多的前 10 个食物组
+```
+
+-   **目标：** 包含基本食物信息的 DataFrame (`info`)。
+-   **`info_keys = [...]`**:  要提取的键。
+-   **`info = pd.DataFrame(db, columns=info_keys)`**: 创建 DataFrame。
+-   **`info.head()`**: 前几行。
+-   **`info.info()`**: 摘要。
+-   **`pd.value_counts(info['group'])[:10]`**: 前 10 个食物组。
+
+## 处理营养数据（所有食物）
+
+``````{python}
+nutrients = []  # 用于存储所有食物的营养素
+
+for rec in db:  # 遍历食物记录
+    fnuts = pd.DataFrame(rec['nutrients'])  # 创建当前食物的营养素 DataFrame
+    fnuts['id'] = rec['id']  # 添加食物 ID
+    nutrients.append(fnuts)  # 将当前食物的营养素 DataFrame 添加到列表
+
+nutrients = pd.concat(nutrients, ignore_index=True)  # 合并所有营养素 DataFrame
+print(nutrients)  # 显示合并后的 DataFrame
+```
+
+-   **目标**：包含*所有*营养信息的单个 DataFrame (`nutrients`)。
+-   **循环：**
+    -   `for rec in db:`: 遍历食物记录。
+    -   `fnuts = pd.DataFrame(rec['nutrients'])`: 当前食物营养素的 DataFrame。
+    -   `fnuts['id'] = rec['id']`: 添加食物 ID（用于链接）。
+    -   `nutrients.append(fnuts)`: 追加到列表。
+-   **`nutrients = pd.concat(nutrients, ignore_index=True)`**:  合并所有营养素 DataFrame。
+
+## 处理重复项和重命名
+
+``````{python}
+nutrients.duplicated().sum()  # 检查重复的行数
+nutrients = nutrients.drop_duplicates()  # 删除重复的行
+
+col_mapping = {'description' : 'food',  # 列名映射字典
+               'group'       : 'fgroup'}
+info = info.rename(columns=col_mapping, copy=False)  # 重命名 info DataFrame 的列
+print(info.info())  # 显示重命名后的 info DataFrame 的信息
+
+col_mapping = {'description' : 'nutrient',  # 列名映射字典
+               'group' : 'nutgroup'}
+nutrients = nutrients.rename(columns=col_mapping, copy=False)  # 重命名 nutrients DataFrame 的列
+print(nutrients)  # 显示重命名后的 nutrients DataFrame
+```
+-   **重复项检查和删除**：
+    -   某些营养素行是重复的。请在继续之前删除。
+    -   `nutrients.duplicated().sum()`: 统计重复的行数。
+    -   `nutrients = nutrients.drop_duplicates()`: 删除重复行。
+
+-   **重命名列：**
+    -   `col_mapping = ...`:  将旧名称映射到新名称（更清晰）。
+    -   `info = info.rename(..., copy=False)`: 重命名 `info` 列（原地）。
+    -   `nutrients = nutrients.rename(...)`: 重命名 `nutrients` 列。
+
+## 合并食物和营养数据
+
+``````{python}
+ndata = pd.merge(nutrients, info, on='id')  # 基于 'id' 列合并 nutrients 和 info DataFrame
+print(ndata.info())  # 显示合并后的 DataFrame 的信息
+print(ndata.iloc[30000])  # 显示第 30001 行数据
+```
+
+-   **`ndata = pd.merge(nutrients, info, on='id')`**:  基于 'id' 合并。包含所有信息的单个 DataFrame。
+-   **`ndata.info()`**:  摘要。
+-   **`ndata.iloc[30000]`**:  示例行。
+
+## 绘制中位数营养值
+
+``````{python}
+result = ndata.groupby(['nutrient', 'fgroup'])['value'].quantile(0.5)  # 按 'nutrient' 和 'fgroup' 分组，计算 'value' 的中位数
+result['Zinc, Zn'].sort_values().plot(kind='barh')  # 绘制锌的中位数，按值排序，水平条形图
+plt.show() # 显示绘图
+```
+
+-   **目标：** 可视化每个食物组的中位数营养值。
+-   **`result = ndata.groupby(['nutrient', 'fgroup'])['value'].quantile(0.5)`**:
+    -   按营养素和食物组分组。
+    -   计算 'value' 的中位数（0.5 分位数）。
+-   **`result['Zinc, Zn']...plot(kind='barh')`**:
+    -   选择锌。
+    -   对值进行排序。
+    -   水平条形图。
+
+!['按食物组划分的锌中位数值'](zinc_values_foodgroup.png)
+
+## 查找具有最大营养值的食物
+
+``````{python}
+by_nutrient = ndata.groupby(['nutgroup', 'nutrient'])  # 按 'nutgroup' 和 'nutrient' 分组
+
+def get_maximum(x):
+    return x.loc[x.value.idxmax()]  # 获取每个分组中 'value' 最大的行
+
+max_foods = by_nutrient.apply(get_maximum)[['value', 'food']]  # 应用函数，并选择 'value' 和 'food' 列
+max_foods['food'] = max_foods['food'].str[:50]  # 截断 'food' 列的长度
+print(max_foods.loc['Amino Acids']['food'])  # 显示氨基酸组中，各种营养素含量最高的食物
+```
+
+-   **目标：** 每种营养素*含量最高*的食物。
+-   **`by_nutrient = ndata.groupby(['nutgroup', 'nutrient'])`**: 按营养素组和名称分组。
+-   **`get_maximum(x)` 函数：**
+    -   接收一个分组。
+    -   `x.value.idxmax()`:  'value' 最大的行的*索引*。
+    -   `x.loc[...]`:  选择该行。
+-   **`max_foods = ...`**: 应用 `get_maximum`，选择 'value' 和 'food'。
+-   **`max_foods['food'] = ...str[:50]`**: 缩短食物名称。
+
+## 13.5 2012 年联邦选举委员会数据库 🗳️
+
+-   **数据集：** 2012 年美国 FEC 竞选捐款数据。
+-   **内容：**
+    -   捐款人姓名。
+    -   职业/雇主。
+    -   地址。
+    -   捐款金额。
+-   **数据格式：** CSV。
+-   **文件：**  `P00000001-ALL.csv`。
+-   **目标：** 分析捐款模式。
+
+``````{python}
+import pandas as pd
+fec = pd.read_csv('datasets/fec/P00000001-ALL.csv', low_memory=False)  # 读取 CSV 文件
+print(fec.info())  # 显示 DataFrame 的信息
+print(fec.iloc[123456])  # 显示第 123457 行数据
+```
+
+-   **`fec = pd.read_csv(...)`**:  加载 CSV。
+-   **`low_memory=False`**:  *重要*。大文件；使用 `False` 以进行准确的类型推断。
+-   **`fec.info()`**:  摘要。
+-   **`fec.iloc[123456]`**:  示例记录。
+
+![](fec_intro.png)
+
+## 添加政党归属
+
+``````{python}
+unique_cands = fec['cand_nm'].unique()  # 获取唯一的候选人姓名
+print(unique_cands)  # 显示唯一的候选人姓名
+
+parties = {'Bachmann, Michelle': 'Republican',  # 候选人姓名与政党的映射字典
+           'Cain, Herman': 'Republican',
+           'Gingrich, Newt': 'Republican',
+           'Huntsman, Jon': 'Republican',
+           'Johnson, Gary Earl': 'Republican',
+           'McCotter, Thaddeus G': 'Republican',
+           'Obama, Barack': 'Democrat',
+           'Paul, Ron': 'Republican',
+           'Pawlenty, Timothy': 'Republican',
+           'Perry, Rick': 'Republican',
+           "Roemer, Charles E. 'Buddy' III": 'Republican',
+           'Romney, Mitt': 'Republican',
+           'Santorum, Rick': 'Republican'}
+
+print(fec['cand_nm'][123456:123461])  # 显示一部分候选人姓名
+print(fec['cand_nm'][123456:123461].map(parties))  # 将这些候选人姓名映射到政党
+
+fec['party'] = fec['cand_nm'].map(parties)  # 基于映射字典，创建 'party' 列
+print(fec['party'].value_counts())  # 统计每个政党的捐款数量
+```
+
+-   **`unique_cands = fec['cand_nm'].unique()`**: 唯一候选人姓名。
+-   **`parties = {...}`**:  字典：候选人姓名 -> 政党。
+-   **`fec['cand_nm'][...].map(parties)`**:  展示 `map` 的工作原理。
+-   **`fec['party'] = fec['cand_nm'].map(parties)`**: 创建 'party' 列。
+-   **`fec['party'].value_counts()`**:  每个政党的计数。
+
+## 过滤捐款（仅限正金额）
+
+``````{python}
+print((fec['contb_receipt_amt'] > 0).value_counts())  # 统计捐款金额大于 0 和小于等于 0 的数量
+
+fec = fec[fec['contb_receipt_amt'] > 0]  # 仅保留捐款金额大于 0 的数据
+```
+
+-   **问题**：包括捐款（正）和退款（负）。
+-   **`(... > 0).value_counts()`**:  检查正/负计数。
+-   **`fec = fec[... > 0]`**:  过滤以仅保留正捐款。
+
+## 按候选人过滤（奥巴马和罗姆尼）
+
+``````{python}
+fec_mrbo = fec[fec['cand_nm'].isin(['Obama, Barack', 'Romney, Mitt'])]  # 仅保留奥巴马和罗姆尼的捐款数据
+```
+
+-   **目标：** 关注两位主要候选人。
+-   **`fec_mrbo = fec[fec['cand_nm'].isin([...])]`**: 过滤奥巴马/罗姆尼。
+
+## 按职业和雇主划分的捐款统计
+
+``````{python}
+print(fec['contbr_occupation'].value_counts()[:10])  # 统计并显示出现次数最多的前 10 个职业
+
+occ_mapping = {  # 职业映射字典，将相似的职业名称统一
+    'INFORMATION REQUESTED PER BEST EFFORTS' : 'NOT PROVIDED',
+    'INFORMATION REQUESTED' : 'NOT PROVIDED',
+    'INFORMATION REQUESTED (BEST EFFORTS)' : 'NOT PROVIDED',
+    'C.E.O.': 'CEO'
+}
+
+def get_occ(x):
+    # 如果没有提供映射，则返回 x
+    return occ_mapping.get(x, x)  # 获取映射，如果不存在则返回原值
+
+fec['contbr_occupation'] = fec['contbr_occupation'].map(get_occ)  # 应用职业映射
+```
+
+-   **`fec['contbr_occupation'].value_counts()[:10]`**: 前 10 个职业。
+-   **问题：** 相似职业的变体 ("INFORMATION REQUESTED")。
+-   **`occ_mapping = {...}`**: 将变体映射到标准形式。
+-   **`get_occ(x)` 函数：**
+    -   使用 `occ_mapping.get(x, x)`。如果 `x` 在字典中，则返回映射的值；否则，返回 `x`。
+-   **`fec['contbr_occupation'] = ...map(get_occ)`**: 标准化职业。
+
+## 按职业和雇主划分的捐款统计（续）- 雇主 + 数据透视表
+
+``````{python}
+emp_mapping = {  # 雇主映射字典，将相似的雇主名称统一
+    'INFORMATION REQUESTED PER BEST EFFORTS' : 'NOT PROVIDED',
+    'INFORMATION REQUESTED' : 'NOT PROVIDED',
+    'SELF' : 'SELF-EMPLOYED',
+    'SELF EMPLOYED' : 'SELF-EMPLOYED',
+}
+
+def get_emp(x):
+    # 如果没有提供映射，则返回 x
+    return emp_mapping.get(x, x)  # 获取映射，如果不存在则返回原值
+
+fec['contbr_employer'] = fec['contbr_employer'].map(get_emp)  # 应用雇主映射
+
+by_occupation = fec.pivot_table('contb_receipt_amt',  # 创建数据透视表
+                                index='contbr_occupation',  # 以 'contbr_occupation' 为索引
+                                columns='party', aggfunc='sum')  # 以 'party' 为列，计算 'contb_receipt_amt' 的总和
+
+over_2mm = by_occupation[by_occupation.sum(axis="columns") > 2000000]  # 筛选出总捐款金额大于 200 万的职业
+print(over_2mm)  # 显示筛选结果
+```
+-   雇主：与职业相同的过程。
+
+-   **`by_occupation = fec.pivot_table(...)`**: 按职业/政党的捐款。
+    -   `'contb_receipt_amt'`: 要聚合的值。
+    -   `index='contbr_occupation'`: 职业是行索引。
+    -   `columns='party'`: 政党成为列。
+    -   `aggfunc='sum'`: 总捐款。
+-   **`over_2mm = ...`**: 总捐款 > 200 万美元的职业。
+
+``````{python}
+over_2mm.plot(kind='barh')  # 绘制水平条形图
+plt.show()  #显示绘图
+```
+
+!['按热门职业划分的各政党总捐款额'](donations_by_occupation.png)
+
+## 热门捐款人职业和雇主（针对奥巴马和罗姆尼）
+
+``````{python}
+def get_top_amounts(group, key, n=5):
+    totals = group.groupby(key)['contb_receipt_amt'].sum()  # 按 key 分组，计算 'contb_receipt_amt' 的总和
+    return totals.nlargest(n)  # 返回总和最大的前 n 个
+
+grouped = fec_mrbo.groupby('cand_nm')  # 按候选人姓名分组
+print(grouped.apply(get_top_amounts, 'contbr_occupation', n=7))  # 获取每个候选人捐款金额最多的前 7 个职业
+print(grouped.apply(get_top_amounts, 'contbr_employer', n=10))  # 获取每个候选人捐款金额最多的前 10 个雇主
+```
+
+-   **`get_top_amounts(group, key, n=5)` 函数：**
+    -   `group`: DataFrame 分组（例如，一位候选人的捐款）。
+    -   `key`: 要分组的列（职业/雇主）。
+    -   `n`: 热门项目的数量。
+    -   计算每个职业/雇主的总捐款，返回前 `n` 个。
+-   **`grouped = fec_mrbo.groupby('cand_nm')`**: 按候选人分组。
+-   **`grouped.apply(...)`**:  查找*每个候选人*的热门职业/雇主。
+
+## 对捐款金额进行分桶
+
+``````{python}
+import numpy as np
+
+bins = np.array([0, 1, 10, 100, 1000, 10000, 100_000, 1_000_000, 10_000_000])  # 定义分桶边界
+labels = pd.cut(fec_mrbo['contb_receipt_amt'], bins)  # 将捐款金额分配到各个桶中
+print(labels)  # 显示分桶结果
+
+grouped = fec_mrbo.groupby(['cand_nm', labels])  # 按候选人姓名和分桶标签分组
+print(grouped.size().unstack(level=0))  # 统计每个候选人在每个桶中的捐款数量
+
+bucket_sums = grouped['contb_receipt_amt'].sum().unstack(level=0)  # 计算每个候选人在每个桶中的总捐款金额
+normed_sums = bucket_sums.div(bucket_sums.sum(axis="columns"),  # 计算每个桶中，每个候选人捐款金额的比例
+                              axis="index")
+print(normed_sums)  # 显示比例
+normed_sums[:-2].plot(kind='barh')  # 绘制水平条形图，不包括最大的两个桶
+plt.show()  #显示绘图
+```
+
+-   **目标：** 按捐款规模分档分析。
+-   **`bins = np.array([...])`**: 定义桶边界。
+-   **`labels = pd.cut(..., bins)`**:  将每个捐款分配到一个桶。
+-   **`grouped = ...groupby(['cand_nm', labels])`**: 按候选人*和*桶分组。
+-   **`grouped.size().unstack(...)`**: 每个桶/候选人的计数。
+-   **`bucket_sums = ...`**: 每个桶/候选人的*总*金额。
+-   **`normed_sums = ...`**:  每个桶/候选人的*百分比*（标准化）。
+-   **`normed_sums[:-2].plot(kind='barh')`**:  条形图（不包括最大的桶）。
+
+!['候选人收到的各种规模捐款占总捐款的百分比'](donation_size.png)
+
+## 按州划分的捐款统计
+
+``````{python}
+grouped = fec_mrbo.groupby(['cand_nm', 'contbr_st'])  # 按候选人姓名和州分组
+totals = grouped['contb_receipt_amt'].sum().unstack(level=0).fillna(0)  # 计算每个候选人在每个州的总捐款金额，并填充缺失值
+totals = totals[totals.sum(axis="columns") > 100000]  # 筛选出总捐款金额大于 10 万的州
+print(totals.head(10))  # 显示前 10 行
+
+percent = totals.div(totals.sum(axis="columns"), axis="index")  # 计算每个州中，每个候选人捐款金额的比例
+print(percent.head(10))  # 显示前 10 行
+```
+
+-   **目标：** 按捐款人所在州进行分析。
+-   **`grouped = ...groupby(['cand_nm', 'contbr_st'])`**: 按候选人/州分组。
+-   **`totals = ...sum().unstack(...).fillna(0)`**: 每个州/候选人的总数。`unstack` 将候选人作为列，`fillna(0)` 处理缺失数据。
+-   **`totals = totals[...]`**:  过滤总数 > 100,000 美元的州。
+-   **`percent = totals.div(...)`**:  每个州/候选人的*百分比*。
+
+## 总结
+
+-   演示了使用 ```{python} 进行真实世界数据分析。
+-   数据集：Bitly/USA.gov、MovieLens、婴儿姓名、USDA 食品、FEC。
+-   **关键技术：**
+    -   加载（文本、JSON、CSV）。
+    -   清理/转换（缺失数据、字符串、类型）。
+    -   聚合/分组 (`groupby`、`pivot_table`、`apply`)。
+    -   合并/重塑 (`merge`、`concat`、`unstack`、`stack`、`explode`)。
+    -   可视化 (matplotlib, seaborn)。
+    -   时间序列。
+-   迭代探索：从原始数据开始，清理，并构建分析。
+
+## 思考和讨论
+
+-   如何扩展/改进这些分析？其他问题？
+-   局限性和假设？偏差？
+-   将技术应用于其他数据集？
+-   真实世界数据（尤其是关于人的数据）的伦理考虑？
+-   权衡：纯 ```{python}、`collections`、pandas。什么时候最好？
+-   可视化选择如何影响见解？
+-   探索官方文档以加深理解。
+-   商科专业：这些技能对职业有何用处？提供竞争优势。

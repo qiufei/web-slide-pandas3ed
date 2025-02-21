@@ -1,0 +1,719 @@
+---
+title: "Python 数据分析"
+subtitle: "第十章"
+---
+
+## 本章内容 🤔
+
+本节重点介绍**数据聚合与分组操作**，这是数据分析的关键部分。我们将学习如何对数据进行分类，并对每个组应用函数——这是许多数据工作流程中的基本步骤。
+
+## 核心操作 ⚙️
+
+我们将学习：
+
+-   将 pandas 对象拆分为组。
+-   计算组摘要统计信息（计数、平均值等）。
+-   在组内应用转换。
+-   计算数据透视表和交叉表。
+-   执行分位数分析。
+-   使用 `transform` 和 `apply`。
+
+## 为什么这很重要？📈
+
+分组和聚合数据有助于我们：
+
+-   通过汇总大型数据集**获得见解**。
+-   **比较**不同的组。
+-   **准备数据**以进行分析或可视化。
+-   **发现模式**。
+
+# 如何理解分组操作
+
+## “拆分-应用-合并”范式 💡
+
+Hadley Wickham 的 **“拆分-应用-合并”** (split-apply-combine) 范式是理解数据处理的强大方式。
+
+1.  **拆分 (Split)：** 根据“键”将数据分成组。
+2.  **应用 (Apply)：** 对每个组应用一个函数。
+3.  **合并 (Combine)：** 将结果合并为最终输出。
+
+## “拆分-应用-合并”可视化 📊
+
+```{mermaid}
+graph LR
+    A[数据] --> B(按键拆分)
+    B --> C1[组 1]
+    B --> C2[组 2]
+    B --> C3[组 3]
+    C1 --> D1(应用函数)
+    C2 --> D2(应用函数)
+    C3 --> D3(应用函数)
+    D1 --> E[合并结果]
+    D2 --> E
+    D3 --> E
+```
+
+## 分组键 🔑
+
+键可以是：
+
+-   列表或数组。
+-   DataFrame 列名。
+-   将值映射到组名的字典或 Series。
+-   应用于索引的函数。
+
+这些本质上都是用于拆分对象的数组值的快捷方式。
+
+## 示例：简单分组聚合
+
+![Split-Apply-Combine](https://pandas.pydata.org/docs/_images/06_groupby.svg)
+
+-   **键和数据**：带有“Key”和“Data”列的表格。
+-   **拆分**：数据按“Key”拆分为组（A、B、C）。
+-   **应用**：`Sum` 函数应用于每个组的“Data”。
+-   **合并**：总和合并到一个新表中。
+
+# Pandas 实战：创建 DataFrame
+
+让我们创建一个示例 DataFrame：
+
+```{python}
+import numpy as np  # 导入 NumPy 库，用于数值计算
+import pandas as pd  # 导入 pandas 库，用于数据分析
+
+# 创建一个 DataFrame
+df = pd.DataFrame({
+    "key1": ["a", "a", "b", "b", "a"],  # key1 列，包含字符串
+    "key2": [1, 2, 1, 2, 1],  # key2 列，包含整数
+    "data1": np.random.randn(5),  # data1 列，包含 5 个随机数
+    "data2": np.random.randn(5)  # data2 列，包含 5 个随机数
+})
+df  # 显示 DataFrame
+```
+
+此 DataFrame 有两个键列（`key1`、`key2`）和两个数据列（`data1`、`data2`）。
+
+# 基本 GroupBy 操作
+
+## 按单列分组
+
+计算 `key1` 中每个组的 `data1` 的平均值：
+
+```{python}
+grouped = df["data1"].groupby(df["key1"])  # 按 key1 分组 data1
+grouped.mean()  # 计算每个组的平均值
+```
+
+-   `df["data1"]`：选择 `data1` 列。
+-   `.groupby(df["key1"])`：按 `key1` 列分组。
+-   `grouped`：一个 `GroupBy` 对象，存储分组信息。
+-   `.mean()`：计算每个组的平均值。
+
+## 按多列分组
+
+按多列分组（分层索引）：
+
+```{python}
+grouped = df.groupby(["key1", "key2"])  # 按 key1 和 key2 分组
+grouped.agg({
+    "data1": ["mean", "std"],  # 对 data1 计算平均值和标准差
+    "data2": ["mean", "std"]   # 对 data2 计算平均值和标准差
+})
+```
+
+数据按 `key1` 和 `key2` 的组合进行分组。
+
+## 展开 (Unstacking)
+
+`unstack()` 重塑结果：
+
+```{python}
+means = df.groupby(["key1", "key2"])["data1"].mean()  # 按 key1 和 key2 分组，计算 data1 的平均值
+means.unstack()  # 将结果展开，使 key2 成为列
+```
+
+## 使用 Series 和数组分组
+
+键可以是外部 Series 或数组：
+
+```{python}
+states = np.array(["OH", "CA", "CA", "OH", "OH", "CA", "OH"])  # 外部数组 states
+years = np.array([2005, 2005, 2006, 2005, 2006, 2005, 2006])  # 外部数组 years
+
+# 创建新的 df 以匹配 states 和 years 的长度
+df_ext = pd.DataFrame({
+    "key1": ["a", "a", "b", "b", "a", "b", "a"],
+    "key2": [1, 2, 1, 2, 1, 2, 1],
+    "data1": np.random.randn(7),
+    "data2": np.random.randn(7)
+})
+
+result = df_ext["data1"].groupby([states, years]).mean()  # 使用外部数组分组
+print("\n分组结果:")
+print(result)
+
+print("\n展开结果:")
+print(result.unstack())
+```
+
+这里，我们按外部数组 `states` 和 `years` 对 `data1` 进行分组。
+
+## 直接使用列名分组
+
+如果分组信息在 DataFrame 中，直接使用列名：
+
+```{python}
+df.groupby("key1").mean()  # 按 key1 分组，计算所有数值列的平均值
+```
+非数值列 `key1` 会被自动排除，因为它是一个**干扰列**
+
+```{python}
+df.groupby(["key1", "key2"]).mean()  # 按 key1 和 key2 分组，计算所有数值列的平均值
+```
+
+## 组大小
+
+`size()` 显示每个组中的数据点数量：
+
+```{python}
+df.groupby(["key1", "key2"]).size()  # 按 key1 和 key2 分组，计算每个组的大小
+```
+
+## 处理分组键中的缺失值
+
+默认情况下，分组键中的缺失值会被排除。使用 `dropna=False` 包含它们：
+
+```{python}
+df.groupby("key1", dropna=False).size()  # 按 key1 分组，包括缺失值（如果有）
+```
+
+# 迭代组
+
+## 使用单键迭代
+
+`GroupBy` 支持迭代，生成组名和数据块：
+
+```{python}
+for name, group in df.groupby("key1"):  # 按 key1 迭代组
+    print(f"组名: {name}")  # 打印组名
+    print(group)  # 打印组数据
+```
+
+## 使用多键迭代
+
+使用多个键时，组名是一个元组：
+
+```{python}
+for (k1, k2), group in df.groupby(["key1", "key2"]):  # 按 key1 和 key2 迭代组
+    print(f"组键: {(k1, k2)}")  # 打印组键
+    print(group)  # 打印组数据
+```
+
+## 创建数据块字典
+
+创建组数据的字典：
+
+```{python}
+pieces = dict(list(df.groupby("key1")))  # 将按 key1 分组的结果转换为字典
+pieces["b"]  # 获取 key1 为 "b" 的组
+```
+
+# 按列分组 (axis=1)
+
+使用 `axis="columns"` 按列分组：
+
+```{python}
+# 创建一个映射字典, 将列名映射到新的分组名称
+grouped = df.groupby({
+    "key1": "key",
+    "key2": "key",
+    "data1": "data",
+    "data2": "data"
+}, axis="columns")
+
+for group_key, group_values in grouped:  # 迭代列组
+    print(group_key)  # 打印列组键
+    print(group_values)  # 打印列组数据
+```
+
+# 选择要聚合的列
+
+## 选择单列 (SeriesGroupBy)
+
+对 `GroupBy` 对象进行索引以聚合特定列：
+
+```{python}
+df.groupby(["key1", "key2"])["data2"].mean()  # 按 key1 和 key2 分组，计算 data2 的平均值
+```
+
+这是 `df["data2"].groupby([df["key1"], df["key2"]]).mean()` 的简写。
+
+## 选择多列 (DataFrameGroupBy)
+
+```{python}
+df.groupby(["key1", "key2"])[["data2"]].mean()  # 按 key1 和 key2 分组，计算 data2 的平均值
+```
+
+这等同于 `df[["data2"]].groupby([df["key1"], df["key2"]]).mean()`。
+
+# 使用字典和 Series 分组
+
+使用字典或 Series 进行分组：
+
+```{python}
+people = pd.DataFrame(np.random.standard_normal((5, 5)),  # 创建一个 5x5 的随机数 DataFrame
+                   columns=["a", "b", "c", "d", "e"],  # 列名
+                   index=["Joe", "Steve", "Wanda", "Jill", "Trey"])  # 行名
+people.iloc[2:3, [1, 2]] = np.nan  # 将一些值设置为 NaN
+
+mapping = {"a": "red", "b": "red", "c": "blue",  # 创建一个列映射字典
+           "d": "blue", "e": "red", "f" : "orange"}
+
+by_column = people.groupby(mapping, axis="columns")  # 使用映射字典按列分组
+by_column.sum()  # 计算每个列组的总和
+```
+
+`mapping` 指定列分组。
+
+# 使用函数分组
+
+使用函数定义组映射（每个索引值调用一次）：
+
+```{python}
+people.groupby(len).sum()  # 按行名的长度分组，计算总和
+```
+
+# 按索引级别分组
+
+按分层索引的级别分组：
+
+```{python}
+columns = pd.MultiIndex.from_arrays([["US", "US", "US", "JP", "JP"],  # 创建一个多级列索引
+                                    [1, 3, 5, 1, 3]],
+                                   names=["cty", "tenor"])
+hier_df = pd.DataFrame(np.random.standard_normal((4, 5)), columns=columns)  # 创建一个具有多级列索引的 DataFrame
+hier_df.groupby(level="cty", axis="columns").count()  # 按列的 "cty" 级别分组，计数
+```
+
+# 数据聚合
+
+## 优化的聚合方法
+
+聚合将数组转换为标量。优化方法：
+
+-   `count`、`sum`、`mean`、`median`、`std`、`var`
+-   `min`、`max`、`prod`、`first`、`last`
+-   `any`、`all`、`cummin`、`cummax`、`cumsum`、`cumprod`
+-   `nth`、`ohlc`、`quantile`、`rank`、`size`
+
+## 使用自定义聚合函数
+
+使用 `agg` 定义自定义函数：
+
+```{python}
+def peak_to_peak(arr):  # 定义一个函数，计算数组的极差（最大值 - 最小值）
+    return arr.max() - arr.min()
+
+grouped = df.groupby("key1")  # 按 key1 分组
+grouped.agg(peak_to_peak)  # 应用自定义函数
+```
+
+## `describe` 方法
+
+使用非聚合方法，如 `describe`：
+
+```{python}
+grouped.describe()  # 获取每个组的描述性统计信息
+```
+
+# 列式和多函数应用
+
+## 单列上的多个函数
+
+加载小费数据集：
+
+```{python}
+tips = pd.read_csv("examples/tips.csv")  # 从 CSV 文件加载数据(需确保 examples 文件夹及 tips.csv 文件存在)
+tips["tip_pct"] = tips["tip"] / tips["total_bill"]  # 添加一个小费百分比列
+```
+
+应用多个函数：
+
+```{python}
+grouped = tips.groupby(["day", "smoker"])  # 按 day 和 smoker 分组
+grouped_pct = grouped["tip_pct"]  # 选择 tip_pct 列
+grouped_pct.agg(["mean", "std", peak_to_peak])  # 应用多个聚合函数
+```
+
+## 自定义列名
+
+提供自定义名称：
+
+```{python}
+grouped_pct.agg([("average", "mean"), ("stdev", np.std)])  # 使用自定义列名
+```
+
+## 对不同列应用不同函数
+
+对不同列应用不同的函数：
+
+```{python}
+functions = ["count", "mean", "max"]  # 定义一个函数列表
+result = grouped[["tip_pct", "total_bill"]].agg(functions)  # 对 tip_pct 和 total_bill 应用函数列表
+result
+```
+
+```{python}
+grouped.agg({"tip" : np.max, "size" : "sum"})  # 对 tip 列应用 max 函数，对 size 列应用 sum 函数
+```
+
+```{python}
+grouped.agg({
+    "tip_pct": ["min", "max", "mean", "std"],  # 对 tip_pct 应用多个函数
+    "size": "sum"  # 对 size 应用 sum 函数
+})
+```
+
+# 返回无行索引的聚合数据
+
+使用 `as_index=False` 阻止组键成为索引：
+
+```{python}
+numeric_cols = tips.select_dtypes(include=[np.number]).columns  # 获取所有数值列
+tips.groupby(["day", "smoker"], as_index=False)[numeric_cols].mean()  # 按 day 和 smoker 分组，计算数值列的平均值，不使用组键作为索引
+```
+
+# `apply`：通用“拆分-应用-合并”
+
+## `apply` 的强大之处 💪
+
+`apply` 是最通用的 `GroupBy` 方法。拆分、应用函数、连接。
+
+## 示例：选择前几行
+
+```{python}
+def top(df, n=5, column="tip_pct"):  # 定义一个函数，按指定列选择前 n 行
+    return df.sort_values(column, ascending=False)[:n]
+
+tips.groupby("smoker").apply(top)  # 按 smoker 分组，应用 top 函数
+```
+
+## 向 `apply` 传递参数
+
+```{python}
+tips.groupby(["smoker", "day"]).apply(top, n=1, column="total_bill")  # 向 apply 传递额外的参数
+```
+
+## 在 `apply` 中抑制组键
+
+使用 `group_keys=False`：
+
+```{python}
+tips.groupby("smoker", group_keys=False).apply(top)  # 抑制组键
+```
+
+# 分位数和桶分析
+
+## 将 `cut` 和 `qcut` 与 `groupby` 结合使用
+
+将 `cut`/`qcut` 与 `groupby` 结合使用进行桶/分位数分析：
+
+```{python}
+frame = pd.DataFrame({
+    "data1": np.random.standard_normal(1000),  # 创建一个包含 1000 个随机数的 DataFrame
+    "data2": np.random.standard_normal(1000)
+})
+quartiles = pd.cut(frame["data1"], 4)  # 将 data1 列分为 4 个桶
+
+def get_stats(group):  # 定义一个函数，计算组的统计信息
+    return pd.DataFrame(
+        {"min": group.min(), "max": group.max(),
+        "count": group.count(), "mean": group.mean()}
+    )
+
+grouped = frame.groupby(quartiles)  # 按分位数分组
+grouped.apply(get_stats)  # 应用 get_stats 函数
+```
+相同的结果可以用更简单的方法计算得到:
+
+```{python}
+grouped.agg(["min", "max", "count", "mean"])
+```
+## 使用 `qcut` 获取相等大小的桶
+
+```{python}
+quartiles_samp = pd.qcut(frame["data1"], 4, labels=False)  # 将 data1 列分为 4 个相等大小的桶，返回标签
+grouped = frame.groupby(quartiles_samp)  # 按分位数标签分组
+grouped.apply(get_stats)  # 应用 get_stats 函数
+```
+
+# 示例：使用组特定值填充缺失值
+
+## 使用平均值填充
+
+```{python}
+s = pd.Series(np.random.standard_normal(6))  # 创建一个包含 6 个随机数的 Series
+s[::2] = np.nan  # 将一些值设置为 NaN
+s.fillna(s.mean())  # 使用 Series 的平均值填充 NaN
+```
+
+## 使用组特定平均值填充
+
+```{python}
+states = ["Ohio", "New York", "Vermont", "Florida",  # 创建一个州列表
+          "Oregon", "Nevada", "California", "Idaho"]
+group_key = ["East"] * 4 + ["West"] * 4  # 创建一个分组键列表
+data = pd.Series(np.random.standard_normal(8), index=states)  # 创建一个 Series，索引为州
+data[["Vermont", "Nevada", "Idaho"]] = np.nan  # 将一些值设置为 NaN
+
+def fill_mean(group):  # 定义一个函数，使用组的平均值填充 NaN
+    return group.fillna(group.mean())
+
+data.groupby(group_key).apply(fill_mean)  # 按组键分组，应用 fill_mean 函数
+```
+
+## 预定义填充值
+
+```{python}
+fill_values = {"East": 0.5, "West": -1}  # 创建一个填充值字典
+def fill_func(group):  # 定义一个函数，使用预定义值填充 NaN
+    return group.fillna(fill_values[group.name])
+
+data.groupby(group_key).apply(fill_func)  # 按组键分组，应用 fill_func 函数
+```
+
+# 示例：随机抽样和排列
+
+## 模拟一副牌
+
+```{python}
+suits = ["H", "S", "C", "D"]  # 花色
+card_val = (list(range(1, 11)) + [10] * 3) * 4  # 牌值
+base_names = ["A"] + list(range(2, 11)) + ["J", "K", "Q"]  # 牌名
+cards = []
+for suit in suits:
+    cards.extend(str(num) + suit for num in base_names)
+
+deck = pd.Series(card_val, index=cards)  # 创建一副牌
+```
+
+## 抽取随机一手牌
+
+```{python}
+def draw(deck, n=5):  # 定义一个函数，从一副牌中抽取 n 张牌
+    return deck.sample(n)
+
+draw(deck)  # 抽取 5 张牌
+```
+
+## 从每个花色中抽取两张随机牌
+
+```{python}
+def get_suit(card):  # 定义一个函数，获取牌的花色
+    return card[-1]
+
+deck.groupby(get_suit).apply(draw, n=2)  # 按花色分组，从每个花色中抽取 2 张牌
+```
+
+# 示例：组加权平均和相关性
+
+## 组加权平均
+
+```{python}
+df = pd.DataFrame({
+    "category": ["a", "a", "a", "a",  # 创建一个 DataFrame
+                 "b", "b", "b", "b"],
+    "data": np.random.standard_normal(8),
+    "weights": np.random.uniform(size=8)
+})
+
+grouped = df.groupby("category")  # 按 category 分组
+
+def get_wavg(group):  # 定义一个函数，计算组的加权平均值
+    return np.average(group["data"], weights=group["weights"])
+
+grouped.apply(get_wavg)  # 应用 get_wavg 函数
+```
+
+## 与 SPX（标准普尔 500 指数）的相关性
+
+```{python}
+# 假设 examples 文件夹存在且包含 stock_px.csv 文件
+close_px = pd.read_csv("examples/stock_px.csv", parse_dates=True, index_col=0)  # 从 CSV 文件加载数据
+
+rets = close_px.pct_change().dropna()  # 计算收益率并删除缺失值
+
+def get_year(x):  # 定义一个函数，获取年份
+    return x.year
+
+by_year = rets.groupby(get_year)  # 按年份分组
+
+def spx_corr(group):  # 定义一个函数，计算与 SPX 的相关性
+    return group.corrwith(group["SPX"])
+
+by_year.apply(spx_corr)  # 应用 spx_corr 函数
+```
+
+## 列间相关性（Apple 和 Microsoft）
+
+```{python}
+def corr_aapl_msft(group):  # 定义一个函数，计算 Apple 和 Microsoft 之间的相关性
+    return group["AAPL"].corr(group["MSFT"])
+
+by_year.apply(corr_aapl_msft)  # 应用 corr_aapl_msft 函数
+```
+
+# 示例：组线性回归
+
+```{python}
+import statsmodels.api as sm  # 导入 statsmodels 库
+
+def regress(data, yvar=None, xvars=None):  # 定义一个函数，执行线性回归
+    Y = data[yvar]
+    X = data[xvars]
+    X["intercept"] = 1.
+    result = sm.OLS(Y, X).fit()
+    return result.params
+
+by_year.apply(regress, yvar="AAPL", xvars=["SPX"])  # 应用 regress 函数
+```
+
+# `transform`：组转换和“展开的” GroupBy
+
+## `transform` 方法
+
+`transform` 类似于 `apply`，但：
+
+-   可以生成要广播的标量。
+-   生成与输入形状相同的对象。
+-   不得改变其输入。
+
+```{python}
+df = pd.DataFrame({'key': ['a', 'b', 'c'] * 4,
+                   'value': np.arange(12.)})
+g = df.groupby('key')['value']
+
+def get_mean(group):  #定义一个函数求平均值
+    return group.mean()
+g.transform(get_mean)
+```
+
+我们可以像使用 GroupBy `agg` 方法一样传递字符串别名：
+
+```{python}
+g.transform('mean')
+```
+
+与 `apply` 类似，`transform` 适用于返回 Series 的函数，但结果必须与输入大小相同。 例如，我们可以使用辅助函数将每个组乘以 2：
+
+```{python}
+def times_two(group):
+      return group * 2
+g.transform(times_two)
+```
+作为一个更复杂的示例，我们可以计算每个组的降序排名：
+
+```{python}
+def get_ranks(group):
+    return group.rank(ascending=False)
+g.transform(get_ranks)
+```
+
+## “展开的”分组操作
+
+“展开的”操作通常比 `apply` 快：
+
+```{python}
+def normalize(x):  # 定义一个函数，进行标准化
+    return (x - x.mean()) / x.std()
+
+g.transform(normalize)  # 使用 transform 进行标准化
+```
+
+```{python}
+g.apply(normalize)  # 使用 apply 进行标准化
+```
+
+```{python}
+normalized = (df['value'] - g.transform('mean')) / g.transform('std')  # 展开的分组操作
+normalized
+```
+
+# 数据透视表和交叉表
+
+## 什么是数据透视表？🤔
+
+按键聚合数据，将其排列成矩形。在电子表格中很常见。
+
+## 使用 pandas 创建数据透视表
+
+`pivot_table` 利用 `groupby` 和分层索引：
+
+```{python}
+tips.pivot_table(
+    values=['total_bill', 'tip'],  # 要聚合的列
+    index=['day', 'smoker'],  # 行索引
+    aggfunc='mean'  # 聚合函数
+)
+```
+
+## 按多个变量分组
+
+```{python}
+tips.pivot_table(index=["time", "day"], columns="smoker",  # 行和列
+                 values=["tip_pct", "size"])  # 要聚合的列
+```
+
+## 添加边距（部分总计）
+
+```{python}
+tips.pivot_table(index=["time", "day"], columns="smoker",
+                 values=["tip_pct", "size"], margins=True)  # 添加边距
+```
+
+## 使用不同的聚合函数
+
+```{python}
+tips.pivot_table(index=["time", "smoker"], columns="day",
+                 values="tip_pct", aggfunc=len, margins=True)  # 使用 len 作为聚合函数
+```
+
+## 交叉表 (Crosstab)
+
+Crosstab 计算组频率：
+
+```{python}
+from io import StringIO
+
+data = pd.read_table(StringIO("""Sample Nationality Handedness
+1 USA Right-handed
+2 Japan Left-handed
+3 USA Right-handed
+4 Japan Right-handed
+5 Japan Left-handed
+6 Japan Right-handed
+7 USA Right-handed
+8 USA Left-handed
+9 Japan Right-handed
+10 USA Right-handed"""), sep="\s+")
+
+pd.crosstab(data["Nationality"], data["Handedness"], margins=True)  # 创建交叉表
+```
+
+```{python}
+pd.crosstab([tips["time"], tips["day"]], tips["smoker"], margins=True)  # 创建交叉表
+```
+
+# 总结
+
+-   我们探索了数据聚合、`groupby`、`apply`、`transform`。
+-   我们创建了数据透视表和交叉表。
+-   对于总结、比较和准备数据至关重要。
+
+# 思考与讨论
+
+-   分组操作的其他实际场景？
+-   这些技术的创造性组合？
+-   `groupby` 的局限性？
+-   `apply`、`transform` 和直接聚合之间的权衡？
+-   “展开的”与性能有何关系？

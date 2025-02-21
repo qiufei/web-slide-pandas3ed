@@ -1,0 +1,1435 @@
+---
+title: "Python for Data Analysis"
+subtitle: "Chapter 3: Built-In Data Structures, Functions, and Files"
+---
+
+## Chapter 3: Built-In Data Structures, Functions, and Files
+
+This chapter delves into the fundamental building blocks of Python that are essential for data analysis. We'll explore Python's built-in data structures, how to create reusable functions, and how to interact with files.
+
+::: {.callout-note}
+While libraries like pandas and NumPy offer advanced functionalities for larger datasets, they are designed to work in conjunction with Python's core data manipulation tools.  Mastering these basics is crucial! 🛠️
+:::
+
+
+
+## Data Structures and Sequences
+
+Python offers several versatile data structures. We'll start with:
+
+-   **Tuples**
+-   **Lists**
+-   **Dictionaries**
+
+Understanding these is a key step towards Python proficiency. 🐍
+
+
+
+## Tuple: Definition
+
+A tuple is a **fixed-length**, **immutable** sequence of Python objects. Once created, you *cannot* change its elements or size.
+
+::: {.callout-tip}
+## Immutability
+Immutability means the contents can't be changed after creation. This ensures data integrity. Think of it as a sealed container 📦 – you see what's inside, but you can't swap things.
+:::
+
+
+
+## Tuple: Creation
+
+Create tuples with comma-separated values, often in parentheses:
+
+```{python}
+tup = (4, 5, 6)
+print(tup)
+```
+
+Parentheses are often optional:
+
+```{python}
+tup = 4, 5, 6
+print(tup)
+```
+
+
+
+## Tuple: Conversion and Accessing
+
+Convert sequences/iterators to tuples with `tuple()`:
+
+```{python}
+my_list = [4, 0, 2]
+my_tuple = tuple(my_list)
+print(my_tuple)
+
+string_tuple = tuple('string')
+print(string_tuple)
+```
+
+Access elements with `[]` (zero-based indexing):
+
+```{python}
+print(string_tuple[0])  # First element
+```
+
+
+
+## Tuple: Nested Tuples
+
+Tuples can contain other tuples:
+
+```{python}
+nested_tup = (4, 5, 6), (7, 8)
+print(nested_tup)
+print(nested_tup[0])      # First tuple
+print(nested_tup[1][0])   # First element of the second tuple
+```
+
+
+
+## Tuple: Immutability (Detailed Example)
+
+While objects *within* a tuple might be mutable, the tuple itself is immutable:
+
+```{python}
+tup = tuple(['foo', [1, 2], True])
+# tup[2] = False  # TypeError!
+
+# BUT, modify mutable elements *in place*:
+tup[1].append(3)
+print(tup)  # Output: ('foo', [1, 2, 3], True)
+```
+
+::: {.callout-caution}
+You can't assign *new* objects to tuple slots, but you can modify the *contents* of mutable objects *within* the tuple.
+:::
+
+
+
+## Tuple: Concatenation and Multiplication
+
+Concatenate with `+`:
+
+```{python}
+tuple1 = (4, None, 'foo')
+tuple2 = (6, 0)
+tuple3 = ('bar',)  # Comma for single-element tuple
+combined_tuple = tuple1 + tuple2 + tuple3
+print(combined_tuple)
+```
+
+Multiply to repeat:
+
+```{python}
+repeated_tuple = ('foo', 'bar') * 4
+print(repeated_tuple)
+```
+
+::: {.callout-note}
+Only *references* to objects are copied, not the objects themselves.
+:::
+
+
+
+## Tuple: Unpacking
+
+Unpack tuples into variables:
+
+```{python}
+tup = (4, 5, 6)
+a, b, c = tup
+print(b)
+```
+
+Nested tuples too:
+
+```{python}
+tup = 4, 5, (6, 7)
+a, b, (c, d) = tup
+print(d)
+```
+
+
+
+## Tuple: Swapping Variables
+
+Elegant variable swapping:
+
+```{python}
+a, b = 1, 2
+print(f"a: {a}, b: {b}")
+b, a = a, b  # Swap!
+print(f"a: {a}, b: {b}")
+```
+
+
+
+## Tuple: \*rest (and \_)
+
+`*rest` captures remaining elements:
+
+```{python}
+values = 1, 2, 3, 4, 5
+a, b, *rest = values
+print(a)
+print(b)
+print(rest)
+```
+
+`_` for unwanted variables:
+
+```{python}
+a, b, *_ = values  # Ignore the rest
+```
+
+
+
+## Tuple: Methods (count)
+
+Tuples have few methods due to immutability.  `count()` is useful:
+
+```{python}
+a = (1, 2, 2, 2, 3, 4, 2)
+count_of_2 = a.count(2)
+print(count_of_2)  # Output: 4
+```
+`count` method returns the number of occurrences of a specified value.
+
+
+
+## List: Definition and Mutability
+
+Lists are **variable-length** and **mutable**.  You can change their contents and size after creation.
+
+::: {.callout-tip}
+## Mutability
+Mutability means you *can* change elements, add new ones, or remove existing ones after creation.  Lists are very flexible! 🤸‍♀️
+:::
+
+
+
+## List: Creation
+
+Create lists with `[]` or `list()`:
+
+```{python}
+a_list = [2, 3, 7, None]
+tup = ('foo', 'bar', 'baz')
+b_list = list(tup)  # Tuple to list
+print(b_list)
+```
+
+Modify elements:
+
+```{python}
+b_list[1] = 'peekaboo'
+print(b_list)
+```
+
+
+
+## List: Materializing Iterators
+
+`list()` materializes iterators/generators:
+
+```{python}
+gen = range(10)
+print(gen)  # range object (iterator)
+my_list = list(gen)  # To list
+print(my_list)
+```
+
+
+
+## List: Adding Elements
+
+- `append()`: Adds to the *end*.
+
+```{python}
+b_list.append('dwarf')
+print(b_list)
+```
+
+- `insert()`: Inserts at a *specific position*.
+
+```{python}
+b_list.insert(1, 'red') # Insert 'red' at index 1
+print(b_list)
+```
+
+::: {.callout-caution}
+`insert` is more expensive than `append` (it shifts elements).
+:::
+
+
+
+## List: Removing Elements (pop and remove)
+
+-   `pop()`: Removes and *returns* at an index.
+
+```{python}
+removed_element = b_list.pop(2)
+print(removed_element)
+print(b_list)
+```
+
+-   `remove()`: Removes the *first* occurrence of a value.
+
+```{python}
+b_list.append('foo')
+b_list.remove('foo')  # Removes the *first* 'foo'
+print(b_list)
+```
+
+
+
+## List: Checking for Membership (in and not in)
+
+```{python}
+print('dwarf' in b_list)
+print('dwarf' not in b_list)
+```
+
+::: {.callout-note}
+`in` / `not in` is *slow* for lists (linear scan). Dictionaries and sets are much faster (hash tables, constant time).
+:::
+
+
+
+## List: Concatenation and Combining
+
+Concatenate with `+`:
+
+```{python}
+list1 = [4, None, 'foo']
+list2 = [7, 8, (2, 3)]
+combined_list = list1 + list2
+print(combined_list)
+```
+
+`extend()` appends multiple elements:
+
+```{python}
+x = [4, None, 'foo']
+x.extend([7, 8, (2, 3)])
+print(x)
+```
+
+::: {.callout-tip}
+`extend()` is generally faster than `+` (no new list created).
+:::
+
+
+
+## List: Sorting (sort and sorted)
+
+-   `sort()`: Sorts *in place*.
+
+```{python}
+a = [7, 2, 5, 1, 3]
+a.sort()
+print(a)
+```
+
+-  `key` argument: provide customized sorting method.
+```{python}
+b = ['saw', 'small', 'He', 'foxes', 'six']
+b.sort(key=len)  # Sort by length
+print(b)
+```
+
+
+
+## List: Slicing
+
+Select sections with `start:stop`:
+
+```{python}
+seq = [7, 2, 3, 7, 5, 6, 0, 1]
+sub_list = seq[1:5]  # Index 1 (inclusive) to 5 (exclusive)
+print(sub_list)
+
+seq[3:5] = [6,3] # replace elements using slicing
+print(seq)
+```
+
+
+
+## List: Slicing (Omitting Start/Stop and Negative Indices)
+
+-   Omit `start`: Defaults to the beginning.
+-   Omit `stop`: Defaults to the end.
+-   Negative indices: Count from the end.
+
+```{python}
+print(seq[:5])  # First 5
+print(seq[3:])  # From index 3
+print(seq[-4:]) # Last 4
+print(seq[-6:-2]) # 6th to 2nd last
+```
+
+
+
+## List: Slicing (Step)
+
+Use a *step* to select every nth element:
+
+```{python}
+print(seq[::2])   # Every other
+print(seq[::-1])  # Reverse!
+```
+
+
+
+## List slicing illustration
+
+<center>
+
+| 0    | 1    | 2    | 3    | 4    | 5    |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| H    | E    | L    | L    | O    | !    |
+| 0    | 1    | 2    | 3    | 4    | 5    | 6    |
+| -6   | -5   | -4   | -3   | -2   | -1   |      |
+
+</center>
+
+```{python}
+string = "HELLO!"
+print(string[2:4]) # slicing with positive indices
+print(string[-5:-2]) # slicing with negative indices
+```
+This figure illustrates slicing on the string “HELLO!”. Indices are shown at the “bin edges” to help show where the slice selections start and stop using positive or negative indices.
+
+
+
+## Dictionary (dict): Definition
+
+Dictionaries (or `dict`) are crucial. They store *key-value* pairs (like hash maps).
+
+::: {.callout-tip}
+### Key-Value Pairs
+Each *key* is associated with a *value*. Keys are *unique* and *immutable* (strings, numbers, tuples). Values can be anything.
+:::
+
+
+
+## Dictionary: Creation
+
+Use `{}` and `:`:
+
+```{python}
+empty_dict = {}
+d1 = {'a': 'some value', 'b': [1, 2, 3, 4]}
+print(d1)
+```
+
+
+
+## Dictionary: Accessing, Inserting, Setting
+
+```{python}
+d1[7] = 'an integer'  # Add
+print(d1)
+print(d1['b'])       # Access
+```
+
+
+
+## Dictionary: Checking for Keys (in)
+
+```{python}
+print('b' in d1)  # Checks keys
+```
+
+
+
+## Dictionary: Deleting (del and pop)
+
+-   `del`:
+
+```{python}
+d1[5] = 'some value'
+d1['dummy'] = 'another value'
+print(d1)
+del d1[5]
+print(d1)
+```
+
+-   `pop()`: Removes and *returns*.
+
+```{python}
+ret = d1.pop('dummy')
+print(ret)
+print(d1)
+```
+
+
+
+## Dictionary: keys(), values() and items() Methods
+
+-   `keys()`: Iterator of keys.
+-   `values()`: Iterator of values.
+-   `items()`: Iterator of key-value pairs.
+
+```{python}
+print(list(d1.keys()))
+print(list(d1.values()))
+print(list(d1.items()))
+```
+
+::: {.callout-note}
+Key order depends on insertion.  `keys` and `values` return iterators in the *same* order.
+:::
+
+
+
+## Dictionary: Merging with update()
+
+`update()` merges dictionaries:
+
+```{python}
+d1.update({'b': 'foo', 'c': 12})  # Updates 'b', adds 'c'
+print(d1)
+```
+
+::: {.callout-caution}
+`update()` is *in place*. Existing keys have their values discarded.
+:::
+
+
+
+## Dictionary: Creating from Sequences
+
+```{python}
+key_list = ['a', 'b', 'c']
+value_list = [1, 2, 3]
+mapping = {}
+for key, value in zip(key_list, value_list):
+    mapping[key] = value
+print(mapping)
+
+# Concise: dict() and zip()
+mapping = dict(zip(range(5), reversed(range(5))))
+print(mapping)
+```
+`zip` function can pair up elements of multiple sequences. `dict` accepts a list of 2-tuples.
+
+
+
+## Dictionary: Default Values (get and setdefault)
+
+```{python}
+#| eval: false
+# Verbose:
+if 'some_key' in some_dict:
+    value = some_dict['some_key']
+else:
+    value = default_value
+
+# Concise: get()
+value = some_dict.get('some_key', default_value)
+```
+
+`get` returns `None` if the key is not present (or a specified default value), `pop` will raise an exception.
+
+```{python}
+words = ['apple', 'bat', 'bar', 'atom', 'book']
+by_letter = {}
+for word in words:
+    letter = word[0]
+    by_letter.setdefault(letter, []).append(word) # Use setdefault.
+print(by_letter)
+```
+
+`setdefault(key, default)`: If `key` exists, return value.  If not, insert `key` with `default` and return `default`.
+
+
+
+## Dictionary: defaultdict
+
+`collections.defaultdict` simplifies initialization:
+
+```{python}
+from collections import defaultdict
+
+by_letter = defaultdict(list)
+for word in words:
+    by_letter[word[0]].append(word)
+print(by_letter)
+```
+
+
+
+## Dictionary: Valid Key Types (Hashability)
+
+-   Keys must be *immutable*.
+-   Check with `hash()`:
+
+```{python}
+print(hash('string'))
+print(hash((1, 2, (2, 3))))
+# print(hash((1, 2, [2, 3])))  # TypeError: unhashable type: 'list'
+
+# List as key? Convert to tuple:
+d = {}
+d[tuple([1, 2, 3])] = 5
+print(d)
+```
+
+
+
+## Set: Definition and Uniqueness
+
+A set is an *unordered* collection of *unique* elements (like a dict with only keys).
+
+
+
+## Set: Creation
+
+```{python}
+set1 = {2, 2, 2, 1, 3, 3}  # {}
+print(set1)  # {1, 2, 3}
+set2 = set([2, 2, 2, 1, 3, 3])  # set()
+print(set2)
+```
+
+
+
+## Set: Operations (Union, Intersection, etc.)
+
+```{python}
+a = {1, 2, 3, 4, 5}
+b = {3, 4, 5, 6, 7, 8}
+
+# Union (| or union())
+print(a.union(b))
+print(a | b)
+
+# Intersection (& or intersection())
+print(a.intersection(b))
+print(a & b)
+
+# Difference (- or difference())
+print(a.difference(b))
+print(a - b)
+```
+
+
+## Set operations
+
+| Function                         | Alternative Syntax | Description                                                                  |
+| :--- | :--- | :--- |
+| `a.add(x)`                       | N/A                | Add element x to set a                                                       |
+| `a.clear()`                     | N/A                | Reset set a to an empty state, discarding all of its elements                 |
+| `a.remove(x)`                    | N/A                | Remove element x from set a                                                  |
+| `a.pop()`                        | N/A                | Remove an arbitrary element from set a, raising KeyError if the set is empty  |
+| `a.union(b)`                    | `a \| b`           | All of the unique elements in a and b                                         |
+| `a.update(b)`                   | `a \|= b`          | Set the contents of a to be the union of the elements in a and b                |
+| `a.intersection(b)`             | `a & b`            | All of the elements in both a and b                                            |
+| `a.intersection_update(b)`      | `a &= b`           | Set the contents of a to be the intersection of the elements in a and b         |
+| `a.difference(b)`               | `a - b`            | The elements in a that are not in b                                          |
+| `a.difference_update(b)`        | `a -= b`           | Set a to the elements in a that are not in b                                    |
+| `a.symmetric_difference(b)`     | `a ^ b`            | All of the elements in either a or b but not both                             |
+| `a.symmetric_difference_update(b)` | `a ^= b`           | Set a to contain the elements in either a or b but not both                   |
+| `a.issubset(b)`                 | `<=`               | True if the elements of a are all contained in b                               |
+| `a.issuperset(b)`               | `>=`               | True if the elements of b are all contained in a                               |
+| `a.isdisjoint(b)`               | N/A                | True if a and b have no elements in common                                       |
+
+
+
+## Set: In-Place Operations
+
+In-place versions exist (e.g., `a |= b`):
+
+```{python}
+c = a.copy()
+c |= b  # In-place union
+print(c)
+
+d = a.copy()
+d &= b # In-place intersection
+print(d)
+```
+
+::: {.callout-tip}
+In-place operations are more efficient for large sets.
+:::
+
+
+
+## Set: Element Hashability
+
+Like dict keys, set elements must be *immutable* and *hashable*.
+
+```{python}
+my_data = [1, 2, 3, 4]
+# my_set = {my_data}  # TypeError
+my_set = {tuple(my_data)}  # Convert to tuple
+print(my_set)
+```
+
+
+
+## Set: Subset and Superset
+
+```{python}
+a_set = {1, 2, 3, 4, 5}
+print({1, 2, 3}.issubset(a_set))
+print(a_set.issuperset({1, 2, 3}))
+```
+
+
+
+## Set: Equality
+
+Sets are equal if contents are equal:
+
+```{python}
+print({1, 2, 3} == {3, 2, 1})
+```
+
+
+
+## Built-In Sequence Functions: enumerate
+
+`enumerate` tracks the index during iteration:
+
+```{python}
+collection = ['foo', 'bar', 'baz']
+
+# Instead of:
+i = 0
+for value in collection:
+    print(f"Index: {i}, Value: {value}")
+    i += 1
+
+# Use enumerate:
+for i, value in enumerate(collection):
+    print(f"Index: {i}, Value: {value}")
+```
+
+`enumerate` returns `(index, value)` tuples.
+
+
+
+## Built-In Sequence Functions: sorted
+
+`sorted` returns a *new* sorted list:
+
+```{python}
+print(sorted([7, 1, 2, 6, 0, 3, 2]))
+print(sorted('horse race'))
+```
+
+::: {.callout-note}
+`sorted()` returns a *new* list. `list.sort()` sorts *in place*.
+:::
+
+
+
+## Built-In Sequence Functions: zip
+
+`zip` "pairs up" elements:
+
+```{python}
+seq1 = ['foo', 'bar', 'baz']
+seq2 = ['one', 'two', 'three']
+zipped = zip(seq1, seq2)
+print(list(zipped))
+```
+
+`zip` takes any number of sequences. Output length is determined by the *shortest* sequence:
+
+```{python}
+seq3 = [False, True]
+print(list(zip(seq1, seq2, seq3)))
+```
+
+
+
+## Built-In Sequence Functions: zip (with enumerate)
+
+Iterate over multiple sequences with `enumerate`:
+
+```{python}
+for i, (a, b) in enumerate(zip(seq1, seq2)):
+    print(f'{i}: {a}, {b}')
+```
+
+
+
+## Built-In Sequence Functions: reversed
+
+`reversed` iterates in *reverse* order:
+
+```{python}
+print(list(reversed(range(10))))  # reversed() is a generator
+```
+
+::: {.callout-note}
+`reversed` is a generator (doesn't create the reversed sequence until materialized).
+:::
+
+
+
+## List, Set, and Dictionary Comprehensions
+
+Comprehensions create new collections concisely.
+
+
+
+## List Comprehension: Basic Form
+
+```{python}
+#| eval: false
+
+
+# General form: [expr for val in collection if condition]
+
+# Equivalent for loop:
+result = []
+for val in collection:
+    if condition:
+        result.append(expr)
+```
+
+Example:
+
+```{python}
+strings = ['a', 'as', 'bat', 'car', 'dove', 'python']
+upper_case_long_strings = [x.upper() for x in strings if len(x) > 2]
+print(upper_case_long_strings)
+```
+
+
+
+## Set Comprehension
+
+```{python}
+# {expr for val in collection if condition}
+strings = ['a', 'as', 'bat', 'car', 'dove', 'python']
+unique_lengths = {len(x) for x in strings}
+print(unique_lengths)
+
+# using map function
+print(set(map(len, strings)))
+```
+Similar to list comprehensions, but with `{}` (creates a set).
+
+
+
+## Dictionary Comprehension
+
+```{python}
+# {key_expr: value_expr for val in collection if condition}
+
+strings = ['a', 'as', 'bat', 'car', 'dove', 'python']
+loc_mapping = {val: index for index, val in enumerate(strings)}
+print(loc_mapping)
+```
+
+
+
+## Nested List Comprehensions
+
+```{python}
+all_data = [['John', 'Emily', 'Michael', 'Mary', 'Steven'],
+            ['Maria', 'Juan', 'Javier', 'Natalia', 'Pilar']]
+
+names_of_interest = [name for names in all_data for name in names
+                     if name.count('a') >= 2]
+print(names_of_interest)
+
+
+some_tuples = [(1, 2, 3), (4, 5, 6), (7, 8, 9)]
+flattened = [x for tup in some_tuples for x in tup]
+print(flattened)
+
+# List comprehension inside a list comprehension.
+flattened = [[x for x in tup] for tup in some_tuples]
+print(flattened)
+```
+
+::: {.callout-note}
+`for` order is the same as in nested `for` loops.
+:::
+
+
+
+## 3.2 Functions
+
+Functions organize and reuse code.
+
+
+
+## Function Declaration (def)
+
+```{python}
+def my_function(x, y):
+    """Docstring: Explains the function."""
+    return x + y
+
+result = my_function(1, 2)
+print(result)
+print(my_function.__doc__) # access docstring
+```
+
+-   `return` sends a value back.
+-   Implicit `None` return if no `return` statement.
+
+
+
+## Function Arguments (Positional and Keyword)
+
+```{python}
+def my_function2(x, y, z=1.5):  # z: keyword, default value
+    if z > 1:
+        return z * (x + y)
+    else:
+        return z / (x + y)
+
+print(my_function2(5, 6, z=0.7))  # Keyword
+print(my_function2(3.14, 7, 3.5)) # Positional
+print(my_function2(10, 20))       # Default
+```
+
+-   *Positional*: Correct order.
+-   *Keyword*: Any order, often with defaults.
+-   Keyword arguments *follow* positional.
+
+
+
+## Namespaces, Scope, and Local Functions
+
+-   Variables within a function are in the *local namespace* (default).
+-   Local namespace: Created on call, destroyed on finish.
+
+```{python}
+def func():
+    a = []  # 'a' is local
+    for i in range(5):
+        a.append(i)
+
+func()
+# print(a)  # NameError: 'a' is not defined
+```
+
+-   Access enclosing scopes, but use `global` or `nonlocal` to *modify*.
+
+```{python}
+a = []  # Global
+
+def func2():
+    for i in range(5):
+        a.append(i)  # Modifies global 'a'
+
+func2()
+print(a)
+
+b = None
+def bind_b_variable():
+    global b  # Declare 'b' as global
+    b = []
+bind_b_variable()
+print(b)
+```
+
+::: {.callout-caution}
+Minimize `global`.  Better design reduces reliance on global state.
+:::
+
+
+
+## Returning Multiple Values
+
+```{python}
+def f():
+    a = 5
+    b = 6
+    c = 7
+    return a, b, c  # Returns a tuple
+
+x, y, z = f()
+print(x, y, z)
+
+# Or a dictionary
+def f2():
+  a = 5
+  b = 6
+  c = 7
+  return {'a' : a, 'b' : b, 'c' : c}
+
+result = f2()
+print(result)
+
+```
+
+
+
+## Functions Are Objects
+
+Functions are first-class:
+
+-   Pass as arguments.
+-   Assign to variables.
+-   Return from other functions.
+
+```{python}
+import re
+
+states = ['   Alabama ', 'Georgia!', 'Georgia', 'georgia', 'FlOrIda',
+          'south   carolina##', 'West virginia?']
+
+def clean_strings(strings):
+    result = []
+    for value in strings:
+        value = value.strip()
+        value = re.sub('[!#?]', '', value)
+        value = value.title()
+        result.append(value)
+    return result
+
+print(clean_strings(states))
+
+# Alternative: list of functions
+def remove_punctuation(value):
+    return re.sub('[!#?]', '', value)
+
+clean_ops = [str.strip, remove_punctuation, str.title]
+
+def clean_strings_functional(strings, ops):
+    result = []
+    for value in strings:
+        for function in ops:
+            value = function(value)
+        result.append(value)
+    return result
+
+print(clean_strings_functional(states, clean_ops))
+
+# Using functions with map:
+for x in map(remove_punctuation, states):
+  print(x)
+```
+
+This is flexible and reusable.
+
+
+
+## Anonymous (Lambda) Functions
+
+Small, anonymous functions with `lambda`:
+
+```{python}
+# Equivalent to:
+# def short_function(x):
+#     return x * 2
+
+equiv_anon = lambda x: x * 2
+print(equiv_anon(4))
+```
+
+Useful for passing short functions:
+
+```{python}
+def apply_to_list(some_list, f):
+    return [f(x) for x in some_list]
+
+ints = [4, 0, 1, 5, 6]
+result = apply_to_list(ints, lambda x: x * 2)
+print(result)
+
+strings = ['foo', 'card', 'bar', 'aaaa', 'abab']
+strings.sort(key=lambda x: len(set(x))) # Sort by distinct letters
+print(strings)
+```
+
+
+
+## Generators
+
+Generators produce values *on demand* (memory-efficient).
+
+```{python}
+def squares(n=10):
+    print('Generating squares from 1 to %d' % n ** 2)
+    for i in range(1, n + 1):
+        yield i ** 2  # 'yield', not 'return'
+
+gen = squares()
+print(gen) # generator object
+for x in gen:  # Request values
+    print(x, end=' ')
+```
+
+-   `yield` instead of `return`.
+-   Don't execute immediately.
+
+
+
+## Generator Expressions
+
+Concise generators (like comprehensions):
+
+```{python}
+# List comprehension: [x ** 2 for x in range(100)]
+gen = (x ** 2 for x in range(100)) # Parentheses
+print(gen) # generator object
+print(sum(gen))
+
+# As function arguments:
+print(sum(x ** 2 for x in range(100)))
+print(dict((i, i **2) for i in range(5)))
+```
+
+
+
+## itertools Module
+
+`itertools` provides useful generators:
+
+```{python}
+import itertools
+
+def first_letter(x):
+    return x[0]
+
+names = ['Alan', 'Adam', 'Wes', 'Will', 'Albert', 'Steven']
+
+for letter, names_iter in itertools.groupby(names, first_letter):
+    print(letter, list(names_iter))
+```
+
+`itertools.groupby` groups consecutive elements.
+
+
+
+## Useful itertools Functions
+
+| Function                          | Description                                                                                                                               |
+| :-- | :- |
+| `chain(*iterables)`               | Chains iterators.                                                                                                                       |
+| `combinations(iterable, k)`      | k-tuples, ignoring order, no replacement.                                                                                                |
+| `permutations(iterable, k)`      | k-tuples, respecting order.                                                                                                             |
+| `groupby(iterable[, keyfunc])`    | (key, sub-iterator) for each unique key.                                                                                                 |
+| `product(*iterables, repeat=1)`   | Cartesian product (like nested for loops).                                                                                              |
+
+::: {.callout-note}
+Check the `itertools` documentation! It's a treasure trove! 💎
+:::
+
+
+
+## Errors and Exception Handling
+
+Handling errors is crucial for robust code.
+
+
+
+## try-except Blocks
+
+```{python}
+def attempt_float(x):
+    try:
+        return float(x)
+    except:  # Catches *any* exception
+        return x
+
+print(attempt_float('1.2345'))
+print(attempt_float('something'))
+```
+
+-   `try`: Code that might raise an exception.
+-   `except`: Executed if an exception occurs.
+
+
+
+## Catching Specific Exceptions
+
+```{python}
+def attempt_float2(x):
+    try:
+        return float(x)
+    except ValueError:  # Only ValueError
+        return x
+
+# print(attempt_float2((1, 2)))  # TypeError uncaught
+```
+
+Specify the exception type (preferred).
+
+
+
+## Catching Multiple Exception Types
+
+```{python}
+def attempt_float3(x):
+    try:
+        return float(x)
+    except (TypeError, ValueError):  # Multiple types
+        return x
+```
+
+Use a tuple for multiple types.
+
+
+
+## finally and else
+
+-   `finally`: *Always* executes (cleanup).
+-   `else`: Executes if `try` completes *without* exception.
+
+```{python}
+f = open("tempfile.txt", mode = "w") # create a temp file
+try:
+    # write_to_file(f)
+    f.write("example text")
+finally:
+    f.close()  # Always close
+    import os
+    os.remove("tempfile.txt")
+```
+
+```{python}
+f = open("tempfile.txt", mode = "w") # create a temp file
+try:
+    #write_to_file(f)
+    f.write("example text")
+except:
+    print('Failed')
+else:
+    print('Succeeded')
+finally:
+    f.close()
+    import os
+    os.remove("tempfile.txt")
+```
+
+
+
+## Exceptions in IPython
+
+IPython provides helpful tracebacks. Control detail with `%xmode` (Plain, Context, Verbose).
+
+
+
+## 3.3 Files and the Operating System
+
+
+
+## Opening Files (open)
+
+```{python}
+path = 'examples/segismundo.txt'
+
+# default encoding varies from platform to platform, better to specify explicitly.
+f = open(path, encoding='utf-8')  # Read mode ('r' default)
+for line in f:
+    print(line.rstrip()) # remove trailing whitespaces
+
+f.close()
+```
+
+-   `open(path, mode='r', encoding=None)`
+    -   `path`: File path.
+    -   `mode`: 'r' (read), 'w' (write), 'a' (append), 'x' (create), 'rb', 'wb', etc.
+    -   `encoding`:  File encoding (e.g., 'utf-8').
+
+-   *Close* files: `f.close()`.
+
+
+
+## Reading from Files
+```{python}
+# reading all the lines
+f = open(path, encoding="utf-8")
+lines = [x.rstrip() for x in f]  # Read, remove whitespace
+print(lines)
+f.close()
+```
+
+
+
+## Using with for Automatic File Closing
+
+`with` automatically closes files:
+
+```{python}
+with open(path, encoding="utf-8") as f:
+    lines = [x.rstrip() for x in f]
+print(lines)
+# 'f' is closed here
+```
+
+::: {.callout-tip}
+Use `with`! It ensures cleanup, even with errors.
+:::
+
+
+
+## File Modes
+
+| Mode | Description                                                                           |
+| :--- | :--- |
+| r    | Read-only                                                                             |
+| w    | Write-only; creates new (erases existing)                                             |
+| x    | Write-only; creates new
+| a    | Append to existing (creates if needed)                                                |
+| r+   | Read and write                                                                        |
+| b    | Binary mode (add to mode: 'rb', 'wb')                                                |
+| t    | Text mode (decodes bytes); default                                                    |
+
+
+
+
+## read, seek, and tell
+
+```{python}
+f1 = open(path, encoding = "utf-8")
+print(f1.read(10))  # 10 *characters*
+
+f2 = open(path, mode='rb')  # Binary
+print(f2.read(10))  # 10 *bytes*
+
+print(f1.tell())  # Position (characters)
+print(f2.tell())  # Position (bytes)
+
+import sys
+print(sys.getdefaultencoding())
+
+f1.seek(3)  # 3rd byte/character
+print(f1.read(1))
+
+f1.close()
+f2.close()
+```
+
+-   `read(n)`: Reads `n` characters/bytes.
+-   `tell()`: Current position.
+-   `seek(position)`: Moves pointer.
+-   Caution with `seek` and UTF-8 (multibyte characters).
+
+
+
+## Writing to Files
+
+```{python}
+with open('tmp.txt', 'w', encoding = "utf-8") as handle:
+    handle.writelines(x for x in open(path, encoding = "utf-8") if len(x) > 1)
+
+with open('tmp.txt', encoding = "utf-8") as f:
+    lines = f.readlines()
+print(lines)
+
+import os
+os.remove("tmp.txt")
+```
+
+-   `write(string)`: Writes string.
+-   `writelines(list_of_strings)`: Writes list.
+
+
+
+## Important File Methods/Attributes
+
+| Method/Attribute      | Description                                                                  |
+| :--- | :--- |
+| `read([size])`        | Returns data (bytes/string).                                                 |
+| `readable()`         | `True` if readable.                                                          |
+| `readlines([size])`   | List of lines.                                                               |
+| `write(string)`       | Writes string.                                                               |
+| `writable()`         | `True` if writable.                                                         |
+| `writelines(strings)` | Writes sequence of strings.                                                 |
+| `close()`             | Closes the file.                                                            |
+| `flush()`             | Flushes buffer to disk.                                                      |
+| `seek(pos)`           | Moves to position.                                                           |
+| `seekable()`          | `True` if seekable.                                                          |
+| `tell()`              | Current position.                                                            |
+| `closed`              | `True` if closed.                                                           |
+| `encoding`            | Encoding (e.g., UTF-8).                                                      |
+
+
+
+## Bytes and Unicode with Files
+
+-   Default: *text mode* (strings/Unicode).
+-   `mode='rb'`/`'wb'`: *binary mode* (bytes).
+
+```{python}
+with open(path, encoding = "utf-8") as f:
+    chars = f.read(10)
+print(len(chars))
+
+with open(path, 'rb') as f:
+    data = f.read(10)
+print(data)
+
+print(data.decode('utf-8'))  # Bytes to string
+
+# print(data[:4].decode('utf-8')) # UnicodeDecodeError (incomplete)
+```
+
+-   UTF-8: Variable-length encoding.  `read(n)` characters ≠ `read(n)` bytes.
+-   Binary: `read` returns exact bytes.
+-   Decode complete characters.
+
+```{python}
+sink_path = 'sink.txt'
+with open(path, encoding = "utf-8") as source:
+    with open(sink_path, 'x', encoding='iso-8859-1') as sink:
+        sink.write(source.read())
+
+with open(sink_path, encoding='iso-8859-1') as f:
+    print(f.read(10))
+
+import os
+os.remove(sink_path)
+
+# Caution:
+f = open(path, encoding = "utf-8")
+print(f.read(5))
+f.seek(4)
+# print(f.read(1)) # UnicodeDecodeError
+f.close()
+```
+
+::: {.callout-caution}
+Be *very* careful with `seek` in non-binary modes.
+:::
+
+
+
+## Summary
+
+This chapter covered:
+
+-   **Data Structures**: Tuples, Lists, Dictionaries, Sets.
+-   **Built-in Functions**: `enumerate`, `sorted`, `zip`, `reversed`.
+-   **Comprehensions**: Concise collection creation.
+-   **Functions**: Defining, arguments, namespaces, returns, lambdas.
+-   **Generators**: Memory-efficient iteration.
+-   **`itertools`**: Useful iterator tools.
+-   **Error Handling**: `try`, `except`, `finally`, `else`.
+-   **File Handling**: Opening, reading, writing, modes, encodings.
+
+These are foundational for data analysis in Python! 🧱
+
+
+
+## Thoughts and Discussion 🤔
+
+1.  **Large CSV File:** You have a CSV larger than RAM. How would you use generators and file handling to process it efficiently?
+
+2.  **Lists vs. Tuples:** Trade-offs? When to choose? Examples?
+
+3.  **List Comprehension vs. Generator Expression:** Differences? When to prefer a generator expression?
+
+4.  **Exception Handling:** Why is it important? Example in a data analysis context?
+
+5.  **`with` Statement:** Advantages for file handling?
+
+6.  **Text vs. Binary Mode:** Differences? Importance of encoding?
+
+7.  **Dict vs Set:** How to decide to use `dict` or `set`?
+

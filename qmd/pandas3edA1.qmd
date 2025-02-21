@@ -1,0 +1,672 @@
+---
+title: Python for Data Analysis
+subtitle:  Advanced NumPy 🚀
+---
+
+
+
+```{python}
+import numpy as np
+rng = np.random.default_rng(seed=12345)
+```
+
+
+
+## Introduction
+
+We've covered NumPy basics. Now, let's dive deeper! 🤿 We'll explore:
+
+-   `ndarray` internals.
+-   Advanced array manipulations.
+-   And some cool tricks! 😎
+
+## Topics Covered
+
+-   `ndarray` Object Internals
+-   Data Type Hierarchy
+-   Array Manipulation
+-   Broadcasting
+-   Advanced `ufunc` Usage
+-   Structured Arrays
+-   Sorting
+-   Writing Fast NumPy Functions with Numba
+
+## `ndarray` Object Internals 🤔
+
+-   NumPy's `ndarray` interprets a block of **homogeneously typed data** (all elements have the *same* data type) as a multidimensional array.
+-   It can be *contiguous* or *strided*.
+-   **Key Components**:
+    -   **Data Type (`dtype`)**:  How data is interpreted (float, int, bool, etc.).
+    -   **Strided View**: Allows operations like `arr[::2, ::-1]` *without* copying data! ⚡️
+
+## `ndarray` Internal Structure
+
+An `ndarray` consists of:
+
+1.  **Data Pointer**:  A block of data in RAM or a memory-mapped file.
+2.  **Data Type (`dtype`)**: Describes fixed-size value cells (e.g., float64, int32).
+3.  **Shape Tuple**: Array dimensions (e.g., `(10, 5)` for a 10x5 array).
+4.  **Strides Tuple**: Bytes to "step" to advance one element along a dimension.
+
+## Visualizing `ndarray` 🖼️
+
+-   **Data**: The actual array data.
+-   **dtype**: Data type information (e.g., `float64`).
+-   **Shape**: Array dimensions (e.g., `(3, 4, 5)`).
+-   **Strides**: Bytes to jump to the next element in each dimension.
+
+## Shape and Strides Example
+
+-   A 10 x 5 array has shape `(10, 5)`:
+
+```{python}
+arr_2d = np.ones((10, 5))
+arr_2d.shape
+```
+
+-   A 3 x 4 x 5 array of `float64` (8 bytes) typically has strides `(160, 40, 8)` (C order):
+
+```{python}
+arr_3d = np.ones((3, 4, 5), dtype=np.float64)
+arr_3d.strides
+```
+
+## Understanding Strides 🚶
+
+-   **Strides**: Bytes to move in memory to reach the next element along each dimension.
+-   **Example**: `arr_3d.strides = (160, 40, 8)`
+    -   *First dimension (rows)*: Move 160 bytes.
+    -   *Second dimension (columns)*: Move 40 bytes.
+    -   *Third dimension*: Move 8 bytes (`float64` size).
+-   Larger strides on an axis usually mean computations along that axis are *more costly*.
+-   Strides *can* be negative!
+
+## NumPy Data Type Hierarchy 🌳
+
+-   NumPy has a rich data type hierarchy.
+-   Use **superclasses** (e.g., `np.integer`, `np.floating`) and `np.issubdtype` to check array types:
+
+```{python}
+ints = np.ones(10, dtype=np.uint16)
+floats = np.ones(10, dtype=np.float32)
+print(np.issubdtype(ints.dtype, np.integer))
+print(np.issubdtype(floats.dtype, np.floating))
+```
+
+## Data Type Hierarchy (Cont'd)
+
+-   See parent classes with `.mro()` (Method Resolution Order):
+
+```{python}
+np.float64.mro()
+```
+
+-   This shows `np.float64` inherits from `np.floating`, `np.inexact`, ..., `object`.
+
+## Visualizing NumPy Data Type Hierarchy 📊
+-  `generic` is root
+-   `number`, `bool_` etc., are subclasses of `generic`
+
+## Advanced Array Manipulation: Reshaping 🔄
+
+-   **Reshaping**: Change an array's shape *without copying data*.
+-   Use the `reshape()` method with a shape tuple:
+
+```{python}
+arr = np.arange(8)
+arr.reshape((4, 2))
+```
+
+## Reshaping Multidimensional Arrays
+
+```{python}
+arr.reshape((4, 2)).reshape((2, 4))
+```
+
+-   Use `-1` for one dimension to infer the size:
+
+```{python}
+arr = np.arange(15)
+arr.reshape((5, -1))
+```
+
+## Reshaping with Shape Attribute
+
+```{python}
+other_arr = np.ones((3, 5))
+arr.reshape(other_arr.shape) # Reuse shape from another array
+```
+
+## Flattening or Raveling ➡️
+
+-   **Flattening/Raveling**: Convert multidimensional array to 1D.
+-   `ravel()`: Does *not* copy if values were contiguous.
+
+```{python}
+arr = np.arange(15).reshape((5, 3))
+arr.ravel()
+```
+
+-   `flatten()`: Always returns a *copy*.
+
+```{python}
+arr.flatten()
+```
+
+## C vs. FORTRAN Order 🔀
+
+-   **Row major (C)**: Consecutive row elements are stored together.
+-   **Column major (FORTRAN)**: Consecutive column elements are stored together.
+-   `reshape` and `ravel` accept an `order` argument (`'C'` or `'F'`).
+
+```{python}
+arr = np.arange(12).reshape((3, 4))
+print(arr.ravel())      # Default: 'C' order
+print(arr.ravel('F'))  # FORTRAN order
+```
+
+## C vs. FORTRAN Order (Visual)
+
+-   **C/row major**: Traverse higher dimensions *first*.
+-   **FORTRAN/column major**: Traverse higher dimensions *last*.
+
+## Concatenating Arrays ➕
+
+-   **`numpy.concatenate`**: Joins arrays along an existing axis.
+
+```{python}
+arr1 = np.array([[1, 2, 3], [4, 5, 6]])
+arr2 = np.array([[7, 8, 9], [10, 11, 12]])
+print(np.concatenate([arr1, arr2], axis=0))  # Stack vertically
+print(np.concatenate([arr1, arr2], axis=1))  # Stack horizontally
+```
+
+## Concatenation Helpers
+
+-   `vstack`, `row_stack`: Stack by rows (axis 0).
+-   `hstack`: Stack by columns (axis 1).
+-   `column_stack`: Like `hstack`, but converts 1D arrays to 2D columns first.
+-   `dstack`: Stack by "depth" (axis 2).
+
+```{python}
+print(np.vstack((arr1, arr2)))
+print(np.hstack((arr1, arr2)))
+```
+
+## Splitting Arrays ➗
+
+-   `split`: Slices an array into multiple arrays along an axis.
+
+```{python}
+arr = rng.standard_normal((5, 2))
+first, second, third = np.split(arr, [1, 3])
+print(f"{first=}")
+print(f"{second=}")
+print(f"{third=}")
+```
+-   `hsplit`/`vsplit`: Split on axis 0 and 1, respectively.
+
+## Array Concatenation Functions Table
+
+| Function             | Description                                                      |
+| -------------------- | ---------------------------------------------------------------- |
+| `concatenate`        | General function, joins arrays along an axis.                    |
+| `vstack`, `row_stack` | Stack arrays by rows (axis 0).                                   |
+| `hstack`             | Stack arrays by columns (axis 1).                                |
+| `column_stack`       | Like `hstack`, but converts 1D arrays to 2D columns.            |
+| `dstack`             | Stack arrays by "depth" (axis 2).                                |
+| `split`              | Split array at locations along an axis.                           |
+| `hsplit`/`vsplit`   | Split on axis 0 and 1, respectively.                            |
+
+## Stacking Helpers: `r_` and `c_`
+
+-   `r_` and `c_` make stacking more concise:
+
+```{python}
+arr = np.arange(6)
+arr1 = arr.reshape((3, 2))
+arr2 = rng.standard_normal((3, 2))
+print(np.r_[arr1, arr2])  # Like row_stack
+print(np.c_[np.r_[arr1, arr2], arr])  # Concatenate arr as a new column
+```
+
+## Repeating Elements: `tile` and `repeat` 🔁
+
+-   `repeat`: Replicates each element:
+
+```{python}
+arr = np.arange(3)
+print(arr.repeat(3))
+print(arr.repeat([2, 3, 4]))  # Different repetition for each element
+```
+
+-   2D array example:
+
+```{python}
+arr = rng.standard_normal((2, 2))
+arr.repeat(2, axis=0) # repeat along rows
+```
+
+## `tile`: Stacking Copies
+
+- `tile`: Stacks copies of an array along an axis:
+
+```{python}
+arr = rng.standard_normal((2, 2))
+print(np.tile(arr, 2))  # Repeat array twice along rows
+print(np.tile(arr, (2, 1)))  # 2 repetitions along rows, 1 along columns
+print(np.tile(arr, (3, 2)))  # 3 repetitions along rows, 2 along columns
+```
+
+## Fancy Indexing with `take` and `put`
+
+-   `take`: Selects elements by integer indices:
+
+```{python}
+arr = np.arange(10) * 100
+inds = [7, 1, 2, 6]
+arr.take(inds)  # Like arr[inds]
+```
+
+-   `put`: Assigns values to indices (in-place). *Doesn't* accept axis argument:
+
+```{python}
+arr.put(inds, 42)
+print(arr)
+arr.put(inds, [40, 41, 42, 43])
+print(arr)
+```
+
+## Broadcasting 📡
+
+-   **Broadcasting**: How operations work between arrays of *different* shapes.
+-   Simplest: Scalar and array:
+
+```{python}
+arr = np.arange(5)
+arr * 4  # 4 is "broadcast" to all elements
+```
+- Demeaning:
+```{python}
+arr = rng.standard_normal((4, 3))
+demeaned = arr - arr.mean(0)  # mean(0) is mean of each column
+demeaned
+```
+
+## Broadcasting Rule 📏
+
+-   Arrays are compatible if, for each *trailing dimension*:
+    1.  Axis lengths match, **OR**
+    2.  One length is 1.
+-   Broadcasting occurs over missing or length 1 dimensions.
+
+## Broadcasting Rule (visual)
+
+- It is an example of broadcasting a 1D array of shape (3,) over a 2D array of shape (4, 3) along axis 0
+
+## Broadcasting Example: Subtracting Row Means
+
+```{python}
+arr = rng.standard_normal((4, 3))
+row_means = arr.mean(1)  # Mean of each row
+print(row_means.shape)
+
+# Reshape row_means to (4, 1) for broadcasting
+demeaned = arr - row_means.reshape((4, 1))
+print(demeaned.mean(1))
+```
+
+## Broadcasting Over Other Axes
+
+-   Reshape for broadcasting over axes other than 0.
+-   Use `np.newaxis` and slicing to add a new axis of length 1:
+
+```{python}
+arr = np.zeros((4, 4))
+arr_3d = arr[:, np.newaxis, :]  # New axis in the middle
+print(arr_3d.shape)
+
+arr_1d = rng.standard_normal(3)
+print(arr_1d[:, np.newaxis])  # Column vector
+print(arr_1d[np.newaxis, :])  # Row vector
+```
+
+## Setting Values by Broadcasting
+
+-   Broadcasting applies to setting values:
+
+```{python}
+arr = np.zeros((4, 3))
+arr[:] = 5  # Set all to 5
+print(arr)
+
+col = np.array([1.28, -0.42, 0.44, 1.6])
+arr[:] = col[:, np.newaxis]  # Set columns
+print(arr)
+```
+
+## Advanced `ufunc` Usage 🚀
+
+-   **Universal functions (ufuncs)** have methods for vectorized operations.
+-   `reduce`: Aggregates by binary operations:
+
+```{python}
+arr = np.arange(10)
+np.add.reduce(arr)  # Like arr.sum()
+```
+
+## `ufunc` Methods: `accumulate` and `outer`
+
+-   `accumulate`: Intermediate "accumulated" values:
+
+```{python}
+arr = np.arange(15).reshape((3, 5))
+np.add.accumulate(arr, axis=1)  # Cumulative sum along rows
+```
+
+-   `outer`: Pair-wise cross product:
+
+```{python}
+arr = np.arange(3).repeat([1, 2, 2])
+np.multiply.outer(arr, np.arange(5))
+```
+
+## `ufunc` Method: `reduceat`
+
+-   `reduceat`: "Local reduce" (array groupby):
+
+```{python}
+arr = np.arange(10)
+np.add.reduceat(arr, [0, 5, 8])  # Reduce [0:5], [5:8], [8:]
+```
+
+```{python}
+arr = np.multiply.outer(np.arange(4), np.arange(5))
+np.add.reduceat(arr, [0, 2, 4], axis=1) # Reduce along columns
+```
+
+## `ufunc` Methods Table
+
+| Method             | Description                                                                         |
+| ------------------ | ----------------------------------------------------------------------------------- |
+| `accumulate(x)`    | Aggregate, preserving partial aggregates.                                            |
+| `at(x, i, b=None)` | In-place operation on `x` at indices `i`.                                            |
+| `reduce(x)`        | Aggregate by successive operations.                                                   |
+| `reduceat(x, bins)` | "Local" reduce/groupby; reduce slices to produce aggregated array.                   |
+| `outer(x, y)`      | Apply operation to all pairs; result has shape `x.shape + y.shape`.                  |
+
+## Numba: Fast NumPy Functions 🏎️
+
+-   **Numba**: Creates fast functions for NumPy-like data (CPUs, GPUs, etc.).
+-   Uses **LLVM** to translate Python to machine code.
+-   Example: Pure Python function:
+
+```{python}
+import numpy as np
+
+def mean_distance(x, y):
+    nx = len(x)
+    result = 0.0
+    count = 0
+    for i in range(nx):
+        result += x[i] - y[i]
+        count += 1
+    return result / count
+```
+
+## Numba Compilation
+
+-   This is *slow*. Compile with `numba.jit`:
+
+```{python}
+import numba as nb
+
+numba_mean_distance = nb.jit(mean_distance)
+
+# OR, with a decorator:
+@nb.jit
+def numba_mean_distance(x, y):
+    nx = len(x)
+    result = 0.0
+    count = 0
+    for i in range(nx):
+        result += x[i] - y[i]
+        count += 1
+    return result / count
+```
+
+-   `numba_mean_distance` is much *faster* (potentially even faster than NumPy's version!).
+
+## Custom `ufunc`s with Numba
+
+-   `numba.vectorize` creates compiled NumPy `ufuncs`:
+```{python}
+from numba import vectorize
+
+@vectorize
+def nb_add(x, y):
+    return x + y
+```
+
+-   Now, `nb_add` acts as a `ufunc`.
+
+## Structured Arrays 🏢
+
+-   `ndarray` is usually homogeneous.
+-   **Structured arrays**: Each element represents a "struct" (like in C) or SQL table row.
+
+```{python}
+dtype = [('x', np.float64), ('y', np.int32)]  # Field names and types
+sarr = np.array([(1.5, 6), (np.pi, -2)], dtype=dtype)
+print(sarr)
+print(sarr[0])
+print(sarr[0]['y'])
+```
+
+## Nested Data Types and Multidimensional Fields
+
+```{python}
+dtype = [('x', np.int64, 3), ('y', np.int32)]  # 'x' is an array of 3 int64
+arr = np.zeros(4, dtype=dtype)
+print(arr)
+print(arr[0]['x'])
+```
+
+## Why Structured Arrays?
+
+-   Interpret memory as a tabular structure.
+-   Efficient for disk I/O (including memory maps).
+-   Represent data from C/C++ code.
+-   Lower level than pandas DataFrames.
+
+## Sorting ️️️️️⬆️
+
+-   `ndarray.sort()`: In-place sort:
+
+```{python}
+arr = rng.standard_normal(6)
+arr.sort()  # Ascending
+print(arr)
+```
+-   `numpy.sort()`: Creates a *new*, sorted copy.
+
+```{python}
+arr = rng.standard_normal(5)
+print(np.sort(arr))  # Sorted copy
+```
+- Both methods accept `axis`
+```{python}
+arr = rng.standard_normal((3, 5))
+arr.sort(axis=1)  # Sort each row
+print(arr)
+```
+## Indirect Sorts: `argsort` and `lexsort`
+
+-   **Indirect sorts**: Return integer *indices* to reorder data.
+-   `argsort()`: Indices that would sort:
+
+```{python}
+values = np.array([5, 0, 1, 3, 2])
+indexer = values.argsort()
+print(indexer)
+print(values[indexer])
+```
+
+## `lexsort`: Multiple Keys
+
+-   `lexsort()`: Lexicographical sort on multiple keys (*last* array is primary key):
+
+```{python}
+first_name = np.array(['Bob', 'Jane', 'Steve', 'Bill', 'Barbara'])
+last_name = np.array(['Jones', 'Arnold', 'Arnold', 'Jones', 'Walters'])
+sorter = np.lexsort((first_name, last_name))  # Sort by last_name, then first_name
+print(list(zip(last_name[sorter], first_name[sorter])))
+```
+
+## Alternative Sort Algorithms
+
+-   Algorithms: `quicksort` (default), `mergesort`, `heapsort`, `timsort`.
+-   **Stable** sort: Preserves relative position of equal elements (`mergesort` is stable).
+
+```{python}
+values = np.array(['2:first', '2:second', '1:first', '1:second', '1:third'])
+key = np.array([2, 2, 1, 1, 1])
+indexer = key.argsort(kind='mergesort')  # For stability
+print(values.take(indexer))
+```
+
+## Array Sorting Methods Table
+
+| Kind        | Speed | Stable | Work Space | Worst Case  |
+| ----------- | ----- | ------ | ---------- | ----------- |
+| 'quicksort' | 1     | No     | 0          | O(n^2)      |
+| 'mergesort' | 2     | Yes    | ~n/2       | O(n log n) |
+| 'heapsort'  | 3     | No     | 0          | O(n log n) |
+| 'timsort'   | 4     | Yes    | ~n/2       | O(n log n) |
+
+- Note: `timsort` is also stable and often very efficient.
+
+## Partially Sorting Arrays
+
+-   `numpy.partition`, `np.argpartition`: Partition around k-th smallest element.
+
+```{python}
+rng = np.random.default_rng(12345)
+arr = rng.standard_normal(20)
+np.partition(arr, 3)  # First 3 are smallest (unsorted)
+```
+- `np.argpartition` returns indices:
+```{python}
+indices = np.argpartition(arr, 3)
+arr.take(indices)  # Partial sort
+```
+
+## `numpy.searchsorted`: Finding Elements 🔎
+
+-   `searchsorted`: Binary search on sorted array; returns insertion index.
+
+```{python}
+arr = np.array([0, 1, 7, 12, 15])
+print(arr.searchsorted(9))   # Where to insert 9?
+print(arr.searchsorted([0, 8, 11, 16]))
+```
+
+-   `side='right'` changes behavior for equal values.
+
+## `searchsorted` Example: Binning
+
+```{python}
+data = np.floor(rng.uniform(0, 10000, size=50))
+bins = np.array([0, 100, 1000, 5000, 10000])
+labels = bins.searchsorted(data)  # Bin each data point
+print(labels)
+```
+
+-   Combine with pandas's `groupby` for bin statistics.
+
+## Memory-Mapped Files 💾
+
+-   **Memory-mapped files**: Interact with on-disk binary data as if in memory.
+-   `memmap`: NumPy's ndarray-like object. Read/write segments without loading whole file.
+-   Create with `np.memmap`: specify path, dtype, shape, mode:
+
+```{python}
+mmap = np.memmap('mymmap', dtype='float64', mode='w+',
+                 shape=(10000, 10000))
+print(mmap)
+```
+
+## Memory-Mapped Files (Cont'd)
+
+-   Slicing returns *views* on disk:
+
+```{python}
+section = mmap[:5]  # First 5 rows
+```
+- Assigning buffers in memory; use `flush()` to write:
+```{python}
+section[:] = rng.standard_normal((5, 10000))
+mmap.flush()
+```
+- Opening existing map still requires dtype and shape:
+```{python}
+mmap = np.memmap('mymmap', dtype='float64', shape=(10000, 10000))
+print(mmap)
+```
+
+- `memmap` works with structured dtypes.
+
+## Performance Tips 🚀
+
+-   **Key**: Replace loops/conditionals with NumPy array/boolean operations.
+-   Use broadcasting.
+-   Use array views (slicing) – avoid copying.
+-   Use ufuncs and ufunc methods.
+-   Consider C, FORTRAN, or Cython if needed.
+
+## Contiguous Memory 🧠
+
+-   Memory layout affects performance.
+-   **Contiguous**: Elements stored in order (C or FORTRAN).
+-   Accessing contiguous blocks is fastest (CPU cache).
+-   NumPy arrays are C-contiguous by default; transpose is Fortran-contiguous.
+-   Check with `flags`:
+
+```{python}
+arr_c = np.ones((100, 10000), order='C')
+arr_f = np.ones((100, 10000), order='F')
+print(arr_c.flags)  # C_CONTIGUOUS: True, F_CONTIGUOUS: False
+print(arr_f.flags)  # C_CONTIGUOUS: False, F_CONTIGUOUS: True
+```
+
+## Contiguous Memory (Cont'd)
+
+-   Summing rows of C-contiguous array is *usually* faster.
+-   If needed, use `copy()` with `'C'` or `'F'`:
+
+```{python}
+arr_f.copy('C').flags
+```
+-   *Important*: Views are *not guaranteed* contiguous; check `flags.contiguous`.
+
+## Summary 📚
+
+-   `ndarray` internals: `dtype`, shape, strides.
+-   Array manipulations: reshaping, concatenation, splitting, repeating.
+-   Broadcasting.
+-   Advanced `ufunc` methods.
+-   Structured arrays.
+-   Sorting (indirect, partial).
+-   Memory-mapped files.
+-   Performance: contiguous memory.
+-   Numba!
+
+## Thoughts and Discussion 💭
+
+-   How can *you* apply these techniques?
+-   When are memory-mapped files useful?
+-   When to use Numba?
+-   Structured arrays vs. pandas DataFrames?
+-   Sorting algorithm choice?
+-   Vectorized operations vs. loops?
+-   Explore Numba further!

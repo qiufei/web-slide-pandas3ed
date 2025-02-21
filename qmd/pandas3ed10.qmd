@@ -1,0 +1,709 @@
+---
+title: "Python for Data Analysis"
+subtitle: "Chapter 10 "
+---
+
+## What We'll Learn 🤔
+
+This section focuses on **data aggregation and group operations**, a critical part of data analysis. We'll see how to categorize data and apply functions to each group—a fundamental step in many data workflows.
+
+## Key Operations ⚙️
+
+We'll cover:
+
+-   Splitting a pandas object into groups.
+-   Calculating group summary statistics (count, mean, etc.).
+-   Applying transformations within groups.
+-   Computing pivot tables and cross-tabulations.
+-   Performing quantile analysis.
+-   Using `transform` and `apply`.
+
+## Why is this important? 📈
+
+Grouping and aggregating data helps us:
+
+-   **Gain insights** by summarizing large datasets.
+-   **Compare** different groups.
+-   **Prepare data** for analysis or visualization.
+-   **Uncover patterns**.
+
+# How to Think About Group Operations
+
+## The Split-Apply-Combine Paradigm 💡
+
+Hadley Wickham's **"split-apply-combine"** paradigm is a powerful way to think about data manipulation.
+
+1.  **Split:** Divide data into groups based on "keys".
+2.  **Apply:** Apply a function to each group.
+3.  **Combine:** Combine results into a final output.
+
+## Visualizing Split-Apply-Combine 📊
+
+```{mermaid}
+graph LR
+    A[Data] --> B(Split by Key)
+    B --> C1[Group 1]
+    B --> C2[Group 2]
+    B --> C3[Group 3]
+    C1 --> D1(Apply Function)
+    C2 --> D2(Apply Function)
+    C3 --> D3(Apply Function)
+    D1 --> E[Combine Results]
+    D2 --> E
+    D3 --> E
+```
+
+## Grouping Keys 🔑
+
+Keys can be:
+
+-   Lists or arrays.
+-   DataFrame column names.
+-   Dictionaries or Series mapping values to group names.
+-   Functions applied to the index.
+
+These are essentially shortcuts for an array of values to split the object.
+
+## Example: Simple Group Aggregation
+
+![Split-Apply-Combine](https://pandas.pydata.org/docs/_images/06_groupby.svg)
+
+-   **Key and Data**: Table with 'Key' and 'Data' columns.
+-   **Split**: Data split into groups (A, B, C) by 'Key'.
+-   **Apply**: `Sum` function applied to each group's 'Data'.
+-   **Combine**: Sums combined into a new table.
+
+# Hands-on with Pandas: Creating a DataFrame
+
+Let's create a sample DataFrame:
+
+```{python}
+import numpy as np
+import pandas as pd
+
+df = pd.DataFrame({
+    "key1": ["a", "a", "b", "b", "a"],
+    "key2": [1, 2, 1, 2, 1],
+    "data1": np.random.randn(5),
+    "data2": np.random.randn(5)
+})
+df
+```
+
+This DataFrame has two key columns (`key1`, `key2`) and two data columns (`data1`, `data2`).
+
+# Basic GroupBy Operations
+
+## Grouping by a Single Column
+
+Calculate the mean of `data1` for each group in `key1`:
+
+```{python}
+grouped = df["data1"].groupby(df["key1"])
+grouped.mean()
+```
+
+-   `df["data1"]`: Selects `data1`.
+-   `.groupby(df["key1"])`: Groups by `key1`.
+-   `grouped`: A `GroupBy` object storing group info.
+-   `.mean()`: Calculates the mean for each group.
+
+## Grouping by Multiple Columns
+
+Group by multiple columns (hierarchical index):
+
+```{python}
+grouped = df.groupby(["key1", "key2"])
+grouped.agg({"data1": ["mean", "std"],
+             "data2": ["mean", "std"]})
+```
+
+Data is grouped by combinations of `key1` and `key2`.
+
+## Unstacking
+
+`unstack()` reshapes the result:
+
+```{python}
+means = df.groupby(["key1", "key2"])["data1"].mean()
+means.unstack()
+```
+
+## Grouping with Series and Arrays
+
+Keys can be external Series or arrays:
+
+```{python}
+states = np.array(["OH", "CA", "CA", "OH", "OH", "CA", "OH"])
+years = np.array([2005, 2005, 2006, 2005, 2006, 2005, 2006])
+
+# Create new df to match length of states and years
+df_ext = pd.DataFrame({
+    "key1": ["a", "a", "b", "b", "a", "b", "a"],
+    "key2": [1, 2, 1, 2, 1, 2, 1],
+    "data1": np.random.randn(7),
+    "data2": np.random.randn(7)
+})
+
+result = df_ext["data1"].groupby([states, years]).mean()
+print("\nGrouping Result:")
+print(result)
+
+print("\nUnstacked Result:")
+print(result.unstack())
+
+```
+
+Here, we group  `data1`  by external arrays  `states`  and  `years`.
+
+## Grouping Using Column Names Directly
+
+Use column names directly if grouping info is in the DataFrame:
+
+```{python}
+df.groupby("key1").mean()
+```
+Non-numeric column `key1`  is automatically excluded as a **nuisance column**
+
+```{python}
+df.groupby(["key1", "key2"]).mean()
+```
+
+## Group Size
+
+`size()` shows the number of data points in each group:
+
+```{python}
+df.groupby(["key1", "key2"]).size()
+```
+
+## Handling Missing Values in Group Keys
+
+Missing values in group keys are excluded by default. Include them with `dropna=False`:
+
+```{python}
+df.groupby("key1", dropna=False).size()
+```
+
+# Iterating Over Groups
+
+## Iterating with a Single Key
+
+`GroupBy` supports iteration, yielding group name and data chunk:
+
+```{python}
+for name, group in df.groupby("key1"):
+    print(f"Group Name: {name}")
+    print(group)
+```
+
+## Iterating with Multiple Keys
+
+With multiple keys, the group name is a tuple:
+
+```{python}
+for (k1, k2), group in df.groupby(["key1", "key2"]):
+    print(f"Group Keys: {(k1, k2)}")
+    print(group)
+```
+
+## Creating a Dictionary of Data Pieces
+
+Create a dictionary of group data:
+
+```{python}
+pieces = dict(list(df.groupby("key1")))
+pieces["b"]
+```
+
+# Grouping by Columns (axis=1)
+
+Group by columns using `axis="columns"`:
+
+```{python}
+grouped = df.groupby({"key1": "key", "key2": "key",
+                      "data1": "data", "data2": "data"}, axis="columns")
+
+for group_key, group_values in grouped:
+    print(group_key)
+    print(group_values)
+```
+
+# Selecting Columns for Aggregation
+
+## Selecting a Single Column (SeriesGroupBy)
+
+Index the `GroupBy` object to aggregate specific columns:
+
+```{python}
+df.groupby(["key1", "key2"])["data2"].mean()
+```
+
+This is shorthand for `df["data2"].groupby([df["key1"], df["key2"]]).mean()`.
+
+## Selecting Multiple Columns (DataFrameGroupBy)
+
+```{python}
+df.groupby(["key1", "key2"])[["data2"]].mean()
+```
+
+This is equivalent to `df[["data2"]].groupby([df["key1"], df["key2"]]).mean()`.
+
+# Grouping with Dictionaries and Series
+
+Use dictionaries or Series for grouping:
+
+```{python}
+people = pd.DataFrame(np.random.standard_normal((5, 5)),
+                   columns=["a", "b", "c", "d", "e"],
+                   index=["Joe", "Steve", "Wanda", "Jill", "Trey"])
+people.iloc[2:3, [1, 2]] = np.nan
+
+mapping = {"a": "red", "b": "red", "c": "blue",
+           "d": "blue", "e": "red", "f" : "orange"}
+
+by_column = people.groupby(mapping, axis="columns")
+by_column.sum()
+```
+
+`mapping` dictates column grouping.
+
+# Grouping with Functions
+
+Use functions to define group mappings (called once per index value):
+
+```{python}
+people.groupby(len).sum()  # Group by name length
+```
+
+# Grouping by Index Levels
+
+Group by levels of a hierarchical index:
+
+```{python}
+columns = pd.MultiIndex.from_arrays([["US", "US", "US", "JP", "JP"],
+                                    [1, 3, 5, 1, 3]],
+                                   names=["cty", "tenor"])
+hier_df = pd.DataFrame(np.random.standard_normal((4, 5)), columns=columns)
+hier_df.groupby(level="cty", axis="columns").count()
+```
+
+# Data Aggregation
+
+## Optimized Aggregation Methods
+
+Aggregation transforms arrays into scalars.  Optimized methods:
+
+-   `count`, `sum`, `mean`, `median`, `std`, `var`
+-   `min`, `max`, `prod`, `first`, `last`
+-   `any`, `all`, `cummin`, `cummax`, `cumsum`, `cumprod`
+-   `nth`, `ohlc`, `quantile`, `rank`, `size`
+
+## Using Your Own Aggregation Functions
+
+Define custom functions with `agg`:
+
+```{python}
+def peak_to_peak(arr):
+    return arr.max() - arr.min()
+
+grouped = df.groupby("key1")
+grouped.agg(peak_to_peak)
+```
+
+## The `describe` Method
+
+Use non-aggregation methods like `describe`:
+
+```{python}
+grouped.describe()
+```
+
+# Column-Wise and Multiple Function Application
+
+## Multiple Functions on a Single Column
+
+Load a tips dataset:
+
+```{python}
+tips = pd.read_csv("examples/tips.csv")  # Ensure 'examples' folder with 'tips.csv' exists
+tips["tip_pct"] = tips["tip"] / tips["total_bill"]
+```
+
+Apply multiple functions:
+
+```{python}
+grouped = tips.groupby(["day", "smoker"])
+grouped_pct = grouped["tip_pct"]
+grouped_pct.agg(["mean", "std", peak_to_peak])
+```
+
+## Custom Column Names
+
+Provide custom names:
+
+```{python}
+grouped_pct.agg([("average", "mean"), ("stdev", np.std)])
+```
+
+## Different Functions for Different Columns
+
+Apply different functions to different columns:
+
+```{python}
+functions = ["count", "mean", "max"]
+result = grouped[["tip_pct", "total_bill"]].agg(functions)
+result
+```
+
+```{python}
+grouped.agg({"tip" : np.max, "size" : "sum"})
+```
+
+```{python}
+grouped.agg({"tip_pct" : ["min", "max", "mean", "std"],
+             "size" : "sum"})
+```
+
+# Returning Aggregated Data Without Row Indexes
+
+Use `as_index=False` to prevent group keys becoming the index:
+
+```{python}
+numeric_cols = tips.select_dtypes(include=[np.number]).columns
+tips.groupby(["day", "smoker"], as_index=False)[numeric_cols].mean()
+```
+
+# `apply`: General split-apply-combine
+
+## The Power of `apply` 💪
+
+`apply` is the most general `GroupBy` method. Splits, applies a function, concatenates.
+
+## Example: Selecting Top Rows
+
+```{python}
+def top(df, n=5, column="tip_pct"):
+    return df.sort_values(column, ascending=False)[:n]
+
+tips.groupby("smoker").apply(top)
+```
+
+## Passing Arguments to `apply`
+
+```{python}
+tips.groupby(["smoker", "day"]).apply(top, n=1, column="total_bill")
+```
+
+## Suppressing Group Keys in `apply`
+
+Use `group_keys=False`:
+
+```{python}
+tips.groupby("smoker", group_keys=False).apply(top)
+```
+
+# Quantile and Bucket Analysis
+
+## Using `cut` and `qcut` with `groupby`
+
+Combine `cut`/`qcut` with `groupby` for bucket/quantile analysis:
+
+```{python}
+frame = pd.DataFrame({"data1": np.random.standard_normal(1000),
+                      "data2": np.random.standard_normal(1000)})
+quartiles = pd.cut(frame["data1"], 4)
+
+def get_stats(group):
+    return pd.DataFrame(
+        {"min": group.min(), "max": group.max(),
+        "count": group.count(), "mean": group.mean()}
+    )
+
+grouped = frame.groupby(quartiles)
+grouped.apply(get_stats)
+```
+Same result could have been computed more simply with:
+
+```{python}
+grouped.agg(["min", "max", "count", "mean"])
+```
+
+## Equal-Size Buckets with `qcut`
+
+```{python}
+quartiles_samp = pd.qcut(frame["data1"], 4, labels=False)
+grouped = frame.groupby(quartiles_samp)
+grouped.apply(get_stats)
+```
+
+# Example: Filling Missing Values with Group-Specific Values
+
+## Filling with the Mean
+
+```{python}
+s = pd.Series(np.random.standard_normal(6))
+s[::2] = np.nan
+s.fillna(s.mean())
+```
+
+## Filling with Group-Specific Means
+
+```{python}
+states = ["Ohio", "New York", "Vermont", "Florida",
+          "Oregon", "Nevada", "California", "Idaho"]
+group_key = ["East"] * 4 + ["West"] * 4
+data = pd.Series(np.random.standard_normal(8), index=states)
+data[["Vermont", "Nevada", "Idaho"]] = np.nan
+
+def fill_mean(group):
+    return group.fillna(group.mean())
+
+data.groupby(group_key).apply(fill_mean)
+```
+
+## Predefined Fill Values
+
+```{python}
+fill_values = {"East": 0.5, "West": -1}
+def fill_func(group):
+    return group.fillna(fill_values[group.name])
+
+data.groupby(group_key).apply(fill_func)
+```
+
+# Example: Random Sampling and Permutation
+
+## Simulating a Deck of Cards
+
+```{python}
+suits = ["H", "S", "C", "D"]
+card_val = (list(range(1, 11)) + [10] * 3) * 4
+base_names = ["A"] + list(range(2, 11)) + ["J", "K", "Q"]
+cards = []
+for suit in suits:
+    cards.extend(str(num) + suit for num in base_names)
+
+deck = pd.Series(card_val, index=cards)
+```
+
+## Drawing a Random Hand
+
+```{python}
+def draw(deck, n=5):
+    return deck.sample(n)
+
+draw(deck)
+```
+
+## Drawing Two Random Cards from Each Suit
+
+```{python}
+def get_suit(card):
+    return card[-1]
+
+deck.groupby(get_suit).apply(draw, n=2)
+```
+
+# Example: Group Weighted Average and Correlation
+
+## Group Weighted Average
+
+```{python}
+df = pd.DataFrame({"category": ["a", "a", "a", "a",
+                                "b", "b", "b", "b"],
+                   "data": np.random.standard_normal(8),
+                   "weights": np.random.uniform(size=8)})
+
+grouped = df.groupby("category")
+def get_wavg(group):
+    return np.average(group["data"], weights=group["weights"])
+
+grouped.apply(get_wavg)
+```
+
+## Correlation with SPX (S&P 500 Index)
+
+```{python}
+# Assuming 'examples' folder with 'stock_px.csv' exists
+close_px = pd.read_csv("examples/stock_px.csv", parse_dates=True, index_col=0)
+
+rets = close_px.pct_change().dropna()
+
+def get_year(x):
+    return x.year
+
+by_year = rets.groupby(get_year)
+
+def spx_corr(group):
+    return group.corrwith(group["SPX"])
+
+by_year.apply(spx_corr)
+```
+
+## Intercolumn Correlation (Apple and Microsoft)
+
+```{python}
+def corr_aapl_msft(group):
+    return group["AAPL"].corr(group["MSFT"])
+
+by_year.apply(corr_aapl_msft)
+```
+
+# Example: Group-Wise Linear Regression
+
+```{python}
+import statsmodels.api as sm
+
+def regress(data, yvar=None, xvars=None):
+    Y = data[yvar]
+    X = data[xvars]
+    X["intercept"] = 1.
+    result = sm.OLS(Y, X).fit()
+    return result.params
+
+by_year.apply(regress, yvar="AAPL", xvars=["SPX"])
+```
+
+# `transform`: Group Transforms and "Unwrapped" GroupBys
+
+## The `transform` Method
+
+`transform` is like `apply` but:
+
+-   Can produce a scalar to broadcast.
+-   Produces an object of the same shape as the input.
+-   Must not mutate its input.
+
+```{python}
+df = pd.DataFrame({'key': ['a', 'b', 'c'] * 4,
+                   'value': np.arange(12.)})
+g = df.groupby('key')['value']
+
+def get_mean(group):
+    return group.mean()
+g.transform(get_mean)
+```
+
+We can pass a string alias as with the GroupBy `agg` method:
+
+```{python}
+g.transform('mean')
+```
+
+Like `apply`, `transform` works with functions that return Series, but the result must be the same size as the input. For example, we can multiply each group by 2 using a helper function:
+
+```{python}
+def times_two(group):
+      return group * 2
+g.transform(times_two)
+```
+As a more complicated example, we can compute the ranks in descending order for each group:
+
+```{python}
+def get_ranks(group):
+    return group.rank(ascending=False)
+g.transform(get_ranks)
+```
+
+## "Unwrapped" Group Operations
+
+"Unwrapped" operations are often faster than `apply`:
+
+```{python}
+def normalize(x):
+    return (x - x.mean()) / x.std()
+
+g.transform(normalize)
+```
+
+```{python}
+g.apply(normalize)
+```
+
+```{python}
+normalized = (df['value'] - g.transform('mean')) / g.transform('std')
+normalized
+```
+
+# Pivot Tables and Cross-Tabulation
+
+## What is a Pivot Table? 🤔
+
+Aggregates data by keys, arranging it in a rectangle. Common in spreadsheets.
+
+## Pivot Tables with pandas
+
+`pivot_table` leverages `groupby` and hierarchical indexing:
+
+```{python}
+tips.pivot_table(
+    values=['total_bill', 'tip'],
+    index=['day', 'smoker'],
+    aggfunc='mean'
+)
+```
+
+## Grouping by Multiple Variables
+
+```{python}
+tips.pivot_table(index=["time", "day"], columns="smoker",
+                 values=["tip_pct", "size"])
+```
+
+## Adding Margins (Partial Totals)
+
+```{python}
+tips.pivot_table(index=["time", "day"], columns="smoker",
+                 values=["tip_pct", "size"], margins=True)
+```
+
+## Using Different Aggregation Functions
+
+```{python}
+tips.pivot_table(index=["time", "smoker"], columns="day",
+                 values="tip_pct", aggfunc=len, margins=True)
+```
+
+## Cross-Tabulations (Crosstab)
+
+Crosstab computes group frequencies:
+
+```{python}
+from io import StringIO
+
+data = pd.read_table(StringIO("""Sample Nationality Handedness
+1 USA Right-handed
+2 Japan Left-handed
+3 USA Right-handed
+4 Japan Right-handed
+5 Japan Left-handed
+6 Japan Right-handed
+7 USA Right-handed
+8 USA Left-handed
+9 Japan Right-handed
+10 USA Right-handed"""), sep="\s+")
+
+pd.crosstab(data["Nationality"], data["Handedness"], margins=True)
+```
+
+```{python}
+pd.crosstab([tips["time"], tips["day"]], tips["smoker"], margins=True)
+```
+
+# Summary
+
+-   We explored data aggregation, `groupby`, `apply`, `transform`.
+-   We created pivot tables and cross-tabulations.
+-   Essential for summarizing, comparing, and preparing data.
+
+# Thoughts and Discussion
+
+-   Other real-world scenarios for group operations?
+-   Creative combinations of these techniques?
+-   Limitations of `groupby`?
+-   Trade-offs between `apply`, `transform`, direct aggregation?
+-   How does "unwrapped" relate to performance?
+
+Let's discuss! 🧑‍🏫
+

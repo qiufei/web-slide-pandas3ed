@@ -1,0 +1,1041 @@
+---
+title: Python for Data Analysis
+subtitle: Chapter 11 Time Series
+---
+
+```{python}
+# SETUP (Provided code - needs to be at the top of the notebook)
+import numpy as np
+import pandas as pd
+from datetime import datetime, timedelta
+import pytz
+from pandas.tseries.offsets import Hour, Minute, Day, MonthEnd
+
+# For demonstration, suppress FutureWarnings in this specific notebook
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
+#For plot,
+import matplotlib.pyplot as plt
+```
+```
+
+
+## Introduction to Time Series Data
+
+Time series data is a sequence of data points collected over time intervals. ⏱️ It's a crucial data type in various fields:
+
+-   **Finance:** Stock prices, trading volume, interest rates 💰
+-   **Economics:** GDP, inflation, unemployment rates 📈
+-   **Ecology:** Population sizes, temperature changes 🌡️
+-   **Neuroscience:** Brainwave activity, neural signals 🧠
+-   **Physics:** Motion, velocity, acceleration 🚀
+
+Essentially, anything recorded repeatedly over time forms a time series.
+
+
+
+## Types of Time Series Data
+
+Time series data can be categorized based on how data points are measured concerning time:
+
+1.  **Timestamps:** Specific instants in time (e.g., 2024-10-27 09:30:00).
+2.  **Fixed Periods:**  Represent entire durations (e.g., January 2017, the year 2020).
+3.  **Intervals of Time:** Indicated by a start and end timestamp (e.g., a user session from 2:00 PM to 2:30 PM).
+4.  **Experiment or Elapsed Time:** Time relative to a starting point (e.g., seconds since a cookie was placed in the oven).
+
+This chapter focuses primarily on the first three categories (timestamps, fixed periods, and intervals).
+
+
+
+## Time Series: Regular vs. Irregular
+
+Time series can also be:
+
+-   **Fixed Frequency (Regular):** Data points occur at regular intervals (e.g., every 15 seconds, every 5 minutes, monthly).  🗓️
+-   **Irregular:** Data points don't follow a fixed time unit (e.g., timestamps of website visits). 🚶
+
+The choice of representation depends on the specific application.
+
+
+
+## Time Series in pandas
+
+`pandas` is a powerful Python library that offers extensive tools for time series analysis.  It allows you to:
+
+-   Work with large time series efficiently. 🗂️
+-   Slice, dice, and aggregate data. 🔪
+-   Resample both irregular and fixed-frequency time series. 🔄
+-   Handle missing data. ❓
+
+These capabilities are vital for financial and economic applications, but they are equally applicable to analyzing diverse datasets like server logs.
+
+
+
+## Importing Necessary Libraries
+
+Before diving into time series manipulations, let's import the essential libraries: `NumPy` for numerical operations and `pandas` for data analysis.
+
+```python
+import numpy as np
+import pandas as pd
+```
+
+
+
+## Date and Time Data Types and Tools
+
+Python's standard library provides modules for handling dates and times:
+
+-   `datetime`:  Provides classes for manipulating dates and times (e.g., `datetime`, `date`, `time`, `timedelta`).
+-   `time`:  Provides time-related functions.
+-   `calendar`:  Functions related to calendars.
+
+The `datetime.datetime` type (or simply `datetime`) is commonly used.
+
+
+
+## The `datetime` Object
+
+Let's create a `datetime` object representing the current time:
+
+```python
+from datetime import datetime
+
+now = datetime.now()
+print(now)
+```
+
+This code snippet retrieves the current date and time.
+
+
+
+## The `datetime` Object (Continued)
+
+We can also manually construct a datetime object:
+
+```python
+my_date = datetime(2024, 10, 27, 10, 30, 0) # Year, Month, Day, Hour, Minute, Second
+print(my_date)
+```
+
+Access individual components:
+
+```python
+print(f"Year: {now.year}, Month: {now.month}, Day: {now.day}")
+```
+
+
+
+## The `timedelta` Object
+
+A `timedelta` object represents the difference between two `datetime` objects:
+
+```python
+delta = datetime(2011, 1, 7) - datetime(2008, 6, 24, 8, 15)
+print(delta)
+print(f"Days: {delta.days}, Seconds: {delta.seconds}")
+```
+
+
+
+## The `timedelta` Object (Continued)
+
+-   `delta.days`: Returns the difference in days.
+-   `delta.seconds`: Returns the difference in seconds (within the last day).  It does *not* include the seconds contained within the `days` difference.
+
+
+
+## The `timedelta` Object (Continued)
+
+You can add or subtract `timedelta` objects to/from `datetime` objects:
+
+```python
+from datetime import timedelta
+
+start = datetime(2011, 1, 7)
+print(start + timedelta(12))  # Add 12 days
+print(start - 2 * timedelta(12))  # Subtract 24 days
+```
+
+
+
+## Types in the `datetime` Module
+
+| Type        | Description                                                                   |
+| :- | :- |
+| `date`      | Stores the calendar date (year, month, day).    |
+| `time`      | Stores the time of day (hours, minutes, seconds, microseconds).               |
+| `datetime`  | Stores both date and time.                                                    |
+| `timedelta` | Represents the difference between two `datetime` values.                      |
+| `tzinfo`    | Base type for storing time zone information.                                   |
+
+
+
+## Converting Between String and Datetime
+
+- **`strftime()`:** Formats a `datetime` object *into* a string.
+- **`strptime()`:** Parses a string *into* a `datetime` object.
+- **`pd.to_datetime()`:** convert string to DatetimeIndex in pandas.
+
+```python
+stamp = datetime(2011, 1, 3)
+
+# datetime to string
+print(str(stamp))
+print(stamp.strftime('%Y-%m-%d'))
+```
+
+
+
+## Converting Between String and Datetime (Continued)
+
+```python
+# string to datetime
+value = '2011-01-03'
+print(datetime.strptime(value, '%Y-%m-%d'))
+
+datestrs = ['7/6/2011', '8/6/2011']
+dt_list = [datetime.strptime(x, '%m/%d/%Y') for x in datestrs]
+print(dt_list)
+```
+
+
+
+## Common `strftime` and `strptime` Format Codes
+
+| Code | Description                                                                                                                               |
+| : | :- |
+| `%Y` | 4-digit year                                                                                                                              |
+| `%y` | 2-digit year                                                                                                                              |
+| `%m` | 2-digit month \[01, 12]                                                                                                                   |
+| `%d` | 2-digit day \[01, 31]                                                                                                                     |
+| `%H` | Hour (24-hour clock) \[00, 23]                                                                                                            |
+| `%I` | Hour (12-hour clock) \[01, 12]                                                                                                            |
+| `%M` | 2-digit minute \[00, 59]                                                                                                                   |
+| `%S` | Second \[00, 61] (60 and 61 are for leap seconds)                                                                                           |
+| `%f` | Microsecond as an integer, zero-padded (from 000000 to 999999)                                                                             |
+| `%j` | Day of the year as a zero-padded integer (from 001 to 336)   |
+
+
+
+## More `strftime` and `strptime` Format Codes
+
+| Code  | Description                                                                                    |
+| :- | : |
+| `%w`  | Weekday as an integer \[0 (Sunday), 6]                                                          |
+| `%u`	| Weekday as an integer starting from 1, where 1 is Monday. |
+| `%U`  | Week number of the year \[00, 53]; Sunday is the first day, days before the first Sunday are "week 0" |
+| `%W`	| Week number of the year [00, 53]; Monday is considered the first day of the week, and days before the first Monday of the year are "week 0”.|
+| `%z`  | UTC time zone offset as +HHMM or -HHMM; empty if naive                                         |
+|`%Z`	|Time zone name as a string, or empty string if no time zone |
+| `%F`  | Shortcut for %Y-%m-%d (e.g., 2012-4-18)                                                       |
+| `%D`  | Shortcut for %m/%d/%y (e.g., 04/18/12)                                                       |
+
+
+
+## `pd.to_datetime()` in pandas
+
+`pandas` is designed for working with arrays of dates.  The `pd.to_datetime()` method is highly versatile:
+
+```python
+datestrs = ['2011-07-06 12:00:00', '2011-08-06 00:00:00']
+dt_index = pd.to_datetime(datestrs)
+print(dt_index)
+```
+
+
+
+## `pd.to_datetime()` in pandas (Continued)
+
+It automatically handles various date formats and can also identify missing values:
+
+```python
+idx = pd.to_datetime(datestrs + [None])
+print(idx)
+print(idx[2])  # NaT (Not a Time)
+print(pd.isna(idx))
+```
+
+`NaT` is pandas's representation of a null timestamp.
+
+
+
+## Locale-Specific Date Formatting
+
+`datetime` objects have locale-specific formatting options.
+
+| Type | Description                                                                         |
+| : | :- |
+| `%a` | Abbreviated weekday name.                                                              |
+| `%A` | Full weekday name.                                                                   |
+| `%b` | Abbreviated month name.                                                              |
+| `%B` | Full month name.                                                                     |
+| `%c` | Full date and time (e.g., 'Tue 01 May 2012 04:20:57 PM').                              |
+| `%p` | Locale equivalent of AM or PM.                                                        |
+| `%x` | Locale-appropriate formatted date (e.g., in the US, May 1, 2012 yields '05/01/2012'). |
+| `%X` | Locale-appropriate time (e.g., '04:24:12 PM').                                       |
+
+
+
+## Time Series Basics in pandas
+
+A fundamental time series object in `pandas` is a `Series` indexed by timestamps:
+
+```python
+dates = [datetime(2011, 1, 2), datetime(2011, 1, 5),
+         datetime(2011, 1, 7), datetime(2011, 1, 8),
+         datetime(2011, 1, 10), datetime(2011, 1, 12)]
+ts = pd.Series(np.random.randn(6), index=dates)
+print(ts)
+print(type(ts))
+```
+
+- The index is a `DatetimeIndex`.
+
+
+
+## Time Series Basics in pandas (Continued)
+
+Arithmetic operations between differently-indexed time series automatically align on the dates.
+
+```python
+print(ts.index)
+print(ts + ts[::2]) # [::2] selects every second element.  Note the NaN values.
+```
+
+## Timestamp Objects
+Scalar values within a DatetimeIndex is pandas Timestamp objects:
+```python
+stamp = ts.index[0]
+print(stamp)
+print(type(stamp))
+```
+A pandas.Timestamp can be substituted most places where you would use a datetime object.
+
+
+## Indexing, Selection, and Subsetting
+
+You can index time series using labels (dates) in various ways:
+
+```python
+stamp = ts.index[2]
+print(ts[stamp])
+print(ts['2011-01-10'])
+```
+
+
+
+## Indexing, Selection, and Subsetting (Continued)
+
+For longer time series, you can select slices using years or year-months:
+
+```python
+longer_ts = pd.Series(np.random.randn(1000),
+                      index=pd.date_range('1/1/2000', periods=1000))
+print(longer_ts['2001'])
+print(longer_ts['2001-05'])
+```
+
+
+
+## Indexing, Selection, and Subsetting (Continued)
+
+Slicing with `datetime` objects also works, including range queries:
+
+```python
+print(ts[datetime(2011, 1, 7):])
+print(ts['2011-01-06':'2011-01-11'])
+```
+
+
+
+## Indexing, Selection, and Subsetting (Continued)
+
+The `truncate()` method slices a `Series` between two dates:
+
+```python
+print(ts.truncate(after='2011-01-09'))
+```
+
+## Indexing, Selection, and Subsetting (Continued)
+
+All of these slicing operations apply to `DataFrame`, indexing on rows:
+
+```python
+dates = pd.date_range('1/1/2000', periods=100, freq='W-WED')
+long_df = pd.DataFrame(np.random.randn(100, 4),
+                       index=dates,
+                       columns=['Colorado', 'Texas', 'New York', 'Ohio'])
+print(long_df.loc['2001-05'])
+```
+
+
+
+## Time Series with Duplicate Indices
+
+It's possible to have multiple data observations for the same timestamp:
+
+```python
+dates = pd.DatetimeIndex(['1/1/2000', '1/2/2000', '1/2/2000', '1/2/2000',
+                        '1/3/2000'])
+dup_ts = pd.Series(np.arange(5), index=dates)
+print(dup_ts)
+print(dup_ts.index.is_unique)
+```
+
+
+
+## Time Series with Duplicate Indices (Continued)
+
+Indexing will now produce either scalar values or slices:
+
+```python
+print(dup_ts['1/3/2000'])  # Not duplicated
+print(dup_ts['1/2/2000'])  # Duplicated
+```
+
+
+
+## Time Series with Duplicate Indices (Continued)
+
+To aggregate data with non-unique timestamps, use `groupby` with `level=0`:
+
+```python
+grouped = dup_ts.groupby(level=0)
+print(grouped.mean())
+print(grouped.count())
+```
+
+
+## Date Ranges, Frequencies, and Shifting
+### Generating Date Ranges
+`pandas.date_range()` is used to generate a `DatetimeIndex` with a specific length and frequency:
+```python
+index = pd.date_range('2012-04-01', '2012-06-01')
+print(index)
+```
+
+
+## Generating Date Ranges(Continued)
+By default, `date_range` generates daily timestamps.  You can specify a start or end date and the number of periods:
+
+```python
+print(pd.date_range(start='2012-04-01', periods=20))
+print(pd.date_range(end='2012-06-01', periods=20))
+```
+
+
+## Generating Date Ranges(Continued)
+You can also specify frequencies.  For example, to get the last business day of each month:
+
+```python
+print(pd.date_range('2000-01-01', '2000-12-01', freq='BM'))  # 'BM' = Business Month end
+```
+
+
+### Frequencies and Date Offsets
+
+Frequencies in `pandas` are composed of a *base frequency* and a *multiplier*.  Base frequencies are typically string aliases (e.g., 'M' for monthly, 'H' for hourly).
+
+| Alias        | Offset Type          | Description                          |
+| :-- | :- | :-- |
+| `D`          | `Day`                | Calendar daily                       |
+| `B`          | `BusinessDay`        | Business daily                       |
+| `H`          | `Hour`               | Hourly                               |
+| `T` or `min` | `Minute`             | Once a minute                             |
+| `S`          | `Second`             | Once a second                               |
+| `L` or `ms` | `Milli`             |Millisecond (1/1,000 of 1 second)|
+|`U`|`Micro`|Microsecond (1/1,000,000 of 1 second)|
+| `M`          | `MonthEnd`           | Last calendar day of month           |
+
+## Frequencies and Date Offsets(Cont.)
+| Alias        | Offset Type          | Description                          |
+| :-- | :- | :-- |
+| `BM`         | `BusinessMonthEnd`   | Last business day (weekday) of month |
+| `MS`         | `MonthBegin`         | First calendar day of month          |
+| `BMS`        | `BusinessMonthBegin` | First weekday of month               |
+| `W-MON`, `W-TUE`, ... | `Week` | Weekly on given day of week (MON, TUE, WED, THU,FRI, SAT, or SUN) |
+| `WOM-1MON`, `WOM-2MON`, ... | `WeekOfMonth` | Generate weekly dates in the first, second, third, or fourth week of the month (e.g., WOM-3FRI for thethird Friday of each month) |
+
+
+## Frequencies and Date Offsets(Cont.)
+
+| Alias        | Offset Type          | Description                          |
+| :-- | :- | :-- |
+|`Q-JAN`, `Q-FEB`, ...|`QuarterEnd`|Quarterly dates anchored on last calendar day of each month, for year ending in indicated month (JAN, FEB,MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, or DEC)|
+|`BQ-JAN`, `BQ-FEB`, ...|`BusinessQuarterEnd`|Quarterly dates anchored on last weekday day of each month, for year ending in indicated month|
+|`QS-JAN`, `QS-FEB`, ...|`QuarterBegin`|Quarterly dates anchored on first calendar day of each month, for year ending in indicated month|
+|`BQS-JAN`, `BQS-FEB`, ...|`BusinessQuarterBegin`|Quarterly dates anchored on first weekday day of each month, for year ending in indicated month|
+|`A-JAN`, `A-FEB`, ...|`YearEnd`|Annual dates anchored on last calendar day of given month (JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP,OCT, NOV, or DEC)|
+|`BA-JAN`, `BA-FEB`, ...|`BusinessYearEnd`|Annual dates anchored on last weekday of given month|
+|`AS-JAN`, `AS-FEB`, ...|`YearBegin`|Annual dates anchored on first day of given month|
+|`BAS-JAN`, `BAS-FEB`, ...|`BusinessYearBegin`|Annual dates anchored on first weekday of given month|
+
+
+
+## Frequencies and Date Offsets - Examples
+
+```python
+from pandas.tseries.offsets import Hour, Minute
+print(Hour())
+print(Hour(4))
+print(pd.date_range('2000-01-01', '2000-01-03 23:59', freq='4H'))
+```
+
+## Frequencies and Date Offsets - Examples(Cont.)
+```python
+print(Hour(2) + Minute(30))
+print(pd.date_range('2000-01-01', periods=10, freq='1h30min'))
+```
+
+
+## Frequencies and Date Offsets - "Week of Month"
+
+```python
+rng = pd.date_range('2012-01-01', '2012-09-01', freq='WOM-3FRI')
+print(list(rng))
+```
+
+
+
+### Shifting (Leading and Lagging) Data
+
+*Shifting* moves data backward or forward through time.  The `shift()` method is used:
+
+```python
+ts = pd.Series(np.random.randn(4),
+               index=pd.date_range('1/1/2000', periods=4, freq='M'))
+print(ts)
+print(ts.shift(2))
+print(ts.shift(-2))
+```
+
+
+
+## Shifting (Leading and Lagging) Data (Continued)
+
+A common use is to compute percentage changes:
+
+```python
+print(ts / ts.shift(1) - 1)
+```
+
+
+
+## Shifting (Leading and Lagging) Data (Continued)
+
+You can also shift the *timestamps*, leaving the data unchanged:
+
+```python
+print(ts.shift(2, freq='M'))
+print(ts.shift(3, freq='D'))
+print(ts.shift(1, freq='90T'))
+```
+
+
+### Shifting dates with offsets
+
+`pandas` date offsets can be used with `datetime` or `Timestamp` objects:
+
+```python
+from pandas.tseries.offsets import Day, MonthEnd
+now = datetime(2011, 11, 17)
+print(now + 3 * Day())
+print(now + MonthEnd()) # roll forward to the month end.
+print(now + MonthEnd(2))
+```
+
+## Shifting dates with offsets(Cont.)
+```python
+offset = MonthEnd()
+print(offset.rollforward(now)) # Explicit forward roll
+print(offset.rollback(now)) # Explicit backward roll
+```
+
+## Shifting dates with offsets(Cont.)
+
+A clever use of date offsets with `groupby` is to "roll" dates:
+
+```python
+ts = pd.Series(np.random.randn(20),
+                index=pd.date_range('1/15/2000', periods=20, freq='4D'))
+print(ts.groupby(MonthEnd().rollforward).mean())
+print(ts.resample('M').mean()) # Equivalent, and faster
+
+```
+
+## Time Zone Handling
+
+Working with time zones can be complex.  `pandas` uses the `pytz` library. By default, time series in pandas are time zone naive.
+
+```python
+import pytz
+print(pytz.common_timezones[-5:])
+tz = pytz.timezone('America/New_York')
+print(tz)
+```
+
+### Time Zone Localization and Conversion
+
+```python
+dates = pd.date_range('3/9/2012 9:30', periods=6, freq='D')
+ts = pd.Series(np.random.randn(len(dates)), index=dates)
+print(ts)
+print(ts.index.tz) # Time zone naive (None)
+```
+
+
+### Time Zone Localization and Conversion(Cont.)
+```python
+#Generate a date range with a timezone
+date_rng = pd.date_range('3/9/2012 9:30', periods=10, freq='D', tz='UTC')
+print(date_rng.tz)
+
+# Localize to a timezone.
+ts_utc = ts.tz_localize('UTC') # Localize to a specific time zone
+print(ts_utc)
+print(ts_utc.index)
+```
+
+
+### Time Zone Localization and Conversion(Cont.)
+```python
+# Convert to another time zone.
+ts_eastern = ts_utc.tz_convert('America/New_York')
+print(ts_eastern)
+```
+
+### Operations with Time Zone-Aware Timestamp Objects
+
+`Timestamp` objects also support time zone localization and conversion:
+
+```python
+stamp = pd.Timestamp('2011-03-12 04:00')
+stamp_utc = stamp.tz_localize('utc')
+print(stamp_utc.tz_convert('America/New_York'))
+```
+
+### Operations with Time Zone-Aware Timestamp Objects(Cont.)
+
+When performing operations between different time zones, the result will be in UTC.
+
+```python
+dates = pd.date_range('3/7/2012 9:30', periods=10, freq='B')
+ts = pd.Series(np.random.randn(len(dates)), index=dates)
+ts1 = ts[:7].tz_localize('Europe/London')
+ts2 = ts1[2:].tz_convert('Europe/Moscow')
+result = ts1 + ts2
+print(result.index)
+```
+
+## Periods and Period Arithmetic
+
+*Periods* represent time spans (e.g., days, months, quarters, years).  The `Period` class:
+
+```python
+p = pd.Period(2011, freq='A-DEC')
+print(p)
+print(p + 5)
+print(p - 2)
+print(pd.Period('2014', freq='A-DEC') - p)
+```
+
+
+
+## Periods and Period Arithmetic (Continued)
+
+`period_range` creates regular ranges of periods:
+
+```python
+rng = pd.period_range('2000-01-01', '2000-06-30', freq='M')
+print(rng)
+print(pd.Series(np.random.randn(6), index=rng))
+```
+
+
+## Periods and Period Arithmetic (Continued)
+```python
+values = ['2001Q3', '2002Q2', '2003Q1']
+index = pd.PeriodIndex(values, freq='Q-DEC')
+print(index)
+```
+
+
+
+### Period Frequency Conversion
+
+Periods and `PeriodIndex` objects can be converted using `asfreq`:
+
+```python
+p = pd.Period('2011', freq='A-DEC')
+print(p.asfreq('M', how='start'))
+print(p.asfreq('M', how='end'))
+
+p = pd.Period('Aug-2011', 'M')
+print(p.asfreq('A-JUN'))
+```
+
+
+### Period Frequency Conversion(Cont.)
+```python
+periods = pd.period_range('2006', '2009', freq='A-DEC')
+ts = pd.Series(np.random.randn(len(periods)), index=periods)
+print(ts.asfreq('M', how='start'))
+print(ts.asfreq('B', how='end'))
+```
+
+
+### Quarterly Period Frequencies
+
+Quarterly data is common in finance.  `pandas` supports quarterly frequencies (Q-JAN through Q-DEC):
+```python
+p = pd.Period('2012Q4', freq='Q-JAN')#In the case of a fiscal year ending in January, 2012Q4 runs from November 2011through January 2012
+print(p)
+print(p.asfreq('D', how='start'))
+print(p.asfreq('D', how='end'))
+```
+
+### Quarterly Period Frequencies(Cont.)
+Get the timestamp at 4 P.M. on the second-to-last business day of the quarter
+```python
+p4pm = (p.asfreq('B', 'e') - 1).asfreq('T', 's') + 16 * 60
+print(p4pm)
+print(p4pm.to_timestamp())
+```
+
+### Quarterly Period Frequencies(Cont.)
+Generate quarterly ranges using pandas.period_range
+```python
+periods = pd.period_range('2011Q3', '2012Q4', freq='Q-JAN')
+ts = pd.Series(np.arange(len(periods)), index=periods)
+print(ts)
+new_periods = (periods.asfreq('B', 'e') - 1).asfreq('H', 's') + 16
+ts.index = new_periods.to_timestamp()
+print(ts)
+```
+
+
+
+### Converting Timestamps to Periods (and Back)
+
+`to_period()` converts timestamps to periods:
+```python
+dates = pd.date_range('1/1/2000', periods=3, freq='M')
+ts = pd.Series(np.random.randn(3), index=dates)
+pts = ts.to_period()
+print(ts)
+print(pts)
+```
+
+### Converting Timestamps to Periods (and Back)(Cont.)
+```python
+dates = pd.date_range('1/29/2000', periods=6, freq='D')
+ts2 = pd.Series(np.random.randn(6), index=dates)
+print(ts2.to_period('M'))
+print(ts2.to_period('M').to_timestamp(how='end'))#back to Timestamps
+```
+
+### Creating a PeriodIndex from Arrays
+
+You can combine year and quarter columns to create a `PeriodIndex`:
+
+```python
+data = pd.read_csv('examples/macrodata.csv')
+print(data.head(5))
+```
+
+
+
+### Creating a PeriodIndex from Arrays (Continued)
+
+```python
+index = pd.PeriodIndex(year=data['year'], quarter=data['quarter'],freq='Q-DEC')
+data.index = index
+print(data['infl'].head())
+```
+
+## Resampling and Frequency Conversion
+
+*Resampling* converts a time series from one frequency to another.
+
+-   **Downsampling:** Aggregating higher frequency data to lower (e.g., daily to monthly).
+-   **Upsampling:** Converting lower frequency data to higher (e.g., daily to hourly).
+
+The `resample()` method is used.  It's similar to `groupby`.
+```python
+dates = pd.date_range('1/1/2000', periods=100, freq='D')
+ts = pd.Series(np.random.randn(len(dates)), index=dates)
+print(ts.resample('M').mean()) # Monthly means (downsampling)
+print(ts.resample('M', kind='period').mean())
+```
+
+
+
+### Resample Method Arguments
+| Argument   | Description                                                                                                                                                     |
+| : | :-- |
+| `rule`       | String, DateOffset, or timedelta indicating the desired resampled frequency (for example, ‘M', '5min', or Second(15))                                           |
+| `axis`      | Axis to resample on; default axis=0                                                                                                                              |
+|`fill_method`|How to interpolate when upsampling, as in "ffill" or "bfill"; by default does no interpolation|
+|`closed`|In downsampling, which end of each interval is closed (inclusive), "right" or "left"|
+
+### Resample Method Arguments(Cont.)
+
+| Argument   | Description                                                                                                                                                     |
+| : | :-- |
+|`label`|In downsampling, how to label the aggregated result, with the "right" or "left" bin edge (e.g., the9:30 to 9:35 five-minute interval could be labeled 9:30 or 9:35)|
+|`limit`|When forward or backward filling, the maximum number of periods to fill|
+|`kind`|Aggregate to periods ("period") or timestamps ("timestamp"); defaults to the type of index thetime series has|
+|`convention`|When resampling periods, the convention ("start" or "end") for converting the low-frequency periodto high frequency; defaults to "start"|
+|`origin`|The "base" timestamp from which to determine the resampling bin edges; can also be one of "epoch","start", "start_day", "end", or "end_day"; see the resample docstring for full details|
+|`offset`|An offset timedelta added to the origin; defaults to None|
+
+
+
+### Downsampling
+
+```python
+dates = pd.date_range('1/1/2000', periods=12, freq='T')
+ts = pd.Series(np.arange(12), index=dates)
+print(ts)
+print(ts.resample('5min').sum())
+```
+
+## Downsampling(Cont.)
+```python
+# closed='right', label='left'
+print(ts.resample('5min', closed='right').sum())
+
+# closed='right', label='right'
+print(ts.resample('5min', closed='right', label='right').sum())
+```
+
+
+## Downsampling(Cont.)
+```python
+#shift the result index
+from pandas.tseries.frequencies import to_offset
+result = ts.resample('5min', closed='right', label='right').sum()
+result.index = result.index + to_offset("-1s")
+print(result)
+```
+
+
+#### Open-High-Low-Close (OHLC) Resampling
+finance data resampling
+```python
+print(ts.resample('5min').ohlc())
+```
+
+
+### Upsampling and Interpolation
+
+```python
+frame = pd.DataFrame(np.random.randn(2, 4),
+                    index=pd.date_range('1/1/2000', periods=2, freq='W-WED'),
+                    columns=['Colorado', 'Texas', 'New York', 'Ohio'])
+print(frame)
+```
+
+
+## Upsampling and Interpolation(Cont.)
+```python
+df_daily = frame.resample('D').asfreq()
+print(df_daily)
+print(frame.resample('D').ffill())
+print(frame.resample('D').ffill(limit=2))
+print(frame.resample('W-THU').ffill())
+```
+
+
+### Resampling with Periods
+
+Resampling period-indexed data is similar:
+
+```python
+frame = pd.DataFrame(np.random.randn(24, 4),
+                     index=pd.period_range('1-2000', '12-2001', freq='M'),
+                     columns=['Colorado', 'Texas', 'New York', 'Ohio'])
+print(frame.head())
+```
+
+
+## Resampling with Periods(Cont.)
+
+```python
+annual_frame = frame.resample('A-DEC').mean()
+print(annual_frame)
+
+# Q-DEC: Quarterly, year ending in December
+print(annual_frame.resample('Q-DEC', convention='end').asfreq())
+print(annual_frame.resample('Q-MAR').ffill())
+```
+
+## Grouped Time Resampling
+
+```python
+N = 15
+times = pd.date_range('2017-05-20 00:00', freq='1min', periods=N)
+df = pd.DataFrame({'time': times, 'value': np.arange(N)})
+print(df)
+print(df.set_index('time').resample('5min').count())
+```
+
+
+## Grouped Time Resampling(Cont.)
+```python
+df2 = pd.DataFrame({'time': times.repeat(3),
+                    'key': np.tile(['a', 'b', 'c'], N),
+                    'value': np.arange(N * 3.)})
+print(df2.head(7))
+```
+
+## Grouped Time Resampling(Cont.)
+```python
+time_key = pd.Grouper(freq='5min')
+resampled = (df2.set_index('time')
+             .groupby(['key', time_key])
+             .sum())
+print(resampled)
+```
+
+
+## Moving Window Functions
+
+*Moving window functions* (also called *rolling window functions*) operate on a sliding window of data. They are commonly used for smoothing noisy time series.
+```python
+close_px_all = pd.read_csv('examples/stock_px.csv',parse_dates=True, index_col=0)
+close_px = close_px_all[['AAPL', 'MSFT', 'XOM']]
+close_px = close_px.resample('B').ffill()#business day frequency
+```
+
+## Moving Window Functions(Cont.)
+```python
+close_px['AAPL'].plot()
+close_px['AAPL'].rolling(250).mean().plot() # rolling 250 days mean
+```
+
+
+## Moving Window Functions(Cont.)
+```python
+std250 = close_px['AAPL'].pct_change().rolling(250, min_periods=10).std()
+print(std250[5:12])
+std250.plot()
+```
+
+
+## Moving Window Functions(Cont.)
+```python
+expanding_mean = std250.expanding().mean()
+```
+
+## Moving Window Functions(Cont.)
+```python
+plt.style.use('grayscale')
+close_px.rolling(60).mean().plot(logy=True)
+```
+
+
+## Moving Window Functions(Cont.)
+```python
+print(close_px.rolling('20D').mean())
+
+```
+
+
+### Exponentially Weighted Functions
+```python
+aapl_px = close_px['AAPL']['2006':'2007']
+ma30 = aapl_px.rolling(30, min_periods=20).mean()
+ewma30 = aapl_px.ewm(span=30).mean()
+
+aapl_px.plot(style='k-', label='Price')
+ma30.plot(style='k--', label='Simple Moving Avg')
+ewma30.plot(style='k-', label='EW MA')
+plt.legend()
+
+```
+
+
+
+### Binary Moving Window Functions
+
+```python
+spx_px = close_px_all['SPX']
+spx_rets = spx_px.pct_change()
+returns = close_px.pct_change()
+
+# Correlation of AAPL returns with S&P 500 returns
+corr = returns['AAPL'].rolling(125, min_periods=100).corr(spx_rets)
+corr.plot()
+```
+
+
+
+### Binary Moving Window Functions (Continued)
+
+```python
+# Correlation of all stock returns with S&P 500
+corr = returns.rolling(125, min_periods=100).corr(spx_rets)
+corr.plot()
+```
+
+
+
+### User-Defined Moving Window Functions
+
+The `apply` method allows you to apply custom functions:
+
+```python
+from scipy.stats import percentileofscore
+
+def score_at_2percent(x):
+    return percentileofscore(x, 0.02)
+
+result = returns['AAPL'].rolling(250).apply(score_at_2percent)
+result.plot()
+```
+
+
+
+## Conclusion
+
+This chapter covered essential techniques for working with time series data in `pandas`, including:
+
+-   Date and time data types.
+-   Time series indexing, selection, and subsetting.
+-   Generating date ranges and frequencies.
+-   Shifting data.
+-   Time zone handling.
+-   Periods and period arithmetic.
+-   Resampling (downsampling and upsampling).
+-   Moving window functions.
+
+These tools are fundamental for analyzing time-based data.
+
+
+
+## Summary
+
+-   **Time Series Data:** Sequences of data points indexed in time order.
+-   **pandas Functionality:** `pandas` provides robust tools for manipulating time series data.
+-   **Key Operations:** Learned to handle date/time types, resample, shift, and apply rolling functions.
+-   **Applications:** These techniques are applicable in finance, economics, ecology, etc.
+-   **Building Blocks:** Foundation for advanced time series modeling.
+
+
+
+## Thoughts and Discussion
+
+1.  **Data Frequency Choice:** How does frequency choice impact insights?
+2.  **Missing Data Strategies:** Discuss strategies for handling missing data.
+3.  **Moving Window Function Selection:**  Trade-offs between moving average types.
+4.  **Time Zone Awareness:** Why is time zone awareness crucial?
+5.  **Resampling Applications:** Other applications of resampling.
+6.  **Period vs. Timestamp:** When to use Periods vs. Timestamps?
+7.  **Real-World Data Challenges:** Common challenges with real-world data.
+8.  **Beyond pandas:** Other libraries for advanced analysis.
+9.  **Ethical Considerations:**  Ethical considerations in time series analysis.
+10. **Project Ideas:** Propose a small project idea.
+

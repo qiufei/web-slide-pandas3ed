@@ -1,0 +1,538 @@
+---
+Title: Python for Data Analysis
+Subtitle: More on the IPython System
+---
+
+## Introduction: Beyond the Basics 🚀
+
+-   We've previously covered the basics of the IPython shell and Jupyter notebooks.
+-   Now, we'll delve into IPython's advanced functionalities, useful in both console and Jupyter environments.
+-   Consider IPython as your *enhanced* Python interpreter – a powerful tool for interactive computing and data analysis.
+-   This section serves as a supplementary resource, enhancing your learning like a power-up in a video game! 🎮
+
+## Terminal Keyboard Shortcuts ⌨️
+
+-   IPython offers many keyboard shortcuts for efficient navigation and command history.
+-   These are similar to those found in Emacs or the Unix bash shell.
+-   Mastering these shortcuts will significantly boost your productivity! ⚡
+
+## Terminal Keyboard Shortcuts: Navigation
+
+-   `Ctrl-A`: Move cursor to the *beginning* of the line.
+-   `Ctrl-E`: Move cursor to the *end* of the line.
+-   `Ctrl-F`: Move cursor *forward* one character.
+-   `Ctrl-B`: Move cursor *backward* one character.
+
+## Terminal Keyboard Shortcuts: Command History
+
+-   `Ctrl-P` or Up Arrow: Search *backward* in command history (matching current text).
+-   `Ctrl-N` or Down Arrow: Search *forward* in command history (matching current text).
+-   `Ctrl-R`: Readline-style reverse history search (partial matching).
+
+## Terminal Keyboard Shortcuts: Editing and Control
+
+-   `Ctrl-Shift-V`: Paste text from the clipboard.
+-   `Ctrl-C`: **Interrupt** currently executing code. 🛑
+-   `Ctrl-K`: Delete text from the cursor to the end of the line.
+-   `Ctrl-U`: Discard all text on the current line.
+-   `Ctrl-L`: Clear the screen. 💨
+
+## Visualizing Shortcuts 🖼️
+
+- Here's an illustration of some keyboard shortcuts in the IPython shell.
+
+-   **C-b, C-f:**  Correspond to Ctrl-B and Ctrl-F for cursor movement.
+-   **C-a, C-e:** Correspond to Ctrl-A and Ctrl-E for moving to the start/end of a line.
+-   **C-k:** Corresponds to Ctrl-K for deleting text to the end of the line.
+-   **C-u:** Corresponds to Ctrl-U for deleting the entire line.
+- Operations on `a_variable` show text manipulations.
+
+- Note: Jupyter notebooks have *their own* set of shortcuts. Explore Jupyter's integrated help!
+
+## Magic Commands: IPython's Superpowers 🧙‍♂️
+
+-   **Magic commands** are special commands *unique* to IPython, *not* built-in Python functions.
+-   They are prefixed with the percent symbol (`%`).
+-   These commands streamline common tasks and allow you to control IPython's behavior. Think of them as "shortcuts" for IPython itself!
+
+## Example: `%timeit` ⏱️ - Measuring Execution Time
+
+-   `%timeit` measures the execution time of a Python statement. This is very useful for performance analysis!
+
+```{python}
+import numpy as np
+a = np.random.standard_normal((100, 100))
+%timeit np.dot(a, a)
+```
+
+-   The output shows the *average* execution time and standard deviation over multiple runs.
+- In the result, such as `92.5 µs ± 3.43 µs per loop`, `µs` stands for microseconds.
+
+## Exploring Magic Commands ❓ - Getting Help
+
+-   Use `?` after a magic command to view its "command-line" options (like a help manual).
+
+```{python}
+%debug?
+```
+- This displays detailed usage of the `%debug` command, including debugger activation, breakpoints, and post-mortem usage.
+
+## `automagic`:  Magic Without the `%` ✨
+
+-   `automagic` allows you to use magic commands *without* the `%` prefix, as long as no variable shares the same name.
+-   You can toggle it on/off using `%automagic`.
+
+```{python}
+#| eval: false
+
+
+%automagic  # Turns automagic on or off
+pwd         # Equivalent to %pwd (if automagic is on and 'pwd' isn't a variable)
+```
+
+## Assigning Magic Command Output
+
+-   Some magic commands behave like functions, allowing you to assign their output to variables.
+
+```{python}
+#| eval: false
+
+
+directory = %pwd  # Stores the current working directory in 'directory'
+print(directory)
+```
+
+## Essential Magic Commands 📜 - Quick Reference
+
+-   `%quickref`: Display the IPython Quick Reference Card.
+
+## Essential Magic Commands 📜 - Documentation
+
+-   `%magic`: Display detailed documentation for *all* available magic commands.
+
+## Essential Magic Commands 📜 - Debugging
+
+-   `%debug`: Enter the interactive debugger at the *last exception traceback*.
+-   `%pdb`: *Automatically* enter the debugger after *any* exception.
+
+## Essential Magic Commands 📜 - History
+
+-  `%hist`: Print command input history (with optional output).
+
+## Essential Magic Commands 📜 - Code Execution
+
+-   `%paste`: Execute preformatted Python code from the clipboard.
+-   `%cpaste`: Open a special prompt for manually pasting code.
+-   `%run script.py`: Run a Python script *inside* IPython.
+-   `%prun statement`: Execute a statement with cProfile and report the profiler output.
+- `%time statement`: Report the execution time of single statement.
+
+## Essential Magic Commands 📜 - Timing and Profiling
+
+- `%timeit statement`: Measures average execution time accurately.
+-   `%prun statement`: Execute a statement with cProfile and report profiler output.
+
+## Essential Magic Commands 📜 - Namespace Management
+
+-   `%reset`: Delete all variables/names in the interactive namespace.
+-   `%page OBJECT`: Pretty-print an object and display it through a pager.
+-   `%who`, `%who_ls`, `%whos`: Display variables in the namespace, with varying levels of detail.
+- `%xdel variable`: Delete a variable and attempt to clear any of it's references.
+
+- Press `q` to exit the `%quickref` or `%magic` pager.
+
+## The `%run` Command 🏃 - Executing Scripts
+
+-   Executes a Python script within your IPython session.
+-   The script runs in an *empty namespace* (no prior imports or variables initially).
+-   Variables, functions, and imports from the script become accessible in your IPython shell *after* execution.
+
+```{python}
+#| eval: false
+
+
+# In a file named 'my_script.py':
+def my_function(x):
+    return x * 2
+
+result = my_function(5)
+
+# In IPython:
+%run my_script.py
+print(result)  # Output: 10
+```
+
+## `%run -i`: Accessing Existing Variables
+
+-   `%run -i` allows the script to access variables *already defined* in your IPython session.
+
+```{python}
+#| eval: false
+
+# In IPython:
+my_var = 10
+
+# In 'script_with_access.py':
+print(my_var * 3)
+
+# Back in IPython:
+%run -i script_with_access.py  # Output: 30
+```
+
+## `%load`:  Importing Scripts into Cells (Jupyter)
+
+-   In Jupyter notebooks, `%load` imports a script *directly into a code cell*.
+
+```{python}
+# %load my_script.py  # This will be replaced by the script's content
+```
+
+- Then, the code cell's content will be:
+- 
+```{python}
+def my_function(x):
+    return x * 2
+
+result = my_function(5)
+```
+
+## Interrupting Running Code ✋
+
+-   Press `Ctrl-C` to interrupt running code (whether from `%run` or a long-running command).
+-   This raises a `KeyboardInterrupt`, stopping most Python programs immediately.
+-   Note: With compiled extensions, `Ctrl-C` might not always work instantly.
+
+- If `Ctrl-C` doesn't immediately stop execution (especially when compiled extensions are involved), you may need to use your operating system's tools (e.g., Task Manager on Windows, `kill` on Linux) to forcibly terminate the process.
+
+## Executing Code from the Clipboard 📋
+
+-   `%paste` and `%cpaste` are useful for running code copied from elsewhere (less relevant in Jupyter, where direct pasting is supported).
+-   `%paste` executes the clipboard content as a *single block*.
+
+```{python}
+#| eval: false
+
+# Example code on clipboard:
+x = 5
+if x > 2:
+    print("x is greater than 2")
+
+# In IPython:
+%paste  # Executes the code immediately
+```
+
+## Executing Code from the Clipboard: `%cpaste`
+
+- `%cpaste` opens a special prompt that allows pasting multiple blocks of code and editing before execution.
+- Press Ctrl-D in the prompt to execute.
+- Press Ctrl-C to exit the prompt.
+
+## Command History: Your IPython Memory 🧠
+
+-   IPython maintains a database of executed commands.  This is valuable for:
+    -   Searching and reusing past commands.
+    -   Persisting history *between sessions*.
+    -   Logging input/output to a file.
+
+## Searching and Reusing Commands 🔎
+
+-   **Up Arrow (`Ctrl-P`):** Search *backward* in history, matching typed text.
+-   **Down Arrow (`Ctrl-N`):** Search *forward* in history.
+-   **`Ctrl-R`:**  *Reverse-i-search* (like in bash). Type characters to find matching commands. Press Ctrl-R repeatedly to cycle through matches.
+
+## Input and Output Variables ↩️
+
+-   IPython stores both input and output for easy access:
+    -   `_` (one underscore):  Refers to the *previous* output.
+    -   `__` (two underscores): Refers to the *second-to-last* output.
+    -   `_iX`: Represents the *input* of line `X` as a *string* (e.g., `_i5` for input on line 5).
+    -   `_X`: Represents the *output* of line `X`.
+
+```{python}
+#| eval: false
+
+
+2 + 2      # Output: 4
+result = _  # result is now 4
+print(_i1)  # Prints the string "2 + 2"
+```
+
+## Working with History: `%hist`
+
+-   `%hist`: Prints the input history, optionally with line numbers.
+
+## Working with History: `%reset`
+
+- `%reset`:  Clears the interactive namespace and, optionally, input/output caches.
+
+## Working with History: `%xdel`
+
+-   `%xdel variable`: Removes a variable and attempts to clear IPython's internal references to it.  This is useful for memory management, especially with large datasets.
+
+- IPython's input/output history can keep large objects in memory even after you use `del`.  Use `%xdel` and `%reset` carefully to mitigate memory issues.
+
+## Interacting with the Operating System 💻
+
+-   IPython enables interaction with your operating system *directly from the shell*.
+-   You can run shell commands, change directories, and capture command output.
+
+## Shell Commands with `!` 💥
+
+-   Prefix a line with `!` to execute it as a shell command.
+
+```{python}
+!ls  # Lists files in the current directory (Linux/macOS)
+!dir # Lists files (Windows)
+```
+
+## Capturing Shell Output
+
+-   Assign the output of a `!` command to a Python variable.
+
+```{python}
+file_list = !ls
+print(file_list)  # Prints the list of files
+```
+- The returned object is a custom list that contains various versions of the console output.
+
+## Python Variables in Shell Commands: `$`
+
+-   Use `$` to substitute the values of Python variables into shell commands.
+
+```{python}
+#| eval: false
+
+
+my_directory = "data_files"
+!ls $my_directory  # Lists files in the 'data_files' directory
+```
+
+## Aliases: Shortcuts for Shell Commands
+
+-   `%alias`:  Create shortcuts (aliases) for frequently used shell commands.
+
+```{python}
+#| eval: false
+
+
+%alias ll ls -l  # Creates an alias 'll' for 'ls -l'
+ll /usr/bin  # Now you can use 'll'
+```
+
+-   Note: Aliases are *not* persistent between sessions unless explicitly configured.
+
+## Bookmarks: Shortcuts for Directories
+
+-   `%bookmark`: Create bookmarks for frequently accessed directories.
+
+```{python}
+#| eval: false
+
+
+%bookmark mydata /path/to/my/data
+cd mydata       # Jumps to the bookmarked directory
+%bookmark -l    # Lists all bookmarks
+```
+-   Bookmarks *are* persistent between sessions.
+
+## Directory History
+
+-   `%cd`: Change the current working directory.
+-   `%pwd`: Return the current working directory.
+-   `%pushd`: Place the current directory on a stack and change to the target directory.
+-   `%popd`: Change to the directory popped off the top of the stack.
+-   `%dirs`: Return a list containing the current directory stack.
+-  `%dhist`: Print the history of visited directories.
+
+## Environment Variable
+
+- `%env`: Return the system environment variables as a dictionary.
+- `%matplotlib`: Configure `matplotlib` integration options
+
+## Software Development Tools 🛠️
+
+-   IPython is valuable not only for interactive exploration but also for software development.
+-   Key tools include:
+    -   **Interactive Debugger:** An enhanced version of `pdb`.
+    -   **Code Timing:**  `%time` and `%timeit`.
+    -   **Profiling:** `%prun` and `%lprun`.
+
+## Interactive Debugger: `%debug` 🐞
+
+-   `%debug`: Activates the debugger *after* an exception occurs (post-mortem debugging).
+-   It places you within the stack frame where the error originated.
+-   Enhanced with features like tab completion, syntax highlighting, and traceback context.
+
+```{python}
+#| eval: false
+
+
+# Assuming some_script.py contains an error:
+%run some_script.py
+%debug  # Enters the debugger at the point of the error
+```
+
+## Debugger Commands 🧭 - Navigation
+
+-   Inside the debugger:
+    -   `u` (up): Move *up* the call stack.
+    -   `d` (down): Move *down* the call stack.
+    -   `s` (step): Step *into* a function call.
+    -   `n` (next): Execute the current line and move to the *next* line (at the same level).
+
+## Debugger Commands 🧭 - Control Flow
+
+-  `c` (continue): Continue execution until the next breakpoint or the end of the program.
+-  `q` (quit): Exit the debugger.
+
+## Debugger Commands 🧭 - Inspection
+
+-   `p variable`: Print the value of `variable`.
+-   `!variable`: Examine variable content, useful when the variable has same name with the debugger commands.
+
+## `%pdb`: Automatic Debugging
+
+-   `%pdb`: Automatically enters the debugger *upon any exception*. This is extremely useful for debugging!
+
+```{python}
+#| eval: false
+
+
+%pdb on  # Enables automatic debugging
+# Now, any error will automatically launch the debugger
+%pdb off # Disables automatic debugging
+```
+
+## Using the Debugger for Development
+
+-   `%run -d script.py`: Starts the debugger *before* running the script. Type `s` to step into the script.
+-   `%run -d -b line_number script.py`: Sets a breakpoint at the specified `line_number`.
+-   `set_trace()`: A "poor man's breakpoint" function; insert it into your code to create temporary breakpoints.
+- `debug(function, *args, **kwargs)`: Easily step into a specific function call.
+
+## `set_trace()` and `debug()` functions
+
+```{python}
+from IPython.core.debugger import Pdb
+import sys # Add import sys
+
+def set_trace():
+    Pdb().set_trace(sys._getframe().f_back)
+
+def debug(f, *args, **kwargs):
+    pdb = Pdb()
+    return pdb.runcall(f, *args, **kwargs)
+```
+
+- `set_trace()` is called within code to set a breakpoint.
+-   `debug(f, *args, **kwargs)` allows stepping into function `f` by passing `f` along with its arguments.
+
+## Code Timing: `%time` and `%timeit` (Review)
+
+-   `%time`: Measures the execution time of a statement *once*.
+-   `%timeit`: Measures execution time *multiple times* to provide a more accurate average. It's ideal for very short operations.
+
+```{python}
+my_list = list(range(100000))
+%time for _ in range(100):  sum(my_list)
+%timeit sum(my_list)
+```
+
+## Basic Profiling: `%prun` and `%run -p` 🕵️‍♀️
+
+-   **Profiling** reveals *where* your code spends its time.
+-   `%prun statement`: Profiles a single Python statement.
+-   `%run -p script.py`: Profiles an entire script.
+-   These commands utilize `cProfile` internally.
+- The output includes these key metrics:
+  - `ncalls`: Number of calls.
+  - `tottime`: Total time spent in function (excluding sub-function calls).
+  - `percall`: Time per call (tottime / ncalls).
+  - `cumtime`: *Cumulative* time in function *and* its sub-functions.
+  - `percall`: Cumulative time per call (cumtime / ncalls).
+  -  `filename:lineno(function)`: Function location.
+  
+
+
+```{python}
+#Example
+def slow_function():
+    result = []
+    for i in range(1000):
+        result.append(i * 2)
+    return result
+
+%prun slow_function()
+```
+
+## Line Profiling: `%lprun` 📏
+
+-   `%lprun`: Provides *line-by-line* profiling of specific functions, offering more detail than `%prun`.
+-   Requires the `line_profiler` IPython extension.
+    - Enable: Add `c.InteractiveShellApp.extensions = ['line_profiler']` to `ipython_config.py` or use `%load_ext line_profiler`.
+-   Syntax: `%lprun -f function1 -f function2 statement_to_profile`
+-   The output includes:
+    -   `Line #`: Line number.
+    -   `Hits`: Number of times the line was executed.
+    -   `Time`: Total time spent on the line (in timer units).
+    -   `Per Hit`: Time per execution of the line.
+    -   `% Time`: Percentage of total time spent on the line.
+    -   `Line Contents`: The source code of the line.
+
+```{python}
+#| eval: false
+
+# Assuming line_profiler is enabled and prof_mod.py exists:
+from prof_mod import add_and_sum, call_function #example file, you need create it.
+%lprun -f add_and_sum call_function()
+```
+
+## Tips for Productive Code Development 📝 - Reloading
+
+-   **Reloading Module Dependencies:**
+    -   Problem: Changes to imported modules are not automatically reflected.
+    -   Solutions:
+        -   `importlib.reload(module)`: Reloads a single module.
+        -   `dreload(module)` (IPython-specific): *Deep* (recursive) reload of a module and its dependencies – a more robust solution.
+
+## Tips for Productive Code Development 📝 - Code Design
+
+-   *Keep relevant objects and data alive*: Avoid putting all your code within a `main()` function.  Keep important variables at the top level for easy inspection within IPython.
+-   *Flat is better than nested*: Minimize deeply nested code structures.  This simplifies debugging and testing.
+-   *Overcome a fear of longer files*: Within reason, longer, well-organized modules are often preferable to many small, interconnected ones (reducing reloading overhead).
+-   *Maintain high internal cohesion*:  Group related code together logically within modules.
+
+## IPython Profiles and Configuration ⚙️
+
+-   Customize IPython's appearance and behavior using configuration files (`ipython_config.py`).
+-   These files are typically located in your IPython directory (usually `~/.ipython/profile_default/`).
+-   You can create *multiple profiles* for different projects or settings.
+-   Create a new profile: `ipython profile create my_profile`
+-   Launch IPython with a specific profile: `ipython --profile=my_profile`
+-   Note: Jupyter has its own separate configuration system.
+
+## Conclusion 📖
+
+-   IPython and Jupyter are potent tools for both interactive exploration and software development.
+-   Mastering their features – shortcuts, magic commands, the debugger, profiler, and configuration options – will significantly improve your productivity.
+-   Experiment to discover a workflow that best suits your individual style!
+
+## Summary
+
+-   We've explored advanced IPython features, extending beyond basic shell interaction.
+-   We covered keyboard shortcuts, magic commands, and interacting with the operating system.
+-   We examined tools for debugging, code timing, and profiling.
+-   We discussed tips for writing code that's optimized for interactive development in IPython.
+-   We introduced IPython profile.
+
+## Thoughts and Discussion 🤔
+
+-   Which IPython features do you anticipate being most useful in *your* work?
+-   How might you integrate these tools into your data analysis and coding routines?
+-   Consider creating a custom IPython profile to streamline your frequently performed tasks.
+- What are the advantages and disadvantages of using IPython compared to a traditional Python IDE?
+- How do the principles of "flat is better than nested" and "overcome a fear of longer files" apply to your own coding style?
+- How can you use the debugger and profiler to improve the correctness and efficiency of your code?
+- How does %run differ from simply executing a Python script from the command line?
+
+

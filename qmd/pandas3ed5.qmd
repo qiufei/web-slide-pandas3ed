@@ -1,0 +1,1311 @@
+```python
+---
+title: "Getting Started with pandas"
+---
+
+## Introduction to pandas 🐼
+
+-   pandas is a powerful Python library for data analysis and manipulation.
+-   It's like a spreadsheet program, but much more powerful and flexible.
+-   It's built on top of NumPy, another essential library for numerical computing in Python.
+
+## pandas Logo
+
+![](https://pandas.pydata.org/static/img/pandas.svg)
+
+::: {.callout-note}
+Think of pandas as Excel on steroids! 💪
+:::
+
+## Why pandas? 🤔
+
+-   **Data Structures:** Provides intuitive data structures like Series (1D) and DataFrame (2D) to handle data efficiently.
+
+## Why pandas? 🤔 (Continued)
+
+-   **Data Cleaning:** Tools for handling missing data, filtering, and transforming data.
+
+## Why pandas? 🤔 (Continued)
+
+-   **Data Analysis:** Powerful functions for grouping, aggregation, and statistical analysis.
+
+## Why pandas? 🤔 (Continued)
+
+-   **Integration:** Works seamlessly with other Python libraries like NumPy, SciPy, scikit-learn, and matplotlib.
+
+## Core Concepts: Data Analysis 🔎
+
+Data analysis is the process of inspecting, cleansing, transforming, and modeling data with the goal of discovering useful information, informing conclusions, and supporting decision-making. It involves several key steps:
+
+## Core Concepts: Data Analysis 🔎 (Continued)
+
+1.  **Data Collection:** Gathering data from various sources.
+2.  **Data Cleaning:** Handling missing values, correcting errors, and ensuring data consistency.
+3.  **Data Transformation:** Converting data into a suitable format for analysis (e.g., scaling, normalization).
+
+## Core Concepts: Data Analysis 🔎 (Continued)
+
+4.  **Data Exploration:**  Using descriptive statistics and visualizations to understand the data's patterns and characteristics.
+5.  **Data Modeling:** Applying statistical or machine learning techniques to extract insights or make predictions.
+6.  **Interpretation and Reporting:**  Communicating findings in a clear and concise manner.
+
+## Core Concepts: Machine Learning 🤖
+
+Machine learning is a subfield of artificial intelligence (AI) that focuses on enabling computers to learn from data without being explicitly programmed. Key concepts include:
+
+## Core Concepts: Machine Learning 🤖 (Continued)
+
+- **Training Data:**  The dataset used to teach the machine learning model.
+- **Features:** The individual measurable properties or characteristics of the data (e.g., columns in a table).
+- **Model:**  A mathematical representation that learns patterns from the training data.
+
+## Core Concepts: Machine Learning 🤖 (Continued)
+
+- **Prediction:**  Using the trained model to make predictions on new, unseen data.
+- **Supervised Learning:**  Learning from labeled data (where the correct output is known).  Examples: classification, regression.
+- **Unsupervised Learning:** Learning from unlabeled data (where the correct output is unknown). Examples: clustering, dimensionality reduction.
+
+## Core Concepts: Python 🐍
+
+Python is a versatile, high-level programming language known for its readability and extensive libraries.  Key features for data analysis:
+
+-   **Easy to Learn:**  Clear syntax makes it beginner-friendly.
+
+## Core Concepts: Python 🐍 (Continued)
+
+-   **Large Community:**  Extensive online resources and support.
+-   **Rich Ecosystem of Libraries:**  NumPy (numerical computation), pandas (data manipulation), scikit-learn (machine learning), matplotlib/seaborn (visualization).
+
+## Core Concepts: Python 🐍 (Continued)
+
+-   **Interpreted Language:**  Code is executed line by line, making it easy to test and debug.
+-   **Dynamic Typing:**  You don't need to explicitly declare variable types.
+
+## Importing pandas
+
+```python
+import pandas as pd  # Import pandas, aliased as 'pd'
+import numpy as np   # Import NumPy, aliased as 'np'
+```
+
+-   We import pandas using the alias `pd` (a standard convention).
+-   We also import NumPy as `np`. pandas is built on NumPy.
+
+## pandas Data Structures: Series
+
+- A Series is a one-dimensional labeled array.  It's like a column in a spreadsheet.
+- It can hold data of any type (integers, floats, strings, etc.).
+- It has an *index*, which labels each element.
+
+```python
+obj = pd.Series([4, 7, -5, 3]) # Create a Series from a list
+obj
+```
+
+## Series: Index and Values
+
+```python
+print(obj.array)  # Access the underlying data (PandasArray)
+print(obj.index)  # Access the index (default: 0, 1, 2, ...)
+```
+
+::: {.callout-note}
+`obj.array` returns the data. `obj.index` returns the index.
+:::
+
+## Series with Custom Index
+
+```python
+obj2 = pd.Series([4, 7, -5, 3], index=['d', 'b', 'a', 'c']) # Create a Series with a custom index
+obj2
+```
+
+## Series: Custom Index (Continued)
+
+```python
+obj2.index # Access the custom index
+```
+
+::: {.callout-note}
+Now the index is ['d', 'b', 'a', 'c'].  We can use these to access data.
+:::
+
+## Accessing Series Elements
+
+```python
+obj2['a']  # Access element by index label 'a'
+```
+## Accessing Series Elements (Continued)
+
+```python
+obj2['d'] = 6  # Modify element at index label 'd'
+```
+
+## Accessing Series Elements (Continued)
+
+```python
+obj2[['c', 'a', 'd']]  # Access multiple elements using a list of labels
+```
+
+::: {.callout-note}
+We can use a list of index labels to select a subset.
+:::
+
+## Filtering Series
+
+```python
+obj2[obj2 > 0]  # Select elements greater than 0 (Boolean indexing)
+```
+
+## Filtering Series (Continued)
+
+```python
+obj2 * 2 # Multiply each element by 2
+```
+
+## Filtering Series (Continued)
+
+```python
+np.exp(obj2) # Apply the exponential function (from NumPy) element-wise
+```
+
+::: {.callout-note}
+The index-value link is preserved during these operations.
+:::
+
+## Series as a Fixed-Length, Ordered Dictionary
+
+```python
+'b' in obj2  # Check if 'b' is in the index (like checking keys in a dict)
+```
+
+## Series as a Fixed-Length, Ordered Dictionary (Continued)
+
+```python
+'e' in obj2  # Check if 'e' is in the index
+```
+
+::: {.callout-note}
+A Series is similar to a dictionary: keys are index labels, values are data.
+:::
+
+## Creating Series from a Dictionary
+
+```python
+sdata = {'Ohio': 35000, 'Texas': 71000, 'Oregon': 16000, 'Utah': 5000}
+obj3 = pd.Series(sdata) # Create a Series from a dictionary
+obj3
+```
+## Creating Series from a Dictionary (Continued)
+
+```python
+obj3.to_dict() #Converting back to dictionary
+```
+
+## Series: Handling Missing Data
+
+```python
+states = ['California', 'Ohio', 'Oregon', 'Texas']
+obj4 = pd.Series(sdata, index=states)  # Create a Series with a specified index
+obj4
+```
+
+::: {.callout-note}
+'California' is NaN (Not a Number) - it's in the index but not in `sdata`. 'Utah' is excluded - it is in `sdata` but not in the index.
+:::
+
+## Detecting Missing Data
+
+```python
+pd.isna(obj4)  # Check for missing values (NaN) - returns a boolean Series
+```
+
+## Detecting Missing Data (Continued)
+
+```python
+pd.notna(obj4) # Check for non-missing values - returns a boolean Series
+```
+
+::: {.callout-note}
+`isna()` and `notna()` detect missing values.
+:::
+
+## Series: Automatic Alignment
+
+```python
+obj3
+```
+## Series: Automatic Alignment (Continued)
+
+```python
+obj4
+```
+## Series: Automatic Alignment (Continued)
+
+```python
+obj3 + obj4  # Add two Series; values are aligned by index label
+```
+
+::: {.callout-note}
+Data alignment is automatic.  NaN is introduced where labels don't match.
+:::
+
+## Series: `name` Attribute
+
+```python
+obj4.name = 'population'  # Set the name of the Series
+obj4.index.name = 'state'  # Set the name of the index
+obj4
+```
+
+::: {.callout-note}
+Series and its index can have names.
+:::
+
+## Altering Series Index In-Place
+
+```python
+obj
+```
+
+## Altering Series Index In-Place (Continued)
+
+```python
+obj.index = ['Bob', 'Steve', 'Jeff', 'Ryan']  # Modify the index in-place
+obj
+```
+
+::: {.callout-note}
+The index can be changed by assignment.
+:::
+
+## pandas Data Structures: DataFrame
+
+-   A DataFrame is a two-dimensional labeled data structure.  Like a spreadsheet.
+-   Rows and columns.
+-   Each column can have a different type.
+-   Row index and a column index.
+
+## Creating a DataFrame
+
+```python
+data = {'state': ['Ohio', 'Ohio', 'Ohio', 'Nevada', 'Nevada', 'Nevada'],
+        'year': [2000, 2001, 2002, 2001, 2002, 2003],
+        'pop': [1.5, 1.7, 3.6, 2.4, 2.9, 3.2]}
+frame = pd.DataFrame(data) # Create a DataFrame from a dictionary of lists
+frame
+```
+
+::: {.callout-note}
+A common way to create a DataFrame: dictionary of lists.
+:::
+
+## DataFrame: `head()` and `tail()`
+
+```python
+frame.head()  # Display the first 5 rows
+```
+
+## DataFrame: `head()` and `tail()` (Continued)
+
+```python
+frame.tail() # Display the last 5 rows
+```
+
+## DataFrame: Specifying Column Order
+
+```python
+pd.DataFrame(data, columns=['year', 'state', 'pop']) # Specify column order
+```
+
+::: {.callout-note}
+You can specify the order of columns.
+:::
+
+## DataFrame: Missing Data
+
+```python
+frame2 = pd.DataFrame(data, columns=['year', 'state', 'pop', 'debt']) # 'debt' is a new column
+frame2
+```
+
+## DataFrame: Missing Data (Continued)
+
+```python
+frame2.columns  # Show the column names
+```
+
+::: {.callout-note}
+'debt' column has missing values (NaN) because it wasn't in the original data.
+:::
+
+## Retrieving Columns
+
+```python
+frame2['state']  # Retrieve the 'state' column (dictionary-like notation)
+```
+
+## Retrieving Columns (Continued)
+
+```python
+frame2.year  # Retrieve the 'year' column (attribute-like access)
+```
+
+::: {.callout-note}
+Both methods return a Series.  Attribute access only works for valid Python variable names (no spaces, etc.).
+:::
+
+## Retrieving Rows
+
+```python
+frame2.loc[1]  # Access row by label (index '1')
+```
+
+## Retrieving Rows (Continued)
+
+```python
+frame2.iloc[2]  # Access row by integer position (index 2)
+```
+
+::: {.callout-note}
+`loc` is label-based. `iloc` is integer position-based.  Crucial distinction.
+:::
+
+## Modifying Columns
+
+```python
+frame2['debt'] = 16.5  # Assign a scalar value to the 'debt' column
+frame2
+```
+## Modifying Columns (Continued)
+
+```python
+frame2['debt'] = np.arange(6.)  # Assign a NumPy array to the 'debt' column
+frame2
+```
+
+## Assigning a Series
+
+```python
+val = pd.Series([-1.2, -1.5, -1.7], index=[2, 4, 5])  # Create Series with custom index
+frame2['debt'] = val  # Assign the Series to the 'debt' column
+frame2
+```
+
+::: {.callout-note}
+Labels are aligned!  Values from `val` are assigned to corresponding indices in `frame2`. Missing values (NaN) are filled in where indices don't match.
+:::
+
+## Creating New Columns
+
+```python
+frame2['eastern'] = frame2['state'] == 'Ohio'  # Create a new column 'eastern'
+frame2
+```
+
+::: {.callout-note}
+Assign to a *non-existent* column to create a new one.
+:::
+
+## Deleting Columns
+
+```python
+del frame2['eastern']  # Delete the 'eastern' column
+frame2.columns
+```
+
+::: {.callout-note}
+`del` keyword deletes columns.
+:::
+
+## Creating a DataFrame from Nested Dictionaries
+
+```python
+populations = {'Ohio': {2000: 1.5, 2001: 1.7, 2002: 3.6},
+               'Nevada': {2001: 2.4, 2002: 2.9}}
+frame3 = pd.DataFrame(populations) # Create DataFrame from nested dictionary
+frame3
+```
+
+::: {.callout-note}
+Outer keys become columns, inner keys become row indices.
+:::
+
+## Transposing a DataFrame
+
+```python
+frame3.T  # Transpose the DataFrame (swap rows and columns)
+```
+
+::: {.callout-note}
+Swaps rows and columns.
+:::
+
+## DataFrame: `index.name` and `columns.name`
+
+```python
+frame3.index.name = 'year'    # Set the name of the row index
+frame3.columns.name = 'state' # Set the name of the column index
+frame3
+```
+
+## DataFrame: `to_numpy()`
+
+```python
+frame3.to_numpy()  # Convert the DataFrame to a NumPy array
+```
+
+::: {.callout-note}
+Returns the data as a 2D NumPy array.  If mixed types, the `dtype` will accommodate all columns, and usually be `object`.
+:::
+
+## Index Objects
+
+```python
+obj = pd.Series(np.arange(3), index=['a', 'b', 'c'])
+index = obj.index  # Get the Index object
+index
+```
+
+## Index Objects (Continued)
+
+```python
+index[1:]  # Slice the Index object (like a list)
+```
+
+::: {.callout-note}
+Index objects store axis labels and metadata. Immutable.
+:::
+
+## Index Immutability
+
+```python
+#| eval: false
+
+index[1] = 'd'  # TypeError: Index does not support mutable operations
+```
+
+::: {.callout-note}
+Index objects *cannot* be changed after creation.
+:::
+
+## Index as a Fixed-Size Set
+
+```python
+frame3
+```
+
+## Index as a Fixed-Size Set (Continued)
+
+```python
+'Ohio' in frame3.columns  # Check for column membership
+```
+
+## Index as a Fixed-Size Set (Continued)
+
+```python
+2003 in frame3.index  # Check for row index membership
+```
+
+## Reindexing
+
+-   `reindex` creates a *new* object; data is conformed to a new index.
+
+```python
+obj = pd.Series([4.5, 7.2, -5.3, 3.6], index=['d', 'b', 'a', 'c'])
+obj
+```
+
+## Reindexing (Continued)
+
+```python
+obj2 = obj.reindex(['a', 'b', 'c', 'd', 'e'])  # Reindex the Series
+obj2
+```
+
+::: {.callout-note}
+`reindex` *creates a new Series*.  NaN is introduced for missing indices.
+:::
+
+## Reindexing: `method` for Interpolation
+
+```python
+obj3 = pd.Series(['blue', 'purple', 'yellow'], index=[0, 2, 4])
+obj3
+```
+
+## Reindexing: `method` for Interpolation (Continued)
+
+```python
+obj3.reindex(np.arange(6), method='ffill')  # Forward fill missing values
+```
+
+::: {.callout-note}
+`ffill` (forward fill) propagates the last valid value forward.
+:::
+
+## Reindexing with DataFrame
+
+```python
+frame = pd.DataFrame(np.arange(9).reshape((3, 3)),
+                     index=['a', 'c', 'd'],
+                     columns=['Ohio', 'Texas', 'California'])
+frame
+```
+
+## Reindexing with DataFrame (Continued)
+
+```python
+frame2 = frame.reindex(index=['a', 'b', 'c', 'd']) # Reindex rows
+frame2
+```
+
+::: {.callout-note}
+`reindex` on DataFrame can change row index, columns, or both.
+:::
+
+## Reindexing Columns
+
+```python
+states = ['Texas', 'Utah', 'California']
+frame.reindex(columns=states)  # Reindex columns
+```
+
+## Dropping Entries
+
+```python
+obj = pd.Series(np.arange(5.), index=['a', 'b', 'c', 'd', 'e'])
+obj
+```
+
+## Dropping Entries (Continued)
+
+```python
+new_obj = obj.drop('c')  # Drop entry 'c' (creates a new Series)
+new_obj
+```
+
+## Dropping Entries (Continued)
+
+```python
+obj.drop(['d', 'c'])  # Drop multiple entries
+```
+
+## Dropping from DataFrame
+
+```python
+data = pd.DataFrame(np.arange(16).reshape((4, 4)),
+                    index=['Ohio', 'Colorado', 'Utah', 'New York'],
+                    columns=['one', 'two', 'three', 'four'])
+data
+```
+## Dropping from DataFrame (Continued)
+
+```python
+data.drop(index=['Colorado', 'Ohio'])  # Drop rows by index label
+```
+## Dropping from DataFrame (Continued)
+
+```python
+data.drop(columns=['two']) # Drop column by column name
+```
+
+## Dropping from DataFrame (Continued)
+
+```python
+data.drop('two', axis=1) # Drop column using axis=1 (same as above)
+```
+
+## Indexing, Selection, and Filtering
+
+```python
+obj = pd.Series(np.arange(4.), index=['a', 'b', 'c', 'd'])
+obj
+```
+
+## Indexing, Selection, and Filtering (Continued)
+
+```python
+obj['b']  # Select by label
+```
+
+## Indexing, Selection, and Filtering (Continued)
+
+```python
+obj[1]  # Select by integer position
+```
+
+## Indexing, Selection, and Filtering (Continued)
+
+```python
+obj[2:4]  # Slicing
+```
+
+## Indexing, Selection, and Filtering (Continued)
+
+```python
+obj[['b', 'a', 'd']]  # Select multiple labels
+```
+
+## Indexing, Selection, and Filtering (Continued)
+
+```python
+obj[[1, 3]]  # Select multiple integer positions
+```
+
+## Indexing, Selection, and Filtering (Continued)
+
+```python
+obj[obj < 2]  # Boolean indexing
+```
+
+## Indexing with `loc` and `iloc`
+
+-   `loc`: Select by *label*.
+-   `iloc`: Select by *integer position*.
+
+```python
+obj.loc[['b', 'a', 'd']] # Select by label using loc
+```
+
+## Indexing with `loc` and `iloc` (Continued)
+```python
+obj1 = pd.Series([1, 2, 3], index=[2, 0, 1])
+obj2 = pd.Series([1, 2, 3], index=['a', 'b', 'c'])
+```
+## Indexing with `loc` and `iloc` (Continued)
+
+```python
+obj1[[0,1,2]] #integer index, pandas will treat integers as labels
+```
+
+## Indexing with `loc` and `iloc` (Continued)
+
+```python
+#| eval: false
+obj2.loc[[0, 1]] # Error when index is string, 0 and 1 are not labels of obj2
+```
+
+## Indexing with `loc` and `iloc` (Continued)
+
+```python
+obj1.iloc[[0, 1, 2]] # iloc use integer position
+```
+
+## Indexing with `loc` and `iloc` (Continued)
+
+```python
+obj2.iloc[[0, 1, 2]] # iloc use integer position
+```
+
+::: {.callout-note}
+Use `loc` and `iloc` to avoid ambiguity, especially with integer indexes.
+:::
+
+## Slicing with Labels (Inclusive)
+
+```python
+obj2.loc['b':'c']  # Includes the endpoint ('c')!
+```
+## Slicing with Labels (Inclusive) (Continued)
+
+```python
+obj2.loc['b':'c'] = 5  # Assign values using label-based slicing
+obj2
+```
+
+::: {.callout-note}
+Slicing with labels using `loc` *includes* the endpoint.
+:::
+
+## Indexing into a DataFrame
+
+```python
+data = pd.DataFrame(np.arange(16).reshape((4, 4)),
+                    index=['Ohio', 'Colorado', 'Utah', 'New York'],
+                    columns=['one', 'two', 'three', 'four'])
+data
+```
+
+## Indexing into a DataFrame (Continued)
+
+```python
+data['two']  # Select column 'two'
+```
+
+## Indexing into a DataFrame (Continued)
+
+```python
+data[['three', 'one']]  # Select multiple columns
+```
+
+## DataFrame: Special Cases for Indexing
+
+```python
+data[:2]  # Slicing rows (select rows 0 and 1)
+```
+
+## DataFrame: Special Cases for Indexing (Continued)
+
+```python
+data[data['three'] > 5]  # Boolean indexing (select rows where 'three' > 5)
+```
+
+## DataFrame: Boolean Indexing
+
+```python
+data < 5  # Element-wise comparison (returns a Boolean DataFrame)
+```
+
+## DataFrame: Boolean Indexing (Continued)
+
+```python
+data[data < 5] = 0  # Set values less than 5 to 0
+data
+```
+
+## Selection on DataFrame with `loc` and `iloc`
+
+```python
+data.loc['Colorado'] # Select a row by label
+```
+## Selection on DataFrame with `loc` and `iloc` (Continued)
+
+```python
+data.loc[['Colorado', 'New York']] # Select multiple rows by label
+```
+
+## Selection on DataFrame with `loc` and `iloc` (Continued)
+
+```python
+data.loc['Colorado', ['two', 'three']]  # Select row and columns by label
+```
+
+## Selection on DataFrame with `loc` and `iloc` (Continued)
+
+```python
+data.iloc[2] # Select a row by position
+```
+
+## Selection on DataFrame with `loc` and `iloc` (Continued)
+
+```python
+data.iloc[[2, 1]] # Select multiple rows by position
+```
+
+## Selection on DataFrame with `loc` and `iloc` (Continued)
+
+```python
+data.iloc[2, [3, 0, 1]] # Select row and columns by position
+```
+## Selection on DataFrame with `loc` and `iloc` (Continued)
+
+```python
+data.iloc[[1, 2], [3, 0, 1]] # Select rows and columns by position
+```
+
+## Arithmetic and Data Alignment
+
+-   Data is aligned by index labels when performing arithmetic.
+-   NaN where labels don't overlap.
+
+```python
+s1 = pd.Series([7.3, -2.5, 3.4, 1.5], index=['a', 'c', 'd', 'e'])
+s2 = pd.Series([-2.1, 3.6, -1.5, 4, 3.1], index=['a', 'c', 'e', 'f', 'g'])
+```
+
+## Arithmetic and Data Alignment (Continued)
+
+```python
+s1
+```
+
+## Arithmetic and Data Alignment (Continued)
+
+```python
+s2
+```
+
+## Arithmetic and Data Alignment (Continued)
+
+```python
+s1 + s2  # Add Series; alignment by index label
+```
+
+## Arithmetic with DataFrame
+
+```python
+df1 = pd.DataFrame(np.arange(9.).reshape((3, 3)), columns=list('bcd'),
+                   index=['Ohio', 'Texas', 'Colorado'])
+df2 = pd.DataFrame(np.arange(12.).reshape((4, 3)), columns=list('bde'),
+                   index=['Utah', 'Ohio', 'Texas', 'Oregon'])
+```
+## Arithmetic with DataFrame (Continued)
+
+```python
+df1
+```
+
+## Arithmetic with DataFrame (Continued)
+
+```python
+df2
+```
+## Arithmetic with DataFrame (Continued)
+
+```python
+df1 + df2  # Add DataFrames; alignment by row and column labels
+```
+
+## Arithmetic Methods with Fill Values
+
+```python
+df1 = pd.DataFrame(np.arange(12.).reshape((3, 4)),
+                   columns=list('abcd'))
+df2 = pd.DataFrame(np.arange(20.).reshape((4, 5)),
+                   columns=list('abcde'))
+df2.loc[1, 'b'] = np.nan  # Introduce a missing value
+```
+## Arithmetic Methods with Fill Values (Continued)
+
+```python
+df1
+```
+
+## Arithmetic Methods with Fill Values (Continued)
+
+```python
+df2
+```
+
+## Arithmetic Methods with Fill Values (Continued)
+
+```python
+df1 + df2  # Addition with potential for NaN
+```
+
+::: {.callout-note}
+NaN represents missing values.
+:::
+
+## Using `add` with `fill_value`
+
+```python
+df1.add(df2, fill_value=0)  # Add, filling missing values with 0 *before* addition
+```
+
+::: {.callout-note}
+`fill_value` replaces missing values *before* operation.
+:::
+
+## Flexible Arithmetic Methods
+
+| Method     | Description             |
+| :--------- | :---------------------- |
+| `add, radd` | Methods for addition (+) |
+| `sub, rsub` | Methods for subtraction (-) |
+| `div, rdiv` | Methods for division (/)  |
+| `mul, rmul` | Methods for multiplication (*) |
+
+::: {.callout-note}
+`r` methods: reversed arguments (e.g., `1 / df1` is `df1.rdiv(1)`).
+:::
+
+## Operations Between DataFrame and Series
+
+```python
+frame = pd.DataFrame(np.arange(12.).reshape((4, 3)),
+                     columns=list('bde'),
+                     index=['Utah', 'Ohio', 'Texas', 'Oregon'])
+series = frame.iloc[0] # Get the first row
+```
+## Operations Between DataFrame and Series (Continued)
+
+```python
+frame
+```
+
+## Operations Between DataFrame and Series (Continued)
+
+```python
+series
+```
+## Operations Between DataFrame and Series (Continued)
+
+```python
+frame - series  # Subtract Series from DataFrame (broadcasting)
+```
+
+::: {.callout-note}
+Arithmetic between DataFrame and Series broadcasts down the rows by default.
+:::
+
+## Broadcasting Over Columns
+
+```python
+series3 = frame['d']  # Get column 'd'
+series3
+```
+
+## Broadcasting Over Columns (Continued)
+
+```python
+frame.sub(series3, axis='index')  # Match on index (rows), broadcast across columns
+```
+
+::: {.callout-note}
+`axis='index'` (or `axis=0`) broadcasts over columns.
+:::
+
+## Function Application and Mapping
+
+```python
+frame = pd.DataFrame(np.random.standard_normal((4, 3)),
+                     columns=list('bde'),
+                     index=['Utah', 'Ohio', 'Texas', 'Oregon'])
+frame
+```
+
+## Function Application and Mapping (Continued)
+
+```python
+np.abs(frame)  # Apply NumPy's absolute value function (ufunc) element-wise
+```
+
+## Applying Functions with `apply`
+
+```python
+def f1(x):
+    return x.max() - x.min() # Define a function that operates on a Series
+
+frame.apply(f1)  # Apply the function along columns (default axis is 'index')
+```
+## Applying Functions with `apply` (Continued)
+
+```python
+frame.apply(f1, axis='columns')  # Apply the function along rows (axis='columns')
+```
+
+## Applying Functions that Return Series
+
+```python
+def f2(x):
+    # Define function returning a Series with 'min' and 'max'
+    return pd.Series([x.min(), x.max()], index=['min', 'max'])
+
+frame.apply(f2)
+```
+
+## Element-Wise Formatting with `applymap`
+
+```python
+def my_format(x):
+    return f"{x:.2f}"  # Define a formatting function
+
+frame.applymap(my_format) # Apply element-wise to the DataFrame
+```
+
+::: {.callout-note}
+`applymap` for element-wise DataFrame operations; `map` for element-wise Series operations.
+:::
+
+## Sorting
+
+```python
+obj = pd.Series(np.arange(4), index=['d', 'a', 'b', 'c'])
+obj.sort_index()  # Sort by index labels
+```
+
+## Sorting (Continued)
+
+```python
+frame = pd.DataFrame(np.arange(8).reshape((2, 4)),
+                     index=['three', 'one'],
+                     columns=['d', 'a', 'b', 'c'])
+frame.sort_index() # Sort by row index
+```
+
+## Sorting (Continued)
+
+```python
+frame.sort_index(axis='columns') # Sort by column index
+```
+
+## Sorting (Continued)
+
+```python
+frame.sort_index(axis='columns', ascending=False) # Sort descending
+```
+
+## Sorting by Values
+
+```python
+obj = pd.Series([4, 7, -3, 2])
+obj.sort_values()  # Sort by values
+```
+
+## Sorting by Values (Continued)
+
+```python
+obj = pd.Series([4, np.nan, 7, np.nan, -3, 2])
+obj.sort_values()  # Missing values (NaN) are sorted to the end by default
+```
+
+## Sorting DataFrame by Column(s)
+
+```python
+frame = pd.DataFrame({'b': [4, 7, -3, 2], 'a': [0, 1, 0, 1]})
+frame
+```
+
+## Sorting DataFrame by Column(s) (Continued)
+
+```python
+frame.sort_values('b')  # Sort by column 'b'
+```
+
+## Sorting DataFrame by Column(s) (Continued)
+
+```python
+frame.sort_values(['a', 'b'])  # Sort by multiple columns ('a', then 'b')
+```
+
+## Ranking
+
+```python
+obj = pd.Series([7, -5, 7, 4, 2, 0, 4])
+obj.rank()  # Assign ranks (average rank for ties)
+```
+
+```python
+
+::: {.callout-note}
+Ranking: assigns ranks from 1 to number of valid data points.
+:::
+
+## Ranking Methods
+
+| Method    | Description                                  |
+| :-------- | :------------------------------------------- |
+| `average` | Default: average rank for ties               |
+| `min`     | Use the minimum rank                         |
+| `max`     | Use the maximum rank                         |
+| `first`   | Ranks in order values appear                   |
+
+## Axis Indexes with Duplicate Labels
+
+```python
+obj = pd.Series(np.arange(5), index=['a', 'a', 'b', 'b', 'c'])
+obj
+```
+
+## Axis Indexes with Duplicate Labels (Continued)
+
+```python
+obj.index.is_unique  # Check if index labels are unique
+```
+
+## Axis Indexes with Duplicate Labels (Continued)
+
+```python
+obj['a']  # Returns a Series (because 'a' is duplicated)
+```
+
+## Axis Indexes with Duplicate Labels (Continued)
+
+```python
+obj['c']  # Returns a scalar (because 'c' is unique)
+```
+
+## Summarizing and Computing Descriptive Statistics
+
+```python
+df = pd.DataFrame([[1.4, np.nan], [7.1, -4.5],
+                   [np.nan, np.nan], [0.75, -1.3]],
+                  index=['a', 'b', 'c', 'd'],
+                  columns=['one', 'two'])
+df
+```
+
+## Summarizing and Computing Descriptive Statistics (Continued)
+
+```python
+df.sum()  # Calculate column sums
+```
+
+## Summarizing and Computing Descriptive Statistics (Continued)
+
+```python
+df.sum(axis='columns')  # Calculate row sums
+```
+
+## Handling Missing Values in Reductions
+
+```python
+df.sum(axis='index', skipna=False) # Include NaN in calculations
+```
+
+## Handling Missing Values in Reductions (Continued)
+
+```python
+df.mean(axis='columns') # Calculate mean, excluding NaN (default)
+```
+
+## Descriptive Statistics: Options for Reduction Methods
+
+| Method      | Description                                       |
+| :---------- | :------------------------------------------------ |
+| `axis`      | Axis ('index' for rows, 'columns' for columns) |
+| `skipna`    | Exclude missing values (True by default)        |
+
+## Indirect Statistics
+
+```python
+df.idxmax()  # Index label of the maximum value (for each column)
+```
+
+## Indirect Statistics (Continued)
+
+```python
+df.cumsum()  # Cumulative sum (for each column)
+```
+
+## `describe()` Method
+
+```python
+df.describe()  # Generate descriptive statistics
+```
+
+## `describe()` Method (Continued)
+
+```python
+obj = pd.Series(['a', 'a', 'b', 'c'] * 4)
+obj.describe() # Descriptive statistics for non-numeric data
+```
+
+## Descriptive and Summary Statistics
+
+| Method             | Description                                      |
+| :----------------- | :----------------------------------------------- |
+| `count`            | Number of non-NA values                           |
+| `describe`         | Compute set of summary statistics                |
+| `min, max`         | Compute minimum and maximum values                 |
+| `idxmin, idxmax`   | Compute index labels where min/max values attained |
+| `quantile`         | Compute sample quantile (0 to 1)                   |
+| `sum`              | Sum                                               |
+| `mean`             | Mean                                              |
+| `median`           | Median (50% quantile)                             |
+| ...                | ...                                              |
+
+## Correlation and Covariance
+First load data.
+
+```python
+price = pd.read_pickle('examples/yahoo_price.pkl')
+volume = pd.read_pickle('examples/yahoo_volume.pkl')
+```
+## Correlation and Covariance (Continued)
+
+```python
+returns = price.pct_change() #percentage change
+returns.tail()
+```
+
+## Correlation and Covariance (Continued)
+
+```python
+returns['MSFT'].corr(returns['IBM']) # Correlation between MSFT and IBM returns
+```
+## Correlation and Covariance (Continued)
+
+```python
+returns['MSFT'].cov(returns['IBM'])  # Covariance between MSFT and IBM returns
+```
+
+::: {.callout-note}
+`corr`: correlation. `cov`: covariance.
+:::
+
+## `corr` and `cov` on DataFrame
+
+```python
+returns.corr()  # Correlation matrix
+```
+
+## `corr` and `cov` on DataFrame (Continued)
+
+```python
+returns.cov()  # Covariance matrix
+```
+
+## `corrwith` Method
+
+```python
+returns.corrwith(returns['IBM'])  # Pairwise correlations with IBM returns
+```
+
+## `corrwith` Method (Continued)
+
+```python
+returns.corrwith(volume)  # Pairwise correlations with volume
+```
+
+::: {.callout-note}
+Computes pairwise correlations.
+:::
+
+## Unique Values, Value Counts, and Membership
+
+```python
+obj = pd.Series(['c', 'a', 'd', 'a', 'a', 'b', 'b', 'c', 'c'])
+uniques = obj.unique()  # Get unique values
+uniques
+```
+
+## Unique Values, Value Counts, and Membership (Continued)
+
+```python
+obj.value_counts()  # Count occurrences of each value
+```
+## Unique Values, Value Counts, and Membership (Continued)
+
+```python
+pd.value_counts(obj.to_numpy(), sort=False) #Using pd.value_counts()
+```
+
+## `isin` Method
+
+```python
+obj
+```
+## `isin` Method (Continued)
+
+```python
+mask = obj.isin(['b', 'c'])  # Check for membership in ['b', 'c']
+mask
+```
+
+## `isin` Method (Continued)
+
+```python
+obj[mask]  # Select elements where mask is True
+```
+
+::: {.callout-note}
+`isin`: checks membership.
+:::
+
+## Summary
+
+-   pandas basics: Series and DataFrame.
+-   Key operations: indexing, selection, filtering, arithmetic, function application, sorting, ranking, and descriptive stats.
+-   Handling missing data.
+
+## Thoughts and Discussion
+
+-   Compare pandas to other data analysis tools (Excel, R)?
+-   Real-world applications of pandas?
+-   Limitations of pandas? When to use other tools?
+-   Importance of data alignment and broadcasting.
+
+
