@@ -243,7 +243,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Important:</strong> <code>.to_numpy()</code> is preferred over <code>.values</code>.</p>
 </div>
 <p>Example:</p>
-<div id="8fa5d78d" class="cell" data-execution_count="1">
+<div id="23e5900e" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -263,7 +263,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 4   5  0.00 -2.0</code></pre>
 </div>
 </div>
-<div id="387fab65" class="cell" data-execution_count="2">
+<div id="da4db724" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data_array <span class="op">=</span> data.to_numpy()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">NumPy Array:"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data_array)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -281,7 +281,7 @@ NumPy Array:
 <section id="numpy-array-to-dataframe" class="level2">
 <h2 class="anchored" data-anchor-id="numpy-array-to-dataframe">NumPy Array to DataFrame ⬅️</h2>
 <p>Create a DataFrame from a NumPy array:</p>
-<div id="5c8ed47e" class="cell" data-execution_count="3">
+<div id="65b029c3" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.DataFrame(data_array, columns<span class="op">=</span>[<span class="st">'one'</span>, <span class="st">'two'</span>, <span class="st">'three'</span>])</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -303,7 +303,7 @@ NumPy Array:
 <li><strong>Homogeneous Data:</strong> Same type (e.g., all numbers) -&gt; NumPy array with that type.</li>
 <li><strong>Heterogeneous Data:</strong> Mixed types (numbers and strings) -&gt; <code>dtype=object</code> array (less efficient for number crunching). Example:</li>
 </ul>
-<div id="3c50a5e2" class="cell" data-execution_count="4">
+<div id="b8959b42" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df3 <span class="op">=</span> data.copy()</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df3[<span class="st">'strings'</span>] <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>, <span class="st">'d'</span>, <span class="st">'e'</span>]</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df3)</span>
@@ -330,7 +330,7 @@ Heterogeneous array:
 <section id="selecting-column-subsets" class="level2">
 <h2 class="anchored" data-anchor-id="selecting-column-subsets">Selecting Column Subsets 🤏</h2>
 <p>For modeling, select columns with <code>.loc</code> before converting:</p>
-<div id="81c2324a" class="cell" data-execution_count="5">
+<div id="7a7271d1" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>model_cols <span class="op">=</span> [<span class="st">'x0'</span>, <span class="st">'x1'</span>]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.loc[:, model_cols].to_numpy())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -349,7 +349,7 @@ Heterogeneous array:
 <section id="pandas-get_dummies" class="level2">
 <h2 class="anchored" data-anchor-id="pandas-get_dummies">pandas <code>get_dummies()</code> 🐼</h2>
 <p><code>pd.get_dummies()</code> simplifies this:</p>
-<div id="0f79aa37" class="cell" data-execution_count="6">
+<div id="566c21b2" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'category'</span>] <span class="op">=</span> pd.Categorical([<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'a'</span>, <span class="st">'a'</span>, <span class="st">'b'</span>], categories<span class="op">=</span>[<span class="st">'a'</span>, <span class="st">'b'</span>])</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -373,7 +373,7 @@ Dummy Variables:
 4       False        True</code></pre>
 </div>
 </div>
-<div id="a2faa7fd" class="cell" data-execution_count="7">
+<div id="e1eb89fb" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data_with_dummies <span class="op">=</span> data.drop(<span class="st">'category'</span>, axis<span class="op">=</span><span class="dv">1</span>).join(dummies)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">DataFrame with Dummy Variables:"</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data_with_dummies)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -410,7 +410,7 @@ DataFrame with Dummy Variables:
 <section id="patsy.dmatrices" class="level2">
 <h2 class="anchored" data-anchor-id="patsy.dmatrices"><code>patsy.dmatrices()</code> 🧮</h2>
 <p><code>dmatrices()</code> takes a formula and data, returning design matrices:</p>
-<div id="a89e9f84" class="cell" data-execution_count="8">
+<div id="a18a3fe2" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> patsy</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>y, X <span class="op">=</span> patsy.dmatrices(<span class="st">'y ~ x0 + x1'</span>, data)</span>
@@ -442,7 +442,7 @@ X (Design Matrix for Predictors):
 <section id="suppressing-the-intercept" class="level2">
 <h2 class="anchored" data-anchor-id="suppressing-the-intercept">Suppressing the Intercept ➖</h2>
 <p>Remove the intercept with <code>+ 0</code>:</p>
-<div id="1fa63b79" class="cell" data-execution_count="9">
+<div id="70c616e8" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>X_no_intercept <span class="op">=</span> patsy.dmatrices(<span class="st">'y ~ x0 + x1 + 0'</span>, data)[<span class="dv">1</span>]  <span class="co"># [1] gets only X</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_no_intercept)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -457,7 +457,7 @@ X (Design Matrix for Predictors):
 <section id="patsy-numpy-and-statsmodels" class="level2">
 <h2 class="anchored" data-anchor-id="patsy-numpy-and-statsmodels">Patsy, NumPy, and statsmodels 🤝</h2>
 <p>Design matrices from Patsy work with NumPy (e.g., <code>np.linalg.lstsq</code>) or statsmodels:</p>
-<div id="bb081cb1" class="cell" data-execution_count="10">
+<div id="353effe8" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>coef, resid, _, _ <span class="op">=</span> np.linalg.lstsq(X, y, rcond<span class="op">=</span><span class="va">None</span>) <span class="co"># Added rcond=None for compatibility</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(coef)</span>
@@ -479,7 +479,7 @@ dtype: float64</code></pre>
 <section id="patsy-data-transformations" class="level2">
 <h2 class="anchored" data-anchor-id="patsy-data-transformations">Patsy: Data Transformations ✨</h2>
 <p>Include Python code in formulas for transformations:</p>
-<div id="b6c41bd5" class="cell" data-execution_count="11">
+<div id="44079aad" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>y, X <span class="op">=</span> patsy.dmatrices(<span class="st">'y ~ x0 + np.log(np.abs(x1) + 1)'</span>, data)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -499,7 +499,7 @@ dtype: float64</code></pre>
 <li><code>standardize(x)</code>: Scales <code>x</code> (mean 0, std 1).</li>
 <li><code>center(x)</code>: Subtracts the mean.</li>
 </ul>
-<div id="61f38e32" class="cell" data-execution_count="12">
+<div id="9abdf79f" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>y, X <span class="op">=</span> patsy.dmatrices(<span class="st">'y ~ standardize(x0) + center(x1)'</span>, data)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -514,7 +514,7 @@ dtype: float64</code></pre>
 <section id="stateful-transformations-and-build_design_matrices" class="level2">
 <h2 class="anchored" data-anchor-id="stateful-transformations-and-build_design_matrices">Stateful Transformations and <code>build_design_matrices</code> 💾</h2>
 <p>When applying transformations like <code>center</code> and <code>standardize</code>, use the original dataset’s statistics when transforming new data. <code>patsy.build_design_matrices</code> helps:</p>
-<div id="320f2e65" class="cell" data-execution_count="13">
+<div id="fdd94237" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>new_data <span class="op">=</span> pd.DataFrame({</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'x0'</span>: [<span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>],</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'x1'</span>: [<span class="fl">3.1</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="dv">0</span>, <span class="fl">2.3</span>],</span>
@@ -540,7 +540,7 @@ dtype: float64</code></pre>
 <section id="adding-columns-by-name" class="level2">
 <h2 class="anchored" data-anchor-id="adding-columns-by-name">Adding Columns by Name ➕</h2>
 <p>To add columns, wrap them in <code>I()</code>:</p>
-<div id="71a096d9" class="cell" data-execution_count="14">
+<div id="a5915e83" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>y, X <span class="op">=</span> patsy.dmatrices(<span class="st">'y ~ I(x0 + x1)'</span>, data)</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -555,7 +555,7 @@ dtype: float64</code></pre>
 <section id="categorical-data-and-patsy" class="level2">
 <h2 class="anchored" data-anchor-id="categorical-data-and-patsy">Categorical Data and Patsy 🏷️</h2>
 <p>Patsy handles categorical variables automatically:</p>
-<div id="b63426c5" class="cell" data-execution_count="15">
+<div id="a604407c" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame({</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">'key1'</span>: [<span class="st">'a'</span>, <span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'b'</span>, <span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'a'</span>, <span class="st">'b'</span>],</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'key2'</span>: [<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>],</span>
@@ -583,7 +583,7 @@ dtype: float64</code></pre>
 <section id="no-intercept-categorical" class="level2">
 <h2 class="anchored" data-anchor-id="no-intercept-categorical">No Intercept, Categorical ➖🏷️</h2>
 <p>Without an intercept, all category columns are included:</p>
-<div id="06dca428" class="cell" data-execution_count="16">
+<div id="bfe454be" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>y, X <span class="op">=</span> patsy.dmatrices(<span class="st">'v2 ~ key1 + 0'</span>, data)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -601,7 +601,7 @@ dtype: float64</code></pre>
 <section id="numerical-as-categorical" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-as-categorical">Numerical as Categorical 🔢➡️🏷️</h2>
 <p>Use <code>C()</code> to treat numbers as categorical:</p>
-<div id="02f12aca" class="cell" data-execution_count="17">
+<div id="a73ba7d4" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>y, X <span class="op">=</span> patsy.dmatrices(<span class="st">'v2 ~ C(key2)'</span>, data)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -619,7 +619,7 @@ dtype: float64</code></pre>
 <section id="interaction-terms" class="level2">
 <h2 class="anchored" data-anchor-id="interaction-terms">Interaction Terms 🤝</h2>
 <p>Interaction terms model combined effects. Use <code>:</code>:</p>
-<div id="e426c3b6" class="cell" data-execution_count="18">
+<div id="833d16c5" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'key2'</span>] <span class="op">=</span> data[<span class="st">'key2'</span>].<span class="bu">map</span>({<span class="dv">0</span>: <span class="st">'zero'</span>, <span class="dv">1</span>: <span class="st">'one'</span>})</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>y, X <span class="op">=</span> patsy.dmatrices(<span class="st">'v2 ~ key1 + key2 + key1:key2'</span>, data)</span>
@@ -663,7 +663,7 @@ dtype: float64</code></pre>
 <h2 class="anchored" data-anchor-id="linear-models-with-statsmodels">Linear Models with statsmodels 📏</h2>
 <p>Fit a linear model, using array and formula APIs.</p>
 <p>Create sample data:</p>
-<div id="ab1d110a" class="cell" data-execution_count="19">
+<div id="f9a091c0" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -685,7 +685,7 @@ dtype: float64</code></pre>
 </section>
 <section id="array-based-api" class="level2">
 <h2 class="anchored" data-anchor-id="array-based-api">Array-Based API ➕</h2>
-<div id="6a928c1d" class="cell" data-execution_count="20">
+<div id="5132118e" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>X_model <span class="op">=</span> sm.add_constant(X) <span class="co"># Add intercept</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.OLS(y, X_model)  <span class="co"># Ordinary Least Squares</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> model.fit()</span>
@@ -698,8 +698,8 @@ dtype: float64</code></pre>
 Dep. Variable:                      y   R-squared:                       0.470
 Model:                            OLS   Adj. R-squared:                  0.453
 Method:                 Least Squares   F-statistic:                     28.36
-Date:                Wed, 19 Feb 2025   Prob (F-statistic):           3.23e-13
-Time:                        14:46:02   Log-Likelihood:                -25.390
+Date:                Fri, 21 Feb 2025   Prob (F-statistic):           3.23e-13
+Time:                        10:12:21   Log-Likelihood:                -25.390
 No. Observations:                 100   AIC:                             58.78
 Df Residuals:                      96   BIC:                             69.20
 Df Model:                           3                                         
@@ -728,7 +728,7 @@ Notes:
 </section>
 <section id="formula-based-api-ফরমল" class="level2">
 <h2 class="anchored" data-anchor-id="formula-based-api-ফরমল">Formula-Based API ফর্মুলা</h2>
-<div id="71399189" class="cell" data-execution_count="21">
+<div id="dbcf1730" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame(X, columns<span class="op">=</span>[<span class="st">'col0'</span>, <span class="st">'col1'</span>, <span class="st">'col2'</span>])</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'y'</span>] <span class="op">=</span> y</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> smf.ols(<span class="st">'y ~ col0 + col1 + col2'</span>, data<span class="op">=</span>data).fit() <span class="co"># Formula API</span></span>
@@ -761,7 +761,7 @@ dtype: float64</code></pre>
 <section id="time-series-with-statsmodels" class="level2">
 <h2 class="anchored" data-anchor-id="time-series-with-statsmodels">Time Series with statsmodels ⌚</h2>
 <p><code>statsmodels</code> has time series tools. Example: Autoregressive (AR) model:</p>
-<div id="aae1542d" class="cell" data-execution_count="22">
+<div id="6e61cc47" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.tsa.ar_model <span class="im">import</span> AutoReg</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>init_x <span class="op">=</span> <span class="dv">4</span></span>
@@ -799,11 +799,11 @@ dtype: float64</code></pre>
 <section id="titanic-example" class="level2">
 <h2 class="anchored" data-anchor-id="titanic-example">Titanic Example 🚢</h2>
 <p>Use the Titanic dataset to show a <code>scikit-learn</code> workflow.</p>
-<div id="b0619ab7" class="cell" data-execution_count="23">
+<div id="3db5b6eb" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>train <span class="op">=</span> pd.read_csv(<span class="st">'datasets/titanic/train.csv'</span>)</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>test <span class="op">=</span> pd.read_csv(<span class="st">'datasets/titanic/test.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="ac0f629a" class="cell" data-execution_count="24">
+<div id="729cc01e" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>train.head(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
 <div>
@@ -897,7 +897,7 @@ dtype: float64</code></pre>
 </section>
 <section id="data-preprocessing" class="level2">
 <h2 class="anchored" data-anchor-id="data-preprocessing">Data Preprocessing 🧹</h2>
-<div id="5b0c02bd" class="cell" data-execution_count="25">
+<div id="46170ba8" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(train.isna().<span class="bu">sum</span>())</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(test.isna().<span class="bu">sum</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -929,7 +929,7 @@ dtype: int64</code></pre>
 </div>
 </div>
 <p>We have missing data:</p>
-<div id="531a9924" class="cell" data-execution_count="26">
+<div id="60b7a076" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>impute_value <span class="op">=</span> train[<span class="st">'Age'</span>].median()</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>train[<span class="st">'Age'</span>] <span class="op">=</span> train[<span class="st">'Age'</span>].fillna(impute_value)</span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>test[<span class="st">'Age'</span>] <span class="op">=</span> test[<span class="st">'Age'</span>].fillna(impute_value)</span>
@@ -955,7 +955,7 @@ dtype: int64</code></pre>
 </section>
 <section id="model-training-and-prediction" class="level2">
 <h2 class="anchored" data-anchor-id="model-training-and-prediction">Model Training and Prediction 🏋️‍♀️</h2>
-<div id="64f37a12" class="cell" data-execution_count="27">
+<div id="25c4b861" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LogisticRegression()</span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>model.fit(X_train, y_train) <span class="co"># Train</span></span>
@@ -968,7 +968,7 @@ dtype: int64</code></pre>
 </section>
 <section id="cross-validation" class="level2">
 <h2 class="anchored" data-anchor-id="cross-validation">Cross-Validation 🔄</h2>
-<div id="d7742932" class="cell" data-execution_count="28">
+<div id="17e55fca" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegressionCV</span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a></span>

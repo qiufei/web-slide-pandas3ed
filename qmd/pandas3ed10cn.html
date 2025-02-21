@@ -251,7 +251,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="pandas-实战创建-dataframe" class="level1">
 <h1>Pandas 实战：创建 DataFrame</h1>
 <p>让我们创建一个示例 DataFrame：</p>
-<div id="5d144f5f" class="cell" data-execution_count="1">
+<div id="fdc2832a" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np  <span class="co"># 导入 NumPy 库，用于数值计算</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd  <span class="co"># 导入 pandas 库，用于数据分析</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -282,36 +282,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td data-quarto-table-cell-role="th">0</td>
 <td>a</td>
 <td>1</td>
-<td>0.141658</td>
-<td>-0.919755</td>
+<td>0.889032</td>
+<td>0.509262</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
 <td>a</td>
 <td>2</td>
-<td>1.036927</td>
-<td>-1.986585</td>
+<td>-0.385946</td>
+<td>-1.701094</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
 <td>b</td>
 <td>1</td>
-<td>-0.754048</td>
-<td>-1.333528</td>
+<td>-0.281999</td>
+<td>-0.725398</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>b</td>
 <td>2</td>
-<td>-0.387227</td>
-<td>-0.878980</td>
+<td>2.366829</td>
+<td>-0.358514</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
 <td>a</td>
 <td>1</td>
-<td>0.420796</td>
-<td>1.414449</td>
+<td>0.664787</td>
+<td>-2.792639</td>
 </tr>
 </tbody>
 </table>
@@ -326,13 +326,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="按单列分组" class="level2">
 <h2 class="anchored" data-anchor-id="按单列分组">按单列分组</h2>
 <p>计算 <code>key1</code> 中每个组的 <code>data1</code> 的平均值：</p>
-<div id="61b8dba9" class="cell" data-execution_count="2">
+<div id="69c1fcab" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> df[<span class="st">"data1"</span>].groupby(df[<span class="st">"key1"</span>])  <span class="co"># 按 key1 分组 data1</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>grouped.mean()  <span class="co"># 计算每个组的平均值</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>key1
-a    0.533127
-b   -0.570638
+a    0.389291
+b    1.042415
 Name: data1, dtype: float64</code></pre>
 </div>
 </div>
@@ -346,7 +346,7 @@ Name: data1, dtype: float64</code></pre>
 <section id="按多列分组" class="level2">
 <h2 class="anchored" data-anchor-id="按多列分组">按多列分组</h2>
 <p>按多列分组（分层索引）：</p>
-<div id="59bd6d75" class="cell" data-execution_count="3">
+<div id="cd65d1e0" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>])  <span class="co"># 按 key1 和 key2 分组</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>grouped.agg({</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data1"</span>: [<span class="st">"mean"</span>, <span class="st">"std"</span>],  <span class="co"># 对 data1 计算平均值和标准差</span></span>
@@ -385,31 +385,31 @@ Name: data1, dtype: float64</code></pre>
 <tr class="odd">
 <td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">a</td>
 <td data-quarto-table-cell-role="th">1</td>
-<td>0.281227</td>
-<td>0.19738</td>
-<td>0.247347</td>
-<td>1.650532</td>
+<td>0.776910</td>
+<td>0.158565</td>
+<td>-1.141688</td>
+<td>2.334797</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2</td>
-<td>1.036927</td>
+<td>-0.385946</td>
 <td>NaN</td>
-<td>-1.986585</td>
+<td>-1.701094</td>
 <td>NaN</td>
 </tr>
 <tr class="odd">
 <td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">b</td>
 <td data-quarto-table-cell-role="th">1</td>
-<td>-0.754048</td>
+<td>-0.281999</td>
 <td>NaN</td>
-<td>-1.333528</td>
+<td>-0.725398</td>
 <td>NaN</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2</td>
-<td>-0.387227</td>
+<td>2.366829</td>
 <td>NaN</td>
-<td>-0.878980</td>
+<td>-0.358514</td>
 <td>NaN</td>
 </tr>
 </tbody>
@@ -423,7 +423,7 @@ Name: data1, dtype: float64</code></pre>
 <section id="展开-unstacking" class="level2">
 <h2 class="anchored" data-anchor-id="展开-unstacking">展开 (Unstacking)</h2>
 <p><code>unstack()</code> 重塑结果：</p>
-<div id="ced8d5f6" class="cell" data-execution_count="4">
+<div id="98fb9831" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>means <span class="op">=</span> df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>])[<span class="st">"data1"</span>].mean()  <span class="co"># 按 key1 和 key2 分组，计算 data1 的平均值</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>means.unstack()  <span class="co"># 将结果展开，使 key2 成为列</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
@@ -446,13 +446,13 @@ Name: data1, dtype: float64</code></pre>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">a</td>
-<td>0.281227</td>
-<td>1.036927</td>
+<td>0.776910</td>
+<td>-0.385946</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">b</td>
-<td>-0.754048</td>
-<td>-0.387227</td>
+<td>-0.281999</td>
+<td>2.366829</td>
 </tr>
 </tbody>
 </table>
@@ -464,7 +464,7 @@ Name: data1, dtype: float64</code></pre>
 <section id="使用-series-和数组分组" class="level2">
 <h2 class="anchored" data-anchor-id="使用-series-和数组分组">使用 Series 和数组分组</h2>
 <p>键可以是外部 Series 或数组：</p>
-<div id="d00c9981" class="cell" data-execution_count="5">
+<div id="99733d66" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> np.array([<span class="st">"OH"</span>, <span class="st">"CA"</span>, <span class="st">"CA"</span>, <span class="st">"OH"</span>, <span class="st">"OH"</span>, <span class="st">"CA"</span>, <span class="st">"OH"</span>])  <span class="co"># 外部数组 states</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>years <span class="op">=</span> np.array([<span class="dv">2005</span>, <span class="dv">2005</span>, <span class="dv">2006</span>, <span class="dv">2005</span>, <span class="dv">2006</span>, <span class="dv">2005</span>, <span class="dv">2006</span>])  <span class="co"># 外部数组 years</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -485,16 +485,16 @@ Name: data1, dtype: float64</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 分组结果:
-CA  2005   -0.650862
-    2006    1.066307
-OH  2005    0.123533
-    2006   -0.115306
+CA  2005   -1.352798
+    2006   -0.144896
+OH  2005   -0.853971
+    2006   -0.073923
 Name: data1, dtype: float64
 
 展开结果:
         2005      2006
-CA -0.650862  1.066307
-OH  0.123533 -0.115306</code></pre>
+CA -1.352798 -0.144896
+OH -0.853971 -0.073923</code></pre>
 </div>
 </div>
 <p>这里，我们按外部数组 <code>states</code> 和 <code>years</code> 对 <code>data1</code> 进行分组。</p>
@@ -502,7 +502,7 @@ OH  0.123533 -0.115306</code></pre>
 <section id="直接使用列名分组" class="level2">
 <h2 class="anchored" data-anchor-id="直接使用列名分组">直接使用列名分组</h2>
 <p>如果分组信息在 DataFrame 中，直接使用列名：</p>
-<div id="4c80adcd" class="cell" data-execution_count="6">
+<div id="ca4eebb1" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"key1"</span>).mean()  <span class="co"># 按 key1 分组，计算所有数值列的平均值</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
@@ -527,14 +527,14 @@ OH  0.123533 -0.115306</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">a</td>
 <td>1.333333</td>
-<td>0.533127</td>
-<td>-0.497297</td>
+<td>0.389291</td>
+<td>-1.328157</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">b</td>
 <td>1.500000</td>
-<td>-0.570638</td>
-<td>-1.106254</td>
+<td>1.042415</td>
+<td>-0.541956</td>
 </tr>
 </tbody>
 </table>
@@ -543,7 +543,7 @@ OH  0.123533 -0.115306</code></pre>
 </div>
 </div>
 <p>非数值列 <code>key1</code> 会被自动排除，因为它是一个<strong>干扰列</strong></p>
-<div id="ffdea92d" class="cell" data-execution_count="7">
+<div id="74983488" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>]).mean()  <span class="co"># 按 key1 和 key2 分组，计算所有数值列的平均值</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div>
@@ -568,24 +568,24 @@ OH  0.123533 -0.115306</code></pre>
 <tr class="odd">
 <td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">a</td>
 <td data-quarto-table-cell-role="th">1</td>
-<td>0.281227</td>
-<td>0.247347</td>
+<td>0.776910</td>
+<td>-1.141688</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2</td>
-<td>1.036927</td>
-<td>-1.986585</td>
+<td>-0.385946</td>
+<td>-1.701094</td>
 </tr>
 <tr class="odd">
 <td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">b</td>
 <td data-quarto-table-cell-role="th">1</td>
-<td>-0.754048</td>
-<td>-1.333528</td>
+<td>-0.281999</td>
+<td>-0.725398</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2</td>
-<td>-0.387227</td>
-<td>-0.878980</td>
+<td>2.366829</td>
+<td>-0.358514</td>
 </tr>
 </tbody>
 </table>
@@ -597,7 +597,7 @@ OH  0.123533 -0.115306</code></pre>
 <section id="组大小" class="level2">
 <h2 class="anchored" data-anchor-id="组大小">组大小</h2>
 <p><code>size()</code> 显示每个组中的数据点数量：</p>
-<div id="b5cce7df" class="cell" data-execution_count="8">
+<div id="185e5d7c" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>]).size()  <span class="co"># 按 key1 和 key2 分组，计算每个组的大小</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>key1  key2
@@ -612,7 +612,7 @@ dtype: int64</code></pre>
 <section id="处理分组键中的缺失值" class="level2">
 <h2 class="anchored" data-anchor-id="处理分组键中的缺失值">处理分组键中的缺失值</h2>
 <p>默认情况下，分组键中的缺失值会被排除。使用 <code>dropna=False</code> 包含它们：</p>
-<div id="c4133fce" class="cell" data-execution_count="9">
+<div id="c8e74ec3" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"key1"</span>, dropna<span class="op">=</span><span class="va">False</span>).size()  <span class="co"># 按 key1 分组，包括缺失值（如果有）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>key1
@@ -628,51 +628,51 @@ dtype: int64</code></pre>
 <section id="使用单键迭代" class="level2">
 <h2 class="anchored" data-anchor-id="使用单键迭代">使用单键迭代</h2>
 <p><code>GroupBy</code> 支持迭代，生成组名和数据块：</p>
-<div id="7d75157b" class="cell" data-execution_count="10">
+<div id="8b0802f7" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, group <span class="kw">in</span> df.groupby(<span class="st">"key1"</span>):  <span class="co"># 按 key1 迭代组</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"组名: </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># 打印组名</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(group)  <span class="co"># 打印组数据</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>组名: a
   key1  key2     data1     data2
-0    a     1  0.141658 -0.919755
-1    a     2  1.036927 -1.986585
-4    a     1  0.420796  1.414449
+0    a     1  0.889032  0.509262
+1    a     2 -0.385946 -1.701094
+4    a     1  0.664787 -2.792639
 组名: b
   key1  key2     data1     data2
-2    b     1 -0.754048 -1.333528
-3    b     2 -0.387227 -0.878980</code></pre>
+2    b     1 -0.281999 -0.725398
+3    b     2  2.366829 -0.358514</code></pre>
 </div>
 </div>
 </section>
 <section id="使用多键迭代" class="level2">
 <h2 class="anchored" data-anchor-id="使用多键迭代">使用多键迭代</h2>
 <p>使用多个键时，组名是一个元组：</p>
-<div id="c12eb2ea" class="cell" data-execution_count="11">
+<div id="2f51759b" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k1, k2), group <span class="kw">in</span> df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>]):  <span class="co"># 按 key1 和 key2 迭代组</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"组键: </span><span class="sc">{</span>(k1, k2)<span class="sc">}</span><span class="ss">"</span>)  <span class="co"># 打印组键</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(group)  <span class="co"># 打印组数据</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>组键: ('a', np.int64(1))
   key1  key2     data1     data2
-0    a     1  0.141658 -0.919755
-4    a     1  0.420796  1.414449
+0    a     1  0.889032  0.509262
+4    a     1  0.664787 -2.792639
 组键: ('a', np.int64(2))
   key1  key2     data1     data2
-1    a     2  1.036927 -1.986585
+1    a     2 -0.385946 -1.701094
 组键: ('b', np.int64(1))
   key1  key2     data1     data2
-2    b     1 -0.754048 -1.333528
+2    b     1 -0.281999 -0.725398
 组键: ('b', np.int64(2))
-  key1  key2     data1    data2
-3    b     2 -0.387227 -0.87898</code></pre>
+  key1  key2     data1     data2
+3    b     2  2.366829 -0.358514</code></pre>
 </div>
 </div>
 </section>
 <section id="创建数据块字典" class="level2">
 <h2 class="anchored" data-anchor-id="创建数据块字典">创建数据块字典</h2>
 <p>创建组数据的字典：</p>
-<div id="a379eb0f" class="cell" data-execution_count="12">
+<div id="d27eca46" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pieces <span class="op">=</span> <span class="bu">dict</span>(<span class="bu">list</span>(df.groupby(<span class="st">"key1"</span>)))  <span class="co"># 将按 key1 分组的结果转换为字典</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>pieces[<span class="st">"b"</span>]  <span class="co"># 获取 key1 为 "b" 的组</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
@@ -694,15 +694,15 @@ dtype: int64</code></pre>
 <td data-quarto-table-cell-role="th">2</td>
 <td>b</td>
 <td>1</td>
-<td>-0.754048</td>
-<td>-1.333528</td>
+<td>-0.281999</td>
+<td>-0.725398</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
 <td>b</td>
 <td>2</td>
-<td>-0.387227</td>
-<td>-0.878980</td>
+<td>2.366829</td>
+<td>-0.358514</td>
 </tr>
 </tbody>
 </table>
@@ -715,7 +715,7 @@ dtype: int64</code></pre>
 <section id="按列分组-axis1" class="level1">
 <h1>按列分组 (axis=1)</h1>
 <p>使用 <code>axis="columns"</code> 按列分组：</p>
-<div id="c439b133" class="cell" data-execution_count="13">
+<div id="d8f9812c" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个映射字典, 将列名映射到新的分组名称</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> df.groupby({</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"key1"</span>: <span class="st">"key"</span>,</span>
@@ -730,11 +730,11 @@ dtype: int64</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>data
       data1     data2
-0  0.141658 -0.919755
-1  1.036927 -1.986585
-2 -0.754048 -1.333528
-3 -0.387227 -0.878980
-4  0.420796  1.414449
+0  0.889032  0.509262
+1 -0.385946 -1.701094
+2 -0.281999 -0.725398
+3  2.366829 -0.358514
+4  0.664787 -2.792639
 key
   key1  key2
 0    a     1
@@ -744,7 +744,7 @@ key
 4    a     1</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_2836/800099706.py:2: FutureWarning: DataFrame.groupby with axis=1 is deprecated. Do `frame.T.groupby(...)` without axis instead.
+<pre><code>/tmp/ipykernel_2885/800099706.py:2: FutureWarning: DataFrame.groupby with axis=1 is deprecated. Do `frame.T.groupby(...)` without axis instead.
   grouped = df.groupby({</code></pre>
 </div>
 </div>
@@ -754,14 +754,14 @@ key
 <section id="选择单列-seriesgroupby" class="level2">
 <h2 class="anchored" data-anchor-id="选择单列-seriesgroupby">选择单列 (SeriesGroupBy)</h2>
 <p>对 <code>GroupBy</code> 对象进行索引以聚合特定列：</p>
-<div id="4b5a6c18" class="cell" data-execution_count="14">
+<div id="020e0e23" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>])[<span class="st">"data2"</span>].mean()  <span class="co"># 按 key1 和 key2 分组，计算 data2 的平均值</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>key1  key2
-a     1       0.247347
-      2      -1.986585
-b     1      -1.333528
-      2      -0.878980
+a     1      -1.141688
+      2      -1.701094
+b     1      -0.725398
+      2      -0.358514
 Name: data2, dtype: float64</code></pre>
 </div>
 </div>
@@ -769,7 +769,7 @@ Name: data2, dtype: float64</code></pre>
 </section>
 <section id="选择多列-dataframegroupby" class="level2">
 <h2 class="anchored" data-anchor-id="选择多列-dataframegroupby">选择多列 (DataFrameGroupBy)</h2>
-<div id="a80ab3ac" class="cell" data-execution_count="15">
+<div id="2a44bc49" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df.groupby([<span class="st">"key1"</span>, <span class="st">"key2"</span>])[[<span class="st">"data2"</span>]].mean()  <span class="co"># 按 key1 和 key2 分组，计算 data2 的平均值</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <div>
@@ -792,20 +792,20 @@ Name: data2, dtype: float64</code></pre>
 <tr class="odd">
 <td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">a</td>
 <td data-quarto-table-cell-role="th">1</td>
-<td>0.247347</td>
+<td>-1.141688</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2</td>
-<td>-1.986585</td>
+<td>-1.701094</td>
 </tr>
 <tr class="odd">
 <td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">b</td>
 <td data-quarto-table-cell-role="th">1</td>
-<td>-1.333528</td>
+<td>-0.725398</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">2</td>
-<td>-0.878980</td>
+<td>-0.358514</td>
 </tr>
 </tbody>
 </table>
@@ -819,7 +819,7 @@ Name: data2, dtype: float64</code></pre>
 <section id="使用字典和-series-分组" class="level1">
 <h1>使用字典和 Series 分组</h1>
 <p>使用字典或 Series 进行分组：</p>
-<div id="d00a0e05" class="cell" data-execution_count="16">
+<div id="bd02d1f8" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>people <span class="op">=</span> pd.DataFrame(np.random.standard_normal((<span class="dv">5</span>, <span class="dv">5</span>)),  <span class="co"># 创建一个 5x5 的随机数 DataFrame</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>                   columns<span class="op">=</span>[<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>],  <span class="co"># 列名</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                   index<span class="op">=</span>[<span class="st">"Joe"</span>, <span class="st">"Steve"</span>, <span class="st">"Wanda"</span>, <span class="st">"Jill"</span>, <span class="st">"Trey"</span>])  <span class="co"># 行名</span></span>
@@ -831,7 +831,7 @@ Name: data2, dtype: float64</code></pre>
 <span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>by_column <span class="op">=</span> people.groupby(mapping, axis<span class="op">=</span><span class="st">"columns"</span>)  <span class="co"># 使用映射字典按列分组</span></span>
 <span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>by_column.<span class="bu">sum</span>()  <span class="co"># 计算每个列组的总和</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_2836/544166625.py:9: FutureWarning: DataFrame.groupby with axis=1 is deprecated. Do `frame.T.groupby(...)` without axis instead.
+<pre><code>/tmp/ipykernel_2885/544166625.py:9: FutureWarning: DataFrame.groupby with axis=1 is deprecated. Do `frame.T.groupby(...)` without axis instead.
   by_column = people.groupby(mapping, axis="columns")  # 使用映射字典按列分组</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="16">
@@ -849,28 +849,28 @@ Name: data2, dtype: float64</code></pre>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Joe</td>
-<td>-3.550429</td>
-<td>-1.587161</td>
+<td>0.609251</td>
+<td>-0.269722</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Steve</td>
-<td>3.514558</td>
-<td>0.055653</td>
+<td>-0.522836</td>
+<td>2.673726</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Wanda</td>
-<td>-1.342318</td>
-<td>0.850901</td>
+<td>0.993532</td>
+<td>0.916912</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">Jill</td>
-<td>2.425766</td>
-<td>0.943232</td>
+<td>0.521048</td>
+<td>-0.710152</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Trey</td>
-<td>-1.212381</td>
-<td>0.202541</td>
+<td>-0.673468</td>
+<td>-2.079586</td>
 </tr>
 </tbody>
 </table>
@@ -883,7 +883,7 @@ Name: data2, dtype: float64</code></pre>
 <section id="使用函数分组" class="level1">
 <h1>使用函数分组</h1>
 <p>使用函数定义组映射（每个索引值调用一次）：</p>
-<div id="eddd47b1" class="cell" data-execution_count="17">
+<div id="720c6bc4" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>people.groupby(<span class="bu">len</span>).<span class="bu">sum</span>()  <span class="co"># 按行名的长度分组，计算总和</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <div>
@@ -903,27 +903,27 @@ Name: data2, dtype: float64</code></pre>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">3</td>
-<td>-0.191833</td>
-<td>-0.925240</td>
-<td>-1.225054</td>
-<td>-2.325375</td>
-<td>-0.470089</td>
+<td>-1.244915</td>
+<td>-0.283235</td>
+<td>0.124831</td>
+<td>0.484420</td>
+<td>1.258427</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">4</td>
-<td>0.795097</td>
-<td>-0.067224</td>
-<td>-1.251847</td>
-<td>2.465231</td>
-<td>0.417900</td>
+<td>-0.441807</td>
+<td>-0.600129</td>
+<td>-2.824559</td>
+<td>2.672139</td>
+<td>-1.747801</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">5</td>
-<td>1.198893</td>
-<td>0.267225</td>
-<td>1.703779</td>
-<td>0.468461</td>
-<td>-0.559563</td>
+<td>0.355382</td>
+<td>1.290775</td>
+<td>0.415424</td>
+<td>0.055272</td>
+<td>1.944481</td>
 </tr>
 </tbody>
 </table>
@@ -935,14 +935,14 @@ Name: data2, dtype: float64</code></pre>
 <section id="按索引级别分组" class="level1">
 <h1>按索引级别分组</h1>
 <p>按分层索引的级别分组：</p>
-<div id="f0ffc763" class="cell" data-execution_count="18">
+<div id="754bf4e9" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>columns <span class="op">=</span> pd.MultiIndex.from_arrays([[<span class="st">"US"</span>, <span class="st">"US"</span>, <span class="st">"US"</span>, <span class="st">"JP"</span>, <span class="st">"JP"</span>],  <span class="co"># 创建一个多级列索引</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>                                    [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">3</span>]],</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>                                   names<span class="op">=</span>[<span class="st">"cty"</span>, <span class="st">"tenor"</span>])</span>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>hier_df <span class="op">=</span> pd.DataFrame(np.random.standard_normal((<span class="dv">4</span>, <span class="dv">5</span>)), columns<span class="op">=</span>columns)  <span class="co"># 创建一个具有多级列索引的 DataFrame</span></span>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>hier_df.groupby(level<span class="op">=</span><span class="st">"cty"</span>, axis<span class="op">=</span><span class="st">"columns"</span>).count()  <span class="co"># 按列的 "cty" 级别分组，计数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_2836/2307213189.py:5: FutureWarning: DataFrame.groupby with axis=1 is deprecated. Do `frame.T.groupby(...)` without axis instead.
+<pre><code>/tmp/ipykernel_2885/2307213189.py:5: FutureWarning: DataFrame.groupby with axis=1 is deprecated. Do `frame.T.groupby(...)` without axis instead.
   hier_df.groupby(level="cty", axis="columns").count()  # 按列的 "cty" 级别分组，计数</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="18">
@@ -1000,7 +1000,7 @@ Name: data2, dtype: float64</code></pre>
 <section id="使用自定义聚合函数" class="level2">
 <h2 class="anchored" data-anchor-id="使用自定义聚合函数">使用自定义聚合函数</h2>
 <p>使用 <code>agg</code> 定义自定义函数：</p>
-<div id="8d31453b" class="cell" data-execution_count="19">
+<div id="078e2978" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> peak_to_peak(arr):  <span class="co"># 定义一个函数，计算数组的极差（最大值 - 最小值）</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> arr.<span class="bu">max</span>() <span class="op">-</span> arr.<span class="bu">min</span>()</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1029,14 +1029,14 @@ Name: data2, dtype: float64</code></pre>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">a</td>
 <td>1</td>
-<td>0.895269</td>
-<td>3.401034</td>
+<td>1.274978</td>
+<td>3.301902</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">b</td>
 <td>1</td>
-<td>0.366822</td>
-<td>0.454549</td>
+<td>2.648829</td>
+<td>0.366884</td>
 </tr>
 </tbody>
 </table>
@@ -1048,7 +1048,7 @@ Name: data2, dtype: float64</code></pre>
 <section id="describe-方法" class="level2">
 <h2 class="anchored" data-anchor-id="describe-方法"><code>describe</code> 方法</h2>
 <p>使用非聚合方法，如 <code>describe</code>：</p>
-<div id="3b82ad2e" class="cell" data-execution_count="20">
+<div id="ae49dcb4" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>grouped.describe()  <span class="co"># 获取每个组的描述性统计信息</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <div>
@@ -1123,18 +1123,18 @@ Name: data2, dtype: float64</code></pre>
 <td>1.50</td>
 <td>2.0</td>
 <td>3.0</td>
-<td>0.533127</td>
+<td>0.389291</td>
 <td>...</td>
-<td>0.728861</td>
-<td>1.036927</td>
+<td>0.776910</td>
+<td>0.889032</td>
 <td>3.0</td>
-<td>-0.497297</td>
-<td>1.739428</td>
-<td>-1.986585</td>
-<td>-1.453170</td>
-<td>-0.919755</td>
-<td>0.247347</td>
-<td>1.414449</td>
+<td>-1.328157</td>
+<td>1.682245</td>
+<td>-2.792639</td>
+<td>-2.246866</td>
+<td>-1.701094</td>
+<td>-0.595916</td>
+<td>0.509262</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">b</td>
@@ -1147,18 +1147,18 @@ Name: data2, dtype: float64</code></pre>
 <td>1.75</td>
 <td>2.0</td>
 <td>2.0</td>
-<td>-0.570638</td>
+<td>1.042415</td>
 <td>...</td>
-<td>-0.478932</td>
-<td>-0.387227</td>
+<td>1.704622</td>
+<td>2.366829</td>
 <td>2.0</td>
-<td>-1.106254</td>
-<td>0.321415</td>
-<td>-1.333528</td>
-<td>-1.219891</td>
-<td>-1.106254</td>
-<td>-0.992617</td>
-<td>-0.878980</td>
+<td>-0.541956</td>
+<td>0.259426</td>
+<td>-0.725398</td>
+<td>-0.633677</td>
+<td>-0.541956</td>
+<td>-0.450235</td>
+<td>-0.358514</td>
 </tr>
 </tbody>
 </table>
@@ -1174,12 +1174,12 @@ Name: data2, dtype: float64</code></pre>
 <section id="单列上的多个函数" class="level2">
 <h2 class="anchored" data-anchor-id="单列上的多个函数">单列上的多个函数</h2>
 <p>加载小费数据集：</p>
-<div id="d584663d" class="cell" data-execution_count="21">
+<div id="a9753f83" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> pd.read_csv(<span class="st">"examples/tips.csv"</span>)  <span class="co"># 从 CSV 文件加载数据(需确保 examples 文件夹及 tips.csv 文件存在)</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">"tip_pct"</span>] <span class="op">=</span> tips[<span class="st">"tip"</span>] <span class="op">/</span> tips[<span class="st">"total_bill"</span>]  <span class="co"># 添加一个小费百分比列</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>应用多个函数：</p>
-<div id="1fde0510" class="cell" data-execution_count="22">
+<div id="eb368e6b" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> tips.groupby([<span class="st">"day"</span>, <span class="st">"smoker"</span>])  <span class="co"># 按 day 和 smoker 分组</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>grouped_pct <span class="op">=</span> grouped[<span class="st">"tip_pct"</span>]  <span class="co"># 选择 tip_pct 列</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>grouped_pct.agg([<span class="st">"mean"</span>, <span class="st">"std"</span>, peak_to_peak])  <span class="co"># 应用多个聚合函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1267,10 +1267,10 @@ Name: data2, dtype: float64</code></pre>
 <section id="自定义列名" class="level2">
 <h2 class="anchored" data-anchor-id="自定义列名">自定义列名</h2>
 <p>提供自定义名称：</p>
-<div id="bea58bee" class="cell" data-execution_count="23">
+<div id="d9f10b9b" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>grouped_pct.agg([(<span class="st">"average"</span>, <span class="st">"mean"</span>), (<span class="st">"stdev"</span>, np.std)])  <span class="co"># 使用自定义列名</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_2836/3675398900.py:1: FutureWarning: The provided callable &lt;function std at 0x7f2b0093bd80&gt; is currently using SeriesGroupBy.std. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "std" instead.
+<pre><code>/tmp/ipykernel_2885/3675398900.py:1: FutureWarning: The provided callable &lt;function std at 0x7fa2f8107d80&gt; is currently using SeriesGroupBy.std. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "std" instead.
   grouped_pct.agg([("average", "mean"), ("stdev", np.std)])  # 使用自定义列名</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="23">
@@ -1347,7 +1347,7 @@ Name: data2, dtype: float64</code></pre>
 <section id="对不同列应用不同函数" class="level2">
 <h2 class="anchored" data-anchor-id="对不同列应用不同函数">对不同列应用不同函数</h2>
 <p>对不同列应用不同的函数：</p>
-<div id="5c6a1586" class="cell" data-execution_count="24">
+<div id="34d35966" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>functions <span class="op">=</span> [<span class="st">"count"</span>, <span class="st">"mean"</span>, <span class="st">"max"</span>]  <span class="co"># 定义一个函数列表</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> grouped[[<span class="st">"tip_pct"</span>, <span class="st">"total_bill"</span>]].agg(functions)  <span class="co"># 对 tip_pct 和 total_bill 应用函数列表</span></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1467,10 +1467,10 @@ Name: data2, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="9a1e2b98" class="cell" data-execution_count="25">
+<div id="8188b74a" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>grouped.agg({<span class="st">"tip"</span> : np.<span class="bu">max</span>, <span class="st">"size"</span> : <span class="st">"sum"</span>})  <span class="co"># 对 tip 列应用 max 函数，对 size 列应用 sum 函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_2836/2920994840.py:1: FutureWarning: The provided callable &lt;function max at 0x7f2b0093b240&gt; is currently using SeriesGroupBy.max. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "max" instead.
+<pre><code>/tmp/ipykernel_2885/2920994840.py:1: FutureWarning: The provided callable &lt;function max at 0x7fa2f8107240&gt; is currently using SeriesGroupBy.max. In a future version of pandas, the provided callable will be used directly. To keep current behavior pass the string "max" instead.
   grouped.agg({"tip" : np.max, "size" : "sum"})  # 对 tip 列应用 max 函数，对 size 列应用 sum 函数</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="25">
@@ -1543,7 +1543,7 @@ Name: data2, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="8792a39b" class="cell" data-execution_count="26">
+<div id="76d6d8ed" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>grouped.agg({</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"tip_pct"</span>: [<span class="st">"min"</span>, <span class="st">"max"</span>, <span class="st">"mean"</span>, <span class="st">"std"</span>],  <span class="co"># 对 tip_pct 应用多个函数</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"size"</span>: <span class="st">"sum"</span>  <span class="co"># 对 size 应用 sum 函数</span></span>
@@ -1659,7 +1659,7 @@ Name: data2, dtype: float64</code></pre>
 <section id="返回无行索引的聚合数据" class="level1">
 <h1>返回无行索引的聚合数据</h1>
 <p>使用 <code>as_index=False</code> 阻止组键成为索引：</p>
-<div id="2b8bc50e" class="cell" data-execution_count="27">
+<div id="5fc112c3" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>numeric_cols <span class="op">=</span> tips.select_dtypes(include<span class="op">=</span>[np.number]).columns  <span class="co"># 获取所有数值列</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>tips.groupby([<span class="st">"day"</span>, <span class="st">"smoker"</span>], as_index<span class="op">=</span><span class="va">False</span>)[numeric_cols].mean()  <span class="co"># 按 day 和 smoker 分组，计算数值列的平均值，不使用组键作为索引</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
@@ -1766,13 +1766,13 @@ Name: data2, dtype: float64</code></pre>
 </section>
 <section id="示例选择前几行" class="level2">
 <h2 class="anchored" data-anchor-id="示例选择前几行">示例：选择前几行</h2>
-<div id="84f963a5" class="cell" data-execution_count="28">
+<div id="6324bd1a" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> top(df, n<span class="op">=</span><span class="dv">5</span>, column<span class="op">=</span><span class="st">"tip_pct"</span>):  <span class="co"># 定义一个函数，按指定列选择前 n 行</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df.sort_values(column, ascending<span class="op">=</span><span class="va">False</span>)[:n]</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>tips.groupby(<span class="st">"smoker"</span>).<span class="bu">apply</span>(top)  <span class="co"># 按 smoker 分组，应用 top 函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_2836/3081321245.py:4: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+<pre><code>/tmp/ipykernel_2885/3081321245.py:4: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
   tips.groupby("smoker").apply(top)  # 按 smoker 分组，应用 top 函数</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="28">
@@ -1916,10 +1916,10 @@ Name: data2, dtype: float64</code></pre>
 </section>
 <section id="向-apply-传递参数" class="level2">
 <h2 class="anchored" data-anchor-id="向-apply-传递参数">向 <code>apply</code> 传递参数</h2>
-<div id="f0ba28d7" class="cell" data-execution_count="29">
+<div id="d1ba1e8c" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>tips.groupby([<span class="st">"smoker"</span>, <span class="st">"day"</span>]).<span class="bu">apply</span>(top, n<span class="op">=</span><span class="dv">1</span>, column<span class="op">=</span><span class="st">"total_bill"</span>)  <span class="co"># 向 apply 传递额外的参数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_2836/1043258707.py:1: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+<pre><code>/tmp/ipykernel_2885/1043258707.py:1: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
   tips.groupby(["smoker", "day"]).apply(top, n=1, column="total_bill")  # 向 apply 传递额外的参数</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="29">
@@ -2054,10 +2054,10 @@ Name: data2, dtype: float64</code></pre>
 <section id="在-apply-中抑制组键" class="level2">
 <h2 class="anchored" data-anchor-id="在-apply-中抑制组键">在 <code>apply</code> 中抑制组键</h2>
 <p>使用 <code>group_keys=False</code>：</p>
-<div id="5d2e7168" class="cell" data-execution_count="30">
+<div id="57ee7442" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>tips.groupby(<span class="st">"smoker"</span>, group_keys<span class="op">=</span><span class="va">False</span>).<span class="bu">apply</span>(top)  <span class="co"># 抑制组键</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_2836/178130250.py:1: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+<pre><code>/tmp/ipykernel_2885/178130250.py:1: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
   tips.groupby("smoker", group_keys=False).apply(top)  # 抑制组键</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="30">
@@ -2191,7 +2191,7 @@ Name: data2, dtype: float64</code></pre>
 <section id="将-cut-和-qcut-与-groupby-结合使用" class="level2">
 <h2 class="anchored" data-anchor-id="将-cut-和-qcut-与-groupby-结合使用">将 <code>cut</code> 和 <code>qcut</code> 与 <code>groupby</code> 结合使用</h2>
 <p>将 <code>cut</code>/<code>qcut</code> 与 <code>groupby</code> 结合使用进行桶/分位数分析：</p>
-<div id="be863d37" class="cell" data-execution_count="31">
+<div id="368f03f4" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> pd.DataFrame({</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data1"</span>: np.random.standard_normal(<span class="dv">1000</span>),  <span class="co"># 创建一个包含 1000 个随机数的 DataFrame</span></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"data2"</span>: np.random.standard_normal(<span class="dv">1000</span>)</span>
@@ -2207,7 +2207,7 @@ Name: data2, dtype: float64</code></pre>
 <span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> frame.groupby(quartiles)  <span class="co"># 按分位数分组</span></span>
 <span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>grouped.<span class="bu">apply</span>(get_stats)  <span class="co"># 应用 get_stats 函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_2836/149866670.py:13: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+<pre><code>/tmp/ipykernel_2885/149866670.py:13: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
   grouped = frame.groupby(quartiles)  # 按分位数分组</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="31">
@@ -2235,64 +2235,64 @@ Name: data2, dtype: float64</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">(-3.33, -1.671]</td>
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">(-3.47, -1.798]</td>
 <td data-quarto-table-cell-role="th">data1</td>
-<td>-3.323212</td>
-<td>-1.688705</td>
-<td>44</td>
-<td>-2.051253</td>
+<td>-3.463633</td>
+<td>-1.801195</td>
+<td>39</td>
+<td>-2.222720</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">data2</td>
-<td>-2.749905</td>
-<td>1.178299</td>
-<td>44</td>
-<td>-0.217814</td>
+<td>-2.006649</td>
+<td>2.527682</td>
+<td>39</td>
+<td>0.072085</td>
 </tr>
 <tr class="odd">
-<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">(-1.671, -0.0196]</td>
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">(-1.798, -0.133]</td>
 <td data-quarto-table-cell-role="th">data1</td>
-<td>-1.671393</td>
-<td>-0.022043</td>
-<td>467</td>
-<td>-0.712130</td>
+<td>-1.790149</td>
+<td>-0.136841</td>
+<td>382</td>
+<td>-0.773966</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">data2</td>
-<td>-2.854810</td>
-<td>3.051095</td>
-<td>467</td>
-<td>0.082349</td>
+<td>-2.798776</td>
+<td>2.872683</td>
+<td>382</td>
+<td>-0.000894</td>
 </tr>
 <tr class="odd">
-<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">(-0.0196, 1.632]</td>
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">(-0.133, 1.532]</td>
 <td data-quarto-table-cell-role="th">data1</td>
-<td>-0.019084</td>
-<td>1.616077</td>
-<td>437</td>
-<td>0.630802</td>
+<td>-0.130968</td>
+<td>1.526832</td>
+<td>516</td>
+<td>0.580444</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">data2</td>
-<td>-2.813546</td>
-<td>2.559693</td>
-<td>437</td>
-<td>0.058674</td>
+<td>-3.112524</td>
+<td>3.006541</td>
+<td>516</td>
+<td>0.024306</td>
 </tr>
 <tr class="odd">
-<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">(1.632, 3.284]</td>
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">(1.532, 3.197]</td>
 <td data-quarto-table-cell-role="th">data1</td>
-<td>1.644013</td>
-<td>3.284049</td>
-<td>52</td>
-<td>2.053290</td>
+<td>1.534330</td>
+<td>3.197269</td>
+<td>63</td>
+<td>2.034750</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">data2</td>
-<td>-2.811068</td>
-<td>2.315891</td>
-<td>52</td>
-<td>-0.103038</td>
+<td>-1.954648</td>
+<td>2.633272</td>
+<td>63</td>
+<td>0.109399</td>
 </tr>
 </tbody>
 </table>
@@ -2301,7 +2301,7 @@ Name: data2, dtype: float64</code></pre>
 </div>
 </div>
 <p>相同的结果可以用更简单的方法计算得到:</p>
-<div id="dec1055c" class="cell" data-execution_count="32">
+<div id="1d3530ee" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>grouped.agg([<span class="st">"min"</span>, <span class="st">"max"</span>, <span class="st">"count"</span>, <span class="st">"mean"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="32">
 <div>
@@ -2339,48 +2339,48 @@ Name: data2, dtype: float64</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">(-3.33, -1.671]</td>
-<td>-3.323212</td>
-<td>-1.688705</td>
-<td>44</td>
-<td>-2.051253</td>
-<td>-2.749905</td>
-<td>1.178299</td>
-<td>44</td>
-<td>-0.217814</td>
+<td data-quarto-table-cell-role="th">(-3.47, -1.798]</td>
+<td>-3.463633</td>
+<td>-1.801195</td>
+<td>39</td>
+<td>-2.222720</td>
+<td>-2.006649</td>
+<td>2.527682</td>
+<td>39</td>
+<td>0.072085</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">(-1.671, -0.0196]</td>
-<td>-1.671393</td>
-<td>-0.022043</td>
-<td>467</td>
-<td>-0.712130</td>
-<td>-2.854810</td>
-<td>3.051095</td>
-<td>467</td>
-<td>0.082349</td>
+<td data-quarto-table-cell-role="th">(-1.798, -0.133]</td>
+<td>-1.790149</td>
+<td>-0.136841</td>
+<td>382</td>
+<td>-0.773966</td>
+<td>-2.798776</td>
+<td>2.872683</td>
+<td>382</td>
+<td>-0.000894</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">(-0.0196, 1.632]</td>
-<td>-0.019084</td>
-<td>1.616077</td>
-<td>437</td>
-<td>0.630802</td>
-<td>-2.813546</td>
-<td>2.559693</td>
-<td>437</td>
-<td>0.058674</td>
+<td data-quarto-table-cell-role="th">(-0.133, 1.532]</td>
+<td>-0.130968</td>
+<td>1.526832</td>
+<td>516</td>
+<td>0.580444</td>
+<td>-3.112524</td>
+<td>3.006541</td>
+<td>516</td>
+<td>0.024306</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">(1.632, 3.284]</td>
-<td>1.644013</td>
-<td>3.284049</td>
-<td>52</td>
-<td>2.053290</td>
-<td>-2.811068</td>
-<td>2.315891</td>
-<td>52</td>
-<td>-0.103038</td>
+<td data-quarto-table-cell-role="th">(1.532, 3.197]</td>
+<td>1.534330</td>
+<td>3.197269</td>
+<td>63</td>
+<td>2.034750</td>
+<td>-1.954648</td>
+<td>2.633272</td>
+<td>63</td>
+<td>0.109399</td>
 </tr>
 </tbody>
 </table>
@@ -2391,7 +2391,7 @@ Name: data2, dtype: float64</code></pre>
 </section>
 <section id="使用-qcut-获取相等大小的桶" class="level2">
 <h2 class="anchored" data-anchor-id="使用-qcut-获取相等大小的桶">使用 <code>qcut</code> 获取相等大小的桶</h2>
-<div id="bb38ad13" class="cell" data-execution_count="33">
+<div id="2f7eb5b1" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>quartiles_samp <span class="op">=</span> pd.qcut(frame[<span class="st">"data1"</span>], <span class="dv">4</span>, labels<span class="op">=</span><span class="va">False</span>)  <span class="co"># 将 data1 列分为 4 个相等大小的桶，返回标签</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> frame.groupby(quartiles_samp)  <span class="co"># 按分位数标签分组</span></span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>grouped.<span class="bu">apply</span>(get_stats)  <span class="co"># 应用 get_stats 函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2422,62 +2422,62 @@ Name: data2, dtype: float64</code></pre>
 <tr class="odd">
 <td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">0</td>
 <td data-quarto-table-cell-role="th">data1</td>
-<td>-3.323212</td>
-<td>-0.769481</td>
+<td>-3.463633</td>
+<td>-0.612464</td>
 <td>250</td>
-<td>-1.298571</td>
+<td>-1.276390</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">data2</td>
-<td>-2.749905</td>
-<td>2.557589</td>
+<td>-2.263471</td>
+<td>2.527682</td>
 <td>250</td>
-<td>-0.023122</td>
+<td>0.027311</td>
 </tr>
 <tr class="odd">
 <td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">1</td>
 <td data-quarto-table-cell-role="th">data1</td>
-<td>-0.769447</td>
-<td>-0.053580</td>
+<td>-0.608569</td>
+<td>0.040523</td>
 <td>250</td>
-<td>-0.391184</td>
+<td>-0.266919</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">data2</td>
-<td>-2.854810</td>
-<td>3.051095</td>
+<td>-2.798776</td>
+<td>2.872683</td>
 <td>250</td>
-<td>0.136118</td>
+<td>-0.027168</td>
 </tr>
 <tr class="odd">
 <td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">2</td>
 <td data-quarto-table-cell-role="th">data1</td>
-<td>-0.047251</td>
-<td>0.663427</td>
+<td>0.043529</td>
+<td>0.759537</td>
 <td>250</td>
-<td>0.264628</td>
+<td>0.379052</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">data2</td>
-<td>-2.754872</td>
-<td>2.483967</td>
+<td>-3.112524</td>
+<td>2.651350</td>
 <td>250</td>
-<td>0.082064</td>
+<td>-0.028211</td>
 </tr>
 <tr class="odd">
 <td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">3</td>
 <td data-quarto-table-cell-role="th">data1</td>
-<td>0.664126</td>
-<td>3.284049</td>
+<td>0.760484</td>
+<td>3.197269</td>
 <td>250</td>
-<td>1.263575</td>
+<td>1.345686</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">data2</td>
-<td>-2.813546</td>
-<td>2.559693</td>
+<td>-2.280409</td>
+<td>3.006541</td>
 <td>250</td>
-<td>0.001562</td>
+<td>0.115682</td>
 </tr>
 </tbody>
 </table>
@@ -2491,24 +2491,24 @@ Name: data2, dtype: float64</code></pre>
 <h1>示例：使用组特定值填充缺失值</h1>
 <section id="使用平均值填充" class="level2">
 <h2 class="anchored" data-anchor-id="使用平均值填充">使用平均值填充</h2>
-<div id="0e3ffdcd" class="cell" data-execution_count="34">
+<div id="b473defc" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series(np.random.standard_normal(<span class="dv">6</span>))  <span class="co"># 创建一个包含 6 个随机数的 Series</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>s[::<span class="dv">2</span>] <span class="op">=</span> np.nan  <span class="co"># 将一些值设置为 NaN</span></span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>s.fillna(s.mean())  <span class="co"># 使用 Series 的平均值填充 NaN</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
-<pre><code>0    0.749426
-1    0.076007
-2    0.749426
-3    0.783902
-4    0.749426
-5    1.388369
+<pre><code>0    0.301104
+1    2.326304
+2    0.301104
+3   -1.811516
+4    0.301104
+5    0.388523
 dtype: float64</code></pre>
 </div>
 </div>
 </section>
 <section id="使用组特定平均值填充" class="level2">
 <h2 class="anchored" data-anchor-id="使用组特定平均值填充">使用组特定平均值填充</h2>
-<div id="f8bd2bed" class="cell" data-execution_count="35">
+<div id="ef648875" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> [<span class="st">"Ohio"</span>, <span class="st">"New York"</span>, <span class="st">"Vermont"</span>, <span class="st">"Florida"</span>,  <span class="co"># 创建一个州列表</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Oregon"</span>, <span class="st">"Nevada"</span>, <span class="st">"California"</span>, <span class="st">"Idaho"</span>]</span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>group_key <span class="op">=</span> [<span class="st">"East"</span>] <span class="op">*</span> <span class="dv">4</span> <span class="op">+</span> [<span class="st">"West"</span>] <span class="op">*</span> <span class="dv">4</span>  <span class="co"># 创建一个分组键列表</span></span>
@@ -2520,34 +2520,34 @@ dtype: float64</code></pre>
 <span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>data.groupby(group_key).<span class="bu">apply</span>(fill_mean)  <span class="co"># 按组键分组，应用 fill_mean 函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="35">
-<pre><code>East  Ohio         -0.609322
-      New York      0.147560
-      Vermont       0.333734
-      Florida       1.462964
-West  Oregon        0.158825
-      Nevada        0.802040
-      California    1.445256
-      Idaho         0.802040
+<pre><code>East  Ohio         -1.624621
+      New York     -0.536016
+      Vermont      -0.933978
+      Florida      -0.641297
+West  Oregon       -1.431865
+      Nevada       -1.408131
+      California   -1.384396
+      Idaho        -1.408131
 dtype: float64</code></pre>
 </div>
 </div>
 </section>
 <section id="预定义填充值" class="level2">
 <h2 class="anchored" data-anchor-id="预定义填充值">预定义填充值</h2>
-<div id="cae86605" class="cell" data-execution_count="36">
+<div id="97417385" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>fill_values <span class="op">=</span> {<span class="st">"East"</span>: <span class="fl">0.5</span>, <span class="st">"West"</span>: <span class="op">-</span><span class="dv">1</span>}  <span class="co"># 创建一个填充值字典</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fill_func(group):  <span class="co"># 定义一个函数，使用预定义值填充 NaN</span></span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group.fillna(fill_values[group.name])</span>
 <span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>data.groupby(group_key).<span class="bu">apply</span>(fill_func)  <span class="co"># 按组键分组，应用 fill_func 函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="36">
-<pre><code>East  Ohio         -0.609322
-      New York      0.147560
+<pre><code>East  Ohio         -1.624621
+      New York     -0.536016
       Vermont       0.500000
-      Florida       1.462964
-West  Oregon        0.158825
+      Florida      -0.641297
+West  Oregon       -1.431865
       Nevada       -1.000000
-      California    1.445256
+      California   -1.384396
       Idaho        -1.000000
 dtype: float64</code></pre>
 </div>
@@ -2558,7 +2558,7 @@ dtype: float64</code></pre>
 <h1>示例：随机抽样和排列</h1>
 <section id="模拟一副牌" class="level2">
 <h2 class="anchored" data-anchor-id="模拟一副牌">模拟一副牌</h2>
-<div id="55cbb959" class="cell" data-execution_count="37">
+<div id="0acbf212" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>suits <span class="op">=</span> [<span class="st">"H"</span>, <span class="st">"S"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>]  <span class="co"># 花色</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>card_val <span class="op">=</span> (<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>)) <span class="op">+</span> [<span class="dv">10</span>] <span class="op">*</span> <span class="dv">3</span>) <span class="op">*</span> <span class="dv">4</span>  <span class="co"># 牌值</span></span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>base_names <span class="op">=</span> [<span class="st">"A"</span>] <span class="op">+</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">11</span>)) <span class="op">+</span> [<span class="st">"J"</span>, <span class="st">"K"</span>, <span class="st">"Q"</span>]  <span class="co"># 牌名</span></span>
@@ -2571,37 +2571,37 @@ dtype: float64</code></pre>
 </section>
 <section id="抽取随机一手牌" class="level2">
 <h2 class="anchored" data-anchor-id="抽取随机一手牌">抽取随机一手牌</h2>
-<div id="9670f47d" class="cell" data-execution_count="38">
+<div id="6c369204" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> draw(deck, n<span class="op">=</span><span class="dv">5</span>):  <span class="co"># 定义一个函数，从一副牌中抽取 n 张牌</span></span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> deck.sample(n)</span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>draw(deck)  <span class="co"># 抽取 5 张牌</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="38">
-<pre><code>5S    5
-4S    4
-3H    3
-4D    4
-4H    4
+<pre><code>4D     4
+8H     8
+JD    10
+8D     8
+7S     7
 dtype: int64</code></pre>
 </div>
 </div>
 </section>
 <section id="从每个花色中抽取两张随机牌" class="level2">
 <h2 class="anchored" data-anchor-id="从每个花色中抽取两张随机牌">从每个花色中抽取两张随机牌</h2>
-<div id="28ff4ff2" class="cell" data-execution_count="39">
+<div id="8bf29b3a" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_suit(card):  <span class="co"># 定义一个函数，获取牌的花色</span></span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> card[<span class="op">-</span><span class="dv">1</span>]</span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>deck.groupby(get_suit).<span class="bu">apply</span>(draw, n<span class="op">=</span><span class="dv">2</span>)  <span class="co"># 按花色分组，从每个花色中抽取 2 张牌</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="39">
-<pre><code>C  2C     2
-   8C     8
-D  7D     7
-   9D     9
-H  QH    10
-   JH    10
-S  9S     9
-   6S     6
+<pre><code>C  6C    6
+   4C    4
+D  6D    6
+   9D    9
+H  AH    1
+   3H    3
+S  5S    5
+   9S    9
 dtype: int64</code></pre>
 </div>
 </div>
@@ -2611,7 +2611,7 @@ dtype: int64</code></pre>
 <h1>示例：组加权平均和相关性</h1>
 <section id="组加权平均" class="level2">
 <h2 class="anchored" data-anchor-id="组加权平均">组加权平均</h2>
-<div id="fae08bba" class="cell" data-execution_count="40">
+<div id="c7c7eb9f" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"category"</span>: [<span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"a"</span>,  <span class="co"># 创建一个 DataFrame</span></span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"b"</span>, <span class="st">"b"</span>, <span class="st">"b"</span>, <span class="st">"b"</span>],</span>
@@ -2626,20 +2626,20 @@ dtype: int64</code></pre>
 <span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a>grouped.<span class="bu">apply</span>(get_wavg)  <span class="co"># 应用 get_wavg 函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_2836/888171918.py:13: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+<pre><code>/tmp/ipykernel_2885/888171918.py:13: DeprecationWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
   grouped.apply(get_wavg)  # 应用 get_wavg 函数</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="40">
 <pre><code>category
-a   -0.498388
-b   -0.648165
+a    0.253727
+b    0.105938
 dtype: float64</code></pre>
 </div>
 </div>
 </section>
 <section id="与-spx标准普尔-500-指数的相关性" class="level2">
 <h2 class="anchored" data-anchor-id="与-spx标准普尔-500-指数的相关性">与 SPX（标准普尔 500 指数）的相关性</h2>
-<div id="e6f55203" class="cell" data-execution_count="41">
+<div id="c440049b" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 假设 examples 文件夹存在且包含 stock_px.csv 文件</span></span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>close_px <span class="op">=</span> pd.read_csv(<span class="st">"examples/stock_px.csv"</span>, parse_dates<span class="op">=</span><span class="va">True</span>, index_col<span class="op">=</span><span class="dv">0</span>)  <span class="co"># 从 CSV 文件加载数据</span></span>
 <span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2741,7 +2741,7 @@ dtype: float64</code></pre>
 </section>
 <section id="列间相关性apple-和-microsoft" class="level2">
 <h2 class="anchored" data-anchor-id="列间相关性apple-和-microsoft">列间相关性（Apple 和 Microsoft）</h2>
-<div id="163f6add" class="cell" data-execution_count="42">
+<div id="236baa35" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> corr_aapl_msft(group):  <span class="co"># 定义一个函数，计算 Apple 和 Microsoft 之间的相关性</span></span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group[<span class="st">"AAPL"</span>].corr(group[<span class="st">"MSFT"</span>])</span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2763,7 +2763,7 @@ dtype: float64</code></pre>
 </section>
 <section id="示例组线性回归" class="level1">
 <h1>示例：组线性回归</h1>
-<div id="507b50d1" class="cell" data-execution_count="43">
+<div id="8d24f77c" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm  <span class="co"># 导入 statsmodels 库</span></span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> regress(data, yvar<span class="op">=</span><span class="va">None</span>, xvars<span class="op">=</span><span class="va">None</span>):  <span class="co"># 定义一个函数，执行线性回归</span></span>
@@ -2849,7 +2849,7 @@ dtype: float64</code></pre>
 <li>生成与输入形状相同的对象。</li>
 <li>不得改变其输入。</li>
 </ul>
-<div id="a2f0d3f6" class="cell" data-execution_count="44">
+<div id="a19d8977" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'key'</span>: [<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>] <span class="op">*</span> <span class="dv">4</span>,</span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">'value'</span>: np.arange(<span class="fl">12.</span>)})</span>
 <span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> df.groupby(<span class="st">'key'</span>)[<span class="st">'value'</span>]</span>
@@ -2874,7 +2874,7 @@ Name: value, dtype: float64</code></pre>
 </div>
 </div>
 <p>我们可以像使用 GroupBy <code>agg</code> 方法一样传递字符串别名：</p>
-<div id="52171c46" class="cell" data-execution_count="45">
+<div id="bae4a399" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>g.transform(<span class="st">'mean'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="45">
 <pre><code>0     4.5
@@ -2893,7 +2893,7 @@ Name: value, dtype: float64</code></pre>
 </div>
 </div>
 <p>与 <code>apply</code> 类似，<code>transform</code> 适用于返回 Series 的函数，但结果必须与输入大小相同。 例如，我们可以使用辅助函数将每个组乘以 2：</p>
-<div id="9270e471" class="cell" data-execution_count="46">
+<div id="3cf7d75e" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> times_two(group):</span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> group <span class="op">*</span> <span class="dv">2</span></span>
 <span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>g.transform(times_two)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2914,7 +2914,7 @@ Name: value, dtype: float64</code></pre>
 </div>
 </div>
 <p>作为一个更复杂的示例，我们可以计算每个组的降序排名：</p>
-<div id="e9cb6c98" class="cell" data-execution_count="47">
+<div id="55f03e90" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_ranks(group):</span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group.rank(ascending<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>g.transform(get_ranks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2938,7 +2938,7 @@ Name: value, dtype: float64</code></pre>
 <section id="展开的分组操作" class="level2">
 <h2 class="anchored" data-anchor-id="展开的分组操作">“展开的”分组操作</h2>
 <p>“展开的”操作通常比 <code>apply</code> 快：</p>
-<div id="c1319d65" class="cell" data-execution_count="48">
+<div id="7f2490b1" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> normalize(x):  <span class="co"># 定义一个函数，进行标准化</span></span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x <span class="op">-</span> x.mean()) <span class="op">/</span> x.std()</span>
 <span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2959,7 +2959,7 @@ Name: value, dtype: float64</code></pre>
 Name: value, dtype: float64</code></pre>
 </div>
 </div>
-<div id="b70e9691" class="cell" data-execution_count="49">
+<div id="e62ff9e3" class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>g.<span class="bu">apply</span>(normalize)  <span class="co"># 使用 apply 进行标准化</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="49">
 <pre><code>key    
@@ -2978,7 +2978,7 @@ c    2    -1.161895
 Name: value, dtype: float64</code></pre>
 </div>
 </div>
-<div id="22333b4d" class="cell" data-execution_count="50">
+<div id="141ec75f" class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>normalized <span class="op">=</span> (df[<span class="st">'value'</span>] <span class="op">-</span> g.transform(<span class="st">'mean'</span>)) <span class="op">/</span> g.transform(<span class="st">'std'</span>)  <span class="co"># 展开的分组操作</span></span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>normalized</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="50">
@@ -3008,7 +3008,7 @@ Name: value, dtype: float64</code></pre>
 <section id="使用-pandas-创建数据透视表" class="level2">
 <h2 class="anchored" data-anchor-id="使用-pandas-创建数据透视表">使用 pandas 创建数据透视表</h2>
 <p><code>pivot_table</code> 利用 <code>groupby</code> 和分层索引：</p>
-<div id="1580d33d" class="cell" data-execution_count="51">
+<div id="e0e59e2b" class="cell" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>tips.pivot_table(</span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>    values<span class="op">=</span>[<span class="st">'total_bill'</span>, <span class="st">'tip'</span>],  <span class="co"># 要聚合的列</span></span>
 <span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">'day'</span>, <span class="st">'smoker'</span>],  <span class="co"># 行索引</span></span>
@@ -3087,7 +3087,7 @@ Name: value, dtype: float64</code></pre>
 </section>
 <section id="按多个变量分组" class="level2">
 <h2 class="anchored" data-anchor-id="按多个变量分组">按多个变量分组</h2>
-<div id="3143c1d3" class="cell" data-execution_count="52">
+<div id="f7983101" class="cell" data-execution_count="52">
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>tips.pivot_table(index<span class="op">=</span>[<span class="st">"time"</span>, <span class="st">"day"</span>], columns<span class="op">=</span><span class="st">"smoker"</span>,  <span class="co"># 行和列</span></span>
 <span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>                 values<span class="op">=</span>[<span class="st">"tip_pct"</span>, <span class="st">"size"</span>])  <span class="co"># 要聚合的列</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="52">
@@ -3173,7 +3173,7 @@ Name: value, dtype: float64</code></pre>
 </section>
 <section id="添加边距部分总计" class="level2">
 <h2 class="anchored" data-anchor-id="添加边距部分总计">添加边距（部分总计）</h2>
-<div id="f34a16c7" class="cell" data-execution_count="53">
+<div id="cb8b96f1" class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>tips.pivot_table(index<span class="op">=</span>[<span class="st">"time"</span>, <span class="st">"day"</span>], columns<span class="op">=</span><span class="st">"smoker"</span>,</span>
 <span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>                 values<span class="op">=</span>[<span class="st">"tip_pct"</span>, <span class="st">"size"</span>], margins<span class="op">=</span><span class="va">True</span>)  <span class="co"># 添加边距</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="53">
@@ -3285,7 +3285,7 @@ Name: value, dtype: float64</code></pre>
 </section>
 <section id="使用不同的聚合函数" class="level2">
 <h2 class="anchored" data-anchor-id="使用不同的聚合函数">使用不同的聚合函数</h2>
-<div id="df31c682" class="cell" data-execution_count="54">
+<div id="ab9ceff5" class="cell" data-execution_count="54">
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>tips.pivot_table(index<span class="op">=</span>[<span class="st">"time"</span>, <span class="st">"smoker"</span>], columns<span class="op">=</span><span class="st">"day"</span>,</span>
 <span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>                 values<span class="op">=</span><span class="st">"tip_pct"</span>, aggfunc<span class="op">=</span><span class="bu">len</span>, margins<span class="op">=</span><span class="va">True</span>)  <span class="co"># 使用 len 作为聚合函数</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="54">
@@ -3367,7 +3367,7 @@ Name: value, dtype: float64</code></pre>
 <section id="交叉表-crosstab" class="level2">
 <h2 class="anchored" data-anchor-id="交叉表-crosstab">交叉表 (Crosstab)</h2>
 <p>Crosstab 计算组频率：</p>
-<div id="b45a093b" class="cell" data-execution_count="55">
+<div id="50388760" class="cell" data-execution_count="55">
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> io <span class="im">import</span> StringIO</span>
 <span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_table(StringIO(<span class="st">"""Sample Nationality Handedness</span></span>
@@ -3386,7 +3386,7 @@ Name: value, dtype: float64</code></pre>
 <div class="cell-output cell-output-stderr">
 <pre><code>&lt;&gt;:13: SyntaxWarning: invalid escape sequence '\s'
 &lt;&gt;:13: SyntaxWarning: invalid escape sequence '\s'
-/tmp/ipykernel_2836/2308762248.py:13: SyntaxWarning: invalid escape sequence '\s'
+/tmp/ipykernel_2885/2308762248.py:13: SyntaxWarning: invalid escape sequence '\s'
   10 USA Right-handed"""), sep="\s+")</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="55">
@@ -3433,7 +3433,7 @@ Name: value, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="ce544086" class="cell" data-execution_count="56">
+<div id="c1126401" class="cell" data-execution_count="56">
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>pd.crosstab([tips[<span class="st">"time"</span>], tips[<span class="st">"day"</span>]], tips[<span class="st">"smoker"</span>], margins<span class="op">=</span><span class="va">True</span>)  <span class="co"># 创建交叉表</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="56">
 <div>

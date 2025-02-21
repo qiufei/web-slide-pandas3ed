@@ -222,12 +222,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><code>%timeit</code> 测量 Python 语句的执行时间。 这对于性能分析非常有用！</li>
 </ul>
-<div id="41b004b0" class="cell" data-execution_count="1">
+<div id="7ae60191" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np  <span class="co"># 导入 numpy 库，并将其命名为 np</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.random.standard_normal((<span class="dv">100</span>, <span class="dv">100</span>))  <span class="co"># 创建一个 100x100 的标准正态分布随机数数组</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit np.dot(a, a)  <span class="co"># 使用 %timeit 魔法命令测量 a 与 a 的点积运算的执行时间</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>46.7 μs ± 40.2 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)</code></pre>
+<pre><code>47.8 μs ± 48.5 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)</code></pre>
 </div>
 </div>
 <ul>
@@ -240,7 +240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>在魔法命令后使用 <code>?</code> 可以查看其“命令行”选项（类似于帮助手册）。</li>
 </ul>
-<div id="683ed195" class="cell" data-execution_count="2">
+<div id="4ba2ecda" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>debug?</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用 ? 查看 %debug 魔法命令的详细用法</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 包括调试器激活、断点设置和事后调试等</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -252,7 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>automagic</code> 允许您在<em>不使用</em> <code>%</code> 前缀的情况下使用魔法命令，只要没有变量共享相同的名称。</li>
 <li>您可以使用 <code>%automagic</code> 打开或关闭它。</li>
 </ul>
-<div id="103c725b" class="cell" data-execution_count="3">
+<div id="8a08cdda" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>automagic  <span class="co"># 打开或关闭 automagic 功能</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pwd         <span class="co"># 如果 automagic 开启且 'pwd' 不是变量名，则等同于 %pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -262,7 +262,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>某些魔法命令的行为类似于函数，允许您将其输出分配给变量。</li>
 </ul>
-<div id="a45c4cc8" class="cell" data-execution_count="4">
+<div id="3b7f758a" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>directory <span class="op">=</span> <span class="op">%</span>pwd  <span class="co"># 将当前工作目录存储在 'directory' 变量中</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(directory) <span class="co">#打印当前工作目录</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -326,7 +326,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>脚本在<em>空命名空间</em>中运行（最初没有先前的导入或变量）。</li>
 <li>脚本中的变量、函数和导入在执行<em>后</em>可在您的 IPython shell 中访问。</li>
 </ul>
-<div id="eb47c134" class="cell" data-execution_count="5">
+<div id="bde49218" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 在名为 'my_script.py' 的文件中：</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_function(x):  <span class="co"># 定义一个名为 my_function 的函数，它接受一个参数 x</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">*</span> <span class="dv">2</span>      <span class="co"># 返回 x 乘以 2 的结果</span></span>
@@ -343,7 +343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><code>%run -i</code> 允许脚本访问 IPython 会话中<em>已定义</em>的变量。</li>
 </ul>
-<div id="c8a61b92" class="cell" data-execution_count="6">
+<div id="9830495f" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 在 IPython 中：</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>my_var <span class="op">=</span> <span class="dv">10</span>  <span class="co"># 定义一个名为 my_var 的变量，并赋值为 10</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -359,14 +359,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>在 Jupyter notebooks 中，<code>%load</code> 将脚本<em>直接导入</em>代码单元格。</li>
 </ul>
-<div id="403ae881" class="cell" data-execution_count="7">
+<div id="fc11506c" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %load my_script.py  # 这将被脚本的内容替换</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>然后，代码单元格的内容将是：</li>
 <li></li>
 </ul>
-<div id="97e9e300" class="cell" data-execution_count="8">
+<div id="60bed09c" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_function(x):  <span class="co"># 定义一个名为 my_function 的函数，它接受一个参数 x</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">*</span> <span class="dv">2</span>      <span class="co"># 返回 x 乘以 2 的结果</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -388,7 +388,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>%paste</code> 和 <code>%cpaste</code> 对于运行从其他地方复制的代码非常有用（在 Jupyter 中相关性较低，因为 Jupyter 支持直接粘贴）。</li>
 <li><code>%paste</code> 将剪贴板内容作为<em>单个块</em>执行。</li>
 </ul>
-<div id="367cb551" class="cell" data-execution_count="9">
+<div id="74115f46" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 剪贴板上的示例代码：</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">5</span>               <span class="co"># 定义变量 x 并赋值为 5</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">2</span>:          <span class="co"># 如果 x 大于 2</span></span>
@@ -436,7 +436,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>_X</code>: 表示第 <code>X</code> 行的<em>输出</em>。</li>
 </ul></li>
 </ul>
-<div id="6b42f19a" class="cell" data-execution_count="10">
+<div id="1eb5bef5" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span>      <span class="co"># 输出：4</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> _  <span class="co"># result 现在是 4</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(_i1)  <span class="co"># 打印字符串 "2 + 2"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -473,7 +473,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>在行首添加 <code>!</code> 前缀以将其作为 shell 命令执行。</li>
 </ul>
-<div id="b51c3f36" class="cell" data-execution_count="11">
+<div id="52aa231a" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>ls  <span class="co"># 列出当前目录中的文件（Linux/macOS）</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span><span class="bu">dir</span> <span class="co"># 列出文件（Windows）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -521,7 +521,7 @@ pandas3ed10.qmd  pandas3ed4cn.qmd     pandas3edA2cn.quarto_ipynb</code></pre>
 <ul>
 <li>将 <code>!</code> 命令的输出分配给 Python 变量。</li>
 </ul>
-<div id="c6e928da" class="cell" data-execution_count="12">
+<div id="57ed6afb" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>file_list <span class="op">=</span> <span class="op">!</span>ls  <span class="co"># 将 !ls 命令（列出当前目录文件）的输出赋值给 file_list 变量</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(file_list)  <span class="co"># 打印 file_list 变量的内容，即文件列表</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -537,7 +537,7 @@ pandas3ed10.qmd  pandas3ed4cn.qmd     pandas3edA2cn.quarto_ipynb</code></pre>
 <ul>
 <li>使用 <code>$</code> 将 Python 变量的值替换到 shell 命令中。</li>
 </ul>
-<div id="abbc9d8a" class="cell" data-execution_count="13">
+<div id="d0e78bf2" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>my_directory <span class="op">=</span> <span class="st">"data_files"</span>  <span class="co"># 定义一个名为 my_directory 的变量，并赋值为 "data_files"</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>ls $my_directory  <span class="co"># 使用 !ls 命令列出 'data_files' 目录中的文件，其中 $my_directory 会被替换为 "data_files"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -547,7 +547,7 @@ pandas3ed10.qmd  pandas3ed4cn.qmd     pandas3edA2cn.quarto_ipynb</code></pre>
 <ul>
 <li><code>%alias</code>: 为常用 shell 命令创建快捷方式（别名）。</li>
 </ul>
-<div id="8627f24c" class="cell" data-execution_count="14">
+<div id="4fbf6d43" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>alias ll ls <span class="op">-</span>l  <span class="co"># 创建一个别名 'll'，用于执行 'ls -l' 命令</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ll <span class="op">/</span>usr<span class="op">/</span><span class="bu">bin</span>  <span class="co"># 现在可以使用 'll' 命令</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -560,7 +560,7 @@ pandas3ed10.qmd  pandas3ed4cn.qmd     pandas3edA2cn.quarto_ipynb</code></pre>
 <ul>
 <li><code>%bookmark</code>: 为经常访问的目录创建书签。</li>
 </ul>
-<div id="1897bb87" class="cell" data-execution_count="15">
+<div id="a30579fe" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>bookmark mydata <span class="op">/</span>path<span class="op">/</span>to<span class="op">/</span>my<span class="op">/</span>data  <span class="co"># 创建一个名为 'mydata' 的书签，指向 '/path/to/my/data' 目录</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>cd mydata       <span class="co"># 使用 cd 命令跳转到书签 'mydata' 所指向的目录</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>bookmark <span class="op">-</span>l    <span class="co"># 列出所有书签</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -606,7 +606,7 @@ pandas3ed10.qmd  pandas3ed4cn.qmd     pandas3edA2cn.quarto_ipynb</code></pre>
 <li>它将您置于错误发生的堆栈帧中。</li>
 <li>通过选项卡补全、语法高亮和回溯上下文等功能进行了增强。</li>
 </ul>
-<div id="8fc581ce" class="cell" data-execution_count="16">
+<div id="eb372867" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 假设 some_script.py 包含错误：</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>run some_script.py  <span class="co"># 运行 some_script.py 脚本</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>debug  <span class="co"># 在错误发生处进入调试器</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -643,7 +643,7 @@ pandas3ed10.qmd  pandas3ed4cn.qmd     pandas3edA2cn.quarto_ipynb</code></pre>
 <ul>
 <li><code>%pdb</code>: 在<em>任何异常</em>发生时自动进入调试器。 这对于调试非常有用！</li>
 </ul>
-<div id="9685a99a" class="cell" data-execution_count="17">
+<div id="c08a6733" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pdb on  <span class="co"># 启用自动调试</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 现在，任何错误都将自动启动调试器</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>pdb off <span class="co"># 禁用自动调试</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -660,7 +660,7 @@ pandas3ed10.qmd  pandas3ed4cn.qmd     pandas3edA2cn.quarto_ipynb</code></pre>
 </section>
 <section id="set_trace-和-debug-函数" class="level2">
 <h2 class="anchored" data-anchor-id="set_trace-和-debug-函数"><code>set_trace()</code> 和 <code>debug()</code> 函数</h2>
-<div id="d19d888f" class="cell" data-execution_count="18">
+<div id="b3a5a0bc" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.core.debugger <span class="im">import</span> Pdb  <span class="co"># 从 IPython.core.debugger 模块导入 Pdb 类</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys <span class="co"># 导入 sys 模块</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -682,14 +682,14 @@ pandas3ed10.qmd  pandas3ed4cn.qmd     pandas3edA2cn.quarto_ipynb</code></pre>
 <li><code>%time</code>: 测量语句的执行时间<em>一次</em>。</li>
 <li><code>%timeit</code>: <em>多次</em>测量执行时间，以提供更准确的平均值。 它非常适合非常短的操作。</li>
 </ul>
-<div id="c3a5dc19" class="cell" data-execution_count="19">
+<div id="fb28d51d" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">100000</span>))  <span class="co"># 创建一个包含 0 到 99999 的整数列表</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):  <span class="bu">sum</span>(my_list)  <span class="co"># 使用 %time 测量循环 100 次计算 my_list 总和的时间</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit <span class="bu">sum</span>(my_list)  <span class="co"># 使用 %timeit 测量计算 my_list 总和的平均时间</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>CPU times: user 77.9 ms, sys: 11 μs, total: 78 ms
-Wall time: 77.6 ms
-755 μs ± 3.51 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)</code></pre>
+<pre><code>CPU times: user 76.1 ms, sys: 0 ns, total: 76.1 ms
+Wall time: 75.8 ms
+753 μs ± 326 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)</code></pre>
 </div>
 </div>
 </section>
@@ -710,7 +710,7 @@ Wall time: 77.6 ms
 <li><code>filename:lineno(function)</code>: 函数位置。</li>
 </ul></li>
 </ul>
-<div id="02835d0a" class="cell" data-execution_count="20">
+<div id="d264b408" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#示例</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> slow_function():   <span class="co"># 定义一个名为 slow_function 的函数</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> []        <span class="co"># 初始化一个空列表 result</span></span>
@@ -743,7 +743,7 @@ Wall time: 77.6 ms
 <li><code>Line Contents</code>: 该行的源代码。</li>
 </ul></li>
 </ul>
-<div id="b4cb7f74" class="cell" data-execution_count="21">
+<div id="d6542ea3" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 假设 line_profiler 已启用且 prof_mod.py 存在：</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> prof_mod <span class="im">import</span> add_and_sum, call_function <span class="co"># 从 prof_mod 模块导入 add_and_sum 和 call_function 函数（示例文件，您需要创建它）</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>lprun <span class="op">-</span>f add_and_sum call_function()  <span class="co"># 使用 %lprun 对 add_and_sum 函数进行逐行性能分析，分析语句为 call_function()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

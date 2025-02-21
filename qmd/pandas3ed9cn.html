@@ -206,7 +206,7 @@ Tip
 <section id="在-jupyter-中设置-matplotlib" class="level2">
 <h2 class="anchored" data-anchor-id="在-jupyter-中设置-matplotlib">在 Jupyter 中设置 matplotlib ⚙️</h2>
 <p>要在 Jupyter Notebook 中以内联方式显示图表，请使用魔术命令：</p>
-<div id="4d20f9aa" class="cell" data-execution_count="1">
+<div id="a7f0eb17" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 此命令告诉Jupyter直接在notebook输出中显示matplotlib图表。</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 没有它，您可能看不到您的图表！</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -254,7 +254,7 @@ Tip
 <section id="matplotlib-api-简明入门" class="level2">
 <h2 class="anchored" data-anchor-id="matplotlib-api-简明入门">matplotlib API 简明入门</h2>
 <p>matplotlib 的导入惯例：</p>
-<div id="2737aeff" class="cell" data-execution_count="2">
+<div id="5f3cbf79" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 这行代码从matplotlib导入pyplot模块，并给它一个更短的名称plt。</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 这是一种常见的做法，可以使您的代码更简洁易读。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -275,7 +275,7 @@ Note
 </section>
 <section id="创建一个简单的图表" class="level2">
 <h2 class="anchored" data-anchor-id="创建一个简单的图表">创建一个简单的图表</h2>
-<div id="8083c4fa" class="cell" data-execution_count="3">
+<div id="3e61689f" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np <span class="co"># 导入numpy库，并将其重命名为np</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.arange(<span class="dv">10</span>) <span class="co"># 创建一个包含0到9的整数的数组</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>plt.plot(data) <span class="co"># 使用plt.plot()函数绘制data数组中的数据</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -319,7 +319,7 @@ Note
 </ul></li>
 <li><p>使用 <code>plt.figure()</code> 创建一个新图形：</p></li>
 </ul>
-<div id="f8a7f7bd" class="cell" data-execution_count="4">
+<div id="b46062af" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure() <span class="co"># 创建一个空白的matplotlib图形对象</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>&lt;Figure size 672x480 with 0 Axes&gt;</code></pre>
@@ -337,7 +337,7 @@ Note
 <ul>
 <li>您不能在空白图形上绘图；使用 <code>add_subplot</code> 创建子图：</li>
 </ul>
-<div id="08801701" class="cell" data-execution_count="5">
+<div id="6d5bfea9" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> fig.add_subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>) </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 这行代码在前面创建的figure对象上添加一个子图。</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 参数(2, 2, 1)表示：</span></span>
@@ -359,7 +359,7 @@ Note
 <ul>
 <li>创建其他子图：</li>
 </ul>
-<div id="d9bfddd4" class="cell" data-execution_count="6">
+<div id="20c4ec72" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> fig.add_subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>) <span class="co"># 在2x2网格中选择第2个子图</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ax3 <span class="op">=</span> fig.add_subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>) <span class="co"># 在2x2网格中选择第3个子图</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -400,7 +400,7 @@ Note
 </ul>
 </div>
 </div>
-<div id="21f934b5" class="cell" data-execution_count="7">
+<div id="ddd9ee07" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure() <span class="co"># 创建一个图形对象</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> fig.add_subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>) <span class="co"># 在图形中添加第一个子图</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> fig.add_subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>) <span class="co"># 在图形中添加第二个子图</span></span>
@@ -421,7 +421,7 @@ Note
 <li>优先于 <code>plt.plot</code> 等顶级函数。</li>
 <li>示例：</li>
 </ul>
-<div id="22c34d7a" class="cell" data-execution_count="8">
+<div id="f79757b8" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ax3.plot(np.random.standard_normal(<span class="dv">50</span>).cumsum(), color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 在第三个子图(ax3)上绘制一条线。</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># np.random.standard_normal(50)生成50个服从标准正态分布的随机数。</span></span>
@@ -460,13 +460,13 @@ Note
 <li><strong>为什么要抑制？</strong> 🧹 保持笔记本输出干净，专注于图表。</li>
 </ul></li>
 </ul>
-<div id="0fbfbcf3" class="cell" data-execution_count="9">
+<div id="db10eb9d" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ax3.plot(np.random.standard_normal(<span class="dv">50</span>).cumsum(), color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>)<span class="op">;</span> <span class="co"># 注意分号，用于抑制输出</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="向子图添加更多图表" class="level2">
 <h2 class="anchored" data-anchor-id="向子图添加更多图表">向子图添加更多图表 ➕</h2>
-<div id="ea429581" class="cell" data-execution_count="10">
+<div id="16cd3d68" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ax1.hist(np.random.standard_normal(<span class="dv">100</span>), bins<span class="op">=</span><span class="dv">20</span>, color<span class="op">=</span><span class="st">"black"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 在第一个子图(ax1)上创建一个直方图。</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># np.random.standard_normal(100)生成100个标准正态分布的随机数。</span></span>
@@ -508,7 +508,7 @@ Note
 <ul>
 <li><code>plt.subplots</code> 创建一个图形和一个包含子图对象的 NumPy 数组：</li>
 </ul>
-<div id="f6e1af85" class="cell" data-execution_count="11">
+<div id="9928bd19" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">3</span>) <span class="co"># 创建一个包含2行3列子图的图形，并返回图形对象(fig)和子图对象数组(axes)</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>axes <span class="co"># 显示子图对象数组</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
@@ -585,7 +585,7 @@ Note
 <li>子图之间有默认的填充和间距。</li>
 <li>使用 <code>subplots_adjust</code> 方法更改间距：</li>
 </ul>
-<div id="2cc04b80" class="cell" data-execution_count="12">
+<div id="06f76a7e" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fig.subplots_adjust(left<span class="op">=</span><span class="va">None</span>, bottom<span class="op">=</span><span class="va">None</span>, right<span class="op">=</span><span class="va">None</span>, top<span class="op">=</span><span class="va">None</span>,</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                    wspace<span class="op">=</span><span class="va">None</span>, hspace<span class="op">=</span><span class="va">None</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 调整子图之间的间距。</span></span>
@@ -599,7 +599,7 @@ Note
 </section>
 <section id="示例将间距缩小到零" class="level2">
 <h2 class="anchored" data-anchor-id="示例将间距缩小到零">示例：将间距缩小到零 🚫</h2>
-<div id="bc860a40" class="cell" data-execution_count="13">
+<div id="26dd3096" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">2</span>, sharex<span class="op">=</span><span class="va">True</span>, sharey<span class="op">=</span><span class="va">True</span>) <span class="co"># 创建一个2x2的子图网格，共享x轴和y轴</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>): <span class="co"># 遍历行</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>): <span class="co"># 遍历列</span></span>
@@ -647,7 +647,7 @@ Note
 <li>使用颜色、标记和线型自定义折线图。</li>
 <li>示例：</li>
 </ul>
-<div id="ffd7cb16" class="cell" data-execution_count="14">
+<div id="ba8f4903" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>axes.plot(x, y, linestyle<span class="op">=</span><span class="st">"--"</span>, color<span class="op">=</span><span class="st">"green"</span>) <span class="co"># 使用绿色虚线绘制(x, y)数据</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
@@ -662,7 +662,7 @@ Note
 <li>当插值可能会掩盖点的位置时很有用。</li>
 <li>示例：</li>
 </ul>
-<div id="dfbc2874" class="cell" data-execution_count="15">
+<div id="114ff877" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>axes.plot(np.random.standard_normal(<span class="dv">30</span>).cumsum(), color<span class="op">=</span><span class="st">"black"</span>,</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>        linestyle<span class="op">=</span><span class="st">"dashed"</span>, marker<span class="op">=</span><span class="st">"o"</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制一条带有圆圈标记的黑色虚线。</span></span>
@@ -694,7 +694,7 @@ Note
 <li>线性插值是默认值。</li>
 <li>使用 <code>drawstyle</code> 选项更改：</li>
 </ul>
-<div id="c36882ae" class="cell" data-execution_count="16">
+<div id="196e8667" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ax.plot(data, color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"dashed"</span>, label<span class="op">=</span><span class="st">"Default"</span>) </span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制一条黑色虚线，标签为"Default"（默认插值方式）。</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -740,13 +740,13 @@ Note
 <ul>
 <li>示例：随机游走图。</li>
 </ul>
-<div id="9e3d07f1" class="cell" data-execution_count="17">
+<div id="f1b5b85d" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots() <span class="co"># 创建一个包含一个子图的图形</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>ax.plot(np.random.standard_normal(<span class="dv">1000</span>).cumsum()) <span class="co"># 绘制1000个标准正态分布随机数的累积和</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="pandas3ed9cn_files/figure-html/cell-18-output-1.png" width="577" height="411" class="figure-img"></p>
+<p><img src="pandas3ed9cn_files/figure-html/cell-18-output-1.png" width="577" height="415" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -772,7 +772,7 @@ Note
 </section>
 <section id="设置刻度和刻度标签" class="level2">
 <h2 class="anchored" data-anchor-id="设置刻度和刻度标签">设置刻度和刻度标签</h2>
-<div id="192ca416" class="cell" data-execution_count="18">
+<div id="dbe58792" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ticks <span class="op">=</span> ax.set_xticks([<span class="dv">0</span>, <span class="dv">250</span>, <span class="dv">500</span>, <span class="dv">750</span>, <span class="dv">1000</span>]) <span class="co"># 设置x轴刻度位置</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> ax.set_xticklabels([<span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"three"</span>, <span class="st">"four"</span>, <span class="st">"five"</span>],</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                            rotation<span class="op">=</span><span class="dv">30</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
@@ -783,7 +783,7 @@ Note
 </section>
 <section id="设置标题和轴标签" class="level2">
 <h2 class="anchored" data-anchor-id="设置标题和轴标签">设置标题和轴标签 📝</h2>
-<div id="ce2e957b" class="cell" data-execution_count="19">
+<div id="831d1ffd" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Stages"</span>) <span class="co"># 设置x轴标签为"Stages"</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"My first matplotlib plot"</span>) <span class="co"># 设置子图标题为"My first matplotlib plot"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
@@ -819,7 +819,7 @@ Note
 <ul>
 <li>Axes 类有一个 <code>set</code> 方法：</li>
 </ul>
-<div id="ad2de801" class="cell" data-execution_count="20">
+<div id="2775ddb7" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(title<span class="op">=</span><span class="st">"My first matplotlib plot"</span>, xlabel<span class="op">=</span><span class="st">"Stages"</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用set方法一次性设置多个属性。</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 等同于分别调用ax.set_title()和ax.set_xlabel()。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -835,7 +835,7 @@ Note
 <li>图例标识图表元素。</li>
 <li>添加图表元素时传递 <code>label</code> 参数：</li>
 </ul>
-<div id="5b61ee93" class="cell" data-execution_count="21">
+<div id="fac0f22f" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots() <span class="co"># 创建一个包含一个子图的图形</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>ax.plot(np.random.randn(<span class="dv">1000</span>).cumsum(), color<span class="op">=</span><span class="st">"black"</span>, label<span class="op">=</span><span class="st">"one"</span>)</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制第一条线，标签为"one"。</span></span>
@@ -895,7 +895,7 @@ Note
 <ul>
 <li>示例：绘制 2007 年以来的标准普尔 500 指数收盘价并添加注释。</li>
 </ul>
-<div id="b7095faf" class="cell" data-execution_count="22">
+<div id="90afe8b7" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd <span class="co"># 导入pandas库</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime <span class="co"># 导入datetime模块</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -920,7 +920,7 @@ Note
 </section>
 <section id="注释标准普尔-500-指数续" class="level2">
 <h2 class="anchored" data-anchor-id="注释标准普尔-500-指数续">注释标准普尔 500 指数（续）</h2>
-<div id="0b701a4e" class="cell" data-execution_count="23">
+<div id="d024b0e3" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>crisis_data <span class="op">=</span> [</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    (datetime(<span class="dv">2007</span>, <span class="dv">10</span>, <span class="dv">11</span>), <span class="st">"Peak of bull market"</span>), <span class="co"># 牛市高峰</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    (datetime(<span class="dv">2008</span>, <span class="dv">3</span>, <span class="dv">12</span>), <span class="st">"Bear Stearns Fails"</span>),   <span class="co"># 贝尔斯登倒闭</span></span>
@@ -943,7 +943,7 @@ Note
 </section>
 <section id="注释标准普尔-500-指数续-1" class="level2">
 <h2 class="anchored" data-anchor-id="注释标准普尔-500-指数续-1">注释标准普尔 500 指数（续）</h2>
-<div id="92a9d1de" class="cell" data-execution_count="24">
+<div id="f5681eb1" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 放大2007-2010年</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="st">"1/1/2007"</span>, <span class="st">"1/1/2011"</span>]) <span class="co"># 设置x轴范围</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>ax.set_ylim([<span class="dv">600</span>, <span class="dv">1800</span>]) <span class="co"># 设置y轴范围</span></span>
@@ -988,7 +988,7 @@ Note
 <li>完整集合：<code>matplotlib.patches</code>。</li>
 <li>使用 <code>ax.add_patch</code> 添加到图表。</li>
 </ul>
-<div id="ca8a2cf3" class="cell" data-execution_count="25">
+<div id="2d1214c8" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots() <span class="co"># 创建一个图形和一个子图</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>rect <span class="op">=</span> plt.Rectangle((<span class="fl">0.2</span>, <span class="fl">0.75</span>), <span class="fl">0.4</span>, <span class="fl">0.15</span>, color<span class="op">=</span><span class="st">"black"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个矩形对象。</span></span>
@@ -1045,14 +1045,14 @@ Note
 <li><code>savefig</code> 实例方法：保存活动图形。</li>
 <li>示例：</li>
 </ul>
-<div id="0ce15959" class="cell" data-execution_count="26">
+<div id="1189eece" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">"figpath.svg"</span>) <span class="co"># 将图形保存为SVG文件</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>文件类型从扩展名推断（例如，<code>.pdf</code>、<code>.png</code>）。</li>
 <li><code>dpi</code>：控制每英寸点数分辨率。</li>
 </ul>
-<div id="4e89c3a2" class="cell" data-execution_count="27">
+<div id="67aed15b" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">"figpath.png"</span>, dpi<span class="op">=</span><span class="dv">400</span>) <span class="co"># 将图形保存为PNG文件，分辨率为400 dpi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -1111,7 +1111,7 @@ Note
 <li><code>rc</code> 方法：以编程方式修改配置。</li>
 <li>示例：将默认图形大小设置为 10x10。</li>
 </ul>
-<div id="12e5692b" class="cell" data-execution_count="28">
+<div id="415a5cfa" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>plt.rc(<span class="st">"figure"</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">10</span>)) <span class="co"># 设置默认图形大小为10x10英寸</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -1129,7 +1129,7 @@ Note
 <li>后跟新参数的关键字参数。</li>
 <li>示例：</li>
 </ul>
-<div id="8e8ccfe2" class="cell" data-execution_count="29">
+<div id="9ea28f1c" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>plt.rc(<span class="st">"font"</span>, family<span class="op">=</span><span class="st">"monospace"</span>, weight<span class="op">=</span><span class="st">"bold"</span>, size<span class="op">=</span><span class="dv">8</span>)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 设置默认字体。</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># family="monospace": 使用等宽字体。</span></span>
@@ -1167,7 +1167,7 @@ Note
 <li><code>Series</code> 和 <code>DataFrame</code> 有一个 <code>plot</code> 属性。</li>
 <li><code>plot()</code> 默认创建折线图：</li>
 </ul>
-<div id="48949218" class="cell" data-execution_count="30">
+<div id="189525f4" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> pd.Series(np.random.standard_normal(<span class="dv">10</span>).cumsum(), index<span class="op">=</span>np.arange(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">10</span>))</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个Series对象。</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co"># np.random.standard_normal(10).cumsum(): 生成10个标准正态分布随机数的累积和。</span></span>
@@ -1177,7 +1177,7 @@ Note
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="pandas3ed9cn_files/figure-html/cell-31-output-1.png" width="798" height="778" class="figure-img"></p>
+<p><img src="pandas3ed9cn_files/figure-html/cell-31-output-1.png" width="779" height="778" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1301,7 +1301,7 @@ Note
 </section>
 <section id="dataframe-折线图" class="level2">
 <h2 class="anchored" data-anchor-id="dataframe-折线图">DataFrame 折线图 📊</h2>
-<div id="d1716d83" class="cell" data-execution_count="31">
+<div id="ef648ef8" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(np.random.standard_normal((<span class="dv">10</span>, <span class="dv">4</span>)).cumsum(<span class="dv">0</span>),</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>                  columns<span class="op">=</span>[<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>],</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>                  index<span class="op">=</span>np.arange(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">10</span>))</span>
@@ -1404,7 +1404,7 @@ Note
 <li><code>plot.barh()</code>: 水平条形图。</li>
 <li>Series/DataFrame 索引：用于 x (bar) 或 y (barh) 刻度。</li>
 </ul>
-<div id="b30a31e1" class="cell" data-execution_count="32">
+<div id="cd166a52" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">1</span>) <span class="co"># 创建一个包含2行1列子图的图形</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.Series(np.random.uniform(size<span class="op">=</span><span class="dv">16</span>), index<span class="op">=</span><span class="bu">list</span>(<span class="st">"abcdefghijklmnop"</span>))</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 创建一个Series对象。</span></span>
@@ -1426,7 +1426,7 @@ Note
 </section>
 <section id="条形图续" class="level2">
 <h2 class="anchored" data-anchor-id="条形图续">条形图（续）</h2>
-<div id="d57c0b93" class="cell" data-execution_count="33">
+<div id="4e7c1b33" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>data.plot.barh(ax<span class="op">=</span>axes[<span class="dv">1</span>], color<span class="op">=</span><span class="st">"black"</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 在第二个子图(axes[1])上绘制水平条形图。</span></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># color="black": 设置条形颜色为黑色。</span></span>
@@ -1456,7 +1456,7 @@ Note
 </section>
 <section id="dataframe-条形图" class="level2">
 <h2 class="anchored" data-anchor-id="dataframe-条形图">DataFrame 条形图 📊</h2>
-<div id="6fd02d2c" class="cell" data-execution_count="34">
+<div id="ed99663d" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(np.random.uniform(size<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">4</span>)),</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>                  index<span class="op">=</span>[<span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"three"</span>, <span class="st">"four"</span>, <span class="st">"five"</span>, <span class="st">"six"</span>],</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>                  columns<span class="op">=</span>pd.Index([<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>], name<span class="op">=</span><span class="st">"Genus"</span>))</span>
@@ -1503,7 +1503,7 @@ Note
 <li><code>stacked=True</code>: 创建堆叠条形图。</li>
 <li>每行中的值堆叠在一起。</li>
 </ul>
-<div id="46c52a7a" class="cell" data-execution_count="35">
+<div id="7e80c2ab" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>df.plot.barh(stacked<span class="op">=</span><span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制水平堆叠条形图。</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co"># stacked=True: 设置为堆叠条形图。</span></span>
@@ -1542,7 +1542,7 @@ Note
 <li><code>read_csv</code>: 加载数据。</li>
 <li><code>crosstab</code>: 按天和聚会规模进行交叉表计算。</li>
 </ul>
-<div id="d7beecad" class="cell" data-execution_count="36">
+<div id="fe763462" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>tips <span class="op">=</span> pd.read_csv(<span class="st">"examples/tips.csv"</span>) <span class="co"># 从CSV文件读取小费数据</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>party_counts <span class="op">=</span> pd.crosstab(tips[<span class="st">"day"</span>], tips[<span class="st">"size"</span>])</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用crosstab计算每天(day)和聚会规模(size)的交叉表。</span></span>
@@ -1557,7 +1557,7 @@ Note
 <ul>
 <li>计算数据框中两列数据的频数。</li>
 </ul>
-<div id="4fc8c3c7" class="cell" data-execution_count="37">
+<div id="9811e9e0" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 删除1人和6人的聚会</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>party_counts <span class="op">=</span> party_counts.loc[:, <span class="dv">2</span>:<span class="dv">5</span>]</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 通过标签进行选择，此处选择列标签从2到5（包括）的列，即聚会规模为2、3、4和5的数据。</span></span>
@@ -1603,7 +1603,7 @@ Note
 <li>seaborn 简化了使用聚合/汇总数据的绘图。</li>
 <li>示例：每天的小费百分比。</li>
 </ul>
-<div id="67e2704f" class="cell" data-execution_count="38">
+<div id="c27958e3" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns <span class="co"># 导入seaborn库</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">"tip_pct"</span>] <span class="op">=</span> tips[<span class="st">"tip"</span>] <span class="op">/</span> (tips[<span class="st">"total_bill"</span>] <span class="op">-</span> tips[<span class="st">"tip"</span>])</span>
@@ -1653,7 +1653,7 @@ Note
 <ul>
 <li><code>seaborn.barplot</code> 中的 <code>hue</code> 选项：按另一个分类值拆分。</li>
 </ul>
-<div id="c8fd003d" class="cell" data-execution_count="39">
+<div id="4ee74f82" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">"tip_pct"</span>, y<span class="op">=</span><span class="st">"day"</span>, hue<span class="op">=</span><span class="st">"time"</span>, data<span class="op">=</span>tips, orient<span class="op">=</span><span class="st">"h"</span>)</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用seaborn的barplot绘制条形图，并按"time"列进行分组。</span></span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co"># hue="time": 根据"time"列的值对条形图进行着色区分。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1695,13 +1695,13 @@ Note
 </ul></li>
 <li><code>seaborn.set_style</code>：在图表外观之间切换。</li>
 </ul>
-<div id="8bb32454" class="cell" data-execution_count="40">
+<div id="2841e2ab" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>sns.set_style(<span class="st">"whitegrid"</span>) <span class="co"># 设置图表样式为白色网格背景</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>对于灰度，设置灰度调色板：</li>
 </ul>
-<div id="c53b6310" class="cell" data-execution_count="41">
+<div id="4ad74e4b" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>sns.set_palette(<span class="st">"Greys_r"</span>) <span class="co"># 设置调色板为灰度</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -1712,7 +1712,7 @@ Note
 <li>数据点被分箱，并绘制每个箱中的计数。</li>
 <li><code>plot.hist</code>：创建直方图。</li>
 </ul>
-<div id="6b4fda51" class="cell" data-execution_count="42">
+<div id="cb7e7bcd" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">"tip_pct"</span>].plot.hist(bins<span class="op">=</span><span class="dv">50</span>)</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 绘制"tip_pct"列的直方图。</span></span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="co"># bins=50: 将数据分成50个柱子。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1751,7 +1751,7 @@ Note
 <li>也称为核密度估计 (KDE) 图。</li>
 <li><code>plot.density</code>：创建密度图。</li>
 </ul>
-<div id="deccaa12" class="cell" data-execution_count="43">
+<div id="dc3cf30e" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>tips[<span class="st">"tip_pct"</span>].plot.density() <span class="co"># 绘制"tip_pct"列的密度图</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1800,7 +1800,7 @@ Note
 <li><code>histplot</code>：同时绘制直方图和连续密度估计。</li>
 <li>示例：双峰分布。</li>
 </ul>
-<div id="23947b26" class="cell" data-execution_count="44">
+<div id="cf752e1c" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>comp1 <span class="op">=</span> np.random.standard_normal(<span class="dv">200</span>) <span class="co"># 生成200个标准正态分布的随机数</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>comp2 <span class="op">=</span> <span class="dv">10</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> np.random.standard_normal(<span class="dv">200</span>) <span class="co"># 生成200个均值为10、标准差为2的正态分布随机数</span></span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> pd.Series(np.concatenate([comp1, comp2])) <span class="co"># 将两个数组连接起来，并转换为Series对象</span></span>
@@ -1811,7 +1811,7 @@ Note
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="pandas3ed9cn_files/figure-html/cell-45-output-1.png" width="803" height="778" class="figure-img"></p>
+<p><img src="pandas3ed9cn_files/figure-html/cell-45-output-1.png" width="814" height="778" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1841,7 +1841,7 @@ Note
 <li>检查两个一维数据序列之间的关系。</li>
 <li>示例：加载宏观经济数据，计算对数差。</li>
 </ul>
-<div id="7028b352" class="cell" data-execution_count="45">
+<div id="a910e833" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>macro <span class="op">=</span> pd.read_csv(<span class="st">"examples/macrodata.csv"</span>) <span class="co"># 从CSV文件读取宏观经济数据</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> macro[[<span class="st">"cpi"</span>, <span class="st">"m1"</span>, <span class="st">"tbilrate"</span>, <span class="st">"unemp"</span>]] <span class="co"># 选择"cpi", "m1", "tbilrate", "unemp"四列数据</span></span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>trans_data <span class="op">=</span> np.log(data).diff().dropna()</span>
@@ -1856,7 +1856,7 @@ Note
 <ul>
 <li><code>regplot</code>：绘制散点图并拟合线性回归线。</li>
 </ul>
-<div id="fdcb7e5b" class="cell" data-execution_count="46">
+<div id="8dbd7438" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.regplot(x<span class="op">=</span><span class="st">"m1"</span>, y<span class="op">=</span><span class="st">"unemp"</span>, data<span class="op">=</span>trans_data)</span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用seaborn的regplot绘制散点图，并拟合线性回归线。</span></span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co"># x="m1": x轴使用"m1"列的数据。</span></span>
@@ -1901,7 +1901,7 @@ Note
 <li><code>seaborn.pairplot</code>：创建配对图。</li>
 <li>支持对角线上的直方图/密度估计。</li>
 </ul>
-<div id="c0be622f" class="cell" data-execution_count="47">
+<div id="f8964387" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(trans_data, diag_kind<span class="op">=</span><span class="st">"kde"</span>, plot_kws<span class="op">=</span>{<span class="st">"alpha"</span>: <span class="fl">0.2</span>})</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用seaborn的pairplot创建配对图。</span></span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="co"># diag_kind="kde": 对角线上的图表类型为核密度估计。</span></span>
@@ -1947,7 +1947,7 @@ Note
 <li><strong>分面网格</strong>：二维布局，数据根据变量值在图表之间拆分。</li>
 <li><code>seaborn.catplot</code>：简化分面图。</li>
 </ul>
-<div id="d44794e9" class="cell" data-execution_count="48">
+<div id="b6e8c34f" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(x<span class="op">=</span><span class="st">"day"</span>, y<span class="op">=</span><span class="st">"tip_pct"</span>, hue<span class="op">=</span><span class="st">"time"</span>, col<span class="op">=</span><span class="st">"smoker"</span>,</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>            kind<span class="op">=</span><span class="st">"bar"</span>, data<span class="op">=</span>tips[tips.tip_pct <span class="op">&lt;</span> <span class="dv">1</span>])</span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用seaborn的catplot创建分面条形图。</span></span>
@@ -1989,7 +1989,7 @@ Note
 <ul>
 <li>每个时间值添加一行：</li>
 </ul>
-<div id="1e46971f" class="cell" data-execution_count="49">
+<div id="b323073f" class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(x<span class="op">=</span><span class="st">"day"</span>, y<span class="op">=</span><span class="st">"tip_pct"</span>, row<span class="op">=</span><span class="st">"time"</span>,</span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>            col<span class="op">=</span><span class="st">"smoker"</span>, kind<span class="op">=</span><span class="st">"bar"</span>, data<span class="op">=</span>tips[tips.tip_pct <span class="op">&lt;</span> <span class="dv">1</span>])</span>
 <span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用seaborn的catplot创建分面条形图。</span></span>
@@ -2027,7 +2027,7 @@ Note
 <li><code>catplot</code> 支持其他图表类型（例如，箱线图）。</li>
 <li>箱线图显示中位数、四分位数和异常值。</li>
 </ul>
-<div id="7a9e2e90" class="cell" data-execution_count="50">
+<div id="bd507ff3" class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(x<span class="op">=</span><span class="st">"tip_pct"</span>, y<span class="op">=</span><span class="st">"day"</span>, kind<span class="op">=</span><span class="st">"box"</span>,</span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>            data<span class="op">=</span>tips[tips.tip_pct <span class="op">&lt;</span> <span class="fl">0.5</span>])</span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用seaborn的catplot创建箱线图。</span></span>

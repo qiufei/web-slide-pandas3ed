@@ -155,7 +155,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>好的，这是翻译成中文并添加了详细注释的幻灯片内容：</p>
 <!-- 导入 NumPy 库，并设置随机数生成器的种子 -->
-<div id="cf5d5663" class="cell" data-execution_count="1">
+<div id="34df0dcf" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np  <span class="co"># 导入 NumPy 库，并将其别名设置为 np</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">12345</span>)  <span class="co"># 创建一个随机数生成器，并设置种子为 12345，以确保结果可复现</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -223,7 +223,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>一个 10 x 5 的数组具有形状 <code>(10, 5)</code>：</li>
 </ul>
-<div id="53a425bc" class="cell" data-execution_count="2">
+<div id="29c6abb6" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>arr_2d <span class="op">=</span> np.ones((<span class="dv">10</span>, <span class="dv">5</span>))  <span class="co"># 创建一个 10x5 的全 1 数组</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>arr_2d.shape  <span class="co"># 查看数组的形状</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
@@ -233,7 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>一个 3 x 4 x 5 的 <code>float64</code>（8 字节）数组通常具有跨度 <code>(160, 40, 8)</code>（C 顺序）：</li>
 </ul>
-<div id="19df2465" class="cell" data-execution_count="3">
+<div id="7bd49d1e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>arr_3d <span class="op">=</span> np.ones((<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>), dtype<span class="op">=</span>np.float64)  <span class="co"># 创建一个 3x4x5 的 float64 类型全 1 数组</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>arr_3d.strides  <span class="co"># 查看数组的跨度</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
@@ -263,7 +263,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>NumPy 具有丰富的数据类型层级。</li>
 <li>使用<strong>超类</strong>（例如，<code>np.integer</code>、<code>np.floating</code>）和 <code>np.issubdtype</code> 来检查数组类型：</li>
 </ul>
-<div id="403a1b6b" class="cell" data-execution_count="4">
+<div id="df67f45c" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ints <span class="op">=</span> np.ones(<span class="dv">10</span>, dtype<span class="op">=</span>np.uint16)  <span class="co"># 创建一个 uint16 类型的全 1 数组</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>floats <span class="op">=</span> np.ones(<span class="dv">10</span>, dtype<span class="op">=</span>np.float32)  <span class="co"># 创建一个 float32 类型的全 1 数组</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.issubdtype(ints.dtype, np.integer))  <span class="co"># 检查 ints.dtype 是否是 np.integer 的子类型</span></span>
@@ -280,7 +280,7 @@ True</code></pre>
 <ul>
 <li>使用 <code>.mro()</code>（方法解析顺序）查看父类：</li>
 </ul>
-<div id="5f802fee" class="cell" data-execution_count="5">
+<div id="0fa7172f" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>np.float64.mro()  <span class="co"># 查看 np.float64 的方法解析顺序（继承关系）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>[numpy.float64,
@@ -311,7 +311,7 @@ True</code></pre>
 <li><strong>重塑</strong>：改变数组的形状，<em>不复制数据</em>。</li>
 <li>使用 <code>reshape()</code> 方法和一个形状元组：</li>
 </ul>
-<div id="9f9df827" class="cell" data-execution_count="6">
+<div id="b648af51" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">8</span>)  <span class="co"># 创建一个包含 0 到 7 的一维数组</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>arr.reshape((<span class="dv">4</span>, <span class="dv">2</span>))  <span class="co"># 将数组重塑为 4x2 的二维数组</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
@@ -325,7 +325,7 @@ True</code></pre>
 <section id="重塑多维数组" class="level2">
 <h2 class="anchored" data-anchor-id="重塑多维数组">重塑多维数组</h2>
 <!-- 多维数组的重塑示例 -->
-<div id="47457d38" class="cell" data-execution_count="7">
+<div id="31119ad6" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>arr.reshape((<span class="dv">4</span>, <span class="dv">2</span>)).reshape((<span class="dv">2</span>, <span class="dv">4</span>))  <span class="co"># 将数组先重塑为 4x2，再重塑为 2x4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>array([[0, 1, 2, 3],
@@ -335,7 +335,7 @@ True</code></pre>
 <ul>
 <li>对一个维度使用 <code>-1</code> 来推断大小：</li>
 </ul>
-<div id="9756c3d9" class="cell" data-execution_count="8">
+<div id="8541891b" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">15</span>)  <span class="co"># 创建一个包含 0 到 14 的一维数组</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>arr.reshape((<span class="dv">5</span>, <span class="op">-</span><span class="dv">1</span>))  <span class="co"># 将数组重塑为 5 行，列数自动推断（这里是 3）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
@@ -350,7 +350,7 @@ True</code></pre>
 <section id="使用形状属性重塑" class="level2">
 <h2 class="anchored" data-anchor-id="使用形状属性重塑">使用形状属性重塑</h2>
 <!-- 使用其他数组的形状进行重塑 -->
-<div id="b8f4faff" class="cell" data-execution_count="9">
+<div id="64042ce2" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>other_arr <span class="op">=</span> np.ones((<span class="dv">3</span>, <span class="dv">5</span>))  <span class="co"># 创建一个 3x5 的全 1 数组</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>arr.reshape(other_arr.shape)  <span class="co"># 使用 other_arr 的形状重塑 arr</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
@@ -367,7 +367,7 @@ True</code></pre>
 <li><strong>扁平化/展开</strong>：将多维数组转换为一维数组。</li>
 <li><code>ravel()</code>：如果值是连续的，则<em>不</em>复制。</li>
 </ul>
-<div id="3561292e" class="cell" data-execution_count="10">
+<div id="7be43b41" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">15</span>).reshape((<span class="dv">5</span>, <span class="dv">3</span>))  <span class="co"># 创建一个 5x3 的数组</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>arr.ravel()  <span class="co"># 将数组展开为一维数组</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
@@ -377,7 +377,7 @@ True</code></pre>
 <ul>
 <li><code>flatten()</code>：始终返回<em>副本</em>。</li>
 </ul>
-<div id="375bbf2b" class="cell" data-execution_count="11">
+<div id="99032476" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>arr.flatten()  <span class="co"># 将数组展开为一维数组（返回副本）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14])</code></pre>
@@ -392,7 +392,7 @@ True</code></pre>
 <li><strong>列主序（FORTRAN）</strong>：连续的列元素存储在一起。</li>
 <li><code>reshape</code> 和 <code>ravel</code> 接受一个 <code>order</code> 参数（<code>'C'</code> 或 <code>'F'</code>）。</li>
 </ul>
-<div id="9efb9528" class="cell" data-execution_count="12">
+<div id="48e51340" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">12</span>).reshape((<span class="dv">3</span>, <span class="dv">4</span>))  <span class="co"># 创建一个 3x4 的数组</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.ravel())      <span class="co"># 默认：'C' 顺序</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.ravel(<span class="st">'F'</span>))  <span class="co"># FORTRAN 顺序</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -416,7 +416,7 @@ True</code></pre>
 <ul>
 <li><strong><code>numpy.concatenate</code></strong>：沿现有轴连接数组。</li>
 </ul>
-<div id="420b09c6" class="cell" data-execution_count="13">
+<div id="7d248b30" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>arr1 <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>]])  <span class="co"># 创建一个 2x3 的数组</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>arr2 <span class="op">=</span> np.array([[<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>], [<span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>]])  <span class="co"># 创建一个 2x3 的数组</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.concatenate([arr1, arr2], axis<span class="op">=</span><span class="dv">0</span>))  <span class="co"># 沿行（axis=0）堆叠（垂直堆叠）</span></span>
@@ -440,7 +440,7 @@ True</code></pre>
 <li><code>column_stack</code>：类似于 <code>hstack</code>，但首先将一维数组转换为二维列。</li>
 <li><code>dstack</code>：按“深度”堆叠（axis 2）。</li>
 </ul>
-<div id="8a2de065" class="cell" data-execution_count="14">
+<div id="77c21a8a" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.vstack((arr1, arr2)))  <span class="co"># 垂直堆叠</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.hstack((arr1, arr2)))  <span class="co"># 水平堆叠</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -459,7 +459,7 @@ True</code></pre>
 <ul>
 <li><code>split</code>：将数组沿轴拆分为多个数组。</li>
 </ul>
-<div id="14ca52c0" class="cell" data-execution_count="15">
+<div id="401cf85b" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal((<span class="dv">5</span>, <span class="dv">2</span>))  <span class="co"># 创建一个 5x2 的标准正态分布数组</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>first, second, third <span class="op">=</span> np.split(arr, [<span class="dv">1</span>, <span class="dv">3</span>])  <span class="co"># 将数组在索引 1 和 3 处拆分</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>first<span class="op">=</span><span class="sc">}</span><span class="ss">"</span>)  <span class="co"># 打印第一个拆分结果</span></span>
@@ -529,7 +529,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>r_</code> 和 <code>c_</code> 使堆叠更简洁：</li>
 </ul>
-<div id="cfe97a14" class="cell" data-execution_count="16">
+<div id="7204368b" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">6</span>)  <span class="co"># 创建一个包含 0 到 5 的一维数组</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>arr1 <span class="op">=</span> arr.reshape((<span class="dv">3</span>, <span class="dv">2</span>))  <span class="co"># 将数组重塑为 3x2</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>arr2 <span class="op">=</span> rng.standard_normal((<span class="dv">3</span>, <span class="dv">2</span>))  <span class="co"># 创建一个 3x2 的标准正态分布数组</span></span>
@@ -557,7 +557,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>repeat</code>：复制每个元素：</li>
 </ul>
-<div id="c765c62c" class="cell" data-execution_count="17">
+<div id="ee68ec38" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">3</span>)  <span class="co"># 创建一个包含 0 到 2 的一维数组</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.repeat(<span class="dv">3</span>))  <span class="co"># 每个元素重复 3 次</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.repeat([<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]))  <span class="co"># 每个元素分别重复 2、3、4 次</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -569,7 +569,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li>二维数组示例：</li>
 </ul>
-<div id="30889555" class="cell" data-execution_count="18">
+<div id="58c20fcc" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal((<span class="dv">2</span>, <span class="dv">2</span>))  <span class="co"># 创建一个 2x2 的标准正态分布数组</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>arr.repeat(<span class="dv">2</span>, axis<span class="op">=</span><span class="dv">0</span>) <span class="co"># 沿着行重复</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
@@ -586,7 +586,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>tile</code>：沿轴堆叠数组的副本：</li>
 </ul>
-<div id="0c437835" class="cell" data-execution_count="19">
+<div id="e712dd3b" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal((<span class="dv">2</span>, <span class="dv">2</span>))  <span class="co"># 创建一个 2x2 的标准正态分布数组</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.tile(arr, <span class="dv">2</span>))  <span class="co"># 沿行重复数组两次</span></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.tile(arr, (<span class="dv">2</span>, <span class="dv">1</span>)))  <span class="co"># 沿行重复 2 次，沿列重复 1 次</span></span>
@@ -613,7 +613,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>take</code>：通过整数索引选择元素：</li>
 </ul>
-<div id="a4bde19d" class="cell" data-execution_count="20">
+<div id="0848df27" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">10</span>) <span class="op">*</span> <span class="dv">100</span>  <span class="co"># 创建一个 [0, 100, 200, ..., 900] 的数组</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>inds <span class="op">=</span> [<span class="dv">7</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">6</span>]  <span class="co"># 定义索引列表</span></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>arr.take(inds)  <span class="co"># 类似于 arr[inds]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -624,7 +624,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>put</code>：将值分配给索引（原地）。<em>不</em>接受轴参数：</li>
 </ul>
-<div id="870a914f" class="cell" data-execution_count="21">
+<div id="8df43d7b" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>arr.put(inds, <span class="dv">42</span>)  <span class="co"># 将索引位置的值设置为 42</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)  <span class="co"># 打印修改后的数组</span></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>arr.put(inds, [<span class="dv">40</span>, <span class="dv">41</span>, <span class="dv">42</span>, <span class="dv">43</span>])  <span class="co"># 将索引位置的值分别设置为 40、41、42、43</span></span>
@@ -642,7 +642,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <li><strong>广播机制</strong>：<em>不同</em>形状的数组之间如何进行运算。</li>
 <li>最简单的情况：标量和数组：</li>
 </ul>
-<div id="efd8addb" class="cell" data-execution_count="22">
+<div id="091ab6af" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">5</span>)  <span class="co"># 创建一个包含 0 到 4 的一维数组</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">*</span> <span class="dv">4</span>  <span class="co"># 4 被“广播”到所有元素</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
@@ -652,7 +652,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li>均值消减：</li>
 </ul>
-<div id="6cebaecd" class="cell" data-execution_count="23">
+<div id="a37daecf" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal((<span class="dv">4</span>, <span class="dv">3</span>))   <span class="co"># 创建一个4x3的标准正态分布的数组</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>demeaned <span class="op">=</span> arr <span class="op">-</span> arr.mean(<span class="dv">0</span>)  <span class="co">#  arr.mean(0)是计算每列的均值</span></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>demeaned</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -687,7 +687,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <section id="广播示例减去行均值" class="level2">
 <h2 class="anchored" data-anchor-id="广播示例减去行均值">广播示例：减去行均值</h2>
 <!-- 通过示例演示广播的应用 -->
-<div id="1d52faf8" class="cell" data-execution_count="24">
+<div id="6e53548e" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal((<span class="dv">4</span>, <span class="dv">3</span>))  <span class="co"># 创建一个 4x3 的标准正态分布数组</span></span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>row_means <span class="op">=</span> arr.mean(<span class="dv">1</span>)  <span class="co"># 计算每行的均值</span></span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(row_means.shape)  <span class="co"># 打印行均值的形状</span></span>
@@ -708,7 +708,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <li>重塑以在轴 0 以外的轴上进行广播。</li>
 <li>使用 <code>np.newaxis</code> 和切片添加一个长度为 1 的新轴：</li>
 </ul>
-<div id="893e8ebe" class="cell" data-execution_count="25">
+<div id="0c27f45e" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.zeros((<span class="dv">4</span>, <span class="dv">4</span>))  <span class="co"># 创建一个 4x4 的全 0 数组</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>arr_3d <span class="op">=</span> arr[:, np.newaxis, :]  <span class="co"># 在中间添加一个新轴</span></span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr_3d.shape)  <span class="co"># 打印新数组的形状</span></span>
@@ -731,7 +731,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li>广播适用于设置值：</li>
 </ul>
-<div id="84ef250a" class="cell" data-execution_count="26">
+<div id="fa122c21" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.zeros((<span class="dv">4</span>, <span class="dv">3</span>))  <span class="co"># 创建一个 4x3 的全 0 数组</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>arr[:] <span class="op">=</span> <span class="dv">5</span>  <span class="co"># 将所有元素设置为 5</span></span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)  <span class="co"># 打印修改后的数组</span></span>
@@ -758,7 +758,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <li><strong>通用函数 (ufunc)</strong> 具有用于向量化操作的方法。</li>
 <li><code>reduce</code>：通过二元运算进行聚合：</li>
 </ul>
-<div id="2c1cbc41" class="cell" data-execution_count="27">
+<div id="8b92aac4" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">10</span>)  <span class="co"># 创建一个包含 0 到 9 的一维数组</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>np.add.<span class="bu">reduce</span>(arr)  <span class="co"># 类似于 arr.sum()，对数组元素求和</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
@@ -772,7 +772,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>accumulate</code>：中间“累积”值：</li>
 </ul>
-<div id="03bec8e3" class="cell" data-execution_count="28">
+<div id="afceb59f" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">15</span>).reshape((<span class="dv">3</span>, <span class="dv">5</span>))  <span class="co"># 创建一个 3x5 的数组</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>np.add.accumulate(arr, axis<span class="op">=</span><span class="dv">1</span>)  <span class="co"># 沿行计算累积和</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="28">
@@ -784,7 +784,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>outer</code>：成对的叉积：</li>
 </ul>
-<div id="800c31e3" class="cell" data-execution_count="29">
+<div id="ddb87b50" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">3</span>).repeat([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>])  <span class="co"># 创建一个 [0, 1, 1, 2, 2] 的数组</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>np.multiply.outer(arr, np.arange(<span class="dv">5</span>))  <span class="co"># 计算 arr 和 [0, 1, 2, 3, 4] 的外积</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
@@ -802,14 +802,14 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>reduceat</code>：“局部”归约（数组分组）：</li>
 </ul>
-<div id="db262598" class="cell" data-execution_count="30">
+<div id="caafc1ff" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">10</span>)  <span class="co"># 创建一个包含 0 到 9 的一维数组</span></span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>np.add.reduceat(arr, [<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">8</span>])  <span class="co"># 归约 [0:5]、[5:8]、[8:]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
 <pre><code>array([10, 18, 17])</code></pre>
 </div>
 </div>
-<div id="b6c10de7" class="cell" data-execution_count="31">
+<div id="625def5a" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.multiply.outer(np.arange(<span class="dv">4</span>), np.arange(<span class="dv">5</span>))  <span class="co"># 计算外积</span></span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>np.add.reduceat(arr, [<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>], axis<span class="op">=</span><span class="dv">1</span>) <span class="co"># 沿列归约</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
@@ -866,7 +866,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <li>使用 <strong>LLVM</strong> 将 Python 转换为机器码。</li>
 <li>示例：纯 Python 函数：</li>
 </ul>
-<div id="9fc9e62b" class="cell" data-execution_count="32">
+<div id="d3d32bf4" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np  <span class="co"># 导入 NumPy 库</span></span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mean_distance(x, y):  <span class="co"># 定义一个计算平均距离的函数</span></span>
@@ -885,7 +885,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li>这很<em>慢</em>。使用 <code>numba.jit</code> 编译：</li>
 </ul>
-<div id="f5decb7a" class="cell" data-execution_count="33">
+<div id="008ad958" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numba <span class="im">as</span> nb  <span class="co"># 导入 Numba 库</span></span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>numba_mean_distance <span class="op">=</span> nb.jit(mean_distance)  <span class="co"># 使用 jit 装饰器编译 mean_distance 函数</span></span>
@@ -911,7 +911,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>numba.vectorize</code> 创建编译的 NumPy <code>ufunc</code>：</li>
 </ul>
-<div id="7d5d91a6" class="cell" data-execution_count="34">
+<div id="c7541220" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numba <span class="im">import</span> vectorize  <span class="co"># 从 Numba 导入 vectorize 装饰器</span></span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="at">@vectorize</span>  <span class="co"># 使用 vectorize 装饰器</span></span>
@@ -929,7 +929,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <li><code>ndarray</code> 通常是同质的。</li>
 <li><strong>结构化数组</strong>：每个元素代表一个“结构”（类似于 C 中的结构）或 SQL 表行。</li>
 </ul>
-<div id="861d3bf8" class="cell" data-execution_count="35">
+<div id="45f6dbda" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>dtype <span class="op">=</span> [(<span class="st">'x'</span>, np.float64), (<span class="st">'y'</span>, np.int32)]  <span class="co"># 字段名称和类型</span></span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>sarr <span class="op">=</span> np.array([(<span class="fl">1.5</span>, <span class="dv">6</span>), (np.pi, <span class="op">-</span><span class="dv">2</span>)], dtype<span class="op">=</span>dtype)  <span class="co"># 创建结构化数组</span></span>
 <span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sarr)  <span class="co"># 打印数组</span></span>
@@ -945,7 +945,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <section id="嵌套数据类型和多维字段" class="level2">
 <h2 class="anchored" data-anchor-id="嵌套数据类型和多维字段">嵌套数据类型和多维字段</h2>
 <!-- 介绍嵌套数据类型和多维字段 -->
-<div id="c96de455" class="cell" data-execution_count="36">
+<div id="a792b5ee" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>dtype <span class="op">=</span> [(<span class="st">'x'</span>, np.int64, <span class="dv">3</span>), (<span class="st">'y'</span>, np.int32)]  <span class="co"># 'x' 是一个包含 3 个 int64 的数组</span></span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.zeros(<span class="dv">4</span>, dtype<span class="op">=</span>dtype)  <span class="co"># 创建一个结构化数组</span></span>
 <span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)  <span class="co"># 打印数组</span></span>
@@ -972,7 +972,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>ndarray.sort()</code>：原地排序：</li>
 </ul>
-<div id="f88b3205" class="cell" data-execution_count="37">
+<div id="17d0d693" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal(<span class="dv">6</span>)  <span class="co"># 创建一个包含 6 个标准正态分布元素的数组</span></span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>arr.sort()  <span class="co"># 升序排序</span></span>
 <span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)  <span class="co"># 打印排序后的数组</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -983,7 +983,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>numpy.sort()</code>：创建一个<em>新的</em>、排序的副本。</li>
 </ul>
-<div id="9ef1ab3a" class="cell" data-execution_count="38">
+<div id="1597a65b" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal(<span class="dv">5</span>)  <span class="co"># 创建一个包含 5 个标准正态分布元素的数组</span></span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.sort(arr))  <span class="co"># 排序副本</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -993,7 +993,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li>两种方法都接受 <code>axis</code> 参数</li>
 </ul>
-<div id="450c7101" class="cell" data-execution_count="39">
+<div id="dcfc6214" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal((<span class="dv">3</span>, <span class="dv">5</span>))   <span class="co"># 创建一个3x5的标准正态分布的数组</span></span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>arr.sort(axis<span class="op">=</span><span class="dv">1</span>)  <span class="co"># 对每一行进行排序</span></span>
 <span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)  <span class="co"># 打印排序后的数组</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1011,7 +1011,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <li><strong>间接排序</strong>：返回整数<em>索引</em>以重新排序数据。</li>
 <li><code>argsort()</code>：返回将对数组进行排序的索引：</li>
 </ul>
-<div id="1ca95014" class="cell" data-execution_count="40">
+<div id="92f5fb48" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> np.array([<span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>])  <span class="co"># 创建一个一维数组</span></span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>indexer <span class="op">=</span> values.argsort()  <span class="co"># 获取排序后的索引</span></span>
 <span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(indexer)  <span class="co"># 打印索引</span></span>
@@ -1028,7 +1028,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>lexsort()</code>：对多个键进行字典序排序（<em>最后</em>一个数组是主键）：</li>
 </ul>
-<div id="4539bb2b" class="cell" data-execution_count="41">
+<div id="0318962e" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>first_name <span class="op">=</span> np.array([<span class="st">'Bob'</span>, <span class="st">'Jane'</span>, <span class="st">'Steve'</span>, <span class="st">'Bill'</span>, <span class="st">'Barbara'</span>])  <span class="co"># 创建一个包含名字的数组</span></span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>last_name <span class="op">=</span> np.array([<span class="st">'Jones'</span>, <span class="st">'Arnold'</span>, <span class="st">'Arnold'</span>, <span class="st">'Jones'</span>, <span class="st">'Walters'</span>])  <span class="co"># 创建一个包含姓氏的数组</span></span>
 <span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>sorter <span class="op">=</span> np.lexsort((first_name, last_name))  <span class="co"># 先按姓氏排序，再按名字排序</span></span>
@@ -1045,7 +1045,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <li>算法：<code>quicksort</code>（默认）、<code>mergesort</code>、<code>heapsort</code>、<code>timsort</code>。</li>
 <li><strong>稳定</strong>排序：保留相等元素的相对位置（<code>mergesort</code> 是稳定的）。</li>
 </ul>
-<div id="77432f02" class="cell" data-execution_count="42">
+<div id="72b45180" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> np.array([<span class="st">'2:first'</span>, <span class="st">'2:second'</span>, <span class="st">'1:first'</span>, <span class="st">'1:second'</span>, <span class="st">'1:third'</span>])  <span class="co"># 创建一个字符串数组</span></span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>key <span class="op">=</span> np.array([<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>])  <span class="co"># 创建一个键数组</span></span>
 <span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>indexer <span class="op">=</span> key.argsort(kind<span class="op">=</span><span class="st">'mergesort'</span>)  <span class="co"># 使用稳定的 mergesort 进行排序</span></span>
@@ -1109,7 +1109,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>numpy.partition</code>, <code>np.argpartition</code>：围绕第 k 个最小元素进行分区。</li>
 </ul>
-<div id="0624a46f" class="cell" data-execution_count="43">
+<div id="7cc55ad8" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">12345</span>)  <span class="co"># 创建一个随机数生成器</span></span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal(<span class="dv">20</span>)  <span class="co"># 创建一个包含 20 个标准正态分布元素的数组</span></span>
 <span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>np.partition(arr, <span class="dv">3</span>)  <span class="co"># 前 3 个是最小的（未排序）</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1123,7 +1123,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>np.argpartition</code> 返回索引：</li>
 </ul>
-<div id="dc6de247" class="cell" data-execution_count="44">
+<div id="acd5eb9b" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>indices <span class="op">=</span> np.argpartition(arr, <span class="dv">3</span>)  <span class="co"># 获取部分排序的索引</span></span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>arr.take(indices)  <span class="co"># 部分排序</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="44">
@@ -1140,7 +1140,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li><code>searchsorted</code>：在排序数组上进行二分查找；返回插入索引。</li>
 </ul>
-<div id="4765f214" class="cell" data-execution_count="45">
+<div id="d1bfe04a" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">15</span>])  <span class="co"># 创建一个排序数组</span></span>
 <span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.searchsorted(<span class="dv">9</span>))   <span class="co"># 在哪里插入 9？</span></span>
 <span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.searchsorted([<span class="dv">0</span>, <span class="dv">8</span>, <span class="dv">11</span>, <span class="dv">16</span>]))  <span class="co"># 查找多个值的插入位置</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1156,7 +1156,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <section id="searchsorted-示例分箱" class="level2">
 <h2 class="anchored" data-anchor-id="searchsorted-示例分箱"><code>searchsorted</code> 示例：分箱</h2>
 <!-- 使用 searchsorted() 进行分箱的示例 -->
-<div id="7c1b8885" class="cell" data-execution_count="46">
+<div id="77b2c758" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.floor(rng.uniform(<span class="dv">0</span>, <span class="dv">10000</span>, size<span class="op">=</span><span class="dv">50</span>))  <span class="co"># 生成 50 个 0 到 10000 之间的随机整数</span></span>
 <span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">1000</span>, <span class="dv">5000</span>, <span class="dv">10000</span>])  <span class="co"># 定义分箱边界</span></span>
 <span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> bins.searchsorted(data)  <span class="co"># 对每个数据点进行分箱</span></span>
@@ -1178,7 +1178,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <li><code>memmap</code>：NumPy 的类似 ndarray 的对象。读取/写入段，而无需加载整个文件。</li>
 <li>使用 <code>np.memmap</code> 创建：指定路径、dtype、形状、模式：</li>
 </ul>
-<div id="8e43b3b4" class="cell" data-execution_count="47">
+<div id="0348b745" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>mmap <span class="op">=</span> np.memmap(<span class="st">'mymmap'</span>, dtype<span class="op">=</span><span class="st">'float64'</span>, mode<span class="op">=</span><span class="st">'w+'</span>,</span>
 <span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>                 shape<span class="op">=</span>(<span class="dv">10000</span>, <span class="dv">10000</span>))  <span class="co"># 创建一个内存映射文件</span></span>
 <span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mmap)  <span class="co"># 打印内存映射对象</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1199,20 +1199,20 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <ul>
 <li>切片返回磁盘上的<em>视图</em>：</li>
 </ul>
-<div id="6ac0ba2f" class="cell" data-execution_count="48">
+<div id="5aef2115" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>section <span class="op">=</span> mmap[:<span class="dv">5</span>]  <span class="co"># 前 5 行</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>分配缓冲区在内存中；使用 <code>flush()</code> 写入：</li>
 </ul>
-<div id="8aba9735" class="cell" data-execution_count="49">
+<div id="e9925245" class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>section[:] <span class="op">=</span> rng.standard_normal((<span class="dv">5</span>, <span class="dv">10000</span>))  <span class="co"># 将数据写入切片</span></span>
 <span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>mmap.flush()  <span class="co"># 将更改刷新到磁盘</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>打开现有映射仍然需要 dtype 和形状：</li>
 </ul>
-<div id="ef416611" class="cell" data-execution_count="50">
+<div id="184d8118" class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>mmap <span class="op">=</span> np.memmap(<span class="st">'mymmap'</span>, dtype<span class="op">=</span><span class="st">'float64'</span>, shape<span class="op">=</span>(<span class="dv">10000</span>, <span class="dv">10000</span>))  <span class="co"># 打开现有的内存映射文件</span></span>
 <span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mmap)  <span class="co"># 打印内存映射对象</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1256,7 +1256,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <li>NumPy 数组默认为 C 连续；转置是 Fortran 连续的。</li>
 <li>使用 <code>flags</code> 检查：</li>
 </ul>
-<div id="8f2179aa" class="cell" data-execution_count="51">
+<div id="05809b47" class="cell" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>arr_c <span class="op">=</span> np.ones((<span class="dv">100</span>, <span class="dv">10000</span>), order<span class="op">=</span><span class="st">'C'</span>)  <span class="co"># 创建一个 C 连续数组</span></span>
 <span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>arr_f <span class="op">=</span> np.ones((<span class="dv">100</span>, <span class="dv">10000</span>), order<span class="op">=</span><span class="st">'F'</span>)  <span class="co"># 创建一个 Fortran 连续数组</span></span>
 <span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr_c.flags)  <span class="co"># C_CONTIGUOUS: True, F_CONTIGUOUS: False</span></span>
@@ -1286,7 +1286,7 @@ third=array([[-1.3677927 ,  0.6488928 ],
 <li>对 C 连续数组的行求和<em>通常</em>更快。</li>
 <li>如果需要，使用 <code>copy()</code> 和 <code>'C'</code> 或 <code>'F'</code>：</li>
 </ul>
-<div id="b106224e" class="cell" data-execution_count="52">
+<div id="1769240b" class="cell" data-execution_count="52">
 <div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>arr_f.copy(<span class="st">'C'</span>).flags  <span class="co"># 将 Fortran 连续数组复制为 C 连续数组</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="52">
 <pre><code>  C_CONTIGUOUS : True

@@ -188,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="numpy-vs.-python-lists-a-performance-showdown" class="level2">
 <h2 class="anchored" data-anchor-id="numpy-vs.-python-lists-a-performance-showdown">NumPy vs.&nbsp;Python Lists: A Performance Showdown 🏃‍♂️</h2>
 <p>Let’s see NumPy’s speed advantage in action. We’ll compare multiplying a million integers by 2 using both a NumPy array and a Python list:</p>
-<div id="7412f7b7" class="cell" data-execution_count="1">
+<div id="78adf8ff" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>my_arr <span class="op">=</span> np.arange(<span class="dv">1_000_000</span>)  <span class="co"># NumPy array</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1_000_000</span>)) <span class="co"># Python list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -224,7 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="creating-ndarrays-examples-from-a-list" class="level2">
 <h2 class="anchored" data-anchor-id="creating-ndarrays-examples-from-a-list">Creating ndarrays: Examples (From a list)</h2>
 <p>Let’s create some arrays:</p>
-<div id="e2bc829e" class="cell" data-execution_count="2">
+<div id="ee87f517" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># From a list</span></span>
@@ -240,7 +240,7 @@ float64</code></pre>
 </section>
 <section id="creating-ndarrays-examples-from-a-nested-list" class="level2">
 <h2 class="anchored" data-anchor-id="creating-ndarrays-examples-from-a-nested-list">Creating ndarrays: Examples (From a nested list)</h2>
-<div id="01096613" class="cell" data-execution_count="3">
+<div id="b26012e4" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># From a nested list (creates a 2D array)</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>data2 <span class="op">=</span> [[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>], [<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>]]</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>arr2 <span class="op">=</span> np.array(data2)</span>
@@ -260,7 +260,7 @@ int64</code></pre>
 <section id="array-creation-functions-zeros" class="level2">
 <h2 class="anchored" data-anchor-id="array-creation-functions-zeros">Array Creation Functions: Zeros</h2>
 <p>NumPy provides several convenient functions to create arrays:</p>
-<div id="4637c905" class="cell" data-execution_count="4">
+<div id="e5c691d0" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Array of zeros</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>zeros_arr <span class="op">=</span> np.zeros(<span class="dv">10</span>)  <span class="co"># 1D array</span></span>
@@ -278,7 +278,7 @@ int64</code></pre>
 </section>
 <section id="array-creation-functions-ones-and-empty" class="level2">
 <h2 class="anchored" data-anchor-id="array-creation-functions-ones-and-empty">Array Creation Functions: Ones and Empty</h2>
-<div id="00ecdd44" class="cell" data-execution_count="5">
+<div id="a653d250" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Array of ones</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ones_arr <span class="op">=</span> np.ones((<span class="dv">2</span>, <span class="dv">3</span>)) <span class="co"># 2D array (2x3)</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ones_arr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -287,24 +287,24 @@ int64</code></pre>
  [1. 1. 1.]]</code></pre>
 </div>
 </div>
-<div id="c3b8a32e" class="cell" data-execution_count="6">
+<div id="d58dda49" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Uninitialized array (may contain garbage values)</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>empty_arr <span class="op">=</span> np.empty((<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>)) <span class="co"># 3D array</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(empty_arr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[[[2.36835308e-319 0.00000000e+000]
-  [9.70096631e-316 6.93287679e-310]
-  [6.93284900e-310 6.93284901e-310]]
+<pre><code>[[[5.82537981e-319 0.00000000e+000]
+  [2.38609280e-315 6.90609934e-310]
+  [6.90606300e-310 5.81975339e-317]]
 
- [[6.93284901e-310 6.93284901e-310]
-  [6.93284900e-310 4.79243676e-322]
-  [6.93287679e-310 6.93287679e-310]]]</code></pre>
+ [[6.90606302e-310 5.81975339e-317]
+  [6.90606302e-310 4.79243676e-322]
+  [6.90609934e-310 6.90609934e-310]]]</code></pre>
 </div>
 </div>
 </section>
 <section id="array-creation-functions-arange" class="level2">
 <h2 class="anchored" data-anchor-id="array-creation-functions-arange">Array Creation Functions: Arange</h2>
-<div id="ef5dce03" class="cell" data-execution_count="7">
+<div id="490a8a8f" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 'arange': Similar to Python's 'range', but returns an ndarray</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>range_arr <span class="op">=</span> np.arange(<span class="dv">15</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(range_arr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -407,7 +407,7 @@ int64</code></pre>
 <section id="data-types-specifying-dtypes" class="level2">
 <h2 class="anchored" data-anchor-id="data-types-specifying-dtypes">Data Types: Specifying dtypes</h2>
 <p>Specifying dtypes:</p>
-<div id="eb30a677" class="cell" data-execution_count="8">
+<div id="f16c0927" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>arr1 <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], dtype<span class="op">=</span>np.float64)  <span class="co"># Explicitly set dtype</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>arr2 <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], dtype<span class="op">=</span>np.int32)</span>
@@ -548,7 +548,7 @@ int32</code></pre>
 <li><p><strong>What is casting?</strong> Converting an array from one dtype to another.</p></li>
 <li><p><strong>How to cast:</strong> Use the <code>astype</code> method. <code>astype</code> <em>always</em> creates a new array (a copy of the data), even if the new dtype is the same as the old dtype.</p></li>
 </ul>
-<div id="8d794559" class="cell" data-execution_count="9">
+<div id="91d55199" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.dtype)</span>
@@ -562,7 +562,7 @@ float64</code></pre>
 </section>
 <section id="casting-with-astype-string-to-float" class="level2">
 <h2 class="anchored" data-anchor-id="casting-with-astype-string-to-float">Casting with <code>astype</code>: String to Float</h2>
-<div id="c8185834" class="cell" data-execution_count="10">
+<div id="bb4dbcea" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># `np.string_` was removed in the NumPy 2.0 release. Use `np.bytes_` instead.</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>numeric_strings <span class="op">=</span> np.array([<span class="st">'1.25'</span>, <span class="st">'-9.6'</span>, <span class="st">'42'</span>], dtype<span class="op">=</span>np.bytes_)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>float_arr <span class="op">=</span> numeric_strings.astype(<span class="bu">float</span>) <span class="co"># String to float</span></span>
@@ -579,7 +579,7 @@ float64</code></pre>
 <li><p><strong>Vectorization:</strong> A core concept in NumPy. It means performing operations on entire arrays <em>without</em> writing explicit <code>for</code> loops. This is <em>much</em> faster and more concise.</p></li>
 <li><p><strong>Element-wise Operations:</strong> Arithmetic operations between equal-sized arrays are applied element-wise:</p></li>
 </ul>
-<div id="05fbb97e" class="cell" data-execution_count="11">
+<div id="7b8baf19" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([[<span class="fl">1.</span>, <span class="fl">2.</span>, <span class="fl">3.</span>], [<span class="fl">4.</span>, <span class="fl">5.</span>, <span class="fl">6.</span>]])</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr <span class="op">*</span> arr) <span class="co"># Element-wise multiplication</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr <span class="op">-</span> arr) <span class="co"># Element-wise subtraction</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -596,7 +596,7 @@ float64</code></pre>
 <ul>
 <li><strong>Operations with Scalars:</strong> Arithmetic operations with scalars <em>propagate</em> the scalar value to each element in the array:</li>
 </ul>
-<div id="b230c732" class="cell" data-execution_count="12">
+<div id="90c7bdda" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span> <span class="op">/</span> arr)   <span class="co"># Divide each element by 1</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr <span class="op">**</span> <span class="dv">2</span>) <span class="co"># Square each element</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -620,7 +620,7 @@ float64</code></pre>
 <ul>
 <li><strong>Similar to Python Lists:</strong> One-dimensional NumPy arrays can be indexed and sliced much like Python lists:</li>
 </ul>
-<div id="0e8b947e" class="cell" data-execution_count="13">
+<div id="da971443" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">10</span>)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr[<span class="dv">5</span>])      <span class="co"># Access element at index 5</span></span>
@@ -639,7 +639,7 @@ float64</code></pre>
 <ul>
 <li><strong>Views vs.&nbsp;Copies:</strong> <em>Array slices are views on the original array</em>. This means that modifying a slice <em>will</em> modify the original array. This is different from Python lists.</li>
 </ul>
-<div id="92250758" class="cell" data-execution_count="14">
+<div id="aca3db50" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>arr_slice <span class="op">=</span> arr[<span class="dv">5</span>:<span class="dv">8</span>]</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>arr_slice[<span class="dv">1</span>] <span class="op">=</span> <span class="dv">12345</span>  <span class="co"># Modify the slice</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)          <span class="co"># Original array is also modified!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -654,7 +654,7 @@ float64</code></pre>
 <ul>
 <li><strong>Two-Dimensional Arrays:</strong> You can access elements using comma-separated indices:</li>
 </ul>
-<div id="0297fa60" class="cell" data-execution_count="15">
+<div id="05358cc7" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>arr2d <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>], [<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>]])</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr2d[<span class="dv">2</span>])     <span class="co"># Access the third row (index 2)</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr2d[<span class="dv">0</span>][<span class="dv">2</span>])  <span class="co"># Access element at row 0, column 2 (two ways)</span></span>
@@ -711,7 +711,7 @@ float64</code></pre>
 <ul>
 <li><strong>Slicing in Multiple Dimensions:</strong></li>
 </ul>
-<div id="6e0fa3ae" class="cell" data-execution_count="16">
+<div id="cb025f19" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr2d[:<span class="dv">2</span>])      <span class="co"># Select the first two rows</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr2d[:<span class="dv">2</span>, <span class="dv">1</span>:])   <span class="co"># Select first two rows, columns from index 1 onwards</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -727,7 +727,7 @@ float64</code></pre>
 <ul>
 <li><strong>Mixing Integer Indexing and Slicing:</strong></li>
 </ul>
-<div id="a7a1faf6" class="cell" data-execution_count="17">
+<div id="c1c7a2f6" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr2d[<span class="dv">1</span>, :<span class="dv">2</span>])   <span class="co"># Select second row, first two columns (lower dimensional slice)</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr2d[:<span class="dv">2</span>, <span class="dv">2</span>])    <span class="co"># Select first two rows, third column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -741,7 +741,7 @@ float64</code></pre>
 <ul>
 <li><strong>Colon for Entire Axis:</strong></li>
 </ul>
-<div id="e926158b" class="cell" data-execution_count="18">
+<div id="4f5e3266" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr2d[:, :<span class="dv">1</span>])   <span class="co"># Select all rows, but only the first column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]
@@ -766,7 +766,7 @@ float64</code></pre>
 </tr>
 </tbody>
 </table>
-<div id="1c21720e" class="cell" data-execution_count="19">
+<div id="46c3f21f" class="cell" data-execution_count="19">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -792,7 +792,7 @@ float64</code></pre>
 </tr>
 </tbody>
 </table>
-<div id="7bd57edd" class="cell" data-execution_count="20">
+<div id="1a7919a4" class="cell" data-execution_count="20">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -818,7 +818,7 @@ float64</code></pre>
 </tr>
 </tbody>
 </table>
-<div id="ff44fa54" class="cell" data-execution_count="21">
+<div id="8172761c" class="cell" data-execution_count="21">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -844,7 +844,7 @@ float64</code></pre>
 </tr>
 </tbody>
 </table>
-<div id="092774d5" class="cell" data-execution_count="22">
+<div id="e8246679" class="cell" data-execution_count="22">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -870,7 +870,7 @@ float64</code></pre>
 </tr>
 </tbody>
 </table>
-<div id="b014d3d9" class="cell" data-execution_count="23">
+<div id="7cdf2954" class="cell" data-execution_count="23">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -896,7 +896,7 @@ float64</code></pre>
 </tr>
 </tbody>
 </table>
-<div id="581e86a6" class="cell" data-execution_count="24">
+<div id="e514d2ec" class="cell" data-execution_count="24">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -922,7 +922,7 @@ float64</code></pre>
 </tr>
 </tbody>
 </table>
-<div id="6c4fc442" class="cell" data-execution_count="25">
+<div id="cf938045" class="cell" data-execution_count="25">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -937,7 +937,7 @@ float64</code></pre>
 <ul>
 <li><strong>Concept:</strong> Select data based on a Boolean array. The Boolean array typically has the same shape as the array you’re indexing.</li>
 </ul>
-<div id="d1595f68" class="cell" data-execution_count="26">
+<div id="0b5cc476" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> np.array([<span class="st">'Bob'</span>, <span class="st">'Joe'</span>, <span class="st">'Will'</span>, <span class="st">'Bob'</span>, <span class="st">'Will'</span>, <span class="st">'Joe'</span>, <span class="st">'Joe'</span>])</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.array([[<span class="dv">4</span>, <span class="dv">7</span>], [<span class="dv">0</span>, <span class="dv">2</span>], [<span class="op">-</span><span class="dv">5</span>, <span class="dv">6</span>], [<span class="dv">0</span>, <span class="dv">0</span>], [<span class="dv">1</span>, <span class="dv">2</span>],</span>
@@ -951,7 +951,7 @@ float64</code></pre>
 </section>
 <section id="boolean-indexing-selecting-rows" class="level2">
 <h2 class="anchored" data-anchor-id="boolean-indexing-selecting-rows">Boolean Indexing: Selecting Rows</h2>
-<div id="185e6893" class="cell" data-execution_count="27">
+<div id="da6a403d" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[names <span class="op">==</span> <span class="st">'Bob'</span>])  <span class="co"># Select rows where names == 'Bob'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[4 7]
@@ -961,7 +961,7 @@ float64</code></pre>
 </section>
 <section id="boolean-indexing-combining-with-slicingindexing" class="level2">
 <h2 class="anchored" data-anchor-id="boolean-indexing-combining-with-slicingindexing">Boolean Indexing: Combining with Slicing/Indexing</h2>
-<div id="208d7837" class="cell" data-execution_count="28">
+<div id="555e3254" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[names <span class="op">==</span> <span class="st">'Bob'</span>, <span class="dv">1</span>:])  <span class="co"># Select rows where names == 'Bob', and columns from index 1</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[names <span class="op">!=</span> <span class="st">'Bob'</span>])     <span class="co"># Select rows where names is NOT 'Bob'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -985,7 +985,7 @@ float64</code></pre>
 <li><code>|</code>: Combines conditions (like <code>or</code>)</li>
 </ul></li>
 </ul>
-<div id="3d0a76cc" class="cell" data-execution_count="29">
+<div id="a20d7f15" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> (names <span class="op">==</span> <span class="st">'Bob'</span>) <span class="op">|</span> (names <span class="op">==</span> <span class="st">'Will'</span>)</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[mask])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1002,7 +1002,7 @@ float64</code></pre>
 <ul>
 <li><strong>Concept:</strong> Indexing using integer arrays. Allows you to select specific rows or columns, and even reorder them.</li>
 </ul>
-<div id="9e147bd0" class="cell" data-execution_count="30">
+<div id="8699bc92" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.zeros((<span class="dv">8</span>, <span class="dv">4</span>))</span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">8</span>):</span>
@@ -1027,7 +1027,7 @@ float64</code></pre>
 </section>
 <section id="fancy-indexing-selecting-specific-elements" class="level2">
 <h2 class="anchored" data-anchor-id="fancy-indexing-selecting-specific-elements">Fancy Indexing: Selecting Specific Elements</h2>
-<div id="fc34666e" class="cell" data-execution_count="31">
+<div id="3f823c5a" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">32</span>).reshape((<span class="dv">8</span>, <span class="dv">4</span>))</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr[[<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">2</span>], [<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>]]) <span class="co"># Select elements (1, 0), (5, 3), (7, 1), (2, 2)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1037,7 +1037,7 @@ float64</code></pre>
 </section>
 <section id="fancy-indexing-selecting-a-rectangular-region" class="level2">
 <h2 class="anchored" data-anchor-id="fancy-indexing-selecting-a-rectangular-region">Fancy Indexing: Selecting a Rectangular Region</h2>
-<div id="c75502b3" class="cell" data-execution_count="32">
+<div id="f0f7dc3f" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr[[<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">2</span>]][:, [<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>]])  <span class="co"># Select rows 1, 5, 7, 2, and reorder columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[ 4  7  5  6]
@@ -1055,7 +1055,7 @@ float64</code></pre>
 <ul>
 <li><strong>Transposing:</strong> Rearranging data by switching rows and columns. Use the <code>.T</code> attribute or the <code>transpose</code> method.</li>
 </ul>
-<div id="ae4e8fc7" class="cell" data-execution_count="33">
+<div id="cc3a701d" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">15</span>).reshape((<span class="dv">3</span>, <span class="dv">5</span>))</span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)</span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.T)  <span class="co"># Transpose the array</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1076,7 +1076,7 @@ float64</code></pre>
 <ul>
 <li><strong>Matrix Multiplication:</strong> Use <code>np.dot</code> or the <code>@</code> operator for matrix multiplication.</li>
 </ul>
-<div id="895f930c" class="cell" data-execution_count="34">
+<div id="5edd5814" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>], [<span class="dv">1</span>, <span class="dv">2</span>, <span class="op">-</span><span class="dv">2</span>], [<span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">2</span>], [<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>], [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>]])</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.dot(arr.T, arr))  <span class="co"># Matrix multiplication</span></span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.T <span class="op">@</span> arr) <span class="co"># Matrix multiplication using the @ operator</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1095,7 +1095,7 @@ float64</code></pre>
 <ul>
 <li><strong>Swapping Axes:</strong> The <code>swapaxes</code> method takes a pair of axis numbers and switches the indicated axes.</li>
 </ul>
-<div id="f7c46d6d" class="cell" data-execution_count="35">
+<div id="ad38be62" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.swapaxes(<span class="dv">0</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[ 0  1  6 -1  1]
@@ -1111,7 +1111,7 @@ float64</code></pre>
 <li><p><strong><code>numpy.random</code> Module:</strong> Provides functions to generate arrays of random numbers.</p></li>
 <li><p><strong><code>default_rng</code>:</strong> The recommended way to create a random number generator.</p></li>
 </ul>
-<div id="bc75cc48" class="cell" data-execution_count="36">
+<div id="fcf89903" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">12345</span>)  <span class="co"># Create a generator with a seed</span></span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> rng.standard_normal((<span class="dv">2</span>, <span class="dv">3</span>))       <span class="co"># Generate a 2x3 array of standard normal values</span></span>
@@ -1231,7 +1231,7 @@ float64</code></pre>
 <li><p><strong>What are ufuncs?</strong> Functions that perform element-wise operations on ndarrays. They are <em>fast</em> vectorized wrappers for simple functions.</p></li>
 <li><p><strong>Unary ufuncs:</strong> Take a single array as input.</p></li>
 </ul>
-<div id="99ad8d1b" class="cell" data-execution_count="37">
+<div id="0d6918a7" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">10</span>)</span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.sqrt(arr))    <span class="co"># Square root of each element</span></span>
@@ -1250,7 +1250,7 @@ float64</code></pre>
 <ul>
 <li><strong>Binary ufuncs:</strong> Take two arrays as input.</li>
 </ul>
-<div id="8ee9bb10" class="cell" data-execution_count="38">
+<div id="8f64b670" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">12345</span>)</span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> rng.standard_normal(<span class="dv">8</span>)</span>
 <span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> rng.standard_normal(<span class="dv">8</span>)</span>
@@ -1263,7 +1263,7 @@ float64</code></pre>
 <ul>
 <li><strong>ufuncs that return multiple arrays:</strong></li>
 </ul>
-<div id="8a9c351d" class="cell" data-execution_count="39">
+<div id="04cfb545" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal(<span class="dv">7</span>) <span class="op">*</span> <span class="dv">5</span></span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>remainder, whole_part <span class="op">=</span> np.modf(arr)  <span class="co"># Returns fractional and integral parts</span></span>
 <span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(remainder)</span>
@@ -1501,7 +1501,7 @@ float64</code></pre>
 <section id="array-oriented-programming-example" class="level2">
 <h2 class="anchored" data-anchor-id="array-oriented-programming-example">Array-Oriented Programming: Example</h2>
 <p>Let’s compute the function √(x^2 + y^2) across a grid of values:</p>
-<div id="df48a2b1" class="cell" data-execution_count="40">
+<div id="5c74458a" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>points <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="fl">0.01</span>)  <span class="co"># 1000 equally spaced points</span></span>
 <span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>xs, ys <span class="op">=</span> np.meshgrid(points, points)  <span class="co"># Create coordinate matrices</span></span>
@@ -1511,7 +1511,7 @@ float64</code></pre>
 <section id="array-oriented-programming-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="array-oriented-programming-visualization">Array-Oriented Programming: Visualization</h2>
 <p>Now, let’s visualize the result using Matplotlib:</p>
-<div id="b173b3da" class="cell" data-output-location="slide" data-execution_count="41">
+<div id="5c7d41e8" class="cell" data-output-location="slide" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(z, cmap<span class="op">=</span>plt.cm.gray, extent<span class="op">=</span>[<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>])</span>
 <span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span>
@@ -1521,7 +1521,7 @@ float64</code></pre>
 <div class="cell-output cell-output-stderr">
 <pre><code>&lt;&gt;:4: SyntaxWarning: invalid escape sequence '\s'
 &lt;&gt;:4: SyntaxWarning: invalid escape sequence '\s'
-/tmp/ipykernel_3165/1319111413.py:4: SyntaxWarning: invalid escape sequence '\s'
+/tmp/ipykernel_3215/1319111413.py:4: SyntaxWarning: invalid escape sequence '\s'
   plt.title("Image plot of $\sqrt{x^2 + y^2}$ for a grid of values")</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -1539,7 +1539,7 @@ float64</code></pre>
 <ul>
 <li><strong><code>np.where</code>:</strong> A vectorized version of the ternary expression <code>x if condition else y</code>.</li>
 </ul>
-<div id="9d62bf92" class="cell" data-execution_count="42">
+<div id="79295af8" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>xarr <span class="op">=</span> np.array([<span class="fl">1.1</span>, <span class="fl">1.2</span>, <span class="fl">1.3</span>, <span class="fl">1.4</span>, <span class="fl">1.5</span>])</span>
 <span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>yarr <span class="op">=</span> np.array([<span class="fl">2.1</span>, <span class="fl">2.2</span>, <span class="fl">2.3</span>, <span class="fl">2.4</span>, <span class="fl">2.5</span>])</span>
@@ -1557,7 +1557,7 @@ float64</code></pre>
 <ul>
 <li><strong>Example:</strong> Replace positive values in an array with 2, and negative values with -2:</li>
 </ul>
-<div id="813febbd" class="cell" data-execution_count="43">
+<div id="101ced92" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">12345</span>)</span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal((<span class="dv">4</span>, <span class="dv">4</span>))</span>
 <span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> np.where(arr <span class="op">&gt;</span> <span class="dv">0</span>, <span class="dv">2</span>, <span class="op">-</span><span class="dv">2</span>)</span>
@@ -1573,7 +1573,7 @@ float64</code></pre>
 <section id="mathematical-and-statistical-methods" class="level2">
 <h2 class="anchored" data-anchor-id="mathematical-and-statistical-methods">Mathematical and Statistical Methods</h2>
 <p>NumPy provides a set of methods for computing statistics on arrays:</p>
-<div id="2b45f04e" class="cell" data-execution_count="44">
+<div id="eb2150c0" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">12345</span>)</span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal((<span class="dv">5</span>, <span class="dv">4</span>))</span>
 <span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.mean())       <span class="co"># Mean of all elements</span></span>
@@ -1591,7 +1591,7 @@ float64</code></pre>
 <ul>
 <li><strong>Axis Argument:</strong> Many methods take an optional <code>axis</code> argument to compute the statistic along a specific axis:</li>
 </ul>
-<div id="f71703fa" class="cell" data-execution_count="45">
+<div id="34fc1734" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.mean(axis<span class="op">=</span><span class="dv">1</span>))  <span class="co"># Mean across columns (for each row)</span></span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>))   <span class="co"># Sum down rows (for each column)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1605,7 +1605,7 @@ float64</code></pre>
 <ul>
 <li><strong><code>cumsum</code> and <code>cumprod</code>:</strong> Compute cumulative sums and products:</li>
 </ul>
-<div id="8cad29fd" class="cell" data-execution_count="46">
+<div id="001a319c" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>])</span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr.cumsum())  <span class="co"># Cumulative sum</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1680,7 +1680,7 @@ float64</code></pre>
 <ul>
 <li><strong><code>sum</code> with Booleans:</strong> <code>True</code> values are treated as 1, <code>False</code> as 0. Useful for counting <code>True</code> values.</li>
 </ul>
-<div id="e126f4e8" class="cell" data-execution_count="47">
+<div id="b1c936d7" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">12345</span>)</span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal(<span class="dv">100</span>)</span>
 <span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((arr <span class="op">&gt;</span> <span class="dv">0</span>).<span class="bu">sum</span>())  <span class="co"># Count positive values</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1698,7 +1698,7 @@ float64</code></pre>
 <li><code>all</code>: Checks if <em>all</em> values in a Boolean array are <code>True</code>.</li>
 </ul></li>
 </ul>
-<div id="43bcec54" class="cell" data-execution_count="48">
+<div id="6812795b" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>bools <span class="op">=</span> np.array([<span class="va">False</span>, <span class="va">False</span>, <span class="va">True</span>, <span class="va">False</span>])</span>
 <span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(bools.<span class="bu">any</span>())  <span class="co"># Is there at least one True?</span></span>
 <span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(bools.<span class="bu">all</span>())  <span class="co"># Are all values True?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1713,7 +1713,7 @@ False</code></pre>
 <ul>
 <li><strong><code>sort</code> Method:</strong> Sorts an array <em>in place</em>.</li>
 </ul>
-<div id="25c61e35" class="cell" data-execution_count="49">
+<div id="25c585bb" class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">12345</span>)</span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal(<span class="dv">6</span>)</span>
 <span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>arr.sort()  <span class="co"># Sort the array in place</span></span>
@@ -1725,7 +1725,7 @@ False</code></pre>
 </section>
 <section id="sorting-sorting-along-an-axis" class="level2">
 <h2 class="anchored" data-anchor-id="sorting-sorting-along-an-axis">Sorting: Sorting Along an Axis</h2>
-<div id="c4445a57" class="cell" data-execution_count="50">
+<div id="57a75482" class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">12345</span>)</span>
 <span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> rng.standard_normal((<span class="dv">5</span>, <span class="dv">3</span>))</span>
 <span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>arr.sort(axis<span class="op">=</span><span class="dv">0</span>)  <span class="co"># Sort within each column</span></span>
@@ -1741,7 +1741,7 @@ False</code></pre>
 </section>
 <section id="sorting-sorting-along-an-axis-continued" class="level2">
 <h2 class="anchored" data-anchor-id="sorting-sorting-along-an-axis-continued">Sorting: Sorting Along an Axis (Continued)</h2>
-<div id="75391620" class="cell" data-execution_count="51">
+<div id="27d82694" class="cell" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>arr.sort(axis<span class="op">=</span><span class="dv">1</span>) <span class="co"># Sort within each row</span></span>
 <span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1761,7 +1761,7 @@ False</code></pre>
 <ul>
 <li><strong><code>np.unique</code>:</strong> Returns the sorted unique values in an array.</li>
 </ul>
-<div id="3074f258" class="cell" data-execution_count="52">
+<div id="4fd5d4e8" class="cell" data-execution_count="52">
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>names <span class="op">=</span> np.array([<span class="st">'Bob'</span>, <span class="st">'Will'</span>, <span class="st">'Joe'</span>, <span class="st">'Bob'</span>, <span class="st">'Will'</span>, <span class="st">'Joe'</span>, <span class="st">'Joe'</span>])</span>
 <span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.unique(names)) <span class="co"># Get unique names</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1775,14 +1775,14 @@ False</code></pre>
 <ul>
 <li><strong><code>np.in1d</code>:</strong> Tests membership of values in one array within another.</li>
 </ul>
-<div id="293e0801" class="cell" data-execution_count="53">
+<div id="518910b0" class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> np.array([<span class="dv">6</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">6</span>])</span>
 <span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.in1d(values, [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">6</span>]))  <span class="co"># Check if each value in 'values' is in [2, 3, 6]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[ True False False  True  True False  True]</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_3165/1961777543.py:2: DeprecationWarning: `in1d` is deprecated. Use `np.isin` instead.
+<pre><code>/tmp/ipykernel_3215/1961777543.py:2: DeprecationWarning: `in1d` is deprecated. Use `np.isin` instead.
   print(np.in1d(values, [2, 3, 6]))  # Check if each value in 'values' is in [2, 3, 6]</code></pre>
 </div>
 </div>
@@ -1867,7 +1867,7 @@ False</code></pre>
 <ul>
 <li><strong><code>np.save</code> and <code>np.load</code>:</strong> Functions for saving and loading arrays in NumPy’s binary format (<code>.npy</code>).</li>
 </ul>
-<div id="6e87713c" class="cell" data-execution_count="54">
+<div id="5624e527" class="cell" data-execution_count="54">
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">10</span>)</span>
 <span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>np.save(<span class="st">'some_array'</span>, arr)  <span class="co"># Save to 'some_array.npy'</span></span>
@@ -1883,7 +1883,7 @@ False</code></pre>
 <ul>
 <li><strong><code>np.savez</code>:</strong> Saves multiple arrays into an uncompressed archive (<code>.npz</code>).</li>
 </ul>
-<div id="c540fab3" class="cell" data-execution_count="55">
+<div id="447b6b93" class="cell" data-execution_count="55">
 <div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>np.savez(<span class="st">'array_archive.npz'</span>, a<span class="op">=</span>arr, b<span class="op">=</span>arr)  <span class="co"># Save multiple arrays</span></span>
 <span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>arch <span class="op">=</span> np.load(<span class="st">'array_archive.npz'</span>)        <span class="co"># Load the archive</span></span>
 <span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arch[<span class="st">'b'</span>])  <span class="co"># Access arrays by name</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1901,7 +1901,7 @@ False</code></pre>
 <li><p><strong><code>numpy.linalg</code> Module:</strong> Provides functions for linear algebra operations.</p></li>
 <li><p><strong>Matrix Multiplication:</strong></p></li>
 </ul>
-<div id="6678a2e4" class="cell" data-execution_count="56">
+<div id="fd4f300d" class="cell" data-execution_count="56">
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([[<span class="fl">1.</span>, <span class="fl">2.</span>, <span class="fl">3.</span>], [<span class="fl">4.</span>, <span class="fl">5.</span>, <span class="fl">6.</span>]])</span>
 <span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([[<span class="fl">6.</span>, <span class="fl">23.</span>], [<span class="op">-</span><span class="dv">1</span>, <span class="dv">7</span>], [<span class="dv">8</span>, <span class="dv">9</span>]])</span>
@@ -1922,7 +1922,7 @@ False</code></pre>
 <ul>
 <li><strong>Inverse and Determinant:</strong></li>
 </ul>
-<div id="8a98a440" class="cell" data-execution_count="57">
+<div id="68e79e20" class="cell" data-execution_count="57">
 <div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.linalg <span class="im">import</span> inv, qr</span>
 <span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">12345</span>)</span>
 <span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> rng.standard_normal((<span class="dv">5</span>, <span class="dv">5</span>))</span>
@@ -2052,7 +2052,7 @@ False</code></pre>
 <section id="example-random-walks" class="level2">
 <h2 class="anchored" data-anchor-id="example-random-walks">Example: Random Walks</h2>
 <p>Let’s simulate a simple random walk using NumPy:</p>
-<div id="63817d5f" class="cell" data-execution_count="58">
+<div id="3b6ed1f4" class="cell" data-execution_count="58">
 <div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>nsteps <span class="op">=</span> <span class="dv">1000</span></span>
 <span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">12345</span>)</span>
@@ -2064,7 +2064,7 @@ False</code></pre>
 <section id="example-random-walks-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="example-random-walks-visualization">Example: Random Walks (Visualization)</h2>
 <p>First 100 steps of a simple random walk:</p>
-<div id="dc3b8ae9" class="cell" data-output-location="slide" data-execution_count="59">
+<div id="ab1d6620" class="cell" data-output-location="slide" data-execution_count="59">
 <div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>plt.plot(walk[:<span class="dv">100</span>])</span>
 <span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2080,7 +2080,7 @@ False</code></pre>
 <section id="random-walks-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="random-walks-analysis">Random Walks: Analysis</h2>
 <p>We can analyze the random walk:</p>
-<div id="d4804315" class="cell" data-execution_count="60">
+<div id="1e618a9f" class="cell" data-execution_count="60">
 <div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(walk.<span class="bu">min</span>())  <span class="co"># Minimum value</span></span>
 <span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(walk.<span class="bu">max</span>())  <span class="co"># Maximum value</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -2094,7 +2094,7 @@ False</code></pre>
 <ul>
 <li><strong>First Crossing Time:</strong> The step at which the walk reaches a particular value.</li>
 </ul>
-<div id="1a957c0f" class="cell" data-execution_count="61">
+<div id="1b66bdaf" class="cell" data-execution_count="61">
 <div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((np.<span class="bu">abs</span>(walk) <span class="op">&gt;=</span> <span class="dv">10</span>).argmax())  <span class="co"># Find the first step where the absolute value is &gt;= 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>155</code></pre>
@@ -2105,7 +2105,7 @@ False</code></pre>
 <section id="simulating-many-random-walks-at-once" class="level2">
 <h2 class="anchored" data-anchor-id="simulating-many-random-walks-at-once">Simulating Many Random Walks at Once</h2>
 <p>We can efficiently simulate many random walks simultaneously:</p>
-<div id="1b15160e" class="cell" data-execution_count="62">
+<div id="29b31eb9" class="cell" data-execution_count="62">
 <div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>nwalks <span class="op">=</span> <span class="dv">5000</span></span>
 <span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a>nsteps <span class="op">=</span> <span class="dv">1000</span></span>
 <span id="cb108-3"><a href="#cb108-3" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">12345</span>)</span>
@@ -2117,7 +2117,7 @@ False</code></pre>
 <section id="simulating-many-random-walks-average-crossing-time" class="level2">
 <h2 class="anchored" data-anchor-id="simulating-many-random-walks-average-crossing-time">Simulating Many Random Walks: Average Crossing Time</h2>
 <p>Then, for example, calculate the average minimum crossing time:</p>
-<div id="c6ebce73" class="cell" data-execution_count="63">
+<div id="9d3f5126" class="cell" data-execution_count="63">
 <div class="sourceCode cell-code" id="cb109"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>hits30 <span class="op">=</span> (np.<span class="bu">abs</span>(walks) <span class="op">&gt;=</span> <span class="dv">30</span>).<span class="bu">any</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>crossing_times <span class="op">=</span> (np.<span class="bu">abs</span>(walks[hits30]) <span class="op">&gt;=</span> <span class="dv">30</span>).argmax(axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(crossing_times.mean())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
