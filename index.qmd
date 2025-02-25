@@ -32,7 +32,9 @@ title: "python语言与数据分析"
 教材官网：[Python for Data Analysis](https://wesmckinney.com/book/)
 
 
+### 补充教材
 
+![Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems 3rd Edition](https://m.media-amazon.com/images/I/81qHV3ACapL._SL1500_.jpg)
 
 
 ## ppt
