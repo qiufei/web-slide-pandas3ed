@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.40">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -66,8 +66,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-681fbf911679f9b3dbf9743eb275ba49.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
@@ -204,7 +204,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="hierarchical-indexing-example" class="level2">
 <h2 class="anchored" data-anchor-id="hierarchical-indexing-example">Hierarchical Indexing: Example</h2>
-<div id="b3ed1a40" class="cell" data-execution_count="1">
+<div id="c809e5df" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -214,15 +214,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                        [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>]])</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>a  1    0.915315
-   2    0.913760
-   3    0.863237
-b  1    0.969238
-   3    0.790348
-c  1    0.673182
-   2    0.707822
-d  2    0.749655
-   3    0.109005
+<pre><code>a  1    0.331197
+   2    0.212227
+   3    0.094101
+b  1    0.192301
+   3    0.726378
+c  1    0.954811
+   2    0.740815
+d  2    0.418941
+   3    0.852174
 dtype: float64</code></pre>
 </div>
 </div>
@@ -234,7 +234,7 @@ dtype: float64</code></pre>
 </section>
 <section id="understanding-the-multiindex" class="level2">
 <h2 class="anchored" data-anchor-id="understanding-the-multiindex">Understanding the MultiIndex</h2>
-<div id="1b9b6ce5" class="cell" data-execution_count="2">
+<div id="78534f19" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data.index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>MultiIndex([('a', 1),
@@ -258,49 +258,49 @@ dtype: float64</code></pre>
 <section id="partial-indexing" class="level2">
 <h2 class="anchored" data-anchor-id="partial-indexing">Partial Indexing</h2>
 <p>With hierarchical indexing, <em>partial indexing</em> becomes possible. This allows concisely selecting subsets of data.</p>
-<div id="ed54ae12" class="cell" data-execution_count="3">
+<div id="2f0b1ae5" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"b"</span>] <span class="co">#Select group "b"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>1    0.969238
-3    0.790348
+<pre><code>1    0.192301
+3    0.726378
 dtype: float64</code></pre>
 </div>
 </div>
 </section>
 <section id="partial-indexing-continued" class="level2">
 <h2 class="anchored" data-anchor-id="partial-indexing-continued">Partial Indexing (Continued)</h2>
-<div id="848ec975" class="cell" data-execution_count="4">
+<div id="ebd92aec" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"b"</span>:<span class="st">"c"</span>] <span class="co"># Select from "b" to "c"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>b  1    0.969238
-   3    0.790348
-c  1    0.673182
-   2    0.707822
+<pre><code>b  1    0.192301
+   3    0.726378
+c  1    0.954811
+   2    0.740815
 dtype: float64</code></pre>
 </div>
 </div>
 </section>
 <section id="partial-indexing-continued-1" class="level2">
 <h2 class="anchored" data-anchor-id="partial-indexing-continued-1">Partial Indexing (Continued)</h2>
-<div id="c0132509" class="cell" data-execution_count="5">
+<div id="ccab7191" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data.loc[[<span class="st">"b"</span>, <span class="st">"d"</span>]] <span class="co">#Select "b" and "d"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>b  1    0.969238
-   3    0.790348
-d  2    0.749655
-   3    0.109005
+<pre><code>b  1    0.192301
+   3    0.726378
+d  2    0.418941
+   3    0.852174
 dtype: float64</code></pre>
 </div>
 </div>
 </section>
 <section id="selection-from-inner-level" class="level2">
 <h2 class="anchored" data-anchor-id="selection-from-inner-level">Selection from Inner Level</h2>
-<div id="8caa244c" class="cell" data-execution_count="6">
+<div id="3932635c" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data.loc[:, <span class="dv">2</span>] <span class="co">#Select all value from inner index level 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>a    0.913760
-c    0.707822
-d    0.749655
+<pre><code>a    0.212227
+c    0.740815
+d    0.418941
 dtype: float64</code></pre>
 </div>
 </div>
@@ -319,7 +319,7 @@ dtype: float64</code></pre>
 </section>
 <section id="unstack-example" class="level2">
 <h2 class="anchored" data-anchor-id="unstack-example"><code>unstack()</code> Example</h2>
-<div id="7565ad8e" class="cell" data-execution_count="7">
+<div id="4415d84f" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data.unstack()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div>
@@ -337,27 +337,27 @@ dtype: float64</code></pre>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">a</td>
-<td>0.915315</td>
-<td>0.913760</td>
-<td>0.863237</td>
+<td>0.331197</td>
+<td>0.212227</td>
+<td>0.094101</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">b</td>
-<td>0.969238</td>
+<td>0.192301</td>
 <td>NaN</td>
-<td>0.790348</td>
+<td>0.726378</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">c</td>
-<td>0.673182</td>
-<td>0.707822</td>
+<td>0.954811</td>
+<td>0.740815</td>
 <td>NaN</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">d</td>
 <td>NaN</td>
-<td>0.749655</td>
-<td>0.109005</td>
+<td>0.418941</td>
+<td>0.852174</td>
 </tr>
 </tbody>
 </table>
@@ -368,18 +368,18 @@ dtype: float64</code></pre>
 </section>
 <section id="stack-example" class="level2">
 <h2 class="anchored" data-anchor-id="stack-example"><code>stack()</code> Example</h2>
-<div id="85c75767" class="cell" data-execution_count="8">
+<div id="c15fcffb" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data.unstack().stack()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>a  1    0.915315
-   2    0.913760
-   3    0.863237
-b  1    0.969238
-   3    0.790348
-c  1    0.673182
-   2    0.707822
-d  2    0.749655
-   3    0.109005
+<pre><code>a  1    0.331197
+   2    0.212227
+   3    0.094101
+b  1    0.192301
+   3    0.726378
+c  1    0.954811
+   2    0.740815
+d  2    0.418941
+   3    0.852174
 dtype: float64</code></pre>
 </div>
 </div>
@@ -389,7 +389,7 @@ dtype: float64</code></pre>
 <ul>
 <li>Both rows <em>and</em> columns can have hierarchical indexes.</li>
 </ul>
-<div id="62b2e0ac" class="cell" data-execution_count="9">
+<div id="9ddca0c6" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> pd.DataFrame(np.arange(<span class="dv">12</span>).reshape((<span class="dv">4</span>, <span class="dv">3</span>)),</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                     index<span class="op">=</span>[[<span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"b"</span>], [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>]],</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                     columns<span class="op">=</span>[[<span class="st">"Ohio"</span>, <span class="st">"Ohio"</span>, <span class="st">"Colorado"</span>],</span>
@@ -454,7 +454,7 @@ dtype: float64</code></pre>
 </section>
 <section id="naming-index-levels" class="level2">
 <h2 class="anchored" data-anchor-id="naming-index-levels">Naming Index Levels</h2>
-<div id="de50ce89" class="cell" data-execution_count="10">
+<div id="2d29a04d" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>frame.index.names <span class="op">=</span> [<span class="st">"key1"</span>, <span class="st">"key2"</span>]</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>frame.columns.names <span class="op">=</span> [<span class="st">"state"</span>, <span class="st">"color"</span>]</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>frame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -538,7 +538,7 @@ Note
 </section>
 <section id="accessing-nlevels-attribute" class="level2">
 <h2 class="anchored" data-anchor-id="accessing-nlevels-attribute">Accessing <code>nlevels</code> Attribute</h2>
-<div id="4701100d" class="cell" data-execution_count="11">
+<div id="721896db" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>frame.index.nlevels</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>2</code></pre>
@@ -551,7 +551,7 @@ Note
 <section id="partial-column-indexing" class="level2">
 <h2 class="anchored" data-anchor-id="partial-column-indexing">Partial Column Indexing</h2>
 <p>Similar to row indexing, we can also select groups of columns:</p>
-<div id="ddce3e42" class="cell" data-execution_count="12">
+<div id="8b9c10a1" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>frame[<span class="st">"Ohio"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <div>
@@ -611,7 +611,7 @@ Note
 </section>
 <section id="swaplevel-example" class="level2">
 <h2 class="anchored" data-anchor-id="swaplevel-example"><code>swaplevel()</code> Example</h2>
-<div id="b3fbaa54" class="cell" data-execution_count="13">
+<div id="1789d2c7" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>frame.swaplevel(<span class="st">"key1"</span>, <span class="st">"key2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div>
@@ -678,7 +678,7 @@ Note
 </section>
 <section id="sort_index-example" class="level2">
 <h2 class="anchored" data-anchor-id="sort_index-example"><code>sort_index()</code> Example</h2>
-<div id="2c163380" class="cell" data-execution_count="14">
+<div id="ef488952" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>frame.sort_index(level<span class="op">=</span><span class="dv">1</span>) <span class="co"># sort by level 1 (key2)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <div>
@@ -745,7 +745,7 @@ Note
 </section>
 <section id="swaplevel-and-sort_index-combined" class="level2">
 <h2 class="anchored" data-anchor-id="swaplevel-and-sort_index-combined"><code>swaplevel()</code> and <code>sort_index()</code> Combined</h2>
-<div id="dbfeb7b2" class="cell" data-execution_count="15">
+<div id="711abb77" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>frame.swaplevel(<span class="dv">0</span>, <span class="dv">1</span>).sort_index(level<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <div>
@@ -824,7 +824,7 @@ Note
 <section id="summary-statistics-by-level" class="level2">
 <h2 class="anchored" data-anchor-id="summary-statistics-by-level">Summary Statistics by Level</h2>
 <p>Many descriptive and summary statistics have a <code>level</code> option:</p>
-<div id="9eaf7221" class="cell" data-execution_count="16">
+<div id="2ff0c9d8" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>frame.groupby(level<span class="op">=</span><span class="st">"key2"</span>).<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <div>
@@ -872,10 +872,10 @@ Note
 </section>
 <section id="summary-statistics-by-level-column-example" class="level2">
 <h2 class="anchored" data-anchor-id="summary-statistics-by-level-column-example">Summary Statistics by Level (Column Example)</h2>
-<div id="80ffa49c" class="cell" data-execution_count="17">
+<div id="e7fe3c4c" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>frame.groupby(level<span class="op">=</span><span class="st">"color"</span>, axis<span class="op">=</span><span class="st">"columns"</span>).<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_3383/775557097.py:1: FutureWarning: DataFrame.groupby with axis=1 is deprecated. Do `frame.T.groupby(...)` without axis instead.
+<pre><code>/tmp/ipykernel_3399/775557097.py:1: FutureWarning: DataFrame.groupby with axis=1 is deprecated. Do `frame.T.groupby(...)` without axis instead.
   frame.groupby(level="color", axis="columns").sum()</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="17">
@@ -936,7 +936,7 @@ Note
 </section>
 <section id="example-dataframe" class="level2">
 <h2 class="anchored" data-anchor-id="example-dataframe">Example DataFrame</h2>
-<div id="e0183c4d" class="cell" data-execution_count="18">
+<div id="46a02d13" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>frame <span class="op">=</span> pd.DataFrame({<span class="st">"a"</span>: <span class="bu">range</span>(<span class="dv">7</span>), <span class="st">"b"</span>: <span class="bu">range</span>(<span class="dv">7</span>, <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>),</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"c"</span>: [<span class="st">"one"</span>, <span class="st">"one"</span>, <span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"two"</span>,</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"two"</span>, <span class="st">"two"</span>],</span>
@@ -1015,7 +1015,7 @@ Note
 </section>
 <section id="set_index-example" class="level2">
 <h2 class="anchored" data-anchor-id="set_index-example"><code>set_index()</code> Example</h2>
-<div id="9862d4e6" class="cell" data-execution_count="19">
+<div id="1c5f7665" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>frame2 <span class="op">=</span> frame.set_index([<span class="st">"c"</span>, <span class="st">"d"</span>])</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>frame2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
@@ -1088,7 +1088,7 @@ Note
 </section>
 <section id="set_index-with-dropfalse" class="level2">
 <h2 class="anchored" data-anchor-id="set_index-with-dropfalse"><code>set_index()</code> with <code>drop=False</code></h2>
-<div id="35edc2a4" class="cell" data-execution_count="20">
+<div id="f321882b" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>frame.set_index([<span class="st">"c"</span>, <span class="st">"d"</span>], drop<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <div>
@@ -1174,7 +1174,7 @@ Note
 </section>
 <section id="reset_index-example" class="level2">
 <h2 class="anchored" data-anchor-id="reset_index-example"><code>reset_index()</code> Example</h2>
-<div id="8d89bf8f" class="cell" data-execution_count="21">
+<div id="635e9f77" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>frame2.reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <div>
@@ -1270,13 +1270,13 @@ Note
 </section>
 <section id="pandas.merge-many-to-one-join-setup" class="level2">
 <h2 class="anchored" data-anchor-id="pandas.merge-many-to-one-join-setup"><code>pandas.merge</code>: Many-to-One Join (Setup)</h2>
-<div id="9223f375" class="cell" data-execution_count="22">
+<div id="f80840aa" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.DataFrame({<span class="st">"key"</span>: [<span class="st">"b"</span>, <span class="st">"b"</span>, <span class="st">"a"</span>, <span class="st">"c"</span>, <span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>],</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"data1"</span>: pd.Series(<span class="bu">range</span>(<span class="dv">7</span>), dtype<span class="op">=</span><span class="st">"Int64"</span>)})</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.DataFrame({<span class="st">"key"</span>: [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"d"</span>],</span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"data2"</span>: pd.Series(<span class="bu">range</span>(<span class="dv">3</span>), dtype<span class="op">=</span><span class="st">"Int64"</span>)})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="31602827" class="cell" data-execution_count="23">
+<div id="0d03ca2f" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
 <div>
@@ -1332,7 +1332,7 @@ Note
 </div>
 </div>
 </div>
-<div id="13cf53c5" class="cell" data-execution_count="24">
+<div id="4fe7c40b" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
 <div>
@@ -1371,7 +1371,7 @@ Note
 </section>
 <section id="pandas.merge-many-to-one-join-example" class="level2">
 <h2 class="anchored" data-anchor-id="pandas.merge-many-to-one-join-example"><code>pandas.merge</code>: Many-to-One Join (Example)</h2>
-<div id="1c6a9216" class="cell" data-execution_count="25">
+<div id="7eee4ba7" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df1, df2) <span class="co"># or pd.merge(df1, df2, on="key")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
 <div>
@@ -1438,7 +1438,7 @@ Note
 <section id="pandas.merge-different-column-names" class="level2">
 <h2 class="anchored" data-anchor-id="pandas.merge-different-column-names"><code>pandas.merge</code>: Different Column Names</h2>
 <p>If column names are different, specify them separately:</p>
-<div id="3e4e316f" class="cell" data-execution_count="26">
+<div id="a5670c2e" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>df3 <span class="op">=</span> pd.DataFrame({<span class="st">"lkey"</span>: [<span class="st">"b"</span>, <span class="st">"b"</span>, <span class="st">"a"</span>, <span class="st">"c"</span>, <span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>],</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"data1"</span>: pd.Series(<span class="bu">range</span>(<span class="dv">7</span>), dtype<span class="op">=</span><span class="st">"Int64"</span>)})</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>df4 <span class="op">=</span> pd.DataFrame({<span class="st">"rkey"</span>: [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"d"</span>],</span>
@@ -1521,7 +1521,7 @@ Note
 </section>
 <section id="pandas.merge-outer-join-example" class="level2">
 <h2 class="anchored" data-anchor-id="pandas.merge-outer-join-example"><code>pandas.merge</code>: Outer Join Example</h2>
-<div id="8c93c9c0" class="cell" data-execution_count="27">
+<div id="158af5ff" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>pd.merge(df1, df2, how<span class="op">=</span><span class="st">"outer"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 <div>
@@ -1635,7 +1635,7 @@ Note
 <ul>
 <li>Many-to-many joins form the <em>Cartesian product</em> of the matching keys.</li>
 </ul>
-<div id="b365fddc" class="cell" data-execution_count="28">
+<div id="86013232" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.DataFrame({<span class="st">"key"</span>: [<span class="st">"b"</span>, <span class="st">"b"</span>, <span class="st">"a"</span>, <span class="st">"c"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>],</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"data1"</span>: pd.Series(<span class="bu">range</span>(<span class="dv">6</span>), dtype<span class="op">=</span><span class="st">"Int64"</span>)})</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.DataFrame({<span class="st">"key"</span>: [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"d"</span>],</span>
@@ -1735,7 +1735,7 @@ Note
 <section id="merging-with-multiple-keys" class="level2">
 <h2 class="anchored" data-anchor-id="merging-with-multiple-keys">Merging with Multiple Keys</h2>
 <p>Pass a list of column names:</p>
-<div id="723a9642" class="cell" data-execution_count="29">
+<div id="d3c8c053" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> pd.DataFrame({<span class="st">"key1"</span>: [<span class="st">"foo"</span>, <span class="st">"foo"</span>, <span class="st">"bar"</span>],</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"key2"</span>: [<span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"one"</span>],</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"lval"</span>: pd.Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], dtype<span class="op">=</span><span class="st">'Int64'</span>)})</span>
@@ -1808,7 +1808,7 @@ Note
 <ul>
 <li><code>merge</code> has a <code>suffixes</code> option to handle overlapping column names.</li>
 </ul>
-<div id="a8f90397" class="cell" data-execution_count="30">
+<div id="210effad" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>pd.merge(left, right, on<span class="op">=</span><span class="st">"key1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
 <div>
@@ -1883,7 +1883,7 @@ Note
 </section>
 <section id="overlapping-column-names-suffixes" class="level2">
 <h2 class="anchored" data-anchor-id="overlapping-column-names-suffixes">Overlapping Column Names: <code>suffixes</code></h2>
-<div id="4090815c" class="cell" data-execution_count="31">
+<div id="e93b5182" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>pd.merge(left, right, on<span class="op">=</span><span class="st">"key1"</span>, suffixes<span class="op">=</span>(<span class="st">"_left"</span>, <span class="st">"_right"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
 <div>
@@ -2030,7 +2030,7 @@ Note
 <ul>
 <li>Use <code>left_index=True</code> or <code>right_index=True</code> (or both) to merge on the index.</li>
 </ul>
-<div id="80bb17a3" class="cell" data-execution_count="32">
+<div id="7a9f530b" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>left1 <span class="op">=</span> pd.DataFrame({<span class="st">"key"</span>: [<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>],</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"value"</span>: pd.Series(<span class="bu">range</span>(<span class="dv">6</span>), dtype<span class="op">=</span><span class="st">"Int64"</span>)})</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>right1 <span class="op">=</span> pd.DataFrame({<span class="st">"group_val"</span>: [<span class="fl">3.5</span>, <span class="dv">7</span>]}, index<span class="op">=</span>[<span class="st">"a"</span>, <span class="st">"b"</span>])</span>
@@ -2094,7 +2094,7 @@ Note
 <section id="hierarchical-index-multiple-key-merge" class="level2">
 <h2 class="anchored" data-anchor-id="hierarchical-index-multiple-key-merge">Hierarchical Index: Multiple-Key Merge</h2>
 <p>With hierarchical indexing, joining on index is like a multiple-key merge:</p>
-<div id="bf0c3107" class="cell" data-execution_count="33">
+<div id="fc50256b" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>lefth <span class="op">=</span> pd.DataFrame({<span class="st">"key1"</span>: [<span class="st">"Ohio"</span>, <span class="st">"Ohio"</span>, <span class="st">"Ohio"</span>,</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"Nevada"</span>, <span class="st">"Nevada"</span>],</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"key2"</span>: [<span class="dv">2000</span>, <span class="dv">2001</span>, <span class="dv">2002</span>, <span class="dv">2001</span>, <span class="dv">2002</span>],</span>
@@ -2194,7 +2194,7 @@ Note
 <li>Simplifies merging by index.</li>
 <li>Performs a <em>left join</em> by default.</li>
 </ul>
-<div id="02657ddb" class="cell" data-execution_count="34">
+<div id="82b496db" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>left2 <span class="op">=</span> pd.DataFrame([[<span class="fl">1.</span>, <span class="fl">2.</span>], [<span class="fl">3.</span>, <span class="fl">4.</span>], [<span class="fl">5.</span>, <span class="fl">6.</span>]],</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>                     index<span class="op">=</span>[<span class="st">"a"</span>, <span class="st">"c"</span>, <span class="st">"e"</span>],</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>                     columns<span class="op">=</span>[<span class="st">"Ohio"</span>, <span class="st">"Nevada"</span>]).astype(<span class="st">"Int64"</span>)</span>
@@ -2265,7 +2265,7 @@ Note
 </section>
 <section id="join-on-a-column" class="level2">
 <h2 class="anchored" data-anchor-id="join-on-a-column"><code>join</code> on a Column</h2>
-<div id="26497972" class="cell" data-execution_count="35">
+<div id="b7c155b7" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>left1.join(right1, on<span class="op">=</span><span class="st">"key"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="35">
 <div>
@@ -2329,7 +2329,7 @@ Note
 <ul>
 <li><code>numpy.concatenate</code>: Works with NumPy arrays.</li>
 </ul>
-<div id="827a40d8" class="cell" data-execution_count="36">
+<div id="521a77c5" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>arr <span class="op">=</span> np.arange(<span class="dv">12</span>).reshape((<span class="dv">3</span>, <span class="dv">4</span>))</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>np.concatenate([arr, arr], axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="36">
@@ -2349,7 +2349,7 @@ Note
 </section>
 <section id="pandas.concat-with-series" class="level2">
 <h2 class="anchored" data-anchor-id="pandas.concat-with-series"><code>pandas.concat</code> with Series</h2>
-<div id="cff2d82c" class="cell" data-execution_count="37">
+<div id="0dc975b9" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> pd.Series([<span class="dv">0</span>, <span class="dv">1</span>], index<span class="op">=</span>[<span class="st">"a"</span>, <span class="st">"b"</span>], dtype<span class="op">=</span><span class="st">"Int64"</span>)</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> pd.Series([<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>], index<span class="op">=</span>[<span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>], dtype<span class="op">=</span><span class="st">"Int64"</span>)</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> pd.Series([<span class="dv">5</span>, <span class="dv">6</span>], index<span class="op">=</span>[<span class="st">"f"</span>, <span class="st">"g"</span>], dtype<span class="op">=</span><span class="st">"Int64"</span>)</span>
@@ -2372,7 +2372,7 @@ dtype: Int64</code></pre>
 </section>
 <section id="pandas.concat-axiscolumns" class="level2">
 <h2 class="anchored" data-anchor-id="pandas.concat-axiscolumns"><code>pandas.concat</code>: <code>axis="columns"</code></h2>
-<div id="fb970a2c" class="cell" data-execution_count="38">
+<div id="330de3db" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>pd.concat([s1, s2, s3], axis<span class="op">=</span><span class="st">"columns"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="38">
 <div>
@@ -2443,7 +2443,7 @@ dtype: Int64</code></pre>
 </section>
 <section id="pandas.concat-joininner" class="level2">
 <h2 class="anchored" data-anchor-id="pandas.concat-joininner"><code>pandas.concat</code>: <code>join="inner"</code></h2>
-<div id="16fa5914" class="cell" data-execution_count="39">
+<div id="72473eae" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>s4 <span class="op">=</span> pd.concat([s1, s3])</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>pd.concat([s1, s4], axis<span class="op">=</span><span class="st">"columns"</span>, join<span class="op">=</span><span class="st">"inner"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="39">
@@ -2481,7 +2481,7 @@ dtype: Int64</code></pre>
 </section>
 <section id="pandas.concat-keys-argument" class="level2">
 <h2 class="anchored" data-anchor-id="pandas.concat-keys-argument"><code>pandas.concat</code>: <code>keys</code> Argument</h2>
-<div id="49301709" class="cell" data-execution_count="40">
+<div id="7a4e1c29" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> pd.concat([s1, s1, s3], keys<span class="op">=</span>[<span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"three"</span>])</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="40">
@@ -2497,7 +2497,7 @@ dtype: Int64</code></pre>
 </section>
 <section id="unstack-the-result" class="level2">
 <h2 class="anchored" data-anchor-id="unstack-the-result"><code>unstack()</code> the Result</h2>
-<div id="14b313b9" class="cell" data-execution_count="41">
+<div id="3841224d" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>result.unstack()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="41">
 <div>
@@ -2549,7 +2549,7 @@ dtype: Int64</code></pre>
 <section id="pandas.concat-with-dataframes" class="level2">
 <h2 class="anchored" data-anchor-id="pandas.concat-with-dataframes"><code>pandas.concat</code> with DataFrames</h2>
 <p>The logic is the same as with Series:</p>
-<div id="bd2aed04" class="cell" data-execution_count="42">
+<div id="cd3274e7" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.DataFrame(np.arange(<span class="dv">6</span>).reshape(<span class="dv">3</span>, <span class="dv">2</span>), index<span class="op">=</span>[<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>],</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>                   columns<span class="op">=</span>[<span class="st">"one"</span>, <span class="st">"two"</span>])</span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.DataFrame(<span class="dv">5</span> <span class="op">+</span> np.arange(<span class="dv">4</span>).reshape(<span class="dv">2</span>, <span class="dv">2</span>), index<span class="op">=</span>[<span class="st">"a"</span>, <span class="st">"c"</span>],</span>
@@ -2661,7 +2661,7 @@ dtype: Int64</code></pre>
 <ul>
 <li><code>numpy.where</code>: Performs an array-oriented if-else operation.</li>
 </ul>
-<div id="5591c22a" class="cell" data-execution_count="43">
+<div id="6af8a4df" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> pd.Series([np.nan, <span class="fl">2.5</span>, <span class="fl">0.0</span>, <span class="fl">3.5</span>, <span class="fl">4.5</span>, np.nan],</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>              index<span class="op">=</span>[<span class="st">"f"</span>, <span class="st">"e"</span>, <span class="st">"d"</span>, <span class="st">"c"</span>, <span class="st">"b"</span>, <span class="st">"a"</span>])</span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> pd.Series([<span class="fl">0.</span>, np.nan, <span class="fl">2.</span>, np.nan, np.nan, <span class="fl">5.</span>],</span>
@@ -2677,7 +2677,7 @@ dtype: Int64</code></pre>
 <ul>
 <li><code>Series.combine_first</code>: Lines up values by index and “patches” missing data.</li>
 </ul>
-<div id="583f6eea" class="cell" data-execution_count="44">
+<div id="1c991186" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>a.combine_first(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="44">
 <pre><code>a    0.0
@@ -2699,7 +2699,7 @@ dtype: float64</code></pre>
 <li><code>combine_first</code> works column by column.</li>
 <li>It “patches” missing data in the calling object with data from the passed object.</li>
 </ul>
-<div id="041e0215" class="cell" data-execution_count="45">
+<div id="36987ad7" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.DataFrame({<span class="st">"a"</span>: [<span class="fl">1.</span>, np.nan, <span class="fl">5.</span>, np.nan],</span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"b"</span>: [np.nan, <span class="fl">2.</span>, np.nan, <span class="fl">6.</span>],</span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"c"</span>: <span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">18</span>, <span class="dv">4</span>)})</span>
@@ -2771,7 +2771,7 @@ dtype: float64</code></pre>
 </section>
 <section id="stack-and-unstack-example-dataframe" class="level2">
 <h2 class="anchored" data-anchor-id="stack-and-unstack-example-dataframe"><code>stack</code> and <code>unstack</code>: Example DataFrame</h2>
-<div id="f8a9b553" class="cell" data-execution_count="46">
+<div id="0dfdd265" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame(np.arange(<span class="dv">6</span>).reshape((<span class="dv">2</span>, <span class="dv">3</span>)),</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>                    index<span class="op">=</span>pd.Index([<span class="st">"Ohio"</span>, <span class="st">"Colorado"</span>], name<span class="op">=</span><span class="st">"state"</span>),</span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>                    columns<span class="op">=</span>pd.Index([<span class="st">"one"</span>, <span class="st">"two"</span>, <span class="st">"three"</span>],</span>
@@ -2818,7 +2818,7 @@ dtype: float64</code></pre>
 </section>
 <section id="stack-example-1" class="level2">
 <h2 class="anchored" data-anchor-id="stack-example-1"><code>stack</code> Example</h2>
-<div id="f326c2ba" class="cell" data-execution_count="47">
+<div id="ebe72092" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> data.stack()</span>
 <span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="47">
@@ -2835,7 +2835,7 @@ dtype: int64</code></pre>
 </section>
 <section id="unstack-example-1" class="level2">
 <h2 class="anchored" data-anchor-id="unstack-example-1"><code>unstack</code> Example</h2>
-<div id="3c258cac" class="cell" data-execution_count="48">
+<div id="0a9bb787" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>result.unstack()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="48">
 <div>
@@ -2882,7 +2882,7 @@ dtype: int64</code></pre>
 <li>By default, the innermost level is unstacked.</li>
 <li>Specify a different level by number or name.</li>
 </ul>
-<div id="1d849d02" class="cell" data-execution_count="49">
+<div id="51ded98d" class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>result.unstack(level<span class="op">=</span><span class="dv">0</span>) <span class="co"># or result.unstack("state")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="49">
 <div>
@@ -2930,13 +2930,13 @@ dtype: int64</code></pre>
 </section>
 <section id="stacking-with-dropnafalse" class="level2">
 <h2 class="anchored" data-anchor-id="stacking-with-dropnafalse">Stacking with <code>dropna=False</code></h2>
-<div id="23a1fed1" class="cell" data-execution_count="50">
+<div id="4221d6c6" class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> pd.Series([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], index<span class="op">=</span>[<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>], dtype<span class="op">=</span><span class="st">"Int64"</span>)</span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> pd.Series([<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>], index<span class="op">=</span>[<span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>], dtype<span class="op">=</span><span class="st">"Int64"</span>)</span>
 <span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>data2 <span class="op">=</span> pd.concat([s1, s2], keys<span class="op">=</span>[<span class="st">"one"</span>, <span class="st">"two"</span>])</span>
 <span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>data2.unstack().stack(dropna<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_3383/2546955875.py:4: FutureWarning: The previous implementation of stack is deprecated and will be removed in a future version of pandas. See the What's New notes for pandas 2.1.0 for details. Specify future_stack=True to adopt the new implementation and silence this warning.
+<pre><code>/tmp/ipykernel_3399/2546955875.py:4: FutureWarning: The previous implementation of stack is deprecated and will be removed in a future version of pandas. See the What's New notes for pandas 2.1.0 for details. Specify future_stack=True to adopt the new implementation and silence this warning.
   data2.unstack().stack(dropna=False)</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="50">
@@ -2957,7 +2957,7 @@ dtype: Int64</code></pre>
 <section id="unstack-in-a-dataframe" class="level2">
 <h2 class="anchored" data-anchor-id="unstack-in-a-dataframe"><code>unstack</code> in a DataFrame</h2>
 <p>When unstacking in a DataFrame, the unstacked level becomes the <em>lowest</em> level.</p>
-<div id="b70b800b" class="cell" data-execution_count="51">
+<div id="c02f729f" class="cell" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">"left"</span>: result, <span class="st">"right"</span>: result <span class="op">+</span> <span class="dv">5</span>},</span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>                  columns<span class="op">=</span>pd.Index([<span class="st">"left"</span>, <span class="st">"right"</span>], name<span class="op">=</span><span class="st">"side"</span>))</span>
 <span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3022,10 +3022,10 @@ dtype: Int64</code></pre>
 </section>
 <section id="unstack-and-stack-example" class="level2">
 <h2 class="anchored" data-anchor-id="unstack-and-stack-example"><code>unstack</code> and <code>stack</code> Example</h2>
-<div id="72898e54" class="cell" data-execution_count="52">
+<div id="4bfa8c8c" class="cell" data-execution_count="52">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>df.unstack(level<span class="op">=</span><span class="st">"state"</span>).stack(level<span class="op">=</span><span class="st">"side"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_3383/2617337668.py:1: FutureWarning: The previous implementation of stack is deprecated and will be removed in a future version of pandas. See the What's New notes for pandas 2.1.0 for details. Specify future_stack=True to adopt the new implementation and silence this warning.
+<pre><code>/tmp/ipykernel_3399/2617337668.py:1: FutureWarning: The previous implementation of stack is deprecated and will be removed in a future version of pandas. See the What's New notes for pandas 2.1.0 for details. Specify future_stack=True to adopt the new implementation and silence this warning.
   df.unstack(level="state").stack(level="side")</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="52">
@@ -3097,7 +3097,7 @@ dtype: Int64</code></pre>
 </section>
 <section id="example-long-format-data" class="level2">
 <h2 class="anchored" data-anchor-id="example-long-format-data">Example: Long Format Data</h2>
-<div id="cbe76eeb" class="cell" data-execution_count="53">
+<div id="22a10de8" class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"examples/macrodata.csv"</span>)</span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.loc[:, [<span class="st">"year"</span>, <span class="st">"quarter"</span>, <span class="st">"realgdp"</span>, <span class="st">"infl"</span>, <span class="st">"unemp"</span>]]</span>
 <span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>periods <span class="op">=</span> pd.PeriodIndex(year<span class="op">=</span>data.pop(<span class="st">"year"</span>),</span>
@@ -3111,7 +3111,7 @@ dtype: Int64</code></pre>
 <span id="cb71-11"><a href="#cb71-11" aria-hidden="true" tabindex="-1"></a>                .rename(columns<span class="op">=</span>{<span class="dv">0</span>: <span class="st">"value"</span>}))</span>
 <span id="cb71-12"><a href="#cb71-12" aria-hidden="true" tabindex="-1"></a>long_data[:<span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_3383/1472900609.py:3: FutureWarning: Constructing PeriodIndex from fields is deprecated. Use PeriodIndex.from_fields instead.
+<pre><code>/tmp/ipykernel_3399/1472900609.py:3: FutureWarning: Constructing PeriodIndex from fields is deprecated. Use PeriodIndex.from_fields instead.
   periods = pd.PeriodIndex(year=data.pop("year"),</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="53">
@@ -3198,7 +3198,7 @@ dtype: Int64</code></pre>
 <section id="pivot-method" class="level2">
 <h2 class="anchored" data-anchor-id="pivot-method"><code>pivot</code> Method</h2>
 <p>The <code>pivot</code> method transforms long format to wide format.</p>
-<div id="786fc35b" class="cell" data-execution_count="54">
+<div id="285f9821" class="cell" data-execution_count="54">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>pivoted <span class="op">=</span> long_data.pivot(index<span class="op">=</span><span class="st">"date"</span>, columns<span class="op">=</span><span class="st">"item"</span>,</span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>                          values<span class="op">=</span><span class="st">"value"</span>)</span>
 <span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>pivoted.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3266,7 +3266,7 @@ dtype: Int64</code></pre>
 </section>
 <section id="pivoting-with-multiple-value-columns" class="level2">
 <h2 class="anchored" data-anchor-id="pivoting-with-multiple-value-columns">Pivoting with Multiple Value Columns</h2>
-<div id="2b68b545" class="cell" data-execution_count="55">
+<div id="6bf51995" class="cell" data-execution_count="55">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>long_data[<span class="st">"value2"</span>] <span class="op">=</span> np.random.standard_normal(<span class="bu">len</span>(long_data))</span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>pivoted <span class="op">=</span> long_data.pivot(index<span class="op">=</span><span class="st">"date"</span>, columns<span class="op">=</span><span class="st">"item"</span>)</span>
 <span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>pivoted.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3306,45 +3306,45 @@ dtype: Int64</code></pre>
 <td>0.00</td>
 <td>2710.349</td>
 <td>5.8</td>
-<td>1.157095</td>
-<td>-1.063728</td>
-<td>2.556412</td>
+<td>1.249488</td>
+<td>0.345960</td>
+<td>-0.359851</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1959-04-01</td>
 <td>2.34</td>
 <td>2778.801</td>
 <td>5.1</td>
-<td>0.652205</td>
-<td>-0.818585</td>
-<td>-0.289112</td>
+<td>-0.521752</td>
+<td>1.835380</td>
+<td>0.787238</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">1959-07-01</td>
 <td>2.74</td>
 <td>2775.488</td>
 <td>5.3</td>
-<td>0.554881</td>
-<td>0.705146</td>
-<td>1.395301</td>
+<td>-1.061145</td>
+<td>-0.116165</td>
+<td>0.539274</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1959-10-01</td>
 <td>0.27</td>
 <td>2785.204</td>
 <td>5.6</td>
-<td>-0.186486</td>
-<td>0.159135</td>
-<td>0.246602</td>
+<td>0.065815</td>
+<td>0.609973</td>
+<td>-0.737076</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">1960-01-01</td>
 <td>2.31</td>
 <td>2847.699</td>
 <td>5.2</td>
-<td>-2.263579</td>
-<td>-0.174606</td>
-<td>0.842508</td>
+<td>0.345589</td>
+<td>1.069069</td>
+<td>0.146673</td>
 </tr>
 </tbody>
 </table>
@@ -3359,7 +3359,7 @@ dtype: Int64</code></pre>
 <section id="pivot-is-equivalent-to" class="level2">
 <h2 class="anchored" data-anchor-id="pivot-is-equivalent-to"><code>pivot</code> is Equivalent to…</h2>
 <p><code>pivot</code> is equivalent to using <code>set_index</code> followed by <code>unstack</code>:</p>
-<div id="0f44e5de" class="cell" data-execution_count="56">
+<div id="b2e28c32" class="cell" data-execution_count="56">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>unstacked <span class="op">=</span> long_data.set_index([<span class="st">"date"</span>, <span class="st">"item"</span>]).unstack(level<span class="op">=</span><span class="st">"item"</span>)</span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>unstacked.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="56">
@@ -3398,45 +3398,45 @@ dtype: Int64</code></pre>
 <td>0.00</td>
 <td>2710.349</td>
 <td>5.8</td>
-<td>1.157095</td>
-<td>-1.063728</td>
-<td>2.556412</td>
+<td>1.249488</td>
+<td>0.345960</td>
+<td>-0.359851</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1959-04-01</td>
 <td>2.34</td>
 <td>2778.801</td>
 <td>5.1</td>
-<td>0.652205</td>
-<td>-0.818585</td>
-<td>-0.289112</td>
+<td>-0.521752</td>
+<td>1.835380</td>
+<td>0.787238</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">1959-07-01</td>
 <td>2.74</td>
 <td>2775.488</td>
 <td>5.3</td>
-<td>0.554881</td>
-<td>0.705146</td>
-<td>1.395301</td>
+<td>-1.061145</td>
+<td>-0.116165</td>
+<td>0.539274</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1959-10-01</td>
 <td>0.27</td>
 <td>2785.204</td>
 <td>5.6</td>
-<td>-0.186486</td>
-<td>0.159135</td>
-<td>0.246602</td>
+<td>0.065815</td>
+<td>0.609973</td>
+<td>-0.737076</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">1960-01-01</td>
 <td>2.31</td>
 <td>2847.699</td>
 <td>5.2</td>
-<td>-2.263579</td>
-<td>-0.174606</td>
-<td>0.842508</td>
+<td>0.345589</td>
+<td>1.069069</td>
+<td>0.146673</td>
 </tr>
 </tbody>
 </table>
@@ -3450,7 +3450,7 @@ dtype: Int64</code></pre>
 <ul>
 <li><code>pandas.melt</code>: Inverse of <code>pivot</code>. Merges multiple columns into one (longer DataFrame).</li>
 </ul>
-<div id="a0246ca0" class="cell" data-execution_count="57">
+<div id="ca050e01" class="cell" data-execution_count="57">
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">"key"</span>: [<span class="st">"foo"</span>, <span class="st">"bar"</span>, <span class="st">"baz"</span>],</span>
 <span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"A"</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>],</span>
 <span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"B"</span>: [<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>],</span>
@@ -3538,7 +3538,7 @@ dtype: Int64</code></pre>
 </section>
 <section id="pandas.melt-examples" class="level2">
 <h2 class="anchored" data-anchor-id="pandas.melt-examples"><code>pandas.melt</code> Examples</h2>
-<div id="633825fb" class="cell" data-execution_count="58">
+<div id="6d4fbc1e" class="cell" data-execution_count="58">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>pd.melt(df, id_vars<span class="op">=</span><span class="st">"key"</span>, value_vars<span class="op">=</span>[<span class="st">"A"</span>, <span class="st">"B"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="58">
 <div>
@@ -3596,7 +3596,7 @@ dtype: Int64</code></pre>
 </div>
 </div>
 </div>
-<div id="efc3f7ca" class="cell" data-execution_count="59">
+<div id="30e16a42" class="cell" data-execution_count="59">
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>pd.melt(df, value_vars<span class="op">=</span>[<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>]) <span class="co"># no group id</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="59">
 <div>
@@ -3662,7 +3662,7 @@ dtype: Int64</code></pre>
 </div>
 </div>
 </div>
-<div id="40473fe2" class="cell" data-execution_count="60">
+<div id="860507a4" class="cell" data-execution_count="60">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>pd.melt(df, value_vars<span class="op">=</span>[<span class="st">"key"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="60">
 <div>
@@ -3734,7 +3734,7 @@ dtype: Int64</code></pre>
 </section>
 <section id="reshaping-with-melt-and-pivot" class="level2">
 <h2 class="anchored" data-anchor-id="reshaping-with-melt-and-pivot">Reshaping with <code>melt</code> and <code>pivot</code></h2>
-<div id="f6b4f24e" class="cell" data-execution_count="61">
+<div id="ad7e0863" class="cell" data-execution_count="61">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>reshaped <span class="op">=</span> melted.pivot(index<span class="op">=</span><span class="st">"key"</span>, columns<span class="op">=</span><span class="st">"variable"</span>,</span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>                        values<span class="op">=</span><span class="st">"value"</span>)</span>
 <span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>reshaped</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3782,7 +3782,7 @@ dtype: Int64</code></pre>
 </div>
 </div>
 </div>
-<div id="1f32ad47" class="cell" data-execution_count="62">
+<div id="e2fb0499" class="cell" data-execution_count="62">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>reshaped.reset_index() <span class="co"># move index back</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="62">
 <div>

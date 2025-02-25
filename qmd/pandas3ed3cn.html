@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.40">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -66,8 +66,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-681fbf911679f9b3dbf9743eb275ba49.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
@@ -200,7 +200,7 @@ Note
 <section id="元组创建" class="level2">
 <h2 class="anchored" data-anchor-id="元组创建">元组：创建</h2>
 <p>使用逗号分隔的值创建元组，通常在括号中：</p>
-<div id="03579607" class="cell" data-execution_count="1">
+<div id="13184e87" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>tup <span class="op">=</span> (<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)  <span class="co"># 使用圆括号创建元组</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tup)      <span class="co"># 输出: (4, 5, 6)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -208,7 +208,7 @@ Note
 </div>
 </div>
 <p>括号通常是可选的：</p>
-<div id="555d9b16" class="cell" data-execution_count="2">
+<div id="1811fb7c" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tup <span class="op">=</span> <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>  <span class="co"># 不使用括号创建元组</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tup)    <span class="co"># 输出: (4, 5, 6)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -219,7 +219,7 @@ Note
 <section id="元组转换和访问" class="level2">
 <h2 class="anchored" data-anchor-id="元组转换和访问">元组：转换和访问</h2>
 <p>使用 <code>tuple()</code> 将序列/迭代器转换为元组：</p>
-<div id="d5bbef87" class="cell" data-execution_count="3">
+<div id="ecab8e50" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> [<span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">2</span>]           <span class="co"># 创建一个列表</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>my_tuple <span class="op">=</span> <span class="bu">tuple</span>(my_list)     <span class="co"># 将列表转换为元组</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(my_tuple)              <span class="co"># 输出: (4, 0, 2)</span></span>
@@ -232,7 +232,7 @@ Note
 </div>
 </div>
 <p>使用 <code>[]</code> 访问元素（从 0 开始索引）：</p>
-<div id="7bcb4a0f" class="cell" data-execution_count="4">
+<div id="def619aa" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(string_tuple[<span class="dv">0</span>])  <span class="co"># 访问元组的第一个元素，输出: 's'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>s</code></pre>
@@ -242,7 +242,7 @@ Note
 <section id="元组嵌套元组" class="level2">
 <h2 class="anchored" data-anchor-id="元组嵌套元组">元组：嵌套元组</h2>
 <p>元组可以包含其他元组：</p>
-<div id="fd83f6de" class="cell" data-execution_count="5">
+<div id="b918eae9" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>nested_tup <span class="op">=</span> (<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>), (<span class="dv">7</span>, <span class="dv">8</span>) <span class="co"># 创建一个嵌套元组</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nested_tup)             <span class="co"># 输出: ((4, 5, 6), (7, 8))</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nested_tup[<span class="dv">0</span>])          <span class="co"># 访问第一个元组，输出: (4, 5, 6)</span></span>
@@ -257,7 +257,7 @@ Note
 <section id="元组不可变性详细示例" class="level2">
 <h2 class="anchored" data-anchor-id="元组不可变性详细示例">元组：不可变性（详细示例）</h2>
 <p>虽然元组<em>内</em>的对象可能是可变的，但元组本身是不可变的：</p>
-<div id="5580d547" class="cell" data-execution_count="6">
+<div id="6bf18d1b" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>tup <span class="op">=</span> <span class="bu">tuple</span>([<span class="st">'foo'</span>, [<span class="dv">1</span>, <span class="dv">2</span>], <span class="va">True</span>]) <span class="co"># 创建一个包含列表的元组</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># tup[2] = False  # 这行代码会引发 TypeError，因为元组不可变！</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -285,7 +285,7 @@ Caution
 <section id="元组连接和重复" class="level2">
 <h2 class="anchored" data-anchor-id="元组连接和重复">元组：连接和重复</h2>
 <p>使用 <code>+</code> 连接：</p>
-<div id="71ab29df" class="cell" data-execution_count="7">
+<div id="c758d33e" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tuple1 <span class="op">=</span> (<span class="dv">4</span>, <span class="va">None</span>, <span class="st">'foo'</span>)          <span class="co"># 创建元组 tuple1</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>tuple2 <span class="op">=</span> (<span class="dv">6</span>, <span class="dv">0</span>)                   <span class="co"># 创建元组 tuple2</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>tuple3 <span class="op">=</span> (<span class="st">'bar'</span>,)                 <span class="co"># 创建单元素元组 tuple3（注意逗号）</span></span>
@@ -296,7 +296,7 @@ Caution
 </div>
 </div>
 <p>使用 <code>*</code> 重复：</p>
-<div id="f6b1b639" class="cell" data-execution_count="8">
+<div id="94dbcc64" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>repeated_tuple <span class="op">=</span> (<span class="st">'foo'</span>, <span class="st">'bar'</span>) <span class="op">*</span> <span class="dv">4</span> <span class="co"># 将元组重复 4 次</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(repeated_tuple)             <span class="co"># 输出: ('foo', 'bar', 'foo', 'bar', 'foo', 'bar', 'foo', 'bar')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -320,7 +320,7 @@ Note
 <section id="元组解包" class="level2">
 <h2 class="anchored" data-anchor-id="元组解包">元组：解包</h2>
 <p>将元组解包到变量中：</p>
-<div id="4b24930c" class="cell" data-execution_count="9">
+<div id="3cd20cc2" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>tup <span class="op">=</span> (<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>) <span class="co"># 创建一个元组</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>a, b, c <span class="op">=</span> tup    <span class="co"># 将元组解包到变量 a, b, c 中</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b)        <span class="co"># 输出: 5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -329,7 +329,7 @@ Note
 </div>
 </div>
 <p>嵌套元组也可以：</p>
-<div id="e71ebfa9" class="cell" data-execution_count="10">
+<div id="368be03b" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>tup <span class="op">=</span> <span class="dv">4</span>, <span class="dv">5</span>, (<span class="dv">6</span>, <span class="dv">7</span>) <span class="co"># 创建一个嵌套元组</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>a, b, (c, d) <span class="op">=</span> tup  <span class="co"># 解包嵌套元组</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d)         <span class="co"># 输出: 7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -341,7 +341,7 @@ Note
 <section id="元组交换变量" class="level2">
 <h2 class="anchored" data-anchor-id="元组交换变量">元组：交换变量</h2>
 <p>优雅的变量交换：</p>
-<div id="5156be42" class="cell" data-execution_count="11">
+<div id="a2c40bdd" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>a, b <span class="op">=</span> <span class="dv">1</span>, <span class="dv">2</span>        <span class="co"># 将 a 赋值为 1，b 赋值为 2</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"a: </span><span class="sc">{</span>a<span class="sc">}</span><span class="ss">, b: </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">"</span>) <span class="co"># 输出: a: 1, b: 2</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>b, a <span class="op">=</span> a, b        <span class="co"># 交换 a 和 b 的值</span></span>
@@ -355,7 +355,7 @@ a: 2, b: 1</code></pre>
 <section id="元组rest-和-_" class="level2">
 <h2 class="anchored" data-anchor-id="元组rest-和-_">元组：*rest (和 _)</h2>
 <p><code>*rest</code> 捕获剩余的元素：</p>
-<div id="c54c5827" class="cell" data-execution_count="12">
+<div id="8266e36d" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span> <span class="co"># 创建一个元组</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>a, b, <span class="op">*</span>rest <span class="op">=</span> values   <span class="co"># 将前两个元素赋值给 a 和 b，其余赋值给 rest</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)             <span class="co"># 输出: 1</span></span>
@@ -368,14 +368,14 @@ a: 2, b: 1</code></pre>
 </div>
 </div>
 <p><code>_</code> 用于不需要的变量：</p>
-<div id="5439d4c3" class="cell" data-execution_count="13">
+<div id="5fefcdad" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>a, b, <span class="op">*</span>_ <span class="op">=</span> values  <span class="co"># 忽略剩余的元素</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="元组方法-count" class="level2">
 <h2 class="anchored" data-anchor-id="元组方法-count">元组：方法 (count)</h2>
 <p>由于不可变性，元组的方法很少。<code>count()</code> 很有用：</p>
-<div id="5d10d0b0" class="cell" data-execution_count="14">
+<div id="a2522be7" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">2</span>) <span class="co"># 创建一个元组</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>count_of_2 <span class="op">=</span> a.count(<span class="dv">2</span>)   <span class="co"># 计算元组中 2 出现的次数</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(count_of_2)         <span class="co"># 输出: 4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -405,7 +405,7 @@ a: 2, b: 1</code></pre>
 <section id="列表创建" class="level2">
 <h2 class="anchored" data-anchor-id="列表创建">列表：创建</h2>
 <p>使用 <code>[]</code> 或 <code>list()</code> 创建列表：</p>
-<div id="9b4389c6" class="cell" data-execution_count="15">
+<div id="0f87ba26" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>a_list <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="va">None</span>]     <span class="co"># 使用方括号创建列表</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>tup <span class="op">=</span> (<span class="st">'foo'</span>, <span class="st">'bar'</span>, <span class="st">'baz'</span>)  <span class="co"># 创建一个元组</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>b_list <span class="op">=</span> <span class="bu">list</span>(tup)          <span class="co"># 将元组转换为列表</span></span>
@@ -415,7 +415,7 @@ a: 2, b: 1</code></pre>
 </div>
 </div>
 <p>修改元素：</p>
-<div id="5e3a2e3a" class="cell" data-execution_count="16">
+<div id="d48ac3bc" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>b_list[<span class="dv">1</span>] <span class="op">=</span> <span class="st">'peekaboo'</span> <span class="co"># 将列表的第二个元素修改为 'peekaboo'</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b_list)          <span class="co"># 输出: ['foo', 'peekaboo', 'baz']</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -426,7 +426,7 @@ a: 2, b: 1</code></pre>
 <section id="列表实体化迭代器" class="level2">
 <h2 class="anchored" data-anchor-id="列表实体化迭代器">列表：实体化迭代器</h2>
 <p><code>list()</code> 实体化迭代器/生成器：</p>
-<div id="40cee960" class="cell" data-execution_count="17">
+<div id="2e267d5f" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>gen <span class="op">=</span> <span class="bu">range</span>(<span class="dv">10</span>)     <span class="co"># 创建一个 range 对象（迭代器）</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gen)          <span class="co"># 输出: range(0, 10)</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>my_list <span class="op">=</span> <span class="bu">list</span>(gen) <span class="co"># 将 range 对象转换为列表</span></span>
@@ -442,7 +442,7 @@ a: 2, b: 1</code></pre>
 <ul>
 <li><code>append()</code>: 添加到<em>末尾</em>。</li>
 </ul>
-<div id="be22d9e9" class="cell" data-execution_count="18">
+<div id="da08c4b1" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>b_list.append(<span class="st">'dwarf'</span>) <span class="co"># 在列表末尾添加 'dwarf'</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b_list)         <span class="co"># 输出: ['foo', 'peekaboo', 'baz', 'dwarf']</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -452,7 +452,7 @@ a: 2, b: 1</code></pre>
 <ul>
 <li><code>insert()</code>: 在<em>特定位置</em>插入。</li>
 </ul>
-<div id="04fe254a" class="cell" data-execution_count="19">
+<div id="6b0cee47" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>b_list.insert(<span class="dv">1</span>, <span class="st">'red'</span>) <span class="co"># 在索引 1 处插入 'red'</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b_list)           <span class="co"># 输出: ['foo', 'red', 'peekaboo', 'baz', 'dwarf']</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -478,7 +478,7 @@ Caution
 <ul>
 <li><code>pop()</code>: 删除并<em>返回</em>指定索引处的元素。</li>
 </ul>
-<div id="20e4178d" class="cell" data-execution_count="20">
+<div id="82a20206" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>removed_element <span class="op">=</span> b_list.pop(<span class="dv">2</span>) <span class="co"># 删除索引 2 处的元素，并将其赋值给 removed_element</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(removed_element)         <span class="co"># 输出: peekaboo</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b_list)                   <span class="co"># 输出: ['foo', 'red', 'baz', 'dwarf']</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -490,7 +490,7 @@ Caution
 <ul>
 <li><code>remove()</code>: 删除<em>第一个</em>出现的指定值。</li>
 </ul>
-<div id="29e69057" class="cell" data-execution_count="21">
+<div id="fd594b06" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>b_list.append(<span class="st">'foo'</span>)         <span class="co"># 再次在列表末尾添加 'foo'</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>b_list.remove(<span class="st">'foo'</span>)        <span class="co"># 删除第一个出现的 'foo'</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b_list)               <span class="co"># 输出: ['red', 'baz', 'dwarf', 'foo']</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -501,7 +501,7 @@ Caution
 </section>
 <section id="列表检查成员资格-in-和-not-in" class="level2">
 <h2 class="anchored" data-anchor-id="列表检查成员资格-in-和-not-in">列表：检查成员资格 (in 和 not in)</h2>
-<div id="06ed032d" class="cell" data-execution_count="22">
+<div id="b5770e3c" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'dwarf'</span> <span class="kw">in</span> b_list)     <span class="co"># 检查 'dwarf' 是否在列表中，输出: True</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'dwarf'</span> <span class="kw">not</span> <span class="kw">in</span> b_list) <span class="co"># 检查 'dwarf' 是否不在列表中，输出: False</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -526,7 +526,7 @@ Note
 <section id="列表连接和合并" class="level2">
 <h2 class="anchored" data-anchor-id="列表连接和合并">列表：连接和合并</h2>
 <p>使用 <code>+</code> 连接：</p>
-<div id="49aa13f2" class="cell" data-execution_count="23">
+<div id="fffcee36" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>list1 <span class="op">=</span> [<span class="dv">4</span>, <span class="va">None</span>, <span class="st">'foo'</span>]      <span class="co"># 创建列表 list1</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>list2 <span class="op">=</span> [<span class="dv">7</span>, <span class="dv">8</span>, (<span class="dv">2</span>, <span class="dv">3</span>)]      <span class="co"># 创建列表 list2</span></span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>combined_list <span class="op">=</span> list1 <span class="op">+</span> list2 <span class="co"># 连接两个列表</span></span>
@@ -536,7 +536,7 @@ Note
 </div>
 </div>
 <p><code>extend()</code> 追加多个元素：</p>
-<div id="4c8feea7" class="cell" data-execution_count="24">
+<div id="dc199dca" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">4</span>, <span class="va">None</span>, <span class="st">'foo'</span>]       <span class="co"># 创建列表 x</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>x.extend([<span class="dv">7</span>, <span class="dv">8</span>, (<span class="dv">2</span>, <span class="dv">3</span>)]) <span class="co"># 使用 extend 方法追加多个元素</span></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)                   <span class="co"># 输出: [4, None, 'foo', 7, 8, (2, 3)]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -563,7 +563,7 @@ Tip
 <ul>
 <li><code>sort()</code>: <em>就地</em>排序。</li>
 </ul>
-<div id="86dc6999" class="cell" data-execution_count="25">
+<div id="5ba35a55" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">1</span>, <span class="dv">3</span>] <span class="co"># 创建一个列表</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>a.sort()            <span class="co"># 对列表进行就地排序</span></span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a)            <span class="co"># 输出: [1, 2, 3, 5, 7]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -574,7 +574,7 @@ Tip
 <ul>
 <li><code>key</code> 参数: 提供自定义排序方法。</li>
 </ul>
-<div id="291e513c" class="cell" data-execution_count="26">
+<div id="7fc01166" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> [<span class="st">'saw'</span>, <span class="st">'small'</span>, <span class="st">'He'</span>, <span class="st">'foxes'</span>, <span class="st">'six'</span>] <span class="co"># 创建一个字符串列表</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>b.sort(key<span class="op">=</span><span class="bu">len</span>)   <span class="co"># 按照字符串长度对列表进行排序</span></span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b)            <span class="co"># 输出: ['He', 'saw', 'six', 'small', 'foxes']</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -586,7 +586,7 @@ Tip
 <section id="列表切片" class="level2">
 <h2 class="anchored" data-anchor-id="列表切片">列表：切片</h2>
 <p>使用 <code>start:stop</code> 选择部分：</p>
-<div id="da34028f" class="cell" data-execution_count="27">
+<div id="facd7c03" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>seq <span class="op">=</span> [<span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">0</span>, <span class="dv">1</span>] <span class="co"># 创建一个列表</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>sub_list <span class="op">=</span> seq[<span class="dv">1</span>:<span class="dv">5</span>]          <span class="co"># 从索引 1（包含）到 5（不包含）进行切片</span></span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sub_list)              <span class="co"># 输出: [2, 3, 7, 5]</span></span>
@@ -606,7 +606,7 @@ Tip
 <li>省略 <code>stop</code>: 默认为结尾。</li>
 <li>负索引：从末尾开始计数。</li>
 </ul>
-<div id="6d7ea05b" class="cell" data-execution_count="28">
+<div id="7b282fcf" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(seq[:<span class="dv">5</span>])    <span class="co"># 获取前 5 个元素，输出: [7, 2, 3, 6, 3]</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(seq[<span class="dv">3</span>:])    <span class="co"># 从索引 3 开始到结尾，输出: [6, 3, 6, 0, 1]</span></span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(seq[<span class="op">-</span><span class="dv">4</span>:])   <span class="co"># 获取最后 4 个元素，输出: [3, 6, 0, 1]</span></span>
@@ -622,7 +622,7 @@ Tip
 <section id="列表切片步长" class="level2">
 <h2 class="anchored" data-anchor-id="列表切片步长">列表：切片（步长）</h2>
 <p>使用<em>步长</em>选择每 n 个元素：</p>
-<div id="4513fda4" class="cell" data-execution_count="29">
+<div id="ecf77a26" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(seq[::<span class="dv">2</span>])   <span class="co"># 每隔一个元素取一个，输出: [7, 3, 3, 0]</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(seq[::<span class="op">-</span><span class="dv">1</span>])  <span class="co"># 反转列表，输出: [1, 0, 6, 3, 6, 3, 2, 7]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -673,7 +673,7 @@ Tip
 </tbody>
 </table>
 </center>
-<div id="72c0db6e" class="cell" data-execution_count="30">
+<div id="1f0e8ee6" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>string <span class="op">=</span> <span class="st">"HELLO!"</span></span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(string[<span class="dv">2</span>:<span class="dv">4</span>]) <span class="co"># 使用正索引进行切片，输出: LL</span></span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(string[<span class="op">-</span><span class="dv">5</span>:<span class="op">-</span><span class="dv">2</span>]) <span class="co"># 使用负索引进行切片, 输出: ELL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -704,7 +704,7 @@ ELL</code></pre>
 <section id="字典创建" class="level2">
 <h2 class="anchored" data-anchor-id="字典创建">字典：创建</h2>
 <p>使用 <code>{}</code> 和 <code>:</code>：</p>
-<div id="c17c896b" class="cell" data-execution_count="31">
+<div id="5a3bdffb" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>empty_dict <span class="op">=</span> {} <span class="co"># 创建一个空字典</span></span>
 <span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>d1 <span class="op">=</span> {<span class="st">'a'</span>: <span class="st">'some value'</span>, <span class="st">'b'</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]} <span class="co"># 创建一个字典</span></span>
 <span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1) <span class="co"># 输出: {'a': 'some value', 'b': [1, 2, 3, 4]}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -715,7 +715,7 @@ ELL</code></pre>
 </section>
 <section id="字典访问插入设置" class="level2">
 <h2 class="anchored" data-anchor-id="字典访问插入设置">字典：访问、插入、设置</h2>
-<div id="bf8a9b9b" class="cell" data-execution_count="32">
+<div id="bb841673" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>d1[<span class="dv">7</span>] <span class="op">=</span> <span class="st">'an integer'</span>  <span class="co"># 添加键值对 7: 'an integer'</span></span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1)            <span class="co"># 输出: {'a': 'some value', 'b': [1, 2, 3, 4], 7: 'an integer'}</span></span>
 <span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1[<span class="st">'b'</span>])       <span class="co"># 访问键 'b' 对应的值，输出: [1, 2, 3, 4]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -727,7 +727,7 @@ ELL</code></pre>
 </section>
 <section id="字典检查键-in" class="level2">
 <h2 class="anchored" data-anchor-id="字典检查键-in">字典：检查键 (in)</h2>
-<div id="2a9dacdf" class="cell" data-execution_count="33">
+<div id="d1eae80a" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'b'</span> <span class="kw">in</span> d1)  <span class="co"># 检查键 'b' 是否存在于字典中，输出: True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>True</code></pre>
@@ -739,7 +739,7 @@ ELL</code></pre>
 <ul>
 <li><code>del</code>:</li>
 </ul>
-<div id="c5b9bf53" class="cell" data-execution_count="34">
+<div id="ecf53039" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>d1[<span class="dv">5</span>] <span class="op">=</span> <span class="st">'some value'</span>      <span class="co"># 添加键值对 5: 'some value'</span></span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>d1[<span class="st">'dummy'</span>] <span class="op">=</span> <span class="st">'another value'</span> <span class="co"># 添加键值对 'dummy': 'another value'</span></span>
 <span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1)                   <span class="co"># 输出: {'a': 'some value', 'b': [1, 2, 3, 4], 7: 'an integer', 5: 'some value', 'dummy': 'another value'}</span></span>
@@ -753,7 +753,7 @@ ELL</code></pre>
 <ul>
 <li><code>pop()</code>: 删除并<em>返回</em>。</li>
 </ul>
-<div id="f8323144" class="cell" data-execution_count="35">
+<div id="9d9856a7" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>ret <span class="op">=</span> d1.pop(<span class="st">'dummy'</span>) <span class="co"># 删除键 'dummy' 及其对应的值，并将值赋给 ret</span></span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ret)            <span class="co"># 输出: another value</span></span>
 <span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1)            <span class="co"># 输出: {'a': 'some value', 'b': [1, 2, 3, 4], 7: 'an integer'}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -770,7 +770,7 @@ ELL</code></pre>
 <li><code>values()</code>: 值的迭代器。</li>
 <li><code>items()</code>: 键值对的迭代器。</li>
 </ul>
-<div id="163aceb7" class="cell" data-execution_count="36">
+<div id="045873c0" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(d1.keys()))   <span class="co"># 获取字典中所有键的列表，输出: ['a', 'b', 7]</span></span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(d1.values())) <span class="co"># 获取字典中所有值的列表，输出: ['some value', [1, 2, 3, 4], 'an integer']</span></span>
 <span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(d1.items()))  <span class="co"># 获取字典中所有键值对的列表，输出: [('a', 'some value'), ('b', [1, 2, 3, 4]), (7, 'an integer')]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -797,7 +797,7 @@ Note
 <section id="字典使用-update-合并" class="level2">
 <h2 class="anchored" data-anchor-id="字典使用-update-合并">字典：使用 update() 合并</h2>
 <p><code>update()</code> 合并字典：</p>
-<div id="f588891c" class="cell" data-execution_count="37">
+<div id="f24cdf47" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>d1.update({<span class="st">'b'</span>: <span class="st">'foo'</span>, <span class="st">'c'</span>: <span class="dv">12</span>})  <span class="co"># 更新键 'b' 的值，并添加键值对 'c': 12</span></span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d1)                       <span class="co"># 输出: {'a': 'some value', 'b': 'foo', 7: 'an integer', 'c': 12}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -820,7 +820,7 @@ Caution
 </section>
 <section id="字典从序列创建" class="level2">
 <h2 class="anchored" data-anchor-id="字典从序列创建">字典：从序列创建</h2>
-<div id="7cffcdb8" class="cell" data-execution_count="38">
+<div id="453ab7e7" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>key_list <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'b'</span>, <span class="st">'c'</span>]             <span class="co"># 创建一个键列表</span></span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>value_list <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]               <span class="co"># 创建一个值列表</span></span>
 <span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>mapping <span class="op">=</span> {}                          <span class="co"># 创建一个空字典</span></span>
@@ -840,7 +840,7 @@ Caution
 </section>
 <section id="字典默认值-get-和-setdefault" class="level2">
 <h2 class="anchored" data-anchor-id="字典默认值-get-和-setdefault">字典：默认值 (get 和 setdefault)</h2>
-<div id="b1e347ff" class="cell" data-execution_count="39">
+<div id="d57c8bde" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 冗长写法：</span></span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'some_key'</span> <span class="kw">in</span> some_dict:   <span class="co"># 检查键是否存在</span></span>
 <span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>    value <span class="op">=</span> some_dict[<span class="st">'some_key'</span>] <span class="co"># 如果存在，获取值</span></span>
@@ -851,7 +851,7 @@ Caution
 <span id="cb77-8"><a href="#cb77-8" aria-hidden="true" tabindex="-1"></a>value <span class="op">=</span> some_dict.get(<span class="st">'some_key'</span>, default_value) <span class="co"># 如果键存在，返回值；否则返回默认值</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>如果键不存在，<code>get</code> 返回 <code>None</code>（或指定的默认值），而 <code>pop</code> 会引发异常。</p>
-<div id="332e8bc4" class="cell" data-execution_count="40">
+<div id="8d2681f8" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>words <span class="op">=</span> [<span class="st">'apple'</span>, <span class="st">'bat'</span>, <span class="st">'bar'</span>, <span class="st">'atom'</span>, <span class="st">'book'</span>] <span class="co"># 创建一个字符串列表</span></span>
 <span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>by_letter <span class="op">=</span> {}                                  <span class="co"># 创建一个空字典</span></span>
 <span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> word <span class="kw">in</span> words:                             <span class="co"># 遍历列表中的每个单词</span></span>
@@ -867,7 +867,7 @@ Caution
 <section id="字典defaultdict" class="level2">
 <h2 class="anchored" data-anchor-id="字典defaultdict">字典：defaultdict</h2>
 <p><code>collections.defaultdict</code> 简化了初始化：</p>
-<div id="0eaedf48" class="cell" data-execution_count="41">
+<div id="0bb94b54" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict <span class="co"># 导入 defaultdict</span></span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>by_letter <span class="op">=</span> defaultdict(<span class="bu">list</span>)      <span class="co"># 创建一个 defaultdict，默认值为列表</span></span>
@@ -885,7 +885,7 @@ Caution
 <li>键必须是<em>不可变</em>的。</li>
 <li>使用 <code>hash()</code> 检查：</li>
 </ul>
-<div id="5676b54f" class="cell" data-execution_count="42">
+<div id="a8410443" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">hash</span>(<span class="st">'string'</span>))        <span class="co"># 字符串可以哈希，输出一个哈希值</span></span>
 <span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">hash</span>((<span class="dv">1</span>, <span class="dv">2</span>, (<span class="dv">2</span>, <span class="dv">3</span>)))) <span class="co"># 元组可以哈希，输出一个哈希值</span></span>
 <span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a><span class="co"># print(hash((1, 2, [2, 3])))  # 这行代码会引发 TypeError: unhashable type: 'list'，因为列表不可哈希</span></span>
@@ -895,7 +895,7 @@ Caution
 <span id="cb82-7"><a href="#cb82-7" aria-hidden="true" tabindex="-1"></a>d[<span class="bu">tuple</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])] <span class="op">=</span> <span class="dv">5</span>    <span class="co"># 将列表转换为元组作为键</span></span>
 <span id="cb82-8"><a href="#cb82-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(d)                    <span class="co"># 输出: {(1, 2, 3): 5}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>4813562545581417015
+<pre><code>5013634639114491430
 -9209053662355515447
 {(1, 2, 3): 5}</code></pre>
 </div>
@@ -907,7 +907,7 @@ Caution
 </section>
 <section id="集合创建" class="level2">
 <h2 class="anchored" data-anchor-id="集合创建">集合：创建</h2>
-<div id="d1ca281d" class="cell" data-execution_count="43">
+<div id="12093448" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>set1 <span class="op">=</span> {<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>}  <span class="co"># 使用 {} 创建集合</span></span>
 <span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(set1)               <span class="co"># 输出: {1, 2, 3} （自动去重）</span></span>
 <span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>set2 <span class="op">=</span> <span class="bu">set</span>([<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>])  <span class="co"># 使用 set() 创建集合</span></span>
@@ -920,7 +920,7 @@ Caution
 </section>
 <section id="集合运算并集交集等" class="level2">
 <h2 class="anchored" data-anchor-id="集合运算并集交集等">集合：运算（并集、交集等）</h2>
-<div id="0789f48b" class="cell" data-execution_count="44">
+<div id="a1d1fc69" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> {<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>} <span class="co"># 创建集合 a</span></span>
 <span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> {<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>} <span class="co"># 创建集合 b</span></span>
 <span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1042,7 +1042,7 @@ Caution
 <section id="集合就地运算" class="level2">
 <h2 class="anchored" data-anchor-id="集合就地运算">集合：就地运算</h2>
 <p>存在就地版本（例如，<code>a |= b</code>）：</p>
-<div id="cad1c08f" class="cell" data-execution_count="45">
+<div id="22e8cb96" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> a.copy() <span class="co"># 创建 a 的副本</span></span>
 <span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>c <span class="op">|=</span> b       <span class="co"># 就地并集</span></span>
 <span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(c)     <span class="co"># 输出: {1, 2, 3, 4, 5, 6, 7, 8}</span></span>
@@ -1072,7 +1072,7 @@ Tip
 <section id="集合元素哈希性" class="level2">
 <h2 class="anchored" data-anchor-id="集合元素哈希性">集合：元素哈希性</h2>
 <p>与字典键一样，集合元素必须是<em>不可变</em>且<em>可哈希</em>的。</p>
-<div id="a7b3c601" class="cell" data-execution_count="46">
+<div id="ce86e9b1" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>my_data <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]   <span class="co"># 创建一个列表</span></span>
 <span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="co"># my_set = {my_data}  # 这行代码会引发 TypeError，因为列表不可哈希</span></span>
 <span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>my_set <span class="op">=</span> {<span class="bu">tuple</span>(my_data)} <span class="co"># 将列表转换为元组</span></span>
@@ -1084,7 +1084,7 @@ Tip
 </section>
 <section id="集合子集和超集" class="level2">
 <h2 class="anchored" data-anchor-id="集合子集和超集">集合：子集和超集</h2>
-<div id="251641db" class="cell" data-execution_count="47">
+<div id="b6be4bd1" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>a_set <span class="op">=</span> {<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>} <span class="co"># 创建一个集合</span></span>
 <span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>({<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>}.issubset(a_set))   <span class="co"># 检查 {1, 2, 3} 是否是 a_set 的子集，输出: True</span></span>
 <span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a_set.issuperset({<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>})) <span class="co"># 检查 a_set 是否是 {1, 2, 3} 的超集，输出: True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1097,7 +1097,7 @@ True</code></pre>
 <section id="集合相等性" class="level2">
 <h2 class="anchored" data-anchor-id="集合相等性">集合：相等性</h2>
 <p>如果内容相等，则集合相等：</p>
-<div id="a16d378b" class="cell" data-execution_count="48">
+<div id="9c4465de" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>({<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>} <span class="op">==</span> {<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>}) <span class="co"># 输出: True</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>True</code></pre>
@@ -1107,7 +1107,7 @@ True</code></pre>
 <section id="内置序列函数enumerate" class="level2">
 <h2 class="anchored" data-anchor-id="内置序列函数enumerate">内置序列函数：enumerate</h2>
 <p><code>enumerate</code> 在迭代期间跟踪索引：</p>
-<div id="bd49e418" class="cell" data-execution_count="49">
+<div id="d1e636cb" class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>collection <span class="op">=</span> [<span class="st">'foo'</span>, <span class="st">'bar'</span>, <span class="st">'baz'</span>] <span class="co"># 创建一个列表</span></span>
 <span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 不使用 enumerate 的写法：</span></span>
@@ -1133,7 +1133,7 @@ Index: 2, Value: baz</code></pre>
 <section id="内置序列函数sorted" class="level2">
 <h2 class="anchored" data-anchor-id="内置序列函数sorted">内置序列函数：sorted</h2>
 <p><code>sorted</code> 返回一个<em>新的</em>排序列表：</p>
-<div id="9403ae6a" class="cell" data-execution_count="50">
+<div id="6fbfe2d4" class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sorted</span>([<span class="dv">7</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">2</span>]))  <span class="co"># 对列表进行排序，输出: [0, 1, 2, 2, 3, 6, 7]</span></span>
 <span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sorted</span>(<span class="st">'horse race'</span>))          <span class="co"># 对字符串进行排序，输出: [' ', 'a', 'c', 'e', 'e', 'h', 'o', 'r', 'r', 's']</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1158,7 +1158,7 @@ Note
 <section id="内置序列函数zip" class="level2">
 <h2 class="anchored" data-anchor-id="内置序列函数zip">内置序列函数：zip</h2>
 <p><code>zip</code> 将元素“配对”：</p>
-<div id="b112ff45" class="cell" data-execution_count="51">
+<div id="a08f8f93" class="cell" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>seq1 <span class="op">=</span> [<span class="st">'foo'</span>, <span class="st">'bar'</span>, <span class="st">'baz'</span>]   <span class="co"># 创建列表 seq1</span></span>
 <span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>seq2 <span class="op">=</span> [<span class="st">'one'</span>, <span class="st">'two'</span>, <span class="st">'three'</span>] <span class="co"># 创建列表 seq2</span></span>
 <span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>zipped <span class="op">=</span> <span class="bu">zip</span>(seq1, seq2)       <span class="co"># 将 seq1 和 seq2 配对</span></span>
@@ -1168,7 +1168,7 @@ Note
 </div>
 </div>
 <p><code>zip</code> 可以接受任意数量的序列。输出长度由<em>最短</em>的序列决定：</p>
-<div id="3e95fbf6" class="cell" data-execution_count="52">
+<div id="f965b996" class="cell" data-execution_count="52">
 <div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>seq3 <span class="op">=</span> [<span class="va">False</span>, <span class="va">True</span>]           <span class="co"># 创建列表 seq3</span></span>
 <span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(<span class="bu">zip</span>(seq1, seq2, seq3))) <span class="co"># 输出: [('foo', 'one', False), ('bar', 'two', True)]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1179,7 +1179,7 @@ Note
 <section id="内置序列函数zip-与-enumerate-结合" class="level2">
 <h2 class="anchored" data-anchor-id="内置序列函数zip-与-enumerate-结合">内置序列函数：zip (与 enumerate 结合)</h2>
 <p>使用 <code>enumerate</code> 迭代多个序列：</p>
-<div id="00a4c2c8" class="cell" data-execution_count="53">
+<div id="38a9f32b" class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, (a, b) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(seq1, seq2)): <span class="co"># 同时迭代多个序列，并获取索引</span></span>
 <span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>a<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">'</span>)                  <span class="co"># 输出: 0: foo, one \n 1: bar, two \n 2: baz, three</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1192,7 +1192,7 @@ Note
 <section id="内置序列函数reversed" class="level2">
 <h2 class="anchored" data-anchor-id="内置序列函数reversed">内置序列函数：reversed</h2>
 <p><code>reversed</code> 以<em>相反</em>的顺序迭代：</p>
-<div id="12bcbbfd" class="cell" data-execution_count="54">
+<div id="f3f0d399" class="cell" data-execution_count="54">
 <div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(<span class="bu">reversed</span>(<span class="bu">range</span>(<span class="dv">10</span>))))  <span class="co"># 反向迭代 range(10)，输出: [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]</code></pre>
@@ -1218,7 +1218,7 @@ Note
 </section>
 <section id="列表推导式基本形式" class="level2">
 <h2 class="anchored" data-anchor-id="列表推导式基本形式">列表推导式：基本形式</h2>
-<div id="471c27bf" class="cell" data-execution_count="55">
+<div id="f9552bcd" class="cell" data-execution_count="55">
 <div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 通用形式：[expr for val in collection if condition]</span></span>
 <span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb108-3"><a href="#cb108-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 等效的 for 循环：</span></span>
@@ -1228,7 +1228,7 @@ Note
 <span id="cb108-7"><a href="#cb108-7" aria-hidden="true" tabindex="-1"></a>        result.append(expr) <span class="co"># 将表达式的结果添加到列表中</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>示例：</p>
-<div id="a108e53d" class="cell" data-execution_count="56">
+<div id="eb79bb39" class="cell" data-execution_count="56">
 <div class="sourceCode cell-code" id="cb109"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>strings <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'as'</span>, <span class="st">'bat'</span>, <span class="st">'car'</span>, <span class="st">'dove'</span>, <span class="st">'python'</span>] <span class="co"># 创建一个字符串列表</span></span>
 <span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用列表推导式将长度大于 2 的字符串转换为大写</span></span>
 <span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a>upper_case_long_strings <span class="op">=</span> [x.upper() <span class="cf">for</span> x <span class="kw">in</span> strings <span class="cf">if</span> <span class="bu">len</span>(x) <span class="op">&gt;</span> <span class="dv">2</span>]</span>
@@ -1240,7 +1240,7 @@ Note
 </section>
 <section id="集合推导式" class="level2">
 <h2 class="anchored" data-anchor-id="集合推导式">集合推导式</h2>
-<div id="9e620eea" class="cell" data-execution_count="57">
+<div id="185804d6" class="cell" data-execution_count="57">
 <div class="sourceCode cell-code" id="cb111"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="co"># {expr for val in collection if condition}</span></span>
 <span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>strings <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'as'</span>, <span class="st">'bat'</span>, <span class="st">'car'</span>, <span class="st">'dove'</span>, <span class="st">'python'</span>] <span class="co"># 创建一个字符串列表</span></span>
 <span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>unique_lengths <span class="op">=</span> {<span class="bu">len</span>(x) <span class="cf">for</span> x <span class="kw">in</span> strings}   <span class="co"># 使用集合推导式获取列表中字符串的唯一长度</span></span>
@@ -1257,7 +1257,7 @@ Note
 </section>
 <section id="字典推导式" class="level2">
 <h2 class="anchored" data-anchor-id="字典推导式">字典推导式</h2>
-<div id="139c0571" class="cell" data-execution_count="58">
+<div id="01149112" class="cell" data-execution_count="58">
 <div class="sourceCode cell-code" id="cb113"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="co"># {key_expr: value_expr for val in collection if condition}</span></span>
 <span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a>strings <span class="op">=</span> [<span class="st">'a'</span>, <span class="st">'as'</span>, <span class="st">'bat'</span>, <span class="st">'car'</span>, <span class="st">'dove'</span>, <span class="st">'python'</span>]   <span class="co"># 创建一个字符串列表</span></span>
@@ -1271,7 +1271,7 @@ Note
 </section>
 <section id="嵌套列表推导式" class="level2">
 <h2 class="anchored" data-anchor-id="嵌套列表推导式">嵌套列表推导式</h2>
-<div id="25fc7c7d" class="cell" data-execution_count="59">
+<div id="eea2f0ae" class="cell" data-execution_count="59">
 <div class="sourceCode cell-code" id="cb115"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>all_data <span class="op">=</span> [[<span class="st">'John'</span>, <span class="st">'Emily'</span>, <span class="st">'Michael'</span>, <span class="st">'Mary'</span>, <span class="st">'Steven'</span>],</span>
 <span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>            [<span class="st">'Maria'</span>, <span class="st">'Juan'</span>, <span class="st">'Javier'</span>, <span class="st">'Natalia'</span>, <span class="st">'Pilar'</span>]]</span>
 <span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1314,7 +1314,7 @@ Note
 </section>
 <section id="函数声明-def" class="level2">
 <h2 class="anchored" data-anchor-id="函数声明-def">函数声明 (def)</h2>
-<div id="1635b873" class="cell" data-execution_count="60">
+<div id="c83476cf" class="cell" data-execution_count="60">
 <div class="sourceCode cell-code" id="cb117"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_function(x, y):                      <span class="co"># 定义一个函数，名为 my_function，接受两个参数 x 和 y</span></span>
 <span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Docstring: 解释函数的功能。"""</span>   <span class="co"># 函数的文档字符串</span></span>
 <span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">+</span> y                            <span class="co"># 返回 x 和 y 的和</span></span>
@@ -1334,7 +1334,7 @@ Docstring: 解释函数的功能。</code></pre>
 </section>
 <section id="函数参数位置参数和关键字参数" class="level2">
 <h2 class="anchored" data-anchor-id="函数参数位置参数和关键字参数">函数参数（位置参数和关键字参数）</h2>
-<div id="a0759123" class="cell" data-execution_count="61">
+<div id="8dfbe611" class="cell" data-execution_count="61">
 <div class="sourceCode cell-code" id="cb119"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_function2(x, y, z<span class="op">=</span><span class="fl">1.5</span>):  <span class="co"># 定义函数，z 是关键字参数，默认值为 1.5</span></span>
 <span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> z <span class="op">&gt;</span> <span class="dv">1</span>:                   <span class="co"># 如果 z 大于 1</span></span>
 <span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> z <span class="op">*</span> (x <span class="op">+</span> y)      <span class="co"># 返回 z 乘以 x 和 y 的和</span></span>
@@ -1362,7 +1362,7 @@ Docstring: 解释函数的功能。</code></pre>
 <li>函数内的变量位于<em>局部命名空间</em>中（默认）。</li>
 <li>局部命名空间：在函数调用时创建，在函数结束时销毁。</li>
 </ul>
-<div id="83e5c80a" class="cell" data-execution_count="62">
+<div id="ad494923" class="cell" data-execution_count="62">
 <div class="sourceCode cell-code" id="cb121"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> func():        <span class="co"># 定义一个函数</span></span>
 <span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> []          <span class="co"># 'a' 是局部变量</span></span>
 <span id="cb121-3"><a href="#cb121-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>): <span class="co"># 循环 5 次</span></span>
@@ -1374,7 +1374,7 @@ Docstring: 解释函数的功能。</code></pre>
 <ul>
 <li>可以访问封闭作用域，但要<em>修改</em>它们，请使用 <code>global</code> 或 <code>nonlocal</code>。</li>
 </ul>
-<div id="2b1b8a04" class="cell" data-execution_count="63">
+<div id="02625319" class="cell" data-execution_count="63">
 <div class="sourceCode cell-code" id="cb122"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> []  <span class="co"># 全局变量</span></span>
 <span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb122-3"><a href="#cb122-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> func2():          <span class="co"># 定义一个函数</span></span>
@@ -1411,7 +1411,7 @@ Caution
 </section>
 <section id="返回多个值" class="level2">
 <h2 class="anchored" data-anchor-id="返回多个值">返回多个值</h2>
-<div id="4d361ee3" class="cell" data-execution_count="64">
+<div id="f35fe318" class="cell" data-execution_count="64">
 <div class="sourceCode cell-code" id="cb124"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f():             <span class="co"># 定义一个函数</span></span>
 <span id="cb124-2"><a href="#cb124-2" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> <span class="dv">5</span>            <span class="co"># 局部变量</span></span>
 <span id="cb124-3"><a href="#cb124-3" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> <span class="dv">6</span>            <span class="co"># 局部变量</span></span>
@@ -1444,7 +1444,7 @@ Caution
 <li>可以赋值给变量。</li>
 <li>可以从其他函数返回。</li>
 </ul>
-<div id="61a011ef" class="cell" data-execution_count="65">
+<div id="16913efc" class="cell" data-execution_count="65">
 <div class="sourceCode cell-code" id="cb126"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re  <span class="co"># 导入正则表达式模块</span></span>
 <span id="cb126-2"><a href="#cb126-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb126-3"><a href="#cb126-3" aria-hidden="true" tabindex="-1"></a>states <span class="op">=</span> [<span class="st">'   Alabama '</span>, <span class="st">'Georgia!'</span>, <span class="st">'Georgia'</span>, <span class="st">'georgia'</span>, <span class="st">'FlOrIda'</span>,</span>
@@ -1496,7 +1496,7 @@ West virginia</code></pre>
 </section>
 <section id="匿名-lambda-函数" class="level1">
 <h1>匿名 (Lambda) 函数</h1>
-<div id="b51cab50" class="cell" data-execution_count="66">
+<div id="7e35db85" class="cell" data-execution_count="66">
 <div class="sourceCode cell-code" id="cb128"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用 `lambda` 定义小型匿名函数：</span></span>
 <span id="cb128-2"><a href="#cb128-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb128-3"><a href="#cb128-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 等效于：</span></span>
@@ -1510,7 +1510,7 @@ West virginia</code></pre>
 </div>
 </div>
 <p>用于传递短函数很方便：</p>
-<div id="2cc667b5" class="cell" data-execution_count="67">
+<div id="9a290308" class="cell" data-execution_count="67">
 <div class="sourceCode cell-code" id="cb130"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> apply_to_list(some_list, f):      <span class="co"># 定义一个函数，接受一个列表和一个函数作为参数</span></span>
 <span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [f(x) <span class="cf">for</span> x <span class="kw">in</span> some_list] <span class="co"># 对列表中的每个元素应用函数 f，并返回结果列表</span></span>
 <span id="cb130-3"><a href="#cb130-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1529,7 +1529,7 @@ West virginia</code></pre>
 <section id="生成器" class="level2">
 <h2 class="anchored" data-anchor-id="生成器">生成器</h2>
 <p>生成器<em>按需</em>生成值（节省内存）。</p>
-<div id="9e6af03e" class="cell" data-execution_count="68">
+<div id="49532ba0" class="cell" data-execution_count="68">
 <div class="sourceCode cell-code" id="cb132"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> squares(n<span class="op">=</span><span class="dv">10</span>):                         <span class="co"># 定义一个生成器函数，生成 1 到 n^2 的平方数</span></span>
 <span id="cb132-2"><a href="#cb132-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Generating squares from 1 to </span><span class="sc">%d</span><span class="st">'</span> <span class="op">%</span> n <span class="op">**</span> <span class="dv">2</span>) <span class="co"># 打印一条消息</span></span>
 <span id="cb132-3"><a href="#cb132-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n <span class="op">+</span> <span class="dv">1</span>):             <span class="co"># 循环 1 到 n</span></span>
@@ -1540,7 +1540,7 @@ West virginia</code></pre>
 <span id="cb132-8"><a href="#cb132-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> gen:                          <span class="co"># 请求值</span></span>
 <span id="cb132-9"><a href="#cb132-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(x, end<span class="op">=</span><span class="st">' '</span>)                   <span class="co"># 输出: 1 4 9 16 25 36 49 64 81 100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;generator object squares at 0x7ff62c2cd9a0&gt;
+<pre><code>&lt;generator object squares at 0x7f70286299a0&gt;
 Generating squares from 1 to 100
 1 4 9 16 25 36 49 64 81 100 </code></pre>
 </div>
@@ -1553,7 +1553,7 @@ Generating squares from 1 to 100
 <section id="生成器表达式" class="level2">
 <h2 class="anchored" data-anchor-id="生成器表达式">生成器表达式</h2>
 <p>简洁的生成器（类似于推导式）：</p>
-<div id="03c72fb7" class="cell" data-execution_count="69">
+<div id="50066aab" class="cell" data-execution_count="69">
 <div class="sourceCode cell-code" id="cb134"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 列表推导式：[x ** 2 for x in range(100)]</span></span>
 <span id="cb134-2"><a href="#cb134-2" aria-hidden="true" tabindex="-1"></a>gen <span class="op">=</span> (x <span class="op">**</span> <span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>)) <span class="co"># 使用圆括号创建生成器表达式</span></span>
 <span id="cb134-3"><a href="#cb134-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(gen)                      <span class="co"># 输出: &lt;generator object &lt;genexpr&gt; at 0x...&gt; （生成器对象）</span></span>
@@ -1563,7 +1563,7 @@ Generating squares from 1 to 100
 <span id="cb134-7"><a href="#cb134-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">sum</span>(x <span class="op">**</span> <span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>)))   <span class="co"># 将生成器表达式作为参数传递给 sum 函数，输出: 328350</span></span>
 <span id="cb134-8"><a href="#cb134-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">dict</span>((i, i <span class="op">**</span><span class="dv">2</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>))) <span class="co"># 将生成器表达式作为参数传递给 dict 函数，输出: {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;generator object &lt;genexpr&gt; at 0x7ff65455e190&gt;
+<pre><code>&lt;generator object &lt;genexpr&gt; at 0x7f70559f2e90&gt;
 328350
 328350
 {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}</code></pre>
@@ -1573,7 +1573,7 @@ Generating squares from 1 to 100
 <section id="itertools-模块" class="level2">
 <h2 class="anchored" data-anchor-id="itertools-模块">itertools 模块</h2>
 <p><code>itertools</code> 提供了有用的生成器：</p>
-<div id="6ce3b74a" class="cell" data-execution_count="70">
+<div id="9908fdff" class="cell" data-execution_count="70">
 <div class="sourceCode cell-code" id="cb136"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools <span class="co"># 导入 itertools 模块</span></span>
 <span id="cb136-2"><a href="#cb136-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb136-3"><a href="#cb136-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> first_letter(x):   <span class="co"># 定义一个函数，返回字符串的第一个字母</span></span>
@@ -1648,7 +1648,7 @@ Note
 </section>
 <section id="try-except-块" class="level2">
 <h2 class="anchored" data-anchor-id="try-except-块">try-except 块</h2>
-<div id="9f93701a" class="cell" data-execution_count="71">
+<div id="16ab7562" class="cell" data-execution_count="71">
 <div class="sourceCode cell-code" id="cb138"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> attempt_float(x):  <span class="co"># 定义一个函数，尝试将输入转换为浮点数</span></span>
 <span id="cb138-2"><a href="#cb138-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:               <span class="co"># 尝试执行以下代码块</span></span>
 <span id="cb138-3"><a href="#cb138-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">float</span>(x) <span class="co"># 将 x 转换为浮点数并返回</span></span>
@@ -1669,7 +1669,7 @@ something</code></pre>
 </section>
 <section id="捕获特定异常" class="level2">
 <h2 class="anchored" data-anchor-id="捕获特定异常">捕获特定异常</h2>
-<div id="8cbe3137" class="cell" data-execution_count="72">
+<div id="d08c7e79" class="cell" data-execution_count="72">
 <div class="sourceCode cell-code" id="cb140"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> attempt_float2(x):         <span class="co"># 定义一个函数，尝试将输入转换为浮点数</span></span>
 <span id="cb140-2"><a href="#cb140-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:                      <span class="co"># 尝试执行以下代码块</span></span>
 <span id="cb140-3"><a href="#cb140-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">float</span>(x)        <span class="co"># 将 x 转换为浮点数并返回</span></span>
@@ -1682,7 +1682,7 @@ something</code></pre>
 </section>
 <section id="捕获多个异常类型" class="level2">
 <h2 class="anchored" data-anchor-id="捕获多个异常类型">捕获多个异常类型</h2>
-<div id="aaa5cf40" class="cell" data-execution_count="73">
+<div id="c1d1e7ac" class="cell" data-execution_count="73">
 <div class="sourceCode cell-code" id="cb141"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> attempt_float3(x):                 <span class="co"># 定义一个函数，尝试将输入转换为浮点数</span></span>
 <span id="cb141-2"><a href="#cb141-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:                              <span class="co"># 尝试执行以下代码块</span></span>
 <span id="cb141-3"><a href="#cb141-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">float</span>(x)                <span class="co"># 将 x 转换为浮点数并返回</span></span>
@@ -1697,7 +1697,7 @@ something</code></pre>
 <li><code>finally</code>: <em>始终</em>执行（清理）。</li>
 <li><code>else</code>: 如果 <code>try</code> 块<em>没有</em>引发异常，则执行。</li>
 </ul>
-<div id="4235cbe8" class="cell" data-execution_count="74">
+<div id="c62a077a" class="cell" data-execution_count="74">
 <div class="sourceCode cell-code" id="cb142"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="bu">open</span>(<span class="st">"tempfile.txt"</span>, mode <span class="op">=</span> <span class="st">"w"</span>) <span class="co"># 创建一个临时文件</span></span>
 <span id="cb142-2"><a href="#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
 <span id="cb142-3"><a href="#cb142-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># write_to_file(f) # 假设 write_to_file 是一个可能出错的函数</span></span>
@@ -1707,7 +1707,7 @@ something</code></pre>
 <span id="cb142-7"><a href="#cb142-7" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> os</span>
 <span id="cb142-8"><a href="#cb142-8" aria-hidden="true" tabindex="-1"></a>    os.remove(<span class="st">"tempfile.txt"</span>) <span class="co"># 删除临时文件</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="b1d21fdd" class="cell" data-execution_count="75">
+<div id="35f2837b" class="cell" data-execution_count="75">
 <div class="sourceCode cell-code" id="cb143"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="bu">open</span>(<span class="st">"tempfile.txt"</span>, mode <span class="op">=</span> <span class="st">"w"</span>) <span class="co"># 创建一个临时文件</span></span>
 <span id="cb143-2"><a href="#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
 <span id="cb143-3"><a href="#cb143-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#write_to_file(f) # 假设 write_to_file 是一个可能出错的函数</span></span>
@@ -1734,7 +1734,7 @@ something</code></pre>
 </section>
 <section id="打开文件-open" class="level2">
 <h2 class="anchored" data-anchor-id="打开文件-open">打开文件 (open)</h2>
-<div id="daa58781" class="cell" data-execution_count="76">
+<div id="9cbb667a" class="cell" data-execution_count="76">
 <div class="sourceCode cell-code" id="cb145"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> <span class="st">'examples/segismundo.txt'</span> <span class="co"># 设置文件路径（请确保此文件存在）</span></span>
 <span id="cb145-2"><a href="#cb145-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb145-3"><a href="#cb145-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 默认编码因平台而异，最好明确指定。</span></span>
@@ -1772,7 +1772,7 @@ aunque ninguno lo entiende.
 </section>
 <section id="从文件中读取" class="level2">
 <h2 class="anchored" data-anchor-id="从文件中读取">从文件中读取</h2>
-<div id="4cbc7024" class="cell" data-execution_count="77">
+<div id="de0f76dd" class="cell" data-execution_count="77">
 <div class="sourceCode cell-code" id="cb147"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 读取所有行</span></span>
 <span id="cb147-2"><a href="#cb147-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="bu">open</span>(path, encoding<span class="op">=</span><span class="st">"utf-8"</span>)      <span class="co"># 以读取模式打开文件，指定编码为 utf-8</span></span>
 <span id="cb147-3"><a href="#cb147-3" aria-hidden="true" tabindex="-1"></a>lines <span class="op">=</span> [x.rstrip() <span class="cf">for</span> x <span class="kw">in</span> f]      <span class="co"># 读取所有行，移除每行末尾的空白字符，并存储在列表中</span></span>
@@ -1786,7 +1786,7 @@ aunque ninguno lo entiende.
 <section id="使用-with-语句自动关闭文件" class="level2">
 <h2 class="anchored" data-anchor-id="使用-with-语句自动关闭文件">使用 with 语句自动关闭文件</h2>
 <p><code>with</code> 语句会自动关闭文件：</p>
-<div id="394e9361" class="cell" data-execution_count="78">
+<div id="f51800d7" class="cell" data-execution_count="78">
 <div class="sourceCode cell-code" id="cb149"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(path, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f: <span class="co"># 使用 with 语句打开文件，指定编码为 utf-8</span></span>
 <span id="cb149-2"><a href="#cb149-2" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> [x.rstrip() <span class="cf">for</span> x <span class="kw">in</span> f]  <span class="co"># 读取所有行，移除每行末尾的空白字符，并存储在列表中</span></span>
 <span id="cb149-3"><a href="#cb149-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lines)                         <span class="co"># 打印所有行</span></span>
@@ -1856,7 +1856,7 @@ Tip
 </section>
 <section id="read-seek-和-tell" class="level2">
 <h2 class="anchored" data-anchor-id="read-seek-和-tell">read, seek 和 tell</h2>
-<div id="9f0660fa" class="cell" data-execution_count="79">
+<div id="c23982bf" class="cell" data-execution_count="79">
 <div class="sourceCode cell-code" id="cb151"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a>f1 <span class="op">=</span> <span class="bu">open</span>(path, encoding <span class="op">=</span> <span class="st">"utf-8"</span>)  <span class="co"># 以文本模式打开文件，指定编码为 utf-8</span></span>
 <span id="cb151-2"><a href="#cb151-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f1.read(<span class="dv">10</span>))                <span class="co"># 读取 10 个*字符*</span></span>
 <span id="cb151-3"><a href="#cb151-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1892,7 +1892,7 @@ utf-8
 </section>
 <section id="写入文件" class="level2">
 <h2 class="anchored" data-anchor-id="写入文件">写入文件</h2>
-<div id="d11fae64" class="cell" data-execution_count="80">
+<div id="30cb836b" class="cell" data-execution_count="80">
 <div class="sourceCode cell-code" id="cb153"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'tmp.txt'</span>, <span class="st">'w'</span>, encoding <span class="op">=</span> <span class="st">"utf-8"</span>) <span class="im">as</span> handle:    <span class="co"># 以写入模式打开一个临时文件，指定编码为 utf-8</span></span>
 <span id="cb153-2"><a href="#cb153-2" aria-hidden="true" tabindex="-1"></a>     <span class="co"># 将 segismundo.txt 文件中长度大于 1 的行写入 tmp.txt</span></span>
 <span id="cb153-3"><a href="#cb153-3" aria-hidden="true" tabindex="-1"></a>    handle.writelines(x <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">open</span>(path, encoding <span class="op">=</span> <span class="st">"utf-8"</span>) <span class="cf">if</span> <span class="bu">len</span>(x) <span class="op">&gt;</span> <span class="dv">1</span>)</span>
@@ -1985,7 +1985,7 @@ utf-8
 <li>默认：<em>文本模式</em>（字符串/Unicode）。</li>
 <li><code>mode='rb'</code>/<code>'wb'</code>: <em>二进制模式</em>（字节）。</li>
 </ul>
-<div id="02d02d67" class="cell" data-execution_count="81">
+<div id="99a9d9f9" class="cell" data-execution_count="81">
 <div class="sourceCode cell-code" id="cb155"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb155-1"><a href="#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(path, encoding <span class="op">=</span> <span class="st">"utf-8"</span>) <span class="im">as</span> f: <span class="co"># 以文本模式打开文件</span></span>
 <span id="cb155-2"><a href="#cb155-2" aria-hidden="true" tabindex="-1"></a>    chars <span class="op">=</span> f.read(<span class="dv">10</span>) <span class="co"># 读取前10个字符</span></span>
 <span id="cb155-3"><a href="#cb155-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(chars)) <span class="co">#输出字符数</span></span>
@@ -2008,7 +2008,7 @@ Sueña el </code></pre>
 <li>二进制：<code>read</code> 返回确切的字节。</li>
 <li>解码完整的字符。</li>
 </ul>
-<div id="fbe771cb" class="cell" data-execution_count="82">
+<div id="141f7d54" class="cell" data-execution_count="82">
 <div class="sourceCode cell-code" id="cb157"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb157-1"><a href="#cb157-1" aria-hidden="true" tabindex="-1"></a>sink_path <span class="op">=</span> <span class="st">'sink.txt'</span> <span class="co"># 设置一个用于演示的文件名</span></span>
 <span id="cb157-2"><a href="#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(path, encoding <span class="op">=</span> <span class="st">"utf-8"</span>) <span class="im">as</span> source: <span class="co"># 以utf-8编码读取</span></span>
 <span id="cb157-3"><a href="#cb157-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> <span class="bu">open</span>(sink_path, <span class="st">'x'</span>, encoding<span class="op">=</span><span class="st">'iso-8859-1'</span>) <span class="im">as</span> sink: <span class="co"># 以iso-8859-1编码写入</span></span>
